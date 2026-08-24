@@ -26,33 +26,60 @@ real part counts and stay the honest fallback for the 5 that don't.
 | Script 5 | `EXTRA`/`RELATED` (real review data), module page, message form |
 | Script 6 | Fit rule, routing, events, init |
 
-## Adding or removing an item
+## Data architecture
 
-Append a row to `RAW`, field order given by `FIELDS`:
+Listings are **not** inline in `index.html` any more — each is its own file at
+`content/items/<id>.json`. On page load, `index.html` fetches the folder listing from the
+GitHub API (`GET /repos/spongefile/eurorackfi/contents/content/items` — one call, counts
+against GitHub's unauthenticated rate limit) and then fetches each file's own
+`download_url`, which is served from `raw.githubusercontent.com` and does **not** count
+against that limit. Chrome shows a brief "Loading…" state for this round trip; everything
+else in the header renders instantly since it doesn't depend on listing data.
 
-```js
-["id","Maker","Name",price,hp,"eu"|"desk","t"|"f","PrimaryCat",["Cat","Cat"],
- "One-line blurb.","modulargrid-slug","maker.com","black"|"alu"|"white"|"cream"|"wood",
- {k:knobs,j:jacks,sl:sliders,led:leds,sc:screen}]
+This is deliberate: `index.html` stays a single self-contained file with no build step,
+while listings become individually-editable files — which is what a git-backed CMS
+(Decap) needs to manage them, and what makes delete a native operation instead of a
+special case.
+
+One JSON file per listing, e.g. `content/items/ph3.json`:
+
+```json
+{
+  "id": "ph3", "mfr": "Industrial Music Electronics", "name": "Piston Honda MK III",
+  "price": 420, "hp": 17, "fmt": "eu", "who": "t",
+  "cat": "Oscillator", "cats": ["Oscillator", "Wavetable", "Digital"],
+  "blurb": { "en": "…", "fi": "…", "sv": "…" },
+  "mgSlug": "industrial-music-electronics-piston-honda-mk-iii",
+  "site": "industrialmusicelectronics.com", "tone": "black",
+  "parts": { "k": 4, "j": 10, "sl": 8, "led": 4, "sc": 0 },
+  "img": "https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg",
+  "negotiating": false
+}
 ```
 
-`hp:0` means standalone — the panel is drawn in landscape and no HP stamp shows.
-**There is no sold state.** An item no longer for sale is deleted from `RAW`; a stale link
-gets a generic "that one's gone" page, since no record survives.
+`hp:0` means standalone — the panel draws in landscape, no HP stamp shows. `blurb.fi`/`sv`
+empty strings are fine; the site shows its honest missing-translation banner rather than
+guessing. `img` is optional — omit it and the item falls back to the drawn faceplate, same
+as a hotlinked photo that goes dead at runtime (`onerror` swaps it live via `photoFail()`).
+`extra` (rich per-item content: spec rows, pull quotes, review quotes, reviews, videos) and
+`related` (cross-links for "you may also like") are both optional, only `ph3` has them —
+see its file for the shape.
 
-Adding a seller is one entry in `SELLERS`. The filter, wish band, card pills and every
+**Delete = delete the file.** There is no sold state and no separate "gone" record — an
+unknown id just gets a generic "that one's gone" page, since nothing survives to be
+specific about. **Negotiating = a boolean on the file itself**, `"negotiating": true`,
+toggled by hand after reading the Tally inbox. Tag it only for Reason = **Buying** or
+**Trading** — Reason = **Other** is a generic question, not interest in that specific
+item, and must not set this even though it arrives through the same form.
+
+Adding a seller is still one entry in `SELLERS` inside `index.html` (site-wide structure,
+not per-listing data, so it stays inline). The filter, wish band, card pills and every
 count follow from it, up to ten. The name is the identifier; the dot is recall only.
 
 ## Photos
 
-```js
-var PHOTOS = { ph3: "https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg" };
-```
-
-One URL per id, hotlinked — not downloaded into the repo. There's no image-hosting
-pipeline, so this is the reversible option; if a link ever dies, `onerror` swaps it live
-for the drawn faceplate via `photoFail()`, the same fallback an item with no entry gets by
-default.
+`img` on each item's file, hotlinked — not downloaded into the repo. There's no
+image-hosting pipeline, so this stays the reversible option.
 
 **Sourced from the manufacturer's own site only, never ModularGrid** — that's the one
 source explicitly off-limits (they've asked not to be scraped; this is a different act
@@ -70,48 +97,42 @@ Don't substitute a third-party source (a retailer, a forum photo, a YouTube thum
 these — the drawn faceplate is the honest state until the manufacturer's own site has
 something again, matching how the site already treats a missing translation.
 
-On the detail page, the photo lives in thumb slot 2 ("Panel drawing" is slot 1, always
-available). Slots 3/4 ("back" / "in rack") stay visually present but disabled — there's
+On the detail page, a real photo is the **default view** when one exists (matches the grid
+card, which already shows it first) — "Panel drawing" becomes the alternate, reachable via
+thumb slot 1. Slots 3/4 ("back" / "in rack") stay visually present but disabled — there's
 only ever one manufacturer photo per item, not real front/back/rack shots, so nothing to
 put there yet. `neotrellis` is a special case: it's a DIY build, so its photo is of the
-Adafruit component it's built from, not the finished instrument — `PHOTO_IS_COMPONENT`
+Adafruit component it's built from, not the finished instrument — `"imgIsComponent": true`
 swaps in a credit line that says so rather than implying it's a shot of the actual build.
 
 ## Admin composer (`#/admin`)
 
 A hidden route, not linked from the nav — open `index.html#/admin` directly. It's a form
-matching the fields above, and it generates a paste-ready `RAW` row and `BLURB` entry as
-you fill it in. Nothing more:
+matching the schema above, and it generates a JSON file in the exact shape a listing is
+actually stored in — same output whether it comes from this form, from asking Claude to
+research a module in chat, or from Sampo's own AI doing the same. One format, three ways
+to produce it:
 
 - **No auto-fetch.** It doesn't read any other site. If you want real specs and sources
   for a new module, ask Claude to research the maker + model first, then type the answer
   in — same as how the 29 real listings got their data.
 - **No live publish.** There's no backend and no auth, so "Publish" isn't a button here —
-  the output is code you copy, paste into `index.html`, then commit and push like any
-  other change.
-- **No upload for photos.** There's nowhere to store them yet; faceplates stay the
-  placeholder until real photos and a hosting plan exist.
+  copy the JSON, save it as `content/items/<id>.json`, commit and push. The chosen
+  AI-assisted path is even simpler: describe the module in chat and the file gets
+  committed directly, no copy-paste step at all.
+- **Fallback, not the primary path.** Once Decap CMS is wired up, editing the same fields
+  there is the expected day-to-day route — this page exists for when that's unavailable
+  or overkill for one quick add.
 
-Safe to leave unlinked and unauthenticated: since it never writes anywhere, a stranger
-finding the URL can at most generate some text in their own browser.
+Safe to leave unlinked and unauthenticated: since it never writes anywhere itself, a
+stranger finding the URL can at most generate some JSON text in their own browser.
 
 ## In negotiation
-
-```js
-var NEGOTIATING = { ph3:true };   // set by hand after reading the Tally inbox
-```
-
-Tag an id only when someone submits Reason = **Buying** or **Trading** on the
-message form. Reason = **Other** is a generic question, not interest in that
-specific item — it must not set this, even though it arrives through the same
-form. There is currently nothing connecting a Tally submission to this map;
-you read the inbox and edit `NEGOTIATING` yourself. If that ever becomes
-automated (a webhook, an admin panel), this is the rule to preserve.
 
 Solid accent chip replacing the CTA on the card, quiet accent-soft bar above the buy
 button on the module page, both with a pulsing dot behind `prefers-reduced-motion`.
 Accent blue on purpose: amber means caution sitewide, red would say "gone" about
-something still for sale.
+something still for sale. The rule for *when* to set it lives above, in Data architecture.
 
 ## Languages
 

@@ -480,97 +480,6 @@ var TONE = {
   wood:  { bg:"linear-gradient(176deg,#d8b78b,#bb9460)", line:"#a67e4c", ink:"#3a2b16", knob:"#2b2011" }
 };
 
-var RAW = [
-["ph3","Industrial Music Electronics","Piston Honda MK III",420,17,"eu","f","Oscillator",["Oscillator","Wavetable","Digital"],
- "Dual morphing wavetable oscillator with 512 sixteen-bit waves in an 8x8x8 cube. Runs as a CV-driven waveshaper too.",
- "industrial-music-electronics-piston-honda-mk-iii","industrialmusicelectronics.com","black",{k:4,j:10,sl:8,led:4,sc:0}],
-["bf22","Befaco","BF-22 Sallen Key Filter",150,17,"eu","f","Filter",["Filter","Dual","DIY"],
- "Dual hi/lo-pass filter after the early MS-20, with attenuverters on cutoff and resonance and a link switch.",
- "befaco-sallen-key-filter-bf-22","befaco.org","alu",{k:8,j:10,sl:0,led:0,sc:0}],
-["modor","Modor Music","Formant Filter",200,16,"eu","f","Filter",["Filter","Stereo","Digital"],
- "Stereo vowel morphing lifted from the NF-1: ten preset vowels, four editable bands, the lot under CV.",
- "modor-music-formant-filter","modormusic.com","white",{k:8,j:7,sl:0,led:3,sc:0}],
-["nucleus","River","Nucleus",160,8,"eu","f","Filter",["Filter","Lowpass","Discontinued"],
- "Multi-character VCF on a discrete transistor OTA core. Switchable 12/24 dB slope and a solid-bass mode.",
- "river-nucleus","riversynths.com","alu",{k:5,j:7,sl:0,led:0,sc:0}],
-["gvco","Erica Synths","Graphic VCO",200,16,"eu","f","Oscillator",["Oscillator","Wavetable","Digital"],
- "Draw your own waveforms, stack them into tables, then morph, fold, bitcrush and FM whatever comes out.",
- "erica-synths-graphic-vco","ericasynths.lv","black",{k:5,j:9,sl:0,led:4,sc:1}],
-["deltav","Cosmotronic","Delta-V",170,10,"eu","f","Modulation",["Envelope","VCA","Function gen"],
- "Analogue dual function generator with a VCA per channel. Envelope, slew or LFO out of the same ten HP.",
- "cosmotronic-delta-v","cosmotronic.nl","black",{k:6,j:10,sl:0,led:2,sc:0}],
-["proout","WMD","Pro Output",140,6,"eu","f","Output",["Output","Headphone","DC-coupled"],
- "Output stage with 23 Vpp of headroom before it clips, and a headphone driver that is genuinely good.",
- "wmd-pro-output-black","wmdevices.com","black",{k:3,j:5,sl:0,led:0,sc:0}],
-["performer","Westlicht","PER|FORMER",290,34,"eu","f","Sequencer",["Sequencer","MIDI","DIY"],
- "Eight-track step sequencer: sixteen patterns a track, sixty-four steps a pattern, OLED, MIDI and USB host.",
- "westlicht-per-former--","westlicht.github.io","black",{k:2,j:22,sl:0,led:16,sc:1}],
-
-["timber","Bastl Instruments","Timber",150,7,"eu","t","Waveshaper",["Waveshaper","Wavefolder"],
- "Two shaping circuits, a driver and a folder, with a voltage-controlled crossfade between them and the clean signal.",
- "bastl-instruments-timber","bastl-instruments.com","wood",{k:5,j:7,sl:0,led:0,sc:0}, null],
-["brainseed","Antimatter Audio","Brain Seed",170,4,"eu","t","Sequencer",["Sequencer","Random","Recorder"],
- "Realtime CV step recorder in four HP. A thousand steps, a random generator and a shift input for transposing.",
- "antimatter-audio-brain-seed-","antimatteraudio.com","black",{k:2,j:5,sl:0,led:2,sc:0}, null],
-["bishops","Shakmat Modular","Bishop's Miscellany",120,12,"eu","t","Sequencer",["Sequencer","Recorder","Random"],
- "Dual stepped CV and gate recorder. Two thirty-two step sequences with length, shift and controlled randomness.",
- "shakmat-modular-bishop-s-miscellany","shakmat.com","black",{k:6,j:9,sl:0,led:4,sc:0}, null],
-["klang","Elektrofon","Klang",350,14,"eu","t","Sequencer",["Chords","Polyphonic","Quantizer"],
- "Four-voice chord controller. Ninety-nine chords on a clockface OLED, four encoders, no menu diving anywhere.",
- "elektrofon-klang","elektrofon.no","black",{k:4,j:10,sl:0,led:0,sc:1}, null],
-["lubadh","Instruo","Lubadh",440,20,"eu","t","Sampler",["Looper","Sampler","Tape"],
- "Two channels of tape looping at 96k, five minutes each, varispeed either way and an analogue input that saturates.",
- "instruo-lubadh","instruomodular.com","alu",{k:7,j:13,sl:0,led:4,sc:0}, null],
-["hydrus","Serpens Modular","Hydrus",154,8,"eu","t","Waveshaper",["Waveshaper","CV utility"],
- "Waveform mutator. Three inputs recombined through half-wave rectifiers, each with an attenuverter and offset.",
- "serpens-modular-hydrus","serpensmodular.com","black",{k:6,j:7,sl:0,led:0,sc:0}, null],
-["ufold","Intellijel","uFold II",120,6,"eu","t","Waveshaper",["Wavefolder","Waveshaper"],
- "Six stages of folding with thru-zero symmetry, and DC-coupled inputs so it will happily fold CV as well.",
- "intellijel-%CE%BCfold-ii-ufold-ii","intellijel.com","alu",{k:4,j:5,sl:0,led:0,sc:0}, null],
-["tuesday","This Is Not Rocket Science","Tuesday",200,12,"eu","t","Sequencer",["Sequencer","Algorithmic"],
- "Procedural sequencer. It builds melodies out of algorithms instead of steps you punch in one at a time.",
- "this-is-not-rocket-science-tuesday","thisisnotrocketscience.nl","cream",{k:5,j:9,sl:0,led:6,sc:0}, null],
-
-["bsp","Arturia","BeatStep Pro",190,0,"desk","f","Sequencer",["Sequencer","Controller"],
- "Two melodic sequencers, a drum sequencer and sixteen pads. Deck saver included, which is how it stayed clean.",
- "","arturia.com","black",{k:6,j:8,sl:0,led:16,sc:0}],
-["mpc500","Akai","MPC500",200,0,"desk","f","Sampler",["Sampler","Groovebox"],
- "The small MPC. Twelve pads, sampler and sequencer, runs on batteries, fits in a bag properly.",
- "","akaipro.com","black",{k:4,j:6,sl:2,led:12,sc:1}],
-["progue","JSI Synth","Progue",450,0,"desk","f","Synth",["Synth","Analogue","DIY"],
- "Finnish DIY mono synth built around the Moog Rogue and Prodigy voices, with polychain over MIDI.",
- "","jsisynth.com","white",{k:9,j:6,sl:3,led:2,sc:0}],
-["neotrellis","DIY","NeoTrellis Grid",200,0,"desk","f","Controller",["Grid","Controller","DIY"],
- "Monome-style RGB pad grid built from NeoTrellis boards. Speaks the grid protocol, plays nicely with norns.",
- "","adafruit.com","black",{k:0,j:2,sl:0,led:64,sc:0}],
-["softpop","Bastl Instruments","Softpop mk1",300,0,"desk","f","Synth",["Semi-modular","Synth"],
- "Semi-modular sequencer-synth with a patchbay and a personality that argues with you. First revision.",
- "","bastl-instruments.com","wood",{k:7,j:12,sl:0,led:4,sc:0}],
-["therapkid","Twisted Electrons","TherapKid",300,0,"desk","f","Synth",["Chiptune","Synth","8-bit"],
- "Eight-bit chip synth, knob per function, no menus. Sounds like a console being pushed somewhere it should not go.",
- "","twisted-electrons.com","black",{k:8,j:4,sl:0,led:8,sc:0}],
-["id14","Audient","iD14",130,0,"desk","f","Output",["Interface","Audio"],
- "Two of Audient's console mic pres, ADAT in for expansion, and the big monitor encoder everyone buys it for.",
- "","audient.com","alu",{k:3,j:8,sl:0,led:6,sc:0}],
-["quadraverb","Alesis","Quadraverb GT",150,0,"desk","f","FX",["FX","Rack","Vintage"],
- "One rack unit of reverb, delay, pitch and EQ, with the GT distortion and speaker sim on the front end.",
- "","alesis.com","black",{k:4,j:6,sl:0,led:6,sc:1}],
-["kastledrum","Bastl Instruments","Kastle Drum",100,0,"desk","t","Synth",["Drum","Portable","Patchable"],
- "Pocket drum synth with patch pins and AA batteries. Two oscillators, a noise source and a lot of noise.",
- "","bastl-instruments.com","wood",{k:4,j:14,sl:0,led:2,sc:0}, null],
-["thyme","Bastl Instruments","Thyme",400,0,"desk","f","FX",["FX","Delay","Granular"],
- "Digital tape effect: delay, granular smear, pitch and modulation, with save slots you will actually use.",
- "","bastl-instruments.com","alu",{k:9,j:8,sl:0,led:8,sc:1}],
-["darkenergy","Doepfer","Dark Energy II",350,0,"desk","f","Synth",["Synth","Analogue","Semi-modular"],
- "Analogue mono synth with a full CV patchbay across the top and USB MIDI in. The desktop Doepfer.",
- "","doepfer.de","black",{k:11,j:10,sl:0,led:2,sc:0}],
-["gentlewham","Herbs and Stones","Gentle Wham",400,0,"desk","f","Synth",["Drum","Analogue","Drone"],
- "Six-voice analogue drum synth through a master two-pole filter. Finger-drum it or hold the buttons and drone.",
- "","herbs---stones.com","black",{k:12,j:10,sl:0,led:6,sc:0}],
-["l12","Zoom","LiveTrak L-12",400,0,"desk","f","Output",["Mixer","Recorder","Interface"],
- "Twelve-channel mixer, twelve-track SD recorder and USB interface, with five separate headphone mixes.",
- "","zoomcorp.com","black",{k:10,j:14,sl:12,led:12,sc:1}]
-];
 
 var T = {
   fi: {
@@ -667,20 +576,28 @@ SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
 
 <script>
 /* ---------- items ---------- */
-var FIELDS=["id","mfr","name","price","hp","fmt","who","cat","cats","blurb","mgSlug","site","tone","parts"];
-/* Tag an id here when someone has sent a genuine buy or trade message about it —
-   Tally "Reason" is Buying or Trading. A generic question ("Other") is not
-   interest in the item itself and must NOT set this, even though it arrives
-   through the same form. Manual: nothing currently connects a Tally
-   submission to this map, so this is set by hand after reading the inbox.
-   There is no sold state: an item that is no longer for sale is deleted from RAW. */
-var NEGOTIATING={};
-var ITEMS=RAW.map(function(r){
-  var o={}; FIELDS.forEach(function(k,i){ o[k]=r[i]; });
-  o.negotiating=!!NEGOTIATING[o.id];
-  return o;
-});
+/* One JSON file per listing in content/items/ — edited via Decap CMS, or by
+   committing a file directly (that is the whole point: no inline array to
+   hand-edit any more, and no sold state — an item no longer for sale is a
+   deleted file, not a flag). "negotiating" lives on the item itself now,
+   toggled the same way: Buying/Trading on the message form, never a
+   generic question, set by hand after reading the inbox. */
+var ITEMS=[];
 var byId=function(id){ return ITEMS.filter(function(m){ return m.id===id; })[0]; };
+var ITEMS_URL="https://api.github.com/repos/spongefile/eurorackfi/contents/content/items";
+function loadItems(){
+  return fetch(ITEMS_URL).then(function(r){
+    if(!r.ok) throw new Error("directory listing failed: "+r.status);
+    return r.json();
+  }).then(function(list){
+    var files=list.filter(function(f){ return f.name && f.name.slice(-5)===".json"; });
+    /* the directory listing is the only call that counts against GitHub's
+       unauthenticated API rate limit — each file below comes from its own
+       download_url, which is served from raw.githubusercontent.com and is
+       not rate-limited the same way */
+    return Promise.all(files.map(function(f){ return fetch(f.download_url).then(function(r){ return r.json(); }); }));
+  });
+}
 
 /* ---------- faceplate: absolutely positioned divs at true eurorack scale ---------- */
 function hashSeed(s){var h=1779033703^s.length;for(var i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=(h<<13)|(h>>>19);}
@@ -725,7 +642,7 @@ var panelHTML=function(m,H){ return buildPanel(m,H,m.tone).html; };
 /* Grid-card thumbnail: real photo when we have one, drawn faceplate otherwise.
    onerror falls back live if a hotlinked image ever goes dead. */
 function shotHTML(m,H){
-  var url=PHOTOS[m.id];
+  var url=m.img;
   if(!url) return panelHTML(m,H);
   return '<img src="'+url+'" alt="'+esc(m.mfr+" "+m.name)+'" loading="lazy" '+
     'onerror="photoFail(this,\''+m.id+'\','+H+')">';
@@ -734,77 +651,12 @@ function shotHTML(m,H){
    real photo when one exists. Photos get a plain full-size <img>, not the
    fixed-pixel faceplate sizing — fitPanel() must not touch this slot. */
 function benchHTML(m){
-  if(S.shot===1 && PHOTOS[m.id]){
-    return '<img src="'+PHOTOS[m.id]+'" alt="'+esc(m.mfr+" "+m.name)+'" '+
+  if(S.shot===1 && m.img){
+    return '<img src="'+m.img+'" alt="'+esc(m.mfr+" "+m.name)+'" '+
       'style="width:100%;height:100%;object-fit:contain" onerror="photoFail(this,\''+m.id+'\',282)">';
   }
   return panelHTML(m,282);
 }
-
-/* Per-listing prose, fi/sv. English lives in RAW. Written as each language,
-   not translated from the English — pending design's register check. */
-var BLURB={
-ph3:{fi:"Kaksi morffaavaa wavetable-oskillaattoria, 512 aaltoa 16-bittisenä 8x8x8-kuutiossa. Toimii myös CV-ohjattuna waveshaperina.",
-        sv:"Två morfande wavetable-oscillatorer, 512 vågor i 16 bitar i en 8x8x8-kub. Fungerar även som CV-styrd vågformare."},
-bf22:{fi:"Kaksoissuodin ylä- ja alapäästöllä varhaisen MS-20:n hengessä. Attenuverterit cutoffille ja resonanssille, kytkin kanavien linkitykseen.",
-         sv:"Dubbelfilter med hög- och lågpass i den tidiga MS-20:s anda. Attenuvertrar för cutoff och resonans, och en länkomkopplare."},
-modor:{fi:"Vokaalien morffaus stereona, suoraan NF-1:stä: kymmenen valmista vokaalia, neljä muokattavaa kaistaa, kaikki CV:n alla.",
-          sv:"Stereo vokalmorfning rakt ur NF-1: tio färdiga vokaler, fyra redigerbara band, allt under CV."},
-nucleus:{fi:"Monikäyttöinen VCF diskreetillä transistori-OTA-ytimellä. Vaihdettava 12/24 dB jyrkkyys ja tukeva bassotila.",
-            sv:"Mångsidigt VCF med diskret transistor-OTA-kärna. Växlingsbar branthet på 12/24 dB och ett stadigt basläge."},
-gvco:{fi:"Piirrä omat aaltomuotosi, pinoa ne taulukoiksi ja morffaa, taita ja bittimurskaa lopputulosta, ja lisää FM:ää.",
-         sv:"Rita egna vågformer, stapla dem till tabeller och morfa, vik, bitkrossa och FM:a det som kommer ut."},
-deltav:{fi:"Analoginen kaksikanavainen funktiogeneraattori, VCA per kanava. Verhokäyrä, slew tai LFO samasta kymmenestä HP:stä.",
-           sv:"Analog dubbel funktionsgenerator med en VCA per kanal. Envelope, slew eller LFO ur samma tio HP."},
-proout:{fi:"Ulostuloaste, jossa on 23 Vpp headroomia ennen säröä, ja kuulokevahvistin, joka on oikeasti hyvä.",
-           sv:"Utgångssteg med 23 Vpp headroom innan det klipper, och en hörlursförstärkare som faktiskt är bra."},
-performer:{fi:"Kahdeksanraitainen askelsekvensseri: kuusitoista kuviota raidalle, 64 askelta kuviolle, OLED, MIDI ja USB-host.",
-              sv:"Åttaspårig stegsekvensiator: sexton mönster per spår, 64 steg per mönster, OLED, MIDI och USB-host."},
-timber:{fi:"Kaksi muokkauspiiriä, driver ja folder, sekä jänniteohjattu ristihäivytys niiden ja puhtaan signaalin välillä.",
-           sv:"Två formningskretsar, en driver och en folder, med spänningsstyrd crossfade mellan dem och den rena signalen."},
-brainseed:{fi:"Reaaliaikainen CV-askeltallennin neljässä HP:ssä. Tuhat askelta, satunnaisgeneraattori ja shift-tulo transponointiin.",
-              sv:"CV-steginspelare i realtid på fyra HP. Tusen steg, en slumpgenerator och en shift-ingång för transponering."},
-bishops:{fi:"Kaksoistallennin porrastetulle CV:lle ja porteille. Kaksi 32-askelista sekvenssiä, pituus, siirto ja hallittu satunnaisuus.",
-            sv:"Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."},
-klang:{fi:"Neliäänisten sointujen ohjain. 99 sointua kellotaulun muotoisella OLEDilla, neljä enkooderia, ei valikoita.",
-          sv:"Ackordstyrning för fyra stämmor. 99 ackord på en OLED formad som en urtavla, fyra encodrar, inga menyer."},
-lubadh:{fi:"Kaksi kanavaa nauhaluuppia 96 kilohertsillä, viisi minuuttia kumpikin, varispeed molempiin suuntiin ja analoginen tulo, joka säröytyy.",
-           sv:"Två kanaler bandloop i 96 kHz, fem minuter var, varispeed åt båda håll och en analog ingång som mättar."},
-hydrus:{fi:"Aaltomuodon muuntaja. Kolme tuloa yhdistetään puoliaaltotasasuuntaajien läpi, jokaisella attenuverteri ja offset.",
-           sv:"Vågformsmutator. Tre ingångar kombineras genom halvvågslikriktare, var och en med attenuverter och offset."},
-ufold:{fi:"Kuusi taittovaihetta thru-zero-symmetrialla, ja DC-kytketyt tulot, joten se taittaa mielellään myös CV:tä.",
-          sv:"Sex vikningssteg med thru-zero-symmetri, och DC-kopplade ingångar så den viker gärna CV också."},
-tuesday:{fi:"Proseduraalinen sekvensseri. Se rakentaa melodiat algoritmeista sen sijaan, että naputtelisit askeleet yksitellen.",
-            sv:"Procedurell sekvensiator. Den bygger melodier ur algoritmer i stället för steg du knappar in ett i taget."},
-bsp:{fi:"Kaksi melodiasekvensseriä, rumpusekvensseri ja kuusitoista padia. Mukana deck saver, ja siksi se on yhä siisti.",
-        sv:"Två melodisekvensiatorer, en trumsekvensiator och sexton pads. Deck saver medföljer, och därför är den i fint skick."},
-mpc500:{fi:"Pieni MPC. Kaksitoista padia, samplaus ja sekvensointi, kulkee paristoilla ja mahtuu oikeasti laukkuun.",
-           sv:"Den lilla MPC:n. Tolv pads, sampler och sekvensiator, går på batterier och får plats i väskan på riktigt."},
-progue:{fi:"Suomalainen DIY-monosyna, joka rakentuu Moog Roguen ja Prodigyn äänien ympärille. Polychain MIDIn yli.",
-           sv:"Finsk DIY-monosynt byggd kring rösterna ur Moog Rogue och Prodigy, med polychain över MIDI."},
-neotrellis:{fi:"Monome-tyylinen RGB-padiruudukko NeoTrellis-korteista. Puhuu grid-protokollaa ja toimii nornsin kanssa.",
-               sv:"Monome-liknande RGB-padrutnät byggt av NeoTrellis-kort. Talar grid-protokollet och funkar med norns."},
-softpop:{fi:"Puolimodulaarinen sekvensseri-syna patchbaylla ja luonteella, joka väittää vastaan. Ensimmäinen versio.",
-            sv:"Halvmodulär sekvensiator-synt med patchbay och ett humör som säger emot. Första revisionen."},
-therapkid:{fi:"Kahdeksanbittinen chip-syna, nuppi per toiminto, ei valikoita. Kuulostaa konsolilta, jota työnnetään sinne, minne ei pitäisi.",
-              sv:"Åttabitars chipsynt, en ratt per funktion, inga menyer. Låter som en konsol som pressas dit den inte borde."},
-id14:{fi:"Kaksi Audientin konsolimikkietuastetta, ADAT-tulo laajennukseen ja se iso monitorinuppi, jonka takia se ostetaan.",
-         sv:"Två av Audients konsolmikförsteg, ADAT-ingång för utökning och den stora monitorratten alla köper den för."},
-quadraverb:{fi:"Yksi räkkiyksikkö kaikua, viivettä, pitchiä ja EQ:ta, ja GT-mallin särö ja kaiutinsimulaatio etupäässä.",
-               sv:"En rackenhet med rumsklang, delay, pitch och EQ, plus GT-modellens distorsion och högtalarsimulering först i kedjan."},
-kastledrum:{fi:"Taskukokoinen rumpusyna patch-piikeillä ja AA-paristoilla. Kaksi oskillaattoria, kohinalähde ja paljon meteliä.",
-               sv:"Fickstor trumsynt med patchstift och AA-batterier. Två oscillatorer, en brusgenerator och mycket oväsen."},
-thyme:{fi:"Digitaalinen nauhaefekti: viive, granulaarinen suttu, pitch ja modulaatio, ja tallennuspaikat, joita oikeasti käyttää.",
-          sv:"Digital bandeffekt: delay, granulär utsmetning, pitch och modulation, med sparplatser du faktiskt använder."},
-darkenergy:{fi:"Analoginen monosyna, täysi CV-patchbay yläreunassa ja USB-MIDI sisään. Doepfer pöydälle.",
-               sv:"Analog monosynt med full CV-patchbay längs överkanten och USB-MIDI in. Doepfer för skrivbordet."},
-gentlewham:{fi:"Kuusiääninen analoginen rumpusyna kaksinapaisen master-suotimen läpi. Soita sormilla tai pidä nappeja pohjassa ja droneile.",
-               sv:"Sexstämmig analog trumsynt genom ett tvåpoligt masterfilter. Fingertrumma eller håll knapparna nere och drona."},
-l12:{fi:"Kaksitoistakanavainen mikseri, kaksitoistaraitainen SD-tallennin ja USB-liitäntä, viisi erillistä kuulokemiksausta.",
-        sv:"Tolvkanalsmixer, tolvspårs SD-inspelare och USB-interface, med fem separata hörlursmixar."}
-};
-var blurbOf=function(m){ return (BLURB[m.id]&&BLURB[m.id][lang]) || m.blurb; };
-var hasProse=function(m){ return lang==="en" || !!(BLURB[m.id]&&BLURB[m.id][lang]); };
 
 /* ---------- i18n ---------- */
 var LANGS=["fi","sv","en"], lang="fi";
@@ -822,6 +674,7 @@ var TX={
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
      photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta",
+     loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
@@ -833,6 +686,7 @@ var TX={
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
      collectFirst:"Helst hämtning, men vi kan posta",
      photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt",
+     loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
@@ -844,17 +698,17 @@ var TX={
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
      collectFirst:"Collection preferred, posting possible",
      photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site",
+     loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
 var t=function(){ return T[lang]; };
-var blurbOf=function(m){ return (BLURB[m.id]&&BLURB[m.id][lang]) || m.blurb; };
-var hasProse=function(m){ return lang==="en" || !!(BLURB[m.id]&&BLURB[m.id][lang]); };
+var blurbOf=function(m){ return (m.blurb&&m.blurb[lang]) || (m.blurb&&m.blurb.en) || ""; };
+var hasProse=function(m){ return lang==="en" || !!(m.blurb&&m.blurb[lang]); };
 var esc=function(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); };
 var eur=function(n){ return "€"+n; };
 var el=function(id){ return document.getElementById(id); };
 /* per-listing prose is authored in English only so far; sv/fi get the honest banner */
-var PROSE_LANGS={en:true};
 var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
            sv:"Beskrivningen finns tills vidare bara på engelska.",
            en:""};
@@ -862,69 +716,7 @@ var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
 
 <script>
 /* Real, verified extras. Only ph3 has them — never fabricate these for the other 28. */
-/* Real manufacturer photos — sourced from each maker's own site, never
-   ModularGrid (explicitly off-limits per the user). Hotlinked, not downloaded
-   into the repo: no image-hosting pipeline exists yet, and this keeps things
-   reversible. Missing an id here just means no clean official photo was
-   found yet, not that the item lacks one forever — falls back to the drawn
-   faceplate, same as a broken/blocked link does at runtime via photoFail(). */
-var PHOTOS={
-  ph3:"https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg",
-  bf22:"https://www.befaco.org/wp-content/uploads/2025/09/BF22_web_front.png",
-  modor:"https://www.modormusic.com/images/FormantEurorack.png",
-  gvco:"https://www.ericasynths.lv/media/catalog/product/cache/91ba170ba44d2d19cc001c5ed5da8bb2/G/r/Graphic_VCO_ZKOk4hZ_3.png",
-  deltav:"https://cosmotronic.nl/cms/wp-content/uploads/2023/04/Delta-v-front.png",
-  proout:"https://cdn.shopify.com/s/files/1/0977/3366/products/pro-output-discontinued-module-529802_480x480.jpg",
-  performer:"https://raw.githubusercontent.com/westlicht/performer/master/doc/sequencer.jpg",
-  timber:"https://bastl-instruments.com/thumbs/eurorack/modules/timber/001-326x1200.jpg",
-  brainseed:"https://www.antimatteraudio.com/assets/brain-seed.png",
-  bishops:"https://shakmat.com/img/bm/bmFront.jpg",
-  klang:"https://elektrofon.no/assets/klang-front.png",
-  lubadh:"https://www.instruomodular.com/wp-content/uploads/2019/05/lubadh_new.png",
-  ufold:"https://intellijel.com/wp-content/uploads/2018/07/uFold-2018.jpg",
-  tuesday:"https://www.thisisnotrocketscience.nl/wp-content/uploads/2024/01/tuesday.png",
-  bsp:"https://medias.arturia.net/images/products/beatstep-pro/catalog-image.png",
-  progue:"https://www.jsisynth.com/images/store/Progue-promo-1.jpg",
-  neotrellis:"https://cdn-shop.adafruit.com/970x728/3938-09.jpg",
-  softpop:"https://bastl-instruments.com/thumbs/instruments/softpop/004-1677x1200.jpg",
-  id14:"https://audient.com/wp-content/uploads/2025/05/id14-top-image-scaled.webp",
-  kastledrum:"https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
-  thyme:"https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
-  darkenergy:"https://doepfer.de/Dark_Energy_II_medium.jpg",
-  gentlewham:"https://herbs---stones.com/wp-content/uploads/2023/07/gw2.jpg",
-  l12:"https://zoomcorp.com/media/original_images/L12_top.png.768x0_q60.png"
-};
-/* neotrellis is a DIY build — the photo is the Adafruit component it's built
-   from, not the finished instrument. Worth a different credit line. */
-var PHOTO_IS_COMPONENT={neotrellis:true};
 function photoFail(img,id,H){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H); }
-
-var EXTRA={ ph3:{
-  depth:"40 mm", power:"+12V 145 mA · -12V 45 mA", panel:"Black, MK III revision",
-  overview:[["Does","Dual morphing wavetable oscillator"],["Also does","Nonlinear waveshaper on a dedicated audio input"],
-    ["Waves","512 x 16-bit, arranged 8 x 8 x 8"],["Unison","Per-oscillator detune, up to four stacked voices"],
-    ["Presets","8 slots, morphable as if they were wavetables"],["Custom","WAV files loaded from microSD"]],
-  pull:{q:"Audio quality is outstanding, and the user interface is physically satisfying.",
-    src:"Waveform Magazine", url:"https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"},
-  quotes:[
-    {t:"The sound is clear and strong, and virtually alias-free at most settings thanks to the high resolution 16 bit outputs.",s:"Waveform Magazine"},
-    {t:"The primary frequency controls and waveform selection faders are a joy to use.",s:"Waveform Magazine"},
-    {t:"The Mark III is clearly a mature module, with special design emphasis given for use in a performance context.",s:"Waveform Magazine"},
-    {t:"Some of the shaft-type controls can prove difficult to access in a dense patch.",s:"Waveform Magazine · the honest caveat",crit:true}],
-  reviews:[
-    {src:"Waveform Magazine",title:"Industrial Music Electronics — Piston Honda Mk. III",url:"https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"},
-    {src:"MOD WIGGLER",title:"The long thread",url:"https://www.modwiggler.com/forum/viewtopic.php?t=195254"},
-    {src:"Perfect Circuit",title:"Product notes and demos",url:"https://www.perfectcircuit.com/harvestman-piston-honda-mk3.html"}],
-  videos:[
-    {title:"Piston Honda MK3 — Part 1: Panel Features",by:"Walkthrough · YouTube",url:"https://www.youtube.com/watch?v=ymHlNBXPBH8"},
-    {title:"A complete instrument all by itself!",by:"Overview and drone performance · YouTube",url:"https://www.youtube.com/watch?v=TsihVQLLM_8"},
-    {title:"Piston Honda mk3 Review",by:"Review · YouTube",url:"https://www.youtube.com/watch?v=ERp1AXpapbw"}]
-}};
-var RELATED={ ph3:[
-  ["gvco","Also a wavetable oscillator — you draw the waves instead of loading them"],
-  ["timber","Wave shaping — the mk3 does it too, this does only it"],
-  ["ufold","Six-stage wavefolder — same territory, analogue"],
-  ["hydrus","Waveform mutator for building timbres out of raw inputs"]]};
 
 /* ---------- state ---------- */
 var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null};  /* null = not yet decided for this item */
@@ -933,7 +725,7 @@ function matches(m){
   if(S.fmt!=="all" && m.fmt!==S.fmt) return false;
   if(S.who!=="all" && m.who!==S.who) return false;
   if(S.cat!=="all" && m.cats.indexOf(S.cat)<0 && m.cat!==S.cat) return false;
-  if(S.q){ var h=(m.mfr+" "+m.name+" "+m.cats.join(" ")+" "+m.blurb).toLowerCase();
+  if(S.q){ var h=(m.mfr+" "+m.name+" "+m.cats.join(" ")+" "+blurbOf(m)).toLowerCase();
     if(h.indexOf(S.q.toLowerCase())<0) return false; }
   return true;
 }
@@ -1062,7 +854,7 @@ function renderGrid(){
 var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo — back"],["rack","Photo — in the rack"]];
 
 function specRows(m){
-  var T2=t(), x=EXTRA[m.id]||{}, rows=[];
+  var T2=t(), x=m.extra||{}, rows=[];
   if(m.hp>0) rows.push([T2.fWidth,m.hp+" HP"]);
   if(x.depth) rows.push([T2.fDepth,x.depth]);
   if(x.power) rows.push([T2.fPower,x.power]);
@@ -1072,15 +864,15 @@ function specRows(m){
   return rows;
 }
 function detailHTML(m){
-  var T2=t(), p=SELLER_BY_KEY[m.who], x=EXTRA[m.id]||{}, out="";
+  var T2=t(), p=SELLER_BY_KEY[m.who], x=m.extra||{}, out="";
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
        '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
     '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+'</div>'+
-    (PHOTOS[m.id]&&S.shot===1?'<p class="pcredit">'+esc(PHOTO_IS_COMPONENT[m.id]?T2.pcreditComp:T2.pcredit)+'</p>':'')+
+    (m.img&&S.shot===1?'<p class="pcredit">'+esc(m.imgIsComponent?T2.pcreditComp:T2.pcredit)+'</p>':'')+
     '<div class="thumbs">'+T2.shots.map(function(sh,i){
-      var has = i===0 || (i===1 && PHOTOS[m.id]);
+      var has = i===0 || (i===1 && m.img);
       return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'"'+(has?"":" disabled")+'>'+
-        esc(i===1&&PHOTOS[m.id]?T2.photoLabel:sh)+'</button>'; }).join("")+'</div></div>'+
+        esc(i===1&&m.img?T2.photoLabel:sh)+'</button>'; }).join("")+'</div></div>'+
     '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
     '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
@@ -1118,7 +910,7 @@ function detailHTML(m){
     return '<a class="linkcard" href="'+l.u+'" target="_blank" rel="noopener"><div class="k">'+esc(l.k)+'</div>'+
       '<div class="v">'+esc(l.v)+' <span>&rarr;</span></div></a>'; }).join("")+'</div></section>';
 
-  var rel=RELATED[m.id];
+  var rel=m.related;
   if(rel){ out+='<section class="sect"><h3>'+esc(T2.alsoLike)+'</h3><div class="alike">'+rel.map(function(r){
       var o=byId(r[0]); if(!o) return "";
       var op=SELLER_BY_KEY[o.who];
@@ -1174,25 +966,29 @@ var AS={
   blurbEn:"", blurbFi:"", blurbSv:""
 };
 function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,10); }
+/* Output matches content/items/<id>.json exactly — the same shape whether a
+   listing arrives via this form, a Claude chat that researched it, or a
+   direct git commit. One format, three ways to produce it. */
 function adminOutput(){
   var id=AS.id||slugify(AS.mfr+AS.name)||"id";
   var cats=AS.cats.length?AS.cats:(AS.cat?[AS.cat]:[]);
-  var jsStr=function(s){ return JSON.stringify(s||""); };
-  var partsObj="{k:"+(+AS.k||0)+",j:"+(+AS.j||0)+",sl:"+(+AS.sl||0)+",led:"+(+AS.led||0)+",sc:"+(AS.sc?1:0)+"}";
-  var raw='["'+id+'",'+jsStr(AS.mfr)+','+jsStr(AS.name)+','+(+AS.price||0)+','+
-    (AS.fmt==="eu"?(+AS.hp||0):0)+',"'+AS.fmt+'","'+AS.who+'",'+jsStr(AS.cat||cats[0]||"")+','+
-    JSON.stringify(cats)+','+jsStr(AS.blurbEn)+','+jsStr(AS.mgSlug)+','+jsStr(AS.site)+','+
-    '"'+AS.tone+'",'+partsObj+'],';
-  var blurb=(AS.blurbFi||AS.blurbSv)
-    ? id+":{fi:"+jsStr(AS.blurbFi)+",\n"+" ".repeat(id.length+5)+"sv:"+jsStr(AS.blurbSv)+"},"
-    : "";
-  return {raw:raw, blurb:blurb, id:id};
+  var item={
+    id:id, mfr:AS.mfr||"", name:AS.name||"",
+    price:+AS.price||0, hp:AS.fmt==="eu"?(+AS.hp||0):0,
+    fmt:AS.fmt, who:AS.who, cat:AS.cat||cats[0]||"", cats:cats,
+    blurb:{en:AS.blurbEn||"", fi:AS.blurbFi||"", sv:AS.blurbSv||""},
+    mgSlug:AS.mgSlug||"", site:AS.site||"", tone:AS.tone,
+    parts:{k:+AS.k||0, j:+AS.j||0, sl:+AS.sl||0, led:+AS.led||0, sc:AS.sc?1:0},
+    negotiating:false
+  };
+  return {json:JSON.stringify(item,null,2), id:id};
 }
 function updateAdminOutput(){
   var out=adminOutput();
-  var r=el("aout-raw"), b=el("aout-blurb");
-  if(r) r.textContent=out.raw;
-  if(b) b.textContent=out.blurb||"(add Finnish/Swedish text above to generate this)";
+  var r=el("aout-raw");
+  if(r) r.textContent=out.json;
+  var f=el("aout-filename");
+  if(f) f.textContent="content/items/"+out.id+".json";
 }
 function adminField(af,label,type,extra){
   extra=extra||"";
@@ -1211,8 +1007,9 @@ function adminHTML(){
     '<div class="ahead"><h1>Add a listing</h1>'+
     '<p class="anote">No auto-fetch here — nothing on this page reads another site. Ask Claude in chat '+
     'to research a maker + model first if you want real specs and sources, then fill this in with the '+
-    'answer. This never publishes anything: it only generates code to paste into <code>index.html</code>, '+
-    'which then needs a commit and push like any other change.</p></div>'+
+    'answer. This never publishes anything: it generates a JSON file in the exact shape listings are '+
+    'actually stored in (<code>content/items/&lt;id&gt;.json</code>) — save it there and commit, or edit '+
+    'the same fields later in Decap CMS once that\'s wired up.</p></div>'+
 
     '<div class="astep"><div class="astephead"><span class="astepno">1</span><h3>Identify</h3></div>'+
     '<div class="afrow">'+adminField("mfr","Maker","text")+adminField("name","Model","text")+
@@ -1248,12 +1045,10 @@ function adminHTML(){
     '<div class="astep"><div class="astephead"><span class="astepno">5</span><h3>Owner</h3></div>'+
     '<div class="afrow"><div class="afld sm"><label>Shelf</label><select data-af="who">'+whoOpts+'</select></div></div></div>'+
 
-    '<div class="aoutput"><h3>Paste into index.html</h3>'+
-    '<p>Into the <code>RAW</code> array:</p><div class="acode" id="aout-raw">'+esc(out.raw)+'</div>'+
-    '<p style="margin-top:1.1rem">Into the <code>BLURB</code> object, only if fi/sv are filled in:</p>'+
-    '<div class="acode" id="aout-blurb">'+esc(out.blurb||"(add Finnish/Swedish text above to generate this)")+'</div>'+
-    '<div class="acopybar"><button class="btn sm" id="a-copy-raw">Copy RAW row</button>'+
-    '<button class="btn sm ghost" id="a-copy-blurb">Copy BLURB entry</button></div></div>'+
+    '<div class="aoutput"><h3>Save as a new file</h3>'+
+    '<p>Filename: <code id="aout-filename">content/items/'+esc(out.id)+'.json</code></p>'+
+    '<div class="acode" id="aout-raw">'+esc(out.json)+'</div>'+
+    '<div class="acopybar"><button class="btn sm" id="a-copy-raw">Copy JSON</button></div></div>'+
     '</div>';
 }
 function copyText(txt){
@@ -1263,7 +1058,7 @@ function copyText(txt){
 /* ---------- routing ---------- */
 /* photo is the default view whenever one exists — matches the grid card,
    which already shows the photo first; drawn panel becomes the alternate */
-function openDetail(id){ S.shot=PHOTOS[id]?1:0; location.hash="#/m/"+id; }
+function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#/m/"+id; }
 function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0) location.hash="#/"; }
 function route(){
   var h=location.hash;
@@ -1292,7 +1087,7 @@ function route(){
     if(m){
       /* a direct/bookmarked load skips openDetail(), so decide once here —
          but never override a click the user already made on this item */
-      if(S.shot===null) S.shot=PHOTOS[m.id]?1:0;
+      if(S.shot===null) S.shot=m.img?1:0;
       el("detail").innerHTML=detailHTML(m);
       document.body.classList.add("detail-open");
       document.title=m.mfr+" "+m.name+" — eurorack.fi";
@@ -1334,8 +1129,7 @@ document.addEventListener("click",function(e){
     try{ localStorage.setItem("erfi-theme",isDark?"light":"dark"); }catch(x){}
     return;
   }
-  if(e.target.closest("#a-copy-raw")){ copyText(adminOutput().raw); return; }
-  if(e.target.closest("#a-copy-blurb")){ var bo=adminOutput().blurb; if(bo) copyText(bo); return; }
+  if(e.target.closest("#a-copy-raw")){ copyText(adminOutput().json); return; }
 });
 /* admin fields update AS + only the output blocks, never re-rendering the
    form — a full re-render on every keystroke would drop focus mid-word */
@@ -1364,5 +1158,15 @@ var rz; window.addEventListener("resize",function(){
 
 /* ---------- init ---------- */
 function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(); renderGrid(); }
-renderAll(); route();
+/* chrome (nav, hero copy, language switcher) needs no data and shows instantly;
+   everything listing-shaped waits on the one round trip to content/items/ */
+renderChrome();
+el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
+loadItems().then(function(items){
+  ITEMS=items;
+  renderAll();
+  route();
+}).catch(function(err){
+  el("grid").innerHTML='<div class="empty">'+esc(t().loadError||"Could not load listings.")+' ('+esc(err.message)+')</div>';
+});
 </script>
