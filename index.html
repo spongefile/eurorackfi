@@ -769,7 +769,7 @@ try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved
 var TX={
  fi:{overview:"Yleistä",specs:"Tiedot",fMaker:"Valmistaja",fCats:"Kategoriat",
      fWidth:"Leveys",fDepth:"Syvyys",fPower:"Virta",fPanel:"Paneeli",
-     video:"Video",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
+     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
      shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
      fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
      
@@ -783,7 +783,7 @@ var TX={
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
-     video:"Video",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
+     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
      shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
      fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
      
@@ -797,7 +797,7 @@ var TX={
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
-     video:"Video",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
+     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
      shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
      fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
      
@@ -1044,9 +1044,12 @@ function detailHTML(m){
     x.overview.map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+'</div>';
   out+='</section>';
 
-  if(x.pull) out+='<section class="sect"><h3>'+esc(x.pull.src)+'</h3>'+
-    '<blockquote class="pullquote">&ldquo;'+esc(x.pull.q)+'&rdquo;<cite>'+esc(x.pull.src)+' · <a href="'+x.pull.url+'" target="_blank" rel="noopener">read the full review</a></cite></blockquote>'+
-    '<div class="qcards">'+x.quotes.map(function(q){
+  /* pull and quotes are independent — several items have real quoted lines
+     from a review without a single hero pull-quote to lead with (no verbatim
+     text safe to lift), so this must not require x.pull to show either. */
+  if(x.pull || (x.quotes&&x.quotes.length)) out+='<section class="sect"><h3>'+esc(x.pull?x.pull.src:T2.reviewsH)+'</h3>'+
+    (x.pull?'<blockquote class="pullquote">&ldquo;'+esc(x.pull.q)+'&rdquo;<cite>'+esc(x.pull.src)+' · <a href="'+x.pull.url+'" target="_blank" rel="noopener">read the full review</a></cite></blockquote>':'')+
+    '<div class="qcards">'+(x.quotes||[]).map(function(q){
       return '<div class="qcard'+(q.crit?" crit":"")+'"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
 
   if(x.videos) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
