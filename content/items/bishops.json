@@ -28,5 +28,14 @@
     "sv": "Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."
   },
   "img": "https://shakmat.com/img/bm/bmFront.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Explaining and testing Bishop's Miscellany by Shakmat Modular",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=wpF6pk49ru0"
+      }
+    ]
+  }
 }
