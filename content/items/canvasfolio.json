@@ -1,0 +1,31 @@
+{
+  "id": "canvasfolio",
+  "mfr": "Supernote",
+  "name": "Canvas Folio for Nomad",
+  "price": 40,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Accessory"
+  ],
+  "mgSlug": "",
+  "site": "supernote.com",
+  "tone": "cream",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Canvas-covered folio for the Supernote Nomad, no edge-wrap so it reads like a paper notebook. Dual magnet closure, device rotates so the USB port can face either way, auto sleep/wake on open.",
+    "fi": "Kangaspäällysteinen kotelo Supernote Nomadille, ei reunakäärintää, joten se tuntuu paperivihkolta. Kaksoismagneettikiinnitys, laite kääntyy niin että USB-portti voi olla kummin päin vain, automaattinen uni/herätys avattaessa.",
+    "sv": "Kanvasklädd fodral för Supernote Nomad, utan kantinslagning så den känns som ett pappersanteckningsblock. Dubbel magnetstängning, enheten kan vridas så att USB-porten pekar åt endera hållet, automatisk viloläge/uppvakning vid öppning."
+  },
+  "img": "https://supernote.com/cdn/shop/files/344cac5a0bdfb47ce86e9f8b6c8bd6e9_1024x.jpg?v=1782279096",
+  "negotiating": false
+}
