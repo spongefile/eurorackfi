@@ -27,5 +27,19 @@
     "sv": "Procedurell sekvensiator. Den bygger melodier ur algoritmer i stället för steg du knappar in ett i taget."
   },
   "img": "https://www.thisisnotrocketscience.nl/wp-content/uploads/2024/01/tuesday.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "TiNRS – Tuesday *First Patch*",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=MBtFmz7Clzo"
+      },
+      {
+        "title": "This Is Not Rocket Science - Tuesday (TINRS)",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=mCShOr-zQME"
+      }
+    ]
+  }
 }
