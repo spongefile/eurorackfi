@@ -373,6 +373,41 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
   .countline{padding-top:1rem}
   .pullquote{font-size:1.25rem}
 }
+
+/* ---------- admin composer (#/admin, unlinked from nav) ----------
+   Not a live publishing tool: no backend, no auth, nothing here writes to
+   the site. It outputs a paste-ready RAW row + BLURB entry for index.html.
+   Specs are typed in by hand or supplied by Claude during the chat that
+   asked for the listing — this page never fetches anything itself. */
+.admin{padding:2.5rem 0 4rem}
+.admin .ahead{margin-bottom:2rem}
+.admin .ahead h1{font-size:1.9rem; letter-spacing:-.03em}
+.admin .anote{font-family:"Newsreader",Georgia,serif; color:var(--ink2); font-size:1.02rem; margin-top:.6rem; max-width:60ch}
+.astep{border-top:1px solid var(--line); padding:1.6rem 0}
+.astep:first-of-type{border-top:none}
+.astephead{display:flex; align-items:baseline; gap:.6rem; margin-bottom:1rem}
+.astepno{font-family:"IBM Plex Mono",monospace; font-size:.7rem; width:1.5rem; height:1.5rem; border-radius:50%;
+  background:var(--accent); color:var(--on); display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto}
+.astephead h3{font-size:1.05rem}
+.ahint{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-left:.3rem}
+.afrow{display:flex; gap:.9rem; flex-wrap:wrap}
+.afld{display:grid; gap:.35rem; flex:1 1 200px; min-width:0}
+.afld.sm{flex:0 1 130px}
+.afld label{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.afld input,.afld select,.afld textarea{
+  font-family:"IBM Plex Mono",monospace; font-size:.82rem; padding:.55rem .65rem;
+  background:var(--panel); border:1px solid var(--line2); color:var(--ink); width:100%}
+.afld textarea{font-family:"Newsreader",Georgia,serif; font-size:.98rem; min-height:80px; resize:vertical}
+.achecks{display:flex; flex-wrap:wrap; gap:.4rem}
+.achecks label{font-family:"IBM Plex Mono",monospace; font-size:.74rem; border:1px solid var(--line2); padding:.3rem .55rem;
+  display:inline-flex; align-items:center; gap:.4rem; color:var(--ink2); cursor:pointer}
+.achecks input{margin:0}
+.aoutput{margin-top:2rem; border-top:1px solid var(--line); padding-top:1.6rem}
+.aoutput h3{font-size:1.05rem; margin-bottom:.3rem}
+.aoutput p{font-family:"Newsreader",Georgia,serif; color:var(--ink2); font-size:.98rem; margin-bottom:1rem}
+.acode{background:var(--bg2); border:1px solid var(--line); padding:1rem; font-family:"IBM Plex Mono",monospace;
+  font-size:.76rem; white-space:pre-wrap; word-break:break-word; color:var(--ink2); max-height:260px; overflow-y:auto}
+.acopybar{display:flex; gap:.6rem; margin-top:.7rem}
 </style>
 
 <div class="notice"><div class="wrap"><b>MOCKUP</b><span id="noticeA"></span><span id="noticeB"></span></div></div>
@@ -1061,11 +1096,114 @@ function fitPanel(m){
   if(H<282) bench.innerHTML=panelHTML(m,H);
 }
 
+/* ---------- admin composer ---------- */
+/* Structural only — no fetching, no publishing. Specs come from typing them
+   in, or from asking Claude in chat to research a maker+model first and
+   paste the result in here. Output is a paste-ready RAW row + BLURB entry. */
+var AS={
+  id:"", mfr:"", name:"", fmt:"eu", hp:"", tone:"black",
+  k:"",j:"",sl:"",led:"",sc:false,
+  cat:"", cats:[], price:"", mgSlug:"", site:"", who:"t",
+  blurbEn:"", blurbFi:"", blurbSv:""
+};
+function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,10); }
+function adminOutput(){
+  var id=AS.id||slugify(AS.mfr+AS.name)||"id";
+  var cats=AS.cats.length?AS.cats:(AS.cat?[AS.cat]:[]);
+  var jsStr=function(s){ return JSON.stringify(s||""); };
+  var partsObj="{k:"+(+AS.k||0)+",j:"+(+AS.j||0)+",sl:"+(+AS.sl||0)+",led:"+(+AS.led||0)+",sc:"+(AS.sc?1:0)+"}";
+  var raw='["'+id+'",'+jsStr(AS.mfr)+','+jsStr(AS.name)+','+(+AS.price||0)+','+
+    (AS.fmt==="eu"?(+AS.hp||0):0)+',"'+AS.fmt+'","'+AS.who+'",'+jsStr(AS.cat||cats[0]||"")+','+
+    JSON.stringify(cats)+','+jsStr(AS.blurbEn)+','+jsStr(AS.mgSlug)+','+jsStr(AS.site)+','+
+    '"'+AS.tone+'",'+partsObj+'],';
+  var blurb=(AS.blurbFi||AS.blurbSv)
+    ? id+":{fi:"+jsStr(AS.blurbFi)+",\n"+" ".repeat(id.length+5)+"sv:"+jsStr(AS.blurbSv)+"},"
+    : "";
+  return {raw:raw, blurb:blurb, id:id};
+}
+function updateAdminOutput(){
+  var out=adminOutput();
+  var r=el("aout-raw"), b=el("aout-blurb");
+  if(r) r.textContent=out.raw;
+  if(b) b.textContent=out.blurb||"(add Finnish/Swedish text above to generate this)";
+}
+function adminField(af,label,type,extra){
+  extra=extra||"";
+  if(type==="textarea") return '<div class="afld"'+extra+'><label>'+label+'</label><textarea data-af="'+af+'">'+esc(AS[af])+'</textarea></div>';
+  return '<div class="afld"'+extra+'><label>'+label+'</label><input data-af="'+af+'" type="'+type+'" value="'+esc(AS[af])+'"></div>';
+}
+function adminHTML(){
+  var toneOpts=Object.keys(TONE).map(function(k){ return '<option value="'+k+'"'+(AS.tone===k?" selected":"")+'>'+k+'</option>'; }).join("");
+  var fmtOpts=[["eu","Eurorack"],["desk","Standalone"],["tools","Other stuff (soon)"]].map(function(o){
+    return '<option value="'+o[0]+'"'+(AS.fmt===o[0]?" selected":"")+'>'+o[1]+'</option>'; }).join("");
+  var whoOpts=SELLERS.map(function(p){ return '<option value="'+p.key+'"'+(AS.who===p.key?" selected":"")+'>'+p.name+'</option>'; }).join("");
+  var catChecks=CATKEYS.filter(function(c){return c!=="all";}).map(function(c){
+    return '<label><input type="checkbox" data-acat="'+c+'"'+(AS.cats.indexOf(c)>=0?" checked":"")+'>'+c+'</label>'; }).join("");
+  var out=adminOutput();
+  return '<div class="wrap admin"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
+    '<div class="ahead"><h1>Add a listing</h1>'+
+    '<p class="anote">No auto-fetch here — nothing on this page reads another site. Ask Claude in chat '+
+    'to research a maker + model first if you want real specs and sources, then fill this in with the '+
+    'answer. This never publishes anything: it only generates code to paste into <code>index.html</code>, '+
+    'which then needs a commit and push like any other change.</p></div>'+
+
+    '<div class="astep"><div class="astephead"><span class="astepno">1</span><h3>Identify</h3></div>'+
+    '<div class="afrow">'+adminField("mfr","Maker","text")+adminField("name","Model","text")+
+    adminField("id","ID (auto if blank)","text",' class="sm"')+'</div></div>'+
+
+    '<div class="astep"><div class="astephead"><span class="astepno">2</span><h3>Specs</h3>'+
+    '<span class="ahint">drives the drawn faceplate and the filter bar</span></div>'+
+    '<div class="afrow">'+
+      '<div class="afld sm"><label>Format</label><select data-af="fmt">'+fmtOpts+'</select></div>'+
+      adminField("hp","HP (0 if standalone)","number",' class="sm"')+
+      '<div class="afld sm"><label>Panel</label><select data-af="tone">'+toneOpts+'</select></div>'+
+    '</div>'+
+    '<div class="afrow" style="margin-top:.7rem">'+
+      adminField("k","Knobs","number",' class="sm"')+adminField("j","Jacks","number",' class="sm"')+
+      adminField("sl","Sliders","number",' class="sm"')+adminField("led","LEDs","number",' class="sm"')+
+      '<label style="align-self:end; display:flex; gap:.4rem; align-items:center; font-family:\'IBM Plex Mono\',monospace; font-size:.74rem; color:var(--ink2)">'+
+      '<input type="checkbox" id="a-sc"'+(AS.sc?" checked":"")+'> has screen</label>'+
+    '</div>'+
+    '<div style="margin-top:.9rem"><label class="afld"><label>Category tags</label></label><div class="achecks">'+catChecks+'</div></div>'+
+    '</div>'+
+
+    '<div class="astep"><div class="astephead"><span class="astepno">3</span><h3>Price &amp; links</h3></div>'+
+    '<div class="afrow">'+adminField("price","Price (€)","number",' class="sm"')+
+      adminField("site","Manufacturer domain","text",'')+
+      adminField("mgSlug","ModularGrid slug (optional)","text",'')+'</div></div>'+
+
+    '<div class="astep"><div class="astephead"><span class="astepno">4</span><h3>Copy</h3>'+
+    '<span class="ahint">fi/sv missing = the site shows its honest missing-translation banner, on purpose</span></div>'+
+    adminField("blurbEn","English (required — this is the RAW fallback)","textarea")+
+    '<div class="afrow" style="margin-top:.7rem">'+adminField("blurbFi","Finnish","textarea")+adminField("blurbSv","Swedish","textarea")+'</div>'+
+    '</div>'+
+
+    '<div class="astep"><div class="astephead"><span class="astepno">5</span><h3>Owner</h3></div>'+
+    '<div class="afrow"><div class="afld sm"><label>Shelf</label><select data-af="who">'+whoOpts+'</select></div></div></div>'+
+
+    '<div class="aoutput"><h3>Paste into index.html</h3>'+
+    '<p>Into the <code>RAW</code> array:</p><div class="acode" id="aout-raw">'+esc(out.raw)+'</div>'+
+    '<p style="margin-top:1.1rem">Into the <code>BLURB</code> object, only if fi/sv are filled in:</p>'+
+    '<div class="acode" id="aout-blurb">'+esc(out.blurb||"(add Finnish/Swedish text above to generate this)")+'</div>'+
+    '<div class="acopybar"><button class="btn sm" id="a-copy-raw">Copy RAW row</button>'+
+    '<button class="btn sm ghost" id="a-copy-blurb">Copy BLURB entry</button></div></div>'+
+    '</div>';
+}
+function copyText(txt){
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).catch(function(){}); }
+}
+
 /* ---------- routing ---------- */
 function openDetail(id){ S.shot=0; location.hash="#/m/"+id; }
-function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0) location.hash="#/"; }
+function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0) location.hash="#/"; }
 function route(){
   var h=location.hash;
+  if(h.indexOf("#/admin")===0){
+    el("detail").innerHTML=adminHTML();
+    document.body.classList.add("detail-open");
+    document.title="Add a listing — eurorack.fi";
+    window.scrollTo(0,0); return;
+  }
   if(h.indexOf("#/msg/")===0){
     var m=byId(h.slice(6));
     var backHref = m ? "#/m/"+m.id : "#/";
@@ -1123,6 +1261,26 @@ document.addEventListener("click",function(e){
     try{ localStorage.setItem("erfi-theme",isDark?"light":"dark"); }catch(x){}
     return;
   }
+  if(e.target.closest("#a-copy-raw")){ copyText(adminOutput().raw); return; }
+  if(e.target.closest("#a-copy-blurb")){ var bo=adminOutput().blurb; if(bo) copyText(bo); return; }
+});
+/* admin fields update AS + only the output blocks, never re-rendering the
+   form — a full re-render on every keystroke would drop focus mid-word */
+document.addEventListener("input",function(e){
+  var f=e.target.closest("[data-af]");
+  if(f){ AS[f.getAttribute("data-af")]=f.value; updateAdminOutput(); }
+});
+document.addEventListener("change",function(e){
+  var f=e.target.closest("[data-af]");
+  if(f){ AS[f.getAttribute("data-af")]=f.value; updateAdminOutput(); return; }
+  var ac=e.target.closest("[data-acat]");
+  if(ac){
+    var v=ac.getAttribute("data-acat"), i=AS.cats.indexOf(v);
+    if(ac.checked && i<0) AS.cats.push(v);
+    if(!ac.checked && i>=0) AS.cats.splice(i,1);
+    updateAdminOutput(); return;
+  }
+  if(e.target.id==="a-sc"){ AS.sc=e.target.checked; updateAdminOutput(); return; }
 });
 el("q").addEventListener("input",function(e){ S.q=e.target.value; renderGrid(); });
 el("sort").addEventListener("change",function(e){ S.sort=e.target.value; renderGrid(); });

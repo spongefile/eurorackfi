@@ -42,6 +42,24 @@ gets a generic "that one's gone" page, since no record survives.
 Adding a seller is one entry in `SELLERS`. The filter, wish band, card pills and every
 count follow from it, up to ten. The name is the identifier; the dot is recall only.
 
+## Admin composer (`#/admin`)
+
+A hidden route, not linked from the nav — open `index.html#/admin` directly. It's a form
+matching the fields above, and it generates a paste-ready `RAW` row and `BLURB` entry as
+you fill it in. Nothing more:
+
+- **No auto-fetch.** It doesn't read any other site. If you want real specs and sources
+  for a new module, ask Claude to research the maker + model first, then type the answer
+  in — same as how the 29 real listings got their data.
+- **No live publish.** There's no backend and no auth, so "Publish" isn't a button here —
+  the output is code you copy, paste into `index.html`, then commit and push like any
+  other change.
+- **No upload for photos.** There's nowhere to store them yet; faceplates stay the
+  placeholder until real photos and a hosting plan exist.
+
+Safe to leave unlinked and unauthenticated: since it never writes anywhere, a stranger
+finding the URL can at most generate some text in their own browser.
+
 ## In negotiation
 
 ```js
