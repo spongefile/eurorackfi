@@ -27,6 +27,6 @@
     "fi": "Reaaliaikainen CV-askeltallennin neljässä HP:ssä. Tuhat askelta, satunnaisgeneraattori ja shift-tulo transponointiin.",
     "sv": "CV-steginspelare i realtid på fyra HP. Tusen steg, en slumpgenerator och en shift-ingång för transponering."
   },
-  "img": "https://www.antimatteraudio.com/assets/brain-seed.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg",
   "negotiating": false
 }

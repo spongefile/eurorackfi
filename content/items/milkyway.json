@@ -27,6 +27,6 @@
     "fi": "16-algoritminen stereo-FX-prosessori 6HP:ssä: hall-, shimmer-, plate- ja spring-kaiut, tape echo, ping-pong-viive, chorus, flanger, rengasmodulaatio, overdrive, kompressori, freeze. Kolme nuppia hoitaa dry/wetin, algoritmin toisen parametrin ja volume/driven, ja kaikkea voi ohjata CV:llä, myös meta-skannausta kaikkien kuudentoista tyypin läpi.",
     "sv": "16-algoritmers stereo-FX-processor i 6HP: hall-, shimmer-, plate- och spring-reverb, tape echo, ping-pong-delay, chorus, flanger, ringmodulering, overdrive, kompressor, freeze. Tre rattar sköter dry/wet, algoritmens andra parameter och volume/drive, med CV över allt inklusive en meta-scan genom alla sexton typer."
   },
-  "img": "https://images.squarespace-cdn.com/content/v1/614ef1178bea24770dea5c80/1696751260063-Q113TMP09IA6Y3MWVQVZ/MW_B.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway.jpg",
   "negotiating": false
 }
