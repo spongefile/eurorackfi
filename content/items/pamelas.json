@@ -1,0 +1,32 @@
+{
+  "id": "pamelas",
+  "mfr": "ALM Busy Circuits",
+  "name": "Pamela's New Workout",
+  "price": 160,
+  "hp": 8,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Modulation",
+  "cats": [
+    "Clock",
+    "LFO",
+    "Discontinued"
+  ],
+  "mgSlug": "alm-busy-circuits-pamela-s-new-workout-",
+  "site": "busycircuits.com",
+  "tone": "white",
+  "parts": {
+    "k": 1,
+    "j": 12,
+    "sl": 0,
+    "led": 9,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Eight-output clocked modulation source, BPM-synced, every output independently editable. OLED readout, program encoder, superseded by the PRO.",
+    "fi": "Kahdeksan ulostulon kellotettu modulaatiolähde, synkronoitu BPM:ään, jokainen ulostulo muokattavissa erikseen. OLED-näyttö, ohjelmaenkooderi, seuraaja on PRO-versio.",
+    "sv": "Åtta-utgångars klockad modulationskälla, synkad till BPM, varje utgång redigerbar för sig. OLED-display, programenkoder, efterträdd av PRO-versionen."
+  },
+  "img": "https://busycircuits.com/cdn/shop/files/ALM017-01.png",
+  "negotiating": false
+}
