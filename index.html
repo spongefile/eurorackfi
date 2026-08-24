@@ -1,0 +1,1137 @@
+<title>eurorack.fi</title>
+<!-- Loaded once, up front, so it is already present when the #/msg/ route
+     dynamically inserts a data-tally-src iframe. Blocked under the Artifact
+     preview's sandbox (external script) — works on the real deployed site. -->
+<script async src="https://tally.so/widgets/embed.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<script>
+/* Palette + theme land before paint so there is no flash.
+   Finnish blue ships; warm teal stays one class away (drop "blue" to switch). */
+(function(){
+  var r=document.documentElement;
+  r.className="rt blue";
+  try{ var t=localStorage.getItem("erfi-theme"); if(t) r.classList.add(t); }catch(e){}
+})();
+</script>
+<style>
+/* ---------- palettes: warm teal (.rt) and finnish blue (.rt.blue) ---------- */
+.rt{
+  --bg:#E9EAE6; --bg2:#DFE2DC; --panel:#FBFBF9; --panel2:#F2F3EF;
+  --ink:#14171A; --ink2:#3D4548; --muted:#6B7276;
+  --line:#CFD3CC; --line2:#B6BCB4;
+  --accent:#0B6E67; --accent-hi:#095A54; --accent-soft:#D8E8E5;
+  --signal:#A96B06; --signal-soft:#F5E7CA;
+  --rail:#B4B9B2; --rail-ink:#8D938B;
+  --sold:#8A3E3E; --sold-soft:#F0DDDA;
+  --shadow:0 1px 2px rgba(20,23,26,.06),0 8px 24px -12px rgba(20,23,26,.18);
+  --on:#FBFBF9;
+}
+.rt.blue{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5;
+  --signal:#A9660A; --signal-soft:#F5E6C8;
+  --rail:#B1B9C5; --rail-ink:#8891A0;
+  --sold:#8A3E4E; --sold-soft:#F0DAE0;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+  --on:#FAFBFD;
+}
+/* system dark, unless the reader has explicitly chosen light */
+@media (prefers-color-scheme:dark){
+  .rt:not(.light){
+    --bg:#101312; --bg2:#171B1A; --panel:#1B201F; --panel2:#222827;
+    --ink:#E9ECE8; --ink2:#C3C9C5; --muted:#8C948F;
+    --line:#2A312F; --line2:#3B4340;
+    --accent:#3FBFAE; --accent-hi:#7FE0D2; --accent-soft:#12312E;
+    --signal:#E0AC53; --signal-soft:#2C2314;
+    --rail:#343A38; --rail-ink:#4A524E;
+    --sold:#D98A85; --sold-soft:#33211F;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+    --on:#0B0F0E;
+  }
+  .rt.blue:not(.light){
+    --bg:#0C1119; --bg2:#121924; --panel:#161E2A; --panel2:#1D2634;
+    --ink:#E6ECF4; --ink2:#BEC9D8; --muted:#8590A1;
+    --line:#252F3C; --line2:#364253;
+    --accent:#5AA9F0; --accent-hi:#93C8FB; --accent-soft:#0D2A47;
+    --signal:#E0AC53; --signal-soft:#2C2314;
+    --rail:#323A46; --rail-ink:#47515F;
+    --sold:#D98A93; --sold-soft:#331F24;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -14px rgba(0,0,0,.75);
+    --on:#08111A;
+  }
+}
+/* explicit choice always wins in both directions */
+.rt.dark{
+  --bg:#101312; --bg2:#171B1A; --panel:#1B201F; --panel2:#222827;
+  --ink:#E9ECE8; --ink2:#C3C9C5; --muted:#8C948F;
+  --line:#2A312F; --line2:#3B4340;
+  --accent:#3FBFAE; --accent-hi:#7FE0D2; --accent-soft:#12312E;
+  --signal:#E0AC53; --signal-soft:#2C2314;
+  --rail:#343A38; --rail-ink:#4A524E;
+  --sold:#D98A85; --sold-soft:#33211F;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  --on:#0B0F0E;
+}
+.rt.blue.dark{
+  --bg:#0C1119; --bg2:#121924; --panel:#161E2A; --panel2:#1D2634;
+  --ink:#E6ECF4; --ink2:#BEC9D8; --muted:#8590A1;
+  --line:#252F3C; --line2:#364253;
+  --accent:#5AA9F0; --accent-hi:#93C8FB; --accent-soft:#0D2A47;
+  --signal:#E0AC53; --signal-soft:#2C2314;
+  --rail:#323A46; --rail-ink:#47515F;
+  --sold:#D98A93; --sold-soft:#331F24;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -14px rgba(0,0,0,.75);
+  --on:#08111A;
+}
+
+/* ---------- base ----------
+   The reset lives in :where() so it has ZERO specificity and cannot beat
+   .btn / .chip / .card. A bare `.rt button` reset (0,1,1) silently won this
+   fight once and rendered every button as plain text. Do not unwrap it. */
+:where(.rt button){background:none; color:inherit; border:none; font:inherit; padding:0}
+.rt *{box-sizing:border-box}
+.rt{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif; font-size:1rem; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+body{margin:0; background:var(--bg); color:var(--ink)}
+.rt h1,.rt h2,.rt h3,.rt h4{margin:0; text-wrap:balance; font-weight:700; letter-spacing:-.015em; line-height:1.12}
+.rt p{margin:0}
+/* zero-specificity so any component class (.btn, .linkcard, .card…) always wins —
+   same trap as the button reset: an unscoped .rt a beat .btn on specificity and put
+   accent-on-accent invisible text on the buy button the moment it became an <a>. */
+:where(.rt a){color:var(--accent); text-decoration:none}
+:where(.rt a:hover){color:var(--accent-hi)}
+.rt button{cursor:pointer}
+.rt :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.prose{font-family:"Newsreader",Georgia,serif}
+.wrap{width:min(1160px,100% - 3rem); margin-inline:auto}
+@media(max-width:640px){ .wrap{width:min(1160px,100% - 1.75rem)} }
+
+/* rail — 25.4px is exactly one HP */
+.rail{height:9px; background:var(--rail); border-top:1px solid var(--line2); border-bottom:1px solid var(--line2);
+  background-image:radial-gradient(circle at 5px 4px, var(--rail-ink) 0 1.6px, transparent 1.7px);
+  background-size:25.4px 100%;}
+
+/* ---------- notice ---------- */
+.notice{background:var(--signal-soft); color:var(--signal); font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem; letter-spacing:.03em; padding:.5rem 0}
+.notice .wrap{display:flex; gap:.55rem; flex-wrap:wrap}
+.notice b{color:var(--ink)}
+
+/* ---------- header ---------- */
+header.site{padding:1rem 0; background:var(--bg)}
+header.site .wrap{display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap}
+.brand{display:inline-flex; align-items:baseline; font-family:"Archivo",sans-serif; font-weight:800;
+  font-size:1.35rem; letter-spacing:-.035em; font-stretch:96%; color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.jack{width:.58em; height:.58em; display:inline-block; vertical-align:-.015em;
+  margin-left:.07em; margin-right:0; transform:translate(var(--jack-nudge,-.016em),var(--jack-nudge-y,.015em))}
+.brand .dot{color:var(--accent)}
+nav.top{display:flex; gap:1.3rem; align-items:center; flex-wrap:wrap}
+nav.top a{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink2); border-bottom:1px solid transparent; padding-bottom:2px}
+nav.top a:hover{color:var(--accent); border-color:var(--accent)}
+.hgroup{margin-left:auto; display:flex; gap:.5rem; align-items:center}
+.seg{display:flex; border:1px solid var(--line2)}
+.seg button{font-family:"IBM Plex Mono",monospace; font-size:.7rem; padding:.3rem .5rem; color:var(--ink2); text-transform:uppercase; letter-spacing:.06em}
+.seg button+button{border-left:1px solid var(--line2)}
+.seg button:hover{color:var(--accent)}
+.seg button[aria-pressed="true"]{background:var(--accent); color:var(--on)}
+.themeb{font-family:"IBM Plex Mono",monospace; font-size:.7rem; border:1px solid var(--line2); padding:.3rem .5rem; color:var(--ink2)}
+.themeb:hover{border-color:var(--accent); color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{padding:3rem 0 2.5rem}
+.hero .wrap{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:3rem; align-items:center}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem}
+.hero h1{font-size:clamp(2.1rem,4.4vw,3.2rem); letter-spacing:-.035em; font-weight:800; font-stretch:96%}
+.hero h1 em{font-style:normal; color:var(--accent)}
+.hero .lede{font-family:"Newsreader",Georgia,serif; font-size:1.12rem; line-height:1.55; color:var(--ink2); margin-top:1.1rem; max-width:40ch}
+.stats{display:flex; gap:1.75rem; margin-top:1.75rem; flex-wrap:wrap}
+.stat .n{font-family:"IBM Plex Mono",monospace; font-size:1.5rem; font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.stat .l{font-family:"IBM Plex Mono",monospace; font-size:.66rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:.15rem}
+.rackfig{margin:0}
+.rackbox{background:var(--bg2); border:1px solid var(--line); padding:0; box-shadow:var(--shadow); overflow-x:auto}
+.rackrow{display:flex; align-items:flex-start}
+.rackmod{position:relative; flex:0 0 auto; cursor:pointer; border:none; padding:0; display:block}
+.rackmod::after{content:""; position:absolute; inset:0; background:var(--accent); opacity:0; transition:opacity .12s}
+.rackmod:hover::after,.rackmod:focus-visible::after{opacity:.22}
+.rackfig figcaption{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.7rem; display:flex; justify-content:space-between; gap:1rem}
+
+/* ---------- filter bar ---------- */
+.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
+.search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.4rem .7rem; flex:1 1 210px; max-width:300px}
+.search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); width:100%}
+.search input::placeholder{color:var(--muted)}
+.chips{display:flex; gap:.35rem; flex-wrap:wrap; min-width:0}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem .6rem; border:1px solid var(--line2);
+  color:var(--ink2); background:var(--panel); white-space:nowrap}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on)}
+/* pressed + hover must not fall through to the generic hover — that made the text vanish */
+.chip[aria-pressed="true"]:hover{background:var(--accent-hi); border-color:var(--accent-hi); color:var(--on)}
+.chip .ct{opacity:.65; margin-left:.35rem}
+.chip.faint{border-style:dashed; color:var(--muted)}
+.chip.faint:hover{border-color:var(--line2); color:var(--muted)}
+/* an empty category can still be selected — pressed must beat faint, which sits at
+   the same specificity and would otherwise win on source order alone */
+.chip.faint[aria-pressed="true"],
+.chip.faint[aria-pressed="true"]:hover{border-style:solid; color:var(--on)}
+.sep{width:1px; align-self:stretch; background:var(--line2); margin:0 .2rem}
+select.sort{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.34rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2); margin-left:auto}
+.catscroll{display:flex; gap:.35rem; min-width:0}
+
+/* ---------- wish band ---------- */
+.wishband{padding:1.75rem 0 .5rem}
+.wishband h2{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.9rem}
+.wishgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem}
+.wishcard{background:var(--panel); border:1px solid var(--line); padding:1rem 1.1rem}
+.wishcard .nm{display:flex; align-items:center; gap:.5rem; font-weight:700; font-size:1.05rem}
+.wishcard .nm i{width:9px; height:9px; border-radius:50%; flex:0 0 auto}
+.wishcard .sub{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.2rem}
+.wishcard ul{list-style:none; margin:.75rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem}
+.wishcard li{font-family:"IBM Plex Mono",monospace; font-size:.72rem; border:1px solid var(--line2); color:var(--ink2); padding:.18rem .42rem}
+.wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
+
+/* ---------- count ---------- */
+.countline{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); padding:1.25rem 0 .9rem;
+  display:flex; gap:1rem; flex-wrap:wrap; font-variant-numeric:tabular-nums}
+
+/* ---------- cards ---------- */
+main{padding-bottom:3rem}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1.25rem}
+.card{background:var(--panel); border:1px solid var(--line); display:flex; flex-direction:column; text-align:left;
+  padding:0; transition:border-color .15s, transform .15s, box-shadow .15s; width:100%}
+.card:hover{border-color:var(--line2); transform:translateY(-2px); box-shadow:var(--shadow)}
+@media (prefers-reduced-motion:reduce){ .card,.card:hover{transition:none; transform:none} }
+.shot{height:210px; background:var(--bg2); border-bottom:1px solid var(--line); display:flex; align-items:center;
+  justify-content:center; overflow:hidden; position:relative}
+.cbody{padding:.9rem 1rem 1rem; display:flex; flex-direction:column; gap:.45rem; flex:1}
+.cbody .mfr{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.cbody h3{font-size:1.05rem; letter-spacing:-.02em}
+.cbody .blurb{font-family:"Newsreader",Georgia,serif; font-size:.95rem; line-height:1.45; color:var(--ink2)}
+.tags{display:flex; gap:.28rem; flex-wrap:wrap; margin-top:auto; padding-top:.4rem}
+.tag{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); border:1px solid var(--line); padding:.14rem .38rem}
+.ownerpill{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2); border:1px solid var(--line2);
+  padding:.14rem .4rem; display:inline-flex; align-items:center; gap:.35rem; position:relative}
+.ownerpill i{width:7px; height:7px; border-radius:50%; flex:0 0 auto}
+.cardfoot{display:flex; align-items:center; gap:.6rem; padding:.6rem 1rem; border-top:1px solid var(--line); background:var(--panel2)}
+.price{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.95rem; font-variant-numeric:tabular-nums; white-space:nowrap; flex:0 0 auto}
+.hpstamp{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); border-left:1px solid var(--line2); padding-left:.6rem}
+.cta{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.68rem; border:1px solid var(--line2);
+  color:var(--ink2); padding:.22rem .5rem; background:transparent; white-space:nowrap}
+.card:hover .cta{border-color:var(--accent); color:var(--accent); background:var(--accent-soft)}
+/* in negotiation: solid on the card, because the state IS the call to action */
+.negchip{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.68rem; background:var(--accent);
+  color:var(--on); border:1px solid var(--accent); padding:.22rem .5rem; display:inline-flex; align-items:center; gap:.4rem; white-space:nowrap}
+.negchip i,.negbar i{width:7px; height:7px; border-radius:50%; flex:0 0 auto}
+.negchip i{background:var(--on)}
+@media (prefers-reduced-motion:no-preference){
+  .negchip i,.negbar i{animation:pulse 2s ease-in-out infinite}
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.empty{padding:3.5rem 0; text-align:center; font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:.85rem}
+
+/* ---------- module page ---------- */
+.detail{display:none}
+body.detail-open .detail{display:block}
+body.detail-open .browse{display:none}
+.crumb{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); padding:1.1rem 0;
+  display:flex; gap:.5rem; align-items:center; flex-wrap:wrap}
+.crumb button{color:var(--accent); text-decoration:underline; text-underline-offset:3px}
+/* image column stretches to the buy column, or the shorter one leaves a hole */
+.buyarea{display:grid; grid-template-columns:minmax(0,1fr) 440px; gap:2.5rem; align-items:stretch; padding-bottom:2rem}
+.imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0}
+/* cap stops the grey slab when the form opens; sticky spends the freed column so the
+   module travels beside the form. Reset to static when stacked, or it pins over the form. */
+.bench{flex:1; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
+  justify-content:center; min-height:340px; max-height:620px; overflow:hidden;
+  position:sticky; top:24px}
+.thumbs{display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem}
+.thumb{height:64px; border:1px solid var(--line); background:var(--bg2); font-family:"IBM Plex Mono",monospace;
+  font-size:.6rem; color:var(--muted); display:flex; align-items:center; justify-content:center}
+.thumb[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 2px var(--accent-soft); color:var(--accent)}
+.buycol{min-width:0}
+.buycol .mfr{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.buycol h2{font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.035em; font-weight:800; margin:.35rem 0 .7rem}
+.bigprice{font-family:"IBM Plex Mono",monospace; font-size:2rem; font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
+.sellerline{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); margin-top:.5rem; display:flex; align-items:center; gap:.5rem}
+.sellerline i{width:8px; height:8px; border-radius:50%}
+/* in negotiation: quiet here, so it never competes with the primary button */
+.negbar{display:flex; align-items:center; gap:.55rem; width:100%; margin:1.25rem 0 .75rem; padding:.7rem .9rem;
+  background:var(--accent-soft); border:1px solid var(--accent); color:var(--accent);
+  font-family:"IBM Plex Mono",monospace; font-size:.76rem}
+.negbar i{background:var(--accent)}
+.btn{font-family:"IBM Plex Mono",monospace; font-size:.82rem; letter-spacing:.03em; padding:0 1.2rem; height:62px;
+  width:100%; background:var(--accent); color:var(--on); border:1px solid var(--accent); box-shadow:0 2px 0 var(--accent-hi);
+  display:inline-flex; align-items:center; justify-content:center; margin-top:1rem}
+.btn:hover{background:var(--accent-hi)}
+.btn:active{transform:translateY(2px); box-shadow:none}
+.btn.sm{height:auto; padding:.62rem 1rem; width:auto; margin-top:0; font-size:.76rem}
+.btn.ghost{background:transparent; color:var(--accent); border-color:var(--line2); box-shadow:none}
+.btn.ghost:hover{background:var(--accent-soft); border-color:var(--accent)}
+.specrule{border-top:1px solid var(--line); margin-top:1.5rem; padding-top:1.1rem}
+.specrule h4{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.6rem}
+.specrows{display:grid; gap:.35rem}
+.specrow{display:flex; justify-content:space-between; gap:1rem; font-family:"IBM Plex Mono",monospace; font-size:.78rem; padding:.25rem 0; border-bottom:1px dotted var(--line)}
+.specrow span:first-child{color:var(--muted)}
+.specrow span:last-child{font-variant-numeric:tabular-nums; text-align:right}
+.sect{border-top:1px solid var(--line); padding:2.25rem 0}
+.sect>h3{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:1.15rem}
+.pitch{font-family:"Newsreader",Georgia,serif; font-size:1.15rem; line-height:1.6; color:var(--ink2); max-width:62ch}
+.pullquote{font-family:"Newsreader",Georgia,serif; font-size:1.5rem; line-height:1.4; color:var(--ink); max-width:34ch;
+  border-left:3px solid var(--accent); padding-left:1.1rem}
+.pullquote cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-style:normal; color:var(--muted); margin-top:.8rem}
+.qcards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1.5rem}
+.qcard{border:1px solid var(--line); background:var(--panel); padding:1rem}
+.qcard.crit{border-style:dashed; border-color:var(--signal); background:var(--signal-soft)}
+.qcard p{font-family:"Newsreader",Georgia,serif; font-size:1rem; line-height:1.5; color:var(--ink2)}
+.qcard cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-style:normal; color:var(--muted); margin-top:.7rem}
+.linkrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.75rem}
+.linkcard{display:block; border:1px solid var(--line); background:var(--panel); padding:.9rem 1rem; color:inherit}
+.linkcard:hover{border-color:var(--accent); color:inherit}
+.linkcard .k{font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.linkcard .v{margin-top:.3rem; font-weight:600; font-size:.96rem; display:flex; justify-content:space-between; gap:.5rem}
+.linkcard .v span{color:var(--accent)}
+.vids{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1rem}
+.vid .frame{aspect-ratio:16/9; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center}
+.vid:hover .frame{border-color:var(--accent)}
+.play{width:44px; height:44px; border-radius:50%; border:1px solid var(--line2); background:var(--panel); display:grid; place-items:center}
+.play::after{content:""; border-left:11px solid var(--ink2); border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px}
+.vid:hover .play::after{border-left-color:var(--accent)}
+.vid .cap{margin-top:.5rem; font-size:.92rem; font-weight:600; color:var(--ink)}
+.vid .sub{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:.15rem}
+.alike{display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1.25rem}
+.why{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--accent); margin-top:.5rem}
+.gone{padding:4rem 0; max-width:48ch}
+.gone h2{font-size:1.8rem; letter-spacing:-.03em; margin-bottom:.7rem; color:var(--sold)}
+.gone p{font-family:"Newsreader",Georgia,serif; color:var(--ink2); font-size:1.08rem}
+.gone .btn{width:auto; padding:.7rem 1.2rem; height:auto; margin-top:1.25rem}
+
+/* Tally form, embedded full-page rather than a new tab or a small inline
+   box — site chrome (header, language switcher) stays above it. */
+.msgpage{display:flex; flex-direction:column; height:min(82vh,880px); min-height:520px}
+.msgbar{padding:.9rem 0}
+.msgbar .back{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted)}
+.msgbar .back:hover{color:var(--accent)}
+.msgframe{flex:1; width:100%; border:1px solid var(--line); background:var(--panel)}
+@media(max-width:640px){ .msgpage{height:calc(100vh - 220px); min-height:460px} }
+
+/* missing translation — honest banner, never silent machine translation */
+.xlate{display:flex; gap:.6rem; align-items:flex-start; background:var(--signal-soft); border:1px solid var(--signal);
+  color:var(--signal); font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.6rem .8rem; margin-bottom:1rem}
+
+/* ---------- message form ---------- */
+.formwrap{border:1px solid var(--line); background:var(--panel); padding:1.5rem; margin-top:1.25rem}
+.formwrap.hide{display:none}
+.frow{display:grid; gap:.4rem; margin-bottom:1rem}
+.frow label{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.frow input,.frow textarea{font-family:"IBM Plex Mono",monospace; font-size:.82rem; padding:.6rem .7rem;
+  background:var(--bg); border:1px solid var(--line2); color:var(--ink); width:100%}
+.frow textarea{min-height:110px; resize:vertical; font-family:"Newsreader",Georgia,serif; font-size:1rem}
+.modes{display:flex; gap:.4rem; margin-bottom:1rem; flex-wrap:wrap}
+.sent{border:1px solid var(--accent); background:var(--accent-soft); padding:1.5rem; margin-top:1.25rem}
+.sent h4{font-size:1.1rem; margin-bottom:.4rem}
+.sent p{font-family:"Newsreader",Georgia,serif; color:var(--ink2)}
+.inbox{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.9rem}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
+.fgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:2rem}
+.fgrid h4{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.5rem}
+.fgrid p{font-family:"Newsreader",Georgia,serif; color:var(--ink2); font-size:1rem}
+.fintro{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; color:var(--ink2); max-width:52ch; margin-bottom:2rem}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr); gap:2rem}
+  .hero{padding:2.25rem 0 2rem}
+  .buyarea{grid-template-columns:minmax(0,1fr); gap:1.75rem}
+  .bench{min-height:260px; position:static}
+}
+@media(max-width:740px){
+  /* categories become a scroller; owner and format chips collapse first */
+  .catscroll{overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:thin; flex:1 1 100%; padding-bottom:.2rem}
+  select.sort{margin-left:0}
+}
+@media(max-width:720px){
+  nav.top{display:none}
+  .hgroup{margin-left:auto}
+}
+@media(max-width:640px){
+  .hero h1{font-size:2rem}
+  .shot{height:180px}
+  .bench{min-height:220px; position:static}
+  .thumbs{grid-template-columns:repeat(2,1fr)}
+  .countline{padding-top:1rem}
+  .pullquote{font-size:1.25rem}
+}
+</style>
+
+<div class="notice"><div class="wrap"><b>MOCKUP</b><span id="noticeA"></span><span id="noticeB"></span></div></div>
+<div class="rail"></div>
+
+<header class="site"><div class="wrap">
+  <a class="brand" href="#/" onclick="closeDetail();return false">eur<svg class="jack" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="18"/><circle cx="50" cy="50" r="14" fill="currentColor"/></svg>rack<span class="dot">.</span>fi</a>
+  <nav class="top" id="nav"></nav>
+  <div class="hgroup">
+    <div class="seg" id="langseg" role="group" aria-label="Language"></div>
+    <button class="themeb" id="themeb" aria-label="Toggle theme">◐</button>
+  </div>
+</div></header>
+
+<div class="browse">
+  <section class="hero"><div class="wrap">
+    <div>
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="h1"></h1>
+      <p class="lede" id="lede"></p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <figure class="rackfig">
+      <div class="rackbox" id="rack"></div>
+      <figcaption><span id="scaleCap"></span><span id="hoverCap"></span></figcaption>
+    </figure>
+  </div></section>
+
+  <section class="controls" id="grid-top"><div class="wrap">
+    <label class="search"><span class="mono" style="color:var(--muted)">/</span>
+      <input id="q" type="search" aria-label="Search"></label>
+    <div class="chips" id="fmtchips"></div>
+    <span class="sep" aria-hidden="true"></span>
+    <div class="chips" id="whochips"></div>
+    <select class="sort" id="sort" aria-label="Sort"></select>
+    <div class="catscroll chips" id="catchips"></div>
+  </div></section>
+
+  <section class="wishband" id="wish"><div class="wrap">
+    <h2 id="wishH"></h2>
+    <div class="wishgrid" id="wishgrid"></div>
+    <p class="wishnote" id="wishK"></p>
+  </div></section>
+
+  <main><div class="wrap">
+    <div class="countline" id="countline"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden></div>
+  </div></main>
+
+  <div class="rail"></div>
+  <footer class="site" id="contact"><div class="wrap">
+    <p class="fintro" id="fIntro"></p>
+    <div class="fgrid" id="fgrid"></div>
+  </div></footer>
+</div>
+
+<div class="detail" id="detail"></div>
+
+<script>
+/* ---------- ported verbatim from Main.dc.html (design's reviewed data) ---------- */
+var TONE = {
+  black: { bg:"linear-gradient(176deg,#2b2b30,#141416)", line:"#3d3d43", ink:"#DAD9D3", knob:"#f0efe9" },
+  alu:   { bg:"linear-gradient(176deg,#dcdfdb,#b4b9b3)", line:"#9ea39d", ink:"#2A2E2C", knob:"#1d1f1e" },
+  white: { bg:"linear-gradient(176deg,#f4f2ec,#dedcd3)", line:"#c9c6bb", ink:"#2A2E2C", knob:"#1d1f1e" },
+  cream: { bg:"linear-gradient(176deg,#ece5d1,#d8ceb3)", line:"#c2b898", ink:"#33301f", knob:"#26240f" },
+  wood:  { bg:"linear-gradient(176deg,#d8b78b,#bb9460)", line:"#a67e4c", ink:"#3a2b16", knob:"#2b2011" }
+};
+
+var RAW = [
+["ph3","Industrial Music Electronics","Piston Honda MK III",420,17,"eu","f","Oscillator",["Oscillator","Wavetable","Digital"],
+ "Dual morphing wavetable oscillator with 512 sixteen-bit waves in an 8x8x8 cube. Runs as a CV-driven waveshaper too.",
+ "industrial-music-electronics-piston-honda-mk-iii","industrialmusicelectronics.com","black",{k:4,j:10,sl:8,led:4,sc:0}],
+["bf22","Befaco","BF-22 Sallen Key Filter",150,17,"eu","f","Filter",["Filter","Dual","DIY"],
+ "Dual hi/lo-pass filter after the early MS-20, with attenuverters on cutoff and resonance and a link switch.",
+ "befaco-sallen-key-filter-bf-22","befaco.org","alu",{k:8,j:10,sl:0,led:0,sc:0}],
+["modor","Modor Music","Formant Filter",200,16,"eu","f","Filter",["Filter","Stereo","Digital"],
+ "Stereo vowel morphing lifted from the NF-1: ten preset vowels, four editable bands, the lot under CV.",
+ "modor-music-formant-filter","modormusic.com","white",{k:8,j:7,sl:0,led:3,sc:0}],
+["nucleus","River","Nucleus",160,8,"eu","f","Filter",["Filter","Lowpass","Discontinued"],
+ "Multi-character VCF on a discrete transistor OTA core. Switchable 12/24 dB slope and a solid-bass mode.",
+ "river-nucleus","riversynths.com","alu",{k:5,j:7,sl:0,led:0,sc:0}],
+["gvco","Erica Synths","Graphic VCO",200,16,"eu","f","Oscillator",["Oscillator","Wavetable","Digital"],
+ "Draw your own waveforms, stack them into tables, then morph, fold, bitcrush and FM whatever comes out.",
+ "erica-synths-graphic-vco","ericasynths.lv","black",{k:5,j:9,sl:0,led:4,sc:1}],
+["deltav","Cosmotronic","Delta-V",170,10,"eu","f","Modulation",["Envelope","VCA","Function gen"],
+ "Analogue dual function generator with a VCA per channel. Envelope, slew or LFO out of the same ten HP.",
+ "cosmotronic-delta-v","cosmotronic.nl","black",{k:6,j:10,sl:0,led:2,sc:0}],
+["proout","WMD","Pro Output",140,6,"eu","f","Output",["Output","Headphone","DC-coupled"],
+ "Output stage with 23 Vpp of headroom before it clips, and a headphone driver that is genuinely good.",
+ "wmd-pro-output-black","wmdevices.com","black",{k:3,j:5,sl:0,led:0,sc:0}],
+["performer","Westlicht","PER|FORMER",290,34,"eu","f","Sequencer",["Sequencer","MIDI","DIY"],
+ "Eight-track step sequencer: sixteen patterns a track, sixty-four steps a pattern, OLED, MIDI and USB host.",
+ "westlicht-per-former--","westlicht.github.io","black",{k:2,j:22,sl:0,led:16,sc:1}],
+
+["timber","Bastl Instruments","Timber",150,7,"eu","t","Waveshaper",["Waveshaper","Wavefolder"],
+ "Two shaping circuits, a driver and a folder, with a voltage-controlled crossfade between them and the clean signal.",
+ "bastl-instruments-timber","bastl-instruments.com","wood",{k:5,j:7,sl:0,led:0,sc:0}, null],
+["brainseed","Antimatter Audio","Brain Seed",170,4,"eu","t","Sequencer",["Sequencer","Random","Recorder"],
+ "Realtime CV step recorder in four HP. A thousand steps, a random generator and a shift input for transposing.",
+ "antimatter-audio-brain-seed-","antimatteraudio.com","black",{k:2,j:5,sl:0,led:2,sc:0}, null],
+["bishops","Shakmat Modular","Bishop's Miscellany",120,12,"eu","t","Sequencer",["Sequencer","Recorder","Random"],
+ "Dual stepped CV and gate recorder. Two thirty-two step sequences with length, shift and controlled randomness.",
+ "shakmat-modular-bishop-s-miscellany","shakmat.com","black",{k:6,j:9,sl:0,led:4,sc:0}, null],
+["klang","Elektrofon","Klang",350,14,"eu","t","Sequencer",["Chords","Polyphonic","Quantizer"],
+ "Four-voice chord controller. Ninety-nine chords on a clockface OLED, four encoders, no menu diving anywhere.",
+ "elektrofon-klang","elektrofon.no","black",{k:4,j:10,sl:0,led:0,sc:1}, null],
+["lubadh","Instruo","Lubadh",440,20,"eu","t","Sampler",["Looper","Sampler","Tape"],
+ "Two channels of tape looping at 96k, five minutes each, varispeed either way and an analogue input that saturates.",
+ "instruo-lubadh","instruomodular.com","alu",{k:7,j:13,sl:0,led:4,sc:0}, null],
+["hydrus","Serpens Modular","Hydrus",154,8,"eu","t","Waveshaper",["Waveshaper","CV utility"],
+ "Waveform mutator. Three inputs recombined through half-wave rectifiers, each with an attenuverter and offset.",
+ "serpens-modular-hydrus","serpensmodular.com","black",{k:6,j:7,sl:0,led:0,sc:0}, null],
+["ufold","Intellijel","uFold II",120,6,"eu","t","Waveshaper",["Wavefolder","Waveshaper"],
+ "Six stages of folding with thru-zero symmetry, and DC-coupled inputs so it will happily fold CV as well.",
+ "intellijel-%CE%BCfold-ii-ufold-ii","intellijel.com","alu",{k:4,j:5,sl:0,led:0,sc:0}, null],
+["tuesday","This Is Not Rocket Science","Tuesday",200,12,"eu","t","Sequencer",["Sequencer","Algorithmic"],
+ "Procedural sequencer. It builds melodies out of algorithms instead of steps you punch in one at a time.",
+ "this-is-not-rocket-science-tuesday","thisisnotrocketscience.nl","cream",{k:5,j:9,sl:0,led:6,sc:0}, null],
+
+["bsp","Arturia","BeatStep Pro",190,0,"desk","f","Sequencer",["Sequencer","Controller"],
+ "Two melodic sequencers, a drum sequencer and sixteen pads. Deck saver included, which is how it stayed clean.",
+ "","arturia.com","black",{k:6,j:8,sl:0,led:16,sc:0}],
+["mpc500","Akai","MPC500",200,0,"desk","f","Sampler",["Sampler","Groovebox"],
+ "The small MPC. Twelve pads, sampler and sequencer, runs on batteries, fits in a bag properly.",
+ "","akaipro.com","black",{k:4,j:6,sl:2,led:12,sc:1}],
+["progue","JSI Synth","Progue",450,0,"desk","f","Synth",["Synth","Analogue","DIY"],
+ "Finnish DIY mono synth built around the Moog Rogue and Prodigy voices, with polychain over MIDI.",
+ "","jsisynth.com","white",{k:9,j:6,sl:3,led:2,sc:0}],
+["neotrellis","DIY","NeoTrellis Grid",200,0,"desk","f","Controller",["Grid","Controller","DIY"],
+ "Monome-style RGB pad grid built from NeoTrellis boards. Speaks the grid protocol, plays nicely with norns.",
+ "","adafruit.com","black",{k:0,j:2,sl:0,led:64,sc:0}],
+["softpop","Bastl Instruments","Softpop mk1",300,0,"desk","f","Synth",["Semi-modular","Synth"],
+ "Semi-modular sequencer-synth with a patchbay and a personality that argues with you. First revision.",
+ "","bastl-instruments.com","wood",{k:7,j:12,sl:0,led:4,sc:0}],
+["therapkid","Twisted Electrons","TherapKid",300,0,"desk","f","Synth",["Chiptune","Synth","8-bit"],
+ "Eight-bit chip synth, knob per function, no menus. Sounds like a console being pushed somewhere it should not go.",
+ "","twisted-electrons.com","black",{k:8,j:4,sl:0,led:8,sc:0}],
+["id14","Audient","iD14",130,0,"desk","f","Output",["Interface","Audio"],
+ "Two of Audient's console mic pres, ADAT in for expansion, and the big monitor encoder everyone buys it for.",
+ "","audient.com","alu",{k:3,j:8,sl:0,led:6,sc:0}],
+["quadraverb","Alesis","Quadraverb GT",150,0,"desk","f","FX",["FX","Rack","Vintage"],
+ "One rack unit of reverb, delay, pitch and EQ, with the GT distortion and speaker sim on the front end.",
+ "","alesis.com","black",{k:4,j:6,sl:0,led:6,sc:1}],
+["kastledrum","Bastl Instruments","Kastle Drum",100,0,"desk","t","Synth",["Drum","Portable","Patchable"],
+ "Pocket drum synth with patch pins and AA batteries. Two oscillators, a noise source and a lot of noise.",
+ "","bastl-instruments.com","wood",{k:4,j:14,sl:0,led:2,sc:0}, null],
+["thyme","Bastl Instruments","Thyme",400,0,"desk","f","FX",["FX","Delay","Granular"],
+ "Digital tape effect: delay, granular smear, pitch and modulation, with save slots you will actually use.",
+ "","bastl-instruments.com","alu",{k:9,j:8,sl:0,led:8,sc:1}],
+["darkenergy","Doepfer","Dark Energy II",350,0,"desk","f","Synth",["Synth","Analogue","Semi-modular"],
+ "Analogue mono synth with a full CV patchbay across the top and USB MIDI in. The desktop Doepfer.",
+ "","doepfer.de","black",{k:11,j:10,sl:0,led:2,sc:0}],
+["gentlewham","Herbs and Stones","Gentle Wham",400,0,"desk","f","Synth",["Drum","Analogue","Drone"],
+ "Six-voice analogue drum synth through a master two-pole filter. Finger-drum it or hold the buttons and drone.",
+ "","herbs---stones.com","black",{k:12,j:10,sl:0,led:6,sc:0}],
+["l12","Zoom","LiveTrak L-12",400,0,"desk","f","Output",["Mixer","Recorder","Interface"],
+ "Twelve-channel mixer, twelve-track SD recorder and USB interface, with five separate headphone mixes.",
+ "","zoomcorp.com","black",{k:10,j:14,sl:12,led:12,sc:1}]
+];
+
+var T = {
+  fi: {
+    nav:["Kaikki","Toiveet","Yhteys"],
+    eyebrow:"Helsinki · naapureita", h1a:"Tavaraa ", h1b:"naapurista", h1c:".",
+    lede:"Muutama meistä samasta kaupunginosasta myy tavaraa, jota ei enää tarvita. Enimmäkseen eurorackia, joskus muuta. Vaihdot käyvät!",
+    sItems:"kohdetta", sHp:"HP", sShelves:"hyllyä",
+    scale:"Mittakaavassa", hover:"osoita hiirellä",
+    search:"hae valmistaja tai moduuli",
+    wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
+    ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
+    buyOrTrade:"Osta tai vaihda", hunting:"hakee",
+    emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
+    emptyNone:"Ei osumia. Poista suodin.",
+    noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
+    noticeB:"Sampon toivelista puuttuu vielä.", negotiating:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
+    fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
+    fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
+    fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
+    fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
+    fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", tools:"Muut"},
+    who:{all:"Kaikki"},
+    cat:{all:"Kaikki",Oscillator:"Oskillaattori",Filter:"Suodin",Sequencer:"Sekvensseri",Modulation:"Modulaatio",
+         Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus"},
+    sort:{"hp-desc":"HP, levein ensin","hp-asc":"HP, kapein ensin","price-desc":"Hinta, kallein","price-asc":"Hinta, halvin","name":"A–Ö"},
+    sortLabel:{"hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
+  },
+  sv: {
+    nav:["Allt","Önskemål","Kontakt"],
+    eyebrow:"Helsingfors · grannar", h1a:"Prylar från ", h1b:"grannen", h1c:".",
+    lede:"Några av oss i samma kvarter säljer det vi inte behöver. Mest eurorack, ibland annat. Byten går bra!",
+    sItems:"objekt", sHp:"HP", sShelves:"hyllor",
+    scale:"Skalenligt", hover:"hovra",
+    search:"sök tillverkare eller modul",
+    wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
+    ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
+    buyOrTrade:"Köp eller byt", hunting:"söker",
+    emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
+    emptyNone:"Inga träffar. Ta bort ett filter.",
+    noticeA:"Moduler, priser och specar är riktiga.",
+    noticeB:"Sampos önskelista saknas ännu.", negotiating:"Under förhandling", negBar:"Under förhandling — du kan ändå fråga",
+    fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
+    fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
+    fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
+    fTradeBody:"Allt kan bytas. Två separata önskelistor.",
+    fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", tools:"Övrigt"},
+    who:{all:"Alla"},
+    cat:{all:"Allt",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencer",Modulation:"Modulering",
+         Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning"},
+    sort:{"hp-desc":"HP, bredast först","hp-asc":"HP, smalast först","price-desc":"Pris, högst","price-asc":"Pris, lägst","name":"A–Ö"},
+    sortLabel:{"hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
+  },
+  en: {
+    nav:["Everything","What we want","Contact"],
+    eyebrow:"Helsinki · neighbours", h1a:"Gear from ", h1b:"down the road", h1c:".",
+    lede:"A handful of us in the same neighbourhood, listing what we are finished with. Mostly eurorack, sometimes other stuff. Trades possible!",
+    sItems:"items", sHp:"HP", sShelves:"shelves",
+    scale:"Drawn to scale", hover:"hover to find it below",
+    search:"search maker or module",
+    wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
+    ofItems:"of 29 items", onScreen:"€ on screen",
+    buyOrTrade:"Buy or trade", hunting:"is hunting for",
+    emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
+    emptyNone:"Nothing matches that. Clear a filter.",
+    noticeA:"Modules, prices and specs are real.",
+    noticeB:"Sampo\u2019s wish list is still a placeholder.", negotiating:"In negotiation", negBar:"In negotiation — you can still ask",
+    fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
+    fIntro:"A few of us in one Helsinki neighbourhood. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
+    fCollectBody:"Prices in EUR. Collection preferred, posting possible.",
+    fTradeBody:"Everything trades. Two separate lists.",
+    fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", tools:"Other stuff"},
+    who:{all:"Everyone"},
+    cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
+         Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control"},
+    sort:{"hp-desc":"HP, widest first","hp-asc":"HP, narrowest first","price-desc":"Price, high first","price-asc":"Price, low first","name":"A–Z"},
+    sortLabel:{"hp-desc":"widest first","hp-asc":"narrowest first","price-desc":"priciest first","price-asc":"cheapest first","name":"A to Z"}
+  }
+};
+
+var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper","Sampler","Synth","FX","Output","Controller"];
+
+var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
+                   "#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"];
+
+var SELLERS = [
+  { key:"t", name:"spongefile", lede:"Swapping for:",
+    wants:["ALM MCO","ALM AXON-1","Mannequins Mangrove","Mannequins W/","Dnipro Dot"] },
+  { key:"f", name:"Sampo", lede:"Swapping for:",
+    wants:["[e.g. quad VCA]","[e.g. drum module]","[e.g. utilities]","[+ add more]"] }
+];SELLERS.forEach(function(p,i){ p.dot = SELLER_DOTS[i % SELLER_DOTS.length]; });
+var WANTS={}, SELLER_BY_KEY={};
+SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
+</script>
+
+<script>
+/* ---------- items ---------- */
+var FIELDS=["id","mfr","name","price","hp","fmt","who","cat","cats","blurb","mgSlug","site","tone","parts"];
+/* Tag an id here when someone has sent a genuine buy or trade message about it —
+   Tally "Reason" is Buying or Trading. A generic question ("Other") is not
+   interest in the item itself and must NOT set this, even though it arrives
+   through the same form. Manual: nothing currently connects a Tally
+   submission to this map, so this is set by hand after reading the inbox.
+   There is no sold state: an item that is no longer for sale is deleted from RAW. */
+var NEGOTIATING={};
+var ITEMS=RAW.map(function(r){
+  var o={}; FIELDS.forEach(function(k,i){ o[k]=r[i]; });
+  o.negotiating=!!NEGOTIATING[o.id];
+  return o;
+});
+var byId=function(id){ return ITEMS.filter(function(m){ return m.id===id; })[0]; };
+
+/* ---------- faceplate: absolutely positioned divs at true eurorack scale ---------- */
+function hashSeed(s){var h=1779033703^s.length;for(var i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=(h<<13)|(h>>>19);}
+  return function(){h=Math.imul(h^(h>>>16),2246822507);h=Math.imul(h^(h>>>13),3266489909);h^=h>>>16;return (h>>>0)/4294967296;};}
+function packGrid(n,x0,y0,w,h,cell){var out=[],cols=Math.max(1,Math.min(n,Math.floor(w/cell)));
+  var rows=Math.ceil(n/cols),cw=w/cols,ch=h/rows;
+  for(var i=0;i<n;i++){var c=i%cols,r=Math.floor(i/cols);var inRow=(r===rows-1)?(n-r*cols):cols;var off=(w-inRow*cw)/2;
+    out.push({x:x0+off+c*cw+cw/2,y:y0+ch*(r+0.5)});}
+  return out;}
+function abs(x,y,w,h){return "position:absolute;left:"+x.toFixed(1)+"px;top:"+y.toFixed(1)+"px;width:"+w.toFixed(1)+"px;height:"+h.toFixed(1)+"px;";}
+function buildPanel(m,H,tone){
+  var t=TONE[tone]||TONE.black;
+  var W=m.hp>0?Math.round(m.hp*5.08*(H/128.5)):Math.round(H*1.55);
+  var U=H/128.5, els=[];
+  var kd=Math.max(8,Math.round(11*U)), jd=Math.max(5,Math.round(7.4*U));
+  var pad=Math.min(6,W*0.14), iw=W-pad*2, top=6;
+  if(W>30){[[pad*0.55,5],[W-pad*0.55,5],[pad*0.55,H-5],[W-pad*0.55,H-5]].forEach(function(p){
+    els.push(abs(p[0]-2,p[1]-2,4,4)+"border-radius:50%;background:rgba(0,0,0,.35);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.18);");});}
+  if(m.parts.sc){var sh=Math.round(H*0.15),sw=Math.min(iw,Math.round(iw*0.9));
+    els.push(abs(pad+(iw-sw)/2,top,sw,sh)+"background:linear-gradient(180deg,#0d1413,#050807);border:1px solid rgba(0,0,0,.5);box-shadow:inset 0 0 8px rgba(60,200,180,.22);");
+    top+=sh+5;}
+  var jRows=Math.ceil(m.parts.j/Math.max(1,Math.floor(iw/(jd+4))));
+  var jH=Math.min(H*0.46,jRows*(jd+6)+2), jY=H-7-jH;
+  if(m.parts.sl){var slH=Math.min(H*0.34,jY-top-8);
+    packGrid(m.parts.sl,pad,top,iw,slH,Math.max(6,iw/m.parts.sl)).forEach(function(p){
+      els.push(abs(p.x-1,p.y-slH/2+2,2,slH-4)+"background:rgba(0,0,0,.42);border-radius:1px;");
+      els.push(abs(p.x-3.5,p.y-slH/2+2+(slH-10)*0.35,7,5)+"background:"+t.knob+";border-radius:1px;box-shadow:0 1px 1px rgba(0,0,0,.5);");});
+    top+=slH+6;}
+  if(m.parts.k){var kH=Math.max(kd+2,jY-top-6);
+    packGrid(m.parts.k,pad,top,iw,kH,kd+4).forEach(function(p,i){var ang=210+(i*47)%260;
+      els.push(abs(p.x-kd/2,p.y-kd/2,kd,kd)+"border-radius:50%;background:conic-gradient(from "+ang+"deg,"+t.knob+" 0 8deg,transparent 8deg 360deg),radial-gradient(circle at 34% 28%,#77777c,#232326 72%);box-shadow:0 1px 2px rgba(0,0,0,.55);");});}
+  if(m.parts.led){var ln=Math.min(m.parts.led,16);
+    packGrid(ln,pad,jY-7,iw,5,Math.max(4,iw/ln)).forEach(function(p,i){var on=i%3===0;
+      els.push(abs(p.x-1.5,p.y-1.5,3,3)+"border-radius:50%;background:"+(on?"#E0623A":"rgba(0,0,0,.3)")+";"+(on?"box-shadow:0 0 4px rgba(224,98,58,.8);":""));});}
+  packGrid(m.parts.j,pad,jY,iw,jH,jd+4).forEach(function(p){
+    els.push(abs(p.x-jd/2,p.y-jd/2,jd,jd)+"border-radius:50%;background:radial-gradient(circle,#08080a 0 "+(jd*0.3).toFixed(1)+"px,#8d918e "+(jd*0.32).toFixed(1)+"px 100%);box-shadow:inset 0 0 0 .5px rgba(0,0,0,.5);");});
+  return {w:W, html:'<div style="position:relative;display:block;width:'+W+'px;height:'+H+'px;background:'+t.bg+
+    ';border:1px solid '+t.line+';box-shadow:0 2px 6px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.12);flex:0 0 auto">'+
+    els.map(function(s){return '<div style="'+s+'"></div>';}).join("")+'</div>'};
+}
+var panelHTML=function(m,H){ return buildPanel(m,H,m.tone).html; };
+
+/* Per-listing prose, fi/sv. English lives in RAW. Written as each language,
+   not translated from the English — pending design's register check. */
+var BLURB={
+ph3:{fi:"Kaksi morffaavaa wavetable-oskillaattoria, 512 aaltoa 16-bittisenä 8x8x8-kuutiossa. Toimii myös CV-ohjattuna waveshaperina.",
+        sv:"Två morfande wavetable-oscillatorer, 512 vågor i 16 bitar i en 8x8x8-kub. Fungerar även som CV-styrd vågformare."},
+bf22:{fi:"Kaksoissuodin ylä- ja alapäästöllä varhaisen MS-20:n hengessä. Attenuverterit cutoffille ja resonanssille, kytkin kanavien linkitykseen.",
+         sv:"Dubbelfilter med hög- och lågpass i den tidiga MS-20:s anda. Attenuvertrar för cutoff och resonans, och en länkomkopplare."},
+modor:{fi:"Vokaalien morffaus stereona, suoraan NF-1:stä: kymmenen valmista vokaalia, neljä muokattavaa kaistaa, kaikki CV:n alla.",
+          sv:"Stereo vokalmorfning rakt ur NF-1: tio färdiga vokaler, fyra redigerbara band, allt under CV."},
+nucleus:{fi:"Monikäyttöinen VCF diskreetillä transistori-OTA-ytimellä. Vaihdettava 12/24 dB jyrkkyys ja tukeva bassotila.",
+            sv:"Mångsidigt VCF med diskret transistor-OTA-kärna. Växlingsbar branthet på 12/24 dB och ett stadigt basläge."},
+gvco:{fi:"Piirrä omat aaltomuotosi, pinoa ne taulukoiksi ja morffaa, taita ja bittimurskaa lopputulosta, ja lisää FM:ää.",
+         sv:"Rita egna vågformer, stapla dem till tabeller och morfa, vik, bitkrossa och FM:a det som kommer ut."},
+deltav:{fi:"Analoginen kaksikanavainen funktiogeneraattori, VCA per kanava. Verhokäyrä, slew tai LFO samasta kymmenestä HP:stä.",
+           sv:"Analog dubbel funktionsgenerator med en VCA per kanal. Envelope, slew eller LFO ur samma tio HP."},
+proout:{fi:"Ulostuloaste, jossa on 23 Vpp headroomia ennen säröä, ja kuulokevahvistin, joka on oikeasti hyvä.",
+           sv:"Utgångssteg med 23 Vpp headroom innan det klipper, och en hörlursförstärkare som faktiskt är bra."},
+performer:{fi:"Kahdeksanraitainen askelsekvensseri: kuusitoista kuviota raidalle, 64 askelta kuviolle, OLED, MIDI ja USB-host.",
+              sv:"Åttaspårig stegsekvensiator: sexton mönster per spår, 64 steg per mönster, OLED, MIDI och USB-host."},
+timber:{fi:"Kaksi muokkauspiiriä, driver ja folder, sekä jänniteohjattu ristihäivytys niiden ja puhtaan signaalin välillä.",
+           sv:"Två formningskretsar, en driver och en folder, med spänningsstyrd crossfade mellan dem och den rena signalen."},
+brainseed:{fi:"Reaaliaikainen CV-askeltallennin neljässä HP:ssä. Tuhat askelta, satunnaisgeneraattori ja shift-tulo transponointiin.",
+              sv:"CV-steginspelare i realtid på fyra HP. Tusen steg, en slumpgenerator och en shift-ingång för transponering."},
+bishops:{fi:"Kaksoistallennin porrastetulle CV:lle ja porteille. Kaksi 32-askelista sekvenssiä, pituus, siirto ja hallittu satunnaisuus.",
+            sv:"Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."},
+klang:{fi:"Neliäänisten sointujen ohjain. 99 sointua kellotaulun muotoisella OLEDilla, neljä enkooderia, ei valikoita.",
+          sv:"Ackordstyrning för fyra stämmor. 99 ackord på en OLED formad som en urtavla, fyra encodrar, inga menyer."},
+lubadh:{fi:"Kaksi kanavaa nauhaluuppia 96 kilohertsillä, viisi minuuttia kumpikin, varispeed molempiin suuntiin ja analoginen tulo, joka säröytyy.",
+           sv:"Två kanaler bandloop i 96 kHz, fem minuter var, varispeed åt båda håll och en analog ingång som mättar."},
+hydrus:{fi:"Aaltomuodon muuntaja. Kolme tuloa yhdistetään puoliaaltotasasuuntaajien läpi, jokaisella attenuverteri ja offset.",
+           sv:"Vågformsmutator. Tre ingångar kombineras genom halvvågslikriktare, var och en med attenuverter och offset."},
+ufold:{fi:"Kuusi taittovaihetta thru-zero-symmetrialla, ja DC-kytketyt tulot, joten se taittaa mielellään myös CV:tä.",
+          sv:"Sex vikningssteg med thru-zero-symmetri, och DC-kopplade ingångar så den viker gärna CV också."},
+tuesday:{fi:"Proseduraalinen sekvensseri. Se rakentaa melodiat algoritmeista sen sijaan, että naputtelisit askeleet yksitellen.",
+            sv:"Procedurell sekvensiator. Den bygger melodier ur algoritmer i stället för steg du knappar in ett i taget."},
+bsp:{fi:"Kaksi melodiasekvensseriä, rumpusekvensseri ja kuusitoista padia. Mukana deck saver, ja siksi se on yhä siisti.",
+        sv:"Två melodisekvensiatorer, en trumsekvensiator och sexton pads. Deck saver medföljer, och därför är den i fint skick."},
+mpc500:{fi:"Pieni MPC. Kaksitoista padia, samplaus ja sekvensointi, kulkee paristoilla ja mahtuu oikeasti laukkuun.",
+           sv:"Den lilla MPC:n. Tolv pads, sampler och sekvensiator, går på batterier och får plats i väskan på riktigt."},
+progue:{fi:"Suomalainen DIY-monosyna, joka rakentuu Moog Roguen ja Prodigyn äänien ympärille. Polychain MIDIn yli.",
+           sv:"Finsk DIY-monosynt byggd kring rösterna ur Moog Rogue och Prodigy, med polychain över MIDI."},
+neotrellis:{fi:"Monome-tyylinen RGB-padiruudukko NeoTrellis-korteista. Puhuu grid-protokollaa ja toimii nornsin kanssa.",
+               sv:"Monome-liknande RGB-padrutnät byggt av NeoTrellis-kort. Talar grid-protokollet och funkar med norns."},
+softpop:{fi:"Puolimodulaarinen sekvensseri-syna patchbaylla ja luonteella, joka väittää vastaan. Ensimmäinen versio.",
+            sv:"Halvmodulär sekvensiator-synt med patchbay och ett humör som säger emot. Första revisionen."},
+therapkid:{fi:"Kahdeksanbittinen chip-syna, nuppi per toiminto, ei valikoita. Kuulostaa konsolilta, jota työnnetään sinne, minne ei pitäisi.",
+              sv:"Åttabitars chipsynt, en ratt per funktion, inga menyer. Låter som en konsol som pressas dit den inte borde."},
+id14:{fi:"Kaksi Audientin konsolimikkietuastetta, ADAT-tulo laajennukseen ja se iso monitorinuppi, jonka takia se ostetaan.",
+         sv:"Två av Audients konsolmikförsteg, ADAT-ingång för utökning och den stora monitorratten alla köper den för."},
+quadraverb:{fi:"Yksi räkkiyksikkö kaikua, viivettä, pitchiä ja EQ:ta, ja GT-mallin särö ja kaiutinsimulaatio etupäässä.",
+               sv:"En rackenhet med rumsklang, delay, pitch och EQ, plus GT-modellens distorsion och högtalarsimulering först i kedjan."},
+kastledrum:{fi:"Taskukokoinen rumpusyna patch-piikeillä ja AA-paristoilla. Kaksi oskillaattoria, kohinalähde ja paljon meteliä.",
+               sv:"Fickstor trumsynt med patchstift och AA-batterier. Två oscillatorer, en brusgenerator och mycket oväsen."},
+thyme:{fi:"Digitaalinen nauhaefekti: viive, granulaarinen suttu, pitch ja modulaatio, ja tallennuspaikat, joita oikeasti käyttää.",
+          sv:"Digital bandeffekt: delay, granulär utsmetning, pitch och modulation, med sparplatser du faktiskt använder."},
+darkenergy:{fi:"Analoginen monosyna, täysi CV-patchbay yläreunassa ja USB-MIDI sisään. Doepfer pöydälle.",
+               sv:"Analog monosynt med full CV-patchbay längs överkanten och USB-MIDI in. Doepfer för skrivbordet."},
+gentlewham:{fi:"Kuusiääninen analoginen rumpusyna kaksinapaisen master-suotimen läpi. Soita sormilla tai pidä nappeja pohjassa ja droneile.",
+               sv:"Sexstämmig analog trumsynt genom ett tvåpoligt masterfilter. Fingertrumma eller håll knapparna nere och drona."},
+l12:{fi:"Kaksitoistakanavainen mikseri, kaksitoistaraitainen SD-tallennin ja USB-liitäntä, viisi erillistä kuulokemiksausta.",
+        sv:"Tolvkanalsmixer, tolvspårs SD-inspelare och USB-interface, med fem separata hörlursmixar."}
+};
+var blurbOf=function(m){ return (BLURB[m.id]&&BLURB[m.id][lang]) || m.blurb; };
+var hasProse=function(m){ return lang==="en" || !!(BLURB[m.id]&&BLURB[m.id][lang]); };
+
+/* ---------- i18n ---------- */
+var LANGS=["fi","sv","en"], lang="fi";
+try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved; }catch(e){}
+/* ---- strings I authored (design's T above is their reviewed copy; these are mine,
+   pending a register check from design — held to "written as the language") ---- */
+var TX={
+ fi:{overview:"Yleistä",specs:"Tiedot",fMaker:"Valmistaja",fCats:"Kategoriat",
+     fWidth:"Leveys",fDepth:"Syvyys",fPower:"Virta",fPanel:"Paneeli",
+     video:"Video",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
+     shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
+     fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
+     
+     inbox:"Menee yhteiseen postilaatikkoon — luemme sen molemmat.",
+     sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
+     collectFirst:"Mieluiten nouto, mutta postitus onnistuu"},
+ sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
+     fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
+     video:"Video",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
+     shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
+     fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
+     
+     inbox:"Går till en gemensam inkorg — vi läser den båda.",
+     sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
+     collectFirst:"Helst hämtning, men vi kan posta"},
+ en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
+     fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
+     video:"Video",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
+     shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
+     fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
+     
+     inbox:"Goes to one shared inbox — we both read it.",
+     sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
+     collectFirst:"Collection preferred, posting possible"}
+};
+LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
+var t=function(){ return T[lang]; };
+var blurbOf=function(m){ return (BLURB[m.id]&&BLURB[m.id][lang]) || m.blurb; };
+var hasProse=function(m){ return lang==="en" || !!(BLURB[m.id]&&BLURB[m.id][lang]); };
+var esc=function(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); };
+var eur=function(n){ return "€"+n; };
+var el=function(id){ return document.getElementById(id); };
+/* per-listing prose is authored in English only so far; sv/fi get the honest banner */
+var PROSE_LANGS={en:true};
+var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
+           sv:"Beskrivningen finns tills vidare bara på engelska.",
+           en:""};
+</script>
+
+<script>
+/* Real, verified extras. Only ph3 has them — never fabricate these for the other 28. */
+var EXTRA={ ph3:{
+  depth:"40 mm", power:"+12V 145 mA · -12V 45 mA", panel:"Black, MK III revision",
+  overview:[["Does","Dual morphing wavetable oscillator"],["Also does","Nonlinear waveshaper on a dedicated audio input"],
+    ["Waves","512 x 16-bit, arranged 8 x 8 x 8"],["Unison","Per-oscillator detune, up to four stacked voices"],
+    ["Presets","8 slots, morphable as if they were wavetables"],["Custom","WAV files loaded from microSD"]],
+  pull:{q:"Audio quality is outstanding, and the user interface is physically satisfying.",
+    src:"Waveform Magazine", url:"https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"},
+  quotes:[
+    {t:"The sound is clear and strong, and virtually alias-free at most settings thanks to the high resolution 16 bit outputs.",s:"Waveform Magazine"},
+    {t:"The primary frequency controls and waveform selection faders are a joy to use.",s:"Waveform Magazine"},
+    {t:"The Mark III is clearly a mature module, with special design emphasis given for use in a performance context.",s:"Waveform Magazine"},
+    {t:"Some of the shaft-type controls can prove difficult to access in a dense patch.",s:"Waveform Magazine · the honest caveat",crit:true}],
+  reviews:[
+    {src:"Waveform Magazine",title:"Industrial Music Electronics — Piston Honda Mk. III",url:"https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"},
+    {src:"MOD WIGGLER",title:"The long thread",url:"https://www.modwiggler.com/forum/viewtopic.php?t=195254"},
+    {src:"Perfect Circuit",title:"Product notes and demos",url:"https://www.perfectcircuit.com/harvestman-piston-honda-mk3.html"}],
+  videos:[
+    {title:"Piston Honda MK3 — Part 1: Panel Features",by:"Walkthrough · YouTube",url:"https://www.youtube.com/watch?v=ymHlNBXPBH8"},
+    {title:"A complete instrument all by itself!",by:"Overview and drone performance · YouTube",url:"https://www.youtube.com/watch?v=TsihVQLLM_8"},
+    {title:"Piston Honda mk3 Review",by:"Review · YouTube",url:"https://www.youtube.com/watch?v=ERp1AXpapbw"}]
+}};
+var RELATED={ ph3:[
+  ["gvco","Also a wavetable oscillator — you draw the waves instead of loading them"],
+  ["timber","Wave shaping — the mk3 does it too, this does only it"],
+  ["ufold","Six-stage wavefolder — same territory, analogue"],
+  ["hydrus","Waveform mutator for building timbres out of raw inputs"]]};
+
+/* ---------- state ---------- */
+var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:0};
+
+function matches(m){
+  if(S.fmt!=="all" && m.fmt!==S.fmt) return false;
+  if(S.who!=="all" && m.who!==S.who) return false;
+  if(S.cat!=="all" && m.cats.indexOf(S.cat)<0 && m.cat!==S.cat) return false;
+  if(S.q){ var h=(m.mfr+" "+m.name+" "+m.cats.join(" ")+" "+m.blurb).toLowerCase();
+    if(h.indexOf(S.q.toLowerCase())<0) return false; }
+  return true;
+}
+function sortList(a){
+  var s=S.sort;
+  return a.slice().sort(function(x,y){
+    if(s==="hp-desc") return (y.hp-x.hp)||x.name.localeCompare(y.name);
+    if(s==="hp-asc")  return (x.hp-y.hp)||x.name.localeCompare(y.name);
+    if(s==="price-desc") return y.price-x.price;
+    if(s==="price-asc")  return x.price-y.price;
+    return x.name.localeCompare(y.name);
+  });
+}
+var shown=function(){ return sortList(ITEMS.filter(matches)); };
+
+/* ---------- chrome ---------- */
+function renderChrome(){
+  var T2=t();
+  el("noticeA").textContent=T2.noticeA;
+  el("noticeB").textContent=T2.noticeB;
+  var anchors=["#grid-top","#wish","#contact"];
+  el("nav").innerHTML=T2.nav.map(function(n,i){
+    return '<a href="'+anchors[i]+'" onclick="closeDetail()">'+esc(n)+'</a>'; }).join("");
+  el("langseg").innerHTML=LANGS.map(function(l){
+    return '<button data-lang="'+l+'" aria-pressed="'+(l===lang)+'">'+l+'</button>'; }).join("");
+  document.documentElement.lang=lang;
+  el("eyebrow").textContent=T2.eyebrow;
+  el("h1").innerHTML=esc(T2.h1a)+'<em>'+esc(T2.h1b)+'</em>'+esc(T2.h1c);
+  el("lede").textContent=T2.lede;
+  var eu=ITEMS.filter(function(m){return m.fmt==="eu";});
+  el("stats").innerHTML=
+    stat(ITEMS.length,T2.sItems)+stat(eu.reduce(function(a,m){return a+m.hp;},0),T2.sHp)+stat(SELLERS.length,T2.sShelves);
+  el("scaleCap").textContent=T2.scale;
+  el("hoverCap").textContent=T2.hover;
+  el("q").placeholder=T2.search;
+  el("wishH").textContent=T2.wishH;
+  el("wishK").textContent=T2.wishK;
+  el("fIntro").textContent=T2.fIntro;
+  el("fgrid").innerHTML=
+    fcol(T2.fCollect,T2.fCollectBody)+fcol(T2.fTrade,T2.fTradeBody)+
+    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><button class="btn sm" style="margin-top:.6rem" onclick="document.getElementById(\'grid-top\').scrollIntoView()">'+esc(T2.buyOrTrade)+'</button>');
+  el("sort").innerHTML=Object.keys(T2.sort).map(function(k){
+    return '<option value="'+k+'"'+(k===S.sort?" selected":"")+'>'+esc(T2.sort[k])+'</option>'; }).join("");
+}
+function stat(n,l){ return '<div class="stat"><div class="n">'+n+'</div><div class="l">'+esc(l)+'</div></div>'; }
+function fcol(h,b){ return '<div><h4>'+esc(h)+'</h4>'+(b.charAt(0)==="<"?b:'<p>'+esc(b)+'</p>')+'</div>'; }
+
+/* ---------- hero rack ---------- */
+function renderRack(){
+  var eu=ITEMS.filter(function(m){return m.fmt==="eu";});
+  var total=eu.reduce(function(a,m){return a+m.hp;},0), half=total/2;
+  var rows=[[]], run=0;
+  eu.forEach(function(m){
+    if(run>=half && rows.length<2){ rows.push([]); run=0; }
+    rows[rows.length-1].push(m); run+=m.hp;
+  });
+  var H=109;
+  el("rack").innerHTML=rows.map(function(row){
+    return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
+      return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+panelHTML(m,H)+'</button>';
+    }).join("")+'</div>'; }).join("")+'<div class="rail"></div>';
+}
+
+/* ---------- filters ---------- */
+function renderFilters(){
+  var T2=t();
+  var count=function(f){ return ITEMS.filter(function(m){
+    if(f.fmt) return m.fmt===f.fmt;
+    if(f.who) return m.who===f.who;
+    if(f.cat) return m.cats.indexOf(f.cat)>=0||m.cat===f.cat;
+    return true; }).length; };
+  el("fmtchips").innerHTML=["all","eu","desk","tools"].map(function(k){
+    var n=k==="all"?ITEMS.length:count({fmt:k});
+    return chip("fmt",k,T2.fmt[k],n,S.fmt===k); }).join("");
+  el("whochips").innerHTML=[chip("who","all",T2.who.all,ITEMS.length,S.who==="all")].concat(
+    SELLERS.map(function(p){ return chip("who",p.key,p.name,count({who:p.key}),S.who===p.key); })).join("");
+  el("catchips").innerHTML=CATKEYS.map(function(k){
+    var n=k==="all"?ITEMS.length:count({cat:k});
+    return chip("cat",k,T2.cat[k]||k,n,S.cat===k); }).join("");
+}
+function chip(kind,k,label,n,on){
+  var faint=n===0&&k!=="all";
+  return '<button class="chip'+(faint?" faint":"")+'" data-'+kind+'="'+k+'" aria-pressed="'+on+'">'+
+    esc(label)+'<span class="ct">'+(faint?"–":n)+'</span></button>';
+}
+
+/* ---------- wish band ---------- */
+function renderWish(){
+  var T2=t();
+  el("wishgrid").innerHTML=SELLERS.map(function(p){
+    return '<div class="wishcard"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
+      '<ul>'+p.wants.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>'; }).join("");
+}
+
+/* ---------- grid ---------- */
+function card(m){
+  var T2=t(), p=SELLER_BY_KEY[m.who];
+  return '<button class="card" data-go="'+m.id+'">'+
+    '<div class="shot">'+panelHTML(m,182)+'</div>'+
+    '<div class="cbody"><div class="mfr">'+esc(m.mfr)+'</div><h3>'+esc(m.name)+'</h3>'+
+    '<p class="blurb">'+esc(blurbOf(m))+'</p>'+
+    '<div class="tags">'+m.cats.slice(0,3).map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+
+    '<span class="ownerpill"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</span></div></div>'+
+    '<div class="cardfoot"><span class="price">'+eur(m.price)+'</span>'+
+    (m.hp>0?'<span class="hpstamp">'+m.hp+' '+esc(T2.sHp)+'</span>':'')+
+    (m.negotiating
+      ? '<span class="negchip"><i></i>'+esc(T2.negotiating)+'</span>'
+      : '<span class="cta">'+esc(T2.buyOrTrade)+'</span>')+
+    '</div></button>';
+}
+function renderGrid(){
+  var T2=t(), list=shown();
+  el("grid").innerHTML=list.map(card).join("");
+  var e=el("empty");
+  e.hidden=list.length>0;
+  e.textContent=(S.fmt==="tools")?T2.emptyTools:T2.emptyNone;
+  var sum=list.reduce(function(a,m){return a+m.price;},0);
+  el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>'+
+    '<span>'+sum+' '+esc(T2.onScreen)+'</span>';
+}
+</script>
+
+<script>
+/* ---------- module page ---------- */
+var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo — back"],["rack","Photo — in the rack"]];
+
+function specRows(m){
+  var T2=t(), x=EXTRA[m.id]||{}, rows=[];
+  if(m.hp>0) rows.push([T2.fWidth,m.hp+" HP"]);
+  if(x.depth) rows.push([T2.fDepth,x.depth]);
+  if(x.power) rows.push([T2.fPower,x.power]);
+  if(x.panel) rows.push([T2.fPanel,x.panel]);
+  rows.push([T2.fMaker,m.mfr]);
+  rows.push([T2.fCats,m.cats.join(" · ")]);
+  return rows;
+}
+function detailHTML(m){
+  var T2=t(), p=SELLER_BY_KEY[m.who], x=EXTRA[m.id]||{}, out="";
+  out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
+       '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
+    '<div class="buyarea"><div class="imgcol"><div class="bench">'+panelHTML(m,282)+'</div>'+
+    '<div class="thumbs">'+T2.shots.map(function(sh,i){
+      return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'">'+esc(sh)+'</button>'; }).join("")+'</div></div>'+
+    '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
+    '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
+    '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
+    '<div class="sellerline"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+    '<div class="sellerline" style="margin-top:.25rem">'+esc(T2.collectFirst)+'</div>'+
+    (m.negotiating?'<div class="negbar"><i></i>'+esc(T2.negBar)+'</div>':'')+
+    '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>'+
+    '<p class="inbox">'+esc(T2.inbox)+'</p>'+
+    '<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
+      specRows(m).map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
+    '</div></div></div></div>';
+
+  // pitch — authored in English only so far, so fi/sv get the honest banner
+  out+='<section class="sect"><h3>'+esc(T2.overview)+'</h3>'+
+    (hasProse(m)?"":'<div class="xlate"><span>⚠</span><span>'+esc(XLATE[lang])+'</span></div>')+
+    '<p class="pitch">'+esc(blurbOf(m))+'</p>';
+  if(x.overview) out+='<div class="specrows" style="margin-top:1.5rem;max-width:56ch">'+
+    x.overview.map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+'</div>';
+  out+='</section>';
+
+  if(x.pull) out+='<section class="sect"><h3>'+esc(x.pull.src)+'</h3>'+
+    '<blockquote class="pullquote">&ldquo;'+esc(x.pull.q)+'&rdquo;<cite>'+esc(x.pull.src)+' · <a href="'+x.pull.url+'" target="_blank" rel="noopener">read the full review</a></cite></blockquote>'+
+    '<div class="qcards">'+x.quotes.map(function(q){
+      return '<div class="qcard'+(q.crit?" crit":"")+'"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
+
+  if(x.videos) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
+    return '<a class="vid" href="'+v.url+'" target="_blank" rel="noopener"><div class="frame"><span class="play"></span></div>'+
+      '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></a>'; }).join("")+'</div></section>';
+
+  var links=[];
+  if(m.site) links.push({k:m.mfr,v:T2.official,u:"https://"+m.site});
+  if(m.mgSlug) links.push({k:"ModularGrid",v:T2.mgNote,u:"https://modulargrid.net/e/"+m.mgSlug});
+  (x.reviews||[]).forEach(function(r){ links.push({k:r.src,v:r.title,u:r.url}); });
+  if(links.length) out+='<section class="sect"><h3>'+esc(T2.elsewhere)+'</h3><div class="linkrow">'+links.map(function(l){
+    return '<a class="linkcard" href="'+l.u+'" target="_blank" rel="noopener"><div class="k">'+esc(l.k)+'</div>'+
+      '<div class="v">'+esc(l.v)+' <span>&rarr;</span></div></a>'; }).join("")+'</div></section>';
+
+  var rel=RELATED[m.id];
+  if(rel){ out+='<section class="sect"><h3>'+esc(T2.alsoLike)+'</h3><div class="alike">'+rel.map(function(r){
+      var o=byId(r[0]); if(!o) return "";
+      var op=SELLER_BY_KEY[o.who];
+      return '<button class="card" data-go="'+o.id+'"><div class="shot">'+panelHTML(o,182)+'</div>'+
+        '<div class="cbody"><div class="mfr">'+esc(o.mfr)+'</div><h3>'+esc(o.name)+'</h3>'+
+        '<p class="why">'+esc(r[1])+'</p>'+
+        '<div class="tags"><span class="ownerpill"><i style="background:'+op.dot+'"></i>'+esc(op.name)+'</span></div></div>'+
+        '<div class="cardfoot"><span class="price">'+eur(o.price)+'</span>'+
+        (o.hp>0?'<span class="hpstamp">'+o.hp+' HP</span>':'')+'</div></button>'; }).join("")+'</div></section>'; }
+  return out+'</div>';
+}
+
+/* ---------- message form: one shared inbox, not the owner ---------- */
+/* The message form lives on Tally, not on this page — the site only opens it
+   prefilled, so there is no local "sent" state to fake. Hidden-field IDs are
+   Tally's own block ids, given to us straight from the Tally dashboard. */
+var TALLY_URL="https://tally.so/r/rjMyQo";
+var TALLY_FIELDS={
+  module:"1a5c14a8-5ff4-4b4d-af90-68f6c07bf154",
+  seller:"2f0d1cb8-260d-47b2-a7ae-ae5b11696d21",
+  price: "ef696402-3271-4bd0-830c-08f6ebaaafa2",
+  lang:  "c55a5b51-5079-45d6-88cf-94f727c9d19a"
+};
+function tallyLink(m){
+  var p=SELLER_BY_KEY[m.who], q=[];
+  q.push(TALLY_FIELDS.module+"="+encodeURIComponent(m.mfr+" — "+m.name));
+  q.push(TALLY_FIELDS.seller+"="+encodeURIComponent(p.name));
+  q.push(TALLY_FIELDS.price+"="+encodeURIComponent(eur(m.price)));
+  q.push(TALLY_FIELDS.lang+"="+encodeURIComponent(lang));
+  return TALLY_URL+"?"+q.join("&");
+}
+</script>
+
+<script>
+/* Faceplates are fixed-pixel art, so they cannot fluid-scale on their own.
+   Measure the bench and pick the tallest H whose true-scale width still fits. */
+function fitPanel(m){
+  var bench=document.querySelector(".bench"); if(!bench) return;
+  var avail=bench.clientWidth-32;
+  var perPx=m.hp>0 ? (m.hp*5.08/128.5) : 1.55;
+  var H=Math.max(120,Math.min(282,Math.floor(avail/perPx)));
+  if(H<282) bench.innerHTML=panelHTML(m,H);
+}
+
+/* ---------- routing ---------- */
+function openDetail(id){ S.shot=0; location.hash="#/m/"+id; }
+function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0) location.hash="#/"; }
+function route(){
+  var h=location.hash;
+  if(h.indexOf("#/msg/")===0){
+    var m=byId(h.slice(6));
+    var backHref = m ? "#/m/"+m.id : "#/";
+    el("detail").innerHTML='<div class="wrap msgpage">'+
+      '<div class="msgbar"><a class="back" href="'+backHref+'">&larr; '+esc(t().nav[0])+'</a></div>'+
+      '<iframe class="msgframe" data-tally-src="'+(m?tallyLink(m):TALLY_URL)+(m?"&":"?")+'transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Message eurorack.fi"></iframe>'+
+      '</div>';
+    document.body.classList.add("detail-open");
+    document.title="Message — eurorack.fi";
+    /* embed.js only scans the DOM once, on load — a dynamically inserted
+       iframe needs an explicit re-scan or it never mounts */
+    if(window.Tally) window.Tally.loadEmbeds();
+    window.scrollTo(0,0); return;
+  }
+  if(h.indexOf("#/m/")===0){
+    var m=byId(h.slice(4));
+    if(m){
+      el("detail").innerHTML=detailHTML(m);
+      document.body.classList.add("detail-open");
+      document.title=m.mfr+" "+m.name+" — eurorack.fi";
+      fitPanel(m);
+      window.scrollTo(0,0); return;
+    }
+    /* no record survives a delisting, so this is deliberately generic */
+    el("detail").innerHTML='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
+      '<div class="gone"><h2>'+esc(GONE[lang].h)+'</h2><p>'+esc(GONE[lang].p)+'</p>'+
+      '<button class="btn" onclick="closeDetail()">'+esc(t().nav[0])+'</button></div></div>';
+    document.body.classList.add("detail-open"); window.scrollTo(0,0); return;
+  }
+  document.body.classList.remove("detail-open");
+  document.title="eurorack.fi";
+}
+var GONE={
+  fi:{h:"Tätä ei enää ole",p:"Kohde on poistettu listalta. Kaikki myynnissä oleva on etusivulla."},
+  sv:{h:"Borta",p:"Objektet är borta från listan. Allt som är till salu finns på förstasidan."},
+  en:{h:"That one's gone",p:"This listing has come off the site. Everything still for sale is on the front page."}
+};
+
+/* ---------- events ---------- */
+document.addEventListener("click",function(e){
+  var g=e.target.closest("[data-go]");
+  if(g){ openDetail(g.getAttribute("data-go")); return; }
+  var L=e.target.closest("[data-lang]");
+  if(L){ lang=L.getAttribute("data-lang"); try{localStorage.setItem("erfi-lang",lang);}catch(x){} renderAll(); route(); return; }
+  ["fmt","who","cat"].forEach(function(k){
+    var c=e.target.closest("[data-"+k+"]");
+    if(c){ S[k]=c.getAttribute("data-"+k); renderFilters(); renderGrid(); }
+  });
+  var sh=e.target.closest("[data-shot]");
+  if(sh){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
+  if(e.target.closest("#themeb")){
+    var r=document.documentElement;
+    var isDark=r.classList.contains("dark")||(!r.classList.contains("light")&&matchMedia("(prefers-color-scheme:dark)").matches);
+    r.classList.remove("dark","light"); r.classList.add(isDark?"light":"dark");
+    try{ localStorage.setItem("erfi-theme",isDark?"light":"dark"); }catch(x){}
+    return;
+  }
+});
+el("q").addEventListener("input",function(e){ S.q=e.target.value; renderGrid(); });
+el("sort").addEventListener("change",function(e){ S.sort=e.target.value; renderGrid(); });
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeDetail(); });
+window.addEventListener("hashchange",route);
+var rz; window.addEventListener("resize",function(){
+  clearTimeout(rz); rz=setTimeout(function(){ if(location.hash.indexOf("#/m/")===0) route(); },150); });
+
+/* ---------- init ---------- */
+function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(); renderGrid(); }
+renderAll(); route();
+</script>
