@@ -1,0 +1,31 @@
+{
+  "id": "sto",
+  "mfr": "Make Noise",
+  "name": "STO",
+  "price": 150,
+  "hp": 8,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Analogue"
+  ],
+  "mgSlug": "make-noise-sto",
+  "site": "makenoisemusic.com",
+  "tone": "alu",
+  "parts": {
+    "k": 4,
+    "j": 9,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Triangle-core VCO with sine, sub and variable-shape outputs. Linear and exponential FM, sync, and an S-gate for the sub oscillator alone.",
+    "fi": "Kolmiokärkinen VCO sini-, sub- ja muuttuvamuotoisilla ulostuloilla. Lineaarinen ja eksponentiaalinen FM, sync ja S-gate pelkälle sub-oskillaattorille.",
+    "sv": "Triangelkärnad VCO med sinus-, sub- och variabelform-utgångar. Linjär och exponentiell FM, sync och en S-gate för enbart suboscillatorn."
+  },
+  "img": "https://www.makenoisemusic.com/wp-content/uploads/2026/04/sto.webp",
+  "negotiating": false
+}
