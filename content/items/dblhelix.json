@@ -28,5 +28,26 @@
     "sv": "Dubbel-VCO: primäroscillatorn ger sinus, sågtand, Pittsburghs vikta 'blade'-våg och en sub, medan den andra oscillatorn FM:ar den eller går för sig själv. En wavefolder och en dynamisk low-pass gate formar konturen, med en LFO/brus-modulationsdel och två spänningsstyrda routrar. Utgången ur sortimentet — det här är ett begagnat exemplar."
   },
   "img": "https://images.squarespace-cdn.com/content/v1/56aeb9254d088e3be58a3d47/1483581575159-O21RD39LPISC5RL4HQWC/image-asset.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "Ask.Audio",
+        "title": "Pittsburgh Modular Double Helix Is Not Your Average Oscillator Module",
+        "url": "https://ask.audio/articles/pittsburgh-modular-double-helix-oscillator-not-your-average-oscillator"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Pittsburgh Modular Double Helix Oscillator 1/4: Demo + Overview",
+        "by": "Chris Meyer, Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=wtH3v1iASe8"
+      },
+      {
+        "title": "Pittsburgh Modular Double Helix Oscillator 2/4: Waveshapes + Voltage Controlled Routers",
+        "by": "Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=61PsgptPDBs"
+      }
+    ]
+  }
 }
