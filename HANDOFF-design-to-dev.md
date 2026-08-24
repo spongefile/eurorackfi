@@ -142,9 +142,18 @@ hero → sticky filter bar → wish band → count line → card grid → rail �
   Used as a section divider and inside the hero rack figure.
 - **Hero**: two columns `minmax(0,.85fr) minmax(0,1.15fr)`, gap 3rem. Left is
   eyebrow / h1 / lede / three stats. Right is the rack figure.
-- **Rack figure**: all 16 eurorack modules drawn at true relative HP width
-  (`hp * 4.3px`), split across two rows by cumulative HP, rails between. Each
-  module is a hover target that tints `--accent` at .22 opacity.
+- **Rack figure**: all eurorack modules drawn at true relative HP width, split
+  across two rows by cumulative HP, rails between. Each module is a hover
+  target that tints `--accent` at .22 opacity.
+  **Formula confirmed 2026-08-25 — amends the flat `hp * 4.3px` this doc
+  originally specified.** The build unifies the rack figure onto the same
+  formula as the faceplate/card art everywhere else: `width = hp * 5.08 *
+  (H/128.5)`, parameterized by whatever pixel height `H` that call site is
+  drawing at. At the rack figure's own `H=109`, that resolves to `hp *
+  4.309px` — the same scale as before to within rounding, just derived from
+  one shared formula instead of a second hardcoded constant. This is the
+  correct version to build against; `hp * 4.3px` was this canvas's own
+  shorthand for the same ratio, not a second, independent value.
 - **Stats**: 29 items · 207 HP · 2 shelves. Numbers derive from data, not hard-coded.
 
 ## Card anatomy (grid)
@@ -341,12 +350,19 @@ quote cards → reviews → video → outbound links → "You may also like" →
   set above), plus a compact dot row below it — inactive dots 8px circles,
   the active one an 8×20px accent pill. State model is unchanged (still a
   `shot` string cycling through the same four values); only the control
-  changed, from four labeled buttons to `prevShot()`/`nextShot()` cyclers
-  (wrap-around both directions) plus direct dot selection. Each dot still
-  carries the old label as `aria-label` (screen-reader only) — "Panel
+  changed, from four labeled buttons to prev/next cyclers (wrap-around both
+  directions, skipping unavailable slots) plus direct dot selection. Each dot
+  still carries the old label as `aria-label` (screen-reader only) — "Panel
   drawing", "[PHOTO — front]", etc. — so nothing was lost for accessibility,
   only removed from the visual layout, which is the part that was crowding
   the column and colliding with scroll.
+  **Naming, confirmed built 2026-08-25 — shipped identifiers differ from
+  this doc's, functionally identical:** `.shots` here is `.imgcol` in the
+  build; `prevShot()`/`nextShot()` are a shared click handler keyed off
+  `data-shotdir="prev"`/`"next"` on `.benchnav.prev`/`.benchnav.next`
+  buttons, gated so the switcher only renders when a module has more than
+  one shot available. Noting the mapping here so a future audit greps the
+  right names instead of false-positiving "not built."
 - **One CTA only**: "Buy or trade for this", 62px, full width, opens the inline
   message form. Do not add competing buttons.
 - **Message form** goes to **one shared inbox**, not the owner. Copy says so.
