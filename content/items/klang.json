@@ -28,5 +28,14 @@
     "sv": "Ackordstyrning för fyra stämmor. 99 ackord på en OLED formad som en urtavla, fyra encodrar, inga menyer."
   },
   "img": "https://elektrofon.no/assets/klang-front.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Elektrofon Klang Eurorack Module (Sneak Preview)",
+        "by": "Sneak preview · YouTube",
+        "url": "https://www.youtube.com/watch?v=gWy7chlPaHY"
+      }
+    ]
+  }
 }
