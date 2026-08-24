@@ -1,0 +1,32 @@
+{
+  "id": "dblhelix",
+  "mfr": "Pittsburgh Modular",
+  "name": "Lifeforms Double Helix Oscillator",
+  "price": 400,
+  "hp": 28,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Waveshaper",
+    "Modulation"
+  ],
+  "mgSlug": "pittsburgh-modular-lifeforms-double-helix-oscillator",
+  "site": "pittsburghmodular.com",
+  "tone": "alu",
+  "parts": {
+    "k": 15,
+    "j": 28,
+    "sl": 6,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Complex dual-VCO voice: the primary oscillator puts out sine, saw, Pittsburgh's folded 'blade' wave and a sub, while the second oscillator FMs it or runs on its own. A wavefolder and dynamic low-pass gate shape the contour, with an LFO/noise modulation section and two voltage-controlled routers patching the whole thing together. Discontinued — this is a used unit.",
+    "fi": "",
+    "sv": ""
+  },
+  "img": "https://images.squarespace-cdn.com/content/v1/56aeb9254d088e3be58a3d47/1483581575159-O21RD39LPISC5RL4HQWC/image-asset.png",
+  "negotiating": false
+}
