@@ -27,5 +27,19 @@
     "fi": "Yksi räkkiyksikkö kaikua, viivettä, pitchiä ja EQ:ta, ja GT-mallin särö ja kaiutinsimulaatio etupäässä.",
     "sv": "En rackenhet med rumsklang, delay, pitch och EQ, plus GT-modellens distorsion och högtalarsimulering först i kedjan."
   },
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Démo Alesis Quadraverb GT",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=2Cezu3iBHpk"
+      },
+      {
+        "title": "Marshall JVM 410H + 1960 AV w/ Alesis Quadraverb GT (review)",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=iRG9aGK1Vqg"
+      }
+    ]
+  }
 }
