@@ -1,0 +1,30 @@
+{
+  "id": "mpc500",
+  "mfr": "Akai",
+  "name": "MPC500",
+  "price": 200,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Sampler",
+  "cats": [
+    "Sampler",
+    "Groovebox"
+  ],
+  "mgSlug": "",
+  "site": "akaipro.com",
+  "tone": "black",
+  "parts": {
+    "k": 4,
+    "j": 6,
+    "sl": 2,
+    "led": 12,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "The small MPC. Twelve pads, sampler and sequencer, runs on batteries, fits in a bag properly.",
+    "fi": "Pieni MPC. Kaksitoista padia, samplaus ja sekvensointi, kulkee paristoilla ja mahtuu oikeasti laukkuun.",
+    "sv": "Den lilla MPC:n. Tolv pads, sampler och sekvensiator, går på batterier och får plats i väskan på riktigt."
+  },
+  "negotiating": false
+}

@@ -1,0 +1,30 @@
+{
+  "id": "hydrus",
+  "mfr": "Serpens Modular",
+  "name": "Hydrus",
+  "price": 154,
+  "hp": 8,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Waveshaper",
+  "cats": [
+    "Waveshaper",
+    "CV utility"
+  ],
+  "mgSlug": "serpens-modular-hydrus",
+  "site": "serpensmodular.com",
+  "tone": "black",
+  "parts": {
+    "k": 6,
+    "j": 7,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Waveform mutator. Three inputs recombined through half-wave rectifiers, each with an attenuverter and offset.",
+    "fi": "Aaltomuodon muuntaja. Kolme tuloa yhdistetään puoliaaltotasasuuntaajien läpi, jokaisella attenuverteri ja offset.",
+    "sv": "Vågformsmutator. Tre ingångar kombineras genom halvvågslikriktare, var och en med attenuverter och offset."
+  },
+  "negotiating": false
+}

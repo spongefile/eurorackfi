@@ -1,0 +1,31 @@
+{
+  "id": "nucleus",
+  "mfr": "River",
+  "name": "Nucleus",
+  "price": 160,
+  "hp": 8,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Filter",
+  "cats": [
+    "Filter",
+    "Lowpass",
+    "Discontinued"
+  ],
+  "mgSlug": "river-nucleus",
+  "site": "riversynths.com",
+  "tone": "alu",
+  "parts": {
+    "k": 5,
+    "j": 7,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Multi-character VCF on a discrete transistor OTA core. Switchable 12/24 dB slope and a solid-bass mode.",
+    "fi": "Monikäyttöinen VCF diskreetillä transistori-OTA-ytimellä. Vaihdettava 12/24 dB jyrkkyys ja tukeva bassotila.",
+    "sv": "Mångsidigt VCF med diskret transistor-OTA-kärna. Växlingsbar branthet på 12/24 dB och ett stadigt basläge."
+  },
+  "negotiating": false
+}

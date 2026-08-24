@@ -1,0 +1,31 @@
+{
+  "id": "timber",
+  "mfr": "Bastl Instruments",
+  "name": "Timber",
+  "price": 150,
+  "hp": 7,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Waveshaper",
+  "cats": [
+    "Waveshaper",
+    "Wavefolder"
+  ],
+  "mgSlug": "bastl-instruments-timber",
+  "site": "bastl-instruments.com",
+  "tone": "wood",
+  "parts": {
+    "k": 5,
+    "j": 7,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Two shaping circuits, a driver and a folder, with a voltage-controlled crossfade between them and the clean signal.",
+    "fi": "Kaksi muokkauspiiriä, driver ja folder, sekä jänniteohjattu ristihäivytys niiden ja puhtaan signaalin välillä.",
+    "sv": "Två formningskretsar, en driver och en folder, med spänningsstyrd crossfade mellan dem och den rena signalen."
+  },
+  "img": "https://bastl-instruments.com/thumbs/eurorack/modules/timber/001-326x1200.jpg",
+  "negotiating": false
+}

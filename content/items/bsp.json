@@ -1,0 +1,31 @@
+{
+  "id": "bsp",
+  "mfr": "Arturia",
+  "name": "BeatStep Pro",
+  "price": 190,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Controller"
+  ],
+  "mgSlug": "",
+  "site": "arturia.com",
+  "tone": "black",
+  "parts": {
+    "k": 6,
+    "j": 8,
+    "sl": 0,
+    "led": 16,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Two melodic sequencers, a drum sequencer and sixteen pads. Deck saver included, which is how it stayed clean.",
+    "fi": "Kaksi melodiasekvensseriä, rumpusekvensseri ja kuusitoista padia. Mukana deck saver, ja siksi se on yhä siisti.",
+    "sv": "Två melodisekvensiatorer, en trumsekvensiator och sexton pads. Deck saver medföljer, och därför är den i fint skick."
+  },
+  "img": "https://medias.arturia.net/images/products/beatstep-pro/catalog-image.png",
+  "negotiating": false
+}

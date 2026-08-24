@@ -1,0 +1,32 @@
+{
+  "id": "kastledrum",
+  "mfr": "Bastl Instruments",
+  "name": "Kastle Drum",
+  "price": 100,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "t",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Portable",
+    "Patchable"
+  ],
+  "mgSlug": "",
+  "site": "bastl-instruments.com",
+  "tone": "wood",
+  "parts": {
+    "k": 4,
+    "j": 14,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Pocket drum synth with patch pins and AA batteries. Two oscillators, a noise source and a lot of noise.",
+    "fi": "Taskukokoinen rumpusyna patch-piikeillä ja AA-paristoilla. Kaksi oskillaattoria, kohinalähde ja paljon meteliä.",
+    "sv": "Fickstor trumsynt med patchstift och AA-batterier. Två oscillatorer, en brusgenerator och mycket oväsen."
+  },
+  "img": "https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
+  "negotiating": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "thyme",
+  "mfr": "Bastl Instruments",
+  "name": "Thyme",
+  "price": 400,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Delay",
+    "Granular"
+  ],
+  "mgSlug": "",
+  "site": "bastl-instruments.com",
+  "tone": "alu",
+  "parts": {
+    "k": 9,
+    "j": 8,
+    "sl": 0,
+    "led": 8,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Digital tape effect: delay, granular smear, pitch and modulation, with save slots you will actually use.",
+    "fi": "Digitaalinen nauhaefekti: viive, granulaarinen suttu, pitch ja modulaatio, ja tallennuspaikat, joita oikeasti käyttää.",
+    "sv": "Digital bandeffekt: delay, granulär utsmetning, pitch och modulation, med sparplatser du faktiskt använder."
+  },
+  "img": "https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
+  "negotiating": false
+}

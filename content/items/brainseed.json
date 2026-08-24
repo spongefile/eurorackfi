@@ -1,0 +1,32 @@
+{
+  "id": "brainseed",
+  "mfr": "Antimatter Audio",
+  "name": "Brain Seed",
+  "price": 170,
+  "hp": 4,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Random",
+    "Recorder"
+  ],
+  "mgSlug": "antimatter-audio-brain-seed-",
+  "site": "antimatteraudio.com",
+  "tone": "black",
+  "parts": {
+    "k": 2,
+    "j": 5,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Realtime CV step recorder in four HP. A thousand steps, a random generator and a shift input for transposing.",
+    "fi": "Reaaliaikainen CV-askeltallennin neljässä HP:ssä. Tuhat askelta, satunnaisgeneraattori ja shift-tulo transponointiin.",
+    "sv": "CV-steginspelare i realtid på fyra HP. Tusen steg, en slumpgenerator och en shift-ingång för transponering."
+  },
+  "img": "https://www.antimatteraudio.com/assets/brain-seed.png",
+  "negotiating": false
+}

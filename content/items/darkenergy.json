@@ -1,0 +1,32 @@
+{
+  "id": "darkenergy",
+  "mfr": "Doepfer",
+  "name": "Dark Energy II",
+  "price": 350,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Synth",
+  "cats": [
+    "Synth",
+    "Analogue",
+    "Semi-modular"
+  ],
+  "mgSlug": "",
+  "site": "doepfer.de",
+  "tone": "black",
+  "parts": {
+    "k": 11,
+    "j": 10,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Analogue mono synth with a full CV patchbay across the top and USB MIDI in. The desktop Doepfer.",
+    "fi": "Analoginen monosyna, täysi CV-patchbay yläreunassa ja USB-MIDI sisään. Doepfer pöydälle.",
+    "sv": "Analog monosynt med full CV-patchbay längs överkanten och USB-MIDI in. Doepfer för skrivbordet."
+  },
+  "img": "https://doepfer.de/Dark_Energy_II_medium.jpg",
+  "negotiating": false
+}

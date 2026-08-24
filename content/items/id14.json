@@ -1,0 +1,31 @@
+{
+  "id": "id14",
+  "mfr": "Audient",
+  "name": "iD14",
+  "price": 130,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Output",
+  "cats": [
+    "Interface",
+    "Audio"
+  ],
+  "mgSlug": "",
+  "site": "audient.com",
+  "tone": "alu",
+  "parts": {
+    "k": 3,
+    "j": 8,
+    "sl": 0,
+    "led": 6,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Two of Audient's console mic pres, ADAT in for expansion, and the big monitor encoder everyone buys it for.",
+    "fi": "Kaksi Audientin konsolimikkietuastetta, ADAT-tulo laajennukseen ja se iso monitorinuppi, jonka takia se ostetaan.",
+    "sv": "Två av Audients konsolmikförsteg, ADAT-ingång för utökning och den stora monitorratten alla köper den för."
+  },
+  "img": "https://audient.com/wp-content/uploads/2025/05/id14-top-image-scaled.webp",
+  "negotiating": false
+}

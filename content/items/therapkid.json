@@ -1,0 +1,31 @@
+{
+  "id": "therapkid",
+  "mfr": "Twisted Electrons",
+  "name": "TherapKid",
+  "price": 300,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Synth",
+  "cats": [
+    "Chiptune",
+    "Synth",
+    "8-bit"
+  ],
+  "mgSlug": "",
+  "site": "twisted-electrons.com",
+  "tone": "black",
+  "parts": {
+    "k": 8,
+    "j": 4,
+    "sl": 0,
+    "led": 8,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Eight-bit chip synth, knob per function, no menus. Sounds like a console being pushed somewhere it should not go.",
+    "fi": "Kahdeksanbittinen chip-syna, nuppi per toiminto, ei valikoita. Kuulostaa konsolilta, jota työnnetään sinne, minne ei pitäisi.",
+    "sv": "Åttabitars chipsynt, en ratt per funktion, inga menyer. Låter som en konsol som pressas dit den inte borde."
+  },
+  "negotiating": false
+}

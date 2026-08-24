@@ -1,0 +1,32 @@
+{
+  "id": "modor",
+  "mfr": "Modor Music",
+  "name": "Formant Filter",
+  "price": 200,
+  "hp": 16,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Filter",
+  "cats": [
+    "Filter",
+    "Stereo",
+    "Digital"
+  ],
+  "mgSlug": "modor-music-formant-filter",
+  "site": "modormusic.com",
+  "tone": "white",
+  "parts": {
+    "k": 8,
+    "j": 7,
+    "sl": 0,
+    "led": 3,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Stereo vowel morphing lifted from the NF-1: ten preset vowels, four editable bands, the lot under CV.",
+    "fi": "Vokaalien morffaus stereona, suoraan NF-1:stä: kymmenen valmista vokaalia, neljä muokattavaa kaistaa, kaikki CV:n alla.",
+    "sv": "Stereo vokalmorfning rakt ur NF-1: tio färdiga vokaler, fyra redigerbara band, allt under CV."
+  },
+  "img": "https://www.modormusic.com/images/FormantEurorack.png",
+  "negotiating": false
+}

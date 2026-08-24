@@ -1,0 +1,32 @@
+{
+  "id": "bf22",
+  "mfr": "Befaco",
+  "name": "BF-22 Sallen Key Filter",
+  "price": 150,
+  "hp": 17,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Filter",
+  "cats": [
+    "Filter",
+    "Dual",
+    "DIY"
+  ],
+  "mgSlug": "befaco-sallen-key-filter-bf-22",
+  "site": "befaco.org",
+  "tone": "alu",
+  "parts": {
+    "k": 8,
+    "j": 10,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Dual hi/lo-pass filter after the early MS-20, with attenuverters on cutoff and resonance and a link switch.",
+    "fi": "Kaksoissuodin ylä- ja alapäästöllä varhaisen MS-20:n hengessä. Attenuverterit cutoffille ja resonanssille, kytkin kanavien linkitykseen.",
+    "sv": "Dubbelfilter med hög- och lågpass i den tidiga MS-20:s anda. Attenuvertrar för cutoff och resonans, och en länkomkopplare."
+  },
+  "img": "https://www.befaco.org/wp-content/uploads/2025/09/BF22_web_front.png",
+  "negotiating": false
+}

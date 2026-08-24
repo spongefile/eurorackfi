@@ -1,0 +1,32 @@
+{
+  "id": "l12",
+  "mfr": "Zoom",
+  "name": "LiveTrak L-12",
+  "price": 400,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Output",
+  "cats": [
+    "Mixer",
+    "Recorder",
+    "Interface"
+  ],
+  "mgSlug": "",
+  "site": "zoomcorp.com",
+  "tone": "black",
+  "parts": {
+    "k": 10,
+    "j": 14,
+    "sl": 12,
+    "led": 12,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Twelve-channel mixer, twelve-track SD recorder and USB interface, with five separate headphone mixes.",
+    "fi": "Kaksitoistakanavainen mikseri, kaksitoistaraitainen SD-tallennin ja USB-liitäntä, viisi erillistä kuulokemiksausta.",
+    "sv": "Tolvkanalsmixer, tolvspårs SD-inspelare och USB-interface, med fem separata hörlursmixar."
+  },
+  "img": "https://zoomcorp.com/media/original_images/L12_top.png.768x0_q60.png",
+  "negotiating": false
+}

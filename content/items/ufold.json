@@ -1,0 +1,31 @@
+{
+  "id": "ufold",
+  "mfr": "Intellijel",
+  "name": "uFold II",
+  "price": 120,
+  "hp": 6,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Waveshaper",
+  "cats": [
+    "Wavefolder",
+    "Waveshaper"
+  ],
+  "mgSlug": "intellijel-%CE%BCfold-ii-ufold-ii",
+  "site": "intellijel.com",
+  "tone": "alu",
+  "parts": {
+    "k": 4,
+    "j": 5,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Six stages of folding with thru-zero symmetry, and DC-coupled inputs so it will happily fold CV as well.",
+    "fi": "Kuusi taittovaihetta thru-zero-symmetrialla, ja DC-kytketyt tulot, joten se taittaa mielellään myös CV:tä.",
+    "sv": "Sex vikningssteg med thru-zero-symmetri, och DC-kopplade ingångar så den viker gärna CV också."
+  },
+  "img": "https://intellijel.com/wp-content/uploads/2018/07/uFold-2018.jpg",
+  "negotiating": false
+}

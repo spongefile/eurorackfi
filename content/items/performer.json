@@ -1,0 +1,32 @@
+{
+  "id": "performer",
+  "mfr": "Westlicht",
+  "name": "PER|FORMER",
+  "price": 290,
+  "hp": 34,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "MIDI",
+    "DIY"
+  ],
+  "mgSlug": "westlicht-per-former--",
+  "site": "westlicht.github.io",
+  "tone": "black",
+  "parts": {
+    "k": 2,
+    "j": 22,
+    "sl": 0,
+    "led": 16,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Eight-track step sequencer: sixteen patterns a track, sixty-four steps a pattern, OLED, MIDI and USB host.",
+    "fi": "Kahdeksanraitainen askelsekvensseri: kuusitoista kuviota raidalle, 64 askelta kuviolle, OLED, MIDI ja USB-host.",
+    "sv": "Åttaspårig stegsekvensiator: sexton mönster per spår, 64 steg per mönster, OLED, MIDI och USB-host."
+  },
+  "img": "https://raw.githubusercontent.com/westlicht/performer/master/doc/sequencer.jpg",
+  "negotiating": false
+}

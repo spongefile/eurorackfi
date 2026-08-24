@@ -1,0 +1,31 @@
+{
+  "id": "quadraverb",
+  "mfr": "Alesis",
+  "name": "Quadraverb GT",
+  "price": 150,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Rack",
+    "Vintage"
+  ],
+  "mgSlug": "",
+  "site": "alesis.com",
+  "tone": "black",
+  "parts": {
+    "k": 4,
+    "j": 6,
+    "sl": 0,
+    "led": 6,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "One rack unit of reverb, delay, pitch and EQ, with the GT distortion and speaker sim on the front end.",
+    "fi": "Yksi räkkiyksikkö kaikua, viivettä, pitchiä ja EQ:ta, ja GT-mallin särö ja kaiutinsimulaatio etupäässä.",
+    "sv": "En rackenhet med rumsklang, delay, pitch och EQ, plus GT-modellens distorsion och högtalarsimulering först i kedjan."
+  },
+  "negotiating": false
+}

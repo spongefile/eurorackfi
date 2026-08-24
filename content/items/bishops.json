@@ -1,0 +1,32 @@
+{
+  "id": "bishops",
+  "mfr": "Shakmat Modular",
+  "name": "Bishop's Miscellany",
+  "price": 120,
+  "hp": 12,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Recorder",
+    "Random"
+  ],
+  "mgSlug": "shakmat-modular-bishop-s-miscellany",
+  "site": "shakmat.com",
+  "tone": "black",
+  "parts": {
+    "k": 6,
+    "j": 9,
+    "sl": 0,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Dual stepped CV and gate recorder. Two thirty-two step sequences with length, shift and controlled randomness.",
+    "fi": "Kaksoistallennin porrastetulle CV:lle ja porteille. Kaksi 32-askelista sekvenssiä, pituus, siirto ja hallittu satunnaisuus.",
+    "sv": "Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."
+  },
+  "img": "https://shakmat.com/img/bm/bmFront.jpg",
+  "negotiating": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "gvco",
+  "mfr": "Erica Synths",
+  "name": "Graphic VCO",
+  "price": 200,
+  "hp": 16,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Wavetable",
+    "Digital"
+  ],
+  "mgSlug": "erica-synths-graphic-vco",
+  "site": "ericasynths.lv",
+  "tone": "black",
+  "parts": {
+    "k": 5,
+    "j": 9,
+    "sl": 0,
+    "led": 4,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Draw your own waveforms, stack them into tables, then morph, fold, bitcrush and FM whatever comes out.",
+    "fi": "Piirrä omat aaltomuotosi, pinoa ne taulukoiksi ja morffaa, taita ja bittimurskaa lopputulosta, ja lisää FM:ää.",
+    "sv": "Rita egna vågformer, stapla dem till tabeller och morfa, vik, bitkrossa och FM:a det som kommer ut."
+  },
+  "img": "https://www.ericasynths.lv/media/catalog/product/cache/91ba170ba44d2d19cc001c5ed5da8bb2/G/r/Graphic_VCO_ZKOk4hZ_3.png",
+  "negotiating": false
+}

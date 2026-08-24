@@ -1,0 +1,32 @@
+{
+  "id": "progue",
+  "mfr": "JSI Synth",
+  "name": "Progue",
+  "price": 450,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Synth",
+  "cats": [
+    "Synth",
+    "Analogue",
+    "DIY"
+  ],
+  "mgSlug": "",
+  "site": "jsisynth.com",
+  "tone": "white",
+  "parts": {
+    "k": 9,
+    "j": 6,
+    "sl": 3,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Finnish DIY mono synth built around the Moog Rogue and Prodigy voices, with polychain over MIDI.",
+    "fi": "Suomalainen DIY-monosyna, joka rakentuu Moog Roguen ja Prodigyn äänien ympärille. Polychain MIDIn yli.",
+    "sv": "Finsk DIY-monosynt byggd kring rösterna ur Moog Rogue och Prodigy, med polychain över MIDI."
+  },
+  "img": "https://www.jsisynth.com/images/store/Progue-promo-1.jpg",
+  "negotiating": false
+}

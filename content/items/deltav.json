@@ -1,0 +1,32 @@
+{
+  "id": "deltav",
+  "mfr": "Cosmotronic",
+  "name": "Delta-V",
+  "price": 170,
+  "hp": 10,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Modulation",
+  "cats": [
+    "Envelope",
+    "VCA",
+    "Function gen"
+  ],
+  "mgSlug": "cosmotronic-delta-v",
+  "site": "cosmotronic.nl",
+  "tone": "black",
+  "parts": {
+    "k": 6,
+    "j": 10,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Analogue dual function generator with a VCA per channel. Envelope, slew or LFO out of the same ten HP.",
+    "fi": "Analoginen kaksikanavainen funktiogeneraattori, VCA per kanava. Verhokäyrä, slew tai LFO samasta kymmenestä HP:stä.",
+    "sv": "Analog dubbel funktionsgenerator med en VCA per kanal. Envelope, slew eller LFO ur samma tio HP."
+  },
+  "img": "https://cosmotronic.nl/cms/wp-content/uploads/2023/04/Delta-v-front.png",
+  "negotiating": false
+}

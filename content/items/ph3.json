@@ -1,0 +1,139 @@
+{
+  "id": "ph3",
+  "mfr": "Industrial Music Electronics",
+  "name": "Piston Honda MK III",
+  "price": 420,
+  "hp": 17,
+  "fmt": "eu",
+  "who": "f",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Wavetable",
+    "Digital"
+  ],
+  "mgSlug": "industrial-music-electronics-piston-honda-mk-iii",
+  "site": "industrialmusicelectronics.com",
+  "tone": "black",
+  "parts": {
+    "k": 4,
+    "j": 10,
+    "sl": 8,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Dual morphing wavetable oscillator with 512 sixteen-bit waves in an 8x8x8 cube. Runs as a CV-driven waveshaper too.",
+    "fi": "Kaksi morffaavaa wavetable-oskillaattoria, 512 aaltoa 16-bittisenä 8x8x8-kuutiossa. Toimii myös CV-ohjattuna waveshaperina.",
+    "sv": "Två morfande wavetable-oscillatorer, 512 vågor i 16 bitar i en 8x8x8-kub. Fungerar även som CV-styrd vågformare."
+  },
+  "img": "https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg",
+  "negotiating": false,
+  "extra": {
+    "depth": "40 mm",
+    "power": "+12V 145 mA · -12V 45 mA",
+    "panel": "Black, MK III revision",
+    "overview": [
+      [
+        "Does",
+        "Dual morphing wavetable oscillator"
+      ],
+      [
+        "Also does",
+        "Nonlinear waveshaper on a dedicated audio input"
+      ],
+      [
+        "Waves",
+        "512 x 16-bit, arranged 8 x 8 x 8"
+      ],
+      [
+        "Unison",
+        "Per-oscillator detune, up to four stacked voices"
+      ],
+      [
+        "Presets",
+        "8 slots, morphable as if they were wavetables"
+      ],
+      [
+        "Custom",
+        "WAV files loaded from microSD"
+      ]
+    ],
+    "pull": {
+      "q": "Audio quality is outstanding, and the user interface is physically satisfying.",
+      "src": "Waveform Magazine",
+      "url": "https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"
+    },
+    "quotes": [
+      {
+        "t": "The sound is clear and strong, and virtually alias-free at most settings thanks to the high resolution 16 bit outputs.",
+        "s": "Waveform Magazine"
+      },
+      {
+        "t": "The primary frequency controls and waveform selection faders are a joy to use.",
+        "s": "Waveform Magazine"
+      },
+      {
+        "t": "The Mark III is clearly a mature module, with special design emphasis given for use in a performance context.",
+        "s": "Waveform Magazine"
+      },
+      {
+        "t": "Some of the shaft-type controls can prove difficult to access in a dense patch.",
+        "s": "Waveform Magazine · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Waveform Magazine",
+        "title": "Industrial Music Electronics — Piston Honda Mk. III",
+        "url": "https://waveformmagazine.com/waveform-reviews/industrial-music-electronics-piston-honda-mk-iii/"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "The long thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=195254"
+      },
+      {
+        "src": "Perfect Circuit",
+        "title": "Product notes and demos",
+        "url": "https://www.perfectcircuit.com/harvestman-piston-honda-mk3.html"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Piston Honda MK3 — Part 1: Panel Features",
+        "by": "Walkthrough · YouTube",
+        "url": "https://www.youtube.com/watch?v=ymHlNBXPBH8"
+      },
+      {
+        "title": "A complete instrument all by itself!",
+        "by": "Overview and drone performance · YouTube",
+        "url": "https://www.youtube.com/watch?v=TsihVQLLM_8"
+      },
+      {
+        "title": "Piston Honda mk3 Review",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=ERp1AXpapbw"
+      }
+    ]
+  },
+  "related": [
+    [
+      "gvco",
+      "Also a wavetable oscillator — you draw the waves instead of loading them"
+    ],
+    [
+      "timber",
+      "Wave shaping — the mk3 does it too, this does only it"
+    ],
+    [
+      "ufold",
+      "Six-stage wavefolder — same territory, analogue"
+    ],
+    [
+      "hydrus",
+      "Waveform mutator for building timbres out of raw inputs"
+    ]
+  ]
+}

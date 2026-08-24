@@ -1,0 +1,32 @@
+{
+  "id": "gentlewham",
+  "mfr": "Herbs and Stones",
+  "name": "Gentle Wham",
+  "price": 400,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Analogue",
+    "Drone"
+  ],
+  "mgSlug": "",
+  "site": "herbs---stones.com",
+  "tone": "black",
+  "parts": {
+    "k": 12,
+    "j": 10,
+    "sl": 0,
+    "led": 6,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Six-voice analogue drum synth through a master two-pole filter. Finger-drum it or hold the buttons and drone.",
+    "fi": "Kuusiääninen analoginen rumpusyna kaksinapaisen master-suotimen läpi. Soita sormilla tai pidä nappeja pohjassa ja droneile.",
+    "sv": "Sexstämmig analog trumsynt genom ett tvåpoligt masterfilter. Fingertrumma eller håll knapparna nere och drona."
+  },
+  "img": "https://herbs---stones.com/wp-content/uploads/2023/07/gw2.jpg",
+  "negotiating": false
+}

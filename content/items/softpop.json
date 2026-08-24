@@ -1,0 +1,31 @@
+{
+  "id": "softpop",
+  "mfr": "Bastl Instruments",
+  "name": "Softpop mk1",
+  "price": 300,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "f",
+  "cat": "Synth",
+  "cats": [
+    "Semi-modular",
+    "Synth"
+  ],
+  "mgSlug": "",
+  "site": "bastl-instruments.com",
+  "tone": "wood",
+  "parts": {
+    "k": 7,
+    "j": 12,
+    "sl": 0,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Semi-modular sequencer-synth with a patchbay and a personality that argues with you. First revision.",
+    "fi": "Puolimodulaarinen sekvensseri-syna patchbaylla ja luonteella, joka väittää vastaan. Ensimmäinen versio.",
+    "sv": "Halvmodulär sekvensiator-synt med patchbay och ett humör som säger emot. Första revisionen."
+  },
+  "img": "https://bastl-instruments.com/thumbs/instruments/softpop/004-1677x1200.jpg",
+  "negotiating": false
+}

@@ -1,0 +1,31 @@
+{
+  "id": "tuesday",
+  "mfr": "This Is Not Rocket Science",
+  "name": "Tuesday",
+  "price": 200,
+  "hp": 12,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Algorithmic"
+  ],
+  "mgSlug": "this-is-not-rocket-science-tuesday",
+  "site": "thisisnotrocketscience.nl",
+  "tone": "cream",
+  "parts": {
+    "k": 5,
+    "j": 9,
+    "sl": 0,
+    "led": 6,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Procedural sequencer. It builds melodies out of algorithms instead of steps you punch in one at a time.",
+    "fi": "Proseduraalinen sekvensseri. Se rakentaa melodiat algoritmeista sen sijaan, että naputtelisit askeleet yksitellen.",
+    "sv": "Procedurell sekvensiator. Den bygger melodier ur algoritmer i stället för steg du knappar in ett i taget."
+  },
+  "img": "https://www.thisisnotrocketscience.nl/wp-content/uploads/2024/01/tuesday.png",
+  "negotiating": false
+}

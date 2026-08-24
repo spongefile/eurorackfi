@@ -1,0 +1,32 @@
+{
+  "id": "klang",
+  "mfr": "Elektrofon",
+  "name": "Klang",
+  "price": 350,
+  "hp": 14,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Chords",
+    "Polyphonic",
+    "Quantizer"
+  ],
+  "mgSlug": "elektrofon-klang",
+  "site": "elektrofon.no",
+  "tone": "black",
+  "parts": {
+    "k": 4,
+    "j": 10,
+    "sl": 0,
+    "led": 0,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Four-voice chord controller. Ninety-nine chords on a clockface OLED, four encoders, no menu diving anywhere.",
+    "fi": "Neliäänisten sointujen ohjain. 99 sointua kellotaulun muotoisella OLEDilla, neljä enkooderia, ei valikoita.",
+    "sv": "Ackordstyrning för fyra stämmor. 99 ackord på en OLED formad som en urtavla, fyra encodrar, inga menyer."
+  },
+  "img": "https://elektrofon.no/assets/klang-front.png",
+  "negotiating": false
+}
