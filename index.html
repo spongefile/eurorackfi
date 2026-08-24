@@ -384,8 +384,9 @@ body.detail-open .browse{display:none}
 .linkcard .v{margin-top:.3rem; font-weight:600; font-size:.96rem; display:flex; justify-content:space-between; gap:.5rem}
 .linkcard .v span{color:var(--accent)}
 .vids{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1rem}
-.vid .frame{aspect-ratio:16/9; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center}
-.vid:hover .frame{border-color:var(--accent)}
+.vid{cursor:pointer}
+.vid .frame{aspect-ratio:16/9; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden}
+.vid:hover .frame, .vid:focus-visible .frame{border-color:var(--accent)}
 .play{width:44px; height:44px; border-radius:50%; border:1px solid var(--line2); background:var(--panel); display:grid; place-items:center}
 .play::after{content:""; border-left:11px solid var(--ink2); border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px}
 .vid:hover .play::after{border-left-color:var(--accent)}
@@ -991,6 +992,23 @@ function shotHas(m,i){ return i===0 || (i===1 && !!m.img); }
 function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i); }); }
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+/* watch, youtu.be, embed and shorts links all map to the same 11-char id */
+function ytId(url){
+  var m=String(url).match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  return m?m[1]:null;
+}
+/* swaps a video card's placeholder frame for a real, playing embed — done
+   lazily on click/keyboard-activate rather than on page load, so a product
+   page with several videos doesn't load YouTube's player + tracking scripts
+   for videos nobody asked to watch */
+function playVid(vid){
+  if(!vid || vid.querySelector("iframe")) return;
+  var yid=vid.getAttribute("data-yt"), title=vid.getAttribute("aria-label")||"";
+  vid.querySelector(".frame").innerHTML='<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/'+
+    yid+'?autoplay=1&rel=0" title="'+esc(title)+'" style="border:0" '+
+    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+    'allowfullscreen loading="lazy"></iframe>';
+}
 
 function specRows(m){
   var T2=t(), x=m.extra||{}, rows=[];
@@ -1053,6 +1071,12 @@ function detailHTML(m){
       return '<div class="qcard'+(q.crit?" crit":"")+'"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
 
   if(x.videos) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
+    var yid=ytId(v.url);
+    /* YouTube only for now (every video in the data is) — anything else
+       degrades gracefully to the old plain link-out card, never a broken embed */
+    if(yid) return '<div class="vid" data-yt="'+yid+'" role="button" tabindex="0" aria-label="'+esc(v.title)+'">'+
+      '<div class="frame"><span class="play"></span></div>'+
+      '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></div>';
     return '<a class="vid" href="'+v.url+'" target="_blank" rel="noopener"><div class="frame"><span class="play"></span></div>'+
       '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></a>'; }).join("")+'</div></section>';
 
@@ -1071,7 +1095,12 @@ function detailHTML(m){
       return '<button class="card" data-go="'+o.id+'"><div class="shot">'+shotHTML(o,182)+'</div>'+
         '<div class="cbody"><div class="mfr">'+esc(o.mfr)+'</div><h3>'+esc(o.name)+'</h3>'+
         '<p class="why">'+esc(r[1])+'</p>'+
-        '<div class="tags"><span class="ownerpill"><i style="background:'+op.dot+'"></i>'+esc(op.name)+'</span></div></div>'+
+        '<div class="tags"><span class="ownerpill haspop" data-pop="rel-'+o.id+'"><i style="background:'+op.dot+'"></i>'+esc(op.name)+
+          '<span class="wishpop'+(S.pop===("rel-"+o.id)?" open":"")+'">'+
+            '<span class="wp-h">'+esc(op.name+" "+T2.hunting)+'</span>'+
+            '<span class="wp-l">'+(WANTS[op.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span>'+
+          '</span>'+
+        '</span></div></div>'+
         '<div class="cardfoot"><span class="price">'+eur(o.price)+'</span>'+
         (o.hp>0?'<span class="hpstamp">'+o.hp+' HP</span>':'')+'</div></button>'; }).join("")+'</div></section>'; }
   return out+'</div>';
@@ -1296,8 +1325,24 @@ var GONE={
 
 /* ---------- events ---------- */
 document.addEventListener("click",function(e){
+  var vid=e.target.closest(".vid[data-yt]");
+  if(vid){ playVid(vid); return; }
   var pop=e.target.closest("[data-pop]");
-  if(pop){ e.stopPropagation(); S.pop=(S.pop===pop.getAttribute("data-pop"))?null:pop.getAttribute("data-pop"); renderGrid(); return; }
+  if(pop){
+    e.stopPropagation();
+    S.pop=(S.pop===pop.getAttribute("data-pop"))?null:pop.getAttribute("data-pop");
+    /* re-render whatever's actually on screen — the popover also lives on
+       the detail page's "you may also like" cards, not just the home grid.
+       Re-paint #detail directly rather than going through route(), which
+       would scrollTo(0,0) and yank the page back to the top on every tap. */
+    if(location.hash.indexOf("#/m/")===0){
+      var mp=byId(location.hash.slice(4));
+      if(mp) el("detail").innerHTML=detailHTML(mp);
+    } else {
+      renderGrid();
+    }
+    return;
+  }
   var g=e.target.closest("[data-go]");
   if(g){ openDetail(g.getAttribute("data-go")); return; }
   var L=e.target.closest("[data-lang]");
@@ -1354,7 +1399,13 @@ document.addEventListener("change",function(e){
 });
 el("q").addEventListener("input",function(e){ S.q=e.target.value; renderGrid(); });
 el("sort").addEventListener("change",function(e){ S.sort=e.target.value; renderGrid(); });
-document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeDetail(); });
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){ closeDetail(); return; }
+  if(e.key==="Enter"||e.key===" "){
+    var vid=e.target.closest&&e.target.closest(".vid[data-yt]");
+    if(vid){ e.preventDefault(); playVid(vid); }
+  }
+});
 window.addEventListener("hashchange",route);
 var rz; window.addEventListener("resize",function(){
   clearTimeout(rz); rz=setTimeout(function(){ if(location.hash.indexOf("#/m/")===0) route(); },150); });
