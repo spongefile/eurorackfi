@@ -1,0 +1,31 @@
+{
+  "id": "frap321",
+  "mfr": "Frap Tools",
+  "name": "321",
+  "price": 90,
+  "hp": 6,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Modulation",
+  "cats": [
+    "Utility",
+    "CV utility"
+  ],
+  "mgSlug": "frap-tools-321-",
+  "site": "frap.tools",
+  "tone": "black",
+  "parts": {
+    "k": 6,
+    "j": 8,
+    "sl": 8,
+    "led": 6,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Three identical scale/flip/shift sections, DC-coupled for CV or audio, summed two ways into a full mix and an unpatched-only mix.",
+    "fi": "Kolme identtistä scale/flip/shift-osiota, DC-kytketty CV:lle tai audiolle, summattu kahdella tavalla: täysi mix ja pelkkien kytkemättömien kanavien mix.",
+    "sv": "Tre identiska scale/flip/shift-sektioner, DC-kopplade för CV eller audio, summerade på två sätt: en full mix och en mix av bara de opatchade kanalerna."
+  },
+  "img": "https://frap.tools/wp-content/uploads/2022/10/321_2160.webp",
+  "negotiating": false
+}
