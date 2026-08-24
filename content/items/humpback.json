@@ -1,0 +1,31 @@
+{
+  "id": "humpback",
+  "mfr": "God's Box",
+  "name": "Humpback",
+  "price": 160,
+  "hp": 8,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Filter",
+  "cats": [
+    "Filter",
+    "Multimode"
+  ],
+  "mgSlug": "god-s-box-humpback-filter",
+  "site": "godsbox.co.uk",
+  "tone": "white",
+  "parts": {
+    "k": 5,
+    "j": 7,
+    "sl": 0,
+    "led": 1,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Two-pole CA3080-based state variable filter, hot-rodded for self-oscillation. Low-pass, band-pass, high-pass and notch all available at once.",
+    "fi": "Kaksinapainen CA3080-pohjainen state variable -suodin, viritetty itseherätykseen. Low-pass, band-pass, high-pass ja notch kaikki yhtä aikaa saatavilla.",
+    "sv": "Tvåpoligt CA3080-baserat state variable-filter, trimmat för självsvängning. Low-pass, band-pass, high-pass och notch alla tillgängliga samtidigt."
+  },
+  "img": "https://godsbox.co.uk/images/humpback.jpg",
+  "negotiating": false
+}
