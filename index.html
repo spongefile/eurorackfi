@@ -928,9 +928,17 @@ function renderRack(){
     if(run>=half && rows.length<2){ rows.push([]); run=0; }
     rows[rows.length-1].push(m); run+=m.hp;
   });
-  var H=109, H1u=38; /* 38 = round(109 * 44.45/128.5) — true 1U height at the same px/mm scale */
+  /* H1u (row height in px) uses 44.45mm — the 1U *rack space* (1.75"), which is
+     what makes the row visually the right fraction of a 3U row's height.
+     The third arg to rackHTML below is a DIFFERENT number on purpose: 39.65mm
+     is the actual Intellijel-format 1U *panel* height (rail lip clearance
+     accounts for the gap to 44.45), and that's the one width math needs —
+     verified against all four 1U photos' true aspect ratios, independently
+     landing at ~39.7-40mm each. Mixing these two up is the exact bug that
+     shipped twice; keep them named differently if this is ever refactored. */
+  var H=109, H1u=38;
   var oneURow = oneU.length ? '<div class="rail"></div><div class="rackrow">'+oneU.map(function(m){
-    return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u,44.45)+'</button>';
+    return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u,39.65)+'</button>';
   }).join("")+'</div>' : '';
   el("rack").innerHTML = oneURow + rows.map(function(row){
     return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
