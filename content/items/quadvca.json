@@ -1,0 +1,31 @@
+{
+  "id": "quadvca",
+  "mfr": "Intellijel",
+  "name": "Quad VCA",
+  "price": 140,
+  "hp": 12,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Modulation",
+  "cats": [
+    "VCA",
+    "Mixer"
+  ],
+  "mgSlug": "intellijel-quad-vca",
+  "site": "intellijel.com",
+  "tone": "alu",
+  "parts": {
+    "k": 12,
+    "j": 12,
+    "sl": 4,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Four VCAs, cascadable into a sub-mixer. Linear-to-exponential response, a boost switch per channel and bicolour CV LEDs.",
+    "fi": "Neljä VCA:ta, joita voi ketjuttaa alamikseriksi. Lineaarisesta eksponentiaaliseen vaste, boost-kytkin per kanava ja kaksivärinen CV-LED.",
+    "sv": "Fyra VCA:er som kan kaskadkopplas till en submix. Linjär till exponentiell respons, boost-omkopplare per kanal och tvåfärgad CV-LED."
+  },
+  "img": "https://intellijel.com/wp-content/uploads/2017/01/Quad-VCA-v2.png",
+  "negotiating": false
+}
