@@ -27,5 +27,37 @@
     "sv": "Två av Audients konsolmikförsteg, ADAT-ingång för utökning och den stora monitorratten alla köper den för."
   },
   "img": "https://audient.com/wp-content/uploads/2025/05/id14-top-image-scaled.webp",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "A well-thought-out, good-sounding desktop audio interface.",
+      "src": "Sound On Sound",
+      "url": "https://www.soundonsound.com/reviews/audient-id14"
+    },
+    "quotes": [
+      {
+        "t": "The iD14 makes no compromises on sound quality.",
+        "s": "Sound On Sound"
+      },
+      {
+        "t": "Always powers up with outputs muted.",
+        "s": "Sound On Sound · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Audient iD14",
+        "url": "https://www.soundonsound.com/reviews/audient-id14"
+      }
+    ],
+    "videos": [
+      {
+        "title": "AUDIENT ID14 | Demo, review and mix ft. Christopher Johnson",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=pzwtpwwfRD8"
+      }
+    ]
+  }
 }
