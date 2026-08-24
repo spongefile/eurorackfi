@@ -789,6 +789,17 @@ function stat(n,l){ return '<div class="stat"><div class="n">'+n+'</div><div cla
 function fcol(h,b){ return '<div><h4>'+esc(h)+'</h4>'+(b.charAt(0)==="<"?b:'<p>'+esc(b)+'</p>')+'</div>'; }
 
 /* ---------- hero rack ---------- */
+/* Rack slot: real photo if we have one, cropped to fill (object-fit:cover)
+   rather than letterboxed — the rack's whole point is true-HP-proportional
+   width, so a shrunk-to-fit photo would visually break that comparison.
+   Falls back to the drawn faceplate, same as everywhere else. */
+function rackHTML(m,H){
+  if(!m.img) return panelHTML(m,H);
+  var W=Math.round(m.hp*5.08*(H/128.5));
+  return '<img src="'+m.img+'" alt="'+esc(m.mfr+" "+m.name)+'" loading="lazy" '+
+    'style="width:'+W+'px;height:'+H+'px;object-fit:cover;display:block" '+
+    'onerror="photoFail(this,\''+m.id+'\','+H+')">';
+}
 function renderRack(){
   var eu=ITEMS.filter(function(m){return m.fmt==="eu";});
   var total=eu.reduce(function(a,m){return a+m.hp;},0), half=total/2;
@@ -800,7 +811,7 @@ function renderRack(){
   var H=109;
   el("rack").innerHTML=rows.map(function(row){
     return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
-      return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+panelHTML(m,H)+'</button>';
+      return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H)+'</button>';
     }).join("")+'</div>'; }).join("")+'<div class="rail"></div>';
 }
 
