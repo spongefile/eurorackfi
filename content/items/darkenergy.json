@@ -28,5 +28,31 @@
     "sv": "Analog monosynt med full CV-patchbay längs överkanten och USB-MIDI in. Doepfer för skrivbordet."
   },
   "img": "https://doepfer.de/Dark_Energy_II_medium.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "Amazona.de",
+        "title": "Test: Doepfer Dark Energy II, Analogsynthesizer",
+        "url": "https://www.amazona.de/test-doepfer-dark-energy-ii-analogsynthesizer/"
+      },
+      {
+        "src": "Juno Daily",
+        "title": "DJ & Studio Gear review: Doepfer – Dark Energy II",
+        "url": "https://www.juno.co.uk/junodaily/2012/12/17/doepfer-dark-energy-ii-review/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Doepfer Dark Energy II - Three Basic Patches",
+        "by": "Patch demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=Q1EJzvr0Itg"
+      },
+      {
+        "title": "Doepfer Dark Energy 2 (Dark Energy II) sound and some inside pictures",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=RwsU1mfpuic"
+      }
+    ]
+  }
 }
