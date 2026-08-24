@@ -900,15 +900,19 @@ function rackHTML(m,H){
     'onerror="photoFail(this,\''+m.id+'\','+H+')">';
 }
 function renderRack(){
-  var eu=ITEMS.filter(function(m){return m.fmt==="eu";});
+  var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !m.oneU;});
+  var oneU=ITEMS.filter(function(m){return m.fmt==="eu" && m.oneU;});
   var total=eu.reduce(function(a,m){return a+m.hp;},0), half=total/2;
   var rows=[[]], run=0;
   eu.forEach(function(m){
     if(run>=half && rows.length<2){ rows.push([]); run=0; }
     rows[rows.length-1].push(m); run+=m.hp;
   });
-  var H=109;
-  el("rack").innerHTML=rows.map(function(row){
+  var H=109, H1u=38; /* 38 = round(109 * 44.45/128.5) — true 1U height at the same px/mm scale */
+  var oneURow = oneU.length ? '<div class="rail"></div><div class="rackrow">'+oneU.map(function(m){
+    return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u)+'</button>';
+  }).join("")+'</div>' : '';
+  el("rack").innerHTML = oneURow + rows.map(function(row){
     return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
       return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H)+'</button>';
     }).join("")+'</div>'; }).join("")+'<div class="rail"></div>';

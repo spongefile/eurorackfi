@@ -28,5 +28,6 @@
     "sv": "1U FDN-reverb i 96kHz/24-bit: material, size och blend, med en freeze-knapp för oändliga svansar."
   },
   "img": "https://images.squarespace-cdn.com/content/v1/602d6139bc12a57fb971c17a/1620251454547-TLPWBGHKV00FB57S1NXP/Reverb_blk.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "oneU": true
 }

@@ -28,5 +28,6 @@
     "sv": "Samma 16-algoritmers stereo-FX-motor som i 6HP-versionen av Milky Way — hall-, shimmer-, plate- och spring-reverb, tape echo, ping-pong-delay, chorus, flanger, ringmodulering, overdrive, kompressor, freeze — den här gången på en 22HP 1U-platta."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "oneU": true
 }
