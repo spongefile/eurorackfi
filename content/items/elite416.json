@@ -1,0 +1,30 @@
+{
+  "id": "elite416",
+  "mfr": "Elite Modular",
+  "name": "Elite 416 Case",
+  "price": 400,
+  "hp": 104,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Case"
+  ],
+  "mgSlug": "",
+  "site": "elitemodular.com",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "12U / 104HP portable case, Baltic birch under a black ballistic coating, airline carry-on sized. Two power bus boards included, roughly 2.5A on +12V.",
+    "fi": "12U / 104HP:n kannettava kotelo, koivuvaneria mustan ballistisen pinnoitteen alla, lentokoneen käsimatkatavarakokoa. Mukana kaksi virtakiskoa, noin 2,5A +12V-kiskolla.",
+    "sv": "12U / 104HP bärbar låda, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. Två strömskenor ingår, ungefär 2,5A på +12V."
+  },
+  "negotiating": false
+}
