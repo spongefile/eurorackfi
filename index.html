@@ -249,13 +249,15 @@ body.detail-open .browse{display:none}
   display:flex; gap:.5rem; align-items:center; flex-wrap:wrap}
 .crumb button{color:var(--accent); text-decoration:underline; text-underline-offset:3px}
 /* image column stretches to the buy column, or the shorter one leaves a hole */
-.buyarea{display:grid; grid-template-columns:minmax(0,1fr) 440px; gap:2.5rem; align-items:stretch; padding-bottom:2rem}
-.imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0}
-/* cap stops the grey slab when the form opens; sticky spends the freed column so the
-   module travels beside the form. Reset to static when stacked, or it pins over the form. */
-.bench{flex:1; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
-  justify-content:center; min-height:340px; max-height:620px; overflow:hidden;
-  position:sticky; top:24px}
+.buyarea{display:grid; grid-template-columns:minmax(0,1fr) 440px; gap:2.5rem; align-items:start; padding-bottom:2rem}
+/* imgcol (bench + thumbs) is ONE sticky unit, not sticky-bench-alone with a
+   plain sibling below it — the earlier version let the two drift apart or
+   overlap on scroll, since only the bench was pinned. Moving sticky up to
+   the shared wrapper means they scroll together, correct by construction,
+   no cap or per-item numbers to keep in sync with content that varies. */
+.imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0; position:sticky; top:24px}
+.bench{background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
+  justify-content:center; flex:0 0 auto; height:400px; overflow:hidden; position:relative}
 .thumbs{display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem}
 .thumb{height:64px; border:1px solid var(--line); background:var(--bg2); font-family:"IBM Plex Mono",monospace;
   font-size:.6rem; color:var(--muted); display:flex; align-items:center; justify-content:center}
@@ -357,7 +359,8 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
   .hero .wrap{grid-template-columns:minmax(0,1fr); gap:2rem}
   .hero{padding:2.25rem 0 2rem}
   .buyarea{grid-template-columns:minmax(0,1fr); gap:1.75rem}
-  .bench{min-height:260px; position:static}
+  .bench{height:300px}
+  .imgcol{position:static}
 }
 @media(max-width:740px){
   /* categories become a scroller; owner and format chips collapse first */
@@ -365,13 +368,17 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
   select.sort{margin-left:0}
 }
 @media(max-width:720px){
-  nav.top{display:none}
+  /* used to be display:none with nothing to replace it — a decorative
+     absence is the same bug as a hamburger that opens nothing, just quieter.
+     The header already wraps (flex-wrap:wrap), so just let the words wrap
+     to their own line instead of hiding real navigation. */
   .hgroup{margin-left:auto}
 }
 @media(max-width:640px){
   .hero h1{font-size:2rem}
   .shot{height:180px}
-  .bench{min-height:220px; position:static}
+  .bench{height:260px}
+  .imgcol{position:static}
   .thumbs{grid-template-columns:repeat(2,1fr)}
   .countline{padding-top:1rem}
   .pullquote{font-size:1.25rem}
@@ -746,7 +753,7 @@ function renderChrome(){
   var T2=t();
   el("noticeA").textContent=T2.noticeA;
   el("noticeB").textContent=T2.noticeB;
-  var anchors=["#grid-top","#wish","#contact"];
+  var anchors=["#grid-top","#wish","#/msg/"];
   el("nav").innerHTML=T2.nav.map(function(n,i){
     return '<a href="'+anchors[i]+'" onclick="closeDetail()">'+esc(n)+'</a>'; }).join("");
   el("langseg").innerHTML=LANGS.map(function(l){
@@ -766,7 +773,7 @@ function renderChrome(){
   el("fIntro").textContent=T2.fIntro;
   el("fgrid").innerHTML=
     fcol(T2.fCollect,T2.fCollectBody)+fcol(T2.fTrade,T2.fTradeBody)+
-    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><button class="btn sm" style="margin-top:.6rem" onclick="document.getElementById(\'grid-top\').scrollIntoView()">'+esc(T2.buyOrTrade)+'</button>');
+    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><a class="btn sm" style="margin-top:.6rem;display:inline-flex" href="#/msg/">'+esc(T2.buyOrTrade)+'</a>');
   el("sort").innerHTML=Object.keys(T2.sort).map(function(k){
     return '<option value="'+k+'"'+(k===S.sort?" selected":"")+'>'+esc(T2.sort[k])+'</option>'; }).join("");
 }
