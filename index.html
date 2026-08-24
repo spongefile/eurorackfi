@@ -367,6 +367,11 @@ body.detail-open .browse{display:none}
 .btn.sm{height:auto; padding:.62rem 1rem; width:auto; margin-top:0; font-size:.76rem}
 .btn.ghost{background:transparent; color:var(--accent); border-color:var(--line2); box-shadow:none}
 .btn.ghost:hover{background:var(--accent-soft); border-color:var(--accent)}
+.tradepanel{margin-top:1.5rem; border:1px solid var(--signal); background:var(--signal-soft); padding:1.1rem 1.15rem}
+.tradepanel h4{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--signal); font-weight:500}
+.tradepanel p{font-family:"Newsreader",Georgia,serif; font-size:1rem; color:var(--ink2); margin-top:.5rem}
+.tradepanel .wants{display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.85rem}
+.tradepanel .want{font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line2); background:var(--panel); color:var(--ink2); padding:.14rem .38rem}
 .specrule{border-top:1px solid var(--line); margin-top:1.5rem; padding-top:1.1rem}
 .specrule h4{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.6rem}
 .specrows{display:grid; gap:.35rem}
@@ -380,7 +385,7 @@ body.detail-open .browse{display:none}
   border-left:3px solid var(--accent); padding-left:1.1rem}
 .pullquote cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-style:normal; color:var(--muted); margin-top:.8rem}
 .qcards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1.5rem}
-.qcard{border:1px solid var(--signal); background:var(--signal-soft); padding:1rem}
+.qcard{border:1px solid var(--line); background:var(--panel); padding:1rem}
 .qcard p{font-family:"Newsreader",Georgia,serif; font-size:1rem; line-height:1.5; color:var(--ink2)}
 .qcard cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-style:normal; color:var(--muted); margin-top:.7rem}
 .linkrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.75rem}
@@ -1079,6 +1084,10 @@ function detailHTML(m){
     (m.negotiating?'<div class="negbar"><i></i>'+esc(T2.negBar)+'</div>':'')+
     '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>'+
     '<p class="inbox">'+esc(T2.inbox)+'</p>'+
+    ((WANTS[p.key]||[]).length?'<div class="tradepanel"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
+      '<p>'+esc(T2.wishK)+'</p>'+
+      '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
+    '</div>':'')+
     '<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
       specRows(m).map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
     '</div></div></div></div>';
