@@ -170,7 +170,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
-.collbar{width:100%; align-items:center; gap:.5rem; background:none; border:none;
+.collbar{width:100%; min-height:48px; align-items:center; gap:.5rem; background:none; border:none;
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
 .collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
 .collbar .collcount{margin-left:auto; color:var(--muted)}
@@ -1415,12 +1415,13 @@ var rz; window.addEventListener("resize",function(){
    one-way — no scroll-up auto-reveal — it only unfolds on tap, per the
    user's explicit ask (matches design's Mobile.dc.html .m-controls). */
 (function(){
-  var bar=el("grid-top"), lastY=window.scrollY, ticking=false;
+  var bar=el("grid-top"), lastY=window.scrollY, ticking=false, suppressUntil=0;
   function onScroll(){
     ticking=false;
     if(window.innerWidth>740) return;
     var y=window.scrollY, goingDown=y>lastY;
     lastY=y;
+    if(Date.now()<suppressUntil) return; /* see click handler below */
     if(!bar.classList.contains("collapsed") && goingDown && y>90){ bar.classList.add("collapsed"); }
   }
   window.addEventListener("scroll",function(){
@@ -1428,10 +1429,13 @@ var rz; window.addEventListener("resize",function(){
   },{passive:true});
   el("collbar").addEventListener("click",function(){
     bar.classList.remove("collapsed");
-    /* reset the baseline so the very next scroll tick (even a 1px reflow
-       jitter from the bar's own height change) isn't misread as "still
-       scrolling down past 90px" and re-collapsed on the spot */
     lastY=window.scrollY;
+    /* a real finger-scroll on a touchscreen keeps drifting for a bit after
+       lift-off (momentum/inertia) — tapping to expand mid-drift still reads
+       as "genuinely still scrolling down" a moment later even with a fresh
+       baseline above, and would instantly re-collapse what was just opened.
+       Ignore auto-collapse for a short window so the tap actually sticks. */
+    suppressUntil=Date.now()+600;
   });
 })();
 
