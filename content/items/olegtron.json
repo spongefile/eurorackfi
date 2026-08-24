@@ -1,0 +1,30 @@
+{
+  "id": "olegtron",
+  "mfr": "Olegtron",
+  "name": "4060 mk2",
+  "price": 150,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "t",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "DIY"
+  ],
+  "mgSlug": "",
+  "site": "olegtron.com",
+  "tone": "cream",
+  "parts": {
+    "k": 2,
+    "j": 4,
+    "sl": 0,
+    "led": 1,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Component-patchboard oscillator built around the CD4060: stick resistors and capacitors onto the board to shape the circuit, with ten divided sub-frequencies on tap. Four stereo 3.5mm jacks carry up to eight signals in or out, plus a jumper for uni/bipolar range.",
+    "fi": "Komponenttipatchboard-oskillaattori CD4060-piirin ympärillä: liimaa vastuksia ja kondensaattoreita levylle piirin muokkaamiseksi, mukana kymmenen jaettua alataajuutta. Neljä stereo 3,5mm-liitintä kuljettaa jopa kahdeksan signaalia sisään tai ulos, sekä hyppylanka uni-/bipolaarista aluetta varten.",
+    "sv": "Komponent-patchboard-oscillator byggd kring CD4060: klistra fast motstånd och kondensatorer på skivan för att forma kretsen, med tio delade underfrekvenser att tillgå. Fyra stereo 3,5mm-jack bär upp till åtta signaler in eller ut, plus en bygel för uni-/bipolärt omfång."
+  },
+  "negotiating": false
+}
