@@ -28,5 +28,14 @@
   },
   "negotiating": false,
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/hydrus.jpg",
-  "imgIsModularGrid": true
+  "imgIsModularGrid": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "Serpens Modular Hydrus - 'Waveform Mutator' Creative Utility Module - In Depth Demo",
+        "by": "In-depth demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=P98bRFyTPhs"
+      }
+    ]
+  }
 }
