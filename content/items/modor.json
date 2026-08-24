@@ -28,5 +28,37 @@
     "sv": "Stereo vokalmorfning rakt ur NF-1: tio färdiga vokaler, fyra redigerbara band, allt under CV."
   },
   "img": "https://www.modormusic.com/images/FormantEurorack.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "What sets the Modor filter apart from other quad-bandpass filters is the ability to smoothly morph between three of these settings.",
+      "src": "MusicRadar",
+      "url": "https://www.musicradar.com/reviews/modor-formant-filter"
+    },
+    "quotes": [
+      {
+        "t": "The filter needs a lot of harmonics to bite into to make it really shine, so saw waves or white noise are recommended.",
+        "s": "MusicRadar"
+      },
+      {
+        "t": "If the levels hit too high, the built-in compressor will kick in to save your ears and the signal becomes a burst of white noise. This feature could certainly cause issues in a live context.",
+        "s": "MusicRadar · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "MusicRadar",
+        "title": "Modor Formant Filter review",
+        "url": "https://www.musicradar.com/reviews/modor-formant-filter"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Modor Formant Filter In Eurorack Format",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=5W4BvN1Km5o"
+      }
+    ]
+  }
 }
