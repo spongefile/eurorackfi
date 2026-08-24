@@ -682,7 +682,8 @@ var TX={
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
      photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta",
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
-     pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta"},
+     pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
+     pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
      video:"Video",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
@@ -694,7 +695,8 @@ var TX={
      collectFirst:"Helst hämtning, men vi kan posta",
      photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt",
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
-     pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget"},
+     pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
+     pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
      video:"Video",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
@@ -706,7 +708,8 @@ var TX={
      collectFirst:"Collection preferred, posting possible",
      photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site",
      loading:"Loading…", loadError:"Could not load listings.",
-     pcreditComp:"Photo of the component this is built from, not the finished build"}
+     pcreditComp:"Photo of the component this is built from, not the finished build",
+     pcreditMG:"Photo:"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
 var t=function(){ return T[lang]; };
@@ -875,7 +878,11 @@ function detailHTML(m){
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
        '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
     '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+'</div>'+
-    (m.img&&S.shot===1?'<p class="pcredit">'+esc(m.imgIsComponent?T2.pcreditComp:T2.pcredit)+'</p>':'')+
+    (m.img&&S.shot===1?'<p class="pcredit">'+
+      (m.imgIsModularGrid&&m.mgSlug
+        ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
+        : esc(m.imgIsComponent?T2.pcreditComp:T2.pcredit))
+      +'</p>':'')+
     '<div class="thumbs">'+T2.shots.map(function(sh,i){
       var has = i===0 || (i===1 && m.img);
       return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'"'+(has?"":" disabled")+'>'+

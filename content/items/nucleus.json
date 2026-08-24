@@ -27,5 +27,7 @@
     "fi": "Monikäyttöinen VCF diskreetillä transistori-OTA-ytimellä. Vaihdettava 12/24 dB jyrkkyys ja tukeva bassotila.",
     "sv": "Mångsidigt VCF med diskret transistor-OTA-kärna. Växlingsbar branthet på 12/24 dB och ett stadigt basläge."
   },
-  "negotiating": false
+  "negotiating": false,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/nucleus.jpg",
+  "imgIsModularGrid": true
 }
