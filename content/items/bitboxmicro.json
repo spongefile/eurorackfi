@@ -1,0 +1,32 @@
+{
+  "id": "bitboxmicro",
+  "mfr": "1010music",
+  "name": "Bitbox Micro",
+  "price": 325,
+  "hp": 18,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sampler",
+  "cats": [
+    "Sampler",
+    "Recorder",
+    "Interface"
+  ],
+  "mgSlug": "1010music-bitbox-micro",
+  "site": "1010music.com",
+  "tone": "alu",
+  "parts": {
+    "k": 2,
+    "j": 18,
+    "sl": 0,
+    "led": 0,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Eight-channel touchscreen sampler in 18HP: record straight in or load from the SD card, trigger by CV or MIDI, mix and add the built-in reverb and delay.",
+    "fi": "Kahdeksankanavainen kosketusnäyttösampleri 18HP:ssä: äänitä suoraan tai lataa SD-kortilta, laukaise CV:llä tai MIDIllä, mixaa ja lisää sisäänrakennettu kaiku ja viive.",
+    "sv": "Åttakanalig pekskärmssampler på 18HP: spela in direkt eller ladda från SD-kortet, trigga med CV eller MIDI, mixa och lägg till den inbyggda reverbet och delayen."
+  },
+  "img": "https://1010music.com/wp-content/uploads/2020/07/1010music_bitboxmicro_01-square-1024x1024.jpg",
+  "negotiating": false
+}
