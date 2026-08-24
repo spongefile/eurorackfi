@@ -27,7 +27,7 @@
     "fi": "Käsintehty analoginen syna/sekvensseri/rumpukone puukotelossa: kaksi VCO:ta rengasmodulaatiolla ja FM:llä, 24dB:n diodi-alipäästösuodin, oma säröytetty kick-ääni, kaksi verhokäyrää, LFO ja aito analoginen sekvensseri, joka tallentaa nuotit 16 kondensaattoriin muistin sijaan — kuvio ajautuu ja rapistuu hiljalleen kierrosten myötä. Rinnalla pyörii 4-raitainen, 64-askelinen digitaalinen rytmisekvensseri, MIDI in mukana.",
     "sv": "Handbyggd analog synt/sekvensiator/trummaskin i trälåda: två VCO:er med ringmodulering och FM, ett 24dB diod-lågpassfilter, en egen distad kick-röst, två envelopes, en LFO och en äkta analog sekvensiator som lagrar toner i 16 kondensatorer istället för minne — mönstret glider och bryts ner sakta i takt med att det loopar. Bredvid den snurrar en 4-spårs, 64-stegs digital rytmsekvensiator, MIDI in ingår."
   },
-  "img": "https://www.leploop.org/wp-content/uploads/2020/03/leploop-v2.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/leploop.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

@@ -26,6 +26,6 @@
     "fi": "Kolmiokärkinen VCO sini-, sub- ja muuttuvamuotoisilla ulostuloilla. Lineaarinen ja eksponentiaalinen FM, sync ja S-gate pelkälle sub-oskillaattorille.",
     "sv": "Triangelkärnad VCO med sinus-, sub- och variabelform-utgångar. Linjär och exponentiell FM, sync och en S-gate för enbart suboscillatorn."
   },
-  "img": "https://www.makenoisemusic.com/wp-content/uploads/2026/04/sto.webp",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sto.jpg",
   "negotiating": false
 }

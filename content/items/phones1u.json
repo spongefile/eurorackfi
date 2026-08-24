@@ -27,7 +27,7 @@
     "fi": "1U:n kuulokevahvistin oikealla bassovasteella, toimii myös stereolinjaulostulona. Vasen normalisoitu oikealle monolähteitä varten.",
     "sv": "1U hörlursförstärkare med riktig bas, fungerar även som stereo linjeutgång. Vänster normaliserad till höger för monokällor."
   },
-  "img": "https://intellijel.com/wp-content/uploads/2017/01/Phones-1U-v2.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/phones1u.jpg",
   "negotiating": false,
   "oneU": true
 }

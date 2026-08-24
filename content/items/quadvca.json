@@ -26,6 +26,6 @@
     "fi": "Neljä VCA:ta, joita voi ketjuttaa alamikseriksi. Lineaarisesta eksponentiaaliseen vaste, boost-kytkin per kanava ja kaksivärinen CV-LED.",
     "sv": "Fyra VCA:er som kan kaskadkopplas till en submix. Linjär till exponentiell respons, boost-omkopplare per kanal och tvåfärgad CV-LED."
   },
-  "img": "https://intellijel.com/wp-content/uploads/2017/01/Quad-VCA-v2.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/quadvca.jpg",
   "negotiating": false
 }
