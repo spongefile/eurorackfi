@@ -1,0 +1,32 @@
+{
+  "id": "mosreverb",
+  "mfr": "Mosaic",
+  "name": "Mono Reverb 1U",
+  "price": 80,
+  "hp": 14,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Reverb",
+    "1U"
+  ],
+  "mgSlug": "mosaic-mono-reverb-black-panel",
+  "site": "mosaic1u.com",
+  "tone": "black",
+  "parts": {
+    "k": 3,
+    "j": 2,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "1U FDN reverb at 96kHz/24-bit: material, size and blend, with an infinite-tails freeze button.",
+    "fi": "1U:n FDN-kaiku 96kHz/24-bittisenä: material, size ja blend, ja freeze-nappi loputtomille hännille.",
+    "sv": "1U FDN-reverb i 96kHz/24-bit: material, size och blend, med en freeze-knapp för oändliga svansar."
+  },
+  "img": "https://images.squarespace-cdn.com/content/v1/602d6139bc12a57fb971c17a/1620251454547-TLPWBGHKV00FB57S1NXP/Reverb_blk.jpg",
+  "negotiating": false
+}
