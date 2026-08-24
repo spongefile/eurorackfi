@@ -727,10 +727,11 @@ function packGrid(n,x0,y0,w,h,cell){var out=[],cols=Math.max(1,Math.min(n,Math.f
     out.push({x:x0+off+c*cw+cw/2,y:y0+ch*(r+0.5)});}
   return out;}
 function abs(x,y,w,h){return "position:absolute;left:"+x.toFixed(1)+"px;top:"+y.toFixed(1)+"px;width:"+w.toFixed(1)+"px;height:"+h.toFixed(1)+"px;";}
-function buildPanel(m,H,tone){
+function buildPanel(m,H,tone,hMm){
+  hMm = hMm || 128.5;
   var t=TONE[tone]||TONE.black;
-  var W=m.hp>0?Math.round(m.hp*5.08*(H/128.5)):Math.round(H*1.55);
-  var U=H/128.5, els=[];
+  var W=m.hp>0?Math.round(m.hp*5.08*(H/hMm)):Math.round(H*1.55);
+  var U=H/hMm, els=[];
   var kd=Math.max(8,Math.round(11*U)), jd=Math.max(5,Math.round(7.4*U));
   var pad=Math.min(6,W*0.14), iw=W-pad*2, top=6;
   if(W>30){[[pad*0.55,5],[W-pad*0.55,5],[pad*0.55,H-5],[W-pad*0.55,H-5]].forEach(function(p){
@@ -757,7 +758,7 @@ function buildPanel(m,H,tone){
     ';border:1px solid '+t.line+';box-shadow:0 2px 6px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.12);flex:0 0 auto">'+
     els.map(function(s){return '<div style="'+s+'"></div>';}).join("")+'</div>'};
 }
-var panelHTML=function(m,H){ return buildPanel(m,H,m.tone).html; };
+var panelHTML=function(m,H,hMm){ return buildPanel(m,H,m.tone,hMm).html; };
 /* Grid-card thumbnail: real photo when we have one, drawn faceplate otherwise.
    onerror falls back live if a hotlinked image ever goes dead. */
 function shotHTML(m,H){
@@ -847,7 +848,7 @@ var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
 
 <script>
 /* Real, verified extras. Only ph3 has them — never fabricate these for the other 28. */
-function photoFail(img,id,H){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H); }
+function photoFail(img,id,H,hMm){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H,hMm); }
 
 /* ---------- state ---------- */
 var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null,pop:null};  /* null = not yet decided for this item */
@@ -910,12 +911,13 @@ function fcol(h,b){ return '<div><h4>'+esc(h)+'</h4>'+(b.charAt(0)==="<"?b:'<p>'
    rather than letterboxed — the rack's whole point is true-HP-proportional
    width, so a shrunk-to-fit photo would visually break that comparison.
    Falls back to the drawn faceplate, same as everywhere else. */
-function rackHTML(m,H){
-  if(!m.img) return panelHTML(m,H);
-  var W=Math.round(m.hp*5.08*(H/128.5));
+function rackHTML(m,H,hMm){
+  hMm = hMm || 128.5;
+  if(!m.img) return panelHTML(m,H,hMm);
+  var W=Math.round(m.hp*5.08*(H/hMm));
   return '<img src="'+m.img+'" alt="'+esc(m.mfr+" "+m.name)+'" loading="lazy" '+
     'style="width:'+W+'px;height:'+H+'px;object-fit:cover;display:block" '+
-    'onerror="photoFail(this,\''+m.id+'\','+H+')">';
+    'onerror="photoFail(this,\''+m.id+'\','+H+','+hMm+')">';
 }
 function renderRack(){
   var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !m.oneU && !isCase(m);});
@@ -928,7 +930,7 @@ function renderRack(){
   });
   var H=109, H1u=38; /* 38 = round(109 * 44.45/128.5) — true 1U height at the same px/mm scale */
   var oneURow = oneU.length ? '<div class="rail"></div><div class="rackrow">'+oneU.map(function(m){
-    return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u)+'</button>';
+    return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u,44.45)+'</button>';
   }).join("")+'</div>' : '';
   el("rack").innerHTML = oneURow + rows.map(function(row){
     return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
