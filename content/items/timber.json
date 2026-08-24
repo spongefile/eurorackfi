@@ -27,5 +27,32 @@
     "sv": "Två formningskretsar, en driver och en folder, med spänningsstyrd crossfade mellan dem och den rena signalen."
   },
   "img": "https://bastl-instruments.com/thumbs/eurorack/modules/timber/001-326x1200.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "quotes": [
+      {
+        "t": "It's quite a useful little module, making simple waveforms more complex and interesting. I think the blending options are pretty fabulous and it could easily make your nice clean oscillators into something more awesome.",
+        "s": "Gearnews"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Gearnews",
+        "title": "Superbooth 2018: Bastl Instruments Timber - dual waveform lumberjack",
+        "url": "https://www.gearnews.com/superbooth-2018-bastl-instruments-timber-dual-waveform-lumberjack/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Timber - Exploring Bastl's Most Underrated Module",
+        "by": "Deep dive · YouTube",
+        "url": "https://www.youtube.com/watch?v=2Z1bLulN7VY"
+      },
+      {
+        "title": "Superbooth 2018: Bastl Instruments 1983 and Timber modules demo",
+        "by": "Superbooth demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=8tYjnjLd6jg"
+      }
+    ]
+  }
 }
