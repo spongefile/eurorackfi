@@ -1,0 +1,32 @@
+{
+  "id": "links",
+  "mfr": "Mutable Instruments",
+  "name": "Links",
+  "price": 80,
+  "hp": 4,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Output",
+  "cats": [
+    "Utility",
+    "Mixer",
+    "Discontinued"
+  ],
+  "mgSlug": "mutable-instruments-links",
+  "site": "mutable-instruments.net",
+  "tone": "white",
+  "parts": {
+    "k": 3,
+    "j": 12,
+    "sl": 0,
+    "led": 3,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Three plumbing utilities in one 4HP: a buffered three-way mult, a two-in-two-out unity mixer, and a three-input averager. Discontinued Mutable classic.",
+    "fi": "Kolme putkiapuvälinettä 4HP:ssä: puskuroitu kolmen ulostulon mult, kaksi sisään/kaksi ulos -yksikkövahvistinmikseri ja kolmen tulon keskiarvoistin. Poistunut Mutable-klassikko.",
+    "sv": "Tre rörledningsverktyg på 4HP: en buffrad mult med tre utgångar, en unity-gain-mixer med två in/två ut och en medelvärdesbildare med tre ingångar. Utgången Mutable-klassiker."
+  },
+  "img": "https://mutable-instruments.net/modules/links/images/front.jpg",
+  "negotiating": false
+}
