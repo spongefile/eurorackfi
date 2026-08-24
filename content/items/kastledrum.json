@@ -28,5 +28,19 @@
     "sv": "Fickstor trumsynt med patchstift och AA-batterier. Två oscillatorer, en brusgenerator och mycket oväsen."
   },
   "img": "https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Bastl Kastle Drum: Deep Dive & Tutorial - Still Relevant in 2024?",
+        "by": "Deep dive · YouTube",
+        "url": "https://www.youtube.com/watch?v=eOpuZfDZuNk"
+      },
+      {
+        "title": "Bastl Kastle Drum improvisation",
+        "by": "Live jam · YouTube",
+        "url": "https://www.youtube.com/watch?v=SRWlQJ3DVsk"
+      }
+    ]
+  }
 }
