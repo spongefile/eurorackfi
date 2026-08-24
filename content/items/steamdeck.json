@@ -1,0 +1,31 @@
+{
+  "id": "steamdeck",
+  "mfr": "Valve",
+  "name": "Steam Deck OLED",
+  "price": 500,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Handheld"
+  ],
+  "mgSlug": "",
+  "site": "steamdeck.com",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "7.4\" HDR OLED handheld, 1280x800 at up to 90Hz, WiFi 6E and Bluetooth 5.3. Storage capacity not confirmed on this unit -- ask before buying if it matters to you.",
+    "fi": "7,4 tuuman HDR OLED -käsikonsoli, 1280x800 jopa 90Hz:llä, WiFi 6E ja Bluetooth 5.3. Tämän yksilön tallennuskapasiteettia ei ole vahvistettu -- kysy ennen ostoa, jos sillä on väliä.",
+    "sv": "7,4 tums HDR OLED-handkonsol, 1280x800 upp till 90Hz, WiFi 6E och Bluetooth 5.3. Lagringskapaciteten på den här enheten är inte bekräftad -- fråga innan köp om det spelar roll för dig."
+  },
+  "img": "https://cdn.fastly.steamstatic.com/steamdeck/images/oled/oled_deck_top.png",
+  "negotiating": false
+}
