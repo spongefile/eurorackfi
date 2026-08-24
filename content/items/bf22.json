@@ -28,5 +28,19 @@
     "sv": "Dubbelfilter med hög- och lågpass i den tidiga MS-20:s anda. Attenuvertrar för cutoff och resonans, och en länkomkopplare."
   },
   "img": "https://www.befaco.org/wp-content/uploads/2025/09/BF22_web_front.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Befaco BF22 Features review",
+        "by": "Raul Peix · YouTube",
+        "url": "https://www.youtube.com/watch?v=LATWDxnakDw"
+      },
+      {
+        "title": "Befaco BF-22 Sallen Key Eurorack Synth Filter Demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=g6Rt-IeNchw"
+      }
+    ]
+  }
 }
