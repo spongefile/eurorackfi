@@ -168,10 +168,16 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .rackfig figcaption{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.7rem; display:flex; justify-content:space-between; gap:1rem}
 
 /* ---------- filter bar ---------- */
-.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line); transition:transform .22s ease}
-.controls.hide{transform:translateY(-100%)}
-@media (prefers-reduced-motion:reduce){ .controls{transition:none} }
+.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
+.collbar{display:none; width:100%; align-items:center; gap:.5rem; min-height:48px; background:none; border:none;
+  font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
+.collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
+.collbar .collcount{margin-left:auto; color:var(--muted)}
+@media(max-width:740px){
+  .controls.collapsed .wrap{display:none}
+  .controls.collapsed .collbar{display:flex}
+}
 .search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.4rem .7rem; flex:1 1 210px; max-width:300px}
 .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); width:100%}
 .search input::placeholder{color:var(--muted)}
@@ -488,7 +494,13 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
     </figure>
   </div></section>
 
-  <section class="controls" id="grid-top"><div class="wrap">
+  <section class="controls" id="grid-top">
+    <button class="collbar" id="collbar" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      <span id="collbarlabel"></span>
+      <span class="collcount" id="collcount"></span>
+    </button>
+    <div class="wrap">
     <label class="search"><span class="mono" style="color:var(--muted)">/</span>
       <input id="q" type="search" aria-label="Search"></label>
     <div class="chips" id="fmtchips"></div>
@@ -735,7 +747,7 @@ var TX={
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
      photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta", seeFull:"Katso koko lista",
-     prevPhoto:"Edellinen kuva", nextPhoto:"Seuraava kuva",
+     prevPhoto:"Edellinen kuva", nextPhoto:"Seuraava kuva", filtersLabel:"Suodattimet",
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
      pcreditMG:"Kuva:"},
@@ -749,7 +761,7 @@ var TX={
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
      collectFirst:"Helst hämtning, men vi kan posta",
      photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt", seeFull:"Se hela listan",
-     prevPhoto:"Föregående bild", nextPhoto:"Nästa bild",
+     prevPhoto:"Föregående bild", nextPhoto:"Nästa bild", filtersLabel:"Filter",
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
      pcreditMG:"Bild:"},
@@ -763,7 +775,7 @@ var TX={
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
      collectFirst:"Collection preferred, posting possible",
      photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site", seeFull:"See full list",
-     prevPhoto:"Previous photo", nextPhoto:"Next photo",
+     prevPhoto:"Previous photo", nextPhoto:"Next photo", filtersLabel:"Filters",
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
      pcreditMG:"Photo:"}
@@ -828,6 +840,7 @@ function renderChrome(){
   el("scaleCap").textContent=T2.scale;
   el("hoverCap").textContent=T2.hover;
   el("q").placeholder=T2.search;
+  el("collbarlabel").textContent=T2.filtersLabel;
   el("wishH").textContent=T2.wishH;
   el("wishK").textContent=T2.wishK;
   el("fIntro").textContent=T2.fIntro;
@@ -929,6 +942,7 @@ function renderGrid(){
   var sum=list.reduce(function(a,m){return a+m.price;},0);
   el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>'+
     '<span>'+sum+' '+esc(T2.onScreen)+'</span>';
+  el("collcount").textContent=list.length+" / "+ITEMS.length;
 }
 </script>
 
@@ -1305,23 +1319,23 @@ window.addEventListener("hashchange",route);
 var rz; window.addEventListener("resize",function(){
   clearTimeout(rz); rz=setTimeout(function(){ if(location.hash.indexOf("#/m/")===0) route(); },150); });
 
-/* mobile only: hide the sticky filter bar while scrolling down to give the
-   grid room, bring it back on any upward scroll. Desktop has space for it
-   parked at top, so this stays scoped to the narrow breakpoint. */
+/* mobile only: fold the filter bar down to a compact tappable "Filters" row
+   once the user scrolls past it, so it stops eating grid space. Deliberately
+   one-way — no scroll-up auto-reveal — it only unfolds on tap, per the
+   user's explicit ask (matches design's Mobile.dc.html .m-controls). */
 (function(){
   var bar=el("grid-top"), lastY=window.scrollY, ticking=false;
   function onScroll(){
     ticking=false;
-    if(window.innerWidth>740){ bar.classList.remove("hide"); lastY=window.scrollY; return; }
-    var y=window.scrollY, dy=y-lastY;
-    if(y<60){ bar.classList.remove("hide"); }
-    else if(dy>4){ bar.classList.add("hide"); }
-    else if(dy<-4){ bar.classList.remove("hide"); }
+    if(window.innerWidth>740) return;
+    var y=window.scrollY, goingDown=y>lastY;
     lastY=y;
+    if(!bar.classList.contains("collapsed") && goingDown && y>90){ bar.classList.add("collapsed"); }
   }
   window.addEventListener("scroll",function(){
     if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
   },{passive:true});
+  el("collbar").addEventListener("click",function(){ bar.classList.remove("collapsed"); });
 })();
 
 /* ---------- init ---------- */
