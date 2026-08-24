@@ -12,8 +12,9 @@ artboards and `canvas.json` belong to the design session — read them, don't ed
 outbound links are verified against ModularGrid and manufacturer sites. Three languages
 at full key parity, opening in Finnish.
 
-Two things are not real yet: Sampo's wish list (`SELLERS[1].wants`) and the photos.
-Faceplates are drawn from each item's real part counts — honest placeholders, not press shots.
+One thing is not real yet: Sampo's wish list (`SELLERS[1].wants`). 24 of 29 items have a
+real manufacturer photo now — see **Photos** below. Faceplates are drawn from each item's
+real part counts and stay the honest fallback for the 5 that don't.
 
 ## Structure
 
@@ -41,6 +42,40 @@ gets a generic "that one's gone" page, since no record survives.
 
 Adding a seller is one entry in `SELLERS`. The filter, wish band, card pills and every
 count follow from it, up to ten. The name is the identifier; the dot is recall only.
+
+## Photos
+
+```js
+var PHOTOS = { ph3: "https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg" };
+```
+
+One URL per id, hotlinked — not downloaded into the repo. There's no image-hosting
+pipeline, so this is the reversible option; if a link ever dies, `onerror` swaps it live
+for the drawn faceplate via `photoFail()`, the same fallback an item with no entry gets by
+default.
+
+**Sourced from the manufacturer's own site only, never ModularGrid** — that's the one
+source explicitly off-limits (they've asked not to be scraped; this is a different act
+from linking out to them, which the site still does). 24 of 29 confirmed. The 5 without:
+
+| id | why |
+|---|---|
+| `nucleus` | riversynths.com — DNS itself is down (lame delegation), not just the page |
+| `hydrus` | serpensmodular.com — 404 on everything, confirmed via Wayback since ~Jan 2025 |
+| `mpc500` | delisted from Akai's current catalog, legacy downloads page has no photos |
+| `therapkid` | same — discontinued, manual/firmware only, no product photo left on site |
+| `quadraverb` | not on alesis.com at all — checked Mixers, the ~180-item legacy archive, and search |
+
+Don't substitute a third-party source (a retailer, a forum photo, a YouTube thumbnail) for
+these — the drawn faceplate is the honest state until the manufacturer's own site has
+something again, matching how the site already treats a missing translation.
+
+On the detail page, the photo lives in thumb slot 2 ("Panel drawing" is slot 1, always
+available). Slots 3/4 ("back" / "in rack") stay visually present but disabled — there's
+only ever one manufacturer photo per item, not real front/back/rack shots, so nothing to
+put there yet. `neotrellis` is a special case: it's a DIY build, so its photo is of the
+Adafruit component it's built from, not the finished instrument — `PHOTO_IS_COMPONENT`
+swaps in a credit line that says so rather than implying it's a shot of the actual build.
 
 ## Admin composer (`#/admin`)
 

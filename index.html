@@ -213,6 +213,8 @@ main{padding-bottom:3rem}
 @media (prefers-reduced-motion:reduce){ .card,.card:hover{transition:none; transform:none} }
 .shot{height:210px; background:var(--bg2); border-bottom:1px solid var(--line); display:flex; align-items:center;
   justify-content:center; overflow:hidden; position:relative}
+.shot img,.bench img{max-width:100%; max-height:100%; object-fit:contain}
+.pcredit{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:.5rem}
 .cbody{padding:.9rem 1rem 1rem; display:flex; flex-direction:column; gap:.45rem; flex:1}
 .cbody .mfr{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
 .cbody h3{font-size:1.05rem; letter-spacing:-.02em}
@@ -258,6 +260,7 @@ body.detail-open .browse{display:none}
 .thumb{height:64px; border:1px solid var(--line); background:var(--bg2); font-family:"IBM Plex Mono",monospace;
   font-size:.6rem; color:var(--muted); display:flex; align-items:center; justify-content:center}
 .thumb[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 2px var(--accent-soft); color:var(--accent)}
+.thumb:disabled{opacity:.4; cursor:default}
 .buycol{min-width:0}
 .buycol .mfr{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 .buycol h2{font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.035em; font-weight:800; margin:.35rem 0 .7rem}
@@ -719,6 +722,24 @@ function buildPanel(m,H,tone){
     els.map(function(s){return '<div style="'+s+'"></div>';}).join("")+'</div>'};
 }
 var panelHTML=function(m,H){ return buildPanel(m,H,m.tone).html; };
+/* Grid-card thumbnail: real photo when we have one, drawn faceplate otherwise.
+   onerror falls back live if a hotlinked image ever goes dead. */
+function shotHTML(m,H){
+  var url=PHOTOS[m.id];
+  if(!url) return panelHTML(m,H);
+  return '<img src="'+url+'" alt="'+esc(m.mfr+" "+m.name)+'" loading="lazy" '+
+    'onerror="photoFail(this,\''+m.id+'\','+H+')">';
+}
+/* Detail-page bench: slot 0 is always the drawn faceplate, slot 1 is the
+   real photo when one exists. Photos get a plain full-size <img>, not the
+   fixed-pixel faceplate sizing — fitPanel() must not touch this slot. */
+function benchHTML(m){
+  if(S.shot===1 && PHOTOS[m.id]){
+    return '<img src="'+PHOTOS[m.id]+'" alt="'+esc(m.mfr+" "+m.name)+'" '+
+      'style="width:100%;height:100%;object-fit:contain" onerror="photoFail(this,\''+m.id+'\',282)">';
+  }
+  return panelHTML(m,282);
+}
 
 /* Per-listing prose, fi/sv. English lives in RAW. Written as each language,
    not translated from the English — pending design's register check. */
@@ -799,7 +820,9 @@ var TX={
      
      inbox:"Menee yhteiseen postilaatikkoon — luemme sen molemmat.",
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
-     collectFirst:"Mieluiten nouto, mutta postitus onnistuu"},
+     collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
+     photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta",
+     pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
      video:"Video",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
@@ -808,7 +831,9 @@ var TX={
      
      inbox:"Går till en gemensam inkorg — vi läser den båda.",
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
-     collectFirst:"Helst hämtning, men vi kan posta"},
+     collectFirst:"Helst hämtning, men vi kan posta",
+     photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt",
+     pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
      video:"Video",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
@@ -817,7 +842,9 @@ var TX={
      
      inbox:"Goes to one shared inbox — we both read it.",
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
-     collectFirst:"Collection preferred, posting possible"}
+     collectFirst:"Collection preferred, posting possible",
+     photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site",
+     pcreditComp:"Photo of the component this is built from, not the finished build"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
 var t=function(){ return T[lang]; };
@@ -835,6 +862,43 @@ var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
 
 <script>
 /* Real, verified extras. Only ph3 has them — never fabricate these for the other 28. */
+/* Real manufacturer photos — sourced from each maker's own site, never
+   ModularGrid (explicitly off-limits per the user). Hotlinked, not downloaded
+   into the repo: no image-hosting pipeline exists yet, and this keeps things
+   reversible. Missing an id here just means no clean official photo was
+   found yet, not that the item lacks one forever — falls back to the drawn
+   faceplate, same as a broken/blocked link does at runtime via photoFail(). */
+var PHOTOS={
+  ph3:"https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg",
+  bf22:"https://www.befaco.org/wp-content/uploads/2025/09/BF22_web_front.png",
+  modor:"https://www.modormusic.com/images/FormantEurorack.png",
+  gvco:"https://www.ericasynths.lv/media/catalog/product/cache/91ba170ba44d2d19cc001c5ed5da8bb2/G/r/Graphic_VCO_ZKOk4hZ_3.png",
+  deltav:"https://cosmotronic.nl/cms/wp-content/uploads/2023/04/Delta-v-front.png",
+  proout:"https://cdn.shopify.com/s/files/1/0977/3366/products/pro-output-discontinued-module-529802_480x480.jpg",
+  performer:"https://raw.githubusercontent.com/westlicht/performer/master/doc/sequencer.jpg",
+  timber:"https://bastl-instruments.com/thumbs/eurorack/modules/timber/001-326x1200.jpg",
+  brainseed:"https://www.antimatteraudio.com/assets/brain-seed.png",
+  bishops:"https://shakmat.com/img/bm/bmFront.jpg",
+  klang:"https://elektrofon.no/assets/klang-front.png",
+  lubadh:"https://www.instruomodular.com/wp-content/uploads/2019/05/lubadh_new.png",
+  ufold:"https://intellijel.com/wp-content/uploads/2018/07/uFold-2018.jpg",
+  tuesday:"https://www.thisisnotrocketscience.nl/wp-content/uploads/2024/01/tuesday.png",
+  bsp:"https://medias.arturia.net/images/products/beatstep-pro/catalog-image.png",
+  progue:"https://www.jsisynth.com/images/store/Progue-promo-1.jpg",
+  neotrellis:"https://cdn-shop.adafruit.com/970x728/3938-09.jpg",
+  softpop:"https://bastl-instruments.com/thumbs/instruments/softpop/004-1677x1200.jpg",
+  id14:"https://audient.com/wp-content/uploads/2025/05/id14-top-image-scaled.webp",
+  kastledrum:"https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
+  thyme:"https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
+  darkenergy:"https://doepfer.de/Dark_Energy_II_medium.jpg",
+  gentlewham:"https://herbs---stones.com/wp-content/uploads/2023/07/gw2.jpg",
+  l12:"https://zoomcorp.com/media/original_images/L12_top.png.768x0_q60.png"
+};
+/* neotrellis is a DIY build — the photo is the Adafruit component it's built
+   from, not the finished instrument. Worth a different credit line. */
+var PHOTO_IS_COMPONENT={neotrellis:true};
+function photoFail(img,id,H){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H); }
+
 var EXTRA={ ph3:{
   depth:"40 mm", power:"+12V 145 mA · -12V 45 mA", panel:"Black, MK III revision",
   overview:[["Does","Dual morphing wavetable oscillator"],["Also does","Nonlinear waveshaper on a dedicated audio input"],
@@ -969,7 +1033,7 @@ function renderWish(){
 function card(m){
   var T2=t(), p=SELLER_BY_KEY[m.who];
   return '<button class="card" data-go="'+m.id+'">'+
-    '<div class="shot">'+panelHTML(m,182)+'</div>'+
+    '<div class="shot">'+shotHTML(m,182)+'</div>'+
     '<div class="cbody"><div class="mfr">'+esc(m.mfr)+'</div><h3>'+esc(m.name)+'</h3>'+
     '<p class="blurb">'+esc(blurbOf(m))+'</p>'+
     '<div class="tags">'+m.cats.slice(0,3).map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+
@@ -1011,9 +1075,12 @@ function detailHTML(m){
   var T2=t(), p=SELLER_BY_KEY[m.who], x=EXTRA[m.id]||{}, out="";
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
        '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
-    '<div class="buyarea"><div class="imgcol"><div class="bench">'+panelHTML(m,282)+'</div>'+
+    '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+'</div>'+
+    (PHOTOS[m.id]&&S.shot===1?'<p class="pcredit">'+esc(PHOTO_IS_COMPONENT[m.id]?T2.pcreditComp:T2.pcredit)+'</p>':'')+
     '<div class="thumbs">'+T2.shots.map(function(sh,i){
-      return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'">'+esc(sh)+'</button>'; }).join("")+'</div></div>'+
+      var has = i===0 || (i===1 && PHOTOS[m.id]);
+      return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'"'+(has?"":" disabled")+'>'+
+        esc(i===1&&PHOTOS[m.id]?T2.photoLabel:sh)+'</button>'; }).join("")+'</div></div>'+
     '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
     '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
@@ -1055,7 +1122,7 @@ function detailHTML(m){
   if(rel){ out+='<section class="sect"><h3>'+esc(T2.alsoLike)+'</h3><div class="alike">'+rel.map(function(r){
       var o=byId(r[0]); if(!o) return "";
       var op=SELLER_BY_KEY[o.who];
-      return '<button class="card" data-go="'+o.id+'"><div class="shot">'+panelHTML(o,182)+'</div>'+
+      return '<button class="card" data-go="'+o.id+'"><div class="shot">'+shotHTML(o,182)+'</div>'+
         '<div class="cbody"><div class="mfr">'+esc(o.mfr)+'</div><h3>'+esc(o.name)+'</h3>'+
         '<p class="why">'+esc(r[1])+'</p>'+
         '<div class="tags"><span class="ownerpill"><i style="background:'+op.dot+'"></i>'+esc(op.name)+'</span></div></div>'+
@@ -1224,7 +1291,8 @@ function route(){
       el("detail").innerHTML=detailHTML(m);
       document.body.classList.add("detail-open");
       document.title=m.mfr+" "+m.name+" — eurorack.fi";
-      fitPanel(m);
+      /* only the drawn-faceplate slot needs fitting — must not clobber a shown photo */
+      if(S.shot===0) fitPanel(m);
       window.scrollTo(0,0); return;
     }
     /* no record survives a delisting, so this is deliberately generic */
@@ -1253,7 +1321,7 @@ document.addEventListener("click",function(e){
     if(c){ S[k]=c.getAttribute("data-"+k); renderFilters(); renderGrid(); }
   });
   var sh=e.target.closest("[data-shot]");
-  if(sh){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
+  if(sh && !sh.disabled){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
   if(e.target.closest("#themeb")){
     var r=document.documentElement;
     var isDark=r.classList.contains("dark")||(!r.classList.contains("light")&&matchMedia("(prefers-color-scheme:dark)").matches);
