@@ -27,5 +27,43 @@
     "sv": "Två melodisekvensiatorer, en trumsekvensiator och sexton pads. Deck saver medföljer, och därför är den i fint skick."
   },
   "img": "https://medias.arturia.net/images/products/beatstep-pro/catalog-image.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "With the affordable and innovative Beatstep Pro, Arturia may have created a sequencer for the masses.",
+      "src": "Sound On Sound",
+      "url": "https://www.soundonsound.com/reviews/arturia-beatstep-pro"
+    },
+    "quotes": [
+      {
+        "t": "On switching directions, there's no mechanism to tie the switch to the pattern's end: the change kicks in immediately. This is one of several 'opportunities' to get out of sync.",
+        "s": "Sound On Sound · the honest caveat",
+        "crit": true
+      },
+      {
+        "t": "The one thing that can't be improved in software is the micro-USB adapter.",
+        "s": "Sound On Sound",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Arturia BeatStep Pro",
+        "url": "https://www.soundonsound.com/reviews/arturia-beatstep-pro"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Arturia BeatStep Pro Sequencer & Controller Demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=AOQ5JFDokqQ"
+      },
+      {
+        "title": "Arturia Beat Step Pro - SonicLAB Review",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=CBh-OMlwF7A"
+      }
+    ]
+  }
 }
