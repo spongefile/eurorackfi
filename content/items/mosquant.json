@@ -1,0 +1,32 @@
+{
+  "id": "mosquant",
+  "mfr": "Mosaic",
+  "name": "Quantizer 1U",
+  "price": 90,
+  "hp": 20,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Modulation",
+  "cats": [
+    "Quantizer",
+    "Arpeggiator",
+    "1U"
+  ],
+  "mgSlug": "mosaic-quantizer-black-panel",
+  "site": "mosaic1u.com",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 4,
+    "sl": 0,
+    "led": 12,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "1U quantizer with arpeggiator: scale, slew and octave shift, save and recall patches on the fly.",
+    "fi": "1U:n kvantisoija arpeggiaattorilla: skaala, slew ja oktaavisiirto, tallenna ja lataa patchit lennossa.",
+    "sv": "1U-kvantisering med arpeggiator: skala, slew och oktavförskjutning, spara och ladda patchar i farten."
+  },
+  "img": "https://images.squarespace-cdn.com/content/v1/602d6139bc12a57fb971c17a/1620254453975-Y0GH6COUGB18CZGRIWXB/Quantizer_blk.jpg",
+  "negotiating": false
+}
