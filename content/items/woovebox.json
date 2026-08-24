@@ -1,0 +1,33 @@
+{
+  "id": "woovebox",
+  "mfr": "Pocket Animal Audio",
+  "name": "Woovebox Pro",
+  "price": 250,
+  "hp": 0,
+  "fmt": "desk",
+  "who": "t",
+  "cat": "Synth",
+  "cats": [
+    "Synth",
+    "Sequencer",
+    "Sampler",
+    "Groovebox"
+  ],
+  "mgSlug": "",
+  "site": "woovebox.com",
+  "tone": "black",
+  "parts": {
+    "k": 1,
+    "j": 4,
+    "sl": 0,
+    "led": 16,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "Palm-sized groovebox: a 16-part multitimbral synth engine, a 512-slot sampler, and a full step/song sequencer in 69 g. Sixteen touch switches double as keys and pads, with wireless MIDI and a shared audio-out/sync jack for patching into a modular rig.",
+    "fi": "Kämmenkokoinen groovebox: 16-osainen monitimbraalinen syntetisaattori, 512-paikkainen sampleri ja täysi step/song-sekvensseri 69 grammassa. Kuusitoista kosketuskytkintä toimii sekä näppäiminä että padeina, mukana langaton MIDI ja audio-lähtö, joka toimii myös sync-lähtönä modulaariin patchattaessa.",
+    "sv": "Ficksynt med 16-delad multitimbral syntmotor, 512-plats sampler och en fullständig step/song-sekvensiator på 69 gram. Sexton touchknappar fungerar både som tangenter och pads, med trådlös MIDI och en audioutgång som även fungerar som sync-utgång vid patchning mot en modul."
+  },
+  "img": "https://d2kvhj8ixnchwb.cloudfront.net/woovebox-prod-kfsrescdn/gallery/71abaa78-2677-4020-8810-1127694d82d5.jpg.5049e8ae82b501c75ca315142f9171bf",
+  "negotiating": false
+}
