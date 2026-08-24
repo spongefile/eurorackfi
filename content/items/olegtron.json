@@ -6,8 +6,9 @@
   "hp": 0,
   "fmt": "desk",
   "who": "t",
-  "cat": "Oscillator",
+  "cat": "Other",
   "cats": [
+    "Other",
     "Oscillator",
     "DIY"
   ],

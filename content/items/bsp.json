@@ -6,8 +6,9 @@
   "hp": 0,
   "fmt": "desk",
   "who": "f",
-  "cat": "Sequencer",
+  "cat": "Other",
   "cats": [
+    "Other",
     "Sequencer",
     "Controller"
   ],
