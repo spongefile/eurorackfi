@@ -28,5 +28,42 @@
     "sv": "Tolvkanalsmixer, tolvspårs SD-inspelare och USB-interface, med fem separata hörlursmixar."
   },
   "img": "https://zoomcorp.com/media/original_images/L12_top.png.768x0_q60.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "It should make an absolutely brilliant tool for bands, serving as a live-sound mixer for small gigs, a multitrack recorder in the rehearsal room and a USB audio interface in the studio.",
+      "src": "Sound On Sound",
+      "url": "https://www.soundonsound.com/reviews/zoom-livetrak-l12"
+    },
+    "quotes": [
+      {
+        "t": "Zoom reimagine the stand-alone multitracker for the DAW generation.",
+        "s": "Sound On Sound"
+      },
+      {
+        "t": "One is that, speaking for myself, I'd have found solo buttons infinitely more useful than the mute buttons provided.",
+        "s": "Sound On Sound · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Zoom LiveTrak L-12",
+        "url": "https://www.soundonsound.com/reviews/zoom-livetrak-l12"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Hands-On Review | Zoom LiveTrak L-12",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=puekaAz1ArM"
+      },
+      {
+        "title": "Zoom L-12 One Year Review: Still worth it?",
+        "by": "Long-term review · YouTube",
+        "url": "https://www.youtube.com/watch?v=VDjXpacyg9Y"
+      }
+    ]
+  }
 }
