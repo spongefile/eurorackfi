@@ -29,5 +29,14 @@
   },
   "negotiating": false,
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/nucleus.jpg",
-  "imgIsModularGrid": true
+  "imgIsModularGrid": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "Nucleus demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=FbH30Y7Qc2Y"
+      }
+    ]
+  }
 }
