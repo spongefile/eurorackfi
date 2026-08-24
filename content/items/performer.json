@@ -28,5 +28,26 @@
     "sv": "Åttaspårig stegsekvensiator: sexton mönster per spår, 64 steg per mönster, OLED, MIDI och USB-host."
   },
   "img": "https://raw.githubusercontent.com/westlicht/performer/master/doc/sequencer.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "ModWiggler",
+        "title": "Westlicht PER|FORMER Sequencer (DIY)",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=213251"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Westlicht Performer | Part 01 | Introduction & First Patch",
+        "by": "Introduction · YouTube",
+        "url": "https://www.youtube.com/watch?v=f1Hh263Tp4s"
+      },
+      {
+        "title": "Tutorial: Westlicht Performer Eurorack Module - Basic Note & Modulation Sequencing",
+        "by": "Tutorial · YouTube",
+        "url": "https://www.youtube.com/watch?v=5jLsQil8mnU"
+      }
+    ]
+  }
 }
