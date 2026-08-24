@@ -788,6 +788,7 @@ var TX={
      prevPhoto:"Edellinen kuva", nextPhoto:"Seuraava kuva", filtersLabel:"Suodattimet",
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
+     pcreditIllus:"Havainnekuva, ei oikeaa valokuvaa",
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
@@ -802,6 +803,7 @@ var TX={
      prevPhoto:"Föregående bild", nextPhoto:"Nästa bild", filtersLabel:"Filter",
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
+     pcreditIllus:"Illustration, inte ett riktigt foto",
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
@@ -816,6 +818,7 @@ var TX={
      prevPhoto:"Previous photo", nextPhoto:"Next photo", filtersLabel:"Filters",
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
+     pcreditIllus:"Illustration, not a real photo",
      pcreditMG:"Photo:"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
@@ -825,6 +828,9 @@ var hasProse=function(m){ return lang==="en" || !!(m.blurb&&m.blurb[lang]); };
 var esc=function(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); };
 var eur=function(n){ return "€"+n; };
 var el=function(id){ return document.getElementById(id); };
+/* a case has hp set (its footprint) but isn't a module — keep it out of
+   anything that treats fmt:"eu" as "counts toward the rack/HP total" */
+var isCase=function(m){ return (m.cats||[]).indexOf("Case")>=0; };
 /* per-listing prose is authored in English only so far; sv/fi get the honest banner */
 var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
            sv:"Beskrivningen finns tills vidare bara på engelska.",
@@ -872,7 +878,7 @@ function renderChrome(){
   el("eyebrow").textContent=T2.eyebrow;
   el("h1").innerHTML=esc(T2.h1a)+'<em>'+esc(T2.h1b)+'</em>'+esc(T2.h1c);
   el("lede").textContent=T2.lede;
-  var eu=ITEMS.filter(function(m){return m.fmt==="eu";});
+  var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !isCase(m);});
   el("stats").innerHTML=
     stat(ITEMS.length,T2.sItems)+stat(eu.reduce(function(a,m){return a+m.hp;},0),T2.sHp)+stat(SELLERS.length,T2.sShelves);
   el("scaleCap").textContent=T2.scale;
@@ -904,8 +910,8 @@ function rackHTML(m,H){
     'onerror="photoFail(this,\''+m.id+'\','+H+')">';
 }
 function renderRack(){
-  var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !m.oneU;});
-  var oneU=ITEMS.filter(function(m){return m.fmt==="eu" && m.oneU;});
+  var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !m.oneU && !isCase(m);});
+  var oneU=ITEMS.filter(function(m){return m.fmt==="eu" && m.oneU && !isCase(m);});
   var total=eu.reduce(function(a,m){return a+m.hp;},0), half=total/2;
   var rows=[[]], run=0;
   eu.forEach(function(m){
@@ -1056,7 +1062,7 @@ function detailHTML(m){
     (m.img&&S.shot===1?'<p class="pcredit">'+
       (m.imgIsModularGrid&&m.mgSlug
         ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
-        : esc(m.imgIsComponent?T2.pcreditComp:T2.pcredit))
+        : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:T2.pcredit)))
       +'</p>':'')+
     (shotAvail(m).length>1
       ? '<div class="shotdots">'+T2.shots.map(function(sh,i){
