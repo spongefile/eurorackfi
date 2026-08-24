@@ -1,0 +1,33 @@
+{
+  "id": "chainsaw",
+  "mfr": "Acid Rain Technology",
+  "name": "Chainsaw",
+  "price": 230,
+  "hp": 4,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Polyphonic",
+    "Digital"
+  ],
+  "mgSlug": "acid-rain-technology-chainsaw",
+  "site": "acidraintechnology.com",
+  "tone": "black",
+  "parts": {
+    "k": 3,
+    "j": 6,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Three-voice polyphonic digital oscillator, seven waves per voice morphing from super saw to super square. Independent pitch per voice, detune and FM. Discontinued.",
+    "fi": "Kolmiääninen polyfoninen digitaalioskillaattori, seitsemän aaltoa per ääni morffaa super sawsta super squareen. Itsenäinen pitch per ääni, detune ja FM. Poistunut valikoimista.",
+    "sv": "Trestämmig polyfon digital oscillator, sju vågor per röst morfar från super saw till super square. Egen pitch per röst, detune och FM. Utgången ur sortimentet."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg",
+  "imgIsModularGrid": true,
+  "negotiating": false
+}
