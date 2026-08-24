@@ -1,0 +1,164 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 4950,
+      "title": "Home \u2014 the grid",
+      "page": "page-1"
+    },
+    {
+      "file": "Module.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 3060,
+      "title": "Module page \u2014 Piston Honda MK III",
+      "page": "page-1"
+    },
+    {
+      "file": "Mobile.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 390,
+      "h": 4280,
+      "title": "Phone \u2014 the grid",
+      "page": "page-1"
+    },
+    {
+      "file": "ModuleMobile.dc.html",
+      "x": 3300,
+      "y": 0,
+      "w": 390,
+      "h": 5900,
+      "title": "Phone \u2014 module page",
+      "page": "page-1"
+    },
+    {
+      "file": "AddModule.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1180,
+      "h": 2400,
+      "title": "Add a listing \u2014 admin",
+      "page": "page-2"
+    },
+    {
+      "file": "Logo.dc.html",
+      "x": 1280,
+      "y": 0,
+      "w": 1000,
+      "h": 1900,
+      "title": "Logo",
+      "page": "page-2"
+    },
+    {
+      "file": "LogoOptions.dc.html",
+      "x": 2380,
+      "y": 0,
+      "w": 1180,
+      "h": 2050,
+      "title": "Logo \u2014 options",
+      "page": "page-2"
+    },
+    {
+      "file": "Toiveet.dc.html",
+      "x": 3300,
+      "y": 0,
+      "w": 1280,
+      "h": 1550,
+      "title": "Toiveet \u2014 wish list page",
+      "page": "page-1"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "brief",
+      "x": 0,
+      "y": -210,
+      "w": 420,
+      "text": "eurorack.fi \u2014 29 items, 16 eurorack (207 HP) + 13 standalone. Two collections: spongefile 9, Sampo 20.\n\nFinnish blue only \u2014 the palette switcher is gone. Theme follows the OS unless you pick one.\n\nSpecs, HP, categories and outbound ModularGrid links are real. Sampo's wish list is the last placeholder on the site.",
+      "page": "page-1"
+    },
+    {
+      "id": "trade-note",
+      "x": 1400,
+      "y": -210,
+      "w": 420,
+      "text": "BOTH collections trade. The card signal is WHOSE it is \u2014 the name, with a dot for recall. Colour cannot carry ten sellers.\n\nWish content lives on its own page now, not inline on Home. Home's wish band is a short text-chip teaser; clicking it goes to Toiveet \u2014 see that artboard \u2014 which shows the full recognition grid per seller. Clicking a seller's grid on Toiveet is meant to return to Home with the owner filter pre-set to that seller.\n\nThere is no sold state: items no longer for sale are deleted outright.",
+      "page": "page-1"
+    },
+    {
+      "id": "photo-note",
+      "x": 2800,
+      "y": -210,
+      "w": 360,
+      "text": "Two phone frames at 390. The module page is the SAME file as the 1280 one \u2014 one responsive source, two frames.\n\nInherited breakpoints from index.html: 900 / 720 / 640.\n\nNOTE: the site does not offer try-before-you-buy. Trust comes from being a named local collective, not from testing. Do not reintroduce come-and-hear-it copy.",
+      "page": "page-1"
+    },
+    {
+      "id": "i18n",
+      "x": 0,
+      "y": -560,
+      "w": 420,
+      "text": "Three languages, opens in Finnish. Finnish is written AS Finnish \u2014 \"Other stuff\" is \"Muut\".\n\nPer-listing prose is English-only for now, so the missing-translation banner is the NORMAL state on module pages, not an edge case.\n\nNav is three items: Everything / What we want / Contact. \"Why not tori\" was cut.",
+      "page": "page-1"
+    },
+    {
+      "id": "add-flow",
+      "x": 460,
+      "y": -560,
+      "w": 440,
+      "text": "Designed \u2014 see the Admin & brand page.",
+      "page": "page-1"
+    },
+    {
+      "id": "admin-note",
+      "page": "page-2",
+      "x": 0,
+      "y": -250,
+      "w": 460,
+      "text": "Add a listing. Type maker + model, everything else is fetched and stays editable.\n\nEvery value carries its source: solid blue = ModularGrid, dashed amber = generated. The price shows the listings behind it, never a bare number.\n\nFinnish and Swedish are both required \u2014 Publish is disabled while Swedish is missing, and machine translation is offered but flagged for a read-through, never applied silently.\n\nDelta-V specs are real. The used-price comparisons are placeholders."
+    },
+    {
+      "id": "logo-note",
+      "page": "page-2",
+      "x": 1280,
+      "y": -250,
+      "w": 420,
+      "text": "The o is a 3.5 mm jack \u2014 nut ring and plug.\n\nSpacing was measured, not eyeballed: the word set with a real o puts 4px either side of it at 86px. The ring needs a little more air than a solid bowl, so it sits at 6px / 6px \u2014 even, and still one word.\n\nOnly the full stop before fi takes the accent. The favicon is a simplified derivative, not a constraint on the mark."
+    },
+    {
+      "id": "logo-options",
+      "page": "page-2",
+      "x": 2380,
+      "y": -250,
+      "w": 420,
+      "text": "A: original vs current, with the numbers.\nB: seven variants on the jack.\nC: a different approach \u2014 the name as a faceplate between rails, no letter substitution.\n\nJudged on how each reads at real sizes, not on surviving 16px."
+    },
+    {
+      "id": "toiveet-note",
+      "page": "page-1",
+      "x": 3300,
+      "y": -280,
+      "w": 440,
+      "text": "Dedicated wish-list page \u2014 nav item 2's real destination.\n\nFlow: Home's wish band (text chips) is a teaser \u2014 click it, land here. Here, each seller's whole card is a link back to Home with the owner filter pre-applied to them.\n\nNeither hop is a real navigation in this mockup \u2014 every .dc.html is its own sandboxed artboard, there is no cross-artboard router here. Both links are drawn as the real, working thing they need to become; dev builds the actual routing/filter-param behaviour.\n\nspongefile's five wants are real, drawn to true HP scale. Sampo's four are still placeholder \u2014 dashed outline, no panel, on purpose."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "page-1"
+  },
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Site"
+    },
+    {
+      "id": "page-2",
+      "name": "Admin & brand"
+    }
+  ]
+}
