@@ -1,0 +1,32 @@
+{
+  "id": "phones1u",
+  "mfr": "Intellijel",
+  "name": "Headphones 1U",
+  "price": 45,
+  "hp": 10,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "Headphone",
+    "Interface"
+  ],
+  "mgSlug": "intellijel-headphones-1u",
+  "site": "intellijel.com",
+  "tone": "alu",
+  "parts": {
+    "k": 1,
+    "j": 3,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "1U headphone amp with real bass response, doubles as a stereo line output. Left normalled to right for mono sources.",
+    "fi": "1U:n kuulokevahvistin oikealla bassovasteella, toimii myös stereolinjaulostulona. Vasen normalisoitu oikealle monolähteitä varten.",
+    "sv": "1U hörlursförstärkare med riktig bas, fungerar även som stereo linjeutgång. Vänster normaliserad till höger för monokällor."
+  },
+  "img": "https://intellijel.com/wp-content/uploads/2017/01/Phones-1U-v2.png",
+  "negotiating": false
+}
