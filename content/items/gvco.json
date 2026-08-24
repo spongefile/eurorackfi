@@ -28,5 +28,42 @@
     "sv": "Rita egna vågformer, stapla dem till tabeller och morfa, vik, bitkrossa och FM:a det som kommer ut."
   },
   "img": "https://www.ericasynths.lv/media/catalog/product/cache/91ba170ba44d2d19cc001c5ed5da8bb2/G/r/Graphic_VCO_ZKOk4hZ_3.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "The sound is clean, modern, punchy and detailed thanks to the unit running at 96kHz — quite different to some low bit-rate wavetable oscillators on the market.",
+      "src": "Sound On Sound",
+      "url": "https://www.soundonsound.com/reviews/erica-synths-graphic-vco"
+    },
+    "quotes": [
+      {
+        "t": "Wavetable interpolation is smooth as butter and with the built-in effects you can dirty things up in many different ways.",
+        "s": "Sound On Sound"
+      },
+      {
+        "t": "Drawing your own waveforms on the Graphic VCO feels like a mixed bag... some of the other tools feel awkward, at least with my fat fingers.",
+        "s": "Sound On Sound · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Erica Synths Graphic VCO",
+        "url": "https://www.soundonsound.com/reviews/erica-synths-graphic-vco"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Erica Synths - Graphic VCO **In Depth Eurorack Demo**",
+        "by": "In-depth demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=Ef5hFZe9cQ0"
+      },
+      {
+        "title": "Erica Synths - Graphic VCO *Introduction & First Patch Jam*",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=xCEpfM40YJE"
+      }
+    ]
+  }
 }
