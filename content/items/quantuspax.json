@@ -1,0 +1,32 @@
+{
+  "id": "quantuspax",
+  "mfr": "Noise Engineering",
+  "name": "Quantus Pax",
+  "price": 250,
+  "hp": 6,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Modulation",
+  "cats": [
+    "Utility",
+    "Polyphonic",
+    "Discontinued"
+  ],
+  "mgSlug": "noise-engineering-quantus-pax",
+  "site": "noiseengineering.us",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 15,
+    "sl": 0,
+    "led": 4,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Four-channel precision adder and buffered mult with polyphonic transposition -- three Xpose inputs shift all four channels at once for patch-wide key changes. Discontinued.",
+    "fi": "Nelikanavainen tarkka summain ja puskuroitu mult, jossa polyfoninen transponointi – kolme Xpose-tuloa siirtävät kaikkia neljää kanavaa kerralla sävellajin vaihtoon. Poistunut valikoimista.",
+    "sv": "Fyrkanalig precisionsaddera och buffrad mult med polyfon transponering – tre Xpose-ingångar flyttar alla fyra kanaler samtidigt för tonartsbyten. Utgången ur sortimentet."
+  },
+  "img": "https://cdn.shopify.com/s/files/1/0552/0923/0485/products/quantus-pax-black-1024x2048.png",
+  "negotiating": false
+}
