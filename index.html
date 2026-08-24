@@ -293,11 +293,18 @@ body.detail-open .browse{display:none}
 .imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0; position:sticky; top:24px}
 .bench{background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
   justify-content:center; flex:0 0 auto; height:400px; overflow:hidden; position:relative}
-.thumbs{display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem}
-.thumb{height:64px; border:1px solid var(--line); background:var(--bg2); font-family:"IBM Plex Mono",monospace;
-  font-size:.6rem; color:var(--muted); display:flex; align-items:center; justify-content:center}
-.thumb[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 2px var(--accent-soft); color:var(--accent)}
-.thumb:disabled{opacity:.4; cursor:default}
+.benchnav{position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--line); background:var(--bg); color:var(--ink); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:.85; transition:opacity .15s ease, border-color .15s ease, color .15s ease; z-index:2}
+.benchnav:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+.benchnav svg{width:16px; height:16px}
+.benchnav.prev{left:10px}
+.benchnav.next{right:10px}
+.shotdots{display:flex; justify-content:center; align-items:center; gap:.4rem}
+.shotdot{width:8px; height:8px; padding:0; border:none; border-radius:50%; background:var(--line2); cursor:pointer;
+  transition:width .15s ease, border-radius .15s ease, background .15s ease}
+.shotdot[aria-pressed="true"]{width:20px; border-radius:4px; background:var(--accent)}
+.shotdot:disabled{background:var(--line); opacity:.4; cursor:default; pointer-events:none}
 .buycol{min-width:0}
 .buycol .mfr{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 .buycol h2{font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.035em; font-weight:800; margin:.35rem 0 .7rem}
@@ -414,7 +421,7 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
   .shot{height:180px}
   .bench{height:260px}
   .imgcol{position:static}
-  .thumbs{grid-template-columns:repeat(2,1fr)}
+  .benchnav{width:30px; height:30px}
   .countline{padding-top:1rem}
   .pullquote{font-size:1.25rem}
 }
@@ -728,6 +735,7 @@ var TX={
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
      photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta", seeFull:"Katso koko lista",
+     prevPhoto:"Edellinen kuva", nextPhoto:"Seuraava kuva",
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
      pcreditMG:"Kuva:"},
@@ -741,6 +749,7 @@ var TX={
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
      collectFirst:"Helst hämtning, men vi kan posta",
      photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt", seeFull:"Se hela listan",
+     prevPhoto:"Föregående bild", nextPhoto:"Nästa bild",
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
      pcreditMG:"Bild:"},
@@ -754,6 +763,7 @@ var TX={
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
      collectFirst:"Collection preferred, posting possible",
      photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site", seeFull:"See full list",
+     prevPhoto:"Previous photo", nextPhoto:"Next photo",
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
      pcreditMG:"Photo:"}
@@ -925,6 +935,13 @@ function renderGrid(){
 <script>
 /* ---------- module page ---------- */
 var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo — back"],["rack","Photo — in the rack"]];
+/* which of the 4 shot slots this module actually has — only 0 (drawing) and
+   1 (photo, if any) exist today; back/rack stay reserved for when that data
+   shows up, same slots the dots already have room for */
+function shotHas(m,i){ return i===0 || (i===1 && !!m.img); }
+function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i); }); }
+var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 function specRows(m){
   var T2=t(), x=m.extra||{}, rows=[];
@@ -940,16 +957,24 @@ function detailHTML(m){
   var T2=t(), p=SELLER_BY_KEY[m.who], x=m.extra||{}, out="";
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
        '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
-    '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+'</div>'+
+    '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+
+    (shotAvail(m).length>1
+      ? '<button class="benchnav prev" data-shotdir="prev" aria-label="'+esc(T2.prevPhoto)+'">'+CHEVRON_L+'</button>'+
+        '<button class="benchnav next" data-shotdir="next" aria-label="'+esc(T2.nextPhoto)+'">'+CHEVRON_R+'</button>'
+      : '')+
+    '</div>'+
     (m.img&&S.shot===1?'<p class="pcredit">'+
       (m.imgIsModularGrid&&m.mgSlug
         ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
         : esc(m.imgIsComponent?T2.pcreditComp:T2.pcredit))
       +'</p>':'')+
-    '<div class="thumbs">'+T2.shots.map(function(sh,i){
-      var has = i===0 || (i===1 && m.img);
-      return '<button class="thumb" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'"'+(has?"":" disabled")+'>'+
-        esc(i===1&&m.img?T2.photoLabel:sh)+'</button>'; }).join("")+'</div></div>'+
+    (shotAvail(m).length>1
+      ? '<div class="shotdots">'+T2.shots.map(function(sh,i){
+          var has = shotHas(m,i);
+          return '<button class="shotdot" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'" aria-label="'+
+            esc(i===1&&m.img?T2.photoLabel:sh)+'"'+(has?"":" disabled")+'></button>'; }).join("")+'</div>'
+      : '')+
+    '</div>'+
     '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
     '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
@@ -1229,6 +1254,18 @@ document.addEventListener("click",function(e){
   });
   var sh=e.target.closest("[data-shot]");
   if(sh && !sh.disabled){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
+  var nav=e.target.closest("[data-shotdir]");
+  if(nav){
+    var mm=byId(location.hash.slice(4));
+    if(mm){
+      var avail=shotAvail(mm), idx=avail.indexOf(S.shot);
+      if(idx<0) idx=0;
+      var dir=nav.getAttribute("data-shotdir")==="next"?1:-1;
+      S.shot=avail[(idx+dir+avail.length)%avail.length];
+      route();
+    }
+    return;
+  }
   /* Toiveet → Home, that seller's owner filter preset. Runs before the
      anchor's own href="#/" navigation, so S.who is already set by the
      time hashchange fires route(). */
