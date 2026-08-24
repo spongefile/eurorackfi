@@ -927,7 +927,7 @@ var RELATED={ ph3:[
   ["hydrus","Waveform mutator for building timbres out of raw inputs"]]};
 
 /* ---------- state ---------- */
-var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:0};
+var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null};  /* null = not yet decided for this item */
 
 function matches(m){
   if(S.fmt!=="all" && m.fmt!==S.fmt) return false;
@@ -1261,7 +1261,9 @@ function copyText(txt){
 }
 
 /* ---------- routing ---------- */
-function openDetail(id){ S.shot=0; location.hash="#/m/"+id; }
+/* photo is the default view whenever one exists — matches the grid card,
+   which already shows the photo first; drawn panel becomes the alternate */
+function openDetail(id){ S.shot=PHOTOS[id]?1:0; location.hash="#/m/"+id; }
 function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0) location.hash="#/"; }
 function route(){
   var h=location.hash;
@@ -1288,6 +1290,9 @@ function route(){
   if(h.indexOf("#/m/")===0){
     var m=byId(h.slice(4));
     if(m){
+      /* a direct/bookmarked load skips openDetail(), so decide once here —
+         but never override a click the user already made on this item */
+      if(S.shot===null) S.shot=PHOTOS[m.id]?1:0;
       el("detail").innerHTML=detailHTML(m);
       document.body.classList.add("detail-open");
       document.title=m.mfr+" "+m.name+" — eurorack.fi";
