@@ -1,0 +1,31 @@
+{
+  "id": "binseq",
+  "mfr": "Noise Engineering",
+  "name": "Bin Seq",
+  "price": 130,
+  "hp": 4,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Gate"
+  ],
+  "mgSlug": "noise-engineering-bin-seq-black",
+  "site": "noiseengineering.us",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 3,
+    "sl": 8,
+    "led": 9,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Eight-step gate sequencer, each step a three-way switch: off, tied or short gate. Reset input keeps patterns any length you want.",
+    "fi": "Kahdeksanaskelinen gate-sekvensseri, jokainen askel kolmiasentoinen kytkin: pois, sidottu tai lyhyt gate. Reset-tulo pitää kuvion minkä pituisena haluat.",
+    "sv": "Åttastegs gate-sekvensiator, varje steg en trevägsomkopplare: av, bunden eller kort gate. Reset-ingång håller mönstret hur långt du vill."
+  },
+  "img": "https://cdn.shopify.com/s/files/1/0552/0923/0485/products/bin-seq-black-1024x2048.png",
+  "negotiating": false
+}
