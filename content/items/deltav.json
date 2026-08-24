@@ -28,5 +28,19 @@
     "sv": "Analog dubbel funktionsgenerator med en VCA per kanal. Envelope, slew eller LFO ur samma tio HP."
   },
   "img": "https://cosmotronic.nl/cms/wp-content/uploads/2023/04/Delta-v-front.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Cosmotronic Delta-V Dual Amped Function Generator 1/2: envelope & LFO",
+        "by": "Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=8ibLyf2_OIY"
+      },
+      {
+        "title": "Cosmotronic Delta-V Dual Amped Function Generator 2/2: VCA applications",
+        "by": "Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=tEVoLHwM9ys"
+      }
+    ]
+  }
 }
