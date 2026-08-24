@@ -28,5 +28,14 @@
     "sv": "Utgångssteg med 23 Vpp headroom innan det klipper, och en hörlursförstärkare som faktiskt är bra."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/proout.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Overlooked Module #5: WMD Pro Output",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=uw29mO2LFuw"
+      }
+    ]
+  }
 }
