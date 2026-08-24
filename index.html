@@ -265,6 +265,16 @@ main{padding-bottom:3rem}
 .ownerpill{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2); border:1px solid var(--line2);
   padding:.14rem .4rem; display:inline-flex; align-items:center; gap:.35rem; position:relative}
 .ownerpill i{width:7px; height:7px; border-radius:50%; flex:0 0 auto}
+.ownerpill.haspop{cursor:pointer}
+.wishpop{position:absolute; right:0; bottom:calc(100% + 9px); width:220px; background:var(--panel); border:1px solid var(--line2);
+  box-shadow:var(--shadow); padding:.65rem .7rem .7rem; display:none; z-index:40; text-align:left}
+.wishpop.open{display:block}
+.ownerpill.haspop:hover .wishpop, .ownerpill.haspop:focus-visible .wishpop{display:block}
+.wishpop .wp-h{display:block; font-family:"IBM Plex Mono",monospace; font-size:.6rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.5rem}
+.wishpop .wp-l{display:flex; flex-wrap:wrap; gap:.3rem}
+.wishpop .want{font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line2); color:var(--ink2); padding:.14rem .38rem}
+.tags .wishpop{bottom:auto; top:calc(100% + 8px); right:auto; left:0}
 .cardfoot{display:flex; align-items:center; gap:.6rem; padding:.6rem 1rem; border-top:1px solid var(--line); background:var(--panel2)}
 .price{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.95rem; font-variant-numeric:tabular-nums; white-space:nowrap; flex:0 0 auto}
 .hpstamp{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); border-left:1px solid var(--line2); padding-left:.6rem}
@@ -798,7 +808,7 @@ var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
 function photoFail(img,id,H){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H); }
 
 /* ---------- state ---------- */
-var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null};  /* null = not yet decided for this item */
+var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null,pop:null};  /* null = not yet decided for this item */
 
 function matches(m){
   if(S.fmt!=="all" && m.fmt!==S.fmt) return false;
@@ -925,7 +935,12 @@ function card(m){
     '<div class="cbody"><div class="mfr">'+esc(m.mfr)+'</div><h3>'+esc(m.name)+'</h3>'+
     '<p class="blurb">'+esc(blurbOf(m))+'</p>'+
     '<div class="tags">'+m.cats.slice(0,3).map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+
-    '<span class="ownerpill"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</span></div></div>'+
+    '<span class="ownerpill haspop" data-pop="'+m.id+'"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
+      '<span class="wishpop'+(S.pop===m.id?" open":"")+'">'+
+        '<span class="wp-h">'+esc(p.name+" "+T2.hunting)+'</span>'+
+        '<span class="wp-l">'+(WANTS[p.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span>'+
+      '</span>'+
+    '</span></div></div>'+
     '<div class="cardfoot"><span class="price">'+eur(m.price)+'</span>'+
     (m.hp>0?'<span class="hpstamp">'+m.hp+' '+esc(T2.sHp)+'</span>':'')+
     (m.negotiating
@@ -1258,6 +1273,8 @@ var GONE={
 
 /* ---------- events ---------- */
 document.addEventListener("click",function(e){
+  var pop=e.target.closest("[data-pop]");
+  if(pop){ e.stopPropagation(); S.pop=(S.pop===pop.getAttribute("data-pop"))?null:pop.getAttribute("data-pop"); renderGrid(); return; }
   var g=e.target.closest("[data-go]");
   if(g){ openDetail(g.getAttribute("data-go")); return; }
   var L=e.target.closest("[data-lang]");
