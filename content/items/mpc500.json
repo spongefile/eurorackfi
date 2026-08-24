@@ -26,5 +26,51 @@
     "fi": "Pieni MPC. Kaksitoista padia, samplaus ja sekvensointi, kulkee paristoilla ja mahtuu oikeasti laukkuun.",
     "sv": "Den lilla MPC:n. Tolv pads, sampler och sekvensiator, går på batterier och får plats i väskan på riktigt."
   },
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "Immediate, fun and intuitive are the three words that spring to mind with this latest MPC.",
+      "src": "MusicRadar",
+      "url": "https://www.musicradar.com/reviews/tech/akai-mpc500-music-production-centre-23929"
+    },
+    "quotes": [
+      {
+        "t": "The most affordable way to lay your hands on the MPC sampling and sequencing feature set.",
+        "s": "Sound On Sound"
+      },
+      {
+        "t": "Nothing rivals it for portability and instant rhythmic gratification.",
+        "s": "MusicRadar"
+      },
+      {
+        "t": "The smaller display affects how fast and easy it is to use this machine, which undermines one of the traditional advantages of using an MPC.",
+        "s": "Sound On Sound · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Akai MPC500",
+        "url": "https://www.soundonsound.com/reviews/akai-mpc500"
+      },
+      {
+        "src": "MusicRadar",
+        "title": "Akai MPC500 Music Production Centre review",
+        "url": "https://www.musicradar.com/reviews/tech/akai-mpc500-music-production-centre-23929"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Akai MPC500 demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=iBw5DRUrtjU"
+      },
+      {
+        "title": "Akai MPC 500 Quick Review and Beat",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=tX3giGWHaCs"
+      }
+    ]
+  }
 }
