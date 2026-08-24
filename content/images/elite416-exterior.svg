@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b2b30"/>
+      <stop offset="1" stop-color="#141416"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3a40"/>
+      <stop offset="1" stop-color="#1c1c1f"/>
+    </linearGradient>
+    <radialGradient id="latch" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#9a9a9e"/>
+      <stop offset="55%" stop-color="#5c5c60"/>
+      <stop offset="100%" stop-color="#2a2a2d"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="30" y="60" width="540" height="300" rx="26" fill="url(#body)" stroke="#0a0a0b" stroke-width="2"/>
+  <rect x="30" y="60" width="540" height="300" rx="26" fill="none" stroke="#3d3d43" stroke-width="1" opacity=".5"/>
+
+  <!-- ballistic-texture stipple -->
+  <g opacity=".08" fill="#ffffff">
+    <circle cx="90" cy="110" r="1.4"/><circle cx="130" cy="150" r="1.4"/><circle cx="70" cy="200" r="1.4"/>
+    <circle cx="180" cy="90" r="1.4"/><circle cx="220" cy="220" r="1.4"/><circle cx="300" cy="120" r="1.4"/>
+    <circle cx="340" cy="260" r="1.4"/><circle cx="400" cy="100" r="1.4"/><circle cx="460" cy="180" r="1.4"/>
+    <circle cx="500" cy="300" r="1.4"/><circle cx="150" cy="320" r="1.4"/><circle cx="250" cy="330" r="1.4"/>
+    <circle cx="520" cy="90" r="1.4"/><circle cx="380" cy="330" r="1.4"/><circle cx="110" cy="270" r="1.4"/>
+  </g>
+
+  <!-- recessed panel line, flight-case styling -->
+  <rect x="52" y="82" width="496" height="256" rx="14" fill="none" stroke="#3d3d43" stroke-width="1.5" opacity=".6"/>
+
+  <!-- top handle, recessed -->
+  <rect x="255" y="38" width="90" height="34" rx="10" fill="#0a0a0b"/>
+  <rect x="263" y="44" width="74" height="20" rx="8" fill="url(#handle)" stroke="#0a0a0b" stroke-width="1.5"/>
+
+  <!-- two latches -->
+  <g>
+    <rect x="76" y="192" width="34" height="46" rx="5" fill="#141416" stroke="#000" stroke-width="1"/>
+    <rect x="80" y="198" width="26" height="16" rx="3" fill="url(#latch)"/>
+    <rect x="80" y="219" width="26" height="12" rx="2" fill="url(#latch)"/>
+    <circle cx="93" cy="206" r="2" fill="#141416"/>
+  </g>
+  <g>
+    <rect x="490" y="192" width="34" height="46" rx="5" fill="#141416" stroke="#000" stroke-width="1"/>
+    <rect x="494" y="198" width="26" height="16" rx="3" fill="url(#latch)"/>
+    <rect x="494" y="219" width="26" height="12" rx="2" fill="url(#latch)"/>
+    <circle cx="507" cy="206" r="2" fill="#141416"/>
+  </g>
+
+  <!-- corner protectors -->
+  <g fill="#0a0a0b" stroke="#3d3d43" stroke-width="1">
+    <path d="M30 86 v-26 a26 26 0 0 1 26 -26 h26 v14 h-24 a12 12 0 0 0 -12 12 v26 z"/>
+    <path d="M570 86 v-26 a26 26 0 0 0 -26 -26 h-26 v14 h24 a12 12 0 0 1 12 12 v26 z"/>
+    <path d="M30 334 v26 a26 26 0 0 0 26 26 h26 v-14 h-24 a12 12 0 0 1 -12 -12 v-26 z"/>
+    <path d="M570 334 v26 a26 26 0 0 1 -26 26 h-26 v-14 h24 a12 12 0 0 0 12 -12 v-26 z"/>
+  </g>
+
+  <!-- embossed wordmark, front corner -->
+  <text x="466" y="330" font-family="Archivo, Helvetica Neue, Arial, sans-serif" font-weight="800"
+        font-size="17" letter-spacing="2" fill="#0a0a0b" opacity=".85">ELITE</text>
+  <text x="465" y="329" font-family="Archivo, Helvetica Neue, Arial, sans-serif" font-weight="800"
+        font-size="17" letter-spacing="2" fill="#3a3a40" opacity=".6">ELITE</text>
+</svg>

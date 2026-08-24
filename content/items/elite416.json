@@ -26,5 +26,7 @@
     "fi": "12U / 104HP:n kannettava kotelo, koivuvaneria mustan ballistisen pinnoitteen alla, lentokoneen käsimatkatavarakokoa. Mukana kaksi virtakiskoa, noin 2,5A +12V-kiskolla.",
     "sv": "12U / 104HP bärbar låda, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. Två strömskenor ingår, ungefär 2,5A på +12V."
   },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite416-exterior.svg",
+  "imgIsIllustration": true,
   "negotiating": false
 }
