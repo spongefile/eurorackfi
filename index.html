@@ -170,13 +170,26 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
-.collbar{display:none; width:100%; align-items:center; gap:.5rem; min-height:48px; background:none; border:none;
+.collbar{width:100%; align-items:center; gap:.5rem; background:none; border:none;
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
 .collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
 .collbar .collcount{margin-left:auto; color:var(--muted)}
+@media(min-width:741px){ .collbar{display:none} }
 @media(max-width:740px){
-  .controls.collapsed .wrap{display:none}
-  .controls.collapsed .collbar{display:flex}
+  /* visibility is paired with a transition-delay so each side of the fold
+     stays genuinely inert (no tab-focus or screen-reader exposure) once
+     it's fully hidden, not just visually clipped by max-height:0 — the
+     delay is 0 going visible, and matches the shrink duration going hidden
+     so it stays interactive for the full closing animation. */
+  .collbar{display:flex; max-height:0; overflow:hidden; opacity:0; visibility:hidden;
+    transition:max-height .2s ease, opacity .15s ease, visibility 0s linear .2s}
+  .controls .wrap{max-height:300px; overflow:hidden; opacity:1; visibility:visible;
+    transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear 0s}
+  .controls.collapsed .wrap{max-height:0; opacity:0; padding-top:0; padding-bottom:0; visibility:hidden;
+    transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear .2s}
+  .controls.collapsed .collbar{max-height:48px; opacity:1; visibility:visible;
+    transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
+  @media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
 }
 .search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.4rem .7rem; flex:1 1 210px; max-width:300px}
 .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); width:100%}
@@ -275,6 +288,13 @@ main{padding-bottom:3rem}
 .wishpop .wp-l{display:flex; flex-wrap:wrap; gap:.3rem}
 .wishpop .want{font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line2); color:var(--ink2); padding:.14rem .38rem}
 .tags .wishpop{bottom:auto; top:calc(100% + 8px); right:auto; left:0}
+/* .card itself is a plain grid item (no stacking context), so its own
+   z-index:40 popover can still end up visually behind the card in the row
+   below — bump the whole open card above its grid siblings while its
+   popover is showing, hover or tap alike. */
+.card:has(.ownerpill.haspop:hover),
+.card:has(.ownerpill.haspop:focus-visible),
+.card:has(.wishpop.open){ position:relative; z-index:5 }
 .cardfoot{display:flex; align-items:center; gap:.6rem; padding:.6rem 1rem; border-top:1px solid var(--line); background:var(--panel2)}
 .price{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.95rem; font-variant-numeric:tabular-nums; white-space:nowrap; flex:0 0 auto}
 .hpstamp{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); border-left:1px solid var(--line2); padding-left:.6rem}
@@ -1352,7 +1372,13 @@ var rz; window.addEventListener("resize",function(){
   window.addEventListener("scroll",function(){
     if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
   },{passive:true});
-  el("collbar").addEventListener("click",function(){ bar.classList.remove("collapsed"); });
+  el("collbar").addEventListener("click",function(){
+    bar.classList.remove("collapsed");
+    /* reset the baseline so the very next scroll tick (even a 1px reflow
+       jitter from the bar's own height change) isn't misread as "still
+       scrolling down past 90px" and re-collapsed on the spot */
+    lastY=window.scrollY;
+  });
 })();
 
 /* ---------- init ---------- */
