@@ -28,5 +28,42 @@
     "sv": "Sexstämmig analog trumsynt genom ett tvåpoligt masterfilter. Fingertrumma eller håll knapparna nere och drona."
   },
   "img": "https://herbs---stones.com/wp-content/uploads/2023/07/gw2.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "The voices all sound great, with some nice heft to them and offer a nice range of tone and timbre.",
+      "src": "Waveform Magazine",
+      "url": "https://waveformmagazine.com/waveform-reviews/gentle-wham-herbs-and-stones/"
+    },
+    "quotes": [
+      {
+        "t": "The filter doesn't close completely in either direction but like the rest of Gentle Wham has a super characterful sound.",
+        "s": "Waveform Magazine"
+      },
+      {
+        "t": "Unfortunately there isn't any latching on the gate buttons which would be nice in order to more easily utilize the voices in drone mode.",
+        "s": "Waveform Magazine · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Waveform Magazine",
+        "title": "Gentle Wham - Herbs and Stones",
+        "url": "https://waveformmagazine.com/waveform-reviews/gentle-wham-herbs-and-stones/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Herbs and Stones Gentle Wham | Drum and Drone Synthesizer",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=2vBYdO_qM08"
+      },
+      {
+        "title": "a Drum Synth with Attitude! HERBS & STONES Gentle Wham",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=i9tsFQDKsqM"
+      }
+    ]
+  }
 }
