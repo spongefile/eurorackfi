@@ -186,7 +186,12 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .chip.faint[aria-pressed="true"]:hover{border-style:solid; color:var(--on)}
 .sep{width:1px; align-self:stretch; background:var(--line2); margin:0 .2rem}
 select.sort{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.34rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2); margin-left:auto}
-.catscroll{display:flex; gap:.35rem; min-width:0}
+/* separates the whole controls row (search/format/owner/sort) from the
+   category row below it — a different divider from .sep, which is within
+   that top row. Values are the user's own hand-tuned adjustment on top of
+   design's first pass, not design's original numbers. */
+.catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%;
+  border-top:1px solid var(--line); padding-top:.85rem; padding-bottom:.85rem; margin-top:.9rem}
 
 /* ---------- wish band ---------- */
 .wishband{padding:1.75rem 0 .5rem}
