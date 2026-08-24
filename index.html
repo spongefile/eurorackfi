@@ -165,7 +165,9 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .rackfig figcaption{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.7rem; display:flex; justify-content:space-between; gap:1rem}
 
 /* ---------- filter bar ---------- */
-.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line); transition:transform .22s ease}
+.controls.hide{transform:translateY(-100%)}
+@media (prefers-reduced-motion:reduce){ .controls{transition:none} }
 .controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
 .search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.4rem .7rem; flex:1 1 210px; max-width:300px}
 .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); width:100%}
@@ -1262,6 +1264,25 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeDetai
 window.addEventListener("hashchange",route);
 var rz; window.addEventListener("resize",function(){
   clearTimeout(rz); rz=setTimeout(function(){ if(location.hash.indexOf("#/m/")===0) route(); },150); });
+
+/* mobile only: hide the sticky filter bar while scrolling down to give the
+   grid room, bring it back on any upward scroll. Desktop has space for it
+   parked at top, so this stays scoped to the narrow breakpoint. */
+(function(){
+  var bar=el("grid-top"), lastY=window.scrollY, ticking=false;
+  function onScroll(){
+    ticking=false;
+    if(window.innerWidth>740){ bar.classList.remove("hide"); lastY=window.scrollY; return; }
+    var y=window.scrollY, dy=y-lastY;
+    if(y<60){ bar.classList.remove("hide"); }
+    else if(dy>4){ bar.classList.add("hide"); }
+    else if(dy<-4){ bar.classList.remove("hide"); }
+    lastY=y;
+  }
+  window.addEventListener("scroll",function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
+  },{passive:true});
+})();
 
 /* ---------- init ---------- */
 function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(); renderGrid(); }
