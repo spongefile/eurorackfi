@@ -28,5 +28,19 @@
     "sv": "Två kanaler bandloop i 96 kHz, fem minuter var, varispeed åt båda håll och en analog ingång som mättar."
   },
   "img": "https://www.instruomodular.com/wp-content/uploads/2019/05/lubadh_new.png",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Eurorack Tape Looper 'Lubadh' from Instruo // Superbooth 2019",
+        "by": "Superbooth demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=gA4Bhj6ODOw"
+      },
+      {
+        "title": "Instruo - Lubadh Overview",
+        "by": "Overview · YouTube",
+        "url": "https://www.youtube.com/watch?v=rvj_MdCecaw"
+      }
+    ]
+  }
 }
