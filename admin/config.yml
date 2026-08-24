@@ -1,0 +1,69 @@
+backend:
+  name: github
+  repo: spongefile/eurorackfi
+  branch: main
+  base_url: https://eurorackfi-cms-auth.aspiala.workers.dev
+  auth_endpoint: auth
+
+# Not wired to a Decap media library on purpose — img stays a plain URL
+# string, same shape the secretary and the manual composer already produce
+# (manufacturer photo, or a self-hosted ModularGrid fallback under
+# content/images/). Switching to a real upload widget is a later step,
+# not an oversight now.
+media_folder: "content/images"
+public_folder: "/content/images"
+
+collections:
+  - name: "items"
+    label: "Listings"
+    folder: "content/items"
+    create: true
+    delete: true
+    identifier_field: id
+    format: json
+    fields:
+      - { label: "ID", name: "id", widget: "string", hint: "short, lowercase, no spaces — e.g. ph3, bf22. Matches the filename." }
+      - { label: "Maker", name: "mfr", widget: "string" }
+      - { label: "Model", name: "name", widget: "string" }
+      - { label: "Price (€)", name: "price", widget: "number", value_type: "int" }
+      - { label: "HP (0 if standalone)", name: "hp", widget: "number", value_type: "int", default: 0 }
+      - label: "Format"
+        name: "fmt"
+        widget: "select"
+        options:
+          - { label: "Eurorack", value: "eu" }
+          - { label: "Standalone / desktop", value: "desk" }
+      - label: "Owner"
+        name: "who"
+        widget: "select"
+        options:
+          - { label: "spongefile", value: "t" }
+          - { label: "Sampo", value: "f" }
+      - { label: "Primary category", name: "cat", widget: "string" }
+      - { label: "Category tags", name: "cats", widget: "list" }
+      - label: "Description"
+        name: "blurb"
+        widget: "object"
+        fields:
+          - { label: "English", name: "en", widget: "text" }
+          - { label: "Finnish", name: "fi", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead." }
+          - { label: "Swedish", name: "sv", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead." }
+      - { label: "ModularGrid slug", name: "mgSlug", widget: "string", required: false }
+      - { label: "Manufacturer domain", name: "site", widget: "string", required: false }
+      - label: "Panel tone"
+        name: "tone"
+        widget: "select"
+        options: ["black", "alu", "white", "cream", "wood"]
+      - label: "Parts (drives the drawn faceplate)"
+        name: "parts"
+        widget: "object"
+        fields:
+          - { label: "Knobs", name: "k", widget: "number", value_type: "int", default: 0 }
+          - { label: "Jacks", name: "j", widget: "number", value_type: "int", default: 0 }
+          - { label: "Sliders", name: "sl", widget: "number", value_type: "int", default: 0 }
+          - { label: "LEDs", name: "led", widget: "number", value_type: "int", default: 0 }
+          - { label: "Has screen (1 or 0)", name: "sc", widget: "number", value_type: "int", default: 0 }
+      - { label: "Photo URL", name: "img", widget: "string", required: false, hint: "Manufacturer's own photo first. ModularGrid only as a self-hosted fallback — never hotlink modulargrid.net." }
+      - { label: "Photo is a self-hosted ModularGrid fallback", name: "imgIsModularGrid", widget: "boolean", required: false, default: false }
+      - { label: "Photo is of a DIY component, not the finished build", name: "imgIsComponent", widget: "boolean", required: false, default: false }
+      - { label: "In negotiation", name: "negotiating", widget: "boolean", default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question." }
