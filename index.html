@@ -197,12 +197,32 @@ select.sort{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.34
 .wishband{padding:1.75rem 0 .5rem}
 .wishband h2{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.9rem}
 .wishgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem}
-.wishcard{background:var(--panel); border:1px solid var(--line); padding:1rem 1.1rem}
+.wishcard{background:var(--panel); border:1px solid var(--line); padding:1rem 1.1rem;
+  display:block; color:inherit; text-decoration:none; transition:border-color .15s, transform .15s, box-shadow .15s}
+.wishcard:hover{border-color:var(--line2); transform:translateY(-2px); box-shadow:var(--shadow); color:inherit}
+@media (prefers-reduced-motion:reduce){ .wishcard,.wishcard:hover{transition:none; transform:none} }
 .wishcard .nm{display:flex; align-items:center; gap:.5rem; font-weight:700; font-size:1.05rem}
 .wishcard .nm i{width:9px; height:9px; border-radius:50%; flex:0 0 auto}
 .wishcard .sub{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.2rem}
 .wishcard ul{list-style:none; margin:.75rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem}
 .wishcard li{font-family:"IBM Plex Mono",monospace; font-size:.72rem; border:1px solid var(--line2); color:var(--ink2); padding:.18rem .42rem}
+.wishcard .wishmore{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--accent); margin-top:.8rem}
+
+/* ---------- Toiveet page ---------- */
+.wishpage{padding:2.5rem 0 4rem}
+.wishpage h1{font-size:1.9rem; letter-spacing:-.03em; margin-bottom:2rem}
+.wishsection{display:block; color:inherit; text-decoration:none; padding:1.25rem 0; border-top:1px solid var(--line)}
+.wishsection:first-of-type{border-top:none}
+.wishsection .nm{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.15rem; margin-bottom:1rem}
+.wishsection .nm i{width:10px; height:10px; border-radius:50%; flex:0 0 auto}
+.wish-imggrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:1rem}
+.wishtile{background:var(--bg2); border:1px solid var(--line); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:.9rem .6rem; min-height:170px; transition:border-color .15s}
+.wishsection:hover .wishtile{border-color:var(--line2)}
+.wishtile .wf{display:flex; align-items:center; justify-content:center}
+.wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
+  text-align:center; line-height:1.4}
+.wishtile.placeholder{border-style:dashed; border-color:var(--line2); background:transparent; min-height:170px}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 
 /* ---------- count ---------- */
@@ -218,7 +238,12 @@ main{padding-bottom:3rem}
 @media (prefers-reduced-motion:reduce){ .card,.card:hover{transition:none; transform:none} }
 .shot{height:210px; background:var(--bg2); border-bottom:1px solid var(--line); display:flex; align-items:center;
   justify-content:center; overflow:hidden; position:relative}
-.shot img,.bench img{max-width:100%; max-height:100%; object-fit:contain}
+/* grid cards: crop to fill, same reasoning as the rack — a browsing view
+   wants consistent, filled tiles, not padded ones for oddly-shaped photos
+   (e.g. a 1U module's naturally wide/short photo inside a tall card box).
+   Detail-page bench stays object-fit:contain deliberately, see below. */
+.shot img{width:100%; height:100%; object-fit:cover}
+.bench img{max-width:100%; max-height:100%; object-fit:contain}
 .pcredit{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:.5rem}
 .cbody{padding:.9rem 1rem 1rem; display:flex; flex-direction:column; gap:.45rem; flex:1}
 .cbody .mfr{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
@@ -576,9 +601,21 @@ var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper"
 var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
                    "#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"];
 
+/* Real items (spongefile's) are objects with real panel data — sourced the
+   same way as every listing photo, manufacturer's own site, actually
+   counted off a real product photo, never fabricated. Placeholder items
+   (Sampo's, still unspecified) stay plain strings — that's the signal the
+   Toiveet page draws on: an object gets a real drawn faceplate, a string
+   gets a dashed empty outline. */
 var SELLERS = [
   { key:"t", name:"spongefile", lede:"Swapping for:",
-    wants:["ALM MCO","ALM AXON-1","Mannequins Mangrove","Mannequins W/","Dnipro Dot"] },
+    wants:[
+      {mfr:"ALM Busy Circuits", name:"MCO", hp:6, tone:"alu", parts:{k:1,j:8,sl:0,led:0,sc:1}},
+      {mfr:"ALM Busy Circuits", name:"AXON-1", hp:4, tone:"white", parts:{k:0,j:4,sl:0,led:4,sc:0}},
+      {mfr:"Mannequins", name:"Mangrove", hp:10, tone:"alu", parts:{k:5,j:9,sl:0,led:1,sc:0}},
+      {mfr:"Mannequins", name:"W/", hp:2, tone:"alu", parts:{k:0,j:4,sl:0,led:6,sc:0}},
+      {mfr:"Dnipro Modular", name:"Dot", hp:6, tone:"black", parts:{k:3,j:8,sl:0,led:78,sc:0}}
+    ] },
   { key:"f", name:"Sampo", lede:"Swapping for:",
     wants:["[e.g. quad VCA]","[e.g. drum module]","[e.g. utilities]","[+ add more]"] }
 ];SELLERS.forEach(function(p,i){ p.dot = SELLER_DOTS[i % SELLER_DOTS.length]; });
@@ -685,7 +722,7 @@ var TX={
      inbox:"Menee yhteiseen postilaatikkoon — luemme sen molemmat.",
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
-     photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta",
+     photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta", seeFull:"Katso koko lista",
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
      pcreditMG:"Kuva:"},
@@ -698,7 +735,7 @@ var TX={
      inbox:"Går till en gemensam inkorg — vi läser den båda.",
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
      collectFirst:"Helst hämtning, men vi kan posta",
-     photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt",
+     photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt", seeFull:"Se hela listan",
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
      pcreditMG:"Bild:"},
@@ -711,7 +748,7 @@ var TX={
      inbox:"Goes to one shared inbox — we both read it.",
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
      collectFirst:"Collection preferred, posting possible",
-     photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site",
+     photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site", seeFull:"See full list",
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
      pcreditMG:"Photo:"}
@@ -761,7 +798,7 @@ function renderChrome(){
   var T2=t();
   el("noticeA").textContent=T2.noticeA;
   el("noticeB").textContent=T2.noticeB;
-  var anchors=["#grid-top","#wish","#/msg/"];
+  var anchors=["#grid-top","#/wish","#/msg/"];
   el("nav").innerHTML=T2.nav.map(function(n,i){
     return '<a href="'+anchors[i]+'" onclick="closeDetail()">'+esc(n)+'</a>'; }).join("");
   el("langseg").innerHTML=LANGS.map(function(l){
@@ -839,12 +876,17 @@ function chip(kind,k,label,n,on){
 }
 
 /* ---------- wish band ---------- */
+/* a want entry is either a real-item object (drives the Toiveet faceplate)
+   or a placeholder string — Home's teaser only ever needs a text label,
+   whichever shape it is */
+var wantLabel=function(w){ return typeof w==="string" ? w : (w.mfr+" "+w.name); };
 function renderWish(){
   var T2=t();
   el("wishgrid").innerHTML=SELLERS.map(function(p){
-    return '<div class="wishcard"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+    return '<a class="wishcard" href="#/wish"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
       '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
-      '<ul>'+p.wants.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>'; }).join("");
+      '<ul>'+p.wants.map(function(w){return '<li>'+esc(wantLabel(w))+'</li>';}).join("")+'</ul>'+
+      '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
 }
 
 /* ---------- grid ---------- */
@@ -1025,6 +1067,30 @@ function adminField(af,label,type,extra){
   if(type==="textarea") return '<div class="afld"'+extra+'><label>'+label+'</label><textarea data-af="'+af+'">'+esc(AS[af])+'</textarea></div>';
   return '<div class="afld"'+extra+'><label>'+label+'</label><input data-af="'+af+'" type="'+type+'" value="'+esc(AS[af])+'"></div>';
 }
+/* Toiveet — one seller section per row, each a single click target back to
+   Home with that seller's owner filter preset. A real-item want gets its
+   actual drawn faceplate (same engine as the inventory); a placeholder
+   string gets a dashed empty outline and no label — the presence/absence
+   of a drawing is the whole signal, not a caption. */
+var WISH_TILE_H=150;
+function wishTileHTML(w){
+  if(typeof w==="string") return '<div class="wishtile placeholder" aria-hidden="true"></div>';
+  return '<div class="wishtile"><div class="wf">'+panelHTML(w,WISH_TILE_H)+'</div>'+
+    '<div class="wl">'+esc(w.mfr)+'<br>'+esc(w.name)+'</div></div>';
+}
+function wishHTML(){
+  var T2=t();
+  return '<div class="wrap wishpage"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button></div>'+
+    '<h1>'+esc(T2.wishH)+'</h1>'+
+    SELLERS.map(function(p){
+      return '<a class="wishsection" href="#/" data-setwho="'+p.key+'">'+
+        '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+        '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'+
+        '</a>'; }).join("")+
+    '<p class="wishnote">'+esc(T2.wishK)+'</p>'+
+    '</div>';
+}
+
 function adminHTML(){
   var toneOpts=Object.keys(TONE).map(function(k){ return '<option value="'+k+'"'+(AS.tone===k?" selected":"")+'>'+k+'</option>'; }).join("");
   var fmtOpts=[["eu","Eurorack"],["desk","Standalone"],["tools","Other stuff (soon)"]].map(function(o){
@@ -1089,9 +1155,15 @@ function copyText(txt){
 /* photo is the default view whenever one exists — matches the grid card,
    which already shows the photo first; drawn panel becomes the alternate */
 function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#/m/"+id; }
-function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0) location.hash="#/"; }
+function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0) location.hash="#/"; }
 function route(){
   var h=location.hash;
+  if(h.indexOf("#/wish")===0){
+    el("detail").innerHTML=wishHTML();
+    document.body.classList.add("detail-open");
+    document.title=t().wishH+" — eurorack.fi";
+    window.scrollTo(0,0); return;
+  }
   if(h.indexOf("#/admin")===0){
     el("detail").innerHTML=adminHTML();
     document.body.classList.add("detail-open");
@@ -1152,6 +1224,11 @@ document.addEventListener("click",function(e){
   });
   var sh=e.target.closest("[data-shot]");
   if(sh && !sh.disabled){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
+  /* Toiveet → Home, that seller's owner filter preset. Runs before the
+     anchor's own href="#/" navigation, so S.who is already set by the
+     time hashchange fires route(). */
+  var sw=e.target.closest("[data-setwho]");
+  if(sw){ S.who=sw.getAttribute("data-setwho"); renderFilters(); renderGrid(); }
   if(e.target.closest("#themeb")){
     var r=document.documentElement;
     var isDark=r.classList.contains("dark")||(!r.classList.contains("light")&&matchMedia("(prefers-color-scheme:dark)").matches);
