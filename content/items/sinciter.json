@@ -1,0 +1,32 @@
+{
+  "id": "sinciter",
+  "mfr": "Noise Engineering",
+  "name": "Sinc Iter",
+  "price": 190,
+  "hp": 4,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Digital",
+    "Discontinued"
+  ],
+  "mgSlug": "noise-engineering-sinc-iter-black",
+  "site": "noiseengineering.us",
+  "tone": "black",
+  "parts": {
+    "k": 2,
+    "j": 7,
+    "sl": 2,
+    "led": 2,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Four-HP VCO, 23-octave range, three morphing waveform modes -- noise, plain, super -- with a built-in quantizer and both uni- and bipolar outputs. Discontinued, superseded by Sinc Legio.",
+    "fi": "Neljän HP:n VCO, 23 oktaavin alue, kolme morffaavaa aaltomuototilaa – noise, plain, super – sisäänrakennettu kvantisoija ja sekä uni- että bipolaariset ulostulot. Poistunut valikoimista, seuraajana Sinc Legio.",
+    "sv": "VCO på fyra HP, 23 oktavers omfång, tre morfande vågformslägen – noise, plain, super – med inbyggd kvantisering och både uni- och bipolära utgångar. Utgången ur sortimentet, efterträdd av Sinc Legio."
+  },
+  "img": "https://cdn.shopify.com/s/files/1/0552/0923/0485/products/sinc-iter-black-1024x2048.png",
+  "negotiating": false
+}
