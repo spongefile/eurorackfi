@@ -28,5 +28,14 @@
     "sv": "CV-steginspelare i realtid på fyra HP. Tusen steg, en slumpgenerator och en shift-ingång för transponering."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Antimatter Brainseed",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=W7MIID7aPdk"
+      }
+    ]
+  }
 }
