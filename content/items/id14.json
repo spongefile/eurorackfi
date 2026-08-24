@@ -6,8 +6,9 @@
   "hp": 0,
   "fmt": "desk",
   "who": "f",
-  "cat": "Output",
+  "cat": "Other",
   "cats": [
+    "Other",
     "Interface",
     "Audio"
   ],
