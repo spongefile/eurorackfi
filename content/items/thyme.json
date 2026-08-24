@@ -28,5 +28,19 @@
     "sv": "Digital bandeffekt: delay, granulär utsmetning, pitch och modulation, med sparplatser du faktiskt använder."
   },
   "img": "https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Thyme Advanced Digital Tape Delay from BASTL Tutorial",
+        "by": "Cuckoo · YouTube",
+        "url": "https://www.youtube.com/watch?v=1NsalVzoYt8"
+      },
+      {
+        "title": "Superbooth 2018: Bastl Instruments Thyme demo",
+        "by": "Superbooth demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=OvEqFN48sO0"
+      }
+    ]
+  }
 }
