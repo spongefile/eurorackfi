@@ -170,7 +170,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
-.collbar{width:100%; min-height:48px; align-items:center; gap:.5rem; background:none; border:none;
+.collbar{width:100%; min-height:44px; align-items:center; gap:.5rem; background:none; border:none;
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
 .collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
 .collbar .collcount{margin-left:auto; color:var(--muted)}
@@ -182,12 +182,15 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
      delay is 0 going visible, and matches the shrink duration going hidden
      so it stays interactive for the full closing animation. */
   .collbar{display:flex; max-height:0; overflow:hidden; opacity:0; visibility:hidden;
+    background:var(--panel); border:1px solid var(--line2); box-shadow:var(--shadow); padding:0 .7rem;
     transition:max-height .2s ease, opacity .15s ease, visibility 0s linear .2s}
+  .collbar svg{color:var(--accent)}
+  .controls.collapsed{padding:.55rem 0}
   .controls .wrap{max-height:300px; overflow:hidden; opacity:1; visibility:visible;
     transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear 0s}
   .controls.collapsed .wrap{max-height:0; opacity:0; padding-top:0; padding-bottom:0; visibility:hidden;
     transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear .2s}
-  .controls.collapsed .collbar{max-height:48px; opacity:1; visibility:visible;
+  .controls.collapsed .collbar{max-height:44px; opacity:1; visibility:visible;
     transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
   @media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
 }
@@ -373,8 +376,7 @@ body.detail-open .browse{display:none}
   border-left:3px solid var(--accent); padding-left:1.1rem}
 .pullquote cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-style:normal; color:var(--muted); margin-top:.8rem}
 .qcards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1.5rem}
-.qcard{border:1px solid var(--line); background:var(--panel); padding:1rem}
-.qcard.crit{border-style:dashed; border-color:var(--signal); background:var(--signal-soft)}
+.qcard{border:1px solid var(--signal); background:var(--signal-soft); padding:1rem}
 .qcard p{font-family:"Newsreader",Georgia,serif; font-size:1rem; line-height:1.5; color:var(--ink2)}
 .qcard cite{display:block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-style:normal; color:var(--muted); margin-top:.7rem}
 .linkrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.75rem}
@@ -385,9 +387,10 @@ body.detail-open .browse{display:none}
 .linkcard .v span{color:var(--accent)}
 .vids{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1rem}
 .vid{cursor:pointer}
-.vid .frame{aspect-ratio:16/9; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden}
+.vid .frame{aspect-ratio:16/9; background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative}
+.vid .frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
 .vid:hover .frame, .vid:focus-visible .frame{border-color:var(--accent)}
-.play{width:44px; height:44px; border-radius:50%; border:1px solid var(--line2); background:var(--panel); display:grid; place-items:center}
+.play{width:44px; height:44px; border-radius:50%; border:1px solid var(--line2); background:var(--panel); display:grid; place-items:center; position:relative; z-index:1}
 .play::after{content:""; border-left:11px solid var(--ink2); border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px}
 .vid:hover .play::after{border-left-color:var(--accent)}
 .vid .cap{margin-top:.5rem; font-size:.92rem; font-weight:600; color:var(--ink)}
@@ -595,7 +598,7 @@ var T = {
     fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", tools:"Muut"},
     who:{all:"Kaikki"},
     cat:{all:"Kaikki",Oscillator:"Oskillaattori",Filter:"Suodin",Sequencer:"Sekvensseri",Modulation:"Modulaatio",
-         Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus"},
+         Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus",Other:"Muut"},
     sort:{"hp-desc":"HP, levein ensin","hp-asc":"HP, kapein ensin","price-desc":"Hinta, kallein","price-asc":"Hinta, halvin","name":"A–Ö"},
     sortLabel:{"hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
   },
@@ -620,7 +623,7 @@ var T = {
     fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", tools:"Övrigt"},
     who:{all:"Alla"},
     cat:{all:"Allt",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencer",Modulation:"Modulering",
-         Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning"},
+         Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning",Other:"Övrigt"},
     sort:{"hp-desc":"HP, bredast först","hp-asc":"HP, smalast först","price-desc":"Pris, högst","price-asc":"Pris, lägst","name":"A–Ö"},
     sortLabel:{"hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
   },
@@ -645,13 +648,13 @@ var T = {
     fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", tools:"Other stuff"},
     who:{all:"Everyone"},
     cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
-         Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control"},
+         Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control",Other:"Other"},
     sort:{"hp-desc":"HP, widest first","hp-asc":"HP, narrowest first","price-desc":"Price, high first","price-asc":"Price, low first","name":"A–Z"},
     sortLabel:{"hp-desc":"widest first","hp-asc":"narrowest first","price-desc":"priciest first","price-asc":"cheapest first","name":"A to Z"}
   }
 };
 
-var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper","Sampler","Synth","FX","Output","Controller"];
+var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper","Sampler","Synth","FX","Output","Controller","Other"];
 
 var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
                    "#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"];
@@ -770,7 +773,7 @@ try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved
 var TX={
  fi:{overview:"Yleistä",specs:"Tiedot",fMaker:"Valmistaja",fCats:"Kategoriat",
      fWidth:"Leveys",fDepth:"Syvyys",fPower:"Virta",fPanel:"Paneeli",
-     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
+     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",sameCat:"Sama kategoria:",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
      shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
      fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
      
@@ -784,7 +787,7 @@ var TX={
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
-     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
+     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",sameCat:"Samma kategori:",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
      shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
      fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
      
@@ -798,7 +801,7 @@ var TX={
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
-     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",official:"Official page",mgNote:"Specs and owner notes",
+     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",sameCat:"Same category:",official:"Official page",mgNote:"Specs and owner notes",
      shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
      fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
      
@@ -993,6 +996,18 @@ function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i);
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* watch, youtu.be, embed and shorts links all map to the same 11-char id */
+/* mechanical "you may also like" for the 33 items nobody has hand-picked
+   related items for yet — same primary category first, then any shared
+   tag, capped at 3. No editorial judgment, just enough to not be empty. */
+function autoRelated(m){
+  var T2=t(), out=[];
+  ITEMS.forEach(function(o){
+    if(o.id===m.id || out.length>=3) return;
+    var shared = o.cat===m.cat ? o.cat : (o.cats||[]).filter(function(c){ return (m.cats||[]).indexOf(c)>=0; })[0];
+    if(shared) out.push([o.id, T2.sameCat+" "+(T2.cat[shared]||shared)]);
+  });
+  return out;
+}
 function ytId(url){
   var m=String(url).match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
   return m?m[1]:null;
@@ -1064,18 +1079,22 @@ function detailHTML(m){
 
   /* pull and quotes are independent — several items have real quoted lines
      from a review without a single hero pull-quote to lead with (no verbatim
-     text safe to lift), so this must not require x.pull to show either. */
-  if(x.pull || (x.quotes&&x.quotes.length)) out+='<section class="sect"><h3>'+esc(x.pull?x.pull.src:T2.reviewsH)+'</h3>'+
+     text safe to lift), so this must not require x.pull to show either.
+     Critical/caveat quotes are dropped entirely rather than shown de-emphasized
+     — spongefile's call: no point highlighting, or even including, the negative
+     ones on a page whose job is to sell the thing. */
+  var posQuotes=(x.quotes||[]).filter(function(q){ return !q.crit; });
+  if(x.pull || posQuotes.length) out+='<section class="sect"><h3>'+esc(x.pull?x.pull.src:T2.reviewsH)+'</h3>'+
     (x.pull?'<blockquote class="pullquote">&ldquo;'+esc(x.pull.q)+'&rdquo;<cite>'+esc(x.pull.src)+' · <a href="'+x.pull.url+'" target="_blank" rel="noopener">read the full review</a></cite></blockquote>':'')+
-    '<div class="qcards">'+(x.quotes||[]).map(function(q){
-      return '<div class="qcard'+(q.crit?" crit":"")+'"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
+    '<div class="qcards">'+posQuotes.map(function(q){
+      return '<div class="qcard"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
 
   if(x.videos) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
     var yid=ytId(v.url);
     /* YouTube only for now (every video in the data is) — anything else
        degrades gracefully to the old plain link-out card, never a broken embed */
     if(yid) return '<div class="vid" data-yt="'+yid+'" role="button" tabindex="0" aria-label="'+esc(v.title)+'">'+
-      '<div class="frame"><span class="play"></span></div>'+
+      '<div class="frame"><img src="https://img.youtube.com/vi/'+yid+'/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span></div>'+
       '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></div>';
     return '<a class="vid" href="'+v.url+'" target="_blank" rel="noopener"><div class="frame"><span class="play"></span></div>'+
       '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></a>'; }).join("")+'</div></section>';
@@ -1088,8 +1107,12 @@ function detailHTML(m){
     return '<a class="linkcard" href="'+l.u+'" target="_blank" rel="noopener"><div class="k">'+esc(l.k)+'</div>'+
       '<div class="v">'+esc(l.v)+' <span>&rarr;</span></div></a>'; }).join("")+'</div></section>';
 
-  var rel=m.related;
-  if(rel){ out+='<section class="sect"><h3>'+esc(T2.alsoLike)+'</h3><div class="alike">'+rel.map(function(r){
+  /* hand-picked m.related (function-based, written reason per item) beats
+     everything — only ph3 has it so far. Everything else gets a mechanical
+     same-category fallback rather than showing nothing: same primary
+     category first, then any shared tag, stopping at 3. */
+  var rel=m.related || autoRelated(m);
+  if(rel && rel.length){ out+='<section class="sect"><h3>'+esc(T2.alsoLike)+'</h3><div class="alike">'+rel.map(function(r){
       var o=byId(r[0]); if(!o) return "";
       var op=SELLER_BY_KEY[o.who];
       return '<button class="card" data-go="'+o.id+'"><div class="shot">'+shotHTML(o,182)+'</div>'+
