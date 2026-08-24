@@ -29,5 +29,37 @@
     "sv": "Ficksynt med 16-delad multitimbral syntmotor, 512-plats sampler och en fullständig step/song-sekvensiator på 69 gram. Sexton touchknappar fungerar både som tangenter och pads, med trådlös MIDI och en audioutgång som även fungerar som sync-utgång vid patchning mot en modul."
   },
   "img": "https://d2kvhj8ixnchwb.cloudfront.net/woovebox-prod-kfsrescdn/gallery/71abaa78-2677-4020-8810-1127694d82d5.jpg.5049e8ae82b501c75ca315142f9171bf",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "quotes": [
+      {
+        "t": "As you can probably see when it comes to comparing it to the PO-33, it's already way more complicated.",
+        "s": "Sunwarper, Synth Magazine"
+      },
+      {
+        "t": "I find a little bit clunky as someone that works primarily with samples.",
+        "s": "Sunwarper, Synth Magazine · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Synth Magazine",
+        "title": "Sunwarper's Woovebox Pro Test: Pocket Sampler or Groovebox Rave Weapon?",
+        "url": "https://synthmagazine.com/sunwarpers-woovebox-pro-test-pocket-sampler-or-groovebox-rave-weapon/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Woovebox Pro First Impressions & 2.0 Firmware",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=OFzWOccobyY"
+      },
+      {
+        "title": "The PERFECT Pocket Music Studio? | Woovebox Pro - Unboxing & First Jam",
+        "by": "Unboxing · YouTube",
+        "url": "https://www.youtube.com/watch?v=4pF_TJIHUd0"
+      }
+    ]
+  }
 }
