@@ -27,7 +27,7 @@
     "fi": "1U:n kvantisoija arpeggiaattorilla: skaala, slew ja oktaavisiirto, tallenna ja lataa patchit lennossa.",
     "sv": "1U-kvantisering med arpeggiator: skala, slew och oktavförskjutning, spara och ladda patchar i farten."
   },
-  "img": "https://images.squarespace-cdn.com/content/v1/602d6139bc12a57fb971c17a/1620254453975-Y0GH6COUGB18CZGRIWXB/Quantizer_blk.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg",
   "negotiating": false,
   "oneU": true
 }
