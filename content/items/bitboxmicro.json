@@ -27,6 +27,6 @@
     "fi": "Kahdeksankanavainen kosketusnäyttösampleri 18HP:ssä: äänitä suoraan tai lataa SD-kortilta, laukaise CV:llä tai MIDIllä, mixaa ja lisää sisäänrakennettu kaiku ja viive.",
     "sv": "Åttakanalig pekskärmssampler på 18HP: spela in direkt eller ladda från SD-kortet, trigga med CV eller MIDI, mixa och lägg till den inbyggda reverbet och delayen."
   },
-  "img": "https://1010music.com/wp-content/uploads/2020/07/1010music_bitboxmicro_01-square-1024x1024.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg",
   "negotiating": false
 }

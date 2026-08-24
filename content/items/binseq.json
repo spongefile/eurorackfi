@@ -26,6 +26,6 @@
     "fi": "Kahdeksanaskelinen gate-sekvensseri, jokainen askel kolmiasentoinen kytkin: pois, sidottu tai lyhyt gate. Reset-tulo pitää kuvion minkä pituisena haluat.",
     "sv": "Åttastegs gate-sekvensiator, varje steg en trevägsomkopplare: av, bunden eller kort gate. Reset-ingång håller mönstret hur långt du vill."
   },
-  "img": "https://cdn.shopify.com/s/files/1/0552/0923/0485/products/bin-seq-black-1024x2048.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg",
   "negotiating": false
 }

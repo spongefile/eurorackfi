@@ -26,7 +26,7 @@
     "fi": "Kaksi Audientin konsolimikkietuastetta, ADAT-tulo laajennukseen ja se iso monitorinuppi, jonka takia se ostetaan.",
     "sv": "Två av Audients konsolmikförsteg, ADAT-ingång för utökning och den stora monitorratten alla köper den för."
   },
-  "img": "https://audient.com/wp-content/uploads/2025/05/id14-top-image-scaled.webp",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/id14.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

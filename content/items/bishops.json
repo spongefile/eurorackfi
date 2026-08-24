@@ -27,7 +27,7 @@
     "fi": "Kaksoistallennin porrastetulle CV:lle ja porteille. Kaksi 32-askelista sekvenssiä, pituus, siirto ja hallittu satunnaisuus.",
     "sv": "Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."
   },
-  "img": "https://shakmat.com/img/bm/bmFront.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg",
   "negotiating": false,
   "extra": {
     "videos": [

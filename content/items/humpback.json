@@ -26,6 +26,6 @@
     "fi": "Kaksinapainen CA3080-pohjainen state variable -suodin, viritetty itseherätykseen. Low-pass, band-pass, high-pass ja notch kaikki yhtä aikaa saatavilla.",
     "sv": "Tvåpoligt CA3080-baserat state variable-filter, trimmat för självsvängning. Low-pass, band-pass, high-pass och notch alla tillgängliga samtidigt."
   },
-  "img": "https://godsbox.co.uk/images/humpback.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/humpback.jpg",
   "negotiating": false
 }

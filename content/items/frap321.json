@@ -26,6 +26,6 @@
     "fi": "Kolme identtistä scale/flip/shift-osiota, DC-kytketty CV:lle tai audiolle, summattu kahdella tavalla: täysi mix ja pelkkien kytkemättömien kanavien mix.",
     "sv": "Tre identiska scale/flip/shift-sektioner, DC-kopplade för CV eller audio, summerade på två sätt: en full mix och en mix av bara de opatchade kanalerna."
   },
-  "img": "https://frap.tools/wp-content/uploads/2022/10/321_2160.webp",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/frap321.jpg",
   "negotiating": false
 }

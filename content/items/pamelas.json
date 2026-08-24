@@ -27,6 +27,6 @@
     "fi": "Kahdeksan ulostulon kellotettu modulaatiolähde, synkronoitu BPM:ään, jokainen ulostulo muokattavissa erikseen. OLED-näyttö, ohjelmaenkooderi, seuraaja on PRO-versio.",
     "sv": "Åtta-utgångars klockad modulationskälla, synkad till BPM, varje utgång redigerbar för sig. OLED-display, programenkoder, efterträdd av PRO-versionen."
   },
-  "img": "https://busycircuits.com/cdn/shop/files/ALM017-01.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/pamelas.jpg",
   "negotiating": false
 }

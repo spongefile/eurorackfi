@@ -27,7 +27,7 @@
     "fi": "Piirrä omat aaltomuotosi, pinoa ne taulukoiksi ja morffaa, taita ja bittimurskaa lopputulosta, ja lisää FM:ää.",
     "sv": "Rita egna vågformer, stapla dem till tabeller och morfa, vik, bitkrossa och FM:a det som kommer ut."
   },
-  "img": "https://www.ericasynths.lv/media/catalog/product/cache/91ba170ba44d2d19cc001c5ed5da8bb2/G/r/Graphic_VCO_ZKOk4hZ_3.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/gvco.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

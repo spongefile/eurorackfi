@@ -26,6 +26,6 @@
     "fi": "Kangaspäällysteinen kotelo Supernote Nomadille, ei reunakäärintää, joten se tuntuu paperivihkolta. Kaksoismagneettikiinnitys, laite kääntyy niin että USB-portti voi olla kummin päin vain, automaattinen uni/herätys avattaessa.",
     "sv": "Kanvasklädd fodral för Supernote Nomad, utan kantinslagning så den känns som ett pappersanteckningsblock. Dubbel magnetstängning, enheten kan vridas så att USB-porten pekar åt endera hållet, automatisk viloläge/uppvakning vid öppning."
   },
-  "img": "https://supernote.com/cdn/shop/files/344cac5a0bdfb47ce86e9f8b6c8bd6e9_1024x.jpg?v=1782279096",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/canvasfolio.jpg",
   "negotiating": false
 }

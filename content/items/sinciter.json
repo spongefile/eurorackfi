@@ -27,6 +27,6 @@
     "fi": "Neljän HP:n VCO, 23 oktaavin alue, kolme morffaavaa aaltomuototilaa – noise, plain, super – sisäänrakennettu kvantisoija ja sekä uni- että bipolaariset ulostulot. Poistunut valikoimista, seuraajana Sinc Legio.",
     "sv": "VCO på fyra HP, 23 oktavers omfång, tre morfande vågformslägen – noise, plain, super – med inbyggd kvantisering och både uni- och bipolära utgångar. Utgången ur sortimentet, efterträdd av Sinc Legio."
   },
-  "img": "https://cdn.shopify.com/s/files/1/0552/0923/0485/products/sinc-iter-black-1024x2048.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sinciter.jpg",
   "negotiating": false
 }

@@ -27,7 +27,7 @@
     "fi": "Kaksitoistakanavainen mikseri, kaksitoistaraitainen SD-tallennin ja USB-liitäntä, viisi erillistä kuulokemiksausta.",
     "sv": "Tolvkanalsmixer, tolvspårs SD-inspelare och USB-interface, med fem separata hörlursmixar."
   },
-  "img": "https://zoomcorp.com/media/original_images/L12_top.png.768x0_q60.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/l12.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

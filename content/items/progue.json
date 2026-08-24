@@ -27,6 +27,6 @@
     "fi": "Suomalainen DIY-monosyna, joka rakentuu Moog Roguen ja Prodigyn äänien ympärille. Polychain MIDIn yli.",
     "sv": "Finsk DIY-monosynt byggd kring rösterna ur Moog Rogue och Prodigy, med polychain över MIDI."
   },
-  "img": "https://www.jsisynth.com/images/store/Progue-promo-1.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/progue.jpg",
   "negotiating": false
 }

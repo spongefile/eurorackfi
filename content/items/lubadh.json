@@ -27,7 +27,7 @@
     "fi": "Kaksi kanavaa nauhaluuppia 96 kilohertsillä, viisi minuuttia kumpikin, varispeed molempiin suuntiin ja analoginen tulo, joka säröytyy.",
     "sv": "Två kanaler bandloop i 96 kHz, fem minuter var, varispeed åt båda håll och en analog ingång som mättar."
   },
-  "img": "https://www.instruomodular.com/wp-content/uploads/2019/05/lubadh_new.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/lubadh.jpg",
   "negotiating": false,
   "extra": {
     "videos": [

@@ -26,6 +26,6 @@
     "fi": "7,4 tuuman HDR OLED -käsikonsoli, 1280x800 jopa 90Hz:llä, WiFi 6E ja Bluetooth 5.3. Tämän yksilön tallennuskapasiteettia ei ole vahvistettu -- kysy ennen ostoa, jos sillä on väliä.",
     "sv": "7,4 tums HDR OLED-handkonsol, 1280x800 upp till 90Hz, WiFi 6E och Bluetooth 5.3. Lagringskapaciteten på den här enheten är inte bekräftad -- fråga innan köp om det spelar roll för dig."
   },
-  "img": "https://cdn.fastly.steamstatic.com/steamdeck/images/oled/oled_deck_top.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/steamdeck.jpg",
   "negotiating": false
 }

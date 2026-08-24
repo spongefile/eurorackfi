@@ -26,7 +26,7 @@
     "fi": "Proseduraalinen sekvensseri. Se rakentaa melodiat algoritmeista sen sijaan, että naputtelisit askeleet yksitellen.",
     "sv": "Procedurell sekvensiator. Den bygger melodier ur algoritmer i stället för steg du knappar in ett i taget."
   },
-  "img": "https://www.thisisnotrocketscience.nl/wp-content/uploads/2024/01/tuesday.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/tuesday.jpg",
   "negotiating": false,
   "extra": {
     "videos": [

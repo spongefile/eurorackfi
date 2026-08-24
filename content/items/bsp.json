@@ -26,7 +26,7 @@
     "fi": "Kaksi melodiasekvensseriä, rumpusekvensseri ja kuusitoista padia. Mukana deck saver, ja siksi se on yhä siisti.",
     "sv": "Två melodisekvensiatorer, en trumsekvensiator och sexton pads. Deck saver medföljer, och därför är den i fint skick."
   },
-  "img": "https://medias.arturia.net/images/products/beatstep-pro/catalog-image.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bsp.jpg",
   "negotiating": false,
   "extra": {
     "pull": {
