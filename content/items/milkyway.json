@@ -28,5 +28,38 @@
     "sv": "16-algoritmers stereo-FX-processor i 6HP: hall-, shimmer-, plate- och spring-reverb, tape echo, ping-pong-delay, chorus, flanger, ringmodulering, overdrive, kompressor, freeze. Tre rattar sköter dry/wet, algoritmens andra parameter och volume/drive, med CV över allt inklusive en meta-scan genom alla sexton typer."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "quotes": [
+      {
+        "t": "I'm not used to having the outputs on the top part of a module so I confused them for inputs a few times.",
+        "s": "SineSquares · the honest caveat",
+        "crit": true
+      },
+      {
+        "t": "The Latin numbers on the effects' slots don't really mean anything so I always trying to remember which effect is at every slot.",
+        "s": "SineSquares",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "SineSquares",
+        "title": "Endorphin.es Milky Way Review — The best value-for-money Multi-Effects module!",
+        "url": "https://www.sinesquares.net/musicgear/endoprhines-milky-way-review"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Endorphin.es Milky Way, SQWK Dirty, Airstreamer and Godspeed Modules - SonicLAB Review",
+        "by": "SonicLAB · YouTube",
+        "url": "https://www.youtube.com/watch?v=Xb_jAHtycjY"
+      },
+      {
+        "title": "Endorphin.es - Milky Way effects walk through",
+        "by": "Walkthrough · YouTube",
+        "url": "https://www.youtube.com/watch?v=vd2XFMvrAjs"
+      }
+    ]
+  }
 }
