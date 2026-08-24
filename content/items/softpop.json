@@ -27,5 +27,31 @@
     "sv": "Halvmodulär sekvensiator-synt med patchbay och ett humör som säger emot. Första revisionen."
   },
   "img": "https://bastl-instruments.com/thumbs/instruments/softpop/004-1677x1200.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "It keeps the micro patch bay and battery-powered portability of past devices but trades cheap acrylic cases for a sturdy aluminium enclosure.",
+      "src": "Resident Advisor",
+      "url": "https://ra.co/reviews/22155"
+    },
+    "quotes": [
+      {
+        "t": "This button is my only real gripe with the softPop — it would have been really helpful if there was a way to trigger this with the patchbay.",
+        "s": "Resident Advisor · the honest caveat",
+        "crit": true
+      },
+      {
+        "t": "The black panel, fiddly switches and small buttons don't lend themselves to playing in a dark club.",
+        "s": "Resident Advisor",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Resident Advisor",
+        "title": "Bastl Instruments - softPop",
+        "url": "https://ra.co/reviews/22155"
+      }
+    ]
+  }
 }
