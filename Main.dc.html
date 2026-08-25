@@ -273,6 +273,15 @@
       border:1px solid var(--line2); background:transparent; color:var(--ink2);
       transition:background .14s ease, color .14s ease, border-color .14s ease}
     .card:hover .cardcta{border-color:var(--accent); color:var(--accent); background:var(--accent-soft)}
+    /* In-negotiation reads on the photo itself, old-school corner banner, so
+       the state is legible while scanning the grid rather than only in the
+       footer. .shot is already position:relative with overflow:hidden, which
+       clips the rotated band into a clean triangle. */
+    .negribbon{position:absolute; top:0; right:0; width:118px; height:118px; overflow:hidden; pointer-events:none; z-index:3}
+    .negribbon span{position:absolute; right:-40px; top:24px; width:170px; transform:rotate(45deg);
+      background:var(--accent); color:var(--on); text-align:center; padding:.28rem 0;
+      font-family:"IBM Plex Mono",monospace; font-size:.58rem; letter-spacing:.12em; text-transform:uppercase;
+      box-shadow:0 1px 4px rgba(0,0,0,.28)}
     .negchip{display:inline-flex; align-items:center; gap:.42rem; margin-left:auto; min-height:30px;
       padding:0 .6rem; font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:600;
       letter-spacing:.02em; white-space:nowrap;
@@ -495,6 +504,9 @@
                   <span style="{{e.s}}"></span>
                 </sc-for>
               </span>
+              <sc-if value="{{m.negotiating}}" hint-placeholder-val="{{false}}">
+                <span class="negribbon"><span>{{t.negotiating}}</span></span>
+              </sc-if>
             </span>
             <span class="cbody">
               <span class="mfr">{{m.mfr}}</span>
@@ -560,8 +572,7 @@
 /* Only the ids still in RAW — every photo here is carried inline as base64,
    so an entry for a module the mockup no longer draws is pure page weight. */
 var PHOTO = {
-  ph3:"ph3.jpg", modor:"modor.jpg", deltav:"deltav.jpg", performer:"performer.jpg",
-  timber:"timber.jpg", brainseed:"brainseed.jpg", lubadh:"lubadh.jpg", tuesday:"tuesday.jpg"
+  ph3:"ph3.jpg", modor:"modor.jpg"
 };
 /* ModularGrid's own product photos — reference stand-ins, not the seller's actual
    unit. Swap for real photos once each module is on the bench. Desktop gear has
@@ -582,40 +593,7 @@ var RAW = [
  "industrial-music-electronics-piston-honda-mk-iii","industrialmusicelectronics.com","black",{k:4,j:10,sl:8,led:4,sc:0}],
 ["modor","Modor Music","Formant Filter",200,16,"eu","f","Filter",["Filter","Stereo","Digital"],
  "Stereo vowel morphing lifted from the NF-1: ten preset vowels, four editable bands, the lot under CV.",
- "modor-music-formant-filter","modormusic.com","white",{k:8,j:7,sl:0,led:3,sc:0}],
-["deltav","Cosmotronic","Delta-V",170,10,"eu","f","Modulation",["Envelope","VCA","Function gen"],
- "Analogue dual function generator with a VCA per channel. Envelope, slew or LFO out of the same ten HP.",
- "cosmotronic-delta-v","cosmotronic.nl","black",{k:6,j:10,sl:0,led:2,sc:0}],
-["performer","Westlicht","PER|FORMER",290,34,"eu","f","Sequencer",["Sequencer","MIDI","DIY"],
- "Eight-track step sequencer: sixteen patterns a track, sixty-four steps a pattern, OLED, MIDI and USB host.",
- "westlicht-per-former--","westlicht.github.io","black",{k:2,j:22,sl:0,led:16,sc:1}],
-["timber","Bastl Instruments","Timber",150,7,"eu","t","Waveshaper",["Waveshaper","Wavefolder"],
- "Two shaping circuits, a driver and a folder, with a voltage-controlled crossfade between them and the clean signal.",
- "bastl-instruments-timber","bastl-instruments.com","wood",{k:5,j:7,sl:0,led:0,sc:0}, null],
-["brainseed","Antimatter Audio","Brain Seed",170,4,"eu","t","Sequencer",["Sequencer","Random","Recorder"],
- "Realtime CV step recorder in four HP. A thousand steps, a random generator and a shift input for transposing.",
- "antimatter-audio-brain-seed-","antimatteraudio.com","black",{k:2,j:5,sl:0,led:2,sc:0}, null],
-["lubadh","Instruo","Lubadh",440,20,"eu","t","Sampler",["Looper","Sampler","Tape"],
- "Two channels of tape looping at 96k, five minutes each, varispeed either way and an analogue input that saturates.",
- "instruo-lubadh","instruomodular.com","alu",{k:7,j:13,sl:0,led:4,sc:0}, null],
-["tuesday","This Is Not Rocket Science","Tuesday",200,12,"eu","t","Sequencer",["Sequencer","Algorithmic"],
- "Procedural sequencer. It builds melodies out of algorithms instead of steps you punch in one at a time.",
- "this-is-not-rocket-science-tuesday","thisisnotrocketscience.nl","cream",{k:5,j:9,sl:0,led:6,sc:0}, null],
-["progue","JSI Synth","Progue",450,0,"desk","f","Synth",["Synth","Analogue","DIY"],
- "Finnish DIY mono synth built around the Moog Rogue and Prodigy voices, with polychain over MIDI.",
- "","jsisynth.com","white",{k:9,j:6,sl:3,led:2,sc:0}],
-["neotrellis","DIY","NeoTrellis Grid",200,0,"desk","f","Controller",["Grid","Controller","DIY"],
- "Monome-style RGB pad grid built from NeoTrellis boards. Speaks the grid protocol, plays nicely with norns.",
- "","adafruit.com","black",{k:0,j:2,sl:0,led:64,sc:0}],
-["thyme","Bastl Instruments","Thyme",400,0,"desk","f","FX",["FX","Delay","Granular"],
- "Digital tape effect: delay, granular smear, pitch and modulation, with save slots you will actually use.",
- "","bastl-instruments.com","alu",{k:9,j:8,sl:0,led:8,sc:1}],
-["milkyway1u","Endorphin.es","Milky Way 1U",130,22,"eu","t","FX",["FX","Reverb","Delay"],
- "Same 16-algorithm stereo FX engine as the 6HP Milky Way — hall, shimmer, plate and spring reverbs, tape echo, ping-pong delay, chorus, flanger, ring mod, overdrive, compressor, freeze — laid out across a 22HP 1U tile instead.",
- "endorphin-es-milky-way-1u-black","endorphin.es","black",{k:3,j:7,sl:0,led:9,sc:0}, true],
-["phones1u","Intellijel","Headphones 1U",45,10,"eu","t","Output",["Output","Headphone","Interface"],
- "1U headphone amp with real bass response, doubles as a stereo line output. Left normalled to right for mono sources.",
- "intellijel-headphones-1u","intellijel.com","alu",{k:1,j:3,sl:0,led:0,sc:0}, true]
+ "modor-music-formant-filter","modormusic.com","white",{k:8,j:7,sl:0,led:3,sc:0}]
 ];
 
 /* Items no longer for sale are DELETED from RAW — there is no sold state.
