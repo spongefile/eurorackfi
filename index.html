@@ -892,8 +892,9 @@ function shotHTML(m,H){
    real photo when one exists. Photos get a plain full-size <img>, not the
    fixed-pixel faceplate sizing — fitPanel() must not touch this slot. */
 function benchHTML(m){
-  if(S.shot===1 && m.img){
-    return '<img src="'+m.img+'" alt="'+esc(m.mfr+" "+m.name)+'" '+
+  var url = S.shot===1?m.img : S.shot===2?m.img2 : S.shot===3?m.img3 : null;
+  if(url){
+    return '<img src="'+url+'" alt="'+esc(m.mfr+" "+m.name)+'" '+
       'style="width:100%;height:100%;object-fit:contain" onerror="photoFail(this,\''+m.id+'\',282)">';
   }
   return panelHTML(m,282);
@@ -919,6 +920,7 @@ var TX={
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
      pcreditIllus:"Havainnekuva, ei oikeaa valokuvaa",
+     pcreditOwn:"Kuva: myyjän oma",
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
@@ -934,6 +936,7 @@ var TX={
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
      pcreditIllus:"Illustration, inte ett riktigt foto",
+     pcreditOwn:"Bild: säljarens egen",
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
@@ -949,6 +952,7 @@ var TX={
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
      pcreditIllus:"Illustration, not a real photo",
+     pcreditOwn:"Photo: the seller's own",
      pcreditMG:"Photo:"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
@@ -1184,15 +1188,15 @@ function renderGrid(){
 <script>
 /* ---------- module page ---------- */
 var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo — back"],["rack","Photo — in the rack"]];
-/* which of the 4 shot slots this module actually has — only 0 (drawing) and
-   1 (photo, if any) exist today; back/rack stay reserved for when that data
-   shows up, same slots the dots already have room for */
+/* which of the 4 shot slots this module actually has — 0 is the drawn
+   faceplate, 1/2/3 are img/img2/img3, each independently optional. Any
+   item can carry between zero (drawing only) and three real photos. */
 /* slot 0 is a procedurally-drawn eurorack faceplate — meaningless for a
    shop accessory (no HP, no parts, nothing to draw), so it doesn't exist
    as a slot for fmt:"acc" at all. The >1-shot gate that hides the photo
    switcher already does the rest: an accessory ends up with a bare photo
    and no chrome, same as any single-photo item. */
-function shotHas(m,i){ return (i===0 && m.fmt!=="acc") || (i===1 && !!m.img); }
+function shotHas(m,i){ return (i===0 && m.fmt!=="acc") || (i===1 && !!m.img) || (i===2 && !!m.img2) || (i===3 && !!m.img3); }
 function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i); }); }
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -1271,10 +1275,10 @@ function detailHTML(m){
        the manufacturer, a component shot) — a shop product photo is the
        seller's own, so crediting it at all is odd and crediting it to the
        manufacturer, which the fallback would do, is flatly wrong */
-    (m.img&&S.shot===1&&m.fmt!=="acc"?'<p class="pcredit">'+
+    (((S.shot===1&&m.img)||(S.shot===2&&m.img2)||(S.shot===3&&m.img3))&&m.fmt!=="acc"?'<p class="pcredit">'+
       (m.imgIsModularGrid&&m.mgSlug
         ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
-        : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:T2.pcredit)))
+        : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:(m.imgIsOwn?T2.pcreditOwn:T2.pcredit))))
       +'</p>':'')+
     (shotAvail(m).length>1
       ? '<div class="shotdots">'+T2.shots.map(function(sh,i){
