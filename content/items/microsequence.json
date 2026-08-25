@@ -1,0 +1,74 @@
+{
+  "parts": {
+    "k": 6,
+    "j": 5,
+    "sl": 8,
+    "led": 8,
+    "sc": 4
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/microsequence.jpg",
+  "mgSlug": "pittsburgh-modular-lifeforms-micro-sequence-b",
+  "site": "pittsburghmodular.com",
+  "hp": 10,
+  "price": 100,
+  "name": "Lifeforms Micro Sequence b",
+  "fmt": "eu",
+  "extra": {
+    "depth": "24 mm",
+    "power": "+12V 56mA · −12V 8mA · no +5V",
+    "pull": {
+      "q": "The Micro Sequence has more features than a module this size would typically possess, but once you adapt to its user interface and memorise a couple of options, it's plain sailing.",
+      "src": "Sound On Sound",
+      "url": "https://www.soundonsound.com/reviews/pittsburgh-modular-lifeforms-micro-sequence"
+    },
+    "quotes": [
+      {
+        "t": "Particularly impressive are its range of directions, clock divisions and scales.",
+        "s": "Sound On Sound"
+      },
+      {
+        "t": "It's easy to do this accidentally when setting low pitches and there's no way to reliably toggle between a specific note and muted status.",
+        "s": "Sound On Sound · on muting a step by sliding it down"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sound On Sound",
+        "title": "Pittsburgh Modular Lifeforms Micro Sequence",
+        "url": "https://www.soundonsound.com/reviews/pittsburgh-modular-lifeforms-micro-sequence"
+      },
+      {
+        "src": "Pittsburgh Modular",
+        "title": "Lifeforms Micro Sequence — the manufacturer's page and manual",
+        "url": "https://pittsburghmodular.com/lifeforms-micro-sequence"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Lifeforms Micro Sequence b — specs and racks",
+        "url": "https://modulargrid.net/e/pittsburgh-modular-lifeforms-micro-sequence-b"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Pittsburgh Modular Lifeforms Micro Sequence Review — Eurorack Sequencer For $200?",
+        "by": "SYNTH ANATOMY · YouTube",
+        "url": "https://www.youtube.com/watch?v=VOnQleuKwuE"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Sequencer",
+  "mfr": "Pittsburgh Modular",
+  "blurb": {
+    "en": "Eight-step sequencer in 10HP, built around eight sliders that double as per-step mutes when you pull them down. Two outputs at once: a quantised pitch CV across four octaves in eight scales, and a free 0–5V CV. Eight direction modes including pendulum, stagger, skip and two flavours of random, adjustable pattern length, tap tempo and a clock divider. Discontinued by Pittsburgh, so this is the way to get one.",
+    "fi": "Kahdeksanaskelinen sekvensseri 10HP:ssä, rakennettu kahdeksan liu'un varaan, jotka toimivat myös askelten mykistyksinä kun ne vetää alas. Kaksi ulostuloa yhtä aikaa: kvantisoitu sävelkorkeus-CV neljän oktaavin alalta kahdeksassa asteikossa sekä vapaa 0–5V CV. Kahdeksan suuntatilaa, mukana heiluri, stagger, skip ja kaksi satunnaisuuden muotoa, säädettävä kuvion pituus, tap tempo ja kellojakaja. Pittsburgh on lopettanut sen valmistuksen, joten käytetty on ainoa tie.",
+    "sv": "Åttastegssekvensiator i 10HP, byggd kring åtta reglar som också fungerar som stegvis mute när man drar ner dem. Två utgångar samtidigt: en kvantiserad tonhöjds-CV över fyra oktaver i åtta skalor, och en fri 0–5V CV. Åtta riktningslägen inklusive pendel, stagger, skip och två sorters slump, justerbar mönsterlängd, tap tempo och klockdelare. Utgått ur Pittsburghs sortiment, så begagnat är enda vägen."
+  },
+  "id": "microsequence",
+  "negotiating": false,
+  "cats": [
+    "Sequencer",
+    "Controller"
+  ],
+  "who": "t"
+}

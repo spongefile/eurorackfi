@@ -1,0 +1,92 @@
+{
+  "parts": {
+    "k": 6,
+    "j": 7,
+    "sl": 2,
+    "led": 0,
+    "sc": 4
+  },
+  "mgSlug": "xaoc-devices-belgrad",
+  "site": "xaocdevices.com",
+  "hp": 14,
+  "price": 260,
+  "name": "Belgrad",
+  "fmt": "eu",
+  "extra": {
+    "depth": "20 mm, skiff friendly",
+    "power": "+12V 45mA · −12V 42mA",
+    "pull": {
+      "q": "You can span the two filters but the sound always goes through both allowing you to create phase style sweeps on top of low passes or dual bands create formant style peaks.",
+      "src": "DivKid",
+      "url": "https://divkidvideo.com/videos/xaoc-devices-belgrad/"
+    },
+    "quotes": [
+      {
+        "t": "It takes the edge off of square waves well. Not all filters can do that without getting too quiet.",
+        "s": "MOD WIGGLER"
+      },
+      {
+        "t": "I love it. And I use it pretty vanilla a lot of the time.",
+        "s": "MOD WIGGLER"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Xaoc Devices",
+        "title": "Belgrad — the manufacturer's page and manual",
+        "url": "https://xaocdevices.com/main/belgrad/"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Do you love Xaoc Belgrad? — 44 posts of owners arguing about it",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=280891"
+      },
+      {
+        "src": "Perfect Circuit",
+        "title": "XAOC Devices Belgrad Dual Peak Filter — specs",
+        "url": "https://www.perfectcircuit.com/xaoc-devices-belgrad.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Xaoc Devices Belgrad — specs and racks",
+        "url": "https://modulargrid.net/e/xaoc-devices-belgrad"
+      }
+    ],
+    "videos": [
+      {
+        "title": "XAOC Devices — Belgrad",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=VhGWhmMyzcE"
+      },
+      {
+        "title": "XAOC Devices — Belgrad *Dark Filter Drones*",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=6WLNBvreDUQ"
+      },
+      {
+        "title": "Belgrad — Xaoc Devices — DEMO (NO TALK)",
+        "by": "Milano Modulare · YouTube",
+        "url": "https://www.youtube.com/watch?v=zsbwcLdoxIA"
+      },
+      {
+        "title": "XAOC Belgrad Demo",
+        "by": "Perfect Circuit · YouTube",
+        "url": "https://www.youtube.com/watch?v=2iXCU799ePY"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Filter",
+  "mfr": "Xaoc Devices",
+  "blurb": {
+    "en": "All-analog state variable filter with two resonant peaks you can move apart and rebalance against each other. Ten responses, slopes from -6 to -24 dB per octave, cutoff from 4 Hz to 28 kHz. Signal always passes through both cores, so spreading the peaks gives formant vowels and phaser-like sweeps rather than one plain curve. Nonlinear feedback and cross-modulation for the aggressive end, calibrated V/oct in, and it self-oscillates as a pair of oscillators.",
+    "fi": "Täysin analoginen tilamuuttujasuodin, jossa on kaksi resonanssipiikkiä. Ne voi ajaa erilleen ja tasapainottaa keskenään. Kymmenen vastetta, jyrkkyys -6:sta -24 dB:hen oktaavia kohti, rajataajuus 4 Hz:stä 28 kHz:iin. Signaali kulkee aina molempien ytimien läpi, joten piikkien levittäminen tuottaa formanttivokaaleja ja vaiheistimen kaltaisia pyyhkäisyjä yhden tavallisen käyrän sijaan. Epälineaarinen takaisinkytkentä ja ristiinmodulaatio hoitavat rajumman pään, V/okt-tulo on kalibroitu, ja itseoskilloidessaan se toimii kahtena oskillaattorina.",
+    "sv": "Helanalogt state variable-filter med två resonanstoppar som kan skjutas isär och balanseras mot varandra. Tio karaktärer, branthet från -6 till -24 dB per oktav, gränsfrekvens från 4 Hz till 28 kHz. Signalen går alltid genom båda kärnorna, så när topparna sprids ut får man formantvokaler och phaserliknande svep i stället för en vanlig kurva. Olinjär återkoppling och korsmodulering för det hårdare hållet, kalibrerad V/okt-ingång, och den självsvänger som ett par oscillatorer."
+  },
+  "id": "belgrad",
+  "negotiating": false,
+  "cats": [
+    "Filter"
+  ],
+  "who": "t"
+}
