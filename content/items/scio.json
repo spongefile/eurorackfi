@@ -1,0 +1,133 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/scio.jpg",
+  "mgSlug": "",
+  "site": "scionir.com",
+  "hp": 0,
+  "price": 75,
+  "name": "SCiO Molecular Sensor",
+  "fmt": "tools",
+  "extra": {
+    "pull": {
+      "q": "The team touted the project to the press as a magic way to identify things like cheeses and fruits but apparently these features were only available in the development kit.",
+      "src": "TechCrunch",
+      "url": "https://techcrunch.com/2016/09/16/scio-the-pocket-sized-molecular-analyzer-is-making-everyone-angry/"
+    },
+    "quotes": [
+      {
+        "t": "Instead of failing, the scanner suggests that the blue M&M contains ibuprofen. It's enough to make you wonder if there isn't something else going on besides molecular scanning.",
+        "s": "TechCrunch"
+      },
+      {
+        "t": "There is no doubt that a ton of engineering went into the SCiO. It was impressive to see that much technology packed into such a tiny package.",
+        "s": "SparkFun · the teardown"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "TechCrunch",
+        "title": "SCiO, the pocket-sized molecular analyzer, is making everyone angry",
+        "url": "https://techcrunch.com/2016/09/16/scio-the-pocket-sized-molecular-analyzer-is-making-everyone-angry/"
+      },
+      {
+        "src": "SparkFun",
+        "title": "SCiO Pocket Molecular Scanner Teardown",
+        "url": "https://learn.sparkfun.com/tutorials/scio-pocket-molecular-scanner-teardown-/all"
+      },
+      {
+        "src": "Hackaday",
+        "title": "SCiO \"Pocket Molecular Scanner\" Teardown",
+        "url": "https://hackaday.com/2017/07/20/scio-pocket-molecular-scanner-teardown/"
+      },
+      {
+        "src": "NoCamels",
+        "title": "SCiO: The Unsteady Journey Of A Kickstarter Darling That Promised Big Discoveries",
+        "url": "https://nocamels.com/2019/03/scio-kickstarter-darling-promises-molecular-sensor/"
+      },
+      {
+        "src": "IEEE Spectrum",
+        "title": "Pocket-Sized Labs' Killer App: Analyzing Illegal and Semilegal Drugs",
+        "url": "https://spectrum.ieee.org/pocket-sized-labs-killer-app-analyzing-illegal-and-semilegal-drugs"
+      },
+      {
+        "src": "RFID Journal",
+        "title": "Consumer Physics Begins Shipping SCiO Pocket Molecular Sensors",
+        "url": "https://www.rfidjournal.com/news/consumer-physics-begins-shipping-scio-pocket-molecular-sensors/72821/"
+      },
+      {
+        "src": "Google Play",
+        "title": "SCiO Analyzer — the app the sensor needs (check it works for you before buying)",
+        "url": "https://play.google.com/store/apps/details?id=com.consumerphysics.consumer"
+      },
+      {
+        "src": "SCiO / Consumer Physics",
+        "title": "The manufacturer today — agriculture and food only, no consumer sensor",
+        "url": "https://www.scionir.com/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "SCiO - The World's First Pocket Molecular Sensor",
+        "by": "Consumer Physics · YouTube",
+        "url": "https://www.youtube.com/watch?v=YKv9ESLMOEE"
+      },
+      {
+        "title": "SCiO Molecular Sensor Review - good or bad?",
+        "by": "Health Renegade · YouTube",
+        "url": "https://www.youtube.com/watch?v=1R-LrlsyJQk"
+      },
+      {
+        "title": "SCiO molecular scanner: This is how a handheld spectrometer works",
+        "by": "TomoNews US · YouTube",
+        "url": "https://www.youtube.com/watch?v=pVCUC2BuGc0"
+      },
+      {
+        "title": "SCiO Reviews by backers",
+        "by": "Playlist · YouTube",
+        "url": "https://www.youtube.com/playlist?list=PLwF7cPOkfduDZPgoSio20CZOQAjoAAxDD"
+      }
+    ],
+    "specs": [
+      [
+        "Sensor",
+        "Near-infrared spectrometer, 740–1070 nm"
+      ],
+      [
+        "Connection",
+        "Bluetooth to phone, analysis ran in the cloud"
+      ],
+      [
+        "Inside",
+        "Blackfin ADSP-BF512, 12-photodiode array, LiPo battery, micro-USB"
+      ],
+      [
+        "Launched",
+        "Kickstarter 2014, shipped from 2016, about $200"
+      ],
+      [
+        "Condition",
+        "Sold as-is, untested against a working account"
+      ]
+    ]
+  },
+  "tone": "black",
+  "cat": "Other",
+  "mfr": "Consumer Physics",
+  "blurb": {
+    "en": "Pocket near-infrared spectrometer from the 2014 Kickstarter. Scans a material, sends the reading over Bluetooth to a phone app, and the analysis happens in Consumer Physics' cloud. Sold as-is: the company has moved entirely to agricultural and food equipment, the consumer sensor is gone from their site, and we cannot confirm the app still lets a new owner register or scan. Buy it as hardware to open up, not as a working instrument. Links below — read them and decide for yourself.",
+    "fi": "Taskukokoinen lähi-infrapunaspektrometri vuoden 2014 Kickstarterista. Lukee materiaalin, lähettää mittauksen Bluetoothilla puhelinsovellukseen, ja analyysi tehdään Consumer Physicsin pilvessä. Myydään sellaisena kuin se on: yhtiö tekee nykyään pelkkiä maatalous- ja elintarvikelaitteita, kuluttajaversio on poistunut sivuilta, emmekä voi varmistaa että sovellus vielä päästää uuden omistajan rekisteröitymään tai skannaamaan. Osta laitteistona purettavaksi, älä toimivana mittalaitteena. Linkit alla — lue ne ja päätä itse.",
+    "sv": "Fickstor nära-infraröd spektrometer från Kickstarter 2014. Läser av ett material, skickar mätningen via Bluetooth till en telefonapp, och analysen sker i Consumer Physics moln. Säljs i befintligt skick: företaget gör numera enbart utrustning för jordbruk och livsmedel, konsumentsensorn är borta från deras webbplats, och vi kan inte bekräfta att appen fortfarande låter en ny ägare registrera sig eller skanna. Köp den som hårdvara att öppna, inte som ett fungerande instrument. Länkar nedan — läs dem och bestäm själv."
+  },
+  "id": "scio",
+  "negotiating": false,
+  "cats": [
+    "Other"
+  ],
+  "who": "t"
+}
