@@ -29,6 +29,22 @@ for name in list(files.keys()):
         files[name] = local
         changed.append((name, before, len(local)))
 
+# Drop embedded binary assets no artboard references any more. The canvas
+# carries every photo inline as base64, so orphaned ones are pure weight —
+# and weight is what makes the published page fail to render.
+sources = '\n'.join(v for k, v in files.items()
+                    if k.endswith('.dc.html') or k == 'canvas.json')
+orphans = [k for k in files
+           if not (k.endswith('.dc.html') or k == 'canvas.json')
+           and k not in sources]
+freed = sum(len(files[k]) for k in orphans)
+for k in orphans:
+    del files[k]
+if orphans:
+    print(f'  pruned {len(orphans)} unreferenced assets, {freed:,} chars: '
+          + ', '.join(sorted(orphans)))
+    changed.append(('<pruned assets>', freed, 0))
+
 if not changed:
     print('No differences — canvas already matches local sources.')
     sys.exit(0)
