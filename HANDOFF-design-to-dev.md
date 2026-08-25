@@ -348,6 +348,36 @@ quote cards → reviews → video → outbound links → "You may also like" →
   Both stacked breakpoints reset `.shots` to `position:static` — sticky in a
   single-column layout would pin the image over the form as you scroll past it.
 
+- **Specs move under the image (decided 2026-08-25).** The specs block leaves
+  the bottom of the buy column and goes into the image column, below the photo
+  credit. Rendered spec: `specs-placement-mockup.html`, option B.
+
+  Reason: specs and photo both describe *the object*; price, seller, CTA and
+  wishlist all describe *the transaction*. Splitting them that way also closes
+  the scroll gap the user reported — measured live on Piston Honda at 1280px,
+  `.imgcol` was 443px against `.buycol`'s 744px, a 301px hole beside the CTA.
+
+  **The specs go INSIDE `.imgcol`, not as a sibling below it.** This is the
+  part that can go wrong. `.imgcol` is `position:sticky`, and a sticky element
+  with a normal-flow sibling under it in the same column is exactly the
+  drift-and-overlap bug documented two points above — the sticky part slides
+  down over the static part as you scroll. Keeping everything in one rigid
+  sticky unit is what made that bug impossible, and that invariant holds here.
+
+  Consequence to accept, not to fix: the sticky unit is now ~700px tall, so on
+  a viewport shorter than roughly 724px it simply stops pinning and scrolls
+  normally. That degrades cleanly — no overlap, no stranded gap. If the two
+  columns end up close in height with real content, dropping `position:sticky`
+  from `.imgcol` altogether is reasonable and removes the whole bug class;
+  worth checking against a real item before deciding.
+
+  **On my earlier objection — the user overruled it and was right.** I flagged
+  that B would flip the imbalance (left ≈700, right ≈490). That was measured
+  against the mockup's stub wishlist panel. The user's correction: the wishlist
+  section is usually taller than that, so the right column carries more height
+  in practice and the columns land closer than my figures suggested. Verify
+  against an item with a real wishlist, not against the mockup.
+
 - **Photo switcher — replaced the four labeled thumbnails entirely**, per the
   user: "get less specific about the photo types and simply have the standard
   arrow/swipe option." Two round chevron buttons (SVG, stroke-based per the

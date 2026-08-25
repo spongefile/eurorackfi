@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — filter bar collapse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+.wrapper{width:min(1100px,calc(100% - 3rem));margin-inline:auto}
+
+/* ---------- option switcher ---------- */
+.switch{position:fixed;bottom:0;right:0;z-index:99;background:var(--panel);
+  border-left:1px solid var(--line2);border-top:1px solid var(--line2);
+  box-shadow:var(--shadow);padding:.7rem .85rem;max-width:280px}
+.switch h5{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .5rem}
+.switch label{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+  color:var(--ink2);cursor:pointer;padding:.22rem 0}
+.switch label input{margin-right:.45rem}
+.switch .note{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--muted);
+  line-height:1.6;margin:.55rem 0 0;border-top:1px solid var(--line);padding-top:.5rem}
+
+/* ---------- page furniture ---------- */
+.hero{padding:2.2rem 0 1.6rem}
+.hero h1{font-size:2rem;letter-spacing:-.025em;margin:0 0 .4rem}
+.hero p{font-family:"Newsreader",Georgia,serif;color:var(--ink2);font-size:1.05rem;margin:0;max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:1.1rem;padding:1.4rem 0 5rem}
+.card{background:var(--panel);border:1px solid var(--line2);box-shadow:var(--shadow)}
+.card .ph{aspect-ratio:4/3;background:linear-gradient(160deg,var(--panel2),var(--bg2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--muted)}
+.card .cb{padding:.7rem .8rem}
+.card h3{font-size:.95rem;margin:0 0 .3rem;letter-spacing:-.01em}
+.card .pr{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:600}
+
+/* ---------- the filter bar, faithful to live ---------- */
+.controls{position:sticky;top:0;z-index:30;background:var(--bg);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ctop{display:flex;gap:1.5rem;align-items:flex-start;padding:.7rem 0;flex-wrap:wrap}
+.cfilters{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:.7rem}
+.cfilters .chip{padding:.38rem .68rem}
+.cfind{flex:0 1 300px;display:flex;flex-direction:column;gap:.4rem;min-width:220px}
+.search{display:flex;align-items:center;gap:.55rem;background:var(--panel);
+  border:1px solid var(--line2);box-shadow:var(--shadow);padding:.55rem .8rem;flex:0 0 auto}
+.search .mag{width:15px;height:15px;flex:0 0 auto;color:var(--muted)}
+.search input{border:none;background:none;outline:none;font-family:"IBM Plex Mono",monospace;
+  font-size:.85rem;color:var(--ink);width:100%}
+.sortsel{font-family:"IBM Plex Mono",monospace;font-size:.78rem;padding:.5rem .6rem;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);width:100%}
+.crow{display:flex;gap:.75rem;align-items:baseline;flex-wrap:nowrap}
+.crow.b{padding:.7rem 0 .85rem;margin-top:.25rem;border-top:1px solid var(--line)}
+.clabel{font-family:"IBM Plex Mono",monospace;font-size:.6rem;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--muted);flex:0 0 64px;padding-top:.42rem}
+.chips{display:flex;gap:.35rem;flex-wrap:wrap;min-width:0}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:.72rem;padding:.32rem .6rem;
+  border:1px solid var(--line2);color:var(--ink2);background:var(--panel);white-space:nowrap;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on)}
+.chip.ico{display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .68rem}
+.chip.ico::before{content:"";width:15px;height:15px;flex:0 0 auto;background:var(--muted);
+  -webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.chip.ico[aria-pressed="true"]::before{background:var(--on)}
+.ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
+.ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23000' stroke-width='11'/%3E%3Ccircle cx='50' cy='50' r='8.6' fill='%23000'/%3E%3C/svg%3E")}
+.chip.owner{display:inline-flex;align-items:center;gap:.45rem}
+.chip .odot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.subchip{font-family:"IBM Plex Mono",monospace;font-size:.7rem;padding:.28rem .52rem;
+  border:1px solid transparent;background:none;color:var(--muted);cursor:pointer}
+.subchip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent-soft);color:var(--accent-hi)}
+
+/* ---------- collapsed bar, shared skeleton ---------- */
+/* No min-height on the base. min-height BEATS max-height in CSS, which is
+   why the live bar computes to 44px even while "hidden" — see .m-cur. */
+.collbar{width:100%;display:flex;align-items:center;gap:.5rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink);
+  text-align:left;cursor:pointer;padding:0 .7rem;border:none;background:none}
+.collbar .chev{width:14px;height:14px;flex:0 0 auto;color:var(--accent);
+  transition:transform .24s cubic-bezier(.4,0,.2,1)}
+.collbar .ficon{width:15px;height:15px;flex:0 0 auto;color:var(--accent)}
+.collbar .collcount{margin-left:auto;color:var(--muted)}
+.collbar .summary{color:var(--muted)}
+.collbar .summary b{color:var(--accent-hi);font-weight:600}
+.collbar .summary,.collbar .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===========================================================
+   MODE: CURRENT (what is live today)
+   =========================================================== */
+/* min-height:44px + max-height:0 is live's own pairing, kept verbatim.
+   min-height wins, so this bar is ALWAYS 44px tall — it never folds, it only
+   fades. That is the mechanical reason the current version reads as
+   appear/disappear: neither half of the swap animates height at all. */
+.m-cur .collbar{background:var(--panel);border:1px solid var(--line2);box-shadow:var(--shadow);
+  min-height:44px;max-height:0;overflow:hidden;opacity:0;visibility:hidden;
+  transition:max-height .2s ease,opacity .15s ease,visibility 0s linear .2s}
+.m-cur .collbar .chev,.m-cur .collbar .summary{display:none}
+.m-cur .controls.collapsed{padding:.55rem 0}
+.m-cur .wrap{max-height:300px;overflow:hidden;opacity:1;visibility:visible;
+  transition:max-height .2s ease,opacity .15s ease,padding .2s ease,visibility 0s linear 0s}
+.m-cur .controls.collapsed .wrap{max-height:0;opacity:0;padding-top:0;padding-bottom:0;visibility:hidden;
+  transition:max-height .2s ease,opacity .15s ease,padding .2s ease,visibility 0s linear .2s}
+.m-cur .controls.collapsed .collbar{max-height:44px;opacity:1;visibility:visible;
+  transition:max-height .2s ease,opacity .15s ease,visibility 0s linear 0s}
+
+/* ===========================================================
+   MODE: FOLD — one surface, real height, no cross-fade
+   The panel compresses into the bar. Nothing fades: opacity is
+   what makes the current version read as appear/disappear.
+   Height is set in px from scrollHeight, so there is no dead
+   travel and the easing lands where the eye expects.
+   =========================================================== */
+.m-fold .wrap{overflow:hidden;transition:height .26s cubic-bezier(.4,0,.2,1)}
+.m-fold .collbar{height:0;min-height:0;overflow:hidden;background:none;
+  transition:height .26s cubic-bezier(.4,0,.2,1)}
+.m-fold .controls.collapsed .collbar{height:44px}
+.m-fold .collbar .summary{display:none}
+.m-fold .controls.collapsed .chev{transform:rotate(180deg)}
+
+/* ===========================================================
+   MODE: CONDENSE — the bar never leaves
+   Nothing hides. Chips lose their labels, the search becomes its
+   own magnifier, the second row goes. Always visible, always
+   clickable, so there is no "is that tappable?" question at all.
+   =========================================================== */
+.m-condense .collbar{display:none}
+.m-condense .wrap{overflow:hidden;transition:height .26s cubic-bezier(.4,0,.2,1)}
+.m-condense .ctop{transition:gap .26s ease,padding .26s ease}
+.m-condense .cfilters{transition:gap .26s ease}
+.m-condense .chip,.m-condense .search,.m-condense .sortsel{
+  transition:padding .26s ease,font-size .26s ease,max-width .26s ease}
+.m-condense .controls.condensed{background:var(--bg2)}
+.m-condense .controls.condensed .ctop{padding:.3rem 0;gap:.6rem;flex-wrap:nowrap;align-items:center}
+.m-condense .controls.condensed .cfilters{flex-direction:row;gap:.5rem;align-items:center}
+.m-condense .controls.condensed .clabel,
+.m-condense .controls.condensed .crow.b,
+.m-condense .controls.condensed .sortsel{display:none}
+.m-condense .controls.condensed .chip{font-size:0;padding:.38rem .42rem;gap:0}
+.m-condense .controls.condensed .chip.owner .odot{width:11px;height:11px}
+.m-condense .controls.condensed .cfind{flex:0 0 auto;min-width:0}
+.m-condense .controls.condensed .search{padding:.4rem .5rem}
+.m-condense .controls.condensed .search input{width:0;padding:0}
+
+/* ===========================================================
+   MODE: SUMMARY — fold mechanic, but the bar says something
+   Same real-height fold as FOLD. The difference is the collapsed
+   row: instead of the generic word "Filters" it reports what is
+   actually filtering, tinted so it reads as a control rather
+   than as a strip of page.
+   =========================================================== */
+.m-summary .wrap{overflow:hidden;transition:height .26s cubic-bezier(.4,0,.2,1)}
+.m-summary .collbar{height:0;min-height:0;overflow:hidden;
+  background:var(--accent-soft);border-bottom:1px solid var(--accent);
+  transition:height .26s cubic-bezier(.4,0,.2,1)}
+.m-summary .controls.collapsed .collbar{height:44px}
+.m-summary .collbar .lbl{display:none}
+.m-summary .controls.collapsed .chev{transform:rotate(180deg)}
+.m-summary .collbar .collcount{color:var(--accent-hi)}
+
+@media (prefers-reduced-motion:reduce){
+  .wrap,.collbar,.chev{transition:none !important}
+}
+</style>
+</head>
+<body class="m-cur">
+
+<div class="switch">
+  <h5>Collapse behaviour</h5>
+  <label><input type="radio" name="mode" value="cur" checked> Current (live)</label>
+  <label><input type="radio" name="mode" value="fold"> A — True fold</label>
+  <label><input type="radio" name="mode" value="condense"> B — Condense, never hide</label>
+  <label><input type="radio" name="mode" value="summary"> C — Fold + summary</label>
+  <p class="note">Scroll down to collapse. Tap the bar to reopen.<br>
+  Switching resets to the top.</p>
+</div>
+
+<div class="wrapper hero">
+  <h1>Kaikki</h1>
+  <p>A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff.</p>
+</div>
+
+<section class="controls" id="grid-top">
+  <button class="collbar" id="collbar" type="button">
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+    <span class="lbl">Suodattimet</span>
+    <span class="summary"><b>Eurorack</b> · <b>Sampo</b> · Oscillator</span>
+    <span class="collcount">24</span>
+  </button>
+  <div class="wrap">
+    <div class="wrapper">
+      <div class="ctop">
+        <div class="cfilters">
+          <div class="crow">
+            <span class="clabel">Muoto</span>
+            <div class="chips">
+              <button class="chip ico ic-all">Kaikki</button>
+              <button class="chip ico ic-eu" aria-pressed="true">Eurorack</button>
+              <button class="chip ico ic-all">Pöytälaite</button>
+              <button class="chip ico ic-all">Tarvikkeet</button>
+            </div>
+          </div>
+          <div class="crow">
+            <span class="clabel">Myyjä</span>
+            <div class="chips">
+              <button class="chip">Kaikki</button>
+              <button class="chip owner" aria-pressed="true"><i class="odot" style="background:#C08A2E"></i>Sampo</button>
+              <button class="chip owner"><i class="odot" style="background:#3E7BB6"></i>spongefile</button>
+            </div>
+          </div>
+        </div>
+        <div class="cfind">
+          <div class="search">
+            <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <input placeholder="Etsi nimellä tai valmistajalla">
+          </div>
+          <select class="sortsel"><option>Uusimmat ensin</option><option>Halvin ensin</option></select>
+        </div>
+      </div>
+      <div class="crow b">
+        <span class="clabel">Tyyppi</span>
+        <div class="chips">
+          <button class="subchip" aria-pressed="true">Oscillator</button>
+          <button class="subchip">Filter</button>
+          <button class="subchip">Sequencer</button>
+          <button class="subchip">Effects</button>
+          <button class="subchip">Utility</button>
+          <button class="subchip">Drums</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrapper">
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+(function(){
+  /* ---- filler cards so there is something to scroll ---- */
+  var names=["Piston Honda MK III","Milky Way 1U","Bitbox Micro","Bishop's Miscellany",
+    "Pamela's New Workout","Lubadh","Quad VCA","Nucleus","Progue","Sinciter","Belgrad","Chainsaw",
+    "Frap 321","Hydrus","Performer","Mosquant"];
+  var g=document.getElementById("grid"),h="";
+  for(var i=0;i<names.length;i++){
+    h+='<article class="card"><div class="ph">PHOTO</div><div class="cb">'+
+       '<h3>'+names[i]+'</h3><div class="pr">€'+(120+i*37)+'</div></div></article>';
+  }
+  g.innerHTML=h;
+
+  var bar=document.getElementById("grid-top");
+  var wrap=bar.querySelector(".wrap");
+  var collbar=document.getElementById("collbar");
+  var mode="cur", lastY=window.scrollY, ticking=false, suppressUntil=0;
+
+  function isCollapsed(){ return bar.classList.contains("collapsed"); }
+
+  /* Real measured height, not max-height. The live version animates
+     max-height:300px against a panel that is actually 225px tall, so a
+     quarter of the transition is dead travel and the rest snaps. */
+  function collapse(){
+    if(mode==="condense"){ bar.classList.add("condensed"); return; }
+    if(isCollapsed()) return;
+    if(mode==="cur"){ bar.classList.add("collapsed"); return; }
+    wrap.style.height=wrap.scrollHeight+"px";
+    void wrap.offsetHeight;
+    bar.classList.add("collapsed");
+    wrap.style.height="0px";
+  }
+  function expand(){
+    if(mode==="condense"){ bar.classList.remove("condensed"); return; }
+    if(!isCollapsed()) return;
+    if(mode==="cur"){ bar.classList.remove("collapsed"); return; }
+    bar.classList.remove("collapsed");
+    var h=wrap.scrollHeight;
+    wrap.style.height="0px";
+    void wrap.offsetHeight;
+    wrap.style.height=h+"px";
+    setTimeout(function(){ if(!isCollapsed()) wrap.style.height=""; },300);
+  }
+
+  function onScroll(){
+    ticking=false;
+    var y=window.scrollY, down=y>lastY;
+    lastY=y;
+    if(Date.now()<suppressUntil) return;
+    if(mode==="condense"){
+      if(down&&y>90) bar.classList.add("condensed");
+      else if(!down&&y<40) bar.classList.remove("condensed");
+      return;
+    }
+    if(!isCollapsed()&&down&&y>90) collapse();
+  }
+  window.addEventListener("scroll",function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
+  },{passive:true});
+
+  collbar.addEventListener("click",function(){
+    expand(); lastY=window.scrollY; suppressUntil=Date.now()+600;
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".switch input"),function(r){
+    r.addEventListener("change",function(){
+      mode=r.value;
+      bar.classList.remove("collapsed","condensed");
+      wrap.style.height="";
+      document.body.className="m-"+mode;
+      window.scrollTo(0,0);
+      lastY=0;
+    });
+  });
+
+  /* chips toggle so the bar feels alive */
+  Array.prototype.forEach.call(document.querySelectorAll(".chip,.subchip"),function(c){
+    c.addEventListener("click",function(e){
+      e.stopPropagation();
+      var on=c.getAttribute("aria-pressed")==="true";
+      c.setAttribute("aria-pressed",on?"false":"true");
+    });
+  });
+})();
+</script>
+</body>
+</html>
