@@ -140,8 +140,11 @@
     /* Two columns: the filter axes claim the left, find-and-sort stacks on the
        right. Previously search had a row to itself and the chips had one each,
        four bands deep, with the whole right half of the search row empty. */
-    .ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.85rem 0 .55rem; flex-wrap:wrap}
-    .cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.3rem}
+    .ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.7rem 0; flex-wrap:wrap}
+    /* Row gap matches the padding above and below the block. At .3rem the two
+       selected chips stacked into one unbroken accent slab, since both rows'
+       "all" chip sits first and both are filled. */
+    .cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.7rem}
     .cfind{flex:0 1 300px; display:flex; flex-direction:column; gap:.4rem; min-width:220px}
     .cfind .sortsel{margin-left:0; width:100%}
     .search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
@@ -177,7 +180,10 @@
       -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
     .chip.ico[aria-pressed="true"]::before{background:var(--on)}
     /* Owner chips take no icon — the seller's dot IS the marker, and it leads
-       the name here exactly as it does on cards, wish band and seller lines. */
+       the name here exactly as it does on cards, wish band and seller lines.
+       They match the icon chips' vertical padding regardless, so the two
+       filter rows are the same height and the block reads square. */
+    .cfilters .chip{padding:.38rem .68rem}
     .chip.owner{display:inline-flex; align-items:center; gap:.45rem}
     .chip .odot{width:8px; height:8px; border-radius:50%; flex:0 0 auto}
     .ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
