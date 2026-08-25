@@ -512,6 +512,8 @@ body.detail-open .browse{display:none}
 .sent h4{font-size:1.1rem; margin-bottom:.4rem}
 .sent p{font-family:"Newsreader",Georgia,serif; color:var(--ink2)}
 .inbox{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.9rem}
+.outnote{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:.55rem}
+.btn svg{width:14px; height:14px; margin-left:.5rem; flex:0 0 auto}
 
 /* ---------- footer ---------- */
 footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
@@ -688,7 +690,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta tai vaihda", buy:"Osta", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
+    buyOrTrade:"Osta tai vaihda", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
@@ -713,7 +715,7 @@ var T = {
     search:"sök tillverkare eller modul",
     wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp eller byt", buy:"Köp", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
+    buyOrTrade:"Köp eller byt", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
@@ -738,7 +740,7 @@ var T = {
     search:"search maker or module",
     wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy or trade", buy:"Buy", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
+    buyOrTrade:"Buy or trade", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
@@ -887,7 +889,7 @@ try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved
 var TX={
  fi:{overview:"Yleistä",specs:"Tiedot",fMaker:"Valmistaja",fCats:"Kategoriat",
      fWidth:"Leveys",fDepth:"Syvyys",fPower:"Virta",fPanel:"Paneeli",
-     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",sameCat:"Sama kategoria:",sameMfr:"Sama valmistaja:",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
+     video:"Video",reviewsH:"Arvioita",accReviewsH:"Arviot",shopAttr:"kauppa",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",sameCat:"Sama kategoria:",sameMfr:"Sama valmistaja:",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
      shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
      fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
      
@@ -902,7 +904,7 @@ var TX={
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
-     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",sameCat:"Samma kategori:",sameMfr:"Samma tillverkare:",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
+     video:"Video",reviewsH:"Recensioner",accReviewsH:"Omdömen",shopAttr:"butiken",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",sameCat:"Samma kategori:",sameMfr:"Samma tillverkare:",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
      shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
      fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
      
@@ -917,7 +919,7 @@ var TX={
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
-     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",sameCat:"Same category:",sameMfr:"Same maker:",official:"Official page",mgNote:"Specs and owner notes",
+     video:"Video",reviewsH:"Reviews",accReviewsH:"Reviews",shopAttr:"the shop",elsewhere:"Links",alsoLike:"You may also like",sameCat:"Same category:",sameMfr:"Same maker:",official:"Official page",mgNote:"Specs and owner notes",
      shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
      fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
      
@@ -1137,7 +1139,7 @@ function card(m){
     (m.hp>0?'<span class="hpstamp">'+m.hp+' '+esc(T2.sHp)+'</span>':'')+
     (m.negotiating
       ? '<span class="negchip"><i></i>'+esc(T2.negotiating)+'</span>'
-      : '<span class="cta">'+esc(m.shopUrl?T2.buy:T2.buyOrTrade)+'</span>')+
+      : '<span class="cta">'+esc(m.shopUrl?T2.moreInfo:T2.buyOrTrade)+'</span>')+
     '</div></button>';
 }
 function renderGrid(){
@@ -1213,6 +1215,17 @@ function specRows(m){
   rows.push([T2.fCats,m.cats.join(" · ")]);
   return rows;
 }
+/* shop items have no HP/depth/power/panel to speak of — whatever the shop
+   page listed (dimensions, material, compatible devices…) goes in
+   extra.specs as [key,value] pairs, same tuple shape x.overview already
+   uses. Table renders only when there's at least one real spec — a lone
+   "Maker" row would be pointless scaffolding, not the point per design's
+   "hides entirely when the shop data carries no key/values". */
+function accessorySpecRows(m){
+  var T2=t(), extra=(m.extra&&m.extra.specs)||[];
+  if(!extra.length) return [];
+  return [[T2.fMaker,m.mfr]].concat(extra);
+}
 function detailHTML(m){
   var T2=t(), p=SELLER_BY_KEY[m.who], x=m.extra||{}, out="";
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
@@ -1244,16 +1257,20 @@ function detailHTML(m){
     (m.shopUrl?"":'<div class="sellerline" style="margin-top:.25rem">'+esc(T2.collectFirst)+'</div>')+
     (m.negotiating?'<div class="negbar"><i></i>'+esc(T2.negBar)+'</div>':'')+
     (m.shopUrl
-      ? '<a class="btn" href="'+esc(m.shopUrl)+'" target="_blank" rel="noopener">'+esc(T2.buy)+'</a>'
+      ? '<a class="btn" href="'+esc(m.shopUrl)+'" target="_blank" rel="noopener">'+esc(T2.buyShop)+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+        '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'
       : '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>')+
-    (m.shopUrl?"":'<p class="inbox">'+esc(T2.inbox)+'</p>')+
+    (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>':'<p class="inbox">'+esc(T2.inbox)+'</p>')+
     (!m.shopUrl&&(WANTS[p.key]||[]).length?'<div class="tradepanel"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
     '</div>':'')+
-    '<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
-      specRows(m).map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
-    '</div></div></div></div>';
+    (function(){ var srows=m.shopUrl?accessorySpecRows(m):specRows(m);
+      return srows.length?'<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
+        srows.map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
+      '</div></div>':''; })()+
+    '</div></div>';
 
   // pitch — authored in English only so far, so fi/sv get the honest banner
   out+='<section class="sect"><h3>'+esc(T2.overview)+'</h3>'+
@@ -1270,12 +1287,17 @@ function detailHTML(m){
      — spongefile's call: no point highlighting, or even including, the negative
      ones on a page whose job is to sell the thing. */
   var posQuotes=(x.quotes||[]).filter(function(q){ return !q.crit; });
-  if(x.pull || posQuotes.length) out+='<section class="sect"><h3>'+esc(x.pull?x.pull.src:T2.reviewsH)+'</h3>'+
+  if(x.pull || posQuotes.length) out+='<section class="sect"><h3>'+esc(x.pull?x.pull.src:(m.shopUrl?T2.accReviewsH:T2.reviewsH))+'</h3>'+
     (x.pull?'<blockquote class="pullquote">&ldquo;'+esc(x.pull.q)+'&rdquo;<cite>'+esc(x.pull.src)+' · <a href="'+x.pull.url+'" target="_blank" rel="noopener">read the full review</a></cite></blockquote>':'')+
+    /* shop reviews live on the shop's own product page, not a magazine —
+       same q.t/q.s fields and .qcard markup, only the citation's source
+       changes: a bare reviewer name (if any) plus "the shop" appended here
+       rather than secretary hand-writing that suffix per language */
     '<div class="qcards">'+posQuotes.map(function(q){
-      return '<div class="qcard"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+esc(q.s)+'</cite></div>'; }).join("")+'</div></section>';
+      var cite=m.shopUrl?(q.s?esc(q.s)+" · "+esc(T2.shopAttr):esc(T2.shopAttr)):esc(q.s);
+      return '<div class="qcard"><p>&ldquo;'+esc(q.t)+'&rdquo;</p><cite>'+cite+'</cite></div>'; }).join("")+'</div></section>';
 
-  if(x.videos) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
+  if(x.videos && !m.shopUrl) out+='<section class="sect"><h3>'+esc(T2.video)+'</h3><div class="vids">'+x.videos.map(function(v){
     var yid=ytId(v.url);
     /* YouTube only for now (every video in the data is) — anything else
        degrades gracefully to the old plain link-out card, never a broken embed */
@@ -1285,10 +1307,15 @@ function detailHTML(m){
     return '<a class="vid" href="'+v.url+'" target="_blank" rel="noopener"><div class="frame"><span class="play"></span></div>'+
       '<div class="cap">'+esc(v.title)+'</div><div class="sub">'+esc(v.by)+'</div></a>'; }).join("")+'</div></section>';
 
+  /* the one outbound link on a shop item is the Buy button itself — no
+     external review links, no ModularGrid, both meaningless for a product
+     that isn't on ModularGrid and whose reviews already render above */
   var links=[];
-  if(m.site) links.push({k:m.mfr,v:T2.official,u:"https://"+m.site});
-  if(m.mgSlug) links.push({k:"ModularGrid",v:T2.mgNote,u:"https://modulargrid.net/e/"+m.mgSlug});
-  (x.reviews||[]).forEach(function(r){ links.push({k:r.src,v:r.title,u:r.url}); });
+  if(!m.shopUrl){
+    if(m.site) links.push({k:m.mfr,v:T2.official,u:"https://"+m.site});
+    if(m.mgSlug) links.push({k:"ModularGrid",v:T2.mgNote,u:"https://modulargrid.net/e/"+m.mgSlug});
+    (x.reviews||[]).forEach(function(r){ links.push({k:r.src,v:r.title,u:r.url}); });
+  }
   if(links.length) out+='<section class="sect"><h3>'+esc(T2.elsewhere)+'</h3><div class="linkrow">'+links.map(function(l){
     return '<a class="linkcard" href="'+l.u+'" target="_blank" rel="noopener"><div class="k">'+esc(l.k)+'</div>'+
       '<div class="v">'+esc(l.v)+' <span>&rarr;</span></div></a>'; }).join("")+'</div></section>';
