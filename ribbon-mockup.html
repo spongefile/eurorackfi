@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — in-negotiation ribbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+/* Self-contained: Finnish blue tokens written out, nothing read from the
+   canvas. What renders here is exactly the spec dev should build. */
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5;
+  --on:#FAFBFD;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0; padding:40px; background:var(--bg); color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem; letter-spacing:-.02em; margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--muted);
+  line-height:1.7; max-width:66ch; margin:0 0 2rem}
+h2{font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); font-weight:500; margin:2.4rem 0 .9rem}
+
+/* ---- card ---- */
+.row{display:flex; gap:1.25rem; align-items:flex-start; flex-wrap:wrap}
+.card{width:255px; background:var(--panel); border:1px solid var(--line);
+  display:flex; flex-direction:column; position:relative; text-align:left}
+.shot{height:210px; background:var(--bg2); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; padding:14px 10px;
+  position:relative; overflow:hidden}
+.panel{width:88px; height:150px; background:linear-gradient(176deg,#2b2b30,#141416);
+  border-top:1px solid rgba(255,255,255,.10); position:relative}
+.panel.white{background:linear-gradient(176deg,#f4f2ec,#dedcd3)}
+.knob{position:absolute; width:15px; height:15px; border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#77777c,#232326 72%); box-shadow:0 1px 2px rgba(0,0,0,.55)}
+.jackp{position:absolute; width:9px; height:9px; border-radius:50%;
+  background:radial-gradient(circle,#08080a 0 3px,#8d918e 3.2px 100%)}
+.cbody{padding:.9rem 1rem .7rem; display:flex; flex-direction:column; gap:.35rem}
+.mfr{font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted)}
+.cbody h3{font-size:1.05rem; letter-spacing:-.02em; margin:0}
+.blurb{font-family:"Newsreader",Georgia,serif; font-size:.9rem; line-height:1.5; color:var(--ink2); margin:0}
+.cardfoot{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+  padding:.65rem 1rem; border-top:1px solid var(--line); background:var(--panel2)}
+.price{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.9rem; white-space:nowrap}
+.hpstamp{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted);
+  border-left:1px solid var(--line2); padding-left:.6rem}
+.cardcta{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+  border:1px solid var(--line2); color:var(--ink2); padding:.34rem .6rem}
+
+/* ---- THE RIBBON ---- */
+/* Anchored on .card, not .shot. The clip box is inset -2px: one pixel past
+   the card's own 1px border, so the band overhangs the edge instead of
+   landing on it. On the border it reads as printed on the card; past it, as
+   wrapped around it. overflow:hidden on this box is what cuts the rotated
+   band into the corner shape. */
+.negribbon{position:absolute; top:-2px; right:-2px; width:168px; height:168px;
+  overflow:hidden; pointer-events:none; z-index:3}
+.negribbon span{position:absolute; right:-56px; top:30px; width:230px;
+  transform:rotate(30deg);
+  background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; box-shadow:0 1px 5px rgba(0,0,0,.3)}
+
+/* magnified corner, to judge the 1px overhang */
+.zoomwrap{width:255px; height:230px; overflow:hidden; border:1px dashed var(--line2)}
+.zoom{transform:scale(3); transform-origin:100% 0}
+.cap{font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--muted); margin-top:.55rem}
+</style>
+</head>
+<body>
+
+<h1>In-negotiation ribbon</h1>
+<p class="sub">Standalone mockup — nothing here is read from the canvas, so it renders
+regardless of the canvas bug. There is exactly ONE ribbon element per card. Angle 30°,
+band 230px wide, clip box inset −2px so it overhangs the card border by a pixel.</p>
+
+<h2>Grid states, actual size</h2>
+<div class="row">
+
+  <div class="card">
+    <div class="shot">
+      <div class="panel">
+        <div class="knob" style="left:14px;top:26px"></div>
+        <div class="knob" style="left:40px;top:26px"></div>
+        <div class="knob" style="left:66px;top:26px"></div>
+        <div class="jackp" style="left:16px;top:112px"></div>
+        <div class="jackp" style="left:38px;top:112px"></div>
+        <div class="jackp" style="left:60px;top:112px"></div>
+      </div>
+    </div>
+    <div class="cbody">
+      <div class="mfr">Modor Music</div><h3>Formant Filter</h3>
+      <p class="blurb">Stereo vowel morphing lifted from the NF-1.</p>
+    </div>
+    <div class="cardfoot"><span class="price">200 €</span><span class="hpstamp">16 HP</span>
+      <span class="cardcta">Osta tai vaihda</span></div>
+  </div>
+
+  <div class="card">
+    <div class="shot">
+      <div class="panel">
+        <div class="knob" style="left:14px;top:26px"></div>
+        <div class="knob" style="left:40px;top:26px"></div>
+        <div class="knob" style="left:66px;top:26px"></div>
+        <div class="jackp" style="left:16px;top:112px"></div>
+        <div class="jackp" style="left:38px;top:112px"></div>
+        <div class="jackp" style="left:60px;top:112px"></div>
+      </div>
+    </div>
+    <span class="negribbon"><span>Neuvottelussa</span></span>
+    <div class="cbody">
+      <div class="mfr">Industrial Music Electronics</div><h3>Piston Honda MK III</h3>
+      <p class="blurb">Dual morphing wavetable oscillator.</p>
+    </div>
+    <div class="cardfoot"><span class="price">420 €</span><span class="hpstamp">17 HP</span></div>
+  </div>
+
+</div>
+<p class="cap">Left: available — CTA present. Right: in negotiation — ribbon only, and the
+CTA is gone entirely rather than duplicated as a footer chip, since the item cannot be bought.</p>
+
+<h2>Corner at 3× — the overhang</h2>
+<div class="zoomwrap">
+  <div class="zoom">
+    <div class="card" style="width:255px">
+      <div class="shot"><div class="panel"></div></div>
+      <span class="negribbon"><span>Neuvottelussa</span></span>
+      <div class="cbody"><div class="mfr">Industrial Music Electronics</div><h3>Piston Honda</h3></div>
+    </div>
+  </div>
+</div>
+<p class="cap">The band runs past the card's outer border on both ends rather than stopping
+against it — that is what makes it read as wrapped round the card.</p>
+
+<h2>English / Swedish</h2>
+<div class="row">
+  <div class="card">
+    <div class="shot"><div class="panel white"></div></div>
+    <span class="negribbon"><span>Negotiating</span></span>
+    <div class="cbody"><div class="mfr">Modor Music</div><h3>Formant Filter</h3></div>
+    <div class="cardfoot"><span class="price">200 €</span><span class="hpstamp">16 HP</span></div>
+  </div>
+  <div class="card">
+    <div class="shot"><div class="panel white"></div></div>
+    <span class="negribbon"><span>Förhandlas</span></span>
+    <div class="cbody"><div class="mfr">Modor Music</div><h3>Formant Filter</h3></div>
+    <div class="cardfoot"><span class="price">200 €</span><span class="hpstamp">16 HP</span></div>
+  </div>
+</div>
+<p class="cap">One-word forms so the band stays balanced. The full phrase — "Neuvottelussa —
+voit silti kysyä" — stays on the module page bar, where the still-available clause is required.</p>
+
+</body>
+</html>
