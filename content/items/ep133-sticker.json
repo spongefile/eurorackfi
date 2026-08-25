@@ -29,5 +29,25 @@
     "sv": "Matt vinylfusklapp för batteriluckan på EP-133 K.O. II. Systemgenvägar och ljudkoder för samplingar på ett ställe. Första tryckomgången, så det vita blev ljusare än enhetens gräddvita lucka."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep133-sticker.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl sticker"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-133 K.O. II battery cover"
+      ],
+      [
+        "Shows",
+        "System shortcuts, sample sound codes"
+      ]
+    ]
+  }
 }

@@ -29,5 +29,25 @@
     "sv": "Tredelat dekalkit för PO-33 K.O.: en matt vinylfusklapp till baksidan med alla besvärliga knappkombinationer, färgade dekaler som skiljer kontrollknapparna från klaviaturen, och remsor mellan knapparna som märker ut de två sektionerna."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/po33-kit.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Sticker kit, three parts"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "PO-33 K.O."
+      ],
+      [
+        "Includes",
+        "Back-panel cheatsheet, coloured button caps, section strips"
+      ]
+    ]
+  }
 }

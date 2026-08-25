@@ -29,5 +29,25 @@
     "sv": "Fem utskrivbara arbetsblad med alla in- och utgångar i TE-sortimentet: OP-1 field, OP-XY, OP-Z, TP-7, TX-6, EP-serien och Pocket Operators. Visade som de ser ut på enheterna, och som tomma ark där du kan rita in din egen koppling. Digital nedladdning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/te-connections-pdf.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Printable PDF"
+      ],
+      [
+        "Delivery",
+        "Instant digital download"
+      ],
+      [
+        "Sheets",
+        "Five layouts"
+      ],
+      [
+        "Covers",
+        "OP-1 field, OP-XY, OP-Z, TP-7, TX-6, EP series, Pocket Operators"
+      ]
+    ]
+  }
 }

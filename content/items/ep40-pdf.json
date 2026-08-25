@@ -29,5 +29,25 @@
     "sv": "Alla tangentkombinationer för EP-40 Riddim på ett enda A4-ark, färgkodade efter typ. Skriv ut själv. Digital nedladdning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-pdf.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Printable PDF"
+      ],
+      [
+        "Delivery",
+        "Instant digital download"
+      ],
+      [
+        "Page size",
+        "A4, one page"
+      ],
+      [
+        "Shows",
+        "All key combos, colour-coded by type"
+      ]
+    ]
+  }
 }

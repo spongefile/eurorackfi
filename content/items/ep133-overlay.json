@@ -29,5 +29,25 @@
     "sv": "Vinylöverlägg för nedre panelen på EP-133 K.O. II, med de tangentkombinationer panelen utelämnar. Tar hänsyn till Champions-uppdateringen. Första tryckomgången, så LED-hålen är aningen mindre exakta än tänkt."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep133-overlay.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl overlay"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-133 K.O. II lower panel"
+      ],
+      [
+        "Shows",
+        "Key combos not printed on the panel, incl. Champions update"
+      ]
+    ]
+  }
 }

@@ -29,5 +29,25 @@
     "sv": "Matt vinylfusklapp för batteriluckan på EP-1320 Medieval. Systemgenvägar och ljudkoder för samplingar, ritade i enhetens medeltida stil, med tomrum för att skriva in egna samplingskoder med blyerts."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep1320-sticker.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl sticker"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-1320 Medieval battery cover"
+      ],
+      [
+        "Shows",
+        "System shortcuts, sample sound codes, blank space for your own"
+      ]
+    ]
+  }
 }

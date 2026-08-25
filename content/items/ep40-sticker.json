@@ -29,5 +29,25 @@
     "sv": "Matt vinylfusklapp för batteriluckan på Teenage Engineering EP-40 Riddim. Systemgenvägar, syntparametrar och ljudkoder för samplingar, tryckt i enhetens egna färger. Avtagbar, och tål att flyttas om ett par gånger innan du får den rak."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-sticker.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl sticker"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-40 Riddim battery cover"
+      ],
+      [
+        "Shows",
+        "System shortcuts, synth parameters, sample sound codes"
+      ]
+    ]
+  }
 }

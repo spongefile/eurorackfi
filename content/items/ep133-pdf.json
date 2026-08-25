@@ -29,5 +29,25 @@
     "sv": "Tangentkombinationerna för EP-133 K.O. II på ett A4-ark, uppdaterade för Champions-firmware och färgkodade efter typ. Skriv ut själv. Digital nedladdning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep133-pdf.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Printable PDF"
+      ],
+      [
+        "Delivery",
+        "Instant digital download"
+      ],
+      [
+        "Page size",
+        "A4, one page"
+      ],
+      [
+        "Shows",
+        "Key combos incl. Champions update, colour-coded by type"
+      ]
+    ]
+  }
 }

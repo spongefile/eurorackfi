@@ -29,5 +29,25 @@
     "sv": "Samma fusklapp för EP-40 Riddims batterilucka, från en omgång där skrivaren tryckte en del färgad text vit. MIDI- och syntdetaljerna är svårlästa, resten är helt. Därför billigare."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-sticker-misprint.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl sticker"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-40 Riddim battery cover"
+      ],
+      [
+        "Note",
+        "Misprint run — some coloured text printed white"
+      ]
+    ]
+  }
 }

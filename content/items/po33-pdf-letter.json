@@ -29,5 +29,29 @@
     "sv": "Fusklappen för PO-33 K.O.:s bakpanel formgiven för US Letter i stället för A4. Samma innehåll, samma anpassning till dekalpapper. Digital nedladdning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/po33-pdf-letter.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Printable PDF"
+      ],
+      [
+        "Delivery",
+        "Instant digital download"
+      ],
+      [
+        "Page size",
+        "US Letter"
+      ],
+      [
+        "Print on",
+        "Sticker paper, 100% scale"
+      ],
+      [
+        "Shows",
+        "Shortcuts, pattern and sound references, sync settings"
+      ]
+    ]
+  }
 }

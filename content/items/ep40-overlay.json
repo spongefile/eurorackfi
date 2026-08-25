@@ -29,5 +29,25 @@
     "sv": "Vinylöverlägg för nedre panelen på EP-40 Riddim, med de tangentkombinationer enheten själv aldrig berättar om. Skuret för att sitta runt paddarna och matcha Riddims färger."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-overlay.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Vinyl overlay"
+      ],
+      [
+        "Material",
+        "Matte vinyl, removable"
+      ],
+      [
+        "Fits",
+        "EP-40 Riddim lower panel"
+      ],
+      [
+        "Shows",
+        "Key combos not printed on the panel"
+      ]
+    ]
+  }
 }

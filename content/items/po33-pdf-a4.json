@@ -29,5 +29,29 @@
     "sv": "Fusklapp för PO-33 K.O.:s bakpanel som högupplöst A4-PDF, anpassad för dekalpapper: genvägar, mönster- och ljudlistor, sync-inställningar. Skriv ut så många du behöver. Digital nedladdning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/po33-pdf-a4.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Printable PDF"
+      ],
+      [
+        "Delivery",
+        "Instant digital download"
+      ],
+      [
+        "Page size",
+        "A4"
+      ],
+      [
+        "Print on",
+        "Sticker paper, 100% scale"
+      ],
+      [
+        "Shows",
+        "Shortcuts, pattern and sound references, sync settings"
+      ]
+    ]
+  }
 }
