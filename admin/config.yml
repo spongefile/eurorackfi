@@ -69,7 +69,8 @@ collections:
       - { label: "Photo URL", name: "img", widget: "string", required: false, hint: "Manufacturer's own photo first. ModularGrid only as a self-hosted fallback — never hotlink modulargrid.net." }
       - { label: "Photo is a self-hosted ModularGrid fallback", name: "imgIsModularGrid", widget: "boolean", required: false, default: false }
       - { label: "Photo is of a DIY component, not the finished build", name: "imgIsComponent", widget: "boolean", required: false, default: false }
-      - { label: "In negotiation", name: "negotiating", widget: "boolean", default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question." }
+      - { label: "In negotiation", name: "negotiating", widget: "boolean", default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question. Leave off for shop items below — there's no message thread to negotiate in." }
+      - { label: "Shop checkout URL", name: "shopUrl", widget: "string", required: false, hint: "Only for items bought straight from a webshop, not traded. Set this and the site swaps the whole Buy/message flow for a plain \"Buy\" button that links straight out to this URL — no in-site message form, no trade panel. Leave blank for every normal listing." }
 
   - name: "sellers"
     label: "Sellers"

@@ -686,7 +686,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta tai vaihda", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
+    buyOrTrade:"Osta tai vaihda", buy:"Osta", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
@@ -711,7 +711,7 @@ var T = {
     search:"sök tillverkare eller modul",
     wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp eller byt", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
+    buyOrTrade:"Köp eller byt", buy:"Köp", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
@@ -736,7 +736,7 @@ var T = {
     search:"search maker or module",
     wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy or trade", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
+    buyOrTrade:"Buy or trade", buy:"Buy", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
@@ -1129,7 +1129,7 @@ function card(m){
     (m.hp>0?'<span class="hpstamp">'+m.hp+' '+esc(T2.sHp)+'</span>':'')+
     (m.negotiating
       ? '<span class="negchip"><i></i>'+esc(T2.negotiating)+'</span>'
-      : '<span class="cta">'+esc(T2.buyOrTrade)+'</span>')+
+      : '<span class="cta">'+esc(m.shopUrl?T2.buy:T2.buyOrTrade)+'</span>')+
     '</div></button>';
 }
 function renderGrid(){
@@ -1221,11 +1221,15 @@ function detailHTML(m){
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
     '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
     '<div class="sellerline"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-    '<div class="sellerline" style="margin-top:.25rem">'+esc(T2.collectFirst)+'</div>'+
+    /* collection/inbox copy describes the peer-to-peer message flow — meaningless
+       once Buy points straight at an outbound shop checkout instead */
+    (m.shopUrl?"":'<div class="sellerline" style="margin-top:.25rem">'+esc(T2.collectFirst)+'</div>')+
     (m.negotiating?'<div class="negbar"><i></i>'+esc(T2.negBar)+'</div>':'')+
-    '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>'+
-    '<p class="inbox">'+esc(T2.inbox)+'</p>'+
-    ((WANTS[p.key]||[]).length?'<div class="tradepanel"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
+    (m.shopUrl
+      ? '<a class="btn" href="'+esc(m.shopUrl)+'" target="_blank" rel="noopener">'+esc(T2.buy)+'</a>'
+      : '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>')+
+    (m.shopUrl?"":'<p class="inbox">'+esc(T2.inbox)+'</p>')+
+    (!m.shopUrl&&(WANTS[p.key]||[]).length?'<div class="tradepanel"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
     '</div>':'')+
