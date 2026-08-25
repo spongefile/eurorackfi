@@ -402,6 +402,14 @@ main{padding-bottom:3rem}
   background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
   font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
   text-transform:uppercase; box-shadow:0 1px 5px rgba(0,0,0,.3)}
+/* .shot drops 210px->180px at this breakpoint while the card itself gets
+   wider, so the unscaled band cuts much further down a shorter photo —
+   scaled by the same ~.85 ratio to hold the same optical weight instead
+   of reading as a sash across the product. */
+@media(max-width:640px){
+  .negribbon{width:143px; height:143px}
+  .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
+}
 .empty{padding:3.5rem 0; text-align:center; font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:.85rem}
 
 /* ---------- module page ---------- */
