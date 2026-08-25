@@ -436,6 +436,20 @@ Full spec, rendered: `accessory-page-mockup.html` in the repo root.
   — no empty headings, no "ei arvioita" stand-ins. A short page is correct
   for a cheatsheet; a page of empty scaffolding is not.
 
+**Data model — decided by dev while building, confirmed, now binding:**
+- Shop key/values live in `extra.specs`, reusing the `extra.overview`
+  tuple shape (array of `[key, value]`). The table renders **only when
+  `extra.specs` has at least one entry**; the Maker row rides along inside
+  it rather than being able to summon the table by itself. A table whose
+  only content is a manufacturer already shown in the breadcrumb above it
+  is the exact scaffolding this section exists to prevent.
+- Shop reviews reuse `extra.quotes` unchanged (`q.t` / `q.s`, same
+  `.qcard` markup). Citation renders as `q.s · kauppa` when a reviewer
+  name exists and bare `kauppa` when it does not, with the localised
+  "kauppa / butiken / the shop" coming from the string table. The data
+  never carries the suffix — hand-writing it per item in three languages
+  is a translation bug waiting to happen.
+
 ## Admin — add a listing
 
 Six steps: identify → what we found → photos → price → copy → owner/condition.
