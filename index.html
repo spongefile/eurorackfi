@@ -700,7 +700,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta tai vaihda", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
+    buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
@@ -725,7 +725,7 @@ var T = {
     search:"sök tillverkare eller modul",
     wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp eller byt", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
+    buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
@@ -750,7 +750,7 @@ var T = {
     search:"search maker or module",
     wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy or trade", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
+    buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
@@ -1157,7 +1157,7 @@ function card(m){
     /* no CTA at all when negotiating, not a disabled one — the ribbon is
        the only marker; the item can't be bought so offering the action
        is wrong, per design's spec */
-    (m.negotiating?"":'<span class="cta">'+esc(m.shopUrl?T2.moreInfo:T2.buyOrTrade)+'</span>')+
+    (m.negotiating?"":'<span class="cta">'+esc(T2.moreInfo)+'</span>')+
     '</div></button>';
 }
 function renderGrid(){
