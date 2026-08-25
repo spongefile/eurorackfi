@@ -35,10 +35,12 @@ collections:
           - { label: "Standalone / desktop", value: "desk" }
       - label: "Owner"
         name: "who"
-        widget: "select"
-        options:
-          - { label: "spongefile", value: "t" }
-          - { label: "Sampo", value: "f" }
+        widget: "relation"
+        collection: "sellers"
+        search_fields: ["name"]
+        value_field: "key"
+        display_fields: ["name"]
+        hint: "Pick from the Sellers list. To add a brand-new seller, create them under Sellers first, then come back here."
       - { label: "Primary category", name: "cat", widget: "string" }
       - { label: "Category tags", name: "cats", widget: "list" }
       - label: "Description"
@@ -67,3 +69,50 @@ collections:
       - { label: "Photo is a self-hosted ModularGrid fallback", name: "imgIsModularGrid", widget: "boolean", required: false, default: false }
       - { label: "Photo is of a DIY component, not the finished build", name: "imgIsComponent", widget: "boolean", required: false, default: false }
       - { label: "In negotiation", name: "negotiating", widget: "boolean", default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question." }
+
+  - name: "sellers"
+    label: "Sellers"
+    folder: "content/sellers"
+    create: true
+    delete: true
+    identifier_field: key
+    format: json
+    fields:
+      - { label: "Key", name: "key", widget: "string", hint: "short, lowercase, no spaces — e.g. t, f, sampo2. Becomes the filename. Never change this once listings reference it (Owner field on items) or their link to this seller breaks." }
+      - { label: "Display name", name: "name", widget: "string" }
+      - label: "Dot color"
+        name: "dot"
+        widget: "select"
+        options: ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A","#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"]
+        hint: "Pick one not already used by another seller, so cards stay easy to tell apart at a glance."
+      - label: "Wishlist"
+        name: "wants"
+        widget: "list"
+        required: false
+        hint: "What this seller is looking for in trade. Pick \"Real product\" only if you know the actual panel — knob/jack/LED counts and panel color, counted off a real photo — it draws an accurate faceplate on the site, same as a listing. Otherwise use \"Just a note\" for a plain placeholder like \"quad VCA\" — never guess panel details."
+        types:
+          - label: "Real product"
+            name: "product"
+            widget: "object"
+            fields:
+              - { label: "Maker", name: "mfr", widget: "string" }
+              - { label: "Model", name: "name", widget: "string" }
+              - { label: "HP", name: "hp", widget: "number", value_type: "int", default: 0 }
+              - label: "Panel tone"
+                name: "tone"
+                widget: "select"
+                options: ["black", "alu", "white", "cream", "wood"]
+              - label: "Parts (drives the drawn faceplate)"
+                name: "parts"
+                widget: "object"
+                fields:
+                  - { label: "Knobs", name: "k", widget: "number", value_type: "int", default: 0 }
+                  - { label: "Jacks", name: "j", widget: "number", value_type: "int", default: 0 }
+                  - { label: "Sliders", name: "sl", widget: "number", value_type: "int", default: 0 }
+                  - { label: "LEDs", name: "led", widget: "number", value_type: "int", default: 0 }
+                  - { label: "Has screen (1 or 0)", name: "sc", widget: "number", value_type: "int", default: 0 }
+          - label: "Just a note"
+            name: "placeholder"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string", hint: "e.g. \"quad VCA\" or \"drum module\"." }

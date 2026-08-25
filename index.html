@@ -237,6 +237,7 @@ select.sort{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.34
 .wishcard .sub{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.2rem}
 .wishcard ul{list-style:none; margin:.75rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem}
 .wishcard li{font-family:"IBM Plex Mono",monospace; font-size:.72rem; border:1px solid var(--line2); color:var(--ink2); padding:.18rem .42rem}
+.wishcard li.more{color:var(--muted); border-style:dashed}
 .wishcard .wishmore{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--accent); margin-top:.8rem}
 
 /* ---------- Toiveet page ---------- */
@@ -668,29 +669,37 @@ var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper"
 var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
                    "#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"];
 
-/* Real items (spongefile's) are objects with real panel data — sourced the
-   same way as every listing photo, manufacturer's own site, actually
-   counted off a real product photo, never fabricated. Placeholder items
-   (Sampo's, still unspecified) stay plain strings — that's the signal the
-   Toiveet page draws on: an object gets a real drawn faceplate, a string
-   gets a dashed empty outline. */
-var SELLERS = [
-  { key:"t", name:"spongefile", lede:"Swapping for:",
-    wants:[
-      {mfr:"ALM Busy Circuits", name:"MCO", hp:6, tone:"alu", parts:{k:1,j:8,sl:0,led:0,sc:1}},
-      {mfr:"ALM Busy Circuits", name:"AXON-1", hp:4, tone:"white", parts:{k:0,j:4,sl:0,led:4,sc:0}},
-      {mfr:"Mannequins", name:"Mangrove", hp:10, tone:"alu", parts:{k:5,j:9,sl:0,led:1,sc:0}},
-      {mfr:"Mannequins", name:"W/", hp:2, tone:"alu", parts:{k:0,j:4,sl:0,led:6,sc:0}},
-      {mfr:"Dnipro Modular", name:"Dot", hp:6, tone:"black", parts:{k:3,j:8,sl:0,led:78,sc:0}},
-      {mfr:"Noise Engineering", name:"Mimetic Digitwolis", hp:10, tone:"black", parts:{k:5,j:15,sl:1,led:4,sc:1}},
-      {mfr:"Make Noise", name:"PoliMATHS", hp:20, tone:"black", parts:{k:17,j:20,sl:1,led:8,sc:0}},
-      {mfr:"Instruo", name:"øchd expander", hp:4, tone:"black", parts:{k:0,j:16,sl:0,led:0,sc:0}}
-    ] },
-  { key:"f", name:"Sampo", lede:"Swapping for:",
-    wants:["[e.g. quad VCA]","[e.g. drum module]","[e.g. utilities]","[+ add more]"] }
-];SELLERS.forEach(function(p,i){ p.dot = SELLER_DOTS[i % SELLER_DOTS.length]; });
-var WANTS={}, SELLER_BY_KEY={};
-SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
+/* Sellers (spongefile, Sampo, and whoever gets added later) live in
+   content/sellers/*.json now — edited via the Decap "Sellers" collection,
+   fetched at runtime same as content/items/*.json. Real wants are objects
+   with real panel data — sourced the same way as every listing photo,
+   manufacturer's own site, actually counted off a real product photo,
+   never fabricated. Placeholder wants stay plain strings — that's the
+   signal the Toiveet page draws on: an object gets a real drawn faceplate,
+   a string gets a dashed empty outline. */
+var SELLERS=[], WANTS={}, SELLER_BY_KEY={};
+var SELLERS_URL="https://api.github.com/repos/spongefile/eurorackfi/contents/content/sellers";
+function loadSellers(){
+  return fetch(SELLERS_URL).then(function(r){
+    if(!r.ok) throw new Error("directory listing failed: "+r.status);
+    return r.json();
+  }).then(function(list){
+    var files=list.filter(function(f){ return f.name && f.name.slice(-5)===".json"; });
+    return Promise.all(files.map(function(f){ return fetch(f.download_url).then(function(r){ return r.json(); }); }));
+  });
+}
+/* the CMS's "Wishlist" list field uses Decap's variable-types shape —
+   {type:"product",...} or {type:"placeholder",text:...} — not the plain
+   object/string shape wantLabel()/wishTileHTML() already expect and that
+   hand-authored JSON (content/sellers/*.json as committed) uses directly.
+   Normalized once here so no render function has to care which produced it. */
+function normalizeWants(list){
+  return (list||[]).map(function(w){
+    if(w && w.type==="placeholder") return w.text||"";
+    if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts};
+    return w;
+  });
+}
 </script>
 
 <script>
@@ -974,12 +983,20 @@ function chip(kind,k,label,n,on){
    or a placeholder string — Home's teaser only ever needs a text label,
    whichever shape it is */
 var wantLabel=function(w){ return typeof w==="string" ? w : (w.mfr+" "+w.name); };
+/* Home is a light teaser, not the full inventory — the complete list is
+   what the Toiveet page is for. Cap the chips shown here so a long
+   wishlist doesn't eat the space between the filter bar and the grid, and
+   so two sellers with very different list lengths don't render at wildly
+   different card heights. */
+var WISH_TEASER_CAP=6;
 function renderWish(){
   var T2=t();
   el("wishgrid").innerHTML=SELLERS.map(function(p){
+    var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
     return '<a class="wishcard" href="#/wish"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
       '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
-      '<ul>'+p.wants.map(function(w){return '<li>'+esc(wantLabel(w))+'</li>';}).join("")+'</ul>'+
+      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabel(w))+'</li>';}).join("")+
+      (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
       '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
 }
 
@@ -1501,11 +1518,16 @@ var rz; window.addEventListener("resize",function(){
 /* ---------- init ---------- */
 function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(); renderGrid(); }
 /* chrome (nav, hero copy, language switcher) needs no data and shows instantly;
-   everything listing-shaped waits on the one round trip to content/items/ */
+   everything listing-shaped waits on the round trip to content/items/ and
+   content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-loadItems().then(function(items){
-  ITEMS=items;
+Promise.all([loadItems(), loadSellers()]).then(function(r){
+  ITEMS=r[0];
+  SELLERS=r[1];
+  SELLERS.forEach(function(p,i){ if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length]; p.wants=normalizeWants(p.wants); });
+  WANTS={}; SELLER_BY_KEY={};
+  SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
   renderAll();
   route();
 }).catch(function(err){
