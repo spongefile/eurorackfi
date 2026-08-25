@@ -18,14 +18,15 @@ body{margin:0;padding:36px 40px 60px;background:var(--bg);color:var(--ink);
   font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
 h1{font-size:1.3rem;letter-spacing:-.02em;margin:0 0 .4rem}
 .sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
-  line-height:1.7;max-width:80ch;margin:0 0 1.6rem}
+  line-height:1.7;max-width:82ch;margin:0 0 1.6rem}
 h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 .8rem}
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.6rem 0 .8rem}
 .cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
-  margin-top:.7rem;line-height:1.65;max-width:80ch}
+  margin-top:.7rem;line-height:1.65;max-width:82ch}
 .figwrap{max-width:620px}
-.zoomwrap{max-width:320px;overflow:hidden;margin-top:.9rem;border:1px dashed var(--line2)}
-.zoom{transform:scale(4);transform-origin:0 0;width:320px;padding:6px 0 0 6px}
+.zoomwrap{width:470px;height:360px;overflow:hidden;margin-top:.9rem;
+  border:1px dashed var(--line2);background:var(--bg)}
+.zoom{transform:scale(8);transform-origin:0 0;width:58px;padding:1px 0 0 1px}
 
 .rackrow{display:flex;align-items:flex-start}
 .rackmod{position:relative;flex:0 0 auto;display:block;border:none;padding:0;background:none}
@@ -39,40 +40,67 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 .screw{position:absolute;left:50%;transform:translateX(-50%);width:5px;height:5px;
   border-radius:50%;background:#5c421f}
 
-/* ---------- shared shell ---------- */
-.rackbox{box-shadow:var(--shadow);overflow-x:auto;display:flex;align-items:stretch}
+/* No shadow here. .rackbox is now 2px taller than the case so the cheeks can
+   run proud, and a shadow drawn round THAT box fences the transparent strip
+   off from the page — which is what made a pale line appear under the rack.
+   The shadow belongs on the solid parts. */
+.rackbox{overflow-x:auto;display:flex;align-items:stretch;
+  background:transparent;border:none;box-shadow:none}
 .rackinner{width:max-content;min-width:100%;flex:0 0 auto;
-  display:flex;flex-direction:column;gap:0;
+  display:flex;flex-direction:column;gap:0;box-shadow:var(--shadow);
   background:linear-gradient(176deg,#31363c,#1c2025)}
-.cheek{flex:0 0 16px;align-self:stretch;position:relative;
-  background:linear-gradient(90deg,#dcb98d,#b98f5c)}
-.cheek.r{background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+.cheek{flex:0 0 16px;align-self:stretch;position:relative;box-shadow:var(--shadow)}
 
-/* ---------- CURRENT (live) ---------- */
-.cur .rackbox{background:linear-gradient(176deg,#31363c,#1c2025);
-  border:1px solid #8a6538;border-top:none;border-bottom:none;padding:0}
-.cur .cheek{border-right:1px solid rgba(0,0,0,.4)}
-.cur .cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.4)}
+/* ---------- A: shipped — 3px proud, dark brown both ends ---------- */
+.vA .rackbox{padding:3px 0}
+.vA .cheek{margin:-3px 0; background:linear-gradient(90deg,#dcb98d,#b98f5c);
+  border-top:1px solid #4a3418;border-bottom:1px solid #4a3418;
+  border-left:1px solid #4a3418;border-right:1px solid rgba(0,0,0,.4)}
+.vA .cheek.r{background:linear-gradient(90deg,#b98f5c,#dcb98d);
+  border-right:1px solid #4a3418;border-left:1px solid rgba(0,0,0,.4)}
 
-/* ---------- PROPOSED: cheeks run proud, capped dark brown ---------- */
-.new .rackbox{background:transparent;border:none;padding:3px 0}
-.new .cheek{margin:-3px 0;
-  border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
-  border-right:1px solid rgba(0,0,0,.4); border-left:1px solid #4a3418}
-.new .cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4)}
+/* ---------- B / C: lit from above, lit outer corner ----------
+   Every edge is a background layer rather than a border, because a border
+   paints ON TOP of the background and would bury the corner pixel under the
+   outer edge line. As layers they stack in source order — corner first, so it
+   sits above everything else. */
+.lit .cheek{
+  --wood:linear-gradient(90deg,#dcb98d,#b98f5c);
+  --outer:left top; --inner:right top; --corner:left top;
+  border:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.62) 0 0),   /* lit outer corner, 1px */
+    linear-gradient(rgba(255,255,255,.34) 0 0),   /* top — faces the light */
+    linear-gradient(rgba(0,0,0,.26) 0 0),         /* underside — in shadow */
+    linear-gradient(#8a6538 0 0),                 /* outer edge */
+    linear-gradient(rgba(0,0,0,.35) 0 0),         /* inner seam against the case */
+    var(--wood);
+  background-size:1px 1px,100% 1px,100% 1px,1px 100%,1px 100%,auto;
+  background-position:var(--corner),left top,left bottom,var(--outer),var(--inner),left top;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat}
+.lit .cheek.r{
+  --wood:linear-gradient(90deg,#b98f5c,#dcb98d);
+  --outer:right top; --inner:left top; --corner:right top}
+
+.vB .rackbox{padding:2px 0}
+.vB .cheek{margin:-2px 0}
+.vC .rackbox{padding:1px 0}
+.vC .cheek{margin:-1px 0}
 </style>
 </head>
 <body>
 
-<h1>Wood cheek endcaps</h1>
-<p class="sub">The cheeks now run 3px proud of the rails at top and bottom, and that overhang is
-capped with a dark brown line. Between the cheeks the page shows through rather than the case
-body, so no dark band comes back across the width. Shown at size, then at 4× on the top-left
-corner.</p>
+<h1>Wood cheek endcaps — light from above</h1>
+<p class="sub">The rails already state the light direction: <code>inset 0 1px 0
+rgba(255,255,255,.16)</code> on top, <code>inset 0 -1px 0 rgba(0,0,0,.22)</code> underneath.
+The cheeks now agree — pale where they face up, dark where they face down — and the outer top
+corner, the one point catching light from two sides at once, gets a single brighter pixel so it
+stops reading as a cut edge. Each version at size, then the left cheek at 8×.</p>
 
-<h2>Current — cheek stops flush with the rail</h2>
-<div class="figwrap cur">
-  <div class="rackbox"><span class="cheek"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span>
+<!-- ============ A ============ -->
+<h2>A — Shipped. 3px proud, #4a3418 at both ends.</h2>
+<div class="figwrap vA">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:12px"></i><i class="screw" style="bottom:12px"></i></span>
     <div class="rackinner">
       <div class="rail"></div>
       <div class="rackrow">
@@ -87,19 +115,22 @@ corner.</p>
       </div>
       <div class="rail"></div>
     </div>
-    <span class="cheek r"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span></div>
+    <span class="cheek r"><i class="screw" style="top:12px"></i><i class="screw" style="bottom:12px"></i></span></div>
 </div>
-<div class="zoomwrap"><div class="zoom cur">
-  <div class="rackbox" style="width:300px"><span class="cheek"><i class="screw" style="top:9px"></i></span>
+<div class="zoomwrap"><div class="zoom vA">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:12px"></i></span>
     <div class="rackinner"><div class="rail"></div>
-      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button><span class="blank"></span></div>
+      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:20px;height:22px"></button><span class="blank"></span></div>
       <div class="rail"></div></div>
     <span class="cheek r"></span></div>
 </div></div>
+<p class="cap">Both ends the same dark brown, so the cheek reads as outlined rather than lit,
+and the outer corner is a hard right angle in the darkest colour on the figure.</p>
 
-<h2>Proposed — cheek 3px proud, dark brown cap</h2>
-<div class="figwrap new">
-  <div class="rackbox"><span class="cheek"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span>
+<!-- ============ B ============ -->
+<h2>B — 2px proud, lit from above, lit outer corner</h2>
+<div class="figwrap vB lit">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:11px"></i><i class="screw" style="bottom:11px"></i></span>
     <div class="rackinner">
       <div class="rail"></div>
       <div class="rackrow">
@@ -114,18 +145,48 @@ corner.</p>
       </div>
       <div class="rail"></div>
     </div>
-    <span class="cheek r"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span></div>
+    <span class="cheek r"><i class="screw" style="top:11px"></i><i class="screw" style="bottom:11px"></i></span></div>
 </div>
-<div class="zoomwrap"><div class="zoom new">
-  <div class="rackbox" style="width:300px"><span class="cheek"><i class="screw" style="top:9px"></i></span>
+<div class="zoomwrap"><div class="zoom vB lit">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:11px"></i></span>
     <div class="rackinner"><div class="rail"></div>
-      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button><span class="blank"></span></div>
+      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:20px;height:22px"></button><span class="blank"></span></div>
       <div class="rail"></div></div>
     <span class="cheek r"></span></div>
 </div></div>
-<p class="cap">The dark case background moves off <code>.rackbox</code> onto
-<code>.rackinner</code>, so the 3px of padding that lets the cheek run proud stays transparent
-instead of filling dark. <code>#4a3418</code> caps the top, bottom and outer edge of each cheek.</p>
+<p class="cap">White .34 on top and black .26 underneath — the same 1px weight the rails already
+carry, so wood and metal are lit by one source. The outer edge drops from <code>#4a3418</code>
+to <code>#8a6538</code>, the mid brown the case border already used, and the top outer corner
+takes white .62: brighter than the top face because it catches light across two surfaces.</p>
+
+<!-- ============ C ============ -->
+<h2>C — Same, 1px proud</h2>
+<div class="figwrap vC lit">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:10px"></i><i class="screw" style="bottom:10px"></i></span>
+    <div class="rackinner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <span class="cheek r"><i class="screw" style="top:10px"></i><i class="screw" style="bottom:10px"></i></span></div>
+</div>
+<div class="zoomwrap"><div class="zoom vC lit">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:10px"></i></span>
+    <div class="rackinner"><div class="rail"></div>
+      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:20px;height:22px"></button><span class="blank"></span></div>
+      <div class="rail"></div></div>
+    <span class="cheek r"></span></div>
+</div></div>
+<p class="cap">Identical lighting, half the overhang, in case 2px still reads as too much.</p>
 
 </body>
 </html>

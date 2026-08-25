@@ -450,35 +450,61 @@ faceplate tone, already on the site via the Bastl panels — not a new colour.
 
 ### Cheek endcaps (added 2026-08-25, after lip removal)
 
-The cheeks run **3px proud of the rails** at top and bottom, and that
-overhang is **capped in `#4a3418`** — the outer edge of each cheek is capped
-in the same brown. A real case's sides are slightly longer than the rails
-they carry; the cap is what makes the wood read as a solid piece rather than
-a stripe painted on the ends.
+The cheeks run **2px proud of the rails** top and bottom. A real case's sides
+are slightly longer than the rails they carry, and the endcap is what makes
+the wood read as a solid piece rather than a stripe painted on the ends.
+
+**The lighting is the point, not the overhang.** The rails already declare a
+light source — `inset 0 1px 0 rgba(255,255,255,.16)` on top, `inset 0 -1px 0
+rgba(0,0,0,.22)` underneath — so the cheeks use the same 1px weights in the
+same directions. A matched dark line at both ends (the first attempt, `#4a3418`
+top and bottom) reads as an outline, not as a lit object. The top outer corner
+takes a single brighter pixel: it is the one point catching light across two
+surfaces, and without it the corner reads as a cut.
 
 ```css
-.rackbox{background:transparent; border:none; padding:3px 0;
-  box-shadow:var(--shadow); display:flex; align-items:stretch; overflow-x:auto}
-.rackinner{ /* …existing… */ background:linear-gradient(176deg,#31363c,#1c2025)}
-.cheek{ /* …existing… */ margin:-3px 0;
-  border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
-  border-left:1px solid #4a3418; border-right:1px solid rgba(0,0,0,.4)}
-.cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4)}
-.cheek::before{top:12px} .cheek::after{bottom:12px}
+.rackbox{background:transparent; border:none; box-shadow:none; padding:2px 0;
+  display:flex; align-items:stretch; overflow-x:auto}
+.rackinner{ /* …existing, incl. flex:0 0 auto… */ box-shadow:var(--shadow);
+  background:linear-gradient(176deg,#31363c,#1c2025)}
+.cheek{ /* …existing… */ margin:-2px 0; border:none; box-shadow:var(--shadow);
+  --wood:linear-gradient(90deg,#dcb98d,#b98f5c);
+  --outer:left top; --inner:right top; --corner:left top;
+  background-image:
+    linear-gradient(rgba(255,255,255,.62) 0 0),   /* lit outer corner, 1px */
+    linear-gradient(rgba(255,255,255,.34) 0 0),   /* top — faces the light */
+    linear-gradient(rgba(0,0,0,.26) 0 0),         /* underside — in shadow */
+    linear-gradient(#8a6538 0 0),                 /* outer edge */
+    linear-gradient(rgba(0,0,0,.35) 0 0),         /* inner seam */
+    var(--wood);
+  background-size:1px 1px,100% 1px,100% 1px,1px 100%,1px 100%,auto;
+  background-position:var(--corner),left top,left bottom,var(--outer),var(--inner),left top;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat}
+.cheek.r{--wood:linear-gradient(90deg,#b98f5c,#dcb98d);
+  --outer:right top; --inner:left top; --corner:right top}
+.cheek::before{top:11px} .cheek::after{bottom:11px}
 ```
 
-**The background move is the load-bearing part.** `padding:3px 0` is the
-headroom the cheek's negative margin expands into. The case body therefore
-has to live on `.rackinner`, **not** `.rackbox` — left on `.rackbox` it fills
-that headroom and puts a dark band straight back across the full width, which
-is exactly what removing the top/bottom lip was for. `overflow-x:auto` clips
-vertically too, so the cheek cannot simply overhang the box; the padding is
-the only way to give it room.
+**Three things here are load-bearing, and each one broke something first:**
 
-Screws move `9px → 12px` to stay level with the first and last rail instead
+1. **The case body lives on `.rackinner`, not `.rackbox`.** `padding:2px 0` is
+   the headroom the cheek's negative margin expands into. Left on `.rackbox`,
+   the dark gradient fills that headroom and puts a dark band straight back
+   across the full width — exactly what removing the top/bottom lip was for.
+   `overflow-x:auto` clips vertically too, so the cheek cannot simply overhang
+   the box; the padding is the only way to give it room.
+2. **The shadow moves off `.rackbox` too.** Same cause, opposite symptom: with
+   `--shadow` still drawn round the now-taller box, the transparent strip is
+   fenced off from the page and reads as a **pale line under the rack**. The
+   shadow belongs on the solid parts, `.rackinner` and `.cheek`.
+3. **Edges are background layers, not borders.** A border paints *on top of*
+   the background, so an outer-edge border buries the corner pixel. Layers
+   stack in source order, so the corner is listed first and sits above.
+
+Screws move `9px → 11px` to stay level with the first and last rail instead
 of riding up into the endcap.
 
-Rendered spec: `rack-endcap-mockup.html`, current vs proposed at 4×.
+Rendered spec: `rack-endcap-mockup.html` — shipped-dark-cap vs lit, at 8×.
 
 **`flex:0 0 auto` on `.rackinner` is load-bearing and cost two attempts.**
 The original bug: rails were sized to the container and rows to their

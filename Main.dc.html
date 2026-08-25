@@ -129,8 +129,12 @@
        .cheek). The case body therefore lives on .rackinner, NOT here — on
        .rackbox it would fill that headroom and put a dark band back across the
        full width, which is exactly what removing the top/bottom lip fixed. */
-    .rackbox{background:transparent; border:none;
-      box-shadow:var(--shadow); padding:3px 0; display:flex; align-items:stretch; overflow-x:auto}
+    /* No box-shadow here either. This box is 2px taller than the case so the
+       cheeks can run proud; a shadow round THAT box fences the transparent
+       strip off from the page and it reads as a pale line under the rack. The
+       shadow goes on the solid parts — .rackinner and .cheek. */
+    .rackbox{background:transparent; border:none; box-shadow:none;
+      padding:2px 0; display:flex; align-items:stretch; overflow-x:auto}
     /* Rails and rows must share a width, whichever is wider — sized to the
        container they disagree: rows overflow while rails stop at the box edge,
        so photos continue past where the rails end. */
@@ -139,7 +143,7 @@
        which together with the outer padding made the figure read as sunk into
        a hole in the page rather than sitting on it. */
     .rackinner{width:max-content; min-width:100%; flex:0 0 auto; display:flex; flex-direction:column; gap:0;
-      background:linear-gradient(176deg,#31363c,#1c2025)}
+      box-shadow:var(--shadow); background:linear-gradient(176deg,#31363c,#1c2025)}
     /* Wood only on the cheeks — the warmth frames the figure without competing
        with the module photos. Reuses the palette's existing `wood` faceplate
        tone, so it is not a new colour on the site. */
@@ -147,17 +151,35 @@
        brown — a real case's sides are a little longer than the rails they
        carry, and the endcap is what makes the wood read as a solid piece
        rather than as a stripe painted on the ends. */
-    .cheek{flex:0 0 16px; align-self:stretch; position:relative; margin:-3px 0;
-      background:linear-gradient(90deg,#dcb98d,#b98f5c);
-      border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
-      border-left:1px solid #4a3418; border-right:1px solid rgba(0,0,0,.4)}
-    .cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4);
-      background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+    /* Every edge is a background LAYER, not a border. A border paints on top of
+       the background, so the outer edge would bury the lit corner pixel. As
+       layers they stack in source order and the corner sits above the rest.
+       Lighting matches the rails exactly — white .34 on the face that points
+       up, black .26 on the one that points down — so wood and metal are lit by
+       the same source. The top outer corner takes white .62: it is the one
+       point catching light across two surfaces, and without it the corner
+       reads as a cut rather than an edge. */
+    .cheek{flex:0 0 16px; align-self:stretch; position:relative; margin:-2px 0;
+      border:none; box-shadow:var(--shadow);
+      --wood:linear-gradient(90deg,#dcb98d,#b98f5c);
+      --outer:left top; --inner:right top; --corner:left top;
+      background-image:
+        linear-gradient(rgba(255,255,255,.62) 0 0),
+        linear-gradient(rgba(255,255,255,.34) 0 0),
+        linear-gradient(rgba(0,0,0,.26) 0 0),
+        linear-gradient(#8a6538 0 0),
+        linear-gradient(rgba(0,0,0,.35) 0 0),
+        var(--wood);
+      background-size:1px 1px,100% 1px,100% 1px,1px 100%,1px 100%,auto;
+      background-position:var(--corner),left top,left bottom,var(--outer),var(--inner),left top;
+      background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat}
+    .cheek.r{--wood:linear-gradient(90deg,#b98f5c,#dcb98d);
+      --outer:right top; --inner:left top; --corner:right top}
     .cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
       width:5px; height:5px; border-radius:50%; background:#5c421f; box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
-    /* 9px + the 3px the cheek now runs proud, so the screws stay level with the
+    /* 9px + the 2px the cheek now runs proud, so the screws stay level with the
        first and last rail rather than riding up into the endcap. */
-    .cheek::before{top:12px} .cheek::after{bottom:12px}
+    .cheek::before{top:11px} .cheek::after{bottom:11px}
     /* A rail is a raised metal strip catching light, so it gets a highlight
        and a soft underside rather than two dark outlines. */
     .rackbox .rail{background:#8f959d; border-top:none; border-bottom:none;
