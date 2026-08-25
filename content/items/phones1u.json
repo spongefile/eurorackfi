@@ -49,6 +49,18 @@
         "title": "Intellijel Headphones 1U — product notes and user reviews",
         "url": "https://vintageking.com/intellijel-headphones-1u"
       }
+    ],
+    "pull": {
+      "q": "A high-quality 1U stereo headphone amplifier for Eurorack systems.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/intellijel-headphones-1u.html"
+    },
+    "quotes": [
+      {
+        "t": "NOTE: This 1U module is only compatible with Intellijel 1U cases. It is not compatible with Pulp Logic, Synthrotek or Vermona 1U cases.",
+        "s": "Perfect Circuit · the honest caveat",
+        "crit": true
+      }
     ]
   }
 }

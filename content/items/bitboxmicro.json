@@ -53,6 +53,17 @@
         "title": "1010 Music Bitbox Micro — the thread",
         "url": "https://modulargrid.net/e/forum/posts/index/10353"
       }
+    ],
+    "pull": {
+      "q": "A smaller sibling of the powerful Bitbox, providing the same kind of deep sampling capabilities, but taking up much less real estate.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/1010-music-bitbox-micro-1.html"
+    },
+    "quotes": [
+      {
+        "t": "There are eight sample pads that can even support multi-sampling and granular synthesis style sample playback.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

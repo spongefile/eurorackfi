@@ -47,6 +47,26 @@
         "src": "Gearspace",
         "title": "Pittsburgh Modular LPG — user reviews",
         "url": "https://gearspace.com/gear/pittsburgh-modular/lpg"
+      },
+      {
+        "src": "Pittsburgh Modular",
+        "title": "Lopass Gate (LPG) — the maker's own design notes",
+        "url": "http://www.pittsburghmodularrecords.com/lpg/"
+      }
+    ],
+    "pull": {
+      "q": "In lowpass filter mode, frequency sweeps are warm and buttery and resonance is smooth and controlled until it gets near self oscillation. At this point the Pittsburgh Modular LPG module turns into a shouting beast.",
+      "src": "Pittsburgh Modular",
+      "url": "http://www.pittsburghmodularrecords.com/lpg/"
+    },
+    "quotes": [
+      {
+        "t": "High resonance creates an edgier, shattered, more direct sound. It never loses control but is always teetering on the edge.",
+        "s": "Pittsburgh Modular"
+      },
+      {
+        "t": "Our intention was not to clone but to reengineer and expand on the original idea.",
+        "s": "Pittsburgh Modular — the designer's own notes"
       }
     ]
   }

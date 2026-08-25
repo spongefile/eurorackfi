@@ -47,6 +47,22 @@
         "by": "Digital Foundry · YouTube",
         "url": "https://youtu.be/PMq0SmhCp-o"
       }
+    ],
+    "pull": {
+      "q": "This is easily the best Steam Deck model and one of the best handheld games consoles on the market right now, thanks to an abundance of improvements that lead to a more comfortable and polished play experience.",
+      "src": "TechRadar",
+      "url": "https://www.techradar.com/gaming/steam-deck-oled-review"
+    },
+    "quotes": [
+      {
+        "t": "The Steam Deck OLED is comfortably the definitive Steam Deck model thanks to its larger, more vivid OLED display.",
+        "s": "Dashiell Wood, TechRadar"
+      },
+      {
+        "t": "Some of the biggest issues of that system have gone unaddressed. Although better, the battery life is still poor and the lack of any meaningful performance improvements means that many modern titles, even those that are 'Deck Verified', struggle to run smoothly out of the box.",
+        "s": "Dashiell Wood, TechRadar · the honest caveat",
+        "crit": true
+      }
     ]
   }
 }

@@ -50,6 +50,22 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=v9WT8r9exbQ"
       }
+    ],
+    "pull": {
+      "q": "Code to use a set of Adafruit NeoTrellis boards as a monome grid clone using an off-the-shelf microcontroller.",
+      "src": "okyeron / neotrellis-monome",
+      "url": "https://github.com/okyeron/neotrellis-monome"
+    },
+    "quotes": [
+      {
+        "t": "A number of different microcontrollers have been used for this project. Raspberry Pi Pico (rp2040) boards are the current recommended solution.",
+        "s": "okyeron / neotrellis-monome"
+      },
+      {
+        "t": "Some people have reported issues with the neotrellis-grid getting recognized by Windows 10. Windows users are advised to install serialosc 1.4.3 and bonjour print services.",
+        "s": "okyeron / neotrellis-monome · the honest caveat",
+        "crit": true
+      }
     ]
   }
 }
