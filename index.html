@@ -696,7 +696,7 @@ function loadSellers(){
 function normalizeWants(list){
   return (list||[]).map(function(w){
     if(w && w.type==="placeholder") return w.text||"";
-    if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts};
+    if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts,img:w.img};
     return w;
   });
 }
@@ -1255,14 +1255,26 @@ function adminField(af,label,type,extra){
   return '<div class="afld"'+extra+'><label>'+label+'</label><input data-af="'+af+'" type="'+type+'" value="'+esc(AS[af])+'"></div>';
 }
 /* Toiveet — one seller section per row, each a single click target back to
-   Home with that seller's owner filter preset. A real-item want gets its
-   actual drawn faceplate (same engine as the inventory); a placeholder
-   string gets a dashed empty outline and no label — the presence/absence
-   of a drawing is the whole signal, not a caption. */
+   Home with that seller's owner filter preset. A real-item want gets a
+   real photo when one's been found (manufacturer's own site — a drawing
+   is only ever the fallback, same rule as every listing photo), else the
+   drawn faceplate; a placeholder string gets a dashed empty outline and
+   no label — the presence/absence of a drawing/photo is the whole signal,
+   not a caption. */
 var WISH_TILE_H=150;
+function wishImgFail(img,data){
+  var w=JSON.parse(data);
+  img.outerHTML=panelHTML(w,WISH_TILE_H);
+}
 function wishTileHTML(w){
   if(typeof w==="string") return '<div class="wishtile placeholder" aria-hidden="true"></div>';
-  return '<div class="wishtile"><div class="wf">'+panelHTML(w,WISH_TILE_H)+'</div>'+
+  var ww=w.hp>0?Math.round(w.hp*5.08*(WISH_TILE_H/128.5)):Math.round(WISH_TILE_H*1.55);
+  var wf=w.img
+    ? '<img src="'+esc(w.img)+'" alt="'+esc(w.mfr+" "+w.name)+'" loading="lazy" '+
+      'style="width:'+ww+'px;height:'+WISH_TILE_H+'px;object-fit:cover;display:block" '+
+      'onerror="wishImgFail(this,\''+esc(JSON.stringify({mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts}))+'\')">'
+    : panelHTML(w,WISH_TILE_H);
+  return '<div class="wishtile"><div class="wf">'+wf+'</div>'+
     '<div class="wl">'+esc(w.mfr)+'<br>'+esc(w.name)+'</div></div>';
 }
 function wishHTML(){

@@ -98,6 +98,7 @@ collections:
               - { label: "Maker", name: "mfr", widget: "string" }
               - { label: "Model", name: "name", widget: "string" }
               - { label: "HP", name: "hp", widget: "number", value_type: "int", default: 0 }
+              - { label: "Photo URL", name: "img", widget: "string", required: false, hint: "A real photo, manufacturer's own site first. Leave blank to draw a faceplate from the fields below instead — a drawing is only a fallback for when a real photo isn't available." }
               - label: "Panel tone"
                 name: "tone"
                 widget: "select"
