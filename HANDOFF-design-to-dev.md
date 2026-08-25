@@ -433,6 +433,41 @@ Copy is a one-word form, `negRibbon`: **fi Neuvottelussa / sv Förhandlas /
 en Negotiating**. The full phrase stays on `negBar` for the module page,
 where the still-available clause ("— voit silti kysyä") is required.
 
+## Hero rack — the case (added 2026-08-25)
+
+Wood cheeks, dark interior, unbranded dark blanking panels. Rendered spec:
+`rack-mockup.html` in the repo root. Wood is the palette's existing `wood`
+faceplate tone, already on the site via the Bastl panels — not a new colour.
+
+- `.rackbox` is the scroll container: `overflow-x:auto`, `display:flex`,
+  `align-items:stretch`, dark body, wood-toned border.
+- `.rackinner` wraps the rails and rows so the two share a width:
+  `width:max-content; min-width:100%;` **and `flex:0 0 auto`.**
+- `.cheek` 16px, wood gradient, mirrored right, screws top and bottom.
+- `.blank` fills the remainder of a part-full row. It must be **darker than
+  the module photos** — a lighter filler reads as sitting in front of them.
+  **No logo or mark on it**; a blank panel is just a panel.
+
+**`flex:0 0 auto` on `.rackinner` is load-bearing and cost two attempts.**
+The original bug: rails were sized to the container and rows to their
+content, so rows overflowed while rails stopped at the box edge and modules
+floated outside the rack when scrolled. The first fix used `flex:1 1 auto`,
+which let the outer flex row shrink `.rackinner` back to the box width under
+real viewport pressure — rails and rows agreed with each other but both got
+clamped, while a `flex:0 0 auto` module button ignored the clamp and
+overflowed anyway. Same bug one layer down.
+
+**Verify by scrolling, not by looking.** Scroll the rack fully right at a
+width where rows exceed the box, then confirm the last module's right edge
+is inside the rail's, which is inside the cheek's. Live measurement after the
+fix: module 1148, rail 1203, cheek 1219.
+
+**Lesson for the next static-mockup-to-live port** (dev's, worth keeping): an
+isolated mockup file has no ambient width pressure, so a flex-shrink fault
+can hide there completely and only appear once real content meets a real
+viewport. A mockup proves the design, never the layout's behaviour under
+constraint.
+
 ## Accessories — the shop category (added 2026-08-25)
 
 A fourth `fmt` value, `acc`, for products from spongefile's webshop
