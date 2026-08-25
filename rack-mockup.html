@@ -122,6 +122,26 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
 .blank.blue{background:linear-gradient(176deg,#0d5aad,#093f7e)}
 .blank.anod{background:linear-gradient(176deg,#2f343a,#1d2126)}
 .blank.anod .mark{opacity:.13}
+
+/* ---- CHOSEN: wood cheeks, dark interior, unbranded blanks ---- */
+.caseF{padding:10px 0;display:flex;align-items:stretch;overflow-x:auto;
+  box-shadow:var(--shadow);
+  background:linear-gradient(176deg,#31363c,#1c2025);border:1px solid #8a6538}
+.caseF .cheek{flex:0 0 16px;align-self:stretch;position:relative;
+  background:linear-gradient(90deg,#dcb98d,#b98f5c);border-right:1px solid rgba(0,0,0,.4)}
+.caseF .cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.4);
+  background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+.caseF .cheek::before,.caseF .cheek::after{content:"";position:absolute;left:50%;
+  transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#5c421f;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.caseF .cheek::before{top:9px} .caseF .cheek::after{bottom:9px}
+.caseF .inner{width:max-content;min-width:100%;flex:1 1 auto;display:flex;
+  flex-direction:column;gap:9px}
+.caseF .rail{background:#8f959d;border-color:#5c6169}
+.caseF .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
+/* blank carries no mark — the panel is just a panel */
+.caseF .blank{background:linear-gradient(176deg,#2f343a,#1d2126)}
+.caseF .blank .mark{display:none}
 </style>
 </head>
 <body>
@@ -410,6 +430,51 @@ against the blue-grey page.</p>
   </figure>
 </div></section>
 <p class="cap">The only option with warmth. Wood is the palette's existing <code>wood</code> faceplate tone, already on the site via the Bastl panels. Two accents in one figure &mdash; wood and blue &mdash; is the risk; pair wood with anodised blanks if it is too busy.</p>
+
+
+<div class="tag">CHOSEN &mdash; wood cheeks, dark interior, unbranded blanks</div>
+<section class="ctxhero"><div class="ctxwrap">
+  <div>
+    <div class="eyebrow">Helsinki &middot; neighbours</div>
+    <h3 class="ctxh">Gear from <em>down the road</em>.</h3>
+    <p class="ctxlede">A handful of us in the same neighbourhood, listing what we are finished
+      with. Mostly eurorack, sometimes other stuff. Trades possible!</p>
+    <div class="ctxstats">
+      <div><div class="n">67</div><div class="l">Items</div></div>
+      <div><div class="n">397</div><div class="l">HP</div></div>
+      <div><div class="n">2</div><div class="l">Shelves</div></div>
+    </div>
+  </div>
+  <figure style="margin:0;min-width:0">
+    <div class="caseF">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow u">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:68px;height:38px"></button>
+          <span class="blank"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+          <span class="blank"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <figcaption class="ctxcap"><span>Drawn to scale &middot; 397 HP</span><span>hover to find it below</span></figcaption>
+  </figure>
+</div></section>
+<p class="cap">Wood only on the cheeks, so the warmth frames the figure without competing with
+the module photos. Dark interior keeps the blanks reading as recessed empty slots. No mark on
+the blanks &mdash; a blank panel is just a panel.</p>
 
 </body>
 </html>

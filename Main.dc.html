@@ -125,18 +125,21 @@
     .rackcredit a:hover{color:var(--accent)}
     /* The figure is a CASE, not photos between two bars. Dark body and end
        cheeks so the rails read as metal inside an enclosure. */
-    .rackbox{background:linear-gradient(176deg,#3a4048,#22262c); border:1px solid #191d22;
+    .rackbox{background:linear-gradient(176deg,#31363c,#1c2025); border:1px solid #8a6538;
       box-shadow:var(--shadow); padding:10px 0; display:flex; align-items:stretch; overflow-x:auto}
     /* Rails and rows must share a width, whichever is wider — sized to the
        container they disagree: rows overflow while rails stop at the box edge,
        so photos continue past where the rails end. */
     .rackinner{width:max-content; min-width:100%; flex:1 1 auto; display:flex; flex-direction:column; gap:9px}
-    .cheek{flex:0 0 14px; align-self:stretch; position:relative;
-      background:linear-gradient(90deg,#4a5058,#2c3138); border-right:1px solid rgba(0,0,0,.5)}
-    .cheek.r{border-right:none; border-left:1px solid rgba(0,0,0,.5);
-      background:linear-gradient(90deg,#2c3138,#4a5058)}
+    /* Wood only on the cheeks — the warmth frames the figure without competing
+       with the module photos. Reuses the palette's existing `wood` faceplate
+       tone, so it is not a new colour on the site. */
+    .cheek{flex:0 0 16px; align-self:stretch; position:relative;
+      background:linear-gradient(90deg,#dcb98d,#b98f5c); border-right:1px solid rgba(0,0,0,.4)}
+    .cheek.r{border-right:none; border-left:1px solid rgba(0,0,0,.4);
+      background:linear-gradient(90deg,#b98f5c,#dcb98d)}
     .cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
-      width:5px; height:5px; border-radius:50%; background:#12151a; box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+      width:5px; height:5px; border-radius:50%; background:#5c421f; box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
     .cheek::before{top:9px} .cheek::after{bottom:9px}
     .rackbox .rail{background:#8f959d; border-color:#5c6169}
     .rackbox .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
@@ -147,10 +150,14 @@
     .rackrow .mod:hover .hit{opacity:.22}
     /* Blanking panel — brushed metal filler in the empty slots. A real case
        has these; without them a half-full row stops in mid air. */
-    .rackrow .blank{flex:1 1 auto; align-self:stretch; min-width:0;
-      background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px),
-        linear-gradient(176deg,#cfd4da,#aeb5bd);
-      border-left:1px solid rgba(0,0,0,.18)}
+    .rackrow .blank{flex:1 1 auto; align-self:stretch; min-width:0; position:relative;
+      background:linear-gradient(176deg,#2f343a,#1d2126);
+      border-left:1px solid rgba(0,0,0,.35);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.3)}
+    .rackrow .blank::before,.rackrow .blank::after{content:""; position:absolute; left:50%;
+      transform:translateX(-50%); width:4px; height:4px; border-radius:50%;
+      background:rgba(0,0,0,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+    .rackrow .blank::before{top:6px} .rackrow .blank::after{bottom:6px}
 
     .controls{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--line)}
 
@@ -345,10 +352,18 @@
     .who i{font-style:normal; display:inline-block; width:7px; height:7px; border-radius:50%}
     .empty{border:1px dashed var(--line2); padding:3rem; text-align:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--muted); grid-column:1 / -1}
 
-    .foot{border-top:1px solid var(--line); background:var(--bg2); padding:2.25rem 0 2.75rem}
-    .foot .wrap{display:flex; gap:3rem; align-items:flex-start; flex-wrap:wrap}
-    .foot h4{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.6rem}
-    .foot p, .foot a{font-size:.85rem; color:var(--ink2); line-height:1.7}
+    /* Three tiers. The intro and the column bodies used to be the same size,
+       colour and family, so nothing led and the block read as one slab.
+       Intro takes full ink; labels sit at --ink2 weight 600; bodies step DOWN
+       to --muted so they read as supporting detail rather than more headline. */
+    .foot{border-top:1px solid var(--line); background:var(--bg2); padding:3.5rem 0 3.75rem}
+    .foot .wrap{display:flex; gap:2.75rem 3.25rem; align-items:flex-start; flex-wrap:wrap}
+    .foot .fintro{font-family:"Newsreader",Georgia,serif; font-size:1.35rem; line-height:1.5;
+      color:var(--ink); max-width:44ch; margin-top:.2rem}
+    .foot h4{font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--ink2); font-weight:600; margin-bottom:.8rem}
+    .foot p, .foot a{font-family:"Newsreader",Georgia,serif; font-size:.95rem; color:var(--muted); line-height:1.7}
+    .foot a{color:var(--accent)}
     .foot a{display:block; color:var(--accent)}
   </style>
 </helmet>
@@ -585,7 +600,7 @@
     <div class="wrap">
       <div style="flex:1 1 260px">
         <div class="brand" style="margin-bottom:.7rem"><span class="mark">eur<svg class="jack" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="18"></circle><circle cx="50" cy="50" r="14" fill="currentColor"></circle></svg>rack<span class="dot">.</span>fi</span></div>
-        <p style="max-width:34ch">{{t.fIntro}}</p>
+        <p class="fintro">{{t.fIntro}}</p>
       </div>
       <div>
         <h4>{{t.fCollect}}</h4>
