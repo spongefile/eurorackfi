@@ -41,6 +41,12 @@ was explicitly removed twice. Do not reintroduce it.
 Everything is open to trade. Nothing is cash-only. What differs between sellers
 is what each *wants* in return.
 
+**One documented exception, added 2026-08-25:** products from spongefile's
+webshop (`fmt:"acc"`, see the Accessories section) are Buy-only and link out.
+That is the only non-tradeable content on the site; the two personal
+collections still trade in full. This is not a revival of the removed
+cash-only state — there is still no such state, and none should be built.
+
 ## Inventory
 
 29 items: 16 eurorack (207 HP total) + 13 standalone. Two collections —
@@ -378,6 +384,57 @@ quote cards → reviews → video → outbound links → "You may also like" →
   simply gets no quote cards.
 - **"You may also like"** is picked by function, not owner, and each card states
   its reason. It crosses collections, so each carries an owner pill.
+
+## Accessories — the shop category (added 2026-08-25)
+
+A fourth `fmt` value, `acc`, for products from spongefile's webshop
+(accessories and cheatsheets for Teenage Engineering and similar). Named
+**fi Tarvikkeet / sv Tillbehör / en Accessories**, positioned **between
+Standalone and Muut**. It is a genuine fourth chip, **not** a reuse of
+`fmt:"tools"` / Muut — Muut stays reserved and empty for tools, kits,
+sensors and parts.
+
+- **Icon is a bow**, `.ic-acc` in `Main.dc.html`. Drawn on the same 100
+  viewBox and heavy weight as the rest of the set. The loops must stay
+  angled up and outward and the tails are load-bearing: drawn flat and
+  tailless it reads as an infinity sign at 15px, which the first attempt
+  did. It is deliberately the one mark in the set that is not hardware —
+  these adorn a device rather than being one.
+- **Owner is spongefile.** Not a third seller, not ownerless. Counts
+  everywhere — hero items stat, grid count line, wishcard sub-line, shelf
+  chip — include shop products like any other item. The HP stat is
+  unaffected since it only ever summed eurorack.
+
+**This category breaks the "everything is open to trade" invariant above.**
+That line stays true of the two personal collections; shop products are
+the documented exception. They are Buy-only, and the three things that
+followed from tradeability are all suppressed for them: the "Collection
+preferred, posting possible" line, the shared-inbox note, and the amber
+trade panel. None survive an outbound checkout.
+
+**Grid card is identical to a module card** — same shot, body, tags, owner
+pill, price. Only the CTA word changes, to **fi Lisätietoja / sv Mer
+information / en More info**, because the click still goes to a detail page
+on this site. The outbound step happens one level deeper.
+
+**Detail page** is a normal eurorack.fi page; only the Buy button leaves.
+Full spec, rendered: `accessory-page-mockup.html` in the repo root.
+- Buy CTA **fi Osta kaupasta / sv Köp i butiken / en Buy from the shop**,
+  with a note beneath: **fi Avautuu kauppaan uuteen välilehteen.**
+- **Spec table hides entirely when the shop data carries no key/values.**
+  It must never render blank HP, depth or power rows.
+- **Reviews come from the shop's own product pages** and reuse the
+  existing quote-card component unchanged — same markup, same neutral
+  panel. Attribution reads **kauppa / butiken / the shop** rather than a
+  magazine. No pull-quote hero unless one is genuinely worth pulling.
+  Section hides when a product has none.
+- **Dropped**: video, external review links, ModularGrid outbound links.
+  The one outbound link is the Buy button.
+- **Kept**: notice, rail, header, breadcrumb, overview, quote cards,
+  "You may also like", footer.
+- **Hide, don't placeholder.** Every dropped section collapses completely
+  — no empty headings, no "ei arvioita" stand-ins. A short page is correct
+  for a cheatsheet; a page of empty scaffolding is not.
 
 ## Admin — add a listing
 
