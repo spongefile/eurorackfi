@@ -40,6 +40,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=Ng3ZCD3zkLg"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Intellijel Quad VCA — product notes",
+        "url": "https://www.perfectcircuit.com/intellijel-quad-vca.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "One of the benefits of the Intellijel Quad VCA (Distortion!)",
+        "url": "https://modwiggler.com/forum/viewtopic.php?t=184879"
+      }
     ]
   }
 }

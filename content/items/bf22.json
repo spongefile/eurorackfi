@@ -41,6 +41,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=g6Rt-IeNchw"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Befaco BF-22 Dual MS-20 Modeled VCF — product notes",
+        "url": "https://www.perfectcircuit.com/befaco-bf-22-vcf-module.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Befaco BF-22 — the thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=176874"
+      }
     ]
   }
 }

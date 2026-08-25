@@ -36,6 +36,18 @@
         "by": "SynthFest demo · YouTube",
         "url": "https://www.youtube.com/watch?v=Fr19dSUsMMc"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Kaona Zazou Algorithmic Pattern Generator — product notes",
+        "url": "https://www.perfectcircuit.com/kaona-zazou.html"
+      },
+      {
+        "src": "Synth Anatomy",
+        "title": "Superbooth 24: Kaona Zazou, new 4-track algorithmic pattern generator for Eurorack",
+        "url": "https://synthanatomy.com/2024/04/superbooth-24-kaona-zazou-new-4-track-algorithmic-pattern-generator-for-eurorack.html"
+      }
     ]
   }
 }

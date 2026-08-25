@@ -35,6 +35,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=t2133ACnix0"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Molten Modular",
+        "title": "Molten Modular 15 — Discovering Oscillators with the Make Noise STO",
+        "url": "http://moltenmodular.com/molten-modular-15-discovering-oscillators-make-noise-sto"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Make Noise STO Thoughts",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=105710"
+      }
     ]
   }
 }

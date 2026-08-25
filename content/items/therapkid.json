@@ -40,6 +40,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=_BRfGb4kaqU"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Vintage Synth Explorer",
+        "title": "Twisted Electrons TherapKid",
+        "url": "https://www.vintagesynth.com/twisted_electrons/therapkid"
+      },
+      {
+        "src": "Synth Anatomy",
+        "title": "Twisted Electrons Therapkid Duophonic Chiptune Synthesizer Announced",
+        "url": "https://synthanatomy.com/2019/04/twisted-electrons-therapkid-synthesizer.html"
+      }
     ]
   }
 }

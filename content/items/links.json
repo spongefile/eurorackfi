@@ -36,6 +36,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=WZdZGZ50lvM"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Mutable Instruments Links Utility Module — product notes",
+        "url": "https://www.perfectcircuit.com/mutable-instruments-links.html"
+      },
+      {
+        "src": "JonDent — Exploring Electronic Music",
+        "title": "Mutable Instruments Links",
+        "url": "https://djjondent.blogspot.com/2018/07/mutable-instruments-links.html"
+      }
     ]
   }
 }

@@ -41,6 +41,18 @@
         "by": "Loopop · YouTube",
         "url": "https://www.youtube.com/watch?v=BNghPm4EVl8"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "1010 Music Bitbox Micro — product notes",
+        "url": "https://www.perfectcircuit.com/1010-music-bitbox-micro-1.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "1010 Music Bitbox Micro — the thread",
+        "url": "https://modulargrid.net/e/forum/posts/index/10353"
+      }
     ]
   }
 }

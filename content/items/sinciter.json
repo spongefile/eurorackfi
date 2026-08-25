@@ -36,6 +36,18 @@
         "by": "Noise Engineering · YouTube",
         "url": "https://www.youtube.com/watch?v=m6s8LcKlcXI"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Noise Engineering Sinc Iter VCO — product notes",
+        "url": "https://www.perfectcircuit.com/noise-engineering-sinc-iter.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Noise Engineering Sinc Iter — the thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=164140"
+      }
     ]
   }
 }
