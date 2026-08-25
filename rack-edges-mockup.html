@@ -38,6 +38,15 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 .rackbox{background:linear-gradient(176deg,#31363c,#1c2025);box-shadow:var(--shadow);
   overflow-x:auto;display:flex;align-items:stretch}
 .rackinner{width:max-content;min-width:100%;flex:0 0 auto;display:flex;flex-direction:column;gap:9px}
+/* B-tight / B-flush: the 9px gap between each rail and row is dark case body
+   showing through above and below every module. Real modules mount flush to
+   the rails, so closing it is both lighter and more accurate. */
+.vB2 .rackbox{padding:3px 0;border:1px solid #8a6538}
+.vB2 .rackinner{gap:3px}
+.vB2 .rail{box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22)}
+.vB3 .rackbox{padding:2px 0;border:1px solid #8a6538}
+.vB3 .rackinner{gap:0}
+.vB3 .rail{box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22)}
 .cheek{flex:0 0 16px;align-self:stretch;position:relative;
   background:linear-gradient(90deg,#dcb98d,#b98f5c);border-right:1px solid rgba(0,0,0,.4)}
 .cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.4);
@@ -164,6 +173,48 @@ being outlined.</p>
 <p class="cap">Lightest. The cheeks do all the framing and nothing outlines the figure against the
 page. Risk: without any outer edge the dark body can look like it bleeds into the drop shadow at
 the corners — worth checking against the real page background rather than this one.</p>
+
+
+<h2>B-tight — 3px outer padding, 3px between rails and rows</h2>
+<div class="figwrap vB2"><div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div></div>
+<p class="cap">Outer band halved again and the dark strip above and below each module row
+narrowed from 9px to 3px. The rails now sit close to the modules they hold.</p>
+
+<h2>B-flush — 2px outer padding, modules flush to the rails</h2>
+<div class="figwrap vB3"><div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div></div>
+<p class="cap">No gap at all: modules meet the rails exactly as they do in a real case, and the
+only dark left is the blank panels and a 2px lip. Lightest possible without removing the case
+body altogether.</p>
 
 </body>
 </html>
