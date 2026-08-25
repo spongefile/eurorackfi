@@ -334,7 +334,7 @@ quote cards → reviews → video → outbound links → "You may also like" →
   ```css
   .detail .wrap{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,440px);
                  gap:2.5rem; align-items:start; }   /* was: stretch */
-  .shots{ display:flex; flex-direction:column; position:sticky; top:24px; }  /* sticky moved HERE */
+  .shots{ display:flex; flex-direction:column; }   /* sticky lived here; REMOVED 2026-08-25, see the specs bullet below */
   .bench{ ...; flex:0 0 auto; min-height:470px; position:relative; ... }     /* no max-height, not sticky */
   ```
   `.shots` (bench + the photo switcher below it, see next point) is now ONE
@@ -347,6 +347,9 @@ quote cards → reviews → video → outbound links → "You may also like" →
   should equal `dots.getBoundingClientRect().top` at every scroll position.
   Both stacked breakpoints reset `.shots` to `position:static` — sticky in a
   single-column layout would pin the image over the form as you scroll past it.
+  **Superseded 2026-08-25:** sticky is gone from this column entirely, so both
+  resets are dead too. The rigid-single-unit principle above still stands and
+  is why the specs block goes inside `.imgcol`; only the pinning is gone.
 
 - **Specs move under the image (decided 2026-08-25).** The specs block leaves
   the bottom of the buy column and goes into the image column, below the photo
@@ -357,19 +360,21 @@ quote cards → reviews → video → outbound links → "You may also like" →
   the scroll gap the user reported — measured live on Piston Honda at 1280px,
   `.imgcol` was 443px against `.buycol`'s 744px, a 301px hole beside the CTA.
 
-  **The specs go INSIDE `.imgcol`, not as a sibling below it.** This is the
-  part that can go wrong. `.imgcol` is `position:sticky`, and a sticky element
-  with a normal-flow sibling under it in the same column is exactly the
-  drift-and-overlap bug documented two points above — the sticky part slides
-  down over the static part as you scroll. Keeping everything in one rigid
-  sticky unit is what made that bug impossible, and that invariant holds here.
+  **The specs go INSIDE `.imgcol`, as its last child — never a sibling below
+  it.** A sibling below would put a normal-flow element under what used to be
+  a sticky one, which is exactly the drift-and-overlap bug documented two
+  points above. Keep everything in one rigid unit.
 
-  Consequence to accept, not to fix: the sticky unit is now ~700px tall, so on
-  a viewport shorter than roughly 724px it simply stops pinning and scrolls
-  normally. That degrades cleanly — no overlap, no stranded gap. If the two
-  columns end up close in height with real content, dropping `position:sticky`
-  from `.imgcol` altogether is reasonable and removes the whole bug class;
-  worth checking against a real item before deciding.
+  **`position:sticky` is GONE from `.imgcol` as of 2026-08-25 — built and
+  verified, not merely proposed.** Base rule and both media-query resets
+  removed. Once the specs joined it, `.imgcol` became the *taller* of the two
+  columns on every real item, and a sticky element that is also the tallest
+  grid item has no slack to pin against — it was contributing nothing. Dev
+  confirmed empirically rather than by reasoning: sampled `.imgcol`'s `top`
+  across the full 0–600px scroll range on `kastledrum` before and after
+  removal and got identical numbers both times. So this deleted a bug class
+  at zero behavioural cost. **Do not reintroduce it**, and ignore any text
+  elsewhere in this doc that still describes the image column as sticky.
 
   **On my earlier objection — the user overruled it and was right.** I flagged
   that B would flip the imbalance (left ≈700, right ≈490). That was measured
