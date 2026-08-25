@@ -823,6 +823,46 @@ var CATKEYS = ["all","Oscillator","Filter","Sequencer","Modulation","Waveshaper"
 var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
                    "#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"];
 
+/* Loads every *.json file in a content/ subfolder. Discovery goes through
+   a committed filename manifest — content/items-index.json,
+   content/sellers-index.json, kept current by
+   .github/workflows/content-manifest.yml on every push — fetched from
+   raw.githubusercontent.com — not the GitHub Contents API, which caps
+   unauthenticated callers at 60 requests/hour *shared across every
+   visitor on that IP* and previously blanked the whole site under any
+   real burst of traffic. Falls back to that same rate-limited directory
+   listing only if the manifest itself is unreachable, so a broken or
+   stale manifest degrades rather than reproducing the original failure.
+   A single missing/broken file (stale manifest entry, bad JSON) is
+   skipped rather than failing the whole load — better to show 70 items
+   than none because one 404'd. Manifests live as siblings of the folder
+   they index (content/items-index.json, not content/items/index.json)
+   on purpose — Decap's folder collections scan every .json file in
+   content/items itself, so a manifest placed inside would show up in
+   admin as a broken listing. */
+var RAW_BASE="https://raw.githubusercontent.com/spongefile/eurorackfi/main/";
+function loadDir(dir){
+  function fetchAll(urls){
+    return Promise.all(urls.map(function(u){
+      return fetch(u).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+    })).then(function(arr){ return arr.filter(Boolean); });
+  }
+  return fetch(RAW_BASE+dir+"-index.json").then(function(r){
+    if(!r.ok) throw new Error("manifest missing: "+r.status);
+    return r.json();
+  }).then(function(names){
+    return fetchAll(names.map(function(n){ return RAW_BASE+dir+"/"+n; }));
+  }).catch(function(){
+    return fetch("https://api.github.com/repos/spongefile/eurorackfi/contents/"+dir).then(function(r){
+      if(!r.ok) throw new Error("directory listing failed: "+r.status);
+      return r.json();
+    }).then(function(list){
+      var files=list.filter(function(f){ return f.name && f.name.slice(-5)===".json"; });
+      return fetchAll(files.map(function(f){ return f.download_url; }));
+    });
+  });
+}
+
 /* Sellers (spongefile, Sampo, and whoever gets added later) live in
    content/sellers/*.json now — edited via the Decap "Sellers" collection,
    fetched at runtime same as content/items/*.json. Real wants are objects
@@ -832,16 +872,7 @@ var SELLER_DOTS = ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A",
    signal the Toiveet page draws on: an object gets a real drawn faceplate,
    a string gets a dashed empty outline. */
 var SELLERS=[], WANTS={}, SELLER_BY_KEY={};
-var SELLERS_URL="https://api.github.com/repos/spongefile/eurorackfi/contents/content/sellers";
-function loadSellers(){
-  return fetch(SELLERS_URL).then(function(r){
-    if(!r.ok) throw new Error("directory listing failed: "+r.status);
-    return r.json();
-  }).then(function(list){
-    var files=list.filter(function(f){ return f.name && f.name.slice(-5)===".json"; });
-    return Promise.all(files.map(function(f){ return fetch(f.download_url).then(function(r){ return r.json(); }); }));
-  });
-}
+function loadSellers(){ return loadDir("content/sellers"); }
 /* the CMS's "Wishlist" list field uses Decap's variable-types shape —
    {type:"product",...} or {type:"placeholder",text:...} — not the plain
    object/string shape wantLabel()/wishTileHTML() already expect and that
@@ -866,20 +897,7 @@ function normalizeWants(list){
    generic question, set by hand after reading the inbox. */
 var ITEMS=[];
 var byId=function(id){ return ITEMS.filter(function(m){ return m.id===id; })[0]; };
-var ITEMS_URL="https://api.github.com/repos/spongefile/eurorackfi/contents/content/items";
-function loadItems(){
-  return fetch(ITEMS_URL).then(function(r){
-    if(!r.ok) throw new Error("directory listing failed: "+r.status);
-    return r.json();
-  }).then(function(list){
-    var files=list.filter(function(f){ return f.name && f.name.slice(-5)===".json"; });
-    /* the directory listing is the only call that counts against GitHub's
-       unauthenticated API rate limit — each file below comes from its own
-       download_url, which is served from raw.githubusercontent.com and is
-       not rate-limited the same way */
-    return Promise.all(files.map(function(f){ return fetch(f.download_url).then(function(r){ return r.json(); }); }));
-  });
-}
+function loadItems(){ return loadDir("content/items"); }
 
 /* ---------- faceplate: absolutely positioned divs at true eurorack scale ---------- */
 function hashSeed(s){var h=1779033703^s.length;for(var i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=(h<<13)|(h>>>19);}
