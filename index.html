@@ -210,30 +210,27 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-.collbar{width:100%; min-height:44px; align-items:center; gap:.5rem; background:none; border:none;
-  font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
-.collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
+/* visibility is paired with a transition-delay so each side of the fold
+   stays genuinely inert (no tab-focus or screen-reader exposure) once
+   it's fully hidden, not just visually clipped by max-height:0 — the
+   delay is 0 going visible, and matches the shrink duration going hidden
+   so it stays interactive for the full closing animation. Collapsible at
+   every width now, not just mobile — same tappable "Filters" row throughout. */
+.collbar{width:100%; min-height:44px; display:flex; align-items:center; gap:.5rem;
+  max-height:0; overflow:hidden; opacity:0; visibility:hidden;
+  background:var(--panel); border:1px solid var(--line2); box-shadow:var(--shadow);
+  font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0 .7rem;
+  transition:max-height .2s ease, opacity .15s ease, visibility 0s linear .2s}
+.collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--accent)}
 .collbar .collcount{margin-left:auto; color:var(--muted)}
-@media(min-width:741px){ .collbar{display:none} }
-@media(max-width:740px){
-  /* visibility is paired with a transition-delay so each side of the fold
-     stays genuinely inert (no tab-focus or screen-reader exposure) once
-     it's fully hidden, not just visually clipped by max-height:0 — the
-     delay is 0 going visible, and matches the shrink duration going hidden
-     so it stays interactive for the full closing animation. */
-  .collbar{display:flex; max-height:0; overflow:hidden; opacity:0; visibility:hidden;
-    background:var(--panel); border:1px solid var(--line2); box-shadow:var(--shadow); padding:0 .7rem;
-    transition:max-height .2s ease, opacity .15s ease, visibility 0s linear .2s}
-  .collbar svg{color:var(--accent)}
-  .controls.collapsed{padding:.55rem 0}
-  .controls .wrap{max-height:300px; overflow:hidden; opacity:1; visibility:visible;
-    transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear 0s}
-  .controls.collapsed .wrap{max-height:0; opacity:0; padding-top:0; padding-bottom:0; visibility:hidden;
-    transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear .2s}
-  .controls.collapsed .collbar{max-height:44px; opacity:1; visibility:visible;
-    transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
-  @media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
-}
+.controls.collapsed{padding:.55rem 0}
+.controls .wrap{max-height:300px; overflow:hidden; opacity:1; visibility:visible;
+  transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear 0s}
+.controls.collapsed .wrap{max-height:0; opacity:0; padding-top:0; padding-bottom:0; visibility:hidden;
+  transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear .2s}
+.controls.collapsed .collbar{max-height:44px; opacity:1; visibility:visible;
+  transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
+@media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
 /* Two tiers, deliberately unequal — design's redesign, replacing what
    used to be one flat wall of identical chips where search, format, owner
    and subcategory all read as the same kind of control. Filter axes claim
@@ -1758,15 +1755,15 @@ var rz; window.addEventListener("resize",function(){
     }
   },150); });
 
-/* mobile only: fold the filter bar down to a compact tappable "Filters" row
-   once the user scrolls past it, so it stops eating grid space. Deliberately
-   one-way — no scroll-up auto-reveal — it only unfolds on tap, per the
-   user's explicit ask (matches design's Mobile.dc.html .m-controls). */
+/* fold the filter bar down to a compact tappable "Filters" row once the
+   user scrolls past it, so it stops eating grid space — every width now,
+   not just mobile. Deliberately one-way — no scroll-up auto-reveal — it
+   only unfolds on tap, per the user's explicit ask (originally matched
+   design's Mobile.dc.html .m-controls; now applied everywhere). */
 (function(){
   var bar=el("grid-top"), lastY=window.scrollY, ticking=false, suppressUntil=0;
   function onScroll(){
     ticking=false;
-    if(window.innerWidth>740) return;
     var y=window.scrollY, goingDown=y>lastY;
     lastY=y;
     if(Date.now()<suppressUntil) return; /* see click handler below */
