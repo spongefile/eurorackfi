@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — rack edge weight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB; --accent:#0B4F9E; --on:#FAFBFD;
+  --rail:#B1B9C5; --rail-ink:#8891A0;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 60px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.3rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:76ch;margin:0 0 1.4rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 .7rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.6rem;line-height:1.65;max-width:78ch}
+.figwrap{max-width:660px}
+
+.rackrow{display:flex;align-items:flex-start}
+.rackmod{position:relative;flex:0 0 auto;display:block;border:none;padding:0}
+.rackmod img{display:block;object-fit:cover}
+.blank{flex:1 1 auto;align-self:stretch;min-width:0;position:relative;
+  background:linear-gradient(176deg,#2f343a,#1d2126);border-left:1px solid rgba(0,0,0,.35)}
+.blank::before,.blank::after{content:"";position:absolute;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.45)}
+.blank::before{top:6px}.blank::after{bottom:6px}
+
+.rackbox{background:linear-gradient(176deg,#31363c,#1c2025);box-shadow:var(--shadow);
+  overflow-x:auto;display:flex;align-items:stretch}
+.rackinner{width:max-content;min-width:100%;flex:0 0 auto;display:flex;flex-direction:column;gap:9px}
+.cheek{flex:0 0 16px;align-self:stretch;position:relative;
+  background:linear-gradient(90deg,#dcb98d,#b98f5c);border-right:1px solid rgba(0,0,0,.4)}
+.cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.4);
+  background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+.cheek::before,.cheek::after{content:"";position:absolute;left:50%;transform:translateX(-50%);
+  width:5px;height:5px;border-radius:50%;background:#5c421f}
+.cheek::before{top:9px}.cheek::after{bottom:9px}
+.rail{height:9px;background:#8f959d;position:relative;
+  background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px);
+  background-size:25.4px 100%}
+
+/* ---- CURRENT ---- */
+.v0 .rackbox{padding:10px 0;border:1px solid #8a6538}
+.v0 .rail{border-top:1px solid #5c6169;border-bottom:1px solid #5c6169}
+
+/* ---- A: thinner everywhere ---- */
+.vA .rackbox{padding:5px 0;border:1px solid #8a6538}
+.vA .rail{border-top:1px solid #6f757d;border-bottom:1px solid #6f757d}
+
+/* ---- B: A + no rail borders, highlight instead ---- */
+.vB .rackbox{padding:5px 0;border:1px solid #8a6538}
+.vB .rail{box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22)}
+
+/* ---- C: B + no outer border, cheeks frame it ---- */
+.vC .rackbox{padding:5px 0;border:none}
+.vC .rail{box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22)}
+</style>
+</head>
+<body>
+
+<h1>Rack edge weight</h1>
+<p class="sub">Three things stack into that dark band and make the figure read as recessed:
+<strong>10px of dark case body</strong> above the top rail and below the bottom one,
+<strong>1px #5c6169 borders on every rail</strong> top and bottom, and the outer
+<strong>1px wood border</strong> — plus the drop shadow under all of it. Same modules and
+blanks throughout; only the edges change.</p>
+
+<h2>Current — 10px padding, dark rail borders, wood border</h2>
+<div class="figwrap v0">
+  <div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div>
+</div>
+<p class="cap">Dark above the top rail, dark below the bottom one, dark line either side of every
+rail. The figure sits in a well.</p>
+
+<h2>A — 5px padding, rail borders lightened to #6f757d</h2>
+<div class="figwrap vA">
+  <div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div>
+</div>
+<p class="cap">Halves the dark band and softens the rail edges. Still clearly a case, much less
+of a well. Smallest change of the three.</p>
+
+<h2>B — A, but rails get a highlight instead of borders</h2>
+<div class="figwrap vB">
+  <div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div>
+</div>
+<p class="cap">Rail edges become a light top and a soft bottom shade rather than two dark lines —
+the rail reads as a raised metal strip catching light, which is what it actually is, instead of
+being outlined.</p>
+
+<h2>C — B, and the outer wood border removed</h2>
+<div class="figwrap vC">
+  <div class="rackbox"><span class="cheek"></span><div class="rackinner">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+      <span class="blank"></span>
+    </div>
+    <div class="rail"></div>
+  </div><span class="cheek r"></span></div>
+</div>
+<p class="cap">Lightest. The cheeks do all the framing and nothing outlines the figure against the
+page. Risk: without any outer edge the dark body can look like it bleeds into the drop shadow at
+the corners — worth checking against the real page background rather than this one.</p>
+
+</body>
+</html>
