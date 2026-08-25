@@ -1722,7 +1722,14 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
 Promise.all([loadItems(), loadSellers()]).then(function(r){
-  ITEMS=r[0];
+  /* hidden items stay in content/items/ (data, photos, history all kept
+     for a possible relist) but must not exist for the site at all —
+     filtering here, before anything else touches ITEMS, means every
+     consumer (stats, rack, filter counts, grid, wish band, related-item
+     lookups) automatically excludes them with no special-casing needed.
+     A direct/bookmarked link to a hidden item's #/m/ page already falls
+     through to the existing generic "gone" page, same as a deleted one. */
+  ITEMS=r[0].filter(function(m){ return !m.hidden; });
   SELLERS=r[1];
   SELLERS.forEach(function(p,i){ if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length]; p.wants=normalizeWants(p.wants); });
   WANTS={}; SELLER_BY_KEY={};
