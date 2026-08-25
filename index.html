@@ -165,11 +165,43 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .stat .n{font-family:"IBM Plex Mono",monospace; font-size:1.5rem; font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
 .stat .l{font-family:"IBM Plex Mono",monospace; font-size:.66rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:.15rem}
 .rackfig{margin:0}
-.rackbox{background:var(--bg2); border:1px solid var(--line); padding:0; box-shadow:var(--shadow); overflow-x:auto}
+/* Reads as a case: wood cheeks (the palette's existing `wood` faceplate
+   tone, not a new colour — Bastl panels already carry it), dark interior,
+   metal rails. Colors are fixed hex rather than theme tokens on purpose —
+   a physical rack case, unlike the page chrome around it. Ported verbatim
+   from design's rack-mockup.html CHOSEN block; do not "tidy" these numbers. */
+.rackbox{background:linear-gradient(176deg,#31363c,#1c2025); border:1px solid #8a6538;
+  padding:10px 0; box-shadow:var(--shadow); overflow-x:auto; display:flex; align-items:stretch}
+.cheek{flex:0 0 16px; align-self:stretch; position:relative;
+  background:linear-gradient(90deg,#dcb98d,#b98f5c); border-right:1px solid rgba(0,0,0,.4)}
+.cheek.r{border-right:none; border-left:1px solid rgba(0,0,0,.4);
+  background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+.cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
+  width:5px; height:5px; border-radius:50%; background:#5c421f;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.cheek::before{top:9px} .cheek::after{bottom:9px}
+/* the fix for the real bug underneath this: rails were sized to the
+   container while rows were sized to their own content, so a row wider
+   than the box scrolled photos past where the rails stopped, and a
+   narrower row (the 1U row) left the rails ending in mid-air over bare
+   background. This wrapper is width:max-content so it — and therefore
+   every rail and row stretched inside it via the column flex's default
+   align-items:stretch — share the width of whichever row is widest. */
+.rackinner{width:max-content; min-width:100%; flex:0 0 auto; display:flex; flex-direction:column; gap:9px}
+.rackbox .rail{background:#8f959d; border-top:1px solid #5c6169; border-bottom:1px solid #5c6169;
+  background-image:radial-gradient(circle at 5px 4px, #5c6169 0 1.6px, transparent 1.7px)}
 .rackrow{display:flex; align-items:flex-start}
 .rackmod{position:relative; flex:0 0 auto; cursor:pointer; border:none; padding:0; display:block}
 .rackmod::after{content:""; position:absolute; inset:0; background:var(--accent); opacity:0; transition:opacity .12s}
 .rackmod:hover::after,.rackmod:focus-visible::after{opacity:.22}
+/* blanking panel filling whatever width a shorter row leaves over —
+   darker than the module photos on purpose (a lighter filler reads as
+   sitting in front of them, not behind); no mark, a blank panel is just
+   a panel */
+.blank{flex:1 1 auto; align-self:stretch; min-width:0;
+  background:linear-gradient(176deg,#2f343a,#1d2126);
+  border-left:1px solid rgba(0,0,0,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.3)}
 .rackfig figcaption{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.7rem; display:flex; justify-content:space-between; gap:1rem}
 
 /* ---------- filter bar ---------- */
@@ -534,11 +566,17 @@ body.detail-open .browse{display:none}
 .btn svg{width:14px; height:14px; margin-left:.5rem; flex:0 0 auto}
 
 /* ---------- footer ---------- */
-footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
-.fgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:2rem}
-.fgrid h4{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.5rem}
-.fgrid p{font-family:"Newsreader",Georgia,serif; color:var(--ink2); font-size:1rem}
-.fintro{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; color:var(--ink2); max-width:52ch; margin-bottom:2rem}
+/* three tiers instead of one — intro took full ink at the largest size,
+   labels stayed mono/muted, bodies stepped down to muted/smaller. Before,
+   intro and column bodies were both ~1rem Newsreader in --ink2, identical
+   weight, so nothing led and the block read as one crowded slab. */
+footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
+.fgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:2.75rem 3.25rem;
+  border-top:1px solid var(--line2); padding-top:2.25rem}
+.fgrid h4{font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink2); font-weight:600; margin-bottom:.8rem}
+.fgrid p{font-family:"Newsreader",Georgia,serif; color:var(--muted); font-size:.95rem; line-height:1.7}
+.fgrid .btn{margin-top:1rem}
+.fintro{font-family:"Newsreader",Georgia,serif; font-size:1.35rem; line-height:1.5; color:var(--ink); max-width:44ch; margin-bottom:2.75rem}
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
@@ -764,9 +802,9 @@ var T = {
     noticeA:"Modules, prices and specs are real.",
     noticeB:"Sampo\u2019s wish list is still a placeholder.", negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
-    fIntro:"A few of us in one Helsinki neighbourhood. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
-    fCollectBody:"Prices in EUR. Collection preferred, posting possible.",
-    fTradeBody:"Everything trades. Two separate lists.",
+    fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
+    fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
+    fTradeBody:"Trades welcome. Separate wishlists for separate owners.",
     fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", acc:"Accessories", tools:"Other stuff"},
     who:{all:"Everyone"},
     cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
@@ -1033,7 +1071,7 @@ function renderChrome(){
   el("fIntro").textContent=T2.fIntro;
   el("fgrid").innerHTML=
     fcol(T2.fCollect,T2.fCollectBody)+fcol(T2.fTrade,T2.fTradeBody)+
-    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><a class="btn sm" style="margin-top:.6rem;display:inline-flex" href="#/msg/">'+esc(T2.buyOrTrade)+'</a>');
+    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><a class="btn sm" href="#/msg/">'+esc(T2.buyOrTrade)+'</a>');
   el("sort").innerHTML=Object.keys(T2.sort).map(function(k){
     return '<option value="'+k+'"'+(k===S.sort?" selected":"")+'>'+esc(T2.sort[k])+'</option>'; }).join("");
 }
@@ -1071,13 +1109,17 @@ function renderRack(){
      landing at ~39.7-40mm each. Mixing these two up is the exact bug that
      shipped twice; keep them named differently if this is ever refactored. */
   var H=109, H1u=38;
+  /* every row gets a blanking panel after its modules — flex:1 1 auto fills
+     whatever width is left once .rackinner is stretched to the widest row,
+     zero-width and invisible on that widest row itself */
   var oneURow = oneU.length ? '<div class="rail"></div><div class="rackrow">'+oneU.map(function(m){
     return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H1u,39.65)+'</button>';
-  }).join("")+'</div>' : '';
-  el("rack").innerHTML = oneURow + rows.map(function(row){
+  }).join("")+'<span class="blank"></span></div>' : '';
+  var rowsHTML = rows.map(function(row){
     return '<div class="rail"></div><div class="rackrow">'+row.map(function(m){
       return '<button class="rackmod" data-go="'+m.id+'" title="'+esc(m.mfr+" "+m.name)+'" aria-label="'+esc(m.mfr+" "+m.name)+'">'+rackHTML(m,H)+'</button>';
-    }).join("")+'</div>'; }).join("")+'<div class="rail"></div>';
+    }).join("")+'<span class="blank"></span></div>'; }).join("")+'<div class="rail"></div>';
+  el("rack").innerHTML = '<span class="cheek"></span><div class="rackinner">'+oneURow+rowsHTML+'</div><span class="cheek r"></span>';
 }
 
 /* ---------- filters ---------- */
