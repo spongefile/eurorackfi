@@ -204,8 +204,13 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    (find-one-thing) — condensed from four stacked bands to two after the
    first pass left the whole right half of the search row empty. The
    plain subcategory row below refines whatever those already chose. */
-.ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.85rem 0 .55rem; flex-wrap:wrap}
-.cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.3rem}
+.ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.7rem 0; flex-wrap:wrap}
+.cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.7rem}
+/* owner chips otherwise inherit base .chip's .32rem padding while format
+   chips take .38rem from .chip.ico — a 3px height mismatch between the two
+   rows plus both leading with an accent-filled "all" chip at the old .3rem
+   gap made them read as one unbroken slab with no visible seam */
+.cfilters .chip{padding:.38rem .68rem}
 .cfind{flex:0 1 300px; display:flex; flex-direction:column; gap:.4rem; min-width:220px}
 .cfind .sortsel{margin-left:0; width:100%}
 .search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
