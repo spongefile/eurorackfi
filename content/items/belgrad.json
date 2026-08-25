@@ -88,5 +88,7 @@
   "cats": [
     "Filter"
   ],
-  "who": "t"
+  "who": "t",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/belgrad.jpg",
+  "imgIsModularGrid": true
 }
