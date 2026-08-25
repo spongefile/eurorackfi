@@ -974,11 +974,17 @@ function matches(m){
     if(h.indexOf(S.q.toLowerCase())<0) return false; }
   return true;
 }
+/* HP-sort tiebreak for the format families that don't carry real HP —
+   standalone, accessories, other — so they don't just interleave
+   alphabetically once everything's tied at 0. Eurorack (hp>0 almost
+   always) sorts first either way; order after that matches the FORMAT
+   chip row: standalone, then accessories, then other. */
+var FMT_ORDER={eu:0, desk:1, acc:2, tools:3};
 function sortList(a){
   var s=S.sort;
   return a.slice().sort(function(x,y){
-    if(s==="hp-desc") return (y.hp-x.hp)||x.name.localeCompare(y.name);
-    if(s==="hp-asc")  return (x.hp-y.hp)||x.name.localeCompare(y.name);
+    if(s==="hp-desc") return (y.hp-x.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
+    if(s==="hp-asc")  return (x.hp-y.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
     if(s==="price-desc") return y.price-x.price;
     if(s==="price-asc")  return x.price-y.price;
     return x.name.localeCompare(y.name);
