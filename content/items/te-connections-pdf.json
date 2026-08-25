@@ -1,0 +1,33 @@
+{
+  "id": "te-connections-pdf",
+  "mfr": "spongefile",
+  "name": "Teenage Engineering connections cheatsheet (PDF)",
+  "price": 3,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "PDF",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/teenage-engineering-devices-connections-diy-printable",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Five printable worksheets mapping every input and output across the TE range — OP-1 field, OP-XY, OP-Z, TP-7, TX-6, the EP series and the Pocket Operators. Shown as they appear on the devices, and as blank sheets you can draw your patching onto. Digital download.",
+    "fi": "Viisi tulostettavaa työarkkia, joille on merkitty kaikki TE-laitteiden tulot ja lähdöt: OP-1 field, OP-XY, OP-Z, TP-7, TX-6, EP-sarja ja Pocket Operatorit. Esitettynä sellaisina kuin ne laitteissa näkyvät, ja tyhjinä arkkeina joille voi piirtää oman kytkentänsä. Digitaalinen lataus.",
+    "sv": "Fem utskrivbara arbetsblad med alla in- och utgångar i TE-sortimentet: OP-1 field, OP-XY, OP-Z, TP-7, TX-6, EP-serien och Pocket Operators. Visade som de ser ut på enheterna, och som tomma ark där du kan rita in din egen koppling. Digital nedladdning."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/te-connections-pdf.jpg",
+  "negotiating": false
+}

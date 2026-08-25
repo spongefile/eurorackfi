@@ -1,0 +1,33 @@
+{
+  "id": "ep40-pdf",
+  "mfr": "spongefile",
+  "name": "EP-40 Riddim cheatsheet (PDF)",
+  "price": 4,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "PDF",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/ep-40-riddim-diy-printable-cheat-sheet",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Every EP-40 Riddim key combo on a single A4 page, colour-coded by type. Print it yourself. Digital download.",
+    "fi": "Kaikki EP-40 Riddimin näppäinyhdistelmät yhdellä A4-sivulla, värikoodattuna tyypeittäin. Tulosta itse. Digitaalinen lataus.",
+    "sv": "Alla tangentkombinationer för EP-40 Riddim på ett enda A4-ark, färgkodade efter typ. Skriv ut själv. Digital nedladdning."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-pdf.jpg",
+  "negotiating": false
+}

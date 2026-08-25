@@ -1,0 +1,33 @@
+{
+  "id": "ep40-overlay",
+  "mfr": "spongefile",
+  "name": "EP-40 Riddim keypad vinyl overlay",
+  "price": 15,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Overlay",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/ep-40-riddim-keypad-vinyl-overlay",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Vinyl overlay for the lower panel of the EP-40 Riddim, printing the key combos the unit itself never tells you. Cut to sit around the pads and match the Riddim's colours.",
+    "fi": "Vinyylikalvo EP-40 Riddimin alapaneeliin: siihen on painettu ne näppäinyhdistelmät, joita laite ei itse kerro. Leikattu asettumaan padien ympärille ja sopimaan Riddimin väreihin.",
+    "sv": "Vinylöverlägg för nedre panelen på EP-40 Riddim, med de tangentkombinationer enheten själv aldrig berättar om. Skuret för att sitta runt paddarna och matcha Riddims färger."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-overlay.jpg",
+  "negotiating": false
+}

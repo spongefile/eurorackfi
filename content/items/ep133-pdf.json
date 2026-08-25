@@ -1,0 +1,33 @@
+{
+  "id": "ep133-pdf",
+  "mfr": "spongefile",
+  "name": "EP-133 K.O. II Champions update cheatsheet (PDF)",
+  "price": 4,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "PDF",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/ep-133-ko-ii-champions-update-cheatsheet",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "EP-133 K.O. II key combos on one A4 page, updated for the Champions firmware and colour-coded by type. Print it yourself. Digital download.",
+    "fi": "EP-133 K.O. II:n näppäinyhdistelmät yhdellä A4-sivulla, päivitettynä Champions-firmwareen ja värikoodattuna tyypeittäin. Tulosta itse. Digitaalinen lataus.",
+    "sv": "Tangentkombinationerna för EP-133 K.O. II på ett A4-ark, uppdaterade för Champions-firmware och färgkodade efter typ. Skriv ut själv. Digital nedladdning."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep133-pdf.jpg",
+  "negotiating": false
+}

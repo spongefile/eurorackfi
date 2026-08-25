@@ -1,0 +1,33 @@
+{
+  "id": "po33-kit",
+  "mfr": "spongefile",
+  "name": "PO-33 K.O. vinyl cheatsheet kit",
+  "price": 10,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Sticker",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/po-33-ko-sampler-vinyl-cheatsheet-kit",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Three-part sticker kit for the PO-33 K.O.: a matte vinyl cheatsheet for the back listing every awkward button combo, coloured caps to tell the control buttons from the keyboard, and strips between the buttons marking the two sections.",
+    "fi": "Kolmiosainen tarrasetti PO-33 K.O.:lle: mattapintainen vinyylilunttilappu takakanteen, jossa on kaikki hankalat näppäinyhdistelmät, väritarrat erottamaan kontrollinäppäimet koskettimista, ja suikaleet näppäinten väliin merkitsemään kaksi osiota.",
+    "sv": "Tredelat dekalkit för PO-33 K.O.: en matt vinylfusklapp till baksidan med alla besvärliga knappkombinationer, färgade dekaler som skiljer kontrollknapparna från klaviaturen, och remsor mellan knapparna som märker ut de två sektionerna."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/po33-kit.jpg",
+  "negotiating": false
+}

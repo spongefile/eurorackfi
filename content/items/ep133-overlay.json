@@ -1,0 +1,33 @@
+{
+  "id": "ep133-overlay",
+  "mfr": "spongefile",
+  "name": "EP-133 K.O. II keypad vinyl overlay",
+  "price": 15,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Overlay",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/ep-133-ko-ii-synth-keypad-overlay",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Vinyl overlay for the lower panel of the EP-133 K.O. II, covering the key combos the panel leaves out. Accounts for the Champions update. First print run — the LED cutouts are slightly less precise than intended.",
+    "fi": "Vinyylikalvo EP-133 K.O. II:n alapaneeliin, kattaa ne näppäinyhdistelmät jotka paneelista puuttuvat. Huomioi Champions-päivityksen. Ensimmäinen painoerä, joten LED-aukot ovat hieman epätarkempia kuin oli tarkoitus.",
+    "sv": "Vinylöverlägg för nedre panelen på EP-133 K.O. II, med de tangentkombinationer panelen utelämnar. Tar hänsyn till Champions-uppdateringen. Första tryckomgången, så LED-hålen är aningen mindre exakta än tänkt."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep133-overlay.jpg",
+  "negotiating": false
+}

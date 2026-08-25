@@ -1,0 +1,33 @@
+{
+  "id": "po33-pdf-a4",
+  "mfr": "spongefile",
+  "name": "PO-33 K.O. cheatsheet, A4 (PDF)",
+  "price": 2,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "PDF",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/a4-po-33-ko-cheatsheet-diy-printable-sticker",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Back-panel cheatsheet for the PO-33 K.O. as a high-resolution A4 PDF, sized for sticker paper: shortcuts, pattern and sound references, sync settings. Print as many as you need. Digital download.",
+    "fi": "PO-33 K.O.:n takapaneelin lunttilappu korkearesoluutioisena A4-PDF:nä, mitoitettu tarrapaperille: pikanäppäimet, kuvio- ja äänilistat, sync-asetukset. Tulosta niin monta kuin tarvitset. Digitaalinen lataus.",
+    "sv": "Fusklapp för PO-33 K.O.:s bakpanel som högupplöst A4-PDF, anpassad för dekalpapper: genvägar, mönster- och ljudlistor, sync-inställningar. Skriv ut så många du behöver. Digital nedladdning."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/po33-pdf-a4.jpg",
+  "negotiating": false
+}

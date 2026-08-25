@@ -1,0 +1,33 @@
+{
+  "id": "ep40-sticker-misprint",
+  "mfr": "spongefile",
+  "name": "EP-40 Riddim system shortcuts sticker (misprint)",
+  "price": 5,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Sticker",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/printer-error-ep-40-riddim-system-shortcuts-vinyl-sticker",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "The same EP-40 Riddim battery-cover cheatsheet, from a run where the printer rendered some coloured text white. The MIDI and synth detail is hard to read; everything else is intact. Cheaper for that reason.",
+    "fi": "Sama EP-40 Riddimin paristokannen lunttilappu, erästä jossa tulostin painoi osan väritekstistä valkoisena. MIDI- ja synakohdat ovat vaikealukuisia, muu on ehjää. Siksi halvempi.",
+    "sv": "Samma fusklapp för EP-40 Riddims batterilucka, från en omgång där skrivaren tryckte en del färgad text vit. MIDI- och syntdetaljerna är svårlästa, resten är helt. Därför billigare."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep40-sticker-misprint.jpg",
+  "negotiating": false
+}

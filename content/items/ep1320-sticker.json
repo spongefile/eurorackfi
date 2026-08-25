@@ -1,0 +1,33 @@
+{
+  "id": "ep1320-sticker",
+  "mfr": "spongefile",
+  "name": "EP-1320 Medieval system shortcuts vinyl sticker",
+  "price": 10,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "t",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Sticker",
+    "Teenage Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/EP-1320-medieval-battery-cover-cheatsheet",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "Matte vinyl cheatsheet for the battery cover of the EP-1320 Medieval. System shortcuts and sample sound codes, drawn to match the unit's medieval styling, with blank space to pencil in your own sample codes.",
+    "fi": "Mattapintainen vinyylilunttilappu EP-1320 Medievalin paristokannen päälle. Järjestelmän pikanäppäimet ja samplejen äänikoodit laitteen keskiaikaiseen tyyliin piirrettynä, ja tyhjää tilaa omille samplekoodeille lyijykynällä.",
+    "sv": "Matt vinylfusklapp för batteriluckan på EP-1320 Medieval. Systemgenvägar och ljudkoder för samplingar, ritade i enhetens medeltida stil, med tomrum för att skriva in egna samplingskoder med blyerts."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/ep1320-sticker.jpg",
+  "negotiating": false
+}
