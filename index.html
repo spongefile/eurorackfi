@@ -887,7 +887,7 @@ try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved
 var TX={
  fi:{overview:"Yleistä",specs:"Tiedot",fMaker:"Valmistaja",fCats:"Kategoriat",
      fWidth:"Leveys",fDepth:"Syvyys",fPower:"Virta",fPanel:"Paneeli",
-     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",sameCat:"Sama kategoria:",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
+     video:"Video",reviewsH:"Arvioita",elsewhere:"Linkit",alsoLike:"Voisit pitää myös",sameCat:"Sama kategoria:",sameMfr:"Sama valmistaja:",official:"Valmistajan sivu",mgNote:"Tiedot ja omistajien kommentit",
      shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
      fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
      
@@ -902,7 +902,7 @@ var TX={
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
-     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",sameCat:"Samma kategori:",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
+     video:"Video",reviewsH:"Recensioner",elsewhere:"Länkar",alsoLike:"Du kanske också gillar",sameCat:"Samma kategori:",sameMfr:"Samma tillverkare:",official:"Tillverkarens sida",mgNote:"Specar och ägarkommentarer",
      shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
      fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
      
@@ -917,7 +917,7 @@ var TX={
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
-     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",sameCat:"Same category:",official:"Official page",mgNote:"Specs and owner notes",
+     video:"Video",reviewsH:"Reviews",elsewhere:"Links",alsoLike:"You may also like",sameCat:"Same category:",sameMfr:"Same maker:",official:"Official page",mgNote:"Specs and owner notes",
      shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
      fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
      
@@ -1164,15 +1164,25 @@ function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i);
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* watch, youtu.be, embed and shorts links all map to the same 11-char id */
-/* mechanical "you may also like" for the 33 items nobody has hand-picked
-   related items for yet — same primary category first, then any shared
-   tag, capped at 3. No editorial judgment, just enough to not be empty. */
+/* mechanical "you may also like" for items nobody has hand-picked related
+   items for yet — same maker first, then same primary category or any
+   shared tag, capped at 3 total. No editorial judgment, just enough to
+   not be empty. Two passes so brand matches always win the slots before
+   category matches, rather than whichever comes first in ITEMS order. */
 function autoRelated(m){
-  var T2=t(), out=[];
+  var T2=t(), out=[], seen={};
+  function add(id, label){
+    if(seen[id] || out.length>=3) return;
+    seen[id]=true; out.push([id, label]);
+  }
+  ITEMS.forEach(function(o){
+    if(o.id===m.id || out.length>=3) return;
+    if(o.mfr===m.mfr) add(o.id, T2.sameMfr+" "+o.mfr);
+  });
   ITEMS.forEach(function(o){
     if(o.id===m.id || out.length>=3) return;
     var shared = o.cat===m.cat ? o.cat : (o.cats||[]).filter(function(c){ return (m.cats||[]).indexOf(c)>=0; })[0];
-    if(shared) out.push([o.id, T2.sameCat+" "+(T2.cat[shared]||shared)]);
+    if(shared) add(o.id, T2.sameCat+" "+(T2.cat[shared]||shared));
   });
   return out;
 }
