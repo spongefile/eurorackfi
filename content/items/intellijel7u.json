@@ -1,0 +1,78 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/intellijel7u.jpg",
+  "mgSlug": "",
+  "site": "intellijel.com",
+  "hp": 84,
+  "price": 500,
+  "name": "7U Performance Case 84HP",
+  "fmt": "eu",
+  "extra": {
+    "power": "TPS80W — +12V 3000mA · −12V 3000mA · +5V 1500mA",
+    "pull": {
+      "q": "The Intellijel is nicely designed and has a very robust power supply. I'm definitely satisfied with mine.",
+      "src": "MOD WIGGLER",
+      "url": "https://www.modwiggler.com/forum/viewtopic.php?t=215482"
+    },
+    "quotes": [
+      {
+        "t": "They're really well built, and the builtin I/O helps save valuable HP space.",
+        "s": "Gearspace"
+      },
+      {
+        "t": "The Intellijel 1u is a different size from everyone else's, so you won't be able to fit in Pulp Logic and the like.",
+        "s": "Gearspace · worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "MOD WIGGLER",
+        "title": "7U 104HP metal case: Intellijel vs Makenoise — the thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=215482"
+      },
+      {
+        "src": "Gearspace",
+        "title": "Intellijel 7U Long Term — how it holds up being dragged to gigs",
+        "url": "https://gearspace.com/threads/intellijel-7u-long-term.1297782/"
+      },
+      {
+        "src": "Intellijel",
+        "title": "7U Performance Case Gen-2 — the current model, for comparison",
+        "url": "https://intellijel.com/shop/cases/7u/7u-performance-case-gen-2/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Cases",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=cPSfHK6czKw"
+      },
+      {
+        "title": "Intellijel 7U Performance Case Gen-2 | New Features Overview",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=q_PrRrfRy2I"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Other",
+  "mfr": "Intellijel",
+  "blurb": {
+    "en": "7U × 84HP portable case, first generation, silver. Two 3U rows plus a 1U row for Intellijel-format tiles, running the stock TPS80W supply — +12V 3A, −12V 3A, +5V 1.5A, rated for about 20 modules. An extra Intellijel TPS-30 bus board is wired in off the main one: it adds power headers, not current, so a lot of small modules can go in without flying bus cables. Lid included and it clears a patched system. Audio, MIDI and USB jacks are built into the case. The 1U row is Intellijel format, not Pulp Logic.",
+    "fi": "7U × 84HP kannettava kotelo, ensimmäinen sukupolvi, hopea. Kaksi 3U-riviä ja 1U-rivi Intellijelin omille tileille. Vakiona TPS80W-virtalähde: +12V 3A, −12V 3A, +5V 1,5A, mitoitettu noin 20 moduulille. Mukaan on lisätty toinen Intellijelin TPS-30-virtakisko, joka on kytketty pääkiskoon: se tuo lisää liittimiä, ei lisää virtaa, joten pieniä moduuleja mahtuu paljon ilman jatkokaapeleita. Kansi mukana, ja sen alle mahtuu kytketty patchi. Audio-, MIDI- ja USB-liitännät ovat kotelossa valmiina. 1U-rivi on Intellijelin formaattia, ei Pulp Logicia.",
+    "sv": "7U × 84HP bärbar låda, första generationen, silver. Två 3U-rader och en 1U-rad för Intellijels egna tiles. TPS80W-nätdel som standard: +12V 3A, −12V 3A, +5V 1,5A, räcker till ungefär 20 moduler. En extra TPS-30-strömskena från Intellijel är inkopplad från huvudskenan: den ger fler kontakter, inte mer ström, så många små moduler får plats utan lösa buss-kablar. Lock ingår och det går att stänga över en kopplad patch. Ljud-, MIDI- och USB-uttag sitter inbyggda i lådan. 1U-raden är Intellijels format, inte Pulp Logic."
+  },
+  "id": "intellijel7u",
+  "negotiating": false,
+  "cats": [
+    "Other",
+    "Case"
+  ],
+  "who": "t"
+}
