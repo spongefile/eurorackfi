@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — hero rack, alternates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --on:#FAFBFD;
+  --rail:#B1B9C5; --rail-ink:#8891A0;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:40px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:74ch;margin:0 0 1rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.6rem 0 .8rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.6rem;line-height:1.65;max-width:78ch}
+.figwrap{max-width:640px}
+
+/* ---------- shared rail motif ---------- */
+.rail{height:9px;background:var(--rail);border-top:1px solid var(--line2);
+  border-bottom:1px solid var(--line2);position:relative}
+.rail::after{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle at 5px 4px,var(--rail-ink) 0 1.6px,transparent 1.7px);
+  background-size:25.4px 100%;opacity:.85}
+.rackrow{display:flex;align-items:flex-start}
+.rackmod{position:relative;flex:0 0 auto;display:block;border:none;padding:0;cursor:pointer}
+.rackmod img{display:block;object-fit:cover}
+.rackmod::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .12s}
+.rackmod:hover::after{opacity:.22}
+
+/* blanking panel — brushed metal filler, what a real case has in empty slots */
+.blank{flex:1 1 auto;align-self:stretch;min-width:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px),
+    linear-gradient(176deg,#cfd4da,#aeb5bd);
+  border-left:1px solid rgba(0,0,0,.18)}
+.blank::before,.blank::after{content:"";position:absolute;width:4px;height:4px;border-radius:50%;
+  background:rgba(0,0,0,.3)}
+
+/* ---------- A: current ---------- */
+.rackA{background:var(--bg2);border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto}
+
+/* ---------- B: rails span content + blanks ---------- */
+.rackB{background:var(--bg2);border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto}
+.rackB .inner{width:max-content;min-width:100%}
+
+/* ---------- C: reads as a case ---------- */
+.caseC{background:linear-gradient(176deg,#3a4048,#22262c);padding:10px 0;
+  border:1px solid #191d22;box-shadow:var(--shadow);
+  display:flex;align-items:stretch;overflow-x:auto}
+.cheek{flex:0 0 14px;align-self:stretch;
+  background:linear-gradient(90deg,#4a5058,#2c3138);
+  border-right:1px solid rgba(0,0,0,.5);position:relative}
+.cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.5);
+  background:linear-gradient(90deg,#2c3138,#4a5058)}
+.cheek::before,.cheek::after{content:"";position:absolute;left:50%;transform:translateX(-50%);
+  width:5px;height:5px;border-radius:50%;background:#12151a;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.cheek::before{top:9px} .cheek::after{bottom:9px}
+.caseC .inner{width:max-content;min-width:100%;flex:1 1 auto}
+.caseC .rail{background:#8f959d;border-color:#5c6169}
+.caseC .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
+</style>
+</head>
+<body>
+
+<h1>Hero rack — the rails problem, and three ways to read as a case</h1>
+<p class="sub">Measured on the live site at 1280: the rack box is 639px wide, the rails are
+637px, but row 2's modules total <strong>778px</strong> and row 3's total 724px. The rows
+overflow the box while the rails stop at its edge — so scrolling right shows photos continuing
+past where the rails end. Meanwhile the 1U row totals only 321px and simply stops halfway,
+leaving bare background. Both are the same underlying thing: rails are sized to the container,
+rows are sized to their content.</p>
+
+<h2>A — Current</h2>
+<div class="figwrap">
+  <div class="rackA">
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:95px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:86px;height:38px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:60px;height:38px"></button>
+    </div>
+    <div class="rail"></div>
+    <div class="rackrow">
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+      <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+    </div>
+    <div class="rail"></div>
+  </div>
+</div>
+<p class="cap">Rows stop where the photos stop; rails run to the container edge. Reads as
+photographs laid between two horizontal bars rather than modules in a rack.</p>
+
+<h2>B — Rails follow the content, empty slots get blanking panels</h2>
+<div class="figwrap">
+  <div class="rackB">
+    <div class="inner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:95px;height:38px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:86px;height:38px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:60px;height:38px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+  </div>
+</div>
+<p class="cap">One CSS change fixes the rails: an inner wrapper at <code>width:max-content;
+min-width:100%</code> makes rails and rows share the same width, whichever is wider. Empty slots
+fill with a blanking panel — brushed metal with the screw positions — which is literally what
+a half-full case looks like. Nothing stops mid-air any more.</p>
+
+<h2>C — B, plus case cheeks</h2>
+<div class="figwrap">
+  <div class="caseC">
+    <span class="cheek"></span>
+    <div class="inner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:95px;height:38px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:86px;height:38px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:60px;height:38px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <span class="cheek r"></span>
+  </div>
+</div>
+<p class="cap">Adds the two things that actually say "case": dark end cheeks with mounting
+screws, and a dark body behind the rails so the rails read as metal inside an enclosure rather
+than as grey bars on the page background. The modules are unchanged — the enclosure does the
+work. Costs a darker block in the hero, which is a real trade against the light palette.</p>
+
+</body>
+</html>
