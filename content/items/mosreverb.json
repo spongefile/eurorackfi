@@ -29,5 +29,14 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg",
   "negotiating": false,
-  "oneU": true
+  "oneU": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "Techno Rumble Kicks with Mosaic 1U Mono Reverb, Variable Delay & Low Pass Filter",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=89TGK_5uxUs"
+      }
+    ]
+  }
 }

@@ -28,5 +28,14 @@
     "sv": "Trelägens gate: VCA, 12dB Sallen-Key-lågpass eller en äkta low-pass gate som blandar båda. Självsvängande resonans, vactrolbaserad respons."
   },
   "img": "https://images.squarespace-cdn.com/content/v1/56aeb9254d088e3be58a3d47/1455502182535-7I259J8WU1Z9ICZX4ECZ/image-asset.jpeg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Pittsburgh Modular LPG triple Lopass Gate module",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=SLrADGsEuas"
+      }
+    ]
+  }
 }

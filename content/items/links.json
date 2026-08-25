@@ -28,5 +28,14 @@
     "sv": "Tre rörledningsverktyg på 4HP: en buffrad mult med tre utgångar, en unity-gain-mixer med två in/två ut och en medelvärdesbildare med tre ingångar. Utgången Mutable-klassiker."
   },
   "img": "https://mutable-instruments.net/modules/links/images/front.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Mutable Instruments Links & Kinks Introduction",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=WZdZGZ50lvM"
+      }
+    ]
+  }
 }

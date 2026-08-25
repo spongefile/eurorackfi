@@ -29,5 +29,14 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg",
   "negotiating": false,
-  "oneU": true
+  "oneU": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "Mosaic 1U Quantizer - Full Walkthrough and Demo",
+        "by": "Walkthrough · YouTube",
+        "url": "https://www.youtube.com/watch?v=F1j_9ZoNsTE"
+      }
+    ]
+  }
 }

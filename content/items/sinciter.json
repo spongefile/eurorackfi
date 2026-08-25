@@ -28,5 +28,14 @@
     "sv": "VCO på fyra HP, 23 oktavers omfång, tre morfande vågformslägen – noise, plain, super – med inbyggd kvantisering och både uni- och bipolära utgångar. Utgången ur sortimentet, efterträdd av Sinc Legio."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sinciter.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Sinc Iter 4HP oscillator + noise demo and jam",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=m6s8LcKlcXI"
+      }
+    ]
+  }
 }

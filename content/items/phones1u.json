@@ -29,5 +29,14 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/phones1u.jpg",
   "negotiating": false,
-  "oneU": true
+  "oneU": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "intellijel Headphones 1U",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=neGAyLRUjFw"
+      }
+    ]
+  }
 }

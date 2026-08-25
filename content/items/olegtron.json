@@ -27,5 +27,33 @@
     "fi": "Pieni muovikotelo CD4060-piirin ympärillä: patchboard, jolle liimataan komponentteja piirin muokkaamiseksi, mukana kymmenen jaettua alataajuutta. Neljä stereo 3,5mm-liitintä kuljettaa jopa kahdeksan signaalia sisään tai ulos, sekä hyppylanka uni-/bipolaarista aluetta varten. Paristokäyttöinen, ei vaadi telinettä.",
     "sv": "Liten plastlåda byggd kring CD4060-kretsen: ett patchboard där du klistrar fast komponenter för att forma kretsen, med tio delade underfrekvenser att tillgå. Fyra stereo 3,5mm-jack bär upp till åtta signaler in eller ut, plus en bygel för uni-/bipolärt omfång. Batteridriven, kräver inget rack."
   },
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "If you're willing to put in the time, the Olegtron 4060 MK2 is one of the most unique pieces of equipment out there.",
+      "src": "Waveform Magazine",
+      "url": "https://waveformmagazine.com/waveform-reviews/olegtron-4060-mk2/"
+    },
+    "quotes": [
+      {
+        "t": "The Olegtron 4060 MK2 allows you to do a lot in a small space, but it gets busy quick and doing stuff on the fly or in a live setting would be very difficult.",
+        "s": "Waveform Magazine · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Waveform Magazine",
+        "title": "Olegtron 4060 MK2",
+        "url": "https://waveformmagazine.com/waveform-reviews/olegtron-4060-mk2/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Olegtron 4060 mk2 Test 1",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=dM6ldRJPmVQ"
+      }
+    ]
+  }
 }

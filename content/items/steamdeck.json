@@ -27,5 +27,26 @@
     "sv": "7,4 tums HDR OLED-handkonsol, 1280x800 upp till 90Hz, WiFi 6E och Bluetooth 5.3. Lagringskapaciteten på den här enheten är inte bekräftad -- fråga innan köp om det spelar roll för dig."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/steamdeck.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "The Verge",
+        "title": "Steam Deck OLED review",
+        "url": "https://www.theverge.com/2023/11/8/23949395/valve-steam-deck-oled-review"
+      },
+      {
+        "src": "TechRadar",
+        "title": "Steam Deck OLED review: a decent upgrade, but left me wanting more",
+        "url": "https://www.techradar.com/gaming/steam-deck-oled-review"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Digital Foundry: Steam Deck OLED Review",
+        "by": "Digital Foundry · YouTube",
+        "url": "https://youtu.be/PMq0SmhCp-o"
+      }
+    ]
+  }
 }

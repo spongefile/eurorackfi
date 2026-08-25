@@ -28,5 +28,14 @@
     "sv": "Fyrkanalig precisionsaddera och buffrad mult med polyfon transponering – tre Xpose-ingångar flyttar alla fyra kanaler samtidigt för tonartsbyten. Utgången ur sortimentet."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/quantuspax.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Demo: Quantus Pax precision adder/transposer + Quant Gemi octave switch",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=MVmia408P20"
+      }
+    ]
+  }
 }

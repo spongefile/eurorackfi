@@ -29,5 +29,14 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg",
   "imgIsModularGrid": true,
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Acid Rain Technology Chainsaw // A stereo 21 oscillator swarm in 4HP",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=-FXsXyBQQfw"
+      }
+    ]
+  }
 }

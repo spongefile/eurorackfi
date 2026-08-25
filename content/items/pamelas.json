@@ -28,5 +28,37 @@
     "sv": "Åtta-utgångars klockad modulationskälla, synkad till BPM, varje utgång redigerbar för sig. OLED-display, programenkoder, efterträdd av PRO-versionen."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/pamelas.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "There is no doubt that within the confines of a frankly ludicrously small 8HP, Pam's New Workout offers an amazing amount of versatility.",
+      "src": "MusicTech",
+      "url": "https://musictech.com/reviews/pamelas-new-workout-review/"
+    },
+    "quotes": [
+      {
+        "t": "It is a little fiddly: I found myself pressing and scrolling incorrectly a few times.",
+        "s": "MusicTech · the honest caveat",
+        "crit": true
+      },
+      {
+        "t": "I think I've become a Pam Fan again.",
+        "s": "MusicTech"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "MusicTech",
+        "title": "Pamela's New Workout Review - Useful, Usable and Flexible",
+        "url": "https://musictech.com/reviews/pamelas-new-workout-review/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "ALM Busy Circuits - Pamela's NEW Workout",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=Alu_cCDJIts"
+      }
+    ]
+  }
 }

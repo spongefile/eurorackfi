@@ -27,5 +27,38 @@
     "sv": "Bluetooth-hörlurar med fyra EEG-sensorer inbyggda i bygeln och kåporna, som läser hjärnvågor i realtid för att spåra fokus och avslappning. Aktiv brusreducering. Ursprungliga ENEP1-modellen."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/enophone.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "They do help me to relax, and offer great build quality and audio.",
+      "src": "The Gadgeteer",
+      "url": "https://the-gadgeteer.com/2024/02/04/enophones-headphones-review-headphones-that-monitor-your-brain-waves/"
+    },
+    "quotes": [
+      {
+        "t": "The headset is bulky, so unless you sleep on your back or stomach, they are not ideal for sleeping.",
+        "s": "The Gadgeteer · the honest caveat",
+        "crit": true
+      }
+    ],
+    "reviews": [
+      {
+        "src": "The Gadgeteer",
+        "title": "Enophones headphones review - Headphones that monitor your brain waves",
+        "url": "https://the-gadgeteer.com/2024/02/04/enophones-headphones-review-headphones-that-monitor-your-brain-waves/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Enophones EEG Headphones",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=6CxclB5T45E"
+      },
+      {
+        "title": "Unleash the Future: Enophones with Real-Time Brain Activity Monitoring - Unboxing and Quick Look!",
+        "by": "Unboxing · YouTube",
+        "url": "https://www.youtube.com/watch?v=MfxvtyE-Zc8"
+      }
+    ]
+  }
 }

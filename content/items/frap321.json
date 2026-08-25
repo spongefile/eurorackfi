@@ -27,5 +27,14 @@
     "sv": "Tre identiska scale/flip/shift-sektioner, DC-kopplade för CV eller audio, summerade på två sätt: en full mix och en mix av bara de opatchade kanalerna."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/frap321.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Frap Tools 321 Scale + Flip + Shift + Combine",
+        "by": "Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=_F9nlHtWzOM"
+      }
+    ]
+  }
 }

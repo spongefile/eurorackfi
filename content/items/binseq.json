@@ -27,5 +27,14 @@
     "sv": "Åttastegs gate-sekvensiator, varje steg en trevägsomkopplare: av, bunden eller kort gate. Reset-ingång håller mönstret hur långt du vill."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Bin Seq Tutorial, Demo, and Mini-jam session",
+        "by": "Patrick O'Brien · YouTube",
+        "url": "https://www.youtube.com/watch?v=MhbaVXk5Mr8"
+      }
+    ]
+  }
 }

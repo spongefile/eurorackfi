@@ -28,5 +28,19 @@
     "sv": "Åttakanalig pekskärmssampler på 18HP: spela in direkt eller ladda från SD-kortet, trigga med CV eller MIDI, mixa och lägg till den inbyggda reverbet och delayen."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Bitbox Micro review/walkthrough",
+        "by": "Review · YouTube",
+        "url": "https://www.youtube.com/watch?v=dlrkkS0A2_M"
+      },
+      {
+        "title": "Bitbox Micro vs Bitbox MK2: Review, tutorial and detailed comparison",
+        "by": "Loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=BNghPm4EVl8"
+      }
+    ]
+  }
 }

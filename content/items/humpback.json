@@ -27,5 +27,14 @@
     "sv": "Tvåpoligt CA3080-baserat state variable-filter, trimmat för självsvängning. Low-pass, band-pass, high-pass och notch alla tillgängliga samtidigt."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/humpback.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "GOD's BOX Humpback // Multimode Eurorack filter with BAGS of character!",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=ic9Ba23PT18"
+      }
+    ]
+  }
 }

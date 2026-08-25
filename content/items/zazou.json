@@ -28,5 +28,14 @@
     "sv": "18HP algoritmisk mönstergenerator: fyra oberoende CV/gate/velocity-spår kör tio algoritmer – random, walking bass, arpeggiator, Cantor, Fibonacci, Sierpinski, Mandelbrot, Julia och fler – över en rund färgkodad skaldisplay. MIDI out, synkar mot en extern klocka."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/zazou.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Kaona Zazou Algorithmic Pattern Generator (Pre-Superbooth 24 News) | SynthFest France 2024",
+        "by": "SynthFest demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=Fr19dSUsMMc"
+      }
+    ]
+  }
 }

@@ -27,5 +27,14 @@
     "sv": "Triangelkärnad VCO med sinus-, sub- och variabelform-utgångar. Linjär och exponentiell FM, sync och en S-gate för enbart suboscillatorn."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sto.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Make Noise STO Demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=t2133ACnix0"
+      }
+    ]
+  }
 }

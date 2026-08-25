@@ -27,5 +27,25 @@
     "sv": "Kanvasklädd fodral för Supernote Nomad, utan kantinslagning så den känns som ett pappersanteckningsblock. Dubbel magnetstängning, enheten kan vridas så att USB-porten pekar åt endera hållet, automatisk viloläge/uppvakning vid öppning."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/canvasfolio.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "pull": {
+      "q": "It's slim, it's light, and it does a good job of protecting the Nomad.",
+      "src": "AppsNTips",
+      "url": "https://www.appsntips.com/supernote-nomad-canvas-folio-lamy-safari-pen-review/"
+    },
+    "quotes": [
+      {
+        "t": "The canvas material gives it a rough texture, so there's less chance of the device slipping from your hands.",
+        "s": "AppsNTips"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "AppsNTips",
+        "title": "Supernote Nomad Canvas Folio and Lamy Safari Pen Review",
+        "url": "https://www.appsntips.com/supernote-nomad-canvas-folio-lamy-safari-pen-review/"
+      }
+    ]
+  }
 }
