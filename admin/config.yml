@@ -33,6 +33,7 @@ collections:
         options:
           - { label: "Eurorack", value: "eu" }
           - { label: "Standalone / desktop", value: "desk" }
+          - { label: "Accessories", value: "acc" }
           - { label: "Other stuff", value: "tools" }
       - label: "Owner"
         name: "who"

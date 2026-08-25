@@ -268,6 +268,8 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E")}
 /* desktop box seen from a low angle: rounded trapezoid, wide edge nearest */
 .ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E")}
+/* bow-tie — Tarvikkeet/Accessories, ported verbatim from design's canvas */
+.ic-acc{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 50 C34 18 8 24 12 44 C14 60 36 62 50 50 Z'/%3E%3Cpath d='M50 50 C66 18 92 24 88 44 C86 60 64 62 50 50 Z'/%3E%3Cpath d='M42 58 L30 88'/%3E%3Cpath d='M58 58 L70 88'/%3E%3C/g%3E%3Ccircle cx='50' cy='52' r='9' fill='%23000'/%3E%3C/svg%3E")}
 /* dice — "other" is the miscellany bin, so: whatever comes up */
 .ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E")}
 /* Subcategories: no border, no fill at rest. A tag list, not a second
@@ -695,7 +697,7 @@ var T = {
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
     fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
-    fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", tools:"Muut"},
+    fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", acc:"Tarvikkeet", tools:"Muut"},
     who:{all:"Kaikki"},
     cat:{all:"Kaikki",Oscillator:"Oskillaattori",Filter:"Suodin",Sequencer:"Sekvensseri",Modulation:"Modulaatio",
          Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus",Other:"Muut"},
@@ -720,7 +722,7 @@ var T = {
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
     fTradeBody:"Allt kan bytas. Två separata önskelistor.",
-    fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", tools:"Övrigt"},
+    fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", acc:"Tillbehör", tools:"Övrigt"},
     who:{all:"Alla"},
     cat:{all:"Allt",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencer",Modulation:"Modulering",
          Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning",Other:"Övrigt"},
@@ -745,7 +747,7 @@ var T = {
     fIntro:"A few of us in one Helsinki neighbourhood. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. Collection preferred, posting possible.",
     fTradeBody:"Everything trades. Two separate lists.",
-    fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", tools:"Other stuff"},
+    fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", acc:"Accessories", tools:"Other stuff"},
     who:{all:"Everyone"},
     cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
          Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control",Other:"Other"},
@@ -1059,7 +1061,7 @@ function renderFilters(){
   /* format chips carry an icon (ico ic-<key>) instead of the plain chip()
      shape everything else uses — design's redesign, three visually
      distinct tiers instead of one flat wall of identical chips */
-  el("fmtchips").innerHTML=["all","eu","desk","tools"].map(function(k){
+  el("fmtchips").innerHTML=["all","eu","desk","acc","tools"].map(function(k){
     var n=k==="all"?ITEMS.length:count({fmt:k});
     var faint=n===0&&k!=="all";
     return '<button class="chip ico ic-'+k+(faint?" faint":"")+'" data-fmt="'+k+'" aria-pressed="'+(S.fmt===k)+'">'+
@@ -1091,6 +1093,12 @@ function renderFilters(){
    or a placeholder string — Home's teaser only ever needs a text label,
    whichever shape it is */
 var wantLabel=function(w){ return typeof w==="string" ? w : (w.mfr+" "+w.name); };
+/* Home's teaser chips sit in a half-width card — a real "mfr + name" label
+   (e.g. "Noise Engineering Mimetic Digitwolis") eats the full row width and
+   wraps one chip per line, reading as a vertical list instead of a spread.
+   Model name only here; the Toiveet page has the width for the full label
+   and is where being complete is the job. */
+var wantLabelShort=function(w){ return typeof w==="string" ? w : w.name; };
 /* Home is a light teaser, not the full inventory — the complete list is
    what the Toiveet page is for. Cap the chips shown here so a long
    wishlist doesn't eat the space between the filter bar and the grid, and
@@ -1106,7 +1114,7 @@ function renderWish(){
     var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
     return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
       '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
-      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabel(w))+'</li>';}).join("")+
+      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
       (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
       '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
 }
