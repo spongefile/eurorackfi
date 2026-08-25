@@ -15,18 +15,18 @@
   "fmt": "tools",
   "extra": {
     "pull": {
-      "q": "The team touted the project to the press as a magic way to identify things like cheeses and fruits but apparently these features were only available in the development kit.",
-      "src": "TechCrunch",
-      "url": "https://techcrunch.com/2016/09/16/scio-the-pocket-sized-molecular-analyzer-is-making-everyone-angry/"
+      "q": "There is no doubt that a ton of engineering went into the SCiO. It was impressive to see that much technology packed into such a tiny package.",
+      "src": "SparkFun",
+      "url": "https://learn.sparkfun.com/tutorials/scio-pocket-molecular-scanner-teardown-/all"
     },
     "quotes": [
       {
-        "t": "Instead of failing, the scanner suggests that the blue M&M contains ibuprofen. It's enough to make you wonder if there isn't something else going on besides molecular scanning.",
-        "s": "TechCrunch"
+        "t": "The main feature inside the SCiO is the optical sensor, which consists of a custom-made NIR spectrometer.",
+        "s": "Hackaday · the teardown"
       },
       {
-        "t": "There is no doubt that a ton of engineering went into the SCiO. It was impressive to see that much technology packed into such a tiny package.",
-        "s": "SparkFun · the teardown"
+        "t": "After more than a two-year wait, just 5,000 backers had received their units and many were frustrated by its limited functionality.",
+        "s": "NoCamels · worth knowing before you buy"
       }
     ],
     "reviews": [
