@@ -416,6 +416,19 @@ reasoning — don't "tidy" them:
   is removed, and a negotiating card shows **no CTA at all** — not a
   disabled one. The item cannot be bought, so offering the action is wrong.
 
+**Scales down at `max-width:640px`,** where `.shot` drops 210px → 180px.
+The card is *wider* on mobile but the photo is shorter, so the unscaled
+band cut much further down the image and read as a sash rather than a
+corner accent. Scaled by that ratio (~0.85) to hold the same optical
+weight:
+
+```css
+@media(max-width:640px){
+  .negribbon{width:143px; height:143px}
+  .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
+}
+```
+
 Copy is a one-word form, `negRibbon`: **fi Neuvottelussa / sv Förhandlas /
 en Negotiating**. The full phrase stays on `negBar` for the module page,
 where the still-available clause ("— voit silti kysyä") is required.

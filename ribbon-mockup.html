@@ -68,6 +68,15 @@ h2{font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.14em
   font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
   text-transform:uppercase; box-shadow:0 1px 5px rgba(0,0,0,.3)}
 
+/* Mobile: .shot drops 210px -> 180px at <=640, so the same band crosses a
+   shorter photo and reads as a sash rather than a corner accent. Scaled by
+   that ratio (~0.85) so it stays optically the same weight. Demonstrated
+   here on .m as a forced class; in the build it belongs in the existing
+   @media(max-width:640px) block. */
+.m .shot{height:180px}
+.m .negribbon{width:143px; height:143px}
+.m .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
+
 /* magnified corner, to judge the 1px overhang */
 .zoomwrap{width:255px; height:230px; overflow:hidden; border:1px dashed var(--line2)}
 .zoom{transform:scale(3); transform-origin:100% 0}
@@ -138,6 +147,26 @@ CTA is gone entirely rather than duplicated as a footer chip, since the item can
 </div>
 <p class="cap">The band runs past the card's outer border on both ends rather than stopping
 against it — that is what makes it read as wrapped round the card.</p>
+
+<h2>Mobile — same weight, scaled</h2>
+<div class="row">
+  <div class="card">
+    <div class="shot"><div class="panel"></div></div>
+    <span class="negribbon"><span>Neuvottelussa</span></span>
+    <div class="cbody"><div class="mfr">Olegtron</div><h3>4060 mk2</h3></div>
+    <div class="cardfoot"><span class="price">150 €</span></div>
+  </div>
+  <div class="card m" style="width:358px">
+    <div class="shot"><div class="panel"></div></div>
+    <span class="negribbon"><span>Neuvottelussa</span></span>
+    <div class="cbody"><div class="mfr">Olegtron</div><h3>4060 mk2</h3></div>
+    <div class="cardfoot"><span class="price">150 €</span></div>
+  </div>
+</div>
+<p class="cap">Left: desktop, 255px card / 210px photo / 168px ribbon box. Right: mobile,
+358px card / 180px photo / 143px ribbon box. Card is wider on mobile but the photo is
+shorter, so at the unscaled size the band cut much further down the image. Scaled values:
+container 143, band 196 wide, right −48, top 26, font .58rem, padding .34rem.</p>
 
 <h2>English / Swedish</h2>
 <div class="row">
