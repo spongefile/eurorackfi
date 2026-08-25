@@ -44,14 +44,30 @@
     ],
     "reviews": [
       {
+        "src": "Vintage Digital",
+        "title": "The Excellent Alesis Quadraverb GT Guitar Effects Processor",
+        "url": "https://www.vintagedigital.com.au/alesis-quadraverb-gt/"
+      },
+      {
         "src": "Audiofanzine",
         "title": "Alesis QuadraVerb GT — user reviews",
         "url": "https://en.audiofanzine.com/reverb/alesis/QuadraVerb-GT/user_reviews/"
+      }
+    ],
+    "pull": {
+      "q": "The Alesis Quadraverb GT stands out as a powerhouse among guitar signal processors, integrating all the digital effects of the classic Alesis Quadraverb with an advanced analogue guitar pre-amp section.",
+      "src": "Vintage Digital",
+      "url": "https://www.vintagedigital.com.au/alesis-quadraverb-gt/"
+    },
+    "quotes": [
+      {
+        "t": "What truly sets the Alesis Quadraverb GT apart is its unmatched capability to fine-tune the harmonic structure of your guitar's tone.",
+        "s": "Vintage Digital"
       },
       {
-        "src": "Harmony Central",
-        "title": "User Reviews for Alesis Quadraverb GT",
-        "url": "https://www.harmonycentral.com/reviews/product/alesis-quadraverb-gt"
+        "t": "The technology is a bit old — it's 16-bit digital of 20 years ago.",
+        "s": "Teoteo, Audiofanzine (translated from French) · the honest caveat",
+        "crit": true
       }
     ]
   }
