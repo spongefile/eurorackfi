@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — specs placement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+  --signal:#A9660A; --signal-soft:#F5E6C8;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 60px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.3rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:78ch;margin:0 0 1.6rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.6rem 0 .8rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.7rem;line-height:1.65;max-width:80ch}
+.stage{background:var(--panel);border:1px dashed var(--line2);padding:1.5rem}
+
+.buyarea{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:2.5rem;align-items:start}
+.imgcol{display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.buycol{min-width:0}
+.bench{background:var(--bg2);border:1px solid var(--line);min-height:380px;
+  display:flex;align-items:center;justify-content:center}
+.benchtxt{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted)}
+.pcredit{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted)}
+.mfr{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted)}
+.buycol h3{font-size:1.7rem;letter-spacing:-.025em;margin:.3rem 0 .7rem}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;border:1px solid var(--line2);
+  color:var(--ink2);padding:.2rem .45rem}
+.bigprice{font-family:"IBM Plex Mono",monospace;font-size:1.9rem;font-weight:600;display:block;margin-top:1.1rem}
+.sellerline{display:flex;align-items:center;gap:.5rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;color:var(--ink2);margin-top:.7rem}
+.sellerline i{width:8px;height:8px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:62px;
+  background:var(--accent);color:var(--on);box-shadow:0 2px 0 var(--accent-hi);
+  font-family:"IBM Plex Mono",monospace;font-size:.86rem;letter-spacing:.04em;margin-top:1.2rem;
+  text-decoration:none}
+.inbox{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);margin:.55rem 0 0}
+.tradepanel{display:block;margin-top:1.5rem;border:1px solid var(--signal);
+  background:var(--signal-soft);padding:1rem;text-decoration:none}
+.tradepanel h4{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--signal);font-weight:500;margin:0 0 .4rem}
+.tradepanel p{font-family:"Newsreader",Georgia,serif;font-size:.92rem;color:var(--ink2);margin:0 0 .6rem}
+.wants{display:flex;gap:.35rem;flex-wrap:wrap}
+.want{font-family:"IBM Plex Mono",monospace;font-size:.66rem;border:1px solid var(--line2);
+  color:var(--ink2);padding:.14rem .36rem;background:var(--panel)}
+
+.specrule{border-top:1px solid var(--line);margin-top:1.5rem;padding-top:1.1rem}
+.specrule h4{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .6rem}
+.specrows{display:grid;gap:.35rem}
+.specrow{display:flex;justify-content:space-between;gap:1rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.78rem;padding:.25rem 0;border-bottom:1px dotted var(--line)}
+.specrow span:first-child{color:var(--muted)}
+/* full-width variant: two columns of rows so it does not become a long ladder */
+.specfull{grid-column:1 / -1;border-top:1px solid var(--line);margin-top:1.75rem;padding-top:1.1rem}
+.specfull .specrows{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));column-gap:2.5rem}
+.measure{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--accent);margin-top:.5rem}
+</style>
+</head>
+<body>
+
+<h1>Specs placement on the product page</h1>
+<p class="sub">Measured live on Piston Honda at 1280: <strong>.imgcol is 443px, .buycol is
+744px</strong> — a 301px stretch of empty left column beside the lower half of the buy column.
+The specs block is 234px of that 744.</p>
+
+<!-- ============ A ============ -->
+<h2>A — Current: specs at the bottom of the right column</h2>
+<div class="stage">
+  <div class="buyarea">
+    <div class="imgcol">
+      <div class="bench"><span class="benchtxt">PHOTO</span></div>
+      <p class="pcredit">Photo: the manufacturer's own site</p>
+    </div>
+    <div class="buycol">
+      <div class="mfr">Industrial Music Electronics</div>
+      <h3>Piston Honda MK III</h3>
+      <div class="tags"><span class="tag">Oscillator</span><span class="tag">Wavetable</span><span class="tag">Digital</span></div>
+      <span class="bigprice">€420</span>
+      <div class="sellerline"><i></i>Sampo</div>
+      <div class="sellerline">Collection preferred, posting possible</div>
+      <a class="btn" href="#">Buy or trade for this</a>
+      <p class="inbox">Goes to one shared inbox — we both read it.</p>
+      <a class="tradepanel" href="#"><h4>Sampo is hunting for</h4>
+        <p>Partial trade + cash also works</p>
+        <div class="wants"><span class="want">[e.g. quad VCA]</span><span class="want">[e.g. drum module]</span></div></a>
+      <div class="specrule"><h4>Specs</h4><div class="specrows">
+        <div class="specrow"><span>Width</span><span>17 HP</span></div>
+        <div class="specrow"><span>Depth</span><span>40 mm</span></div>
+        <div class="specrow"><span>Power</span><span>+12V 145 mA · −12V 45 mA</span></div>
+        <div class="specrow"><span>Panel</span><span>Black, MK III revision</span></div>
+        <div class="specrow"><span>Maker</span><span>Industrial Music Electronics</span></div>
+        <div class="specrow"><span>Categories</span><span>Oscillator · Wavetable · Digital</span></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<p class="cap">The left column runs out under the photo and stays empty for the rest of the
+scroll. Because <code>.imgcol</code> is sticky the photo pins and follows, so what you see is a
+tall blank area to its left-hand side.</p>
+
+<!-- ============ B ============ -->
+<h2>B — Specs under the image (as asked)</h2>
+<div class="stage">
+  <div class="buyarea">
+    <div class="imgcol">
+      <div class="bench"><span class="benchtxt">PHOTO</span></div>
+      <p class="pcredit">Photo: the manufacturer's own site</p>
+      <div class="specrule"><h4>Specs</h4><div class="specrows">
+        <div class="specrow"><span>Width</span><span>17 HP</span></div>
+        <div class="specrow"><span>Depth</span><span>40 mm</span></div>
+        <div class="specrow"><span>Power</span><span>+12V 145 mA · −12V 45 mA</span></div>
+        <div class="specrow"><span>Panel</span><span>Black, MK III revision</span></div>
+        <div class="specrow"><span>Maker</span><span>Industrial Music Electronics</span></div>
+        <div class="specrow"><span>Categories</span><span>Oscillator · Wavetable · Digital</span></div>
+      </div></div>
+    </div>
+    <div class="buycol">
+      <div class="mfr">Industrial Music Electronics</div>
+      <h3>Piston Honda MK III</h3>
+      <div class="tags"><span class="tag">Oscillator</span><span class="tag">Wavetable</span><span class="tag">Digital</span></div>
+      <span class="bigprice">€420</span>
+      <div class="sellerline"><i></i>Sampo</div>
+      <div class="sellerline">Collection preferred, posting possible</div>
+      <a class="btn" href="#">Buy or trade for this</a>
+      <p class="inbox">Goes to one shared inbox — we both read it.</p>
+      <a class="tradepanel" href="#"><h4>Sampo is hunting for</h4>
+        <p>Partial trade + cash also works</p>
+        <div class="wants"><span class="want">[e.g. quad VCA]</span><span class="want">[e.g. drum module]</span></div></a>
+    </div>
+  </div>
+</div>
+<p class="cap">Specs sit with the photo, which is where they belong logically — both describe
+the object rather than the transaction. <strong>But it flips the imbalance rather than removing
+it:</strong> left becomes ≈700px, right ≈490px, so ~210px of gap moves to the right instead.
+That gap is under the CTA, which reads as breathing room rather than a hole, so it is still a
+net improvement — just not a fix.
+<br><br><strong>One consequence to weigh:</strong> <code>.imgcol</code> is
+<code>position:sticky</code>. Making it ~700px tall means on a viewport shorter than that it can
+no longer pin usefully, and the handoff specifically warns about this column's sticky
+behaviour.</p>
+
+<!-- ============ C ============ -->
+<h2>C — Specs full width, below both columns</h2>
+<div class="stage">
+  <div class="buyarea">
+    <div class="imgcol">
+      <div class="bench"><span class="benchtxt">PHOTO</span></div>
+      <p class="pcredit">Photo: the manufacturer's own site</p>
+    </div>
+    <div class="buycol">
+      <div class="mfr">Industrial Music Electronics</div>
+      <h3>Piston Honda MK III</h3>
+      <div class="tags"><span class="tag">Oscillator</span><span class="tag">Wavetable</span><span class="tag">Digital</span></div>
+      <span class="bigprice">€420</span>
+      <div class="sellerline"><i></i>Sampo</div>
+      <div class="sellerline">Collection preferred, posting possible</div>
+      <a class="btn" href="#">Buy or trade for this</a>
+      <p class="inbox">Goes to one shared inbox — we both read it.</p>
+      <a class="tradepanel" href="#"><h4>Sampo is hunting for</h4>
+        <p>Partial trade + cash also works</p>
+        <div class="wants"><span class="want">[e.g. quad VCA]</span><span class="want">[e.g. drum module]</span></div></a>
+    </div>
+    <div class="specfull"><h4>Specs</h4><div class="specrows">
+      <div class="specrow"><span>Width</span><span>17 HP</span></div>
+      <div class="specrow"><span>Depth</span><span>40 mm</span></div>
+      <div class="specrow"><span>Power</span><span>+12V 145 mA · −12V 45 mA</span></div>
+      <div class="specrow"><span>Panel</span><span>Black, MK III revision</span></div>
+      <div class="specrow"><span>Maker</span><span>Industrial Music Electronics</span></div>
+      <div class="specrow"><span>Categories</span><span>Oscillator · Wavetable · Digital</span></div>
+    </div></div>
+  </div>
+</div>
+<p class="cap">Both columns end at roughly the same height — 443 vs 490, a ~45px difference
+instead of 301 — so the gap essentially disappears rather than moving. Specs then runs the full
+width in two columns, which suits a key/value list better than a narrow single ladder and makes
+the long Power row fit on one line.
+<br><br>Keeps <code>.imgcol</code> short, so the sticky behaviour the handoff describes is
+untouched. Costs one thing: specs no longer sits visually attached to the photo.</p>
+
+</body>
+</html>
