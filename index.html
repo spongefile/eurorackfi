@@ -277,6 +277,16 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .subchip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-hi)}
 .subchip.faint{color:var(--line2)}
 .subchip .c{opacity:.6; margin-left:.3rem; font-size:.64rem}
+/* the same reset-circle as .chip.ico's ic-all, but smaller — the type row
+   is the quiet tier, a 15px glyph would outweigh its own labels — and
+   --accent-hi when pressed rather than --on, since this row's selected
+   state is an --accent-soft fill with --accent-hi text, not a solid
+   accent fill; --on (near-white) would wash out on it. Don't collapse
+   these into the .chip.ico rules, both differences are deliberate. */
+.subchip.ico{display:inline-flex; align-items:center; gap:.36rem}
+.subchip.ico::before{content:""; width:10px; height:10px; flex:0 0 auto; background:var(--muted);
+  -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
+.subchip.ico[aria-pressed="true"]::before{background:var(--accent-hi)}
 .sortsel{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2)}
 .catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%}
 
@@ -1059,7 +1069,7 @@ function renderFilters(){
      everywhere else. "All" gets neither dot nor popover — there's no
      single seller's wants to preview. */
   el("whochips").innerHTML=
-    '<button class="chip" data-who="all" aria-pressed="'+(S.who==="all")+'">'+esc(T2.who.all)+'<span class="c">'+ITEMS.length+'</span></button>'+
+    '<button class="chip ico ic-all" data-who="all" aria-pressed="'+(S.who==="all")+'">'+esc(T2.who.all)+'<span class="c">'+ITEMS.length+'</span></button>'+
     SELLERS.map(function(p){
       var n=count({who:p.key});
       return '<button class="chip owner haspop" data-who="'+p.key+'" aria-pressed="'+(S.who===p.key)+'">'+
@@ -1070,7 +1080,8 @@ function renderFilters(){
   el("catchips").innerHTML=CATKEYS.map(function(k){
     var n=k==="all"?ITEMS.length:count({cat:k});
     var faint=n===0&&k!=="all";
-    return '<button class="subchip'+(faint?" faint":"")+'" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'">'+
+    var cls=(k==="all"?"ico ic-all":"")+(faint?" faint":"");
+    return '<button class="subchip'+(cls?" "+cls.trim():"")+'" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'">'+
       esc(T2.cat[k]||k)+'<span class="c">'+(faint?"–":n)+'</span></button>'; }).join("");
 }
 
