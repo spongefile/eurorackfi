@@ -75,16 +75,18 @@ collections:
     folder: "content/sellers"
     create: true
     delete: true
-    identifier_field: key
+    identifier_field: name
     format: json
     fields:
-      - { label: "Key", name: "key", widget: "string", hint: "short, lowercase, no spaces — e.g. t, f, sampo2. Becomes the filename. Never change this once listings reference it (Owner field on items) or their link to this seller breaks." }
+      - { label: "Key", name: "key", widget: "string", hint: "short, lowercase, no spaces — e.g. t, f, sampo2. Referenced by listings' Owner field. Never change this once listings reference it or their link to this seller breaks." }
       - { label: "Display name", name: "name", widget: "string" }
       - label: "Dot color"
         name: "dot"
-        widget: "select"
-        options: ["#2E77C9","#C98A2E","#3E9E82","#9068C8","#C4657A","#3E93AD","#B08A3A","#6D9440","#B75E96","#5A7FD4"]
-        hint: "Pick one not already used by another seller, so cards stay easy to tell apart at a glance."
+        widget: "color"
+        allowInput: true
+        enableAlpha: false
+        default: "#2E77C9"
+        hint: "Pick a color not already used by another seller, so cards stay easy to tell apart at a glance."
       - label: "Wishlist"
         name: "wants"
         widget: "list"
