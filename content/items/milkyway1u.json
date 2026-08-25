@@ -29,5 +29,14 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg",
   "negotiating": false,
-  "oneU": true
+  "oneU": true,
+  "extra": {
+    "videos": [
+      {
+        "title": "Endorphines 1U Modules // Cockpit, Milky Way, Golden Master",
+        "by": "1U overview · YouTube",
+        "url": "https://www.youtube.com/watch?v=f4v514JYtao"
+      }
+    ]
+  }
 }

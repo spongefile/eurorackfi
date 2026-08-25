@@ -30,6 +30,24 @@
   "img": "https://elektrofon.no/assets/klang-front.png",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "It elegantly brings polyphonic voicing and chord structures into the often profoundly monophonic space of Eurorack.",
+      "src": "Gearnews",
+      "url": "https://www.gearnews.com/elektrofon-klang-fabulously-visual-chord-generator-eurorack-module-is-released/"
+    },
+    "quotes": [
+      {
+        "t": "It's not only brilliantly useful but also stunning to look at.",
+        "s": "Robin Vincent, Gearnews"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Gearnews",
+        "title": "Elektrofon Klang fabulously visual chord generator Eurorack module is released",
+        "url": "https://www.gearnews.com/elektrofon-klang-fabulously-visual-chord-generator-eurorack-module-is-released/"
+      }
+    ],
     "videos": [
       {
         "title": "Elektrofon Klang Eurorack Module (Sneak Preview)",

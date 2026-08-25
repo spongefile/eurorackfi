@@ -29,6 +29,29 @@
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/frap321.jpg",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "A very interesting and clever designed module.",
+      "src": "Synth Anatomy",
+      "url": "https://synthanatomy.com/2017/12/frap-tools-new-321-scale-flip-shift-combine-cleverly-simplifies-the-work-of-audio-control-voltages-in-eurorack.html"
+    },
+    "quotes": [
+      {
+        "t": "The 321 is entirely DC coupled, allowing the process of control voltages as well as audio signals.",
+        "s": "Synth Anatomy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Synth Anatomy",
+        "title": "Frap Tools New 321 Scale + Flip + Shift + Combine Cleverly Simplifies The Work Of Audio & Control Voltages In Eurorack",
+        "url": "https://synthanatomy.com/2017/12/frap-tools-new-321-scale-flip-shift-combine-cleverly-simplifies-the-work-of-audio-control-voltages-in-eurorack.html"
+      },
+      {
+        "src": "Synthtopia",
+        "title": "Frap Tools 321 Module Lets You Slap It Up, Flip It, Rub It Down",
+        "url": "https://www.synthtopia.com/content/2017/12/22/frap-tools-321-module-lets-you-slap-it-up-flip-it-rub-it-down/"
+      }
+    ],
     "videos": [
       {
         "title": "Frap Tools 321 Scale + Flip + Shift + Combine",

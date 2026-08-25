@@ -30,6 +30,33 @@
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/lubadh.jpg",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "The idea is that it's a looper which is instantly performable. Just record something and then get stuck straight in there.",
+      "src": "Gearnews",
+      "url": "https://www.gearnews.com/instruo-to-show-lubadh-2-channel-eurorack-looper-at-superbooth/"
+    },
+    "quotes": [
+      {
+        "t": "It has two spinning lights that look like tape reels acting as the 2 channels of recording.",
+        "s": "Robin Vincent, Gearnews"
+      },
+      {
+        "t": "You can link them and record in parallel or use them separately. You have control over the loop length, start position and speed of playback.",
+        "s": "Robin Vincent, Gearnews"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Gearnews",
+        "title": "Instruó to show \"Lubadh\" 2-channel Eurorack looper at Superbooth",
+        "url": "https://www.gearnews.com/instruo-to-show-lubadh-2-channel-eurorack-looper-at-superbooth/"
+      },
+      {
+        "src": "Synth Anatomy",
+        "title": "Instruo Lubadh 2.0, a different dual looper mangling animal",
+        "url": "https://synthanatomy.com/2022/11/instruo-lubadh-2-0-a-different-dual-looper-mangling-animal.html"
+      }
+    ],
     "videos": [
       {
         "title": "Eurorack Tape Looper 'Lubadh' from Instruo // Superbooth 2019",

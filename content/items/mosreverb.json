@@ -31,6 +31,18 @@
   "negotiating": false,
   "oneU": true,
   "extra": {
+    "reviews": [
+      {
+        "src": "Synth Anatomy",
+        "title": "Mosaic Intros 18 Colorful 1U Eurorack Modules That Break New Ground",
+        "url": "https://synthanatomy.com/2021/05/mosaic-intros-colorful-1u-eurorack-modules-that-break-new-ground.html"
+      },
+      {
+        "src": "Gearnews",
+        "title": "Up your 1U game with Mosaic Eurorack tiles",
+        "url": "https://www.gearnews.com/up-your-1u-game-with-mosaic-eurorack-tiles/"
+      }
+    ],
     "videos": [
       {
         "title": "Techno Rumble Kicks with Mosaic 1U Mono Reverb, Variable Delay & Low Pass Filter",

@@ -28,5 +28,26 @@
     "sv": "Finsk DIY-monosynt byggd kring rösterna ur Moog Rogue och Prodigy, med polychain över MIDI."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/progue.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "Synth Anatomy",
+        "title": "JSI Intros PROGUE, Moog Prodigy & Rogue Inspired DIY Analog Synthesizer",
+        "url": "https://synthanatomy.com/2020/08/jsi-intros-progue-moog-prodigy-rogue-inspired-diy-analog-synthesizer.html"
+      },
+      {
+        "src": "Gearnews",
+        "title": "PROGUE: forthcoming Moog Prodigy and Rogue inspired DIY analog synthesizer",
+        "url": "https://www.gearnews.com/progue-forthcoming-moog-prodigy-and-rogue-inspired-diy-analog-synthesizer/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "PROGUE - Moog Prodigy & Rogue inspired DIY Analog Synthesizer",
+        "by": "Walkthrough · YouTube",
+        "url": "https://www.youtube.com/watch?v=eJv00_9yWp8"
+      }
+    ]
+  }
 }

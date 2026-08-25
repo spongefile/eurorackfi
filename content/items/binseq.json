@@ -29,6 +29,24 @@
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "Designed to give a quick and simple way to generate rhythmic sequences while jamming.",
+      "src": "Gearnews",
+      "url": "https://www.gearnews.com/noise-engineering-announce-bin-seq-clep-diaz-ready-go/"
+    },
+    "quotes": [
+      {
+        "t": "An eight-step switchable gate sequencer. Each step has a three position switch for off, short gate and tied gate.",
+        "s": "Robin Vincent, Gearnews"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Gearnews",
+        "title": "Noise Engineering announce Bin Seq and Clep Diaz ready to go",
+        "url": "https://www.gearnews.com/noise-engineering-announce-bin-seq-clep-diaz-ready-go/"
+      }
+    ],
     "videos": [
       {
         "title": "Bin Seq Tutorial, Demo, and Mini-jam session",

@@ -27,5 +27,19 @@
     "fi": "Kahdeksanbittinen chip-syna, nuppi per toiminto, ei valikoita. Kuulostaa konsolilta, jota työnnetään sinne, minne ei pitäisi.",
     "sv": "Åttabitars chipsynt, en ratt per funktion, inga menyer. Låter som en konsol som pressas dit den inte borde."
   },
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Twisted Electrons therapKid Sound Demo (no talking)",
+        "by": "Bonedo · YouTube",
+        "url": "https://www.youtube.com/watch?v=DC6t4UYoeI4"
+      },
+      {
+        "title": "Twisted Electrons Therapkid demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=_BRfGb4kaqU"
+      }
+    ]
+  }
 }

@@ -30,6 +30,28 @@
   "img": "https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "Based on exactly the same hardware as the Kastle with the same synth engine, but reworked into an algorithmic industrial glitch machine.",
+      "src": "Gearnews",
+      "url": "https://www.gearnews.com/kastle-drum-mini-patchable-industrial-glitch-machine-from-bastl-instruments/"
+    },
+    "quotes": [
+      {
+        "t": "8 styles of drum synthesis focusing on noise and weirdness. You have control over the sound selection, decay time, pitch control, looping modes and clocks.",
+        "s": "Robin Vincent, Gearnews"
+      },
+      {
+        "t": "It's supposed to be explored and enjoyed. It's also open source so if you want to mess it about, you can.",
+        "s": "Robin Vincent, Gearnews"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Gearnews",
+        "title": "Kastle Drum: mini patchable industrial glitch machine from Bastl Instruments",
+        "url": "https://www.gearnews.com/kastle-drum-mini-patchable-industrial-glitch-machine-from-bastl-instruments/"
+      }
+    ],
     "videos": [
       {
         "title": "Bastl Kastle Drum: Deep Dive & Tutorial - Still Relevant in 2024?",

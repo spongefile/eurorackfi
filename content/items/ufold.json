@@ -27,5 +27,14 @@
     "sv": "Sex vikningssteg med thru-zero-symmetri, och DC-kopplade ingångar så den viker gärna CV också."
   },
   "img": "https://intellijel.com/wp-content/uploads/2018/07/uFold-2018.jpg",
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "videos": [
+      {
+        "title": "Short fun with Intellijels uFold",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=AuZgaA3D5HI"
+      }
+    ]
+  }
 }
