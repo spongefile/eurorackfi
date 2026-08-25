@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — accessory detail page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5;
+  --signal:#A9660A; --signal-soft:#F5E6C8;
+  --on:#FAFBFD;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:40px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:70ch;margin:0 0 2rem}
+h2.sec{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.6rem 0 .9rem}
+.wrap{max-width:1000px}
+
+/* ---- buy area ---- */
+.buyarea{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);
+  gap:2.5rem;align-items:start;background:var(--panel);border:1px solid var(--line);padding:1.5rem}
+.bench{background:var(--bg2);border:1px solid var(--line);min-height:300px;
+  display:flex;align-items:center;justify-content:center;position:relative}
+.ph{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-align:center;padding:1rem}
+.crumb{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);margin-bottom:1rem}
+.crumb a{color:var(--accent);text-decoration:none}
+.mfr{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted)}
+.buy h3{font-size:1.6rem;letter-spacing:-.025em;margin:.3rem 0 .6rem}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1rem}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;border:1px solid var(--line2);
+  color:var(--ink2);padding:.2rem .45rem}
+.bigprice{font-family:"IBM Plex Mono",monospace;font-size:1.9rem;font-weight:600;letter-spacing:-.02em}
+.sellerline{display:flex;align-items:center;gap:.5rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;color:var(--ink2);margin-top:.7rem}
+.sellerline i{width:8px;height:8px;border-radius:50%;background:#2E77C9;flex:0 0 auto}
+.btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;min-height:62px;
+  background:var(--accent);color:var(--on);border:none;box-shadow:0 2px 0 var(--accent-hi);
+  font-family:"IBM Plex Mono",monospace;font-size:.86rem;letter-spacing:.04em;margin-top:1.2rem;
+  text-decoration:none}
+.btn svg{width:14px;height:14px}
+.outnote{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);margin-top:.55rem}
+.specrule{margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1rem}
+.specrule h4{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .6rem}
+.specrow{display:flex;justify-content:space-between;gap:1rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;padding:.3rem 0;border-bottom:1px solid var(--line)}
+.specrow span:first-child{color:var(--muted)}
+
+/* ---- prose + quotes ---- */
+.sect{background:var(--panel);border:1px solid var(--line);padding:1.5rem;margin-top:1.25rem}
+.sect h4{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .8rem}
+.prose{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0}
+.qcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem;margin-top:.4rem}
+.qcard{background:var(--panel2);border:1px solid var(--line);padding:1rem}
+.qcard p{font-family:"Newsreader",Georgia,serif;font-size:.95rem;line-height:1.5;margin:0 0 .6rem;color:var(--ink)}
+.qcard cite{font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-style:normal;color:var(--muted)}
+
+/* ---- section map ---- */
+table{border-collapse:collapse;width:100%;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
+th,td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.62rem}
+.keep{color:var(--accent);font-weight:500}
+.drop{color:var(--muted)}
+.chg{color:var(--signal);font-weight:500}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);margin-top:.6rem;line-height:1.6}
+mark{background:var(--signal-soft);color:var(--signal);padding:0 .2em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Accessory detail page</h1>
+<p class="sub">Standalone spec — nothing read from the canvas. Shop products get a normal
+eurorack.fi detail page; only the Buy button leaves the site. Values in
+<mark>[brackets]</mark> are blanks for secretary's scraped data, per the placeholder
+convention — do not invent them.</p>
+
+<h2 class="sec">Buy area</h2>
+<div class="crumb"><a href="#">&larr; Kaikki</a> / Teenage Engineering / <mark>[Tuotteen nimi]</mark></div>
+<div class="buyarea">
+  <div class="bench"><div class="ph">SHOP PRODUCT PHOTO<br><mark>[kuva kaupasta]</mark><br><br>
+    Chevrons + dot row only when&nbsp;&gt;&nbsp;1 photo,<br>same rule as modules.</div></div>
+  <div class="buy">
+    <div class="mfr">Teenage Engineering</div>
+    <h3><mark>[Tuotteen nimi]</mark></h3>
+    <div class="tags"><span class="tag">Tarvikkeet</span><span class="tag"><mark>[alaluokka]</mark></span></div>
+    <div class="bigprice"><mark>[00]</mark> €</div>
+    <div class="sellerline"><i></i>spongefile</div>
+    <a class="btn" href="#">Osta kaupasta
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>
+      </svg></a>
+    <p class="outnote">Avautuu kauppaan uuteen välilehteen.</p>
+    <div class="specrule">
+      <h4>Tiedot</h4>
+      <div class="specrow"><span>Valmistaja</span><span>Teenage Engineering</span></div>
+      <div class="specrow"><span><mark>[avain]</mark></span><span><mark>[arvo]</mark></span></div>
+      <div class="specrow"><span><mark>[avain]</mark></span><span><mark>[arvo]</mark></span></div>
+    </div>
+  </div>
+</div>
+<p class="cap">Gone vs a module: the “Collection preferred, posting possible” line, the shared-inbox
+note and the amber trade panel — none survive an outbound checkout. The spec table renders whatever
+key/value pairs the shop data carries and <strong>hides entirely when there are none</strong>; it must
+not show empty HP / depth / power rows.</p>
+
+<h2 class="sec">Overview + shop reviews</h2>
+<div class="sect">
+  <h4>Yleiskuva</h4>
+  <p class="prose"><mark>[Tuotekuvaus kaupasta.]</mark></p>
+</div>
+<div class="sect">
+  <h4>Arviot</h4>
+  <div class="qcards">
+    <div class="qcard"><p>&ldquo;<mark>[Arvio kaupan tuotesivulta.]</mark>&rdquo;</p><cite><mark>[nimi]</mark> · kauppa</cite></div>
+    <div class="qcard"><p>&ldquo;<mark>[Arvio kaupan tuotesivulta.]</mark>&rdquo;</p><cite><mark>[nimi]</mark> · kauppa</cite></div>
+  </div>
+</div>
+<p class="cap">Reviews live on the shop's own product pages, so they reuse the existing quote-card
+component as-is — same markup, same neutral panel styling. Attribution says <em>kauppa</em> / the shop
+rather than a magazine, since that is where they came from. No pull-quote hero unless one is
+genuinely worth pulling. Whole section hides when a product has no reviews.</p>
+
+<h2 class="sec">Section map — module page vs accessory</h2>
+<table>
+  <tr><th>Section</th><th>Accessory</th><th>Why</th></tr>
+  <tr><td>notice / rail / header / breadcrumb</td><td class="keep">keep</td><td>chrome, unchanged</td></tr>
+  <tr><td>buy area</td><td class="chg">changed</td><td>Buy links out; collection line, inbox note and trade panel suppressed</td></tr>
+  <tr><td>spec table</td><td class="chg">changed</td><td>shop key/values; hides when empty — never blank HP/power rows</td></tr>
+  <tr><td>pitch / overview</td><td class="keep">keep</td><td>shop product description</td></tr>
+  <tr><td>pull quote</td><td class="drop">conditional</td><td>only if one review is worth pulling out</td></tr>
+  <tr><td>quote cards</td><td class="keep">keep</td><td>shop reviews, existing component, hides when none</td></tr>
+  <tr><td>review links</td><td class="drop">drop</td><td>shop reviews are on-page, not external URLs</td></tr>
+  <tr><td>video</td><td class="drop">drop</td><td>none for these products</td></tr>
+  <tr><td>outbound links</td><td class="drop">drop</td><td>no ModularGrid; the one outbound link is the Buy button</td></tr>
+  <tr><td>you may also like</td><td class="keep">keep</td><td>other accessories</td></tr>
+  <tr><td>footer</td><td class="keep">keep</td><td>chrome, unchanged</td></tr>
+</table>
+<p class="cap"><strong>Hide, don't placeholder.</strong> Every dropped section collapses completely —
+no empty headings, no “ei arvioita” stand-ins. A short page is correct here; a page full of empty
+scaffolding is not.</p>
+
+<h2 class="sec">Copy</h2>
+<table>
+  <tr><th>Key</th><th>fi</th><th>sv</th><th>en</th></tr>
+  <tr><td>grid CTA</td><td>Lisätietoja</td><td>Mer information</td><td>More info</td></tr>
+  <tr><td>detail CTA</td><td>Osta kaupasta</td><td>Köp i butiken</td><td>Buy from the shop</td></tr>
+  <tr><td>outbound note</td><td>Avautuu kauppaan uuteen välilehteen.</td><td>Öppnas i butiken i en ny flik.</td><td>Opens the shop in a new tab.</td></tr>
+  <tr><td>reviews heading</td><td>Arviot</td><td>Omdömen</td><td>Reviews</td></tr>
+  <tr><td>review attribution</td><td>kauppa</td><td>butiken</td><td>the shop</td></tr>
+</table>
+<p class="cap">The grid card is otherwise identical to a module card — same shot, body, tags, owner
+pill and price. Only the CTA word changes, because the click goes to a detail page here and to a
+detail page there; the outbound step happens one level deeper.</p>
+
+</div>
+</body>
+</html>
