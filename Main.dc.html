@@ -137,9 +137,15 @@
        the icon chips answer "which shelf / what kind of box"; the plain
        subcategory chips only refine what those already chose. Before this
        they were all the same chip and the bar read as one flat wall. */
-    .searchrow{display:flex; gap:.75rem; align-items:center; padding:.85rem 0 .75rem}
+    /* Two columns: the filter axes claim the left, find-and-sort stacks on the
+       right. Previously search had a row to itself and the chips had one each,
+       four bands deep, with the whole right half of the search row empty. */
+    .ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.85rem 0 .55rem; flex-wrap:wrap}
+    .cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.3rem}
+    .cfind{flex:0 1 300px; display:flex; flex-direction:column; gap:.4rem; min-width:220px}
+    .cfind .sortsel{margin-left:0; width:100%}
     .search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
-      box-shadow:var(--shadow); padding:.55rem .8rem; flex:1 1 auto; max-width:420px}
+      box-shadow:var(--shadow); padding:.55rem .8rem; flex:0 0 auto}
     .search:focus-within{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
     .search .mag{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
     .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.85rem; color:var(--ink); width:100%}
@@ -148,7 +154,7 @@
     /* Each tier gets a gutter label — it names the axis, and it disambiguates
        the three "all" chips, which otherwise all read "Kaikki" with no clue
        which set they clear. Fixed gutter so the chip columns align. */
-    .crow{display:flex; gap:.75rem; align-items:baseline; padding:0 0 .55rem; flex-wrap:nowrap}
+    .crow{display:flex; gap:.75rem; align-items:baseline; padding:0; flex-wrap:nowrap}
     .crow.b{padding:.7rem 0 .85rem; margin-top:.25rem; border-top:1px solid var(--line)}
     .clabel{font-family:"IBM Plex Mono",monospace; font-size:.6rem; text-transform:uppercase;
       letter-spacing:.12em; color:var(--muted); flex:0 0 64px; padding-top:.42rem}
@@ -384,40 +390,44 @@
 
   <div class="controls">
     <div class="wrap">
-      <div class="searchrow">
-        <label class="search">
-          <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
-          <input type="text" placeholder="{{t.search}}" value="{{q}}" onChange="{{onQ}}">
-        </label>
-        <select class="sortsel" value="{{sort}}" onChange="{{onSort}}">
-          <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="5">
-            <option value="{{o.v}}">{{o.label}}</option>
-          </sc-for>
-        </select>
-      </div>
-      <div class="crow">
-        <span class="clabel">{{t.fmtLabel}}</span>
-        <div class="chips">
-          <sc-for list="{{fmts}}" as="c" hint-placeholder-count="4">
-            <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
-          </sc-for>
+      <div class="ctop">
+        <div class="cfilters">
+          <div class="crow">
+            <span class="clabel">{{t.fmtLabel}}</span>
+            <div class="chips">
+              <sc-for list="{{fmts}}" as="c" hint-placeholder-count="4">
+                <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
+              </sc-for>
+            </div>
+          </div>
+          <div class="crow">
+            <span class="clabel">{{t.shelfLabel}}</span>
+            <div class="chips">
+              <sc-for list="{{whos}}" as="c" hint-placeholder-count="3">
+                <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}"><sc-if value="{{c.hasWants}}" hint-placeholder-val="{{true}}"><span class="odot" style="{{c.dot}}"></span></sc-if>{{c.label}}
+                  <sc-if value="{{c.hasWants}}" hint-placeholder-val="{{true}}">
+                    <span class="wishpop">
+                      <span class="wp-h">{{c.wpH}}</span>
+                      <span class="wp-l">
+                        <sc-for list="{{c.wants}}" as="w" hint-placeholder-count="4"><span class="want">{{w}}</span></sc-for>
+                      </span>
+                    </span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="crow">
-        <span class="clabel">{{t.shelfLabel}}</span>
-        <div class="chips">
-          <sc-for list="{{whos}}" as="c" hint-placeholder-count="3">
-            <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}"><sc-if value="{{c.hasWants}}" hint-placeholder-val="{{true}}"><span class="odot" style="{{c.dot}}"></span></sc-if>{{c.label}}
-              <sc-if value="{{c.hasWants}}" hint-placeholder-val="{{true}}">
-                <span class="wishpop">
-                  <span class="wp-h">{{c.wpH}}</span>
-                  <span class="wp-l">
-                    <sc-for list="{{c.wants}}" as="w" hint-placeholder-count="4"><span class="want">{{w}}</span></sc-for>
-                  </span>
-                </span>
-              </sc-if>
-            </button>
-          </sc-for>
+        <div class="cfind">
+          <label class="search">
+            <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="{{t.search}}" value="{{q}}" onChange="{{onQ}}">
+          </label>
+          <select class="sortsel" value="{{sort}}" onChange="{{onSort}}">
+            <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="5">
+              <option value="{{o.v}}">{{o.label}}</option>
+            </sc-for>
+          </select>
         </div>
       </div>
       <div class="crow b">
