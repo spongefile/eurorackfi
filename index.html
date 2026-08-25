@@ -1069,8 +1069,11 @@ var wantLabel=function(w){ return typeof w==="string" ? w : (w.mfr+" "+w.name); 
    what the Toiveet page is for. Cap the chips shown here so a long
    wishlist doesn't eat the space between the filter bar and the grid, and
    so two sellers with very different list lengths don't render at wildly
-   different card heights. */
-var WISH_TEASER_CAP=6;
+   different card heights. Takes the first N of p.wants as-is — order is
+   whatever the seller dragged it into in the CMS (Decap's list widget
+   supports drag-to-reorder natively), so reordering there is how priority
+   is set: top of the list shows first here, nothing extra to build. */
+var WISH_TEASER_CAP=5;
 function renderWish(){
   var T2=t();
   el("wishgrid").innerHTML=SELLERS.map(function(p){

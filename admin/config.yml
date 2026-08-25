@@ -89,7 +89,7 @@ collections:
         name: "wants"
         widget: "list"
         required: false
-        hint: "What this seller is looking for in trade. Pick \"Real product\" only if you know the actual panel — knob/jack/LED counts and panel color, counted off a real photo — it draws an accurate faceplate on the site, same as a listing. Otherwise use \"Just a note\" for a plain placeholder like \"quad VCA\" — never guess panel details."
+        hint: "What this seller is looking for in trade. Drag entries by the handle to reorder — the home page only shows the first 5, so put what you want most at the top. The full list, in the same order, always shows on the Toiveet page. Pick \"Real product\" only if you know the actual panel — knob/jack/LED counts and panel color, counted off a real photo — it draws an accurate faceplate on the site, same as a listing. Otherwise use \"Just a note\" for a plain placeholder like \"quad VCA\" — never guess panel details."
         types:
           - label: "Real product"
             name: "product"
