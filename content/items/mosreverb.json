@@ -49,6 +49,17 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=89TGK_5uxUs"
       }
+    ],
+    "pull": {
+      "q": "A 1U row in Eurorack tends to be a useful place to offload some utilities such as mults or signal routing, but with Mosaic you could find them becoming a bit of a feature.",
+      "src": "Gearnews",
+      "url": "https://www.gearnews.com/up-your-1u-game-with-mosaic-eurorack-tiles/"
+    },
+    "quotes": [
+      {
+        "t": "Mosaic 1U tiles are colourfully designed with white or black front panels and 18 modules to choose from featuring far more than the usual utilities.",
+        "s": "Robin Vincent, Gearnews"
+      }
     ]
   }
 }

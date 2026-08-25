@@ -49,6 +49,17 @@
         "by": "Walkthrough · YouTube",
         "url": "https://www.youtube.com/watch?v=F1j_9ZoNsTE"
       }
+    ],
+    "pull": {
+      "q": "Mosaic is a new US-based Eurorack company that is shaking up the Intellijel 1U business with modules that are more than just utilities.",
+      "src": "Synth Anatomy",
+      "url": "https://synthanatomy.com/2021/05/mosaic-intros-colorful-1u-eurorack-modules-that-break-new-ground.html"
+    },
+    "quotes": [
+      {
+        "t": "They go so far that all modules can form a complete 1U modular synthesizer.",
+        "s": "Synth Anatomy"
+      }
     ]
   }
 }

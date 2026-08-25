@@ -48,6 +48,21 @@
         "title": "Implanting the Brain Seed — the designer's own writeup",
         "url": "http://antimatteraudio.blogspot.com/2012/01/implanting-brain-seed.html"
       }
+    ],
+    "pull": {
+      "q": "A step recorder with many extras that packs as much fun and functionality as we could wedge behind a 4hp panel while keeping the interface as intuitive as possible.",
+      "src": "Antimatter Audio — the designer's own writeup",
+      "url": "http://antimatteraudio.blogspot.com/2012/01/implanting-brain-seed.html"
+    },
+    "quotes": [
+      {
+        "t": "Brain Freeze = When Frz is high, the Brain Seed 'freezes' in place, holding its current value and producing no new triggers. Brain Freeze is great for breaking up a sequence and producing new rhythms.",
+        "s": "Antimatter Audio"
+      },
+      {
+        "t": "Record 1 to 1000 of steps in variable mode. Record the number of steps that you want until you're done and the Brain Seed will play them back.",
+        "s": "Antimatter Audio"
+      }
     ]
   }
 }
