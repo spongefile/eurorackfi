@@ -1,19 +1,4 @@
 {
-  "id": "enophone",
-  "mfr": "Eno",
-  "name": "Enophone (ENEP1)",
-  "price": 250,
-  "hp": 0,
-  "fmt": "desk",
-  "who": "t",
-  "cat": "Other",
-  "cats": [
-    "Other",
-    "Headphone"
-  ],
-  "mgSlug": "",
-  "site": "getenophone.com",
-  "tone": "black",
   "parts": {
     "k": 0,
     "j": 0,
@@ -21,13 +6,13 @@
     "led": 0,
     "sc": 0
   },
-  "blurb": {
-    "en": "Bluetooth headphones with four EEG sensors built into the headband and ear cups, reading brainwave activity in real time to track focus and relaxation. Active noise cancelling. Original ENEP1 model.",
-    "fi": "Bluetooth-kuulokkeet, joissa neljä EEG-sensoria pannassa ja kuppien sisällä lukevat aivosähkötoimintaa reaaliajassa keskittymisen ja rentoutumisen seuraamiseksi. Aktiivinen melunvaimennus. Alkuperäinen ENEP1-malli.",
-    "sv": "Bluetooth-hörlurar med fyra EEG-sensorer inbyggda i bygeln och kåporna, som läser hjärnvågor i realtid för att spåra fokus och avslappning. Aktiv brusreducering. Ursprungliga ENEP1-modellen."
-  },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/enophone.jpg",
-  "negotiating": false,
+  "mgSlug": "",
+  "site": "getenophone.com",
+  "hp": 0,
+  "price": 250,
+  "name": "Enophone (ENEP1)",
+  "fmt": "tools",
   "extra": {
     "pull": {
       "q": "They do help me to relax, and offer great build quality and audio.",
@@ -60,5 +45,20 @@
         "url": "https://www.youtube.com/watch?v=MfxvtyE-Zc8"
       }
     ]
-  }
+  },
+  "tone": "black",
+  "cat": "Other",
+  "mfr": "Eno",
+  "blurb": {
+    "en": "Bluetooth headphones with four EEG sensors built into the headband and ear cups, reading brainwave activity in real time to track focus and relaxation. Active noise cancelling. Original ENEP1 model.",
+    "fi": "Bluetooth-kuulokkeet, joissa neljä EEG-sensoria pannassa ja kuppien sisällä lukevat aivosähkötoimintaa reaaliajassa keskittymisen ja rentoutumisen seuraamiseksi. Aktiivinen melunvaimennus. Alkuperäinen ENEP1-malli.",
+    "sv": "Bluetooth-hörlurar med fyra EEG-sensorer inbyggda i bygeln och kåporna, som läser hjärnvågor i realtid för att spåra fokus och avslappning. Aktiv brusreducering. Ursprungliga ENEP1-modellen."
+  },
+  "id": "enophone",
+  "negotiating": false,
+  "cats": [
+    "Other",
+    "Headphone"
+  ],
+  "who": "t"
 }
