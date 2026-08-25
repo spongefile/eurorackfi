@@ -925,12 +925,13 @@ class Component extends DCLogic {
                s: "width:" + w + "px;height:" + h + "px;background:" + tone.bg + ";border-top:1px solid rgba(255,255,255,.10);",
                imgStyle: photo ? ("width:" + w + "px;height:" + h + "px;object-fit:cover;display:block;") : "" };
     }
-    // Standard 3U eurorack height. 1U tiles (Intellijel-style, ~44.45mm) get
+    // Standard 3U eurorack height. 1U tiles (Intellijel-style, 39.65mm panel —
+    // NOT 44.45mm, which is the 1U rack space including rail lips) get
     // their own top row at their own true height — mixing them into the
     // cumulative-HP rows below drew them full 3U-tall, which is not what a
     // 1U module actually looks like on a shelf.
     var rack = rackMods.map(function(m){ return drawMod(m, 128.5); });
-    var rackU = rackModsU.map(function(m){ return drawMod(m, 44.45); });
+    var rackU = rackModsU.map(function(m){ return drawMod(m, 39.65); });
     // Split target is the 3U rack's own HP total, not the grand total (which
     // includes the 1U row) — otherwise row 1 overshoots and starves row 2.
     var rackHp = rack.reduce(function(a, m){ return a + m.hp; }, 0);
