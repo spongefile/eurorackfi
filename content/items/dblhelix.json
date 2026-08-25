@@ -19,6 +19,26 @@
         "src": "Ask.Audio",
         "title": "Pittsburgh Modular Double Helix Is Not Your Average Oscillator Module",
         "url": "https://ask.audio/articles/pittsburgh-modular-double-helix-oscillator-not-your-average-oscillator"
+      },
+      {
+        "src": "Perfect Circuit",
+        "title": "Pittsburgh Lifeforms Double Helix VCO — product notes",
+        "url": "https://www.perfectcircuit.com/pittsburgh-modular-lifeforms-double-helix.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Pittsburgh Modular Double Helix Owners: How do you like it?",
+        "url": "https://modwiggler.com/forum/viewtopic.php?t=190137"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Lifeforms Double Helix Oscillator — the thread",
+        "url": "https://modwiggler.com/forum/viewtopic.php?t=183424"
+      },
+      {
+        "src": "Learning Modular",
+        "title": "Pittsburgh Double Helix Complex Oscillator — Chris Meyer's module notes",
+        "url": "https://learningmodular.com/project/pittsburgh-double-helix-complex-oscillator/"
       }
     ],
     "videos": [
@@ -31,6 +51,31 @@
         "title": "Pittsburgh Modular Double Helix Oscillator 2/4: Waveshapes + Voltage Controlled Routers",
         "by": "Learning Modular · YouTube",
         "url": "https://www.youtube.com/watch?v=61PsgptPDBs"
+      },
+      {
+        "title": "Pittsburgh Modular Double Helix Oscillator 4/4: Wavefolder + LPG",
+        "by": "Learning Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=S3X7OhMRFQQ"
+      },
+      {
+        "title": "Pittsburgh Lifeforms Double Helix Oscillator Demo",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=CIN-636ACuE"
+      }
+    ],
+    "pull": {
+      "q": "This complex matrix oscillator from Pittsburgh Modular does things that'll make other oscillator modules jealous.",
+      "src": "Ask.Audio",
+      "url": "https://ask.audio/articles/pittsburgh-modular-double-helix-oscillator-not-your-average-oscillator"
+    },
+    "quotes": [
+      {
+        "t": "This is a 2-oscillator module that is so powerful it's almost a synth voice on its own. In essence, Double Helix is a modular waveform generator.",
+        "s": "Ask.Audio"
+      },
+      {
+        "t": "The core of the Double Helix is based on the low pass gate of the original Buchla circuitry, but Pittsburgh Modular have re-engineered the secret additional ingredient, a vactrol, for a completely analog design that allows for very short decays or very long decays when you want them.",
+        "s": "Ask.Audio"
       }
     ]
   },
