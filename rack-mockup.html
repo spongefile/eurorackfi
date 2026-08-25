@@ -40,14 +40,26 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
 .rackmod::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .12s}
 .rackmod:hover::after{opacity:.22}
 
-/* blanking panel — brushed metal filler, what a real case has in empty slots */
-.blank{flex:1 1 auto;align-self:stretch;min-width:0;
-  background:
-    repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px),
-    linear-gradient(176deg,#cfd4da,#aeb5bd);
-  border-left:1px solid rgba(0,0,0,.18)}
-.blank::before,.blank::after{content:"";position:absolute;width:4px;height:4px;border-radius:50%;
-  background:rgba(0,0,0,.3)}
+/* Blanking panel. Lighter than the modules read as sitting in FRONT of them;
+   both of these are darker so the empty slot recedes. */
+
+/* D1 — branded: an eurorack.fi cover panel in the house blue */
+.blank{flex:1 1 auto;align-self:stretch;min-width:0;position:relative;
+  background:linear-gradient(176deg,#0d5aad,#093f7e);
+  border-left:1px solid rgba(0,0,0,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.3)}
+.blank::before,.blank::after{content:"";position:absolute;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.blank::before{top:6px} .blank::after{bottom:6px}
+/* the jack mark, tiled quietly down the panel */
+.blank .mark{position:absolute;inset:0;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23fff' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23fff'/%3E%3C/svg%3E");
+  background-size:22px 22px;background-repeat:repeat-y;background-position:center 14px}
+
+/* D2 — plain dark anodised blank */
+.blank.dark{background:linear-gradient(176deg,#2f343a,#1d2126)}
+.blank.dark .mark{opacity:.10}
 
 /* ---------- A: current ---------- */
 .rackA{background:var(--bg2);border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto}
@@ -70,6 +82,20 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
 .cheek::before{top:9px} .cheek::after{bottom:9px}
 .caseC .inner{width:max-content;min-width:100%;flex:1 1 auto}
 .caseC .rail{background:#8f959d;border-color:#5c6169}
+
+/* ---------- E: wood cheeks ---------- */
+/* Reuses the palette's existing `wood` faceplate tone (#d8b78b -> #bb9460),
+   so this is not a new colour on the site — Bastl panels already use it. */
+.caseE{background:linear-gradient(176deg,#c9a274,#a87f4f);padding:10px 0;
+  border:1px solid #8a6538;box-shadow:var(--shadow);
+  display:flex;align-items:stretch;overflow-x:auto}
+.caseE .cheek{background:linear-gradient(90deg,#dcb98d,#b98f5c);border-right:1px solid rgba(0,0,0,.32)}
+.caseE .cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.32);
+  background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+.caseE .cheek::before,.caseE .cheek::after{background:#5c421f}
+.caseE .inner{width:max-content;min-width:100%;flex:1 1 auto}
+.caseE .rail{background:#8f959d;border-color:#5c6169}
+.caseE .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
 .caseC .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
 </style>
 </head>
@@ -162,6 +188,76 @@ a half-full case looks like. Nothing stops mid-air any more.</p>
 screws, and a dark body behind the rails so the rails read as metal inside an enclosure rather
 than as grey bars on the page background. The modules are unchanged — the enclosure does the
 work. Costs a darker block in the hero, which is a real trade against the light palette.</p>
+
+<h2>Blanking panel — the filler was too light</h2>
+<p class="cap" style="margin-bottom:.8rem">A filler lighter than the modules reads as sitting
+<em>in front</em> of them. Both of these are darker so the empty slot recedes. Left: branded, an
+eurorack.fi cover panel in the house blue with the jack mark tiled quietly down it. Right: a plain
+dark anodised blank.</p>
+<div class="figwrap" style="display:flex;gap:1.25rem;flex-wrap:wrap;max-width:none">
+  <div style="flex:1 1 300px">
+    <div class="caseC">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <span class="blank"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <p class="cap">D1 — branded blue</p>
+  </div>
+  <div style="flex:1 1 300px">
+    <div class="caseC">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <span class="blank dark"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <p class="cap">D2 — dark anodised</p>
+  </div>
+</div>
+
+<h2>E — Wood cheeks</h2>
+<p class="cap" style="margin-bottom:.8rem">Warmth against an otherwise very pale, very blue
+site. Uses the palette's existing <code>wood</code> faceplate tone rather than introducing a new
+colour — Bastl panels already carry it, so the hero and the cards stay related.</p>
+<div class="figwrap">
+  <div class="caseE">
+    <span class="cheek"></span>
+    <div class="inner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:95px;height:38px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:86px;height:38px"></button>
+        <span class="blank"><span class="mark"></span></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+        <span class="blank"><span class="mark"></span></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <span class="cheek r"></span>
+  </div>
+</div>
+<p class="cap">Wood cheeks + branded blue blanks. The blue blank now reads as belonging to the
+case rather than floating in front of it, and the wood gives the hero something warm to sit
+against the blue-grey page.</p>
 
 </body>
 </html>

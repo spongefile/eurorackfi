@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:40px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:72ch;margin:0 0 1rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.6rem 0 .8rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.7rem;line-height:1.65;max-width:78ch}
+.frame{max-width:960px;border:1px dashed var(--line2)}
+.wrap{width:calc(100% - 3rem);margin-inline:auto}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+  padding:0 1.1rem;font-family:"IBM Plex Mono",monospace;font-size:.76rem;font-weight:600;
+  letter-spacing:.04em;border:1px solid var(--accent-hi);background:var(--accent);
+  color:var(--on);text-decoration:none;box-shadow:0 2px 0 var(--accent-hi)}
+
+/* ============ CURRENT ============ */
+.old.site{background:var(--bg2);padding:2.75rem 0 3rem}
+.old .fintro{font-family:"Newsreader",Georgia,serif;font-size:1.1rem;color:var(--ink2);
+  max-width:52ch;margin:0 0 2rem}
+.old .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2rem}
+.old .fgrid h4{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .5rem}
+.old .fgrid p{font-family:"Newsreader",Georgia,serif;color:var(--ink2);font-size:1rem;margin:0}
+
+/* ============ PROPOSED ============ */
+/* Three tiers instead of one. The intro is the site's summary sentence, so it
+   takes full ink and the largest size; the labels stay mono/muted; the column
+   bodies step DOWN to muted and smaller. Before, intro and body were both
+   1rem-ish --ink2 Newsreader, so nothing led. */
+.new.site{background:var(--bg2);padding:3.5rem 0 3.75rem}
+.new .fintro{font-family:"Newsreader",Georgia,serif;font-size:1.35rem;line-height:1.5;
+  color:var(--ink);max-width:44ch;margin:0 0 2.75rem}
+.new .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:2.75rem 3.25rem;border-top:1px solid var(--line2);padding-top:2.25rem}
+.new .fgrid h4{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink2);font-weight:600;margin:0 0 .8rem}
+.new .fgrid p{font-family:"Newsreader",Georgia,serif;color:var(--muted);font-size:.95rem;
+  line-height:1.7;margin:0}
+.new .fgrid .btn{margin-top:1rem}
+</style>
+</head>
+<body>
+
+<h1>Footer</h1>
+<p class="sub">The intro and the column bodies are currently both Newsreader at ~1rem in
+<code>--ink2</code>, so they carry identical weight and nothing leads. Columns sit at a 2rem gap
+with no rule between the intro and the grid, so the whole block reads as one crowded slab.</p>
+
+<h2>Current</h2>
+<div class="frame">
+  <footer class="old site"><div class="wrap">
+    <p class="fintro">A few of us in one Helsinki neighbourhood. Eurorack, standalone gear,
+      sometimes other stuff. You know who you are buying from.</p>
+    <div class="fgrid">
+      <div><h4>Collecting</h4><p>Prices in EUR. Collection preferred, posting possible.</p></div>
+      <div><h4>Trading</h4><p>Everything trades. Two separate lists.</p></div>
+      <div><h4>Contact</h4><p>Send us a message through the form.</p>
+        <a class="btn" href="#" style="margin-top:.6rem">Buy or trade</a></div>
+    </div>
+  </div></footer>
+</div>
+<p class="cap">Intro 1.1rem <code>--ink2</code>, bodies 1rem <code>--ink2</code> — near-identical.
+The eye has no entry point and the three columns crowd the intro directly beneath it.</p>
+
+<h2>Proposed</h2>
+<div class="frame">
+  <footer class="new site"><div class="wrap">
+    <p class="fintro">A few of us in one Helsinki neighbourhood. Eurorack, standalone gear,
+      sometimes other stuff. You know who you are buying from.</p>
+    <div class="fgrid">
+      <div><h4>Collecting</h4><p>Prices in EUR. Collection preferred, posting possible.</p></div>
+      <div><h4>Trading</h4><p>Everything trades. Two separate lists.</p></div>
+      <div><h4>Contact</h4><p>Send us a message through the form.</p>
+        <a class="btn" href="#">Buy or trade</a></div>
+    </div>
+  </div></footer>
+</div>
+<p class="cap"><strong>Three tiers instead of one.</strong> The intro takes full
+<code>--ink</code> at 1.35rem and narrows to 44ch so it reads as the site's one summary
+sentence. Labels go <code>--ink2</code> at weight 600 — they were muted and weight 500,
+competing with their own body text. Bodies step down to <code>--muted</code> at .95rem, so they
+read as supporting detail rather than as more headline.
+<br><br><strong>Room to breathe.</strong> A rule between the intro and the grid, 2.25rem of
+padding under it, column gap 2rem → 2.75/3.25rem, and outer padding 2.75/3 → 3.5/3.75rem.
+The CTA gets 1rem of clearance instead of .6rem so it stops touching its own paragraph.</p>
+
+</body>
+</html>

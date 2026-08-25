@@ -123,13 +123,34 @@
     .rackcredit{font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--muted); margin:.35rem 0 0; text-align:right}
     .rackcredit a{color:var(--muted); text-decoration:underline; text-underline-offset:2px}
     .rackcredit a:hover{color:var(--accent)}
-    .rackbox{background:var(--bg2); border:1px solid var(--line); padding:10px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:9px}
+    /* The figure is a CASE, not photos between two bars. Dark body and end
+       cheeks so the rails read as metal inside an enclosure. */
+    .rackbox{background:linear-gradient(176deg,#3a4048,#22262c); border:1px solid #191d22;
+      box-shadow:var(--shadow); padding:10px 0; display:flex; align-items:stretch; overflow-x:auto}
+    /* Rails and rows must share a width, whichever is wider — sized to the
+       container they disagree: rows overflow while rails stop at the box edge,
+       so photos continue past where the rails end. */
+    .rackinner{width:max-content; min-width:100%; flex:1 1 auto; display:flex; flex-direction:column; gap:9px}
+    .cheek{flex:0 0 14px; align-self:stretch; position:relative;
+      background:linear-gradient(90deg,#4a5058,#2c3138); border-right:1px solid rgba(0,0,0,.5)}
+    .cheek.r{border-right:none; border-left:1px solid rgba(0,0,0,.5);
+      background:linear-gradient(90deg,#2c3138,#4a5058)}
+    .cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
+      width:5px; height:5px; border-radius:50%; background:#12151a; box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .cheek::before{top:9px} .cheek::after{bottom:9px}
+    .rackbox .rail{background:#8f959d; border-color:#5c6169}
+    .rackbox .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
     .rackrow{display:flex; align-items:stretch}
     .rackrow .mod{position:relative; cursor:pointer; border-right:1px solid rgba(0,0,0,.35)}
     .rackrow .mod:last-child{border-right:none}
     .rackrow .mod .hit{position:absolute; inset:0; background:var(--accent); opacity:0}
     .rackrow .mod:hover .hit{opacity:.22}
-    .rackrow .blank{background:repeating-linear-gradient(135deg,#9aa09b 0 3px,#8e948f 3px 6px); opacity:.5}
+    /* Blanking panel — brushed metal filler in the empty slots. A real case
+       has these; without them a half-full row stops in mid air. */
+    .rackrow .blank{flex:1 1 auto; align-self:stretch; min-width:0;
+      background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px),
+        linear-gradient(176deg,#cfd4da,#aeb5bd);
+      border-left:1px solid rgba(0,0,0,.18)}
 
     .controls{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--line)}
 
@@ -374,6 +395,8 @@
       </div>
       <figure class="rackfig">
         <div class="rackbox">
+          <span class="cheek"></span>
+          <div class="rackinner">
           <sc-if value="{{hasRackU}}" hint-placeholder-val="{{false}}">
             <div class="rail"></div>
             <div class="rackrow">
@@ -385,6 +408,7 @@
                   <span class="hit"></span>
                 </div>
               </sc-for>
+              <span class="blank"></span>
             </div>
           </sc-if>
           <div class="rail"></div>
@@ -397,6 +421,7 @@
                 <span class="hit"></span>
               </div>
             </sc-for>
+            <span class="blank"></span>
           </div>
           <div class="rail"></div>
           <div class="rackrow">
@@ -408,8 +433,11 @@
                 <span class="hit"></span>
               </div>
             </sc-for>
+            <span class="blank"></span>
           </div>
           <div class="rail"></div>
+          </div>
+          <span class="cheek r"></span>
         </div>
         <figcaption>
           <span>{{t.scale}} · {{stat.hp}} HP</span>
