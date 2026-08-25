@@ -43,7 +43,22 @@ collections:
         value_field: "key"
         display_fields: ["name"]
         hint: "Pick from the Sellers list. To add a brand-new seller, create them under Sellers first, then come back here."
-      - { label: "Primary category", name: "cat", widget: "string" }
+      - label: "Primary category"
+        name: "cat"
+        widget: "select"
+        options:
+          - { label: "Oscillator", value: "Oscillator" }
+          - { label: "Filter", value: "Filter" }
+          - { label: "Sequencing", value: "Sequencer" }
+          - { label: "Modulation", value: "Modulation" }
+          - { label: "Waveshaping", value: "Waveshaper" }
+          - { label: "Sampling", value: "Sampler" }
+          - { label: "Synths", value: "Synth" }
+          - { label: "Effects", value: "FX" }
+          - { label: "Out & mixing", value: "Output" }
+          - { label: "Control", value: "Controller" }
+          - { label: "Other", value: "Other" }
+        hint: "Must match one of the site's TYPE filter chips exactly — this drives which chip the listing shows under."
       - { label: "Category tags", name: "cats", widget: "list" }
       - label: "Description"
         name: "blurb"
