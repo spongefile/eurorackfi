@@ -193,6 +193,11 @@
     .ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E")}
     /* desktop box seen from a low angle: rounded trapezoid, wide edge nearest */
     .ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E")}
+    /* Bow — the shop's accessories adorn a device rather than being one, so
+       this is deliberately the one mark in the set that is not hardware.
+       Loops are angled up and out and the tails are load-bearing: drawn with
+       horizontal loops and no tails it reads as an infinity sign at 15px. */
+    .ic-acc{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 50 C34 18 8 24 12 44 C14 60 36 62 50 50 Z'/%3E%3Cpath d='M50 50 C66 18 92 24 88 44 C86 60 64 62 50 50 Z'/%3E%3Cpath d='M42 58 L30 88'/%3E%3Cpath d='M58 58 L70 88'/%3E%3C/g%3E%3Ccircle cx='50' cy='52' r='9' fill='%23000'/%3E%3C/svg%3E")}
     /* dice — "other" is the miscellany bin, so: whatever comes up */
     .ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E")}
 
@@ -606,7 +611,10 @@ var RAW = [
  "antimatter-audio-brain-seed-","antimatteraudio.com","black",{k:2,j:5,sl:0,led:2,sc:0}, null],
 ["milkyway1u","Endorphin.es","Milky Way 1U",130,22,"eu","t","FX",["FX","Reverb","Delay"],
  "Same 16-algorithm stereo FX engine as the 6HP Milky Way — hall, shimmer, plate and spring reverbs, tape echo, ping-pong delay, chorus, flanger, ring mod, overdrive, compressor, freeze — laid out across a 22HP 1U tile instead.",
- "endorphin-es-milky-way-1u-black","endorphin.es","black",{k:3,j:7,sl:0,led:9,sc:0}, true]
+ "endorphin-es-milky-way-1u-black","endorphin.es","black",{k:3,j:7,sl:0,led:9,sc:0}, true],
+["progue","JSI Synth","Progue",450,0,"desk","f","Synth",["Synth","Analogue","DIY"],
+ "Finnish DIY mono synth built around the Moog Rogue and Prodigy voices, with polychain over MIDI.",
+ "","jsisynth.com","white",{k:9,j:6,sl:3,led:2,sc:0}]
 ];
 
 /* Items no longer for sale are DELETED from RAW — there is no sold state.
@@ -727,7 +735,7 @@ var T = {
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
     fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
-    fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", tools:"Muut"},
+    fmt:{all:"Kaikki", eu:"Eurorack", desk:"Erillislaitteet", acc:"Tarvikkeet", tools:"Muut"},
     who:{all:"Kaikki"},
     cat:{all:"Kaikki",Oscillator:"Oskillaattori",Filter:"Suodin",Sequencer:"Sekvensseri",Modulation:"Modulaatio",
          Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus"},
@@ -752,7 +760,7 @@ var T = {
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
     fTradeBody:"Allt kan bytas. Två separata önskelistor.",
-    fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", tools:"Övrigt"},
+    fmt:{all:"Allt", eu:"Eurorack", desk:"Fristående", acc:"Tillbehör", tools:"Övrigt"},
     who:{all:"Alla"},
     cat:{all:"Allt",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencer",Modulation:"Modulering",
          Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning"},
@@ -777,7 +785,7 @@ var T = {
     fIntro:"A few of us in one Helsinki neighbourhood. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. Collection preferred, posting possible.",
     fTradeBody:"Everything trades. Two separate lists.",
-    fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", tools:"Other stuff"},
+    fmt:{all:"Everything", eu:"Eurorack", desk:"Standalone", acc:"Accessories", tools:"Other stuff"},
     who:{all:"Everyone"},
     cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
          Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control"},
@@ -900,7 +908,7 @@ class Component extends DCLogic {
                pick: function(){ self.setState({ cat: k }); } };
     }).filter(function(c){ return c.n > 0; });
 
-    var fmts = ["all","eu","desk","tools"].map(function(k){
+    var fmts = ["all","eu","desk","acc","tools"].map(function(k){
       var n = k === "all" ? all.length : all.filter(function(m){ return m.fmt === k; }).length;
       return { label: t.fmt[k], n: n === 0 ? "–" : n,
                on: s.fmt === k ? "true" : "false",

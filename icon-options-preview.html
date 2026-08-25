@@ -265,14 +265,17 @@
       border:1px solid var(--line2); background:transparent; color:var(--ink2);
       transition:background .14s ease, color .14s ease, border-color .14s ease}
     .card:hover .cardcta{border-color:var(--accent); color:var(--accent); background:var(--accent-soft)}
-    /* In-negotiation reads on the photo itself, old-school corner banner, so
+    /* Clip box sits 2px out (1px past the card's own 1px border) so the band
+       visibly overhangs the edge rather than landing on it — on the border it
+       reads as printed on the card, past it as wrapped around it.
+       In-negotiation reads on the photo itself, old-school corner banner, so
        the state is legible while scanning the grid. It is the ONLY marker on
        the card now — the footer chip that used to duplicate it is gone.
        Anchored on .card rather than .shot, with the clip box inset -1px so it
        runs over the card's own border instead of stopping inside it: that is
        what makes it read as wrapped around the container rather than printed
        on the picture. */
-    .negribbon{position:absolute; top:-1px; right:-1px; width:168px; height:168px;
+    .negribbon{position:absolute; top:-2px; right:-2px; width:168px; height:168px;
       overflow:hidden; pointer-events:none; z-index:3}
     .negribbon span{position:absolute; right:-56px; top:30px; width:230px; transform:rotate(30deg);
       background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
@@ -323,43 +326,13 @@ body{margin:0;padding:34px 40px;background:#E7EBF0}
 .note{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:#6A7789;margin:0 0 26px;max-width:60ch;line-height:1.6}
 h2{font-family:"Archivo",sans-serif;font-size:1.1rem;margin:0 0 .5rem}
 </style></head><body><div class="rt blue">
-<h2>Accessories icon — three directions</h2>
+<h2>Gem — centre facet line</h2>
 <p class="note">Each shown at 64px to judge the drawing, then at real 15px chip size
 between the existing chips. The 15px row is the one that matters — family fit and
 legibility at actual size. Last chip in each block is the selected state.</p>
 
 <section class="opt">
-  <div class="lab">A — Sparkle</div>
-  <div class="showcase">
-    <span class="big" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C57 33 67 43 95 50 C67 57 57 67 50 95 C43 67 33 57 5 50 C33 43 43 33 50 5 Z' fill='%23000'/%3E%3C/svg%3E&quot;)"></span>
-    <div class="chips">
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E&quot;)">Eurorack<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E&quot;)">Erillislaitteet<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C57 33 67 43 95 50 C67 57 57 67 50 95 C43 67 33 57 5 50 C33 43 43 33 50 5 Z' fill='%23000'/%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E&quot;)">Muut<span class="c">7</span></button>
-    </div>
-    <div class="chips" style="margin-top:.5rem">
-      <button class="chip ico" aria-pressed="true" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C57 33 67 43 95 50 C67 57 57 67 50 95 C43 67 33 57 5 50 C33 43 43 33 50 5 Z' fill='%23000'/%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
-    </div>
-  </div>
-</section>
-<section class="opt">
-  <div class="lab">B — Bow</div>
-  <div class="showcase">
-    <span class="big" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 50 C34 18 8 24 12 44 C14 60 36 62 50 50 Z'/%3E%3Cpath d='M50 50 C66 18 92 24 88 44 C86 60 64 62 50 50 Z'/%3E%3Cpath d='M42 58 L30 88'/%3E%3Cpath d='M58 58 L70 88'/%3E%3C/g%3E%3Ccircle cx='50' cy='52' r='9' fill='%23000'/%3E%3C/svg%3E&quot;)"></span>
-    <div class="chips">
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E&quot;)">Eurorack<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E&quot;)">Erillislaitteet<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 50 C34 18 8 24 12 44 C14 60 36 62 50 50 Z'/%3E%3Cpath d='M50 50 C66 18 92 24 88 44 C86 60 64 62 50 50 Z'/%3E%3Cpath d='M42 58 L30 88'/%3E%3Cpath d='M58 58 L70 88'/%3E%3C/g%3E%3Ccircle cx='50' cy='52' r='9' fill='%23000'/%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
-      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E&quot;)">Muut<span class="c">7</span></button>
-    </div>
-    <div class="chips" style="margin-top:.5rem">
-      <button class="chip ico" aria-pressed="true" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 50 C34 18 8 24 12 44 C14 60 36 62 50 50 Z'/%3E%3Cpath d='M50 50 C66 18 92 24 88 44 C86 60 64 62 50 50 Z'/%3E%3Cpath d='M42 58 L30 88'/%3E%3Cpath d='M58 58 L70 88'/%3E%3C/g%3E%3Ccircle cx='50' cy='52' r='9' fill='%23000'/%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
-    </div>
-  </div>
-</section>
-<section class="opt">
-  <div class="lab">C — Gem</div>
+  <div class="lab">Current — no centre line</div>
   <div class="showcase">
     <span class="big" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z'/%3E%3Cpath d='M12 46 H88'/%3E%3C/g%3E%3C/svg%3E&quot;)"></span>
     <div class="chips">
@@ -370,6 +343,36 @@ legibility at actual size. Last chip in each block is the selected state.</p>
     </div>
     <div class="chips" style="margin-top:.5rem">
       <button class="chip ico" aria-pressed="true" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z'/%3E%3Cpath d='M12 46 H88'/%3E%3C/g%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
+    </div>
+  </div>
+</section>
+<section class="opt">
+  <div class="lab">With centre line (same weight)</div>
+  <div class="showcase">
+    <span class="big" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z'/%3E%3Cpath d='M12 46 H88'/%3E%3Cpath d='M50 46 V88'/%3E%3C/g%3E%3C/svg%3E&quot;)"></span>
+    <div class="chips">
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E&quot;)">Eurorack<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E&quot;)">Erillislaitteet<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z'/%3E%3Cpath d='M12 46 H88'/%3E%3Cpath d='M50 46 V88'/%3E%3C/g%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E&quot;)">Muut<span class="c">7</span></button>
+    </div>
+    <div class="chips" style="margin-top:.5rem">
+      <button class="chip ico" aria-pressed="true" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-width='11' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z'/%3E%3Cpath d='M12 46 H88'/%3E%3Cpath d='M50 46 V88'/%3E%3C/g%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
+    </div>
+  </div>
+</section>
+<section class="opt">
+  <div class="lab">With centre line (lighter, 8 vs 11)</div>
+  <div class="showcase">
+    <span class="big" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z' stroke-width='11'/%3E%3Cpath d='M12 46 H88' stroke-width='11'/%3E%3Cpath d='M50 46 V88' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E&quot;)"></span>
+    <div class="chips">
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E&quot;)">Eurorack<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E&quot;)">Erillislaitteet<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z' stroke-width='11'/%3E%3Cpath d='M12 46 H88' stroke-width='11'/%3E%3Cpath d='M50 46 V88' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
+      <button class="chip ico" aria-pressed="false" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E&quot;)">Muut<span class="c">7</span></button>
+    </div>
+    <div class="chips" style="margin-top:.5rem">
+      <button class="chip ico" aria-pressed="true" style="--i:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23000' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M30 24 L70 24 L88 46 L50 88 L12 46 Z' stroke-width='11'/%3E%3Cpath d='M12 46 H88' stroke-width='11'/%3E%3Cpath d='M50 46 V88' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E&quot;)">Tarvikkeet<span class="c">7</span></button>
     </div>
   </div>
 </section>
