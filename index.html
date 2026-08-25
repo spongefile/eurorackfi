@@ -1161,7 +1161,12 @@ var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo
 /* which of the 4 shot slots this module actually has — only 0 (drawing) and
    1 (photo, if any) exist today; back/rack stay reserved for when that data
    shows up, same slots the dots already have room for */
-function shotHas(m,i){ return i===0 || (i===1 && !!m.img); }
+/* slot 0 is a procedurally-drawn eurorack faceplate — meaningless for a
+   shop accessory (no HP, no parts, nothing to draw), so it doesn't exist
+   as a slot for fmt:"acc" at all. The >1-shot gate that hides the photo
+   switcher already does the rest: an accessory ends up with a bare photo
+   and no chrome, same as any single-photo item. */
+function shotHas(m,i){ return (i===0 && m.fmt!=="acc") || (i===1 && !!m.img); }
 function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i); }); }
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -1236,7 +1241,11 @@ function detailHTML(m){
         '<button class="benchnav next" data-shotdir="next" aria-label="'+esc(T2.nextPhoto)+'">'+CHEVRON_R+'</button>'
       : '')+
     '</div>'+
-    (m.img&&S.shot===1?'<p class="pcredit">'+
+    /* every other credit variant attributes someone else's image (ModularGrid,
+       the manufacturer, a component shot) — a shop product photo is the
+       seller's own, so crediting it at all is odd and crediting it to the
+       manufacturer, which the fallback would do, is flatly wrong */
+    (m.img&&S.shot===1&&m.fmt!=="acc"?'<p class="pcredit">'+
       (m.imgIsModularGrid&&m.mgSlug
         ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
         : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:T2.pcredit)))
