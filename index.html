@@ -173,7 +173,6 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-.controls .wrap{display:flex; gap:.7rem; align-items:center; padding:.8rem 0; flex-wrap:wrap}
 .collbar{width:100%; min-height:44px; align-items:center; gap:.5rem; background:none; border:none;
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0}
 .collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
@@ -198,9 +197,25 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
     transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
   @media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
 }
-.search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.4rem .7rem; flex:1 1 210px; max-width:300px}
-.search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); width:100%}
+/* Three tiers, deliberately unequal — design's redesign, replacing what
+   used to be one flat wall of identical chips where search, format, owner
+   and subcategory all read as the same kind of control. Search answers
+   "find one thing"; the icon chips answer "which shelf / what kind of
+   box"; the plain subcategory chips only refine what those already chose. */
+.searchrow{display:flex; gap:.75rem; align-items:center; padding:.85rem 0 .75rem}
+.search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
+  box-shadow:var(--shadow); padding:.55rem .8rem; flex:1 1 auto; max-width:420px}
+.search:focus-within{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+.search .mag{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
+.search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.85rem; color:var(--ink); width:100%}
 .search input::placeholder{color:var(--muted)}
+/* Each tier gets a gutter label naming the axis, and disambiguating the
+   three "all" chips, which would otherwise all just read "Everything"
+   with no clue which set they clear. Fixed gutter so columns align. */
+.crow{display:flex; gap:.75rem; align-items:baseline; padding:0 0 .55rem; flex-wrap:nowrap}
+.crow.b{padding:.7rem 0 .85rem; margin-top:.25rem; border-top:1px solid var(--line)}
+.clabel{font-family:"IBM Plex Mono",monospace; font-size:.6rem; text-transform:uppercase;
+  letter-spacing:.12em; color:var(--muted); flex:0 0 64px; padding-top:.42rem}
 .chips{display:flex; gap:.35rem; flex-wrap:wrap; min-width:0}
 .chip{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem .6rem; border:1px solid var(--line2);
   color:var(--ink2); background:var(--panel); white-space:nowrap}
@@ -208,21 +223,52 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on)}
 /* pressed + hover must not fall through to the generic hover — that made the text vanish */
 .chip[aria-pressed="true"]:hover{background:var(--accent-hi); border-color:var(--accent-hi); color:var(--on)}
-.chip .ct{opacity:.65; margin-left:.35rem}
+.chip .c{opacity:.65; margin-left:.35rem}
 .chip.faint{border-style:dashed; color:var(--muted)}
 .chip.faint:hover{border-color:var(--line2); color:var(--muted)}
 /* an empty category can still be selected — pressed must beat faint, which sits at
    the same specificity and would otherwise win on source order alone */
 .chip.faint[aria-pressed="true"],
 .chip.faint[aria-pressed="true"]:hover{border-style:solid; color:var(--on)}
-.sep{width:1px; align-self:stretch; background:var(--line2); margin:0 .2rem}
-select.sort{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.34rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2); margin-left:auto}
-/* separates the whole controls row (search/format/owner/sort) from the
-   category row below it — a different divider from .sep, which is within
-   that top row. Values are the user's own hand-tuned adjustment on top of
-   design's first pass, not design's original numbers. */
-.catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%;
-  border-top:1px solid var(--line); padding-top:.85rem; padding-bottom:.85rem; margin-top:.9rem}
+/* Icons mark FORMAT chips only. Drawn at the wordmark jack's weight (heavy
+   stroke on a 100 viewBox) rather than the usual 2px-on-24 icon-set
+   convention, which renders ~1.1px strokes at 15px and breaks up. Masked,
+   not inlined, so the glyph inherits chip colour through every state
+   including the pressed fill, where an inline stroke colour would have
+   gone invisible — same class of bug as the old .rt button reset. */
+.chip.ico{display:inline-flex; align-items:center; gap:.45rem; padding:.38rem .68rem}
+/* --muted at rest, matching the search magnifier so the bar's iconography
+   is one voice, and staying a step back from the label — the icon is a
+   scanning marker, the word carries the meaning. Deliberately not --accent:
+   blue means selected/interactive here, and spending it decoratively on
+   every chip would blunt that. Pressed flips to --on, since dark-on-accent
+   would otherwise disappear. */
+.chip.ico::before{content:""; width:15px; height:15px; flex:0 0 auto; background:var(--muted);
+  -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
+.chip.ico[aria-pressed="true"]::before{background:var(--on)}
+/* Owner chips take no icon — the seller's dot IS the marker, leading the
+   name exactly as it does on cards, wish band and seller lines. */
+.chip.owner{display:inline-flex; align-items:center; gap:.45rem; position:relative}
+.chip .odot{width:8px; height:8px; border-radius:50%; flex:0 0 auto}
+.ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
+/* the wordmark's jack, proportions preserved but drawn inset in its box —
+   at full bleed it outweighed the logo's own jack, which sits at .58em
+   against its type rather than filling its slot */
+.ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E")}
+/* desktop box seen from a low angle: rounded trapezoid, wide edge nearest */
+.ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E")}
+/* dice — "other" is the miscellany bin, so: whatever comes up */
+.ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E")}
+/* Subcategories: no border, no fill at rest. A tag list, not a second
+   bank of buttons. */
+.subchip{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.02em;
+  padding:.28rem .52rem; border:1px solid transparent; background:none; color:var(--muted)}
+.subchip:hover{color:var(--accent)}
+.subchip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-hi)}
+.subchip.faint{color:var(--line2)}
+.subchip .c{opacity:.6; margin-left:.3rem; font-size:.64rem}
+.sortsel{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2)}
+.catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%}
 
 /* ---------- wish band ---------- */
 .wishband{padding:1.75rem 0 .5rem}
@@ -292,6 +338,10 @@ main{padding-bottom:3rem}
   box-shadow:var(--shadow); padding:.65rem .7rem .7rem; display:none; z-index:40; text-align:left}
 .wishpop.open{display:block}
 .ownerpill.haspop:hover .wishpop, .ownerpill.haspop:focus-visible .wishpop{display:block}
+.chip.owner.haspop:hover .wishpop, .chip.owner.haspop:focus-visible .wishpop{display:block}
+/* filter chips sit near the very top of the page, under the sticky bar —
+   opening upward (the .wishpop default) would push the popover off-screen */
+.crow .wishpop{bottom:auto; top:calc(100% + 8px); right:auto; left:0}
 .wishpop .wp-h{display:block; font-family:"IBM Plex Mono",monospace; font-size:.6rem; letter-spacing:.1em;
   text-transform:uppercase; color:var(--muted); margin-bottom:.5rem}
 .wishpop .wp-l{display:flex; flex-wrap:wrap; gap:.3rem}
@@ -456,9 +506,10 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
   .imgcol{position:static}
 }
 @media(max-width:740px){
-  /* categories become a scroller; owner and format chips collapse first */
+  /* subcategories become a horizontal scroller rather than wrapping to
+     several lines — format/owner rows above just wrap normally, each on
+     their own .crow now instead of sharing one line with everything else */
   .catscroll{overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:thin; flex:1 1 100%; padding-bottom:.2rem}
-  select.sort{margin-left:0}
 }
 @media(max-width:720px){
   /* used to be display:none with nothing to replace it — a decorative
@@ -546,14 +597,27 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
       <span class="collcount" id="collcount"></span>
     </button>
     <div class="wrap">
-    <label class="search"><span class="mono" style="color:var(--muted)">/</span>
-      <input id="q" type="search" aria-label="Search"></label>
-    <div class="chips" id="fmtchips"></div>
-    <span class="sep" aria-hidden="true"></span>
-    <div class="chips" id="whochips"></div>
-    <select class="sort" id="sort" aria-label="Sort"></select>
-    <div class="catscroll chips" id="catchips"></div>
-  </div></section>
+      <div class="searchrow">
+        <label class="search">
+          <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
+          <input id="q" type="search" aria-label="Search">
+        </label>
+        <select class="sortsel" id="sort" aria-label="Sort"></select>
+      </div>
+      <div class="crow">
+        <span class="clabel" id="fmtLabelEl"></span>
+        <div class="chips" id="fmtchips"></div>
+      </div>
+      <div class="crow">
+        <span class="clabel" id="shelfLabelEl"></span>
+        <div class="chips" id="whochips"></div>
+      </div>
+      <div class="crow b">
+        <span class="clabel" id="typeLabelEl"></span>
+        <div class="catscroll chips" id="catchips"></div>
+      </div>
+    </div>
+  </section>
 
   <section class="wishband" id="wish"><div class="wrap">
     <h2 id="wishH"></h2>
@@ -597,7 +661,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta tai vaihda", hunting:"hakee",
+    buyOrTrade:"Osta tai vaihda", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
@@ -622,7 +686,7 @@ var T = {
     search:"sök tillverkare eller modul",
     wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp eller byt", hunting:"söker",
+    buyOrTrade:"Köp eller byt", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
@@ -647,7 +711,7 @@ var T = {
     search:"search maker or module",
     wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy or trade", hunting:"is hunting for",
+    buyOrTrade:"Buy or trade", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
@@ -904,6 +968,9 @@ function renderChrome(){
   el("hoverCap").textContent=T2.hover;
   el("q").placeholder=T2.search;
   el("collbarlabel").textContent=T2.filtersLabel;
+  el("fmtLabelEl").textContent=T2.fmtLabel;
+  el("shelfLabelEl").textContent=T2.shelfLabel;
+  el("typeLabelEl").textContent=T2.typeLabel;
   el("wishH").textContent=T2.wishH;
   el("wishK").textContent=T2.wishK;
   el("fIntro").textContent=T2.fIntro;
@@ -964,19 +1031,33 @@ function renderFilters(){
     if(f.who) return m.who===f.who;
     if(f.cat) return m.cats.indexOf(f.cat)>=0||m.cat===f.cat;
     return true; }).length; };
+  /* format chips carry an icon (ico ic-<key>) instead of the plain chip()
+     shape everything else uses — design's redesign, three visually
+     distinct tiers instead of one flat wall of identical chips */
   el("fmtchips").innerHTML=["all","eu","desk","tools"].map(function(k){
     var n=k==="all"?ITEMS.length:count({fmt:k});
-    return chip("fmt",k,T2.fmt[k],n,S.fmt===k); }).join("");
-  el("whochips").innerHTML=[chip("who","all",T2.who.all,ITEMS.length,S.who==="all")].concat(
-    SELLERS.map(function(p){ return chip("who",p.key,p.name,count({who:p.key}),S.who===p.key); })).join("");
+    var faint=n===0&&k!=="all";
+    return '<button class="chip ico ic-'+k+(faint?" faint":"")+'" data-fmt="'+k+'" aria-pressed="'+(S.fmt===k)+'">'+
+      esc(T2.fmt[k])+'<span class="c">'+(faint?"–":n)+'</span></button>'; }).join("");
+  /* owner chips: the seller's dot leads the name (no icon — the dot IS the
+     marker), plus the same wishpop-on-hover preview the card ownerpill
+     already has, using the same WANTS/wantLabel/T2.hunting this reuses
+     everywhere else. "All" gets neither dot nor popover — there's no
+     single seller's wants to preview. */
+  el("whochips").innerHTML=
+    '<button class="chip" data-who="all" aria-pressed="'+(S.who==="all")+'">'+esc(T2.who.all)+'<span class="c">'+ITEMS.length+'</span></button>'+
+    SELLERS.map(function(p){
+      var n=count({who:p.key});
+      return '<button class="chip owner haspop" data-who="'+p.key+'" aria-pressed="'+(S.who===p.key)+'">'+
+        '<span class="odot" style="background:'+p.dot+'"></span>'+esc(p.name)+'<span class="c">'+n+'</span>'+
+        '<span class="wishpop"><span class="wp-h">'+esc(p.name+" "+T2.hunting)+'</span>'+
+        '<span class="wp-l">'+(WANTS[p.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span></span>'+
+        '</button>'; }).join("");
   el("catchips").innerHTML=CATKEYS.map(function(k){
     var n=k==="all"?ITEMS.length:count({cat:k});
-    return chip("cat",k,T2.cat[k]||k,n,S.cat===k); }).join("");
-}
-function chip(kind,k,label,n,on){
-  var faint=n===0&&k!=="all";
-  return '<button class="chip'+(faint?" faint":"")+'" data-'+kind+'="'+k+'" aria-pressed="'+on+'">'+
-    esc(label)+'<span class="ct">'+(faint?"–":n)+'</span></button>';
+    var faint=n===0&&k!=="all";
+    return '<button class="subchip'+(faint?" faint":"")+'" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'">'+
+      esc(T2.cat[k]||k)+'<span class="c">'+(faint?"–":n)+'</span></button>'; }).join("");
 }
 
 /* ---------- wish band ---------- */
