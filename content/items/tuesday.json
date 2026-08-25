@@ -52,6 +52,17 @@
         "title": "Introducing Tuesday procedural sequencer by TINRS — the long thread",
         "url": "https://www.modwiggler.com/forum/viewtopic.php?t=179927"
       }
+    ],
+    "pull": {
+      "q": "An algorithmic melody sequencer for Eurorack modular synthesizers. It utilizes 13 different algorithms, with two tweakable parameters per algorithm.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/tinrs-tuesday.html"
+    },
+    "quotes": [
+      {
+        "t": "Tuesday can be clocked internally, or synchronized to an external clock, for ease of melodic and rhythmic patches.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

@@ -49,6 +49,17 @@
         "title": "Introducing Chainsaw — 4hp polyphonic supersaw oscillator",
         "url": "https://www.modwiggler.com/forum/viewtopic.php?t=217076"
       }
+    ],
+    "pull": {
+      "q": "The Chainsaw from Acid Rain Technology is a polyphonic digital oscillator with super saws and super features.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/acid-rain-chainsaw.html"
+    },
+    "quotes": [
+      {
+        "t": "The seven waves can be detuned using the detune knob and CV input; at low settings the waves are in unison, but as the value increases, the waves spread apart.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

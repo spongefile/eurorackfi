@@ -48,6 +48,17 @@
         "title": "Shakmat Modular Bishop's Miscellany CV Recorder — product notes",
         "url": "https://www.perfectcircuit.com/shakmat-modular-bishops-miscellany.html"
       }
+    ],
+    "pull": {
+      "q": "A dual CV/Gate recorder that packs a ton of functionality into a module that is relatively small and incredibly easy to use.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/shakmat-modular-bishops-miscellany.html"
+    },
+    "quotes": [
+      {
+        "t": "If you have nothing around that generates CV/Gate, the module itself is conveniently equipped with a random voltage generator, which easily puts it into Turing Machine-like territory.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

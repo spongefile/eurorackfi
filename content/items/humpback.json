@@ -47,6 +47,17 @@
         "title": "GOD's BOX Humpback (SEM style multimode filter)",
         "url": "https://modwiggler.com/forum/viewtopic.php?t=143102"
       }
+    ],
+    "pull": {
+      "q": "A state-variable filter designed with choice components for premium, thick sounds. Based around the CA3080 chip at its core, this is a no-fluff filter that focuses on great sound first and foremost.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/gods-box-humpback.html"
+    },
+    "quotes": [
+      {
+        "t": "The controls are simple: big knob for cutoff frequency, plus resonance and input gain levels.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

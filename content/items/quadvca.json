@@ -52,6 +52,17 @@
         "title": "One of the benefits of the Intellijel Quad VCA (Distortion!)",
         "url": "https://modwiggler.com/forum/viewtopic.php?t=184879"
       }
+    ],
+    "pull": {
+      "q": "Intellijel's brand new Quad VCA can be used as four individual VCAs, or as a four-channel mixer.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/intellijel-quad-vca.html"
+    },
+    "quotes": [
+      {
+        "t": "The module features a continually adjustable linear to exponential response curve, and a Boost switch that adds up to 6dB of gain to each channel.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

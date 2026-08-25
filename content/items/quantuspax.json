@@ -48,6 +48,17 @@
         "title": "Looking for feedback on Noise Engineering Quantus Pax",
         "url": "https://modwiggler.com/forum/viewtopic.php?t=260803"
       }
+    ],
+    "pull": {
+      "q": "A buffered mult and four-channel precision adder that promises to make CV pitch transposition easier than ever.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/noise-engineering-quantus-pax.html"
+    },
+    "quotes": [
+      {
+        "t": "Each of its four channels features two inputs, which are precisely summed to create an easy transposition utility.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

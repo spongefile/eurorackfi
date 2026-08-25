@@ -48,6 +48,17 @@
         "title": "Mutable Instruments Links",
         "url": "https://djjondent.blogspot.com/2018/07/mutable-instruments-links.html"
       }
+    ],
+    "pull": {
+      "q": "Block 1 is a 1:3 buffered multiple, offering a convenient way to send a single CV source to 3 different locations.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/mutable-instruments-links.html"
+    },
+    "quotes": [
+      {
+        "t": "Block 3 is a 3:1 mixer, with an averager on each input that prevents the input signals from clipping.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

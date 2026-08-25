@@ -48,6 +48,17 @@
         "title": "WMD Pro Output — the thread",
         "url": "https://modwiggler.com/forum/viewtopic.php?t=216227"
       }
+    ],
+    "pull": {
+      "q": "The answer to one of many Eurorack synthesists' most pressing desires: a high quality output module with headphone connections!",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/wmd-prooutput.html"
+    },
+    "quotes": [
+      {
+        "t": "It can handle 23Vpp before clipping, and attenuates signals to their proper levels.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }

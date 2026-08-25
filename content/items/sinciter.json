@@ -48,6 +48,17 @@
         "title": "Noise Engineering Sinc Iter — the thread",
         "url": "https://www.modwiggler.com/forum/viewtopic.php?t=164140"
       }
+    ],
+    "pull": {
+      "q": "A compact VCO with a 23-octave range and three waveform modes that allow for different types of morphing between waves.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/noise-engineering-sinc-iter.html"
+    },
+    "quotes": [
+      {
+        "t": "The module contains both uni-polar and bi-polar outputs for use with both analog and digital inputs.",
+        "s": "Perfect Circuit"
+      }
     ]
   }
 }
