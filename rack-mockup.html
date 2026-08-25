@@ -53,9 +53,11 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
 .blank::before{top:6px} .blank::after{bottom:6px}
 /* the jack mark, tiled quietly down the panel */
-.blank .mark{position:absolute;inset:0;opacity:.16;
+.blank .mark{position:absolute;inset:0;opacity:.2;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23fff' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23fff'/%3E%3C/svg%3E");
-  background-size:22px 22px;background-repeat:repeat-y;background-position:center 14px}
+  background-repeat:no-repeat;background-position:center;background-size:56px 56px}
+/* the 1U row is only 38px tall — scale the mark to suit */
+.rackrow.u .blank .mark,.u .blank .mark{background-size:24px 24px}
 
 /* D2 — plain dark anodised blank */
 .blank.dark{background:linear-gradient(176deg,#2f343a,#1d2126)}
@@ -97,6 +99,29 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
 .caseE .rail{background:#8f959d;border-color:#5c6169}
 .caseE .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
 .caseC .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
+
+/* ---- in-context hero ---- */
+.tag{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--on);
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:.5rem 40px;margin-top:2.5rem}
+.ctxhero{padding:2.4rem 0 2rem;border-bottom:1px solid var(--line)}
+.ctxwrap{width:min(1160px,100% - 5rem);margin-inline:auto;display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:3rem;align-items:center}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
+.ctxh{font-size:2.5rem;letter-spacing:-.035em;margin:0;line-height:1.1;font-weight:700}
+.ctxh em{font-style:normal;color:var(--accent)}
+.ctxlede{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;line-height:1.55;
+  color:var(--ink2);margin-top:1rem;max-width:38ch}
+.ctxstats{display:flex;gap:1.6rem;margin-top:1.4rem}
+.ctxstats .n{font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:500}
+.ctxstats .l{font-family:"IBM Plex Mono",monospace;font-size:.62rem;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin-top:.15rem}
+.ctxcap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.6rem;display:flex;justify-content:space-between;gap:1rem}
+.blank.blue{background:linear-gradient(176deg,#0d5aad,#093f7e)}
+.blank.anod{background:linear-gradient(176deg,#2f343a,#1d2126)}
+.blank.anod .mark{opacity:.13}
 </style>
 </head>
 <body>
@@ -258,6 +283,133 @@ colour — Bastl panels already carry it, so the hero and the cards stay related
 <p class="cap">Wood cheeks + branded blue blanks. The blue blank now reads as belonging to the
 case rather than floating in front of it, and the wood gives the hero something warm to sit
 against the blue-grey page.</p>
+
+
+<div class="tag">D1 &mdash; dark case, branded blue blanks</div>
+<section class="ctxhero"><div class="ctxwrap">
+  <div>
+    <div class="eyebrow">Helsinki &middot; neighbours</div>
+    <h3 class="ctxh">Gear from <em>down the road</em>.</h3>
+    <p class="ctxlede">A handful of us in the same neighbourhood, listing what we are finished
+      with. Mostly eurorack, sometimes other stuff. Trades possible!</p>
+    <div class="ctxstats">
+      <div><div class="n">67</div><div class="l">Items</div></div>
+      <div><div class="n">397</div><div class="l">HP</div></div>
+      <div><div class="n">2</div><div class="l">Shelves</div></div>
+    </div>
+  </div>
+  <figure style="margin:0;min-width:0">
+    <div class="caseC">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow u">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:68px;height:38px"></button>
+          <span class="blank blue"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+          <span class="blank blue"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <figcaption class="ctxcap"><span>Drawn to scale &middot; 397 HP</span><span>hover to find it below</span></figcaption>
+  </figure>
+</div></section>
+<p class="cap">The blue blank makes the empty slots look deliberate &mdash; an eurorack.fi cover panel rather than an unfinished rack. It is also the only accent colour in the hero.</p>
+
+<div class="tag">D2 &mdash; dark case, dark anodised blanks</div>
+<section class="ctxhero"><div class="ctxwrap">
+  <div>
+    <div class="eyebrow">Helsinki &middot; neighbours</div>
+    <h3 class="ctxh">Gear from <em>down the road</em>.</h3>
+    <p class="ctxlede">A handful of us in the same neighbourhood, listing what we are finished
+      with. Mostly eurorack, sometimes other stuff. Trades possible!</p>
+    <div class="ctxstats">
+      <div><div class="n">67</div><div class="l">Items</div></div>
+      <div><div class="n">397</div><div class="l">HP</div></div>
+      <div><div class="n">2</div><div class="l">Shelves</div></div>
+    </div>
+  </div>
+  <figure style="margin:0;min-width:0">
+    <div class="caseC">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow u">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:68px;height:38px"></button>
+          <span class="blank anod"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+          <span class="blank anod"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <figcaption class="ctxcap"><span>Drawn to scale &middot; 397 HP</span><span>hover to find it below</span></figcaption>
+  </figure>
+</div></section>
+<p class="cap">Quieter. The empty space recedes and the photos carry the figure. Reads more like a real half-full case and less like branding, but the hero stays entirely grey-blue.</p>
+
+<div class="tag">E &mdash; wood case, branded blue blanks</div>
+<section class="ctxhero"><div class="ctxwrap">
+  <div>
+    <div class="eyebrow">Helsinki &middot; neighbours</div>
+    <h3 class="ctxh">Gear from <em>down the road</em>.</h3>
+    <p class="ctxlede">A handful of us in the same neighbourhood, listing what we are finished
+      with. Mostly eurorack, sometimes other stuff. Trades possible!</p>
+    <div class="ctxstats">
+      <div><div class="n">67</div><div class="l">Items</div></div>
+      <div><div class="n">397</div><div class="l">HP</div></div>
+      <div><div class="n">2</div><div class="l">Shelves</div></div>
+    </div>
+  </div>
+  <figure style="margin:0;min-width:0">
+    <div class="caseE">
+      <span class="cheek"></span>
+      <div class="inner">
+        <div class="rail"></div>
+        <div class="rackrow u">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg" style="width:97px;height:38px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg" style="width:68px;height:38px"></button>
+          <span class="blank blue"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+        <div class="rackrow">
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg" style="width:52px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brainseed.jpg" style="width:17px;height:109px"></button>
+          <button class="rackmod"><img src="https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chainsaw.jpg" style="width:17px;height:109px"></button>
+          <span class="blank blue"><span class="mark"></span></span>
+        </div>
+        <div class="rail"></div>
+      </div>
+      <span class="cheek r"></span>
+    </div>
+    <figcaption class="ctxcap"><span>Drawn to scale &middot; 397 HP</span><span>hover to find it below</span></figcaption>
+  </figure>
+</div></section>
+<p class="cap">The only option with warmth. Wood is the palette's existing <code>wood</code> faceplate tone, already on the site via the Bastl panels. Two accents in one figure &mdash; wood and blue &mdash; is the risk; pair wood with anodised blanks if it is too busy.</p>
 
 </body>
 </html>
