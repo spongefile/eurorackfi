@@ -1,0 +1,53 @@
+name: Update content manifest
+
+# The site's normal page load used to discover which item/seller files
+# exist via the GitHub Contents API directory listing, which is capped
+# at 60 unauthenticated requests/hour per IP — shared across every
+# visitor on that IP. Under any real burst (site testing, admin use,
+# a few people on the same network) that blanks the whole site with no
+# error a visitor could explain. This workflow keeps a plain filename
+# manifest (content/items-index.json, content/sellers-index.json)
+# up to date instead; index.html fetches that from raw.githubusercontent.com,
+# which is not subject to the same limit, and only falls back to the
+# rate-limited directory listing if the manifest itself is unreachable.
+#
+# Manifests live as siblings of content/items/ and content/sellers/, NOT
+# inside them — Decap's folder collections scan every .json file in a
+# collection's folder, so a manifest placed inside would show up in
+# admin as a broken listing. Path filters below also exclude the
+# manifest files themselves, since without that this workflow's own
+# commit would retrigger itself indefinitely.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/items/**.json'
+      - 'content/sellers/**.json'
+      - '!content/items-index.json'
+      - '!content/sellers-index.json'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate manifests
+        run: |
+          for name in items sellers; do
+            ( cd "content/$name" && ls -1 *.json 2>/dev/null | sort ) \
+              | python3 -c "import json,sys; print(json.dumps([l.strip() for l in sys.stdin if l.strip()], indent=2))" \
+              > "content/${name}-index.json"
+          done
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/items-index.json content/sellers-index.json
+          git diff --cached --quiet || git commit -m "Update content manifest [skip ci]"
+          git push
