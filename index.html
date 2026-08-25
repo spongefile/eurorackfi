@@ -1736,8 +1736,20 @@ document.addEventListener("keydown",function(e){
   }
 });
 window.addEventListener("hashchange",route);
+/* Only the drawn-faceplate slot needs anything on resize — fitPanel()
+   re-measures .bench and redraws at fixed-pixel scale. Used to call the
+   full route() instead, which (a) reset scroll to 0 unconditionally,
+   even when a photo was showing and there was no panel to refit at all,
+   and (b) on iOS Safari specifically, fired mid-scroll: the address bar
+   collapsing/expanding as the page scrolls dispatches resize events, so
+   scrolling down on a product page kept snapping back to the top. */
 var rz; window.addEventListener("resize",function(){
-  clearTimeout(rz); rz=setTimeout(function(){ if(location.hash.indexOf("#/m/")===0) route(); },150); });
+  clearTimeout(rz); rz=setTimeout(function(){
+    if(location.hash.indexOf("#/m/")===0 && S.shot===0){
+      var m=byId(location.hash.slice(4));
+      if(m) fitPanel(m);
+    }
+  },150); });
 
 /* mobile only: fold the filter bar down to a compact tappable "Filters" row
    once the user scrolls past it, so it stops eating grid space. Deliberately
