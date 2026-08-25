@@ -1,19 +1,4 @@
 {
-  "id": "canvasfolio",
-  "mfr": "Supernote",
-  "name": "Canvas Folio for Nomad",
-  "price": 40,
-  "hp": 0,
-  "fmt": "desk",
-  "who": "t",
-  "cat": "Other",
-  "cats": [
-    "Other",
-    "Accessory"
-  ],
-  "mgSlug": "",
-  "site": "supernote.com",
-  "tone": "cream",
   "parts": {
     "k": 0,
     "j": 0,
@@ -21,13 +6,13 @@
     "led": 0,
     "sc": 0
   },
-  "blurb": {
-    "en": "Canvas-covered folio for the Supernote Nomad, no edge-wrap so it reads like a paper notebook. Dual magnet closure, device rotates so the USB port can face either way, auto sleep/wake on open.",
-    "fi": "Kangaspäällysteinen kotelo Supernote Nomadille, ei reunakäärintää, joten se tuntuu paperivihkolta. Kaksoismagneettikiinnitys, laite kääntyy niin että USB-portti voi olla kummin päin vain, automaattinen uni/herätys avattaessa.",
-    "sv": "Kanvasklädd fodral för Supernote Nomad, utan kantinslagning så den känns som ett pappersanteckningsblock. Dubbel magnetstängning, enheten kan vridas så att USB-porten pekar åt endera hållet, automatisk viloläge/uppvakning vid öppning."
-  },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/canvasfolio.jpg",
-  "negotiating": false,
+  "mgSlug": "",
+  "site": "supernote.com",
+  "hp": 0,
+  "price": 40,
+  "name": "Canvas Folio for Nomad",
+  "fmt": "tools",
   "extra": {
     "pull": {
       "q": "It's slim, it's light, and it does a good job of protecting the Nomad.",
@@ -59,5 +44,20 @@
         "url": "https://www.youtube.com/watch?v=sWyNj6PHEqg"
       }
     ]
-  }
+  },
+  "tone": "cream",
+  "cat": "Other",
+  "mfr": "Supernote",
+  "blurb": {
+    "en": "Canvas-covered folio for the Supernote Nomad, no edge-wrap so it reads like a paper notebook. Dual magnet closure, device rotates so the USB port can face either way, auto sleep/wake on open.",
+    "fi": "Kangaspäällysteinen kotelo Supernote Nomadille, ei reunakäärintää, joten se tuntuu paperivihkolta. Kaksoismagneettikiinnitys, laite kääntyy niin että USB-portti voi olla kummin päin vain, automaattinen uni/herätys avattaessa.",
+    "sv": "Kanvasklädd fodral för Supernote Nomad, utan kantinslagning så den känns som ett pappersanteckningsblock. Dubbel magnetstängning, enheten kan vridas så att USB-porten pekar åt endera hållet, automatisk viloläge/uppvakning vid öppning."
+  },
+  "id": "canvasfolio",
+  "negotiating": false,
+  "cats": [
+    "Other",
+    "Accessory"
+  ],
+  "who": "t"
 }
