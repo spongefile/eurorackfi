@@ -161,19 +161,28 @@
        every state including the pressed fill, where an inline stroke colour
        would have gone invisible. */
     .chip.ico{display:inline-flex; align-items:center; gap:.45rem; padding:.38rem .68rem}
-    .chip.ico::before{content:""; width:15px; height:15px; flex:0 0 auto; background:currentColor;
+    /* Icons sit at --muted, matching the search magnifier above them so the
+       whole bar's iconography is one voice, and staying a step back from the
+       label — the icon is a marker for scanning, the word carries the meaning.
+       Deliberately not --accent: blue means selected/interactive here, and
+       spending it decoratively on every chip would blunt that. The pressed
+       chip flips to --on, since any dark on the accent fill disappears. */
+    .chip.ico::before{content:""; width:15px; height:15px; flex:0 0 auto; background:var(--muted);
       -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
+    .chip.ico[aria-pressed="true"]::before{background:var(--on)}
     /* Owner chips take no icon — the seller's dot IS the marker, and it leads
        the name here exactly as it does on cards, wish band and seller lines. */
     .chip.owner{display:inline-flex; align-items:center; gap:.45rem}
     .chip .odot{width:8px; height:8px; border-radius:50%; flex:0 0 auto}
     .ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
-    /* the wordmark's 3.5mm jack, same geometry as the logo */
-    .ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='38' fill='none' stroke='%23000' stroke-width='18'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23000'/%3E%3C/svg%3E")}
+    /* The wordmark's 3.5mm jack, ring-to-dot proportions preserved exactly but
+       drawn inset in its box: at full bleed it outweighed the logo's own jack,
+       which sits at .58em against its type rather than filling its slot. */
+    .ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='31' fill='none' stroke='%23000' stroke-width='14.5'/%3E%3Ccircle cx='50' cy='50' r='11.3' fill='%23000'/%3E%3C/svg%3E")}
     /* desktop box seen from a low angle: rounded trapezoid, wide edge nearest */
-    .ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M27 34 L73 34 L86 70 L14 70 Z' fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round'/%3E%3C/svg%3E")}
+    .ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M24 28 L76 28 L90 74 L10 74 Z' fill='none' stroke='%23000' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E")}
     /* dice — "other" is the miscellany bin, so: whatever comes up */
-    .ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='16' y='16' width='68' height='68' rx='17' fill='none' stroke='%23000' stroke-width='12'/%3E%3Ccircle cx='37' cy='37' r='9.5' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='9.5' fill='%23000'/%3E%3C/svg%3E")}
+    .ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='14' y='14' width='72' height='72' rx='18' fill='none' stroke='%23000' stroke-width='14'/%3E%3Ccircle cx='37' cy='37' r='10' fill='%23000'/%3E%3Ccircle cx='63' cy='63' r='10' fill='%23000'/%3E%3C/svg%3E")}
 
     /* Subcategories: no border, no fill at rest. They are a tag list. */
     .subchip{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.02em;
