@@ -132,12 +132,48 @@
     .rackrow .blank{background:repeating-linear-gradient(135deg,#9aa09b 0 3px,#8e948f 3px 6px); opacity:.5}
 
     .controls{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--line)}
-    .crow{display:flex; gap:.75rem; align-items:center; padding:.85rem 0 0; flex-wrap:wrap}
-    .crow.b{padding:.75rem 0 .85rem; margin-top:.1rem; border-top:1px solid var(--line)}
-    .search{display:flex; align-items:center; gap:.5rem; background:var(--panel); border:1px solid var(--line2); padding:.42rem .7rem; min-width:220px; flex:0 1 300px}
-    .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--ink); width:100%}
+
+    /* Three tiers, deliberately unequal. Search answers "find one thing";
+       the icon chips answer "which shelf / what kind of box"; the plain
+       subcategory chips only refine what those already chose. Before this
+       they were all the same chip and the bar read as one flat wall. */
+    .searchrow{display:flex; gap:.75rem; align-items:center; padding:.85rem 0 .75rem}
+    .search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
+      box-shadow:var(--shadow); padding:.55rem .8rem; flex:1 1 auto; max-width:420px}
+    .search:focus-within{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+    .search .mag{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
+    .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.85rem; color:var(--ink); width:100%}
     .search input::placeholder{color:var(--muted)}
-    .chips{display:flex; gap:.35rem; flex-wrap:wrap}
+
+    /* Each tier gets a gutter label — it names the axis, and it disambiguates
+       the three "all" chips, which otherwise all read "Kaikki" with no clue
+       which set they clear. Fixed gutter so the chip columns align. */
+    .crow{display:flex; gap:.75rem; align-items:baseline; padding:0 0 .55rem; flex-wrap:nowrap}
+    .crow.b{padding:.7rem 0 .85rem; margin-top:.25rem; border-top:1px solid var(--line)}
+    .clabel{font-family:"IBM Plex Mono",monospace; font-size:.6rem; text-transform:uppercase;
+      letter-spacing:.12em; color:var(--muted); flex:0 0 64px; padding-top:.42rem}
+    .chips{display:flex; gap:.35rem; flex-wrap:wrap; align-items:center}
+
+    /* Icon marks a chip as a PRIMARY filter. Masked, not inlined, so the
+       glyph inherits chip text colour through every state — including the
+       pressed fill, where an inline stroke colour would have gone invisible. */
+    .chip.ico{display:inline-flex; align-items:center; gap:.42rem; padding:.38rem .68rem}
+    .chip.ico::before{content:""; width:13px; height:13px; flex:0 0 auto; background:currentColor;
+      -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
+    .chip .odot{width:7px; height:7px; border-radius:50%; flex:0 0 auto; margin-left:.1rem}
+    .ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='4' y='4' width='7' height='7'/%3E%3Crect x='13' y='4' width='7' height='7'/%3E%3Crect x='4' y='13' width='7' height='7'/%3E%3Crect x='13' y='13' width='7' height='7'/%3E%3C/svg%3E")}
+    .ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='7' y='3' width='10' height='18' rx='1'/%3E%3Ccircle cx='12' cy='8' r='1.6'/%3E%3Ccircle cx='12' cy='15' r='1.6'/%3E%3C/svg%3E")}
+    .ic-desk{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='3' y='7' width='18' height='11' rx='2'/%3E%3Ccircle cx='8' cy='12.5' r='2.2'/%3E%3Cpath d='M14 10.5h4M14 14.5h4'/%3E%3C/svg%3E")}
+    .ic-tools{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='7' cy='7' r='3'/%3E%3Crect x='13.5' y='3.5' width='7' height='7' rx='1'/%3E%3Crect x='3.5' y='13.5' width='7' height='7' rx='1'/%3E%3Ccircle cx='17' cy='17' r='3'/%3E%3C/svg%3E")}
+    .ic-everyone{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='9' cy='8' r='3'/%3E%3Cpath d='M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6'/%3E%3Cpath d='M16 5.5a3 3 0 0 1 0 5.8'/%3E%3Cpath d='M17.5 13.4c2 .8 3.5 2.8 3.5 5.1'/%3E%3C/svg%3E")}
+    .ic-person{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='12' cy='8' r='3.2'/%3E%3Cpath d='M5.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5'/%3E%3C/svg%3E")}
+
+    /* Subcategories: no border, no fill at rest. They are a tag list. */
+    .subchip{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.02em;
+      padding:.28rem .52rem; border:1px solid transparent; background:none; color:var(--muted)}
+    .subchip:hover{color:var(--accent)}
+    .subchip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-hi)}
+    .subchip .c{opacity:.6; margin-left:.3rem; font-size:.64rem}
     .chip{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.02em; padding:.32rem .6rem; border:1px solid var(--line2); color:var(--ink2); background:var(--panel); white-space:nowrap}
     .chip:hover{border-color:var(--accent); color:var(--accent)}
     .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on)}
@@ -332,21 +368,32 @@
 
   <div class="controls">
     <div class="wrap">
-      <div class="crow">
+      <div class="searchrow">
         <label class="search">
-          <span class="mono" style="color:var(--muted); font-size:.8rem">/</span>
+          <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
           <input type="text" placeholder="{{t.search}}" value="{{q}}" onChange="{{onQ}}">
         </label>
+        <select class="sortsel" value="{{sort}}" onChange="{{onSort}}">
+          <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="5">
+            <option value="{{o.v}}">{{o.label}}</option>
+          </sc-for>
+        </select>
+      </div>
+      <div class="crow">
+        <span class="clabel">{{t.fmtLabel}}</span>
         <div class="chips">
           <sc-for list="{{fmts}}" as="c" hint-placeholder-count="4">
             <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
           </sc-for>
         </div>
-        <span class="sep"></span>
+      </div>
+      <div class="crow">
+        <span class="clabel">{{t.shelfLabel}}</span>
         <div class="chips">
           <sc-for list="{{whos}}" as="c" hint-placeholder-count="3">
             <button class="chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}
               <sc-if value="{{c.hasWants}}" hint-placeholder-val="{{true}}">
+                <span class="odot" style="{{c.dot}}"></span>
                 <span class="wishpop">
                   <span class="wp-h">{{c.wpH}}</span>
                   <span class="wp-l">
@@ -357,16 +404,12 @@
             </button>
           </sc-for>
         </div>
-        <select class="sortsel" value="{{sort}}" onChange="{{onSort}}">
-          <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="5">
-            <option value="{{o.v}}">{{o.label}}</option>
-          </sc-for>
-        </select>
       </div>
-      <div class="crow b" style="padding-top: 0.85rem; margin-top: 0.9rem">
+      <div class="crow b">
+        <span class="clabel">{{t.typeLabel}}</span>
         <div class="chips">
           <sc-for list="{{cats}}" as="c" hint-placeholder-count="8">
-            <button class="chip" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
+            <button class="subchip" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
           </sc-for>
         </div>
       </div>
@@ -708,7 +751,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihtaa:",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta tai vaihda", hunting:"hakee",
+    buyOrTrade:"Osta tai vaihda", hunting:"hakee", typeLabel:"Tyyppi", fmtLabel:"Muoto", shelfLabel:"Hylly",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
@@ -733,7 +776,7 @@ var T = {
     search:"sök tillverkare eller modul",
     wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp eller byt", hunting:"söker",
+    buyOrTrade:"Köp eller byt", hunting:"söker", typeLabel:"Typ", fmtLabel:"Format", shelfLabel:"Hylla",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
@@ -758,7 +801,7 @@ var T = {
     search:"search maker or module",
     wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy or trade", hunting:"is hunting for",
+    buyOrTrade:"Buy or trade", hunting:"is hunting for", typeLabel:"Type", fmtLabel:"Format", shelfLabel:"Shelf",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
@@ -893,13 +936,14 @@ class Component extends DCLogic {
       var n = k === "all" ? all.length : all.filter(function(m){ return m.fmt === k; }).length;
       return { label: t.fmt[k], n: n === 0 ? "–" : n,
                on: s.fmt === k ? "true" : "false",
-               cls: n === 0 ? "faint" : "",
+               cls: (n === 0 ? "faint " : "") + "ico ic-" + k,
                pick: function(){ self.setState({ fmt: k }); } };
     });
 
     var whos = [{ key:"all", name:t.who.all }].concat(SELLERS).map(function(c){
       return { label: c.name, on: s.who === c.key ? "true" : "false",
-               cls: c.key === "all" ? "" : "haspop",
+               cls: c.key === "all" ? "ico ic-everyone" : "haspop ico ic-person",
+               dot: c.dot ? "background:" + c.dot + ";" : "",
                hasWants: c.key !== "all",
                wants: WANTS[c.key] || [],
                wpH: c.name + " " + t.hunting,
