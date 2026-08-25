@@ -273,14 +273,17 @@
       border:1px solid var(--line2); background:transparent; color:var(--ink2);
       transition:background .14s ease, color .14s ease, border-color .14s ease}
     .card:hover .cardcta{border-color:var(--accent); color:var(--accent); background:var(--accent-soft)}
-    /* In-negotiation reads on the photo itself, old-school corner banner, so
+    /* Clip box sits 2px out (1px past the card's own 1px border) so the band
+       visibly overhangs the edge rather than landing on it — on the border it
+       reads as printed on the card, past it as wrapped around it.
+       In-negotiation reads on the photo itself, old-school corner banner, so
        the state is legible while scanning the grid. It is the ONLY marker on
        the card now — the footer chip that used to duplicate it is gone.
        Anchored on .card rather than .shot, with the clip box inset -1px so it
        runs over the card's own border instead of stopping inside it: that is
        what makes it read as wrapped around the container rather than printed
        on the picture. */
-    .negribbon{position:absolute; top:-1px; right:-1px; width:168px; height:168px;
+    .negribbon{position:absolute; top:-2px; right:-2px; width:168px; height:168px;
       overflow:hidden; pointer-events:none; z-index:3}
     .negribbon span{position:absolute; right:-56px; top:30px; width:230px; transform:rotate(30deg);
       background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
