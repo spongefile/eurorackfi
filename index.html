@@ -335,7 +335,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 main{padding-bottom:3rem}
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1.25rem}
 .card{background:var(--panel); border:1px solid var(--line); display:flex; flex-direction:column; text-align:left;
-  padding:0; transition:border-color .15s, transform .15s, box-shadow .15s; width:100%}
+  padding:0; transition:border-color .15s, transform .15s, box-shadow .15s; width:100%; position:relative}
 .card:hover{border-color:var(--line2); transform:translateY(-2px); box-shadow:var(--shadow)}
 @media (prefers-reduced-motion:reduce){ .card,.card:hover{transition:none; transform:none} }
 .shot{height:210px; background:var(--bg2); border-bottom:1px solid var(--line); display:flex; align-items:center;
@@ -383,15 +383,25 @@ main{padding-bottom:3rem}
 .cta{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.68rem; border:1px solid var(--line2);
   color:var(--ink2); padding:.22rem .5rem; background:transparent; white-space:nowrap}
 .card:hover .cta{border-color:var(--accent); color:var(--accent); background:var(--accent-soft)}
-/* in negotiation: solid on the card, because the state IS the call to action */
-.negchip{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.68rem; background:var(--accent);
-  color:var(--on); border:1px solid var(--accent); padding:.22rem .5rem; display:inline-flex; align-items:center; gap:.4rem; white-space:nowrap}
-.negchip i,.negbar i{width:7px; height:7px; border-radius:50%; flex:0 0 auto}
-.negchip i{background:var(--on)}
+.negbar i{width:7px; height:7px; border-radius:50%; flex:0 0 auto}
 @media (prefers-reduced-motion:no-preference){
-  .negchip i,.negbar i{animation:pulse 2s ease-in-out infinite}
+  .negbar i{animation:pulse 2s ease-in-out infinite}
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* corner ribbon, replacing the old footer chip — the only in-negotiation
+   marker on a grid card now; no CTA at all sits beside it, disabled or
+   otherwise, since the item can't be bought. Anchored on .card, NOT .shot:
+   the clip box is inset -2px, one pixel past .card's own 1px border, so
+   the band overhangs the edge instead of landing on it — on the border it
+   reads as printed on the card, past it as wrapped around it. 30°, not
+   45° — at 45° the word crams into the corner triangle. Ported verbatim
+   from design's ribbon-mockup.html; do not "tidy" these numbers. */
+.negribbon{position:absolute; top:-2px; right:-2px; width:168px; height:168px;
+  overflow:hidden; pointer-events:none; z-index:3}
+.negribbon span{position:absolute; right:-56px; top:30px; width:230px; transform:rotate(30deg);
+  background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; box-shadow:0 1px 5px rgba(0,0,0,.3)}
 .empty{padding:3.5rem 0; text-align:center; font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:.85rem}
 
 /* ---------- module page ---------- */
@@ -694,7 +704,7 @@ var T = {
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
-    noticeB:"Sampon toivelista puuttuu vielä.", negotiating:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
+    noticeB:"Sampon toivelista puuttuu vielä.", negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
@@ -719,7 +729,7 @@ var T = {
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     noticeA:"Moduler, priser och specar är riktiga.",
-    noticeB:"Sampos önskelista saknas ännu.", negotiating:"Under förhandling", negBar:"Under förhandling — du kan ändå fråga",
+    noticeB:"Sampos önskelista saknas ännu.", negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
@@ -744,7 +754,7 @@ var T = {
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     noticeA:"Modules, prices and specs are real.",
-    noticeB:"Sampo\u2019s wish list is still a placeholder.", negotiating:"In negotiation", negBar:"In negotiation — you can still ask",
+    noticeB:"Sampo\u2019s wish list is still a placeholder.", negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
     fIntro:"A few of us in one Helsinki neighbourhood. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. Collection preferred, posting possible.",
@@ -1126,6 +1136,7 @@ function card(m){
   var T2=t(), p=SELLER_BY_KEY[m.who];
   return '<button class="card" data-go="'+m.id+'">'+
     '<div class="shot">'+shotHTML(m,182)+'</div>'+
+    (m.negotiating?'<span class="negribbon"><span>'+esc(T2.negRibbon)+'</span></span>':'')+
     '<div class="cbody"><div class="mfr">'+esc(m.mfr)+'</div><h3>'+esc(m.name)+'</h3>'+
     '<p class="blurb">'+esc(blurbOf(m))+'</p>'+
     '<div class="tags">'+m.cats.slice(0,3).map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+
@@ -1137,9 +1148,10 @@ function card(m){
     '</span></div></div>'+
     '<div class="cardfoot"><span class="price">'+eur(m.price)+'</span>'+
     (m.hp>0?'<span class="hpstamp">'+m.hp+' '+esc(T2.sHp)+'</span>':'')+
-    (m.negotiating
-      ? '<span class="negchip"><i></i>'+esc(T2.negotiating)+'</span>'
-      : '<span class="cta">'+esc(m.shopUrl?T2.moreInfo:T2.buyOrTrade)+'</span>')+
+    /* no CTA at all when negotiating, not a disabled one — the ribbon is
+       the only marker; the item can't be bought so offering the action
+       is wrong, per design's spec */
+    (m.negotiating?"":'<span class="cta">'+esc(m.shopUrl?T2.moreInfo:T2.buyOrTrade)+'</span>')+
     '</div></button>';
 }
 function renderGrid(){
