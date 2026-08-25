@@ -126,11 +126,15 @@
     /* The figure is a CASE, not photos between two bars. Dark body and end
        cheeks so the rails read as metal inside an enclosure. */
     .rackbox{background:linear-gradient(176deg,#31363c,#1c2025); border:1px solid #8a6538;
-      box-shadow:var(--shadow); padding:10px 0; display:flex; align-items:stretch; overflow-x:auto}
+      box-shadow:var(--shadow); padding:1px 0; display:flex; align-items:stretch; overflow-x:auto}
     /* Rails and rows must share a width, whichever is wider — sized to the
        container they disagree: rows overflow while rails stop at the box edge,
        so photos continue past where the rails end. */
-    .rackinner{width:max-content; min-width:100%; flex:1 1 auto; display:flex; flex-direction:column; gap:9px}
+    /* gap:0 — modules mount flush to the rails, as they do on real hardware.
+       At gap:9px a dark strip of case body showed above and below EVERY row,
+       which together with the outer padding made the figure read as sunk into
+       a hole in the page rather than sitting on it. */
+    .rackinner{width:max-content; min-width:100%; flex:0 0 auto; display:flex; flex-direction:column; gap:0}
     /* Wood only on the cheeks — the warmth frames the figure without competing
        with the module photos. Reuses the palette's existing `wood` faceplate
        tone, so it is not a new colour on the site. */
@@ -141,7 +145,10 @@
     .cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
       width:5px; height:5px; border-radius:50%; background:#5c421f; box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
     .cheek::before{top:9px} .cheek::after{bottom:9px}
-    .rackbox .rail{background:#8f959d; border-color:#5c6169}
+    /* A rail is a raised metal strip catching light, so it gets a highlight
+       and a soft underside rather than two dark outlines. */
+    .rackbox .rail{background:#8f959d; border-top:none; border-bottom:none;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22)}
     .rackbox .rail::after{background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px)}
     .rackrow{display:flex; align-items:stretch}
     .rackrow .mod{position:relative; cursor:pointer; border-right:1px solid rgba(0,0,0,.35)}
