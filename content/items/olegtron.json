@@ -1,20 +1,4 @@
 {
-  "id": "olegtron",
-  "mfr": "Olegtron",
-  "name": "4060 mk2",
-  "price": 150,
-  "hp": 0,
-  "fmt": "desk",
-  "who": "t",
-  "cat": "Other",
-  "cats": [
-    "Other",
-    "Oscillator",
-    "DIY"
-  ],
-  "mgSlug": "",
-  "site": "olegtron.com",
-  "tone": "cream",
   "parts": {
     "k": 2,
     "j": 4,
@@ -22,12 +6,12 @@
     "led": 1,
     "sc": 0
   },
-  "blurb": {
-    "en": "Small plastic box built around the CD4060 chip: a patchboard where you stick components onto the circuit to shape it, with ten divided sub-frequencies on tap. Four stereo 3.5mm jacks carry up to eight signals in or out, plus a jumper for uni/bipolar range. Battery-powered, no rack required.",
-    "fi": "Pieni muovikotelo CD4060-piirin ympärillä: patchboard, jolle liimataan komponentteja piirin muokkaamiseksi, mukana kymmenen jaettua alataajuutta. Neljä stereo 3,5mm-liitintä kuljettaa jopa kahdeksan signaalia sisään tai ulos, sekä hyppylanka uni-/bipolaarista aluetta varten. Paristokäyttöinen, ei vaadi telinettä.",
-    "sv": "Liten plastlåda byggd kring CD4060-kretsen: ett patchboard där du klistrar fast komponenter för att forma kretsen, med tio delade underfrekvenser att tillgå. Fyra stereo 3,5mm-jack bär upp till åtta signaler in eller ut, plus en bygel för uni-/bipolärt omfång. Batteridriven, kräver inget rack."
-  },
-  "negotiating": false,
+  "mgSlug": "",
+  "site": "olegtron.com",
+  "hp": 0,
+  "price": 150,
+  "name": "4060 mk2",
+  "fmt": "desk",
   "extra": {
     "pull": {
       "q": "If you're willing to put in the time, the Olegtron 4060 MK2 is one of the most unique pieces of equipment out there.",
@@ -55,5 +39,21 @@
         "url": "https://www.youtube.com/watch?v=dM6ldRJPmVQ"
       }
     ]
-  }
+  },
+  "tone": "cream",
+  "cat": "Other",
+  "mfr": "Olegtron",
+  "blurb": {
+    "en": "Small plastic box built around the CD4060 chip: a patchboard where you stick components onto the circuit to shape it, with ten divided sub-frequencies on tap. Four stereo 3.5mm jacks carry up to eight signals in or out, plus a jumper for uni/bipolar range. Battery-powered, no rack required.",
+    "fi": "Pieni muovikotelo CD4060-piirin ympärillä: patchboard, jolle liimataan komponentteja piirin muokkaamiseksi, mukana kymmenen jaettua alataajuutta. Neljä stereo 3,5mm-liitintä kuljettaa jopa kahdeksan signaalia sisään tai ulos, sekä hyppylanka uni-/bipolaarista aluetta varten. Paristokäyttöinen, ei vaadi telinettä.",
+    "sv": "Liten plastlåda byggd kring CD4060-kretsen: ett patchboard där du klistrar fast komponenter för att forma kretsen, med tio delade underfrekvenser att tillgå. Fyra stereo 3,5mm-jack bär upp till åtta signaler in eller ut, plus en bygel för uni-/bipolärt omfång. Batteridriven, kräver inget rack."
+  },
+  "id": "olegtron",
+  "negotiating": true,
+  "cats": [
+    "Other",
+    "Oscillator",
+    "DIY"
+  ],
+  "who": "t"
 }
