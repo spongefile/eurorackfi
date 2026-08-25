@@ -1,0 +1,32 @@
+{
+  "id": "zazou",
+  "mfr": "Kaona",
+  "name": "Zazou",
+  "price": 400,
+  "hp": 18,
+  "fmt": "eu",
+  "who": "t",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Algorithmic",
+    "MIDI"
+  ],
+  "mgSlug": "kaona-zazou",
+  "site": "kaona.fr",
+  "tone": "black",
+  "parts": {
+    "k": 3,
+    "j": 17,
+    "sl": 0,
+    "led": 9,
+    "sc": 1
+  },
+  "blurb": {
+    "en": "18HP algorithmic pattern generator: four independent CV/gate/velocity tracks running ten algorithms -- random, walking bass, arpeggiator, Cantor, Fibonacci, Sierpinski, Mandelbrot, Julia and more -- over a round colour-coded scale display. MIDI out, syncs to an external clock.",
+    "fi": "18HP:n algoritminen kuvionmuodostaja: neljä itsenäistä CV/gate/velocity-raitaa pyörittää kymmentä algoritmia – random, walking bass, arpeggiaattori, Cantor, Fibonacci, Sierpinski, Mandelbrot, Julia ja muita – pyöreän värikoodatun skaalanäytön päällä. MIDI out, synkronoituu ulkoiseen kelloon.",
+    "sv": "18HP algoritmisk mönstergenerator: fyra oberoende CV/gate/velocity-spår kör tio algoritmer – random, walking bass, arpeggiator, Cantor, Fibonacci, Sierpinski, Mandelbrot, Julia och fler – över en rund färgkodad skaldisplay. MIDI out, synkar mot en extern klocka."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/zazou.jpg",
+  "negotiating": false
+}
