@@ -197,22 +197,27 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
     transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
   @media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
 }
-/* Three tiers, deliberately unequal — design's redesign, replacing what
+/* Two tiers, deliberately unequal — design's redesign, replacing what
    used to be one flat wall of identical chips where search, format, owner
-   and subcategory all read as the same kind of control. Search answers
-   "find one thing"; the icon chips answer "which shelf / what kind of
-   box"; the plain subcategory chips only refine what those already chose. */
-.searchrow{display:flex; gap:.75rem; align-items:center; padding:.85rem 0 .75rem}
+   and subcategory all read as the same kind of control. Filter axes claim
+   the left column (find-by-shelf), search+sort stack on the right
+   (find-one-thing) — condensed from four stacked bands to two after the
+   first pass left the whole right half of the search row empty. The
+   plain subcategory row below refines whatever those already chose. */
+.ctop{display:flex; gap:1.5rem; align-items:flex-start; padding:.85rem 0 .55rem; flex-wrap:wrap}
+.cfilters{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.3rem}
+.cfind{flex:0 1 300px; display:flex; flex-direction:column; gap:.4rem; min-width:220px}
+.cfind .sortsel{margin-left:0; width:100%}
 .search{display:flex; align-items:center; gap:.55rem; background:var(--panel); border:1px solid var(--line2);
-  box-shadow:var(--shadow); padding:.55rem .8rem; flex:1 1 auto; max-width:420px}
+  box-shadow:var(--shadow); padding:.55rem .8rem; flex:0 0 auto}
 .search:focus-within{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
 .search .mag{width:15px; height:15px; flex:0 0 auto; color:var(--muted)}
 .search input{border:none; background:none; outline:none; font-family:"IBM Plex Mono",monospace; font-size:.85rem; color:var(--ink); width:100%}
 .search input::placeholder{color:var(--muted)}
 /* Each tier gets a gutter label naming the axis, and disambiguating the
-   three "all" chips, which would otherwise all just read "Everything"
+   two "all" chips, which would otherwise both just read "Everything"
    with no clue which set they clear. Fixed gutter so columns align. */
-.crow{display:flex; gap:.75rem; align-items:baseline; padding:0 0 .55rem; flex-wrap:nowrap}
+.crow{display:flex; gap:.75rem; align-items:baseline; padding:0; flex-wrap:nowrap}
 .crow.b{padding:.7rem 0 .85rem; margin-top:.25rem; border-top:1px solid var(--line)}
 .clabel{font-family:"IBM Plex Mono",monospace; font-size:.6rem; text-transform:uppercase;
   letter-spacing:.12em; color:var(--muted); flex:0 0 64px; padding-top:.42rem}
@@ -597,20 +602,24 @@ footer.site{background:var(--bg2); padding:2.75rem 0 3rem}
       <span class="collcount" id="collcount"></span>
     </button>
     <div class="wrap">
-      <div class="searchrow">
-        <label class="search">
-          <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
-          <input id="q" type="search" aria-label="Search">
-        </label>
-        <select class="sortsel" id="sort" aria-label="Sort"></select>
-      </div>
-      <div class="crow">
-        <span class="clabel" id="fmtLabelEl"></span>
-        <div class="chips" id="fmtchips"></div>
-      </div>
-      <div class="crow">
-        <span class="clabel" id="shelfLabelEl"></span>
-        <div class="chips" id="whochips"></div>
+      <div class="ctop">
+        <div class="cfilters">
+          <div class="crow">
+            <span class="clabel" id="fmtLabelEl"></span>
+            <div class="chips" id="fmtchips"></div>
+          </div>
+          <div class="crow">
+            <span class="clabel" id="shelfLabelEl"></span>
+            <div class="chips" id="whochips"></div>
+          </div>
+        </div>
+        <div class="cfind">
+          <label class="search">
+            <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg>
+            <input id="q" type="search" aria-label="Search">
+          </label>
+          <select class="sortsel" id="sort" aria-label="Sort"></select>
+        </div>
       </div>
       <div class="crow b">
         <span class="clabel" id="typeLabelEl"></span>
