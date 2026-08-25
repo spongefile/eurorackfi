@@ -1,15 +1,127 @@
 {
   "key": "t",
   "name": "spongefile",
-  "dot": "#2E77C9",
+  "dot": "#678cd6",
   "wants": [
-    {"type":"product","mfr":"ALM Busy Circuits","name":"MCO","hp":6,"tone":"alu","parts":{"k":1,"j":8,"sl":0,"led":0,"sc":1},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco.jpg"},
-    {"type":"product","mfr":"ALM Busy Circuits","name":"AXON-1","hp":4,"tone":"white","parts":{"k":0,"j":4,"sl":0,"led":4,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/axon1.jpg"},
-    {"type":"product","mfr":"Mannequins","name":"Mangrove","hp":10,"tone":"alu","parts":{"k":5,"j":9,"sl":0,"led":1,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mangrove.jpg"},
-    {"type":"product","mfr":"Mannequins","name":"W/","hp":2,"tone":"alu","parts":{"k":0,"j":4,"sl":0,"led":6,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wslash.jpg"},
-    {"type":"product","mfr":"Dnipro Modular","name":"Dot","hp":6,"tone":"black","parts":{"k":3,"j":8,"sl":0,"led":78,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dot.jpg"},
-    {"type":"product","mfr":"Noise Engineering","name":"Mimetic Digitwolis","hp":10,"tone":"black","parts":{"k":5,"j":15,"sl":1,"led":4,"sc":1},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mimetic-digitwolis.jpg"},
-    {"type":"product","mfr":"Make Noise","name":"PoliMATHS","hp":20,"tone":"black","parts":{"k":17,"j":20,"sl":1,"led":8,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polimaths.jpg"},
-    {"type":"product","mfr":"Instruo","name":"øchd expander","hp":4,"tone":"black","parts":{"k":0,"j":16,"sl":0,"led":0,"sc":0},"img":"https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ochd-expander.jpg"}
+    {
+      "type": "product",
+      "mfr": "ALM Busy Circuits",
+      "name": "MCO",
+      "hp": 6,
+      "tone": "alu",
+      "parts": {
+        "k": 1,
+        "j": 8,
+        "sl": 0,
+        "led": 0,
+        "sc": 1
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "ALM Busy Circuits",
+      "name": "AXON-1",
+      "hp": 4,
+      "tone": "white",
+      "parts": {
+        "k": 0,
+        "j": 4,
+        "sl": 0,
+        "led": 4,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/axon1.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Mannequins",
+      "name": "Mangrove",
+      "hp": 10,
+      "tone": "alu",
+      "parts": {
+        "k": 5,
+        "j": 9,
+        "sl": 0,
+        "led": 1,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mangrove.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Mannequins",
+      "name": "W/",
+      "hp": 2,
+      "tone": "alu",
+      "parts": {
+        "k": 0,
+        "j": 4,
+        "sl": 0,
+        "led": 6,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wslash.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Dnipro Modular",
+      "name": "Dot",
+      "hp": 6,
+      "tone": "black",
+      "parts": {
+        "k": 3,
+        "j": 8,
+        "sl": 0,
+        "led": 78,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dot.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Noise Engineering",
+      "name": "Mimetic Digitwolis",
+      "hp": 10,
+      "tone": "black",
+      "parts": {
+        "k": 5,
+        "j": 15,
+        "sl": 1,
+        "led": 4,
+        "sc": 1
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mimetic-digitwolis.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Make Noise",
+      "name": "PoliMATHS",
+      "hp": 20,
+      "tone": "black",
+      "parts": {
+        "k": 17,
+        "j": 20,
+        "sl": 1,
+        "led": 8,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polimaths.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Instruo",
+      "name": "øchd expander",
+      "hp": 4,
+      "tone": "black",
+      "parts": {
+        "k": 0,
+        "j": 16,
+        "sl": 0,
+        "led": 0,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ochd-expander.jpg"
+    }
   ]
 }
