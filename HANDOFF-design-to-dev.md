@@ -448,6 +448,38 @@ faceplate tone, already on the site via the Bastl panels — not a new colour.
   the module photos** — a lighter filler reads as sitting in front of them.
   **No logo or mark on it**; a blank panel is just a panel.
 
+### Cheek endcaps (added 2026-08-25, after lip removal)
+
+The cheeks run **3px proud of the rails** at top and bottom, and that
+overhang is **capped in `#4a3418`** — the outer edge of each cheek is capped
+in the same brown. A real case's sides are slightly longer than the rails
+they carry; the cap is what makes the wood read as a solid piece rather than
+a stripe painted on the ends.
+
+```css
+.rackbox{background:transparent; border:none; padding:3px 0;
+  box-shadow:var(--shadow); display:flex; align-items:stretch; overflow-x:auto}
+.rackinner{ /* …existing… */ background:linear-gradient(176deg,#31363c,#1c2025)}
+.cheek{ /* …existing… */ margin:-3px 0;
+  border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
+  border-left:1px solid #4a3418; border-right:1px solid rgba(0,0,0,.4)}
+.cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4)}
+.cheek::before{top:12px} .cheek::after{bottom:12px}
+```
+
+**The background move is the load-bearing part.** `padding:3px 0` is the
+headroom the cheek's negative margin expands into. The case body therefore
+has to live on `.rackinner`, **not** `.rackbox` — left on `.rackbox` it fills
+that headroom and puts a dark band straight back across the full width, which
+is exactly what removing the top/bottom lip was for. `overflow-x:auto` clips
+vertically too, so the cheek cannot simply overhang the box; the padding is
+the only way to give it room.
+
+Screws move `9px → 12px` to stay level with the first and last rail instead
+of riding up into the endcap.
+
+Rendered spec: `rack-endcap-mockup.html`, current vs proposed at 4×.
+
 **`flex:0 0 auto` on `.rackinner` is load-bearing and cost two attempts.**
 The original bug: rails were sized to the container and rows to their
 content, so rows overflowed while rails stopped at the box edge and modules

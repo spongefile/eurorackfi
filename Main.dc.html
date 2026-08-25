@@ -125,9 +125,12 @@
     .rackcredit a:hover{color:var(--accent)}
     /* The figure is a CASE, not photos between two bars. Dark body and end
        cheeks so the rails read as metal inside an enclosure. */
-    .rackbox{background:linear-gradient(176deg,#31363c,#1c2025); border:1px solid #8a6538;
-      box-shadow:var(--shadow); padding:0; display:flex; align-items:stretch; overflow-x:auto;
-      border-top:none; border-bottom:none}
+    /* padding:3px 0 is headroom for the cheeks to run proud of the rails (see
+       .cheek). The case body therefore lives on .rackinner, NOT here — on
+       .rackbox it would fill that headroom and put a dark band back across the
+       full width, which is exactly what removing the top/bottom lip fixed. */
+    .rackbox{background:transparent; border:none;
+      box-shadow:var(--shadow); padding:3px 0; display:flex; align-items:stretch; overflow-x:auto}
     /* Rails and rows must share a width, whichever is wider — sized to the
        container they disagree: rows overflow while rails stop at the box edge,
        so photos continue past where the rails end. */
@@ -135,17 +138,26 @@
        At gap:9px a dark strip of case body showed above and below EVERY row,
        which together with the outer padding made the figure read as sunk into
        a hole in the page rather than sitting on it. */
-    .rackinner{width:max-content; min-width:100%; flex:0 0 auto; display:flex; flex-direction:column; gap:0}
+    .rackinner{width:max-content; min-width:100%; flex:0 0 auto; display:flex; flex-direction:column; gap:0;
+      background:linear-gradient(176deg,#31363c,#1c2025)}
     /* Wood only on the cheeks — the warmth frames the figure without competing
        with the module photos. Reuses the palette's existing `wood` faceplate
        tone, so it is not a new colour on the site. */
-    .cheek{flex:0 0 16px; align-self:stretch; position:relative;
-      background:linear-gradient(90deg,#dcb98d,#b98f5c); border-right:1px solid rgba(0,0,0,.4)}
-    .cheek.r{border-right:none; border-left:1px solid rgba(0,0,0,.4);
+    /* The cheeks run 3px proud of the rails top and bottom, capped in dark
+       brown — a real case's sides are a little longer than the rails they
+       carry, and the endcap is what makes the wood read as a solid piece
+       rather than as a stripe painted on the ends. */
+    .cheek{flex:0 0 16px; align-self:stretch; position:relative; margin:-3px 0;
+      background:linear-gradient(90deg,#dcb98d,#b98f5c);
+      border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
+      border-left:1px solid #4a3418; border-right:1px solid rgba(0,0,0,.4)}
+    .cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4);
       background:linear-gradient(90deg,#b98f5c,#dcb98d)}
     .cheek::before,.cheek::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
       width:5px; height:5px; border-radius:50%; background:#5c421f; box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
-    .cheek::before{top:9px} .cheek::after{bottom:9px}
+    /* 9px + the 3px the cheek now runs proud, so the screws stay level with the
+       first and last rail rather than riding up into the endcap. */
+    .cheek::before{top:12px} .cheek::after{bottom:12px}
     /* A rail is a raised metal strip catching light, so it gets a highlight
        and a soft underside rather than two dark outlines. */
     .rackbox .rail{background:#8f959d; border-top:none; border-bottom:none;

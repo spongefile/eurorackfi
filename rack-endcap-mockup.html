@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — cheek endcaps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 60px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.3rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  line-height:1.7;max-width:80ch;margin:0 0 1.6rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 .8rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  margin-top:.7rem;line-height:1.65;max-width:80ch}
+.figwrap{max-width:620px}
+.zoomwrap{max-width:320px;overflow:hidden;margin-top:.9rem;border:1px dashed var(--line2)}
+.zoom{transform:scale(4);transform-origin:0 0;width:320px;padding:6px 0 0 6px}
+
+.rackrow{display:flex;align-items:flex-start}
+.rackmod{position:relative;flex:0 0 auto;display:block;border:none;padding:0;background:none}
+.rackmod img{display:block;object-fit:cover}
+.blank{flex:1 1 auto;align-self:stretch;min-width:0;
+  background:linear-gradient(176deg,#2f343a,#1d2126);border-left:1px solid rgba(0,0,0,.35)}
+.rail{height:9px;background:#8f959d;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.22);
+  background-image:radial-gradient(circle at 5px 4px,#5c6169 0 1.6px,transparent 1.7px);
+  background-size:25.4px 100%}
+.screw{position:absolute;left:50%;transform:translateX(-50%);width:5px;height:5px;
+  border-radius:50%;background:#5c421f}
+
+/* ---------- shared shell ---------- */
+.rackbox{box-shadow:var(--shadow);overflow-x:auto;display:flex;align-items:stretch}
+.rackinner{width:max-content;min-width:100%;flex:0 0 auto;
+  display:flex;flex-direction:column;gap:0;
+  background:linear-gradient(176deg,#31363c,#1c2025)}
+.cheek{flex:0 0 16px;align-self:stretch;position:relative;
+  background:linear-gradient(90deg,#dcb98d,#b98f5c)}
+.cheek.r{background:linear-gradient(90deg,#b98f5c,#dcb98d)}
+
+/* ---------- CURRENT (live) ---------- */
+.cur .rackbox{background:linear-gradient(176deg,#31363c,#1c2025);
+  border:1px solid #8a6538;border-top:none;border-bottom:none;padding:0}
+.cur .cheek{border-right:1px solid rgba(0,0,0,.4)}
+.cur .cheek.r{border-right:none;border-left:1px solid rgba(0,0,0,.4)}
+
+/* ---------- PROPOSED: cheeks run proud, capped dark brown ---------- */
+.new .rackbox{background:transparent;border:none;padding:3px 0}
+.new .cheek{margin:-3px 0;
+  border-top:1px solid #4a3418; border-bottom:1px solid #4a3418;
+  border-right:1px solid rgba(0,0,0,.4); border-left:1px solid #4a3418}
+.new .cheek.r{border-right:1px solid #4a3418; border-left:1px solid rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<h1>Wood cheek endcaps</h1>
+<p class="sub">The cheeks now run 3px proud of the rails at top and bottom, and that overhang is
+capped with a dark brown line. Between the cheeks the page shows through rather than the case
+body, so no dark band comes back across the width. Shown at size, then at 4× on the top-left
+corner.</p>
+
+<h2>Current — cheek stops flush with the rail</h2>
+<div class="figwrap cur">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span>
+    <div class="rackinner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <span class="cheek r"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span></div>
+</div>
+<div class="zoomwrap"><div class="zoom cur">
+  <div class="rackbox" style="width:300px"><span class="cheek"><i class="screw" style="top:9px"></i></span>
+    <div class="rackinner"><div class="rail"></div>
+      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button><span class="blank"></span></div>
+      <div class="rail"></div></div>
+    <span class="cheek r"></span></div>
+</div></div>
+
+<h2>Proposed — cheek 3px proud, dark brown cap</h2>
+<div class="figwrap new">
+  <div class="rackbox"><span class="cheek"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span>
+    <div class="rackinner">
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+      <div class="rackrow">
+        <button class="rackmod"><img src="content/images/bitboxmicro.jpg" style="width:78px;height:109px"></button>
+        <button class="rackmod"><img src="content/images/bishops.jpg" style="width:52px;height:109px"></button>
+        <span class="blank"></span>
+      </div>
+      <div class="rail"></div>
+    </div>
+    <span class="cheek r"><i class="screw" style="top:9px"></i><i class="screw" style="bottom:9px"></i></span></div>
+</div>
+<div class="zoomwrap"><div class="zoom new">
+  <div class="rackbox" style="width:300px"><span class="cheek"><i class="screw" style="top:9px"></i></span>
+    <div class="rackinner"><div class="rail"></div>
+      <div class="rackrow"><button class="rackmod"><img src="content/images/milkyway1u.jpg" style="width:107px;height:38px"></button><span class="blank"></span></div>
+      <div class="rail"></div></div>
+    <span class="cheek r"></span></div>
+</div></div>
+<p class="cap">The dark case background moves off <code>.rackbox</code> onto
+<code>.rackinner</code>, so the 3px of padding that lets the cheek run proud stays transparent
+instead of filling dark. <code>#4a3418</code> caps the top, bottom and outer edge of each cheek.</p>
+
+</body>
+</html>
