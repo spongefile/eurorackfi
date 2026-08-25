@@ -993,7 +993,7 @@ function renderWish(){
   var T2=t();
   el("wishgrid").innerHTML=SELLERS.map(function(p){
     var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
-    return '<a class="wishcard" href="#/wish"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+    return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
       '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
       '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabel(w))+'</li>';}).join("")+
       (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
