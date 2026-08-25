@@ -201,6 +201,13 @@
       padding:.28rem .52rem; border:1px solid transparent; background:none; color:var(--muted)}
     .subchip:hover{color:var(--accent)}
     .subchip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-hi)}
+    /* The "all" chip of each tier carries the same dot, so the three resets
+       read as one family. Smaller here than on the chips above — this row is
+       the quiet one and a 15px glyph would outweigh its own labels. */
+    .subchip.ico{display:inline-flex; align-items:center; gap:.36rem}
+    .subchip.ico::before{content:""; width:10px; height:10px; flex:0 0 auto; background:var(--muted);
+      -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
+    .subchip.ico[aria-pressed="true"]::before{background:var(--accent-hi)}
     .subchip .c{opacity:.6; margin-left:.3rem; font-size:.64rem}
     .chip{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.02em; padding:.32rem .6rem; border:1px solid var(--line2); color:var(--ink2); background:var(--panel); white-space:nowrap}
     .chip:hover{border-color:var(--accent); color:var(--accent)}
@@ -440,7 +447,7 @@
         <span class="clabel">{{t.typeLabel}}</span>
         <div class="chips">
           <sc-for list="{{cats}}" as="c" hint-placeholder-count="8">
-            <button class="subchip" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
+            <button class="subchip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}<span class="c">{{c.n}}</span></button>
           </sc-for>
         </div>
       </div>
@@ -960,6 +967,7 @@ class Component extends DCLogic {
     var cats = CATKEYS.map(function(k){
       var n = k === "all" ? all.length : all.filter(function(m){ return m.cat === k; }).length;
       return { label: t.cat[k], n: n, on: s.cat === k ? "true" : "false",
+               cls: k === "all" ? "ico ic-all" : "",
                pick: function(){ self.setState({ cat: k }); } };
     }).filter(function(c){ return c.n > 0; });
 
@@ -973,7 +981,7 @@ class Component extends DCLogic {
 
     var whos = [{ key:"all", name:t.who.all }].concat(SELLERS).map(function(c){
       return { label: c.name, on: s.who === c.key ? "true" : "false",
-               cls: c.key === "all" ? "" : "haspop owner",
+               cls: c.key === "all" ? "ico ic-all" : "haspop owner",
                dot: c.dot ? "background:" + c.dot + ";" : "",
                hasWants: c.key !== "all",
                wants: WANTS[c.key] || [],
