@@ -74,5 +74,8 @@
     "Other",
     "Case"
   ],
-  "who": "t"
+  "who": "t",
+  "imgIsOwn": true,
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/intellijel7u-lid.jpg",
+  "img3": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/intellijel7u-side.jpg"
 }
