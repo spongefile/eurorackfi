@@ -201,7 +201,7 @@ ready. Do not swap in press shots.
 | Card CTA at rest | transparent, `--line2` border, `--ink2` |
 | Card CTA on card hover | `--accent` border + text, `--accent-soft` fill |
 | Card CTA sold | `--muted` on `--line`, no hover change |
-| In negotiation — card | solid `--accent` fill, `--on` text, **replaces** the CTA chip; 7px dot with a 2s opacity pulse, `prefers-reduced-motion` guarded |
+| In negotiation — card | **corner ribbon over the photo — see below; SUPERSEDES the footer chip** |
 | In negotiation — module page | full-width bar above the buy button, `--accent-soft` fill, `--accent` text and border |
 | Primary button | `--accent` fill, `--on` text, `0 2px 0 --accent-hi` hard bottom edge |
 | Primary button active | `translateY(2px)`, shadow collapses — reads as a key press |
@@ -384,6 +384,41 @@ quote cards → reviews → video → outbound links → "You may also like" →
   simply gets no quote cards.
 - **"You may also like"** is picked by function, not owner, and each card states
   its reason. It crosses collections, so each carries an owner pill.
+
+## In-negotiation ribbon (added 2026-08-25)
+
+**SUPERSEDES the in-negotiation footer chip on grid cards.** Rendered spec:
+`ribbon-mockup.html` in the repo root — standalone, reads nothing from the
+canvas, and includes a 3× corner crop for the overhang. Build from that
+file, not from this paragraph.
+
+An old-school corner banner across the top-right of the card photo:
+
+```css
+.card{ position:relative }               /* the ribbon anchors here, NOT .shot */
+.negribbon{position:absolute; top:-2px; right:-2px; width:168px; height:168px;
+  overflow:hidden; pointer-events:none; z-index:3}
+.negribbon span{position:absolute; right:-56px; top:30px; width:230px; transform:rotate(30deg);
+  background:var(--accent); color:var(--on); text-align:center; padding:.4rem 0;
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; box-shadow:0 1px 5px rgba(0,0,0,.3)}
+```
+
+Three things are load-bearing and were each arrived at by rendering, not by
+reasoning — don't "tidy" them:
+- **Anchored on `.card`, clip box inset `-2px`.** That is one pixel past the
+  card's own 1px border, so the band overhangs the edge. Anchored on `.shot`
+  or inset `-1px` it lands *on* the border and reads as printed on the card
+  rather than wrapped around it.
+- **30°, not 45°.** At 45° on a narrower band the word is crammed into a
+  corner triangle.
+- **It is the ONLY marker.** The footer chip that used to carry this state
+  is removed, and a negotiating card shows **no CTA at all** — not a
+  disabled one. The item cannot be bought, so offering the action is wrong.
+
+Copy is a one-word form, `negRibbon`: **fi Neuvottelussa / sv Förhandlas /
+en Negotiating**. The full phrase stays on `negBar` for the module page,
+where the still-available clause ("— voit silti kysyä") is required.
 
 ## Accessories — the shop category (added 2026-08-25)
 
