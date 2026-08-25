@@ -1,20 +1,4 @@
 {
-  "id": "dblhelix",
-  "mfr": "Pittsburgh Modular",
-  "name": "Lifeforms Double Helix Oscillator",
-  "price": 400,
-  "hp": 28,
-  "fmt": "eu",
-  "who": "t",
-  "cat": "Oscillator",
-  "cats": [
-    "Oscillator",
-    "Waveshaper",
-    "Modulation"
-  ],
-  "mgSlug": "pittsburgh-modular-lifeforms-double-helix-oscillator",
-  "site": "pittsburghmodular.com",
-  "tone": "alu",
   "parts": {
     "k": 15,
     "j": 28,
@@ -22,13 +6,13 @@
     "led": 4,
     "sc": 0
   },
-  "blurb": {
-    "en": "Complex dual-VCO voice: the primary oscillator puts out sine, saw, Pittsburgh's folded 'blade' wave and a sub, while the second oscillator FMs it or runs on its own. A wavefolder and dynamic low-pass gate shape the contour, with an LFO/noise modulation section and two voltage-controlled routers patching the whole thing together. Discontinued — this is a used unit.",
-    "fi": "Kaksois-VCO: pääoskillaattori antaa siniä, sahaa, Pittsburghin taitetun 'blade'-aallon ja subin, kun taas toinen oskillaattori FM:ää sitä tai pyörii omillaan. Wavefolder ja dynaaminen low-pass gate muovaavat konttuuria, mukana LFO/noise-modulaatio-osio ja kaksi jänniteohjattua reititintä. Poistunut valikoimista — tämä on käytetty yksilö.",
-    "sv": "Dubbel-VCO: primäroscillatorn ger sinus, sågtand, Pittsburghs vikta 'blade'-våg och en sub, medan den andra oscillatorn FM:ar den eller går för sig själv. En wavefolder och en dynamisk low-pass gate formar konturen, med en LFO/brus-modulationsdel och två spänningsstyrda routrar. Utgången ur sortimentet — det här är ett begagnat exemplar."
-  },
   "img": "https://images.squarespace-cdn.com/content/v1/56aeb9254d088e3be58a3d47/1483581575159-O21RD39LPISC5RL4HQWC/image-asset.png",
-  "negotiating": false,
+  "mgSlug": "pittsburgh-modular-lifeforms-double-helix-oscillator",
+  "site": "pittsburghmodular.com",
+  "hp": 28,
+  "price": 400,
+  "name": "Lifeforms Double Helix Oscillator",
+  "fmt": "eu",
   "extra": {
     "reviews": [
       {
@@ -49,5 +33,21 @@
         "url": "https://www.youtube.com/watch?v=61PsgptPDBs"
       }
     ]
-  }
+  },
+  "tone": "alu",
+  "cat": "Oscillator",
+  "mfr": "Pittsburgh Modular",
+  "blurb": {
+    "en": "Complex dual-VCO voice: the primary oscillator puts out sine, saw, Pittsburgh's folded 'blade' wave and a sub, while the second oscillator FMs it or runs on its own. A wavefolder and dynamic low-pass gate shape the contour, with an LFO/noise modulation section and two voltage-controlled routers patching the whole thing together.",
+    "fi": "Kaksois-VCO: pääoskillaattori antaa siniä, sahaa, Pittsburghin taitetun 'blade'-aallon ja subin, kun taas toinen oskillaattori FM:ää sitä tai pyörii omillaan. Wavefolder ja dynaaminen low-pass gate muovaavat konttuuria, mukana LFO/noise-modulaatio-osio ja kaksi jänniteohjattua reititintä.",
+    "sv": "Dubbel-VCO: primäroscillatorn ger sinus, sågtand, Pittsburghs vikta 'blade'-våg och en sub, medan den andra oscillatorn FM:ar den eller går för sig själv. En wavefolder och en dynamisk low-pass gate formar konturen, med en LFO/brus-modulationsdel och två spänningsstyrda routrar."
+  },
+  "id": "dblhelix",
+  "negotiating": false,
+  "cats": [
+    "Oscillator",
+    "Waveshaper",
+    "Modulation"
+  ],
+  "who": "t"
 }
