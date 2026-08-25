@@ -491,7 +491,15 @@ body.detail-open .browse{display:none}
    overlap on scroll, since only the bench was pinned. Moving sticky up to
    the shared wrapper means they scroll together, correct by construction,
    no cap or per-item numbers to keep in sync with content that varies. */
-.imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0; position:sticky; top:24px}
+/* Not position:sticky any more. Specs moving in here (2026-08-25) made
+   .imgcol the taller of the two columns on every real item checked — and
+   a sticky element that's also the tallest grid item has zero slack to
+   ever visibly pin against, confirmed by sampling scroll positions on a
+   live item (top tracked scroll 1:1 the entire way, never once held at
+   the 24px offset). Kept it purely as dead weight would mean carrying
+   the exact drift/overlap risk class this layout has already been
+   bitten by twice, for a behaviour that no longer does anything. */
+.imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0}
 .bench{background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
   justify-content:center; flex:0 0 auto; height:400px; overflow:hidden; position:relative}
 .benchnav{position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%;
@@ -620,7 +628,6 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
   .hero{padding:2.25rem 0 2rem}
   .buyarea{grid-template-columns:minmax(0,1fr); gap:1.75rem}
   .bench{height:300px}
-  .imgcol{position:static}
 }
 @media(max-width:740px){
   /* subcategories become a horizontal scroller rather than wrapping to
@@ -639,7 +646,6 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
   .hero h1{font-size:2rem}
   .shot{height:180px}
   .bench{height:260px}
-  .imgcol{position:static}
   .benchnav{width:30px; height:30px}
   .countline{padding-top:1rem}
   .pullquote{font-size:1.25rem}
@@ -1382,6 +1388,18 @@ function detailHTML(m){
           return '<button class="shotdot" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'" aria-label="'+
             esc(i===1&&m.img?T2.photoLabel:sh)+'"'+(has?"":" disabled")+'></button>'; }).join("")+'</div>'
       : '')+
+    /* specs live here, inside .imgcol, not as a sibling below it — .imgcol
+       is position:sticky, and a normal-flow sibling underneath a sticky
+       element in the same grid cell is exactly the drift/overlap bug this
+       layout already burned once (.bench sticky alone, the thumbnail row
+       below it sliding independently). One rigid sticky unit is what
+       makes that impossible; specs join it rather than sitting outside
+       it. Specs and the photo both describe the object; price/seller/
+       CTA/wishlist (in .buycol) describe the transaction — 2026-08-25. */
+    (function(){ var srows=m.shopUrl?accessorySpecRows(m):specRows(m);
+      return srows.length?'<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
+        srows.map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
+      '</div></div>':''; })()+
     '</div>'+
     '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
@@ -1401,10 +1419,6 @@ function detailHTML(m){
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
     '</a>':'')+
-    (function(){ var srows=m.shopUrl?accessorySpecRows(m):specRows(m);
-      return srows.length?'<div class="specrule"><h4>'+esc(T2.specs)+'</h4><div class="specrows">'+
-        srows.map(function(r){ return '<div class="specrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'; }).join("")+
-      '</div></div>':''; })()+
     '</div></div>';
 
   // pitch — authored in English only so far, so fi/sv get the honest banner
