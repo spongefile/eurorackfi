@@ -31,6 +31,24 @@
   "img": "https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
   "negotiating": false,
   "extra": {
+    "pull": {
+      "q": "The particular stroke of genius here is with one set of controls, mimicking a whole lot of effects categories normally found in multi-effects units.",
+      "src": "CDM",
+      "url": "https://cdm.link/2017/04/bastls-thyme-advanced-digital-effect-inspired-tape/"
+    },
+    "quotes": [
+      {
+        "t": "Whereas modules and desktop hardware from Bastl have mostly focused on cheap, playful ideas, Thyme is a fairly advanced effect with loads of functionality.",
+        "s": "Peter Kirn, CDM"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "CDM",
+        "title": "Bastl's Thyme is an advanced digital effect inspired by tape",
+        "url": "https://cdm.link/2017/04/bastls-thyme-advanced-digital-effect-inspired-tape/"
+      }
+    ],
     "videos": [
       {
         "title": "Thyme Advanced Digital Tape Delay from BASTL Tutorial",
