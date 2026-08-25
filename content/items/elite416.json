@@ -28,5 +28,19 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite416-exterior.svg",
   "imgIsIllustration": true,
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Elite 416 Eurorack Case 12U / 104HP — product notes",
+        "url": "https://www.perfectcircuit.com/elite-elite-416-case-12u-104hp.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "elite modular case / rugged / flight — the thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=127254"
+      }
+    ]
+  }
 }

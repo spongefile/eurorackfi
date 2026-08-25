@@ -41,6 +41,18 @@
         "by": "Review · YouTube",
         "url": "https://www.youtube.com/watch?v=iRG9aGK1Vqg"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Audiofanzine",
+        "title": "Alesis QuadraVerb GT — user reviews",
+        "url": "https://en.audiofanzine.com/reverb/alesis/QuadraVerb-GT/user_reviews/"
+      },
+      {
+        "src": "Harmony Central",
+        "title": "User Reviews for Alesis Quadraverb GT",
+        "url": "https://www.harmonycentral.com/reviews/product/alesis-quadraverb-gt"
+      }
     ]
   }
 }

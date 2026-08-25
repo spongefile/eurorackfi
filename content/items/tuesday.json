@@ -40,6 +40,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=mCShOr-zQME"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "TINRS Tuesday Procedural Sequencer — product notes",
+        "url": "https://www.perfectcircuit.com/tinrs-tuesday.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Introducing Tuesday procedural sequencer by TINRS — the long thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=179927"
+      }
     ]
   }
 }

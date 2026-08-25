@@ -30,5 +30,26 @@
   },
   "img": "https://cdn-shop.adafruit.com/970x728/3938-09.jpg",
   "imgIsComponent": true,
-  "negotiating": false
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "lines (llllllll.co)",
+        "title": "DIY monome compatible grid w/ Adafruit NeoTrellis — the build thread",
+        "url": "https://llllllll.co/t/diy-monome-compatible-grid-w-adafruit-neotrellis/28106"
+      },
+      {
+        "src": "okyeron / GitHub",
+        "title": "neotrellis-monome — build docs and firmware for this design",
+        "url": "https://github.com/okyeron/neotrellis-monome"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Monome norns, Neotrellis 128 grid, mlre live",
+        "by": "Demo · YouTube",
+        "url": "https://www.youtube.com/watch?v=v9WT8r9exbQ"
+      }
+    ]
+  }
 }

@@ -36,6 +36,18 @@
         "by": "Demo · YouTube",
         "url": "https://www.youtube.com/watch?v=SLrADGsEuas"
       }
+    ],
+    "reviews": [
+      {
+        "src": "Sweetwater",
+        "title": "Pittsburgh Modular LPG Lopass Gate Eurorack Filter/VCA Module — product notes",
+        "url": "https://www.sweetwater.com/store/detail/LopassGatePM--pittsburgh-modular-lpg-lopass-gate-eurorack-filter-vca-module"
+      },
+      {
+        "src": "Gearspace",
+        "title": "Pittsburgh Modular LPG — user reviews",
+        "url": "https://gearspace.com/gear/pittsburgh-modular/lpg"
+      }
     ]
   }
 }
