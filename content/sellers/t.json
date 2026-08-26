@@ -137,6 +137,36 @@
         "sc": 4
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/neo-trinity.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Dnipro Modular",
+      "name": "Krait",
+      "hp": 6,
+      "tone": "black",
+      "parts": {
+        "k": 8,
+        "j": 5,
+        "sl": 0,
+        "led": 6,
+        "sc": 2
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/krait.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Instruo",
+      "name": "Tš-L",
+      "hp": 6,
+      "tone": "black",
+      "parts": {
+        "k": 7,
+        "j": 10,
+        "sl": 0,
+        "led": 1,
+        "sc": 2
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ts-l.jpg"
     }
   ]
 }
