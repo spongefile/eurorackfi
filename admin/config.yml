@@ -21,6 +21,17 @@ collections:
     delete: true
     identifier_field: id
     format: json
+    # The list view otherwise shows just the raw id (e.g. "neotrellis"),
+    # with no way to tell whose listing is whose at a glance. summary adds
+    # the owner to every row; view_groups splits the whole list by owner
+    # so "my stuff" is one click away. Grouping by the who field itself
+    # (not a hardcoded per-seller filter) means a new seller added later
+    # gets their own group automatically, same as everywhere else in this
+    # site a new seller needs zero further config.
+    summary: "{{fields.mfr}} {{fields.name}} — {{fields.who}}"
+    view_groups:
+      - label: "Owner"
+        field: who
     fields:
       - { label: "ID", name: "id", widget: "string", hint: "short, lowercase, no spaces — e.g. ph3, bf22. Matches the filename." }
       - { label: "Maker", name: "mfr", widget: "string" }
