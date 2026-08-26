@@ -415,6 +415,42 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .wishtile.placeholder{border-style:dashed; border-color:var(--line2); background:transparent; min-height:170px}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 
+/* ---------- FAQ page ---------- */
+.faqpage{padding:2.5rem 0 4rem}
+.faqpage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 .9rem; line-height:1.05}
+.faqpage .lede{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; line-height:1.5;
+  color:var(--ink2); max-width:46ch; margin:0 0 2rem}
+/* two-column row: mono gutter (index + anchor target) then the Q&A —
+   same idiom as .clabel/module spec rows, collapses to one column on
+   narrow screens where a gutter has no room to earn its keep */
+.qa{display:grid; grid-template-columns:44px minmax(0,1fr); gap:0 1.25rem;
+  padding:1.7rem 0; border-top:1px solid var(--line)}
+.qa:first-of-type{border-top:1px solid var(--line2)}
+.qa .num{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em;
+  color:var(--muted); padding-top:.35rem}
+.qa h2{font-size:1.2rem; letter-spacing:-.02em; margin:0 0 .75rem; line-height:1.25;
+  scroll-margin-top:1.5rem; font-weight:700}
+/* anchor is the deep-link affordance — hidden until the row is hovered
+   or the link itself is focused, so it never competes with the question
+   but stays reachable by keyboard */
+.qa h2 a.anchor{font-family:"IBM Plex Mono",monospace; font-weight:400; font-size:.8em;
+  color:var(--line2); text-decoration:none; margin-left:.4rem; opacity:0; transition:opacity .12s}
+.qa:hover h2 a.anchor,.qa h2 a.anchor:focus-visible{opacity:1}
+.qa h2 a.anchor:hover{color:var(--accent)}
+.qa .a{font-family:"Newsreader",Georgia,serif; font-size:1.02rem; line-height:1.6;
+  color:var(--ink2); max-width:62ch}
+.qa .a p{margin:0 0 .85rem}
+.qa .a p:last-child{margin-bottom:0}
+.qa .a a{color:var(--accent); text-decoration:underline; text-underline-offset:2px}
+.qa .xlate{margin-bottom:.85rem}
+.faqpage .tail{margin-top:2rem; padding-top:1.3rem; border-top:1px solid var(--line2);
+  font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted)}
+.faqpage .tail a{color:var(--accent); text-decoration:none}
+@media(max-width:640px){
+  .qa{grid-template-columns:1fr; gap:0}
+  .qa .num{padding-top:0; margin-bottom:.4rem}
+}
+
 /* ---------- count ---------- */
 .countline{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); padding:1.25rem 0 .9rem;
   display:flex; gap:1rem; flex-wrap:wrap; font-variant-numeric:tabular-nums}
@@ -803,7 +839,9 @@ var TONE = {
 
 var T = {
   fi: {
-    nav:["Kaikki","Toiveet","Yhteys"],
+    nav:["Kaikki","Toiveet","FAQ","Yhteys"],
+    faqLede:"Mikä tämä on, keitä me olemme, ja miten pääset mukaan.",
+    faqTail:"Jotain muuta?", faqTailLink:"Lähetä meille viesti →", faqAnchor:"Linkki tähän kysymykseen",
     eyebrow:"Helsinki · naapureita", h1a:"Tavaraa ", h1b:"naapurista", h1c:".",
     lede:"Muutama helsinkiläinen myy tavaraa, jota ei enää tarvita. Enimmäkseen eurorackia, joskus muuta. Vaihdot käyvät!",
     sItems:"kohdetta", sHp:"HP", sShelves:"hyllyä",
@@ -828,7 +866,9 @@ var T = {
     sortLabel:{"hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
   },
   sv: {
-    nav:["Allt","Önskemål","Kontakt"],
+    nav:["Allt","Önskemål","FAQ","Kontakt"],
+    faqLede:"Vad det här är, vem som står bakom, och hur du kan vara med.",
+    faqTail:"Något annat?", faqTailLink:"Skicka ett meddelande →", faqAnchor:"Länk till denna fråga",
     eyebrow:"Helsingfors · grannar", h1a:"Prylar från ", h1b:"grannen", h1c:".",
     lede:"Några av oss i Helsingfors säljer det vi inte behöver. Mest eurorack, ibland annat. Byten går bra!",
     sItems:"objekt", sHp:"HP", sShelves:"hyllor",
@@ -853,7 +893,9 @@ var T = {
     sortLabel:{"hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
   },
   en: {
-    nav:["Everything","What we want","Contact"],
+    nav:["Everything","What we want","FAQ","Contact"],
+    faqLede:"What this is, who is behind it, and how to join in.",
+    faqTail:"Something else?", faqTailLink:"Send us a message →", faqAnchor:"Link to this question",
     eyebrow:"Helsinki · neighbours", h1a:"Gear from ", h1b:"down the road", h1c:".",
     lede:"A few of us in Helsinki, listing what we are finished with. Mostly eurorack, sometimes other stuff. Trades possible!",
     sItems:"items", sHp:"HP", sShelves:"shelves",
@@ -945,6 +987,19 @@ function normalizeWants(list){
     if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts,img:w.img};
     return w;
   });
+}
+
+/* content/faq.json is a single file (Decap "files" collection, not a
+   folder), so it's fetched directly rather than through loadDir's
+   manifest+listing machinery. Non-critical: a missing/broken fetch
+   degrades to an empty FAQ page rather than blocking the rest of the
+   site, same "don't let optional data break rendering" rule as the
+   SELLER_DOTS fallback above. */
+var FAQ={questions:[]};
+function loadFaq(){
+  return fetch(RAW_BASE+"content/faq.json").then(function(r){
+    return r.ok ? r.json() : {questions:[]};
+  }).catch(function(){ return {questions:[]}; });
 }
 </script>
 
@@ -1090,6 +1145,53 @@ var isCase=function(m){ return (m.cats||[]).indexOf("Case")>=0; };
 var XLATE={fi:"Esittely on toistaiseksi vain englanniksi.",
            sv:"Beskrivningen finns tills vidare bara på engelska.",
            en:""};
+
+/* same honest-missing-translation pattern as blurbOf/hasProse above, but
+   scoped to a whole Q&A entry (a question with a translated q but not a
+   — or the reverse — isn't a coherent partial state to show), so both
+   fields must exist together for a language to count as "has it". */
+var faqHasLang=function(item){ return lang==="en" || !!((item.q&&item.q[lang]) && (item.a&&item.a[lang])); };
+var faqQOf=function(item){ return (item.q&&item.q[lang]) || (item.q&&item.q.en) || ""; };
+var faqAOf=function(item){ return (item.a&&item.a[lang]) || (item.a&&item.a.en) || ""; };
+/* "no markdown parser" (per the handoff) — plain text in, autolinked <p>s
+   out. Bare www.-prefixed mentions (the actual approved copy writes
+   "www.spongefile.com", no protocol) link too, not just https://, since
+   otherwise the one real link in the shipped copy would silently stay
+   inert text against the letter of "bare URL (https://...)" in the
+   admin hint. */
+var faqAutolink=function(escaped){
+  return escaped.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+)/g,function(u){
+    var href=u.indexOf("http")===0?u:"https://"+u;
+    return '<a href="'+href+'" target="_blank" rel="noopener">'+u+'</a>';
+  });
+};
+/* The "get in touch"/"ota yhteyttä"/"hör av dig" phrase inside can-i-join
+   is the one internal link in the copy (→ #/msg/), and the data is plain
+   text with no markup, so it's found by matching the literal phrase in
+   the current language rather than parsing anything — same "hand-matched
+   phrase" approach the mockup's own hardcoded <a href="#"> stood in for.
+   Fragile by nature (breaks silently if the wording changes); scoped to
+   exactly the one question it applies to so a miss just leaves plain
+   text instead of a wrong link elsewhere. */
+var FAQ_MSG_PHRASE={en:"get in touch", fi:"ota yhteyttä", sv:"hör av dig"};
+var faqLinkMsgPhrase=function(escaped,itemId){
+  if(itemId!=="can-i-join") return escaped;
+  var phrase=esc(FAQ_MSG_PHRASE[lang]||FAQ_MSG_PHRASE.en);
+  var idx=escaped.indexOf(phrase);
+  if(idx<0) return escaped;
+  return escaped.slice(0,idx)+'<a href="#/msg/">'+phrase+'</a>'+escaped.slice(idx+phrase.length);
+};
+/* blank-line-separated paragraphs, escaped then autolinked/hand-linked —
+   escaping first (not after) means a URL's own "&" in a query string
+   becomes the harmless entity &amp; before the link is built around it,
+   rather than an unescaped "&" reaching innerHTML. */
+var faqAnswerHTML=function(item){
+  return faqAOf(item).split(/\n\s*\n/).map(function(p){
+    var e=faqAutolink(esc(p.trim()));
+    e=faqLinkMsgPhrase(e,item.id);
+    return "<p>"+e+"</p>";
+  }).join("");
+};
 </script>
 
 <script>
@@ -1130,7 +1232,7 @@ function renderChrome(){
   var T2=t();
   el("noticeA").textContent=T2.noticeA;
   el("noticeB").textContent=T2.noticeB;
-  var anchors=["#grid-top","#/wish","#/msg/"];
+  var anchors=["#grid-top","#/wish","#/faq","#/msg/"];
   /* "#grid-top" needs return false: closeDetail() computes the real
      destination (#/s/<seller> or #/), and #grid-top — a plain same-page
      anchor, not one of this app's own routes — must not be left to
@@ -1671,6 +1773,35 @@ function wishHTML(){
     '</div>';
 }
 
+/* ---------- FAQ page ---------- */
+/* Two-column row per question — 64px mono gutter carrying the zero-padded
+   index and the deep-link anchor, same gutter idiom as the filter bar's
+   labels and the module page's spec rows, so this reads as part of the
+   site rather than a bolted-on article (per the handoff). Nav label and
+   h1 are the literal string "FAQ" in every language — the user's own
+   call, not a missing translation — so unlike everything else on this
+   page they're written directly rather than through T. */
+function faqHTML(){
+  var T2=t();
+  var qs=FAQ.questions||[];
+  return '<div class="wrap faqpage"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button></div>'+
+    '<p class="eyebrow">'+esc(T2.eyebrow)+'</p>'+
+    '<h1>FAQ</h1>'+
+    '<p class="lede">'+esc(T2.faqLede)+'</p>'+
+    qs.map(function(item,i){
+      var num=("0"+(i+1)).slice(-2);
+      var missing=!faqHasLang(item);
+      return '<section class="qa" id="'+esc(item.id)+'">'+
+        '<div class="num">'+num+'</div><div>'+
+        '<h2>'+esc(faqQOf(item))+' <a class="anchor" href="#/faq/'+esc(item.id)+'" aria-label="'+esc(T2.faqAnchor)+'">#</a></h2>'+
+        (missing?'<div class="xlate"><span>⚠</span><span>'+esc(XLATE[lang])+'</span></div>':'')+
+        '<div class="a">'+faqAnswerHTML(item)+'</div>'+
+        '</div></section>';
+    }).join("")+
+    '<p class="tail">'+esc(T2.faqTail)+' <a href="#/msg/">'+esc(T2.faqTailLink)+'</a></p>'+
+    '</div>';
+}
+
 function adminHTML(){
   var toneOpts=Object.keys(TONE).map(function(k){ return '<option value="'+k+'"'+(AS.tone===k?" selected":"")+'>'+k+'</option>'; }).join("");
   var fmtOpts=[["eu","Eurorack"],["desk","Standalone"],["tools","Other stuff (soon)"]].map(function(o){
@@ -1745,7 +1876,7 @@ function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#
    real on reload. Scrolling now happens here instead, after the hash is
    set, so there's nothing left for a stale href to win against. */
 function closeDetail(){
-  if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0){
+  if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0 || location.hash.indexOf("#/faq")===0){
     location.hash=S.who!=="all"?"#/s/"+S.who:"#/";
     var gt=el("grid-top"); if(gt) gt.scrollIntoView();
   }
@@ -1757,6 +1888,21 @@ function route(){
     document.body.classList.add("detail-open");
     document.title=t().wishH+" — eurorack.fi";
     window.scrollTo(0,0); return;
+  }
+  /* "#/faq" is the page; "#/faq/<id>" scrolls to one question. The second
+     segment has to be part of the route (not a separate "#id" browser
+     anchor) — a compound hash like "#/faq#can-i-join" isn't valid. So the
+     id on each <section> is the bare slug, used only as a scrollIntoView
+     target here; the browser's own native hash-jump never fires because
+     location.hash is never literally "#can-i-join". */
+  if(h.indexOf("#/faq")===0){
+    var fid = h.indexOf("#/faq/")===0 ? h.slice(6) : null;
+    el("detail").innerHTML=faqHTML();
+    document.body.classList.add("detail-open");
+    document.title="FAQ — eurorack.fi";
+    var ftarget = fid && el(fid);
+    if(ftarget) ftarget.scrollIntoView(); else window.scrollTo(0,0);
+    return;
   }
   if(h.indexOf("#/admin")===0){
     el("detail").innerHTML=adminHTML();
@@ -2024,7 +2170,7 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
    content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-Promise.all([loadItems(), loadSellers()]).then(function(r){
+Promise.all([loadItems(), loadSellers(), loadFaq()]).then(function(r){
   /* hidden items stay in content/items/ (data, photos, history all kept
      for a possible relist) but must not exist for the site at all —
      filtering here, before anything else touches ITEMS, means every
@@ -2037,6 +2183,7 @@ Promise.all([loadItems(), loadSellers()]).then(function(r){
   SELLERS.forEach(function(p,i){ if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length]; p.wants=normalizeWants(p.wants); });
   WANTS={}; SELLER_BY_KEY={};
   SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
+  FAQ=(r[2]&&r[2].questions)?r[2]:{questions:[]};
   renderAll();
   route();
 }).catch(function(err){
