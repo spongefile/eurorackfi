@@ -84,8 +84,11 @@ body{margin:0;background:var(--bg);color:var(--ink);
   padding:0 .7rem;border:none;cursor:pointer;text-align:left;
   background:var(--accent-soft);color:var(--accent-hi);
   /* border only in the collapsed state: a border draws even at height:0,
-     leaving a 1px accent line above the open panel. */
-  border-bottom:0 solid var(--accent);
+     leaving a 1px line above the open panel.
+     Neutral by default — colour on this edge MEANS "an owner is filtered",
+     so it must not be spent on the resting state. The bar's own identity as
+     a control comes from the --accent-soft fill, which never changes. */
+  border-bottom:0 solid var(--line2);
   font-family:"IBM Plex Mono",monospace;font-size:.78rem;
   transition:height .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .collbar{height:44px;border-bottom-width:1px}
@@ -255,9 +258,9 @@ body{margin:0;background:var(--bg);color:var(--ink);
     /* No new copy needed: with nothing selected this falls back to the
        existing "everything" chip label, already translated. */
     /* the leading dot always matches the bottom line: an owner's colour when
-       one is chosen, --accent when not. */
+       one is chosen, neutral when not. Colour is reserved for meaning. */
     var ownerOn=wrap.querySelector('[data-axis="owner"] [aria-pressed="true"]:not([data-all])');
-    var col=ownerOn?getComputedStyle(ownerOn.querySelector(".odot")).backgroundColor:"var(--accent)";
+    var col=ownerOn?getComputedStyle(ownerOn.querySelector(".odot")).backgroundColor:"var(--muted)";
     var dot='<i class="sdot" style="background:'+col+'"></i>';
     if(ownerOn){ collbar.setAttribute("data-owner",""); collbar.style.borderBottomColor=col; }
     else { collbar.removeAttribute("data-owner"); collbar.style.borderBottomColor=""; }
