@@ -138,12 +138,6 @@ body{margin:0; background:var(--bg); color:var(--ink)}
   background-image:radial-gradient(circle at 5px 4px, var(--rail-ink) 0 1.6px, transparent 1.7px);
   background-size:25.4px 100%;}
 
-/* ---------- notice ---------- */
-.notice{background:var(--signal-soft); color:var(--signal); font-family:"IBM Plex Mono",monospace;
-  font-size:.72rem; letter-spacing:.03em; padding:.5rem 0}
-.notice .wrap{display:flex; gap:.55rem; flex-wrap:wrap}
-.notice b{color:var(--ink)}
-
 /* ---------- header ---------- */
 header.site{padding:1rem 0; background:var(--bg)}
 header.site .wrap{display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap}
@@ -777,7 +771,6 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
 .acopybar{display:flex; gap:.6rem; margin-top:.7rem}
 </style>
 
-<div class="notice"><div class="wrap"><b>MOCKUP</b><span id="noticeA"></span><span id="noticeB"></span></div></div>
 <div class="rail"></div>
 
 <header class="site"><div class="wrap">
@@ -883,8 +876,7 @@ var T = {
     buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
-    noticeA:"Moduulit, hinnat ja tiedot ovat oikeita.",
-    noticeB:"Sampon toivelista puuttuu vielä.", negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
+    negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
@@ -910,8 +902,7 @@ var T = {
     buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
-    noticeA:"Moduler, priser och specar är riktiga.",
-    noticeB:"Sampos önskelista saknas ännu.", negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
+    negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
@@ -937,8 +928,7 @@ var T = {
     buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
-    noticeA:"Modules, prices and specs are real.",
-    noticeB:"Sampo\u2019s wish list is still a placeholder.", negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
+    negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
@@ -1034,7 +1024,7 @@ function loadFaq(){
 }
 
 /* content/ui.json holds the CMS-editable site copy — prose only: hero,
-   notices, footer, empty states, FAQ lede/tail. Shape is per-key
+   footer, empty states, FAQ lede/tail. Shape is per-key
    {en,fi,sv}, same idiom as faq.json's q/a. The bundled T object below
    stays the source of truth for STRUCTURE and the fallback for every
    value: first paint renders from T without waiting on any fetch, and
@@ -1291,8 +1281,6 @@ var shown=function(){ return sortList(ITEMS.filter(matches)); };
 /* ---------- chrome ---------- */
 function renderChrome(){
   var T2=t();
-  el("noticeA").textContent=T2.noticeA;
-  el("noticeB").textContent=T2.noticeB;
   var anchors=["#grid-top","#/wish","#/faq","#/msg/"];
   /* "#grid-top" needs return false: closeDetail() computes the real
      destination (#/s/<seller> or #/), and #grid-top — a plain same-page

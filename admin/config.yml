@@ -231,20 +231,6 @@ collections:
               - { label: "English", name: "en", widget: "string", required: false }
               - { label: "Finnish", name: "fi", widget: "string", required: false }
               - { label: "Swedish", name: "sv", widget: "string", required: false }
-          - label: "Top notice, first sentence"
-            name: "noticeA"
-            widget: "object"
-            fields:
-              - { label: "English", name: "en", widget: "string", required: false }
-              - { label: "Finnish", name: "fi", widget: "string", required: false }
-              - { label: "Swedish", name: "sv", widget: "string", required: false }
-          - label: "Top notice, second sentence"
-            name: "noticeB"
-            widget: "object"
-            fields:
-              - { label: "English", name: "en", widget: "string", required: false }
-              - { label: "Finnish", name: "fi", widget: "string", required: false }
-              - { label: "Swedish", name: "sv", widget: "string", required: false }
           - label: "Rack caption, left"
             name: "scale"
             widget: "object"

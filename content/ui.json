@@ -24,16 +24,6 @@
     "fi": "Pari helsinkiläistä myy pois tavaraa, josta ollaan luopumassa. Enimmäkseen eurorackia, joskus muutakin. Vaihtokaupatkin käyvät!",
     "sv": "Några av oss i Helsingfors säljer det vi inte behöver. Mest eurorack, ibland annat. Byten går bra!"
   },
-  "noticeA": {
-    "en": "Modules, prices and specs are real.",
-    "fi": "Moduulit, hinnat ja tiedot ovat oikeita.",
-    "sv": "Moduler, priser och specar är riktiga."
-  },
-  "noticeB": {
-    "en": "Sampo’s wish list is still a placeholder.",
-    "fi": "Sampon toivelista puuttuu vielä.",
-    "sv": "Sampos önskelista saknas ännu."
-  },
   "scale": {
     "en": "Drawn to scale",
     "fi": "Mittakaavassa",
