@@ -57,5 +57,6 @@
       }
     ],
     "power": "Make Noise bus board — +12V 1400mA · −12V 1000mA · +5V 250mA"
-  }
+  },
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite416-interior.jpg"
 }
