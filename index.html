@@ -242,27 +242,37 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-/* visibility is paired with a transition-delay so each side of the fold
-   stays genuinely inert (no tab-focus or screen-reader exposure) once
-   it's fully hidden, not just visually clipped by max-height:0 — the
-   delay is 0 going visible, and matches the shrink duration going hidden
-   so it stays interactive for the full closing animation. Collapsible at
-   every width now, not just mobile — same tappable "Filters" row throughout. */
-.collbar{width:100%; min-height:44px; display:flex; align-items:center; gap:.5rem;
-  max-height:0; overflow:hidden; opacity:0; visibility:hidden;
-  background:var(--panel); border:1px solid var(--line2); box-shadow:var(--shadow);
-  font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink); text-align:left; cursor:pointer; padding:0 .7rem;
-  transition:max-height .2s ease, opacity .15s ease, visibility 0s linear .2s}
-.collbar svg{width:15px; height:15px; flex:0 0 auto; color:var(--accent)}
-.collbar .collcount{margin-left:auto; color:var(--muted)}
-.controls.collapsed{padding:.55rem 0}
-.controls .wrap{max-height:300px; overflow:hidden; opacity:1; visibility:visible;
-  transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear 0s}
-.controls.collapsed .wrap{max-height:0; opacity:0; padding-top:0; padding-bottom:0; visibility:hidden;
-  transition:max-height .2s ease, opacity .15s ease, padding .2s ease, visibility 0s linear .2s}
-.controls.collapsed .collbar{max-height:44px; opacity:1; visibility:visible;
-  transition:max-height .2s ease, opacity .15s ease, visibility 0s linear 0s}
-@media (prefers-reduced-motion:reduce){ .collbar,.controls .wrap{transition:none} }
+/* Height animates from a MEASURED pixel value (JS, scrollHeight), never
+   max-height — a max-height bigger than the real content leaves dead
+   travel at the start of the transition, then a snap when it runs out.
+   No min-height on .collbar and no opacity transition anywhere: the
+   previous version paired min-height:44px with max-height:0, and
+   min-height won, so the bar was permanently 44px and only opacity ever
+   changed — nothing animated height at all, which read as appear/
+   disappear rather than a fold. Opacity finishing before height did
+   doubled that effect. One easing, one duration, both directions.
+   Collapsible at every width, not just mobile — same tappable summary
+   row throughout. */
+.collbar{width:100%; height:0; overflow:hidden; display:flex; align-items:center; gap:.5rem;
+  background:var(--accent-soft); color:var(--accent-hi); border:none;
+  /* border only in the collapsed state — it draws even at height:0, so
+     left unconditional it leaves a 1px accent line above the open panel */
+  border-bottom:0 solid var(--accent);
+  font-family:"IBM Plex Mono",monospace; font-size:.78rem; text-align:left; cursor:pointer; padding:0 .7rem;
+  transition:height .26s cubic-bezier(.4,0,.2,1)}
+.controls.collapsed .collbar{height:44px; border-bottom-width:1px}
+.collbar .chev{width:14px; height:14px; flex:0 0 auto; color:var(--accent);
+  transition:transform .26s cubic-bezier(.4,0,.2,1)}
+.controls.collapsed .chev{transform:rotate(180deg)}
+.collbar #collbarlabel{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+.collbar #collbarlabel b{font-weight:600}
+.collbar .collcount{margin-left:auto; padding-left:.6rem; flex:0 0 auto; color:var(--accent)}
+/* overflow clamped only while folding or collapsed — held permanently
+   hidden, this clips the owner wishlist popover, which opens downward
+   inside these rows (.crow .wishpop). */
+#collwrap{transition:height .26s cubic-bezier(.4,0,.2,1)}
+#collwrap.folding, .controls.collapsed #collwrap{overflow:hidden}
+@media (prefers-reduced-motion:reduce){ .collbar,.collbar .chev,#collwrap{transition:none} }
 /* Two tiers, deliberately unequal — design's redesign, replacing what
    used to be one flat wall of identical chips where search, format, owner
    and subcategory all read as the same kind of control. Filter axes claim
@@ -714,12 +724,12 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
   </div></section>
 
   <section class="controls" id="grid-top">
-    <button class="collbar" id="collbar" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+    <button class="collbar" id="collbar" type="button" aria-expanded="true" aria-controls="collwrap">
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
       <span id="collbarlabel"></span>
       <span class="collcount" id="collcount"></span>
     </button>
-    <div class="wrap">
+    <div class="wrap" id="collwrap">
       <div class="ctop">
         <div class="cfilters">
           <div class="crow">
@@ -1122,7 +1132,6 @@ function renderChrome(){
   el("scaleCap").textContent=T2.scale;
   el("hoverCap").textContent=T2.hover;
   el("q").placeholder=T2.search;
-  el("collbarlabel").textContent=T2.filtersLabel;
   el("fmtLabelEl").textContent=T2.fmtLabel;
   el("shelfLabelEl").textContent=T2.shelfLabel;
   el("typeLabelEl").textContent=T2.typeLabel;
@@ -1218,6 +1227,16 @@ function renderFilters(){
     var cls=(k==="all"?"ico ic-all":"")+(faint?" faint":"");
     return '<button class="subchip'+(cls?" "+cls.trim():"")+'" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'">'+
       esc(T2.cat[k]||k)+'<span class="c">'+(faint?"–":n)+'</span></button>'; }).join("");
+  /* collapsed-bar summary — built from filter STATE (S), not scraped from
+     the chip DOM, so it stays correct regardless of how the chips
+     themselves render. No new copy: composed from the same translated
+     chip labels used above, falling back to the "everything" format
+     label when nothing is selected. */
+  var sumParts=[];
+  if(S.fmt!=="all") sumParts.push("<b>"+esc(T2.fmt[S.fmt])+"</b>");
+  if(S.who!=="all"){ var swp=SELLER_BY_KEY[S.who]; if(swp) sumParts.push("<b>"+esc(swp.name)+"</b>"); }
+  if(S.cat!=="all") sumParts.push("<b>"+esc(T2.cat[S.cat]||S.cat)+"</b>");
+  el("collbarlabel").innerHTML = sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all);
 }
 
 /* ---------- wish band ---------- */
@@ -1819,25 +1838,74 @@ var rz; window.addEventListener("resize",function(){
     }
   },150); });
 
-/* fold the filter bar down to a compact tappable "Filters" row once the
-   user scrolls past it, so it stops eating grid space — every width now,
-   not just mobile. Deliberately one-way — no scroll-up auto-reveal — it
-   only unfolds on tap, per the user's explicit ask (originally matched
-   design's Mobile.dc.html .m-controls; now applied everywhere). */
+/* fold the filter bar into a compact tappable summary row once the user
+   scrolls past it, so it stops eating grid space — every width, not just
+   mobile. Deliberately one-way — no scroll-up auto-reveal — it only
+   unfolds on tap, per the user's explicit ask (originally matched
+   design's Mobile.dc.html .m-controls; now applied everywhere).
+   Height animates from a measured pixel value (see the CSS above for
+   why max-height can't do this), and inert — not visibility — keeps the
+   hidden side out of the tab order: visibility needs a delay to stay
+   interactive through the transition, which doesn't work when the panel
+   has to stay visible for the whole fold. inert has no such requirement,
+   so it's applied synchronously the moment the state changes. */
 (function(){
-  var bar=el("grid-top"), lastY=window.scrollY, ticking=false, suppressUntil=0;
+  var controls=el("grid-top"), wrap=el("collwrap"), bar=el("collbar");
+  var DUR=260, foldTimer=null, lastY=window.scrollY, ticking=false, suppressUntil=0;
+
+  function collapsed(){ return controls.classList.contains("collapsed"); }
+
+  function syncInert(){
+    var c=collapsed();
+    wrap.toggleAttribute("inert", c);
+    bar.toggleAttribute("inert", !c);
+    bar.setAttribute("aria-expanded", c?"false":"true");
+  }
+
+  /* back to height:auto once settled, so the panel reflows freely on
+     resize, language switch, or chips rewrapping — a stale pixel height
+     left behind would clip it. */
+  function settle(clearHeight){
+    clearTimeout(foldTimer);
+    foldTimer=setTimeout(function(){
+      wrap.classList.remove("folding");
+      if(clearHeight) wrap.style.height="";
+    }, DUR+40);
+  }
+
+  function collapse(){
+    if(collapsed()) return;
+    wrap.classList.add("folding");
+    wrap.style.height=wrap.scrollHeight+"px";
+    void wrap.offsetHeight;
+    controls.classList.add("collapsed");
+    wrap.style.height="0px";
+    syncInert(); settle(false);
+  }
+  function expand(){
+    if(!collapsed()) return;
+    wrap.classList.add("folding");
+    controls.classList.remove("collapsed");
+    var target=wrap.scrollHeight;
+    wrap.style.height="0px";
+    void wrap.offsetHeight;
+    wrap.style.height=target+"px";
+    syncInert(); settle(true);
+  }
+
   function onScroll(){
     ticking=false;
     var y=window.scrollY, goingDown=y>lastY;
     lastY=y;
     if(Date.now()<suppressUntil) return; /* see click handler below */
-    if(!bar.classList.contains("collapsed") && goingDown && y>90){ bar.classList.add("collapsed"); }
+    if(!collapsed() && goingDown && y>90) collapse();
   }
   window.addEventListener("scroll",function(){
     if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
   },{passive:true});
-  el("collbar").addEventListener("click",function(){
-    bar.classList.remove("collapsed");
+
+  bar.addEventListener("click",function(){
+    expand();
     lastY=window.scrollY;
     /* a real finger-scroll on a touchscreen keeps drifting for a bit after
        lift-off (momentum/inertia) — tapping to expand mid-drift still reads
@@ -1846,6 +1914,14 @@ var rz; window.addEventListener("resize",function(){
        Ignore auto-collapse for a short window so the tap actually sticks. */
     suppressUntil=Date.now()+600;
   });
+
+  /* a resize mid-fold would animate toward a height measured at the old
+     width; drop to auto and let it re-measure the next time it folds. */
+  window.addEventListener("resize",function(){
+    if(!collapsed()){ wrap.classList.remove("folding"); wrap.style.height=""; }
+  });
+
+  syncInert();
 })();
 
 /* ---------- init ---------- */
