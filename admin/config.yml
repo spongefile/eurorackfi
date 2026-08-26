@@ -141,3 +141,31 @@ collections:
             widget: "object"
             fields:
               - { label: "Text", name: "text", widget: "string", hint: "e.g. \"quad VCA\" or \"drum module\"." }
+
+  - name: "faq"
+    label: "FAQ"
+    files:
+      - name: "faq"
+        label: "FAQ"
+        file: "content/faq.json"
+        fields:
+          - label: "Questions"
+            name: "questions"
+            widget: "list"
+            hint: "Order is editorial, not chronological or alphabetical — it runs stranger to participant (what is this → why not Tori/Reverb/eBay → who are you → can I list here too). Drag entries by the handle to set that order; the page reads them top to bottom in the same order."
+            fields:
+              - { label: "Slug", name: "id", widget: "string", hint: "Short, lowercase, hyphenated — e.g. what-is-this, can-i-join. Becomes the page anchor other pages and messages link to directly. Keep it stable once set, even if the question's wording changes later — it's an address, not a title." }
+              - label: "Question"
+                name: "q"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "Finnish", name: "fi", widget: "string", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead." }
+                  - { label: "Swedish", name: "sv", widget: "string", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead." }
+              - label: "Answer"
+                name: "a"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "text", hint: "Plain text, no markdown — no headings, lists or bold. Leave a blank line between paragraphs; the page splits on it. A bare URL (https://...) becomes a link automatically." }
+                  - { label: "Finnish", name: "fi", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead. Same plain-text, blank-line-paragraph rule as English." }
+                  - { label: "Swedish", name: "sv", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead. Same plain-text, blank-line-paragraph rule as English." }
