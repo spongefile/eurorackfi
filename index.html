@@ -425,6 +425,10 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
   text-align:center; line-height:1.4}
 .wishtile.placeholder{border-style:dashed; border-color:var(--line2); background:transparent; min-height:170px}
+/* .wl normally sits below a faceplate/photo (.wf), so its margin-top
+   assumes something is above it — a placeholder tile has no .wf, and
+   that margin would just push the lone label off-center in the box */
+.wishtile.placeholder .wl{margin-top:0}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 
 /* ---------- FAQ page ---------- */
@@ -1762,7 +1766,14 @@ function wishImgFail(img,data){
   img.outerHTML=panelHTML(w,WISH_TILE_H);
 }
 function wishTileHTML(w){
-  if(typeof w==="string") return '<div class="wishtile placeholder" aria-hidden="true"></div>';
+  /* a placeholder want is free text (admin: "Just a note") — must render
+     it, not just draw an empty dashed box. A seller typing a real want in
+     there and seeing nothing back is indistinguishable from "my edit
+     didn't save", which is exactly the wrong impression to give someone
+     new to the admin (this silently ate three of Sampo's real edits
+     before it was caught). aria-hidden dropped for the same reason: the
+     tile can carry real content now. */
+  if(typeof w==="string") return '<div class="wishtile placeholder"><div class="wl">'+esc(w)+'</div></div>';
   var ww=w.hp>0?Math.round(w.hp*5.08*(WISH_TILE_H/128.5)):Math.round(WISH_TILE_H*1.55);
   var wf=w.img
     ? '<img src="'+esc(w.img)+'" alt="'+esc(w.mfr+" "+w.name)+'" loading="lazy" '+
