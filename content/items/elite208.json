@@ -1,0 +1,62 @@
+{
+  "id": "elite208",
+  "mfr": "Elite Modular",
+  "name": "Elite 208 Case",
+  "price": 400,
+  "hp": 104,
+  "fmt": "eu",
+  "who": "spongefile",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Case"
+  ],
+  "mgSlug": "",
+  "site": "elitemodular.com",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "6U / 104HP portable case, two rows, Baltic birch under a black ballistic coating, airline carry-on sized. Removable lid with 2\" of clearance, so it closes over a full patch. One Make Noise bus board: 1.4A on +12V, 1A on −12V, 250mA on +5V, across twenty power headers — less than the Low-Gain board these normally ship with, so check your power budget.",
+    "fi": "6U / 104HP:n kannettava kotelo, kaksi riviä, koivuvaneria mustan ballistisen pinnoitteen alla, lentokoneen käsimatkatavarakokoa. Irrotettava kansi, jonka alle jää 5 cm tilaa, joten se sulkeutuu valmiin patchin päälle. Yksi Make Noise -virtakisko: 1,4A +12V:llä, 1A −12V:llä, 250mA +5V:llä, kahdessakymmenessä virtaliittimessä — vähemmän kuin näissä yleensä oleva Low-Gain-kisko, joten tarkista virrankulutus.",
+    "sv": "6U / 104HP bärbar låda, två rader, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. Avtagbart lock med 5 cm fritt utrymme, så den går att stänga över en färdig patch. En Make Noise-strömskena: 1,4A på +12V, 1A på −12V, 250mA på +5V, fördelat på tjugo strömkontakter — mindre än Low-Gain-skenan dessa brukar ha, så kontrollera strömbudgeten."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite208-exterior.jpg",
+  "negotiating": false,
+  "extra": {
+    "reviews": [
+      {
+        "src": "Perfect Circuit",
+        "title": "Elite 208 Eurorack Case — 6U / 104HP, the manufacturer spec",
+        "url": "https://www.perfectcircuit.com/elite-elite-208-case-6u-104hp.html"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "elite modular case / rugged / flight — the thread",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=127254"
+      }
+    ],
+    "pull": {
+      "q": "The Elite Modular 208 is the original in heavy-duty Eurorack cases.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/elite-elite-208-case-6u-104hp.html"
+    },
+    "quotes": [
+      {
+        "t": "A no-nonsense design featuring a ballistic super rugged coating over Baltic Birch makes this a lightweight, but shockingly sturdy travel companion.",
+        "s": "Perfect Circuit"
+      },
+      {
+        "t": "A detachable lid providing 2\" of clearance that allow it to be closed with a full patch.",
+        "s": "Perfect Circuit"
+      }
+    ],
+    "power": "Make Noise bus board — +12V 1400mA · −12V 1000mA · +5V 250mA (stock board is 2.5A / 1.5A / 1A)"
+  },
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite208-interior.jpg"
+}
