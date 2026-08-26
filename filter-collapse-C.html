@@ -89,11 +89,18 @@ body{margin:0;background:var(--bg);color:var(--ink);
   font-family:"IBM Plex Mono",monospace;font-size:.78rem;
   transition:height .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .collbar{height:44px;border-bottom-width:1px}
+/* An active owner thickens the line to 3px, matching the wishcard's
+   border-left:3px, and both the line and the summary's leading dot take that
+   owner's colour. No layout shift: box-sizing is border-box and the height is
+   fixed at 44px, so the border grows inward. */
+.controls.collapsed .collbar[data-owner]{border-bottom-width:3px}
 .collbar .chev{width:14px;height:14px;flex:0 0 auto;color:var(--accent);
   transition:transform .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .chev{transform:rotate(180deg)}
 .collbar .summary{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .collbar .summary b{font-weight:600}
+.collbar .summary .sdot{width:8px;height:8px;border-radius:50%;display:inline-block;
+  margin-right:.45rem;vertical-align:baseline}
 .collbar .collcount{margin-left:auto;padding-left:.6rem;flex:0 0 auto;color:var(--accent)}
 
 /* Height animates from a MEASURED pixel value, never max-height. overflow
@@ -247,8 +254,15 @@ body{margin:0;background:var(--bg);color:var(--ink);
     });
     /* No new copy needed: with nothing selected this falls back to the
        existing "everything" chip label, already translated. */
-    sumEl.innerHTML = parts.length ? parts.join(" · ")
-      : wrap.querySelector('[data-axis="fmt"] [data-all]').textContent.trim();
+    /* the leading dot always matches the bottom line: an owner's colour when
+       one is chosen, --accent when not. */
+    var ownerOn=wrap.querySelector('[data-axis="owner"] [aria-pressed="true"]:not([data-all])');
+    var col=ownerOn?getComputedStyle(ownerOn.querySelector(".odot")).backgroundColor:"var(--accent)";
+    var dot='<i class="sdot" style="background:'+col+'"></i>';
+    if(ownerOn){ collbar.setAttribute("data-owner",""); collbar.style.borderBottomColor=col; }
+    else { collbar.removeAttribute("data-owner"); collbar.style.borderBottomColor=""; }
+    sumEl.innerHTML = dot + (parts.length ? parts.join(" · ")
+      : wrap.querySelector('[data-axis="fmt"] [data-all]').textContent.trim());
     cntEl.textContent = 24;
   }
 
