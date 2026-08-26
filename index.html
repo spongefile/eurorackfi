@@ -144,6 +144,13 @@ header.site .wrap{display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap}
 .brand .dot{color:var(--accent)}
 nav.top{display:flex; gap:1.3rem; align-items:center; flex-wrap:wrap}
 nav.top a{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink2); border-bottom:1px solid transparent; padding-bottom:2px}
+/* weight is free here specifically because this row is IBM Plex Mono — a
+   monospace face has the same advance width at every weight, so bolding
+   the current item causes zero reflow (measured: 293px nav width in every
+   language, at every item, no delta). That is NOT true anywhere else on
+   this site set in Archivo or Newsreader; this rule leans on a property
+   only this row has. */
+nav.top a[aria-current="page"]{color:var(--accent); font-weight:600}
 nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .hgroup{margin-left:auto; display:flex; gap:.5rem; align-items:center}
 .seg{display:flex; border:1px solid var(--line2)}
@@ -1886,8 +1893,30 @@ function closeDetail(){
     var gt=el("grid-top"); if(gt) gt.scrollIntoView();
   }
 }
+/* Marks the current SECTION in the nav, not the exact hash — a module
+   page (#/m/<id>) and a seller-filtered grid (#/s/<seller>) are both
+   still "Everything" (no page of their own, per the seller-URL
+   contract), and the module page's own breadcrumb already says
+   "back to Everything", so leaving the nav unmarked there would
+   contradict it. #/admin marks nothing: it isn't one of the four nav
+   destinations. Order matches the anchors/T2.nav arrays in
+   renderChrome() (grid-top, wish, faq, msg) index-for-index — rebuilt
+   fresh by renderChrome() on every language switch, so this must be
+   re-applied every route() call rather than set once. */
+function syncNavCurrent(h){
+  var sec = h.indexOf("#/wish")===0 ? 1
+    : h.indexOf("#/faq")===0 ? 2
+    : h.indexOf("#/msg/")===0 ? 3
+    : h.indexOf("#/admin")===0 ? -1
+    : 0;
+  Array.prototype.forEach.call(el("nav").querySelectorAll("a"),function(a,i){
+    if(i===sec) a.setAttribute("aria-current","page");
+    else a.removeAttribute("aria-current");
+  });
+}
 function route(){
   var h=location.hash;
+  syncNavCurrent(h);
   if(h.indexOf("#/wish")===0){
     el("detail").innerHTML=wishHTML();
     document.body.classList.add("detail-open");
