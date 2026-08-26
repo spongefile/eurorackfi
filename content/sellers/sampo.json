@@ -6,6 +6,21 @@
     {
       "type": "placeholder",
       "text": "Noise Engineering - Versio (any Versio)"
+    },
+    {
+      "type": "product",
+      "hp": 10,
+      "parts": {
+        "k": 0,
+        "j": 0,
+        "sl": 0,
+        "led": 0,
+        "sc": 0
+      },
+      "mfr": "Noise Engineering",
+      "name": "Versio",
+      "img": "https://noiseengineering.us/img/desmodus-versio-black-1024x2048_1676669133_lg.webp",
+      "tone": "black"
     }
   ]
 }
