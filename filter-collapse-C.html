@@ -106,13 +106,15 @@ body{margin:0;background:var(--bg);color:var(--ink);
   margin-right:.45rem;vertical-align:baseline}
 .collbar .collcount{margin-left:auto;padding-left:.6rem;flex:0 0 auto;color:var(--accent)}
 
-/* Collapsed, the collbar's own edge IS the bar's edge — so .controls must stop
-   drawing its border underneath it, or the two stack and a pale --line sits
-   directly below the coloured one. Colour, not width, is cleared: transparent
-   keeps the box the same height, where border-bottom:none would shift layout
-   by 1px on every collapse. A shadow replaces it, so the edge reads as lifted
-   above the grid rather than as a second, lighter rule. */
-.controls.collapsed{border-bottom-color:transparent; box-shadow:var(--shadow)}
+/* Collapsed, the collbar's own edge IS the bar's edge, so .controls must stop
+   drawing its border underneath it — otherwise a pale rule sits directly below
+   the coloured one.
+   Clear the WIDTH, not the colour. A transparent border still occupies 1px,
+   and background-clip is border-box by default, so .controls' own --bg paints
+   underneath it and the pale strip survives in a new disguise. Removing the
+   width is the only thing that removes the strip. The 1px it costs is
+   irrelevant here: collapsing already changes this element's height by ~180px. */
+.controls.collapsed{border-bottom-width:0; box-shadow:var(--shadow)}
 
 /* Height animates from a MEASURED pixel value, never max-height. overflow
    is clamped only while folding or collapsed — a permanent overflow:hidden
