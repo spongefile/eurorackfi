@@ -22,9 +22,9 @@
     "sc": 0
   },
   "blurb": {
-    "en": "12U / 104HP portable case, Baltic birch under a black ballistic coating, airline carry-on sized. Two power bus boards included, roughly 2.5A on +12V.",
-    "fi": "12U / 104HP:n kannettava kotelo, koivuvaneria mustan ballistisen pinnoitteen alla, lentokoneen käsimatkatavarakokoa. Mukana kaksi virtakiskoa, noin 2,5A +12V-kiskolla.",
-    "sv": "12U / 104HP bärbar låda, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. Två strömskenor ingår, ungefär 2,5A på +12V."
+    "en": "12U / 104HP portable case, Baltic birch under a black ballistic coating, airline carry-on sized. One Make Noise bus board: 1.4A on +12V, 1A on −12V, 250mA on +5V, across twenty power headers.",
+    "fi": "12U / 104HP:n kannettava kotelo, koivuvaneria mustan ballistisen pinnoitteen alla, lentokoneen käsimatkatavarakokoa. Yksi Make Noise -virtakisko: 1,4A +12V:llä, 1A −12V:llä, 250mA +5V:llä, kahdessakymmenessä virtaliittimessä.",
+    "sv": "12U / 104HP bärbar låda, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. En Make Noise-strömskena: 1,4A på +12V, 1A på −12V, 250mA på +5V, fördelat på tjugo strömkontakter."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/elite416-exterior.jpg",
   "negotiating": false,
@@ -55,6 +55,7 @@
         "t": "The inside clearance of the clamshell design is over 2\", allowing for a full patch on each system to be closed inside the case.",
         "s": "Perfect Circuit"
       }
-    ]
+    ],
+    "power": "Make Noise bus board — +12V 1400mA · −12V 1000mA · +5V 250mA"
   }
 }
