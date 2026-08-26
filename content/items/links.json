@@ -5,7 +5,7 @@
   "price": 80,
   "hp": 4,
   "fmt": "eu",
-  "who": "t",
+  "who": "spongefile",
   "cat": "Output",
   "cats": [
     "Utility",
