@@ -21,6 +21,10 @@
       "name": "Versio",
       "img": "https://noiseengineering.us/img/desmodus-versio-black-1024x2048_1676669133_lg.webp",
       "tone": "black"
+    },
+    {
+      "type": "placeholder",
+      "text": "Noise Engineering - Versio (any versio model)"
     }
   ]
 }
