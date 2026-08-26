@@ -106,6 +106,14 @@ body{margin:0;background:var(--bg);color:var(--ink);
   margin-right:.45rem;vertical-align:baseline}
 .collbar .collcount{margin-left:auto;padding-left:.6rem;flex:0 0 auto;color:var(--accent)}
 
+/* Collapsed, the collbar's own edge IS the bar's edge — so .controls must stop
+   drawing its border underneath it, or the two stack and a pale --line sits
+   directly below the coloured one. Colour, not width, is cleared: transparent
+   keeps the box the same height, where border-bottom:none would shift layout
+   by 1px on every collapse. A shadow replaces it, so the edge reads as lifted
+   above the grid rather than as a second, lighter rule. */
+.controls.collapsed{border-bottom-color:transparent; box-shadow:var(--shadow)}
+
 /* Height animates from a MEASURED pixel value, never max-height. overflow
    is clamped only while folding or collapsed — a permanent overflow:hidden
    here clips the owner wishlist popover, which opens downward inside these
