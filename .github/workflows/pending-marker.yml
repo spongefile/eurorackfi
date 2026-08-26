@@ -1,0 +1,129 @@
+name: Update pending-research marker
+
+# Secretary runs a separate hourly research poll (not part of this repo)
+# that picks up unfinished items/wants, researches them, self-hosts
+# images, writes trilingual blurbs, and pushes. Rather than have that
+# poll heuristically rescan every content file on every run, this
+# workflow keeps a small marker (content/_pending.json) listing what
+# still looks like a stub, recomputed on every content push instead.
+#
+# Same two constraints as content-manifest.yml, for the same reasons:
+# the marker lives OUTSIDE content/items/ and content/sellers/ (Decap's
+# folder collections scan every .json file in a collection's own folder,
+# so a marker placed inside would show up in admin as a broken listing),
+# and the workflow excludes its own output from the trigger paths and
+# tags its own commit [skip ci] — without both, its own commit would
+# retrigger it indefinitely.
+#
+# This workflow only DETECTS stubs — it never fills anything in. Prices,
+# specs and copy stay a human (or secretary's researched, verified pass)
+# decision; a workflow silently populating listing fields is how wrong
+# specs end up published under someone's name.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/items/**.json'
+      - 'content/sellers/**.json'
+      - '!content/_pending.json'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  pending:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute pending markers
+        run: |
+          python3 - <<'PY'
+          import json, glob, os
+
+          # The four seed dummy strings every seller's wishlist used to
+          # ship with before anyone typed a real want - unfilled example
+          # text, not something waiting on research, so they don't count
+          # as a stub on their own.
+          DUMMY_TEXT = {
+              "[e.g. quad VCA]",
+              "[e.g. drum module]",
+              "[e.g. utilities]",
+              "[+ add more]",
+          }
+
+          def is_stub_item(m):
+              if not (m.get("mfr") or "").strip():
+                  return True
+              if not (m.get("img") or "").strip():
+                  return True
+              blurb = m.get("blurb") or {}
+              for k in ("en", "fi", "sv"):
+                  if not (blurb.get(k) or "").strip():
+                      return True
+              reviews = ((m.get("extra") or {}).get("reviews")) or []
+              if not reviews:
+                  return True
+              return False
+
+          def want_reason(w):
+              if not isinstance(w, dict):
+                  return None
+              t = w.get("type")
+              if t == "placeholder":
+                  text = (w.get("text") or "").strip()
+                  if text and text not in DUMMY_TEXT:
+                      return "placeholder-text"
+                  return None
+              if t == "product":
+                  img = w.get("img") or ""
+                  if "raw.githubusercontent.com" not in img:
+                      return "hotlinked-image"
+                  parts = w.get("parts") or {}
+                  if all((parts.get(k) or 0) == 0 for k in ("k", "j", "sl", "led", "sc")):
+                      return "zero-parts"
+                  return None
+              return None
+
+          items = []
+          for path in sorted(glob.glob("content/items/*.json")):
+              try:
+                  with open(path, encoding="utf-8") as f:
+                      m = json.load(f)
+              except Exception:
+                  continue
+              if is_stub_item(m):
+                  items.append(m.get("id") or os.path.splitext(os.path.basename(path))[0])
+
+          wants = []
+          for path in sorted(glob.glob("content/sellers/*.json")):
+              try:
+                  with open(path, encoding="utf-8") as f:
+                      s = json.load(f)
+              except Exception:
+                  continue
+              key = s.get("key") or os.path.splitext(os.path.basename(path))[0]
+              for i, w in enumerate(s.get("wants") or []):
+                  reason = want_reason(w)
+                  if not reason:
+                      continue
+                  if w.get("type") == "placeholder":
+                      label = w.get("text") or ""
+                  else:
+                      label = (str(w.get("mfr", "")) + " " + str(w.get("name", ""))).strip()
+                  wants.append({"seller": key, "index": i, "label": label, "reason": reason})
+
+          out = {"items": sorted(items), "wants": wants}
+          with open("content/_pending.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, indent=2, ensure_ascii=False)
+              f.write("\n")
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/_pending.json
+          git diff --cached --quiet || git commit -m "Update pending-research marker [skip ci]"
+          git push
