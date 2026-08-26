@@ -265,6 +265,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   transition:transform .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .chev{transform:rotate(180deg)}
 .collbar #collbarlabel{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+.collbar #collbarlabel .odot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:.4rem; vertical-align:-1px}
 .collbar #collbarlabel b{font-weight:600}
 .collbar .collcount{margin-left:auto; padding-left:.6rem; flex:0 0 auto; color:var(--accent)}
 /* overflow clamped only while folding or collapsed — held permanently
@@ -1232,11 +1233,18 @@ function renderFilters(){
      themselves render. No new copy: composed from the same translated
      chip labels used above, falling back to the "everything" format
      label when nothing is selected. */
-  var sumParts=[];
+  var sumParts=[], sellerFilter=S.who!=="all"?SELLER_BY_KEY[S.who]:null;
   if(S.fmt!=="all") sumParts.push("<b>"+esc(T2.fmt[S.fmt])+"</b>");
-  if(S.who!=="all"){ var swp=SELLER_BY_KEY[S.who]; if(swp) sumParts.push("<b>"+esc(swp.name)+"</b>"); }
+  if(sellerFilter) sumParts.push('<span class="odot" style="background:'+sellerFilter.dot+'"></span><b>'+esc(sellerFilter.name)+"</b>");
   if(S.cat!=="all") sumParts.push("<b>"+esc(T2.cat[S.cat]||S.cat)+"</b>");
   el("collbarlabel").innerHTML = sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all);
+  /* the bar's own accent identifies "this is a control"; an active owner
+     filter borrows that same edge to say which one, without touching the
+     fill — several sellers' dot colors fail AA against the bar's text at
+     the weight a fill would need, and Sampo's amber sits right next to
+     --signal, which this site reserves for caution. Colour identifies,
+     the ground stays constant. */
+  el("collbar").style.borderBottomColor = sellerFilter ? sellerFilter.dot : "";
 }
 
 /* ---------- wish band ---------- */
