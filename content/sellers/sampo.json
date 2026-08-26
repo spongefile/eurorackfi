@@ -3,9 +3,9 @@
   "name": "Sampo",
   "dot": "#C98A2E",
   "wants": [
-    {"type":"placeholder","text":"[e.g. quad VCA]"},
-    {"type":"placeholder","text":"[e.g. drum module]"},
-    {"type":"placeholder","text":"[e.g. utilities]"},
-    {"type":"placeholder","text":"[+ add more]"}
+    {
+      "type": "placeholder",
+      "text": "Noise Engineering - Versio (any Versio)"
+    }
   ]
 }
