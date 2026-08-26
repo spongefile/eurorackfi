@@ -244,12 +244,17 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 /* Collapsed, .collbar's own bottom edge IS the bar's edge (colored when an
    owner is filtered) — .controls' --line divider would draw a second,
-   paler rule 1px below it. Clear by COLOR not width/none: removing the
-   border instead of making it transparent would shrink .controls by 1px
-   and shift the grid underneath. A shadow instead reads as "lifted above
-   the grid" rather than as a second lighter rule. Expanded, the --line
-   divider is real (the panel/grid boundary) and stays. */
-.controls.collapsed{border-bottom-color:transparent; box-shadow:var(--shadow)}
+   paler rule 1px below it. Must clear by WIDTH, not colour: background-clip
+   defaults to border-box, so .controls' own --bg fill still paints under a
+   merely-transparent border — that swapped the strip from --line to --bg,
+   still a visible 1px line in the same spot. (background-clip:padding-box
+   was considered and rejected: it makes the 1px genuinely see-through, so
+   the grid flickers through it while scrolling under a sticky bar — worse
+   than the line.) Zeroing the width is safe here because collapsing already
+   changes this element's height by ~180px in the same transition; 1px on
+   top of that is not a perceptible shift. Expanded, the --line divider is
+   real (the panel/grid boundary) and stays. */
+.controls.collapsed{border-bottom-width:0; box-shadow:var(--shadow)}
 /* Height animates from a MEASURED pixel value (JS, scrollHeight), never
    max-height — a max-height bigger than the real content leaves dead
    travel at the start of the transition, then a snap when it runs out.
