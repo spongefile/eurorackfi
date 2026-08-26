@@ -6,6 +6,8 @@
     "led": 0,
     "sc": 4
   },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/belgrad.jpg",
   "mgSlug": "xaoc-devices-belgrad",
   "site": "xaocdevices.com",
   "hp": 14,
@@ -84,11 +86,9 @@
     "sv": "Helanalogt state variable-filter med två resonanstoppar som kan skjutas isär och balanseras mot varandra. Tio karaktärer, branthet från -6 till -24 dB per oktav, gränsfrekvens från 4 Hz till 28 kHz. Signalen går alltid genom båda kärnorna, så när topparna sprids ut får man formantvokaler och phaserliknande svep i stället för en vanlig kurva. Olinjär återkoppling och korsmodulering för det hårdare hållet, kalibrerad V/okt-ingång, och den självsvänger som ett par oscillatorer."
   },
   "id": "belgrad",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Filter"
   ],
-  "who": "spongefile",
-  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/belgrad.jpg",
-  "imgIsModularGrid": true
+  "who": "spongefile"
 }
