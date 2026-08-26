@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — filter bar, option C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+.wrapper{width:min(1100px,calc(100% - 3rem));margin-inline:auto}
+.hero{padding:2.2rem 0 1.6rem}
+.hero h1{font-size:2rem;letter-spacing:-.025em;margin:0 0 .4rem}
+.hero p{font-family:"Newsreader",Georgia,serif;color:var(--ink2);font-size:1.05rem;margin:0;max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:1.1rem;padding:1.4rem 0 5rem}
+.card{background:var(--panel);border:1px solid var(--line2);box-shadow:var(--shadow)}
+.card .ph{aspect-ratio:4/3;background:linear-gradient(160deg,var(--panel2),var(--bg2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--muted)}
+.card .cb{padding:.7rem .8rem}
+.card h3{font-size:.95rem;margin:0 0 .3rem;letter-spacing:-.01em}
+.card .pr{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:600}
+
+/* ---------------- filter bar ---------------- */
+.controls{position:sticky;top:0;z-index:30;background:var(--bg);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ctop{display:flex;gap:1.5rem;align-items:flex-start;padding:.7rem 0;flex-wrap:wrap}
+.cfilters{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:.7rem}
+.cfilters .chip{padding:.38rem .68rem}
+.cfind{flex:0 1 300px;display:flex;flex-direction:column;gap:.4rem;min-width:220px}
+.search{display:flex;align-items:center;gap:.55rem;background:var(--panel);
+  border:1px solid var(--line2);box-shadow:var(--shadow);padding:.55rem .8rem;flex:0 0 auto}
+.search .mag{width:15px;height:15px;flex:0 0 auto;color:var(--muted)}
+.search input{border:none;background:none;outline:none;font-family:"IBM Plex Mono",monospace;
+  font-size:.85rem;color:var(--ink);width:100%}
+.sortsel{font-family:"IBM Plex Mono",monospace;font-size:.78rem;padding:.5rem .6rem;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);width:100%}
+.crow{display:flex;gap:.75rem;align-items:baseline;flex-wrap:nowrap}
+.crow.b{padding:.7rem 0 .85rem;margin-top:.25rem;border-top:1px solid var(--line)}
+.clabel{font-family:"IBM Plex Mono",monospace;font-size:.6rem;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--muted);flex:0 0 64px;padding-top:.42rem}
+.chips{display:flex;gap:.35rem;flex-wrap:wrap;min-width:0}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:.72rem;padding:.32rem .6rem;
+  border:1px solid var(--line2);color:var(--ink2);background:var(--panel);white-space:nowrap;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on)}
+.chip.ico{display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .68rem}
+.chip.ico::before{content:"";width:15px;height:15px;flex:0 0 auto;background:var(--muted);
+  -webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.chip.ico[aria-pressed="true"]::before{background:var(--on)}
+.ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
+.ic-eu{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23000' stroke-width='11'/%3E%3Ccircle cx='50' cy='50' r='8.6' fill='%23000'/%3E%3C/svg%3E")}
+.chip.owner{display:inline-flex;align-items:center;gap:.45rem;position:relative}
+.chip .odot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.subchip{font-family:"IBM Plex Mono",monospace;font-size:.7rem;padding:.28rem .52rem;
+  border:1px solid transparent;background:none;color:var(--muted);cursor:pointer}
+.subchip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent-soft);color:var(--accent-hi)}
+
+/* the popover that overflow:hidden must never permanently clip */
+.wishpop{display:none;position:absolute;z-index:40;top:calc(100% + 8px);left:0;width:220px;
+  background:var(--panel);border:1px solid var(--line2);box-shadow:var(--shadow);padding:.6rem .7rem}
+.wishpop.open,.chip.owner.haspop:hover .wishpop,.chip.owner.haspop:focus-visible .wishpop{display:block}
+.wishpop .wp-h{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.wishpop .wp-l{display:flex;flex-wrap:wrap;gap:.3rem}
+.wishpop .want{font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+  border:1px solid var(--line2);color:var(--ink2);padding:.14rem .38rem}
+
+/* ================= THE FOLD =================
+   .collbar has NO min-height. The live bar pairs min-height:44px with
+   max-height:0, and min-height wins, so it is permanently 44px and only
+   opacity ever changes — which is the mechanical reason the current
+   version reads as appear/disappear rather than fold. */
+.collbar{width:100%;height:0;overflow:hidden;display:flex;align-items:center;gap:.55rem;
+  padding:0 .7rem;border:none;cursor:pointer;text-align:left;
+  background:var(--accent-soft);color:var(--accent-hi);
+  /* border only in the collapsed state: a border draws even at height:0,
+     leaving a 1px accent line above the open panel. */
+  border-bottom:0 solid var(--accent);
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;
+  transition:height .26s cubic-bezier(.4,0,.2,1)}
+.controls.collapsed .collbar{height:44px;border-bottom-width:1px}
+.collbar .chev{width:14px;height:14px;flex:0 0 auto;color:var(--accent);
+  transition:transform .26s cubic-bezier(.4,0,.2,1)}
+.controls.collapsed .chev{transform:rotate(180deg)}
+.collbar .summary{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.collbar .summary b{font-weight:600}
+.collbar .collcount{margin-left:auto;padding-left:.6rem;flex:0 0 auto;color:var(--accent)}
+
+/* Height animates from a MEASURED pixel value, never max-height. overflow
+   is clamped only while folding or collapsed — a permanent overflow:hidden
+   here clips the owner wishlist popover, which opens downward inside these
+   rows. That is already happening on the live build. */
+.wrap{transition:height .26s cubic-bezier(.4,0,.2,1)}
+.wrap.folding,.controls.collapsed .wrap{overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){
+  .wrap,.collbar,.chev{transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper hero">
+  <h1>Kaikki</h1>
+  <p>Scroll down to fold. Click the summary bar to unfold. Hover “Sampo” to check the popover
+     is not clipped when the bar is open.</p>
+</div>
+
+<section class="controls" id="grid-top">
+  <button class="collbar" id="collbar" type="button" aria-expanded="true" aria-controls="filterwrap">
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    <span class="summary" id="collsummary"></span>
+    <span class="collcount" id="collcount"></span>
+  </button>
+
+  <div class="wrap" id="filterwrap">
+    <div class="wrapper">
+      <div class="ctop">
+        <div class="cfilters">
+          <div class="crow">
+            <span class="clabel">Muoto</span>
+            <div class="chips" data-axis="fmt">
+              <button class="chip ico ic-all" data-all="1">Kaikki</button>
+              <button class="chip ico ic-eu" aria-pressed="true">Eurorack</button>
+              <button class="chip ico ic-all">Pöytälaite</button>
+              <button class="chip ico ic-all">Tarvikkeet</button>
+            </div>
+          </div>
+          <div class="crow">
+            <span class="clabel">Myyjä</span>
+            <div class="chips" data-axis="owner">
+              <button class="chip" data-all="1">Kaikki</button>
+              <button class="chip owner haspop" aria-pressed="true"><i class="odot" style="background:#C08A2E"></i>Sampo
+                <span class="wishpop"><span class="wp-h">Sampo etsii</span>
+                  <span class="wp-l"><span class="want">quad VCA</span><span class="want">drum module</span><span class="want">Mangrove</span></span></span>
+              </button>
+              <button class="chip owner"><i class="odot" style="background:#3E7BB6"></i>spongefile</button>
+            </div>
+          </div>
+        </div>
+        <div class="cfind">
+          <div class="search">
+            <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <input placeholder="Etsi nimellä tai valmistajalla">
+          </div>
+          <select class="sortsel"><option>Uusimmat ensin</option><option>Halvin ensin</option></select>
+        </div>
+      </div>
+      <div class="crow b">
+        <span class="clabel">Tyyppi</span>
+        <div class="chips" data-axis="sub">
+          <button class="subchip" aria-pressed="true">Oscillator</button>
+          <button class="subchip">Filter</button>
+          <button class="subchip">Sequencer</button>
+          <button class="subchip">Effects</button>
+          <button class="subchip">Utility</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrapper"><div class="grid" id="grid"></div></div>
+
+<script>
+(function(){
+  var names=["Piston Honda MK III","Milky Way 1U","Bitbox Micro","Bishop's Miscellany",
+    "Pamela's New Workout","Lubadh","Quad VCA","Nucleus","Progue","Sinciter","Belgrad","Chainsaw",
+    "Frap 321","Hydrus","Performer","Mosquant"];
+  var g=document.getElementById("grid"),h="";
+  for(var i=0;i<names.length;i++){
+    h+='<article class="card"><div class="ph">PHOTO</div><div class="cb"><h3>'+names[i]+
+       '</h3><div class="pr">€'+(120+i*37)+'</div></div></article>';
+  }
+  g.innerHTML=h;
+
+  var controls=document.getElementById("grid-top");
+  var wrap=document.getElementById("filterwrap");
+  var collbar=document.getElementById("collbar");
+  var sumEl=document.getElementById("collsummary");
+  var cntEl=document.getElementById("collcount");
+  var DUR=260, foldTimer=null, lastY=window.scrollY, ticking=false, suppressUntil=0;
+
+  function collapsed(){ return controls.classList.contains("collapsed"); }
+
+  /* inert, not visibility. The live build transitions visibility with a delay
+     to keep hidden content out of the tab order; that cannot work here because
+     the fold has to stay visible for its whole duration. inert does the same
+     job without touching paint. */
+  function syncInert(){
+    var c=collapsed();
+    wrap.toggleAttribute("inert", c);
+    collbar.toggleAttribute("inert", !c);
+    collbar.setAttribute("aria-expanded", c ? "false" : "true");
+  }
+
+  function settle(clearHeight){
+    clearTimeout(foldTimer);
+    foldTimer=setTimeout(function(){
+      wrap.classList.remove("folding");
+      /* back to height:auto so the panel reflows freely on resize, language
+         switch, or chips rewrapping — a stale pixel height would clip. */
+      if(clearHeight) wrap.style.height="";
+    }, DUR+40);
+  }
+
+  function collapse(){
+    if(collapsed()) return;
+    wrap.classList.add("folding");
+    wrap.style.height=wrap.scrollHeight+"px";
+    void wrap.offsetHeight;
+    controls.classList.add("collapsed");
+    wrap.style.height="0px";
+    syncInert(); settle(false);
+  }
+  function expand(){
+    if(!collapsed()) return;
+    wrap.classList.add("folding");
+    controls.classList.remove("collapsed");
+    var target=wrap.scrollHeight;
+    wrap.style.height="0px";
+    void wrap.offsetHeight;
+    wrap.style.height=target+"px";
+    syncInert(); settle(true);
+  }
+
+  function summarise(){
+    var parts=[];
+    ["fmt","owner","sub"].forEach(function(axis){
+      var on=wrap.querySelector('[data-axis="'+axis+'"] [aria-pressed="true"]:not([data-all])');
+      if(on){
+        var txt=(on.textContent||"").replace(/\s+/g," ").trim();
+        var pop=on.querySelector(".wishpop");
+        if(pop) txt=txt.replace((pop.textContent||"").replace(/\s+/g," ").trim(),"").trim();
+        if(txt) parts.push("<b>"+txt+"</b>");
+      }
+    });
+    /* No new copy needed: with nothing selected this falls back to the
+       existing "everything" chip label, already translated. */
+    sumEl.innerHTML = parts.length ? parts.join(" · ")
+      : wrap.querySelector('[data-axis="fmt"] [data-all]').textContent.trim();
+    cntEl.textContent = 24;
+  }
+
+  function onScroll(){
+    ticking=false;
+    var y=window.scrollY, down=y>lastY;
+    lastY=y;
+    if(Date.now()<suppressUntil) return;
+    if(!collapsed() && down && y>90) collapse();
+  }
+  window.addEventListener("scroll",function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking=true; }
+  },{passive:true});
+
+  collbar.addEventListener("click",function(){
+    expand(); lastY=window.scrollY; suppressUntil=Date.now()+600;
+  });
+
+  /* a resize mid-fold would animate toward a height measured at the old
+     width; drop to auto and let it re-measure next time. */
+  window.addEventListener("resize",function(){
+    if(!collapsed()){ wrap.classList.remove("folding"); wrap.style.height=""; }
+  });
+
+  Array.prototype.forEach.call(wrap.querySelectorAll(".chip,.subchip"),function(c){
+    c.addEventListener("click",function(e){
+      e.stopPropagation();
+      var on=c.getAttribute("aria-pressed")==="true";
+      c.setAttribute("aria-pressed", on?"false":"true");
+      summarise();
+    });
+  });
+
+  summarise(); syncInert();
+})();
+</script>
+</body>
+</html>

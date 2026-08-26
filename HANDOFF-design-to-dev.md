@@ -734,3 +734,65 @@ for this answer, not from any new instruction.)
 
 Anything in `[SQUARE BRACKETS]` is a blank for the user, in every language.
 Do not ship them, and do not invent values to fill them.
+
+## Filter bar collapse — option C (decided 2026-08-25)
+
+Reference implementation: `filter-collapse-C.html` (self-contained, scroll it).
+Comparison of all four approaches: `filter-collapse-mockup.html`.
+
+The user's report: it "turns white", it "feels like it appears and disappears"
+rather than folding, and once scrolling it is "not very noticeable as
+something you could click on." All three have distinct causes.
+
+### Why it does not read as a fold — mechanical, not aesthetic
+
+1. **Nothing ever animates height.** `.collbar` pairs `min-height:44px` with
+   `max-height:0`. **`min-height` wins**, so the bar is permanently 44px and
+   only its `opacity` changes. Neither half of the swap animates height, so
+   there is nothing to read as folding.
+2. **`max-height:300px` against a 225px panel.** Measured live. A quarter of
+   the transition is dead travel where nothing moves, then it snaps.
+3. **Opacity outruns height** (`.15s` vs `.2s`), so content is fully invisible
+   with a quarter of the height animation still to run — a cross-dissolve
+   between two elements, which is precisely "appears and disappears".
+
+### The fix
+
+- Animate a **measured pixel height** (`scrollHeight`), never `max-height`.
+- **No `min-height` on `.collbar`.** Height goes 0 ↔ 44px and is the whole
+  animation.
+- **No opacity transition on either side.** Opacity is the bug.
+- One easing, one duration, both directions: `.26s cubic-bezier(.4,0,.2,1)`.
+
+### The collapsed bar
+
+`--accent-soft` fill, `--accent-hi` text, `--accent` bottom border — reads as a
+control rather than a strip of page, and fixes "turns white" (it was
+`--panel`, #FAFBFD). Contents: chevron (rotates 180° on state), the **active
+filters** rather than the word "Filters", and the count.
+
+**No new copy is required.** The summary is composed from the existing chip
+labels, already translated; with nothing selected it falls back to the
+existing "everything" chip label. Generate it from filter STATE, not by
+scraping the DOM — the reference scrapes only because it has no state.
+
+### Three traps
+
+1. **`overflow:hidden` on `.wrap` must not be permanent.** The owner wishlist
+   popover opens *downward inside* these rows (`.crow .wishpop`). **This is
+   already clipping on the live build — measured, 54px off a 150px popover.**
+   Clamp overflow only while folding or collapsed:
+   `.wrap.folding,.controls.collapsed .wrap{overflow:hidden}`.
+2. **`visibility` cannot do the a11y job here.** Live transitions visibility
+   with a delay to keep hidden content out of the tab order; that cannot work
+   when the panel must stay visible for the whole fold. Use **`inert`** on
+   `.wrap` when collapsed and on `.collbar` when expanded, plus `aria-expanded`
+   and `aria-controls` on the button.
+3. **Clear the inline height after expanding.** Leave it and the panel keeps a
+   stale pixel height across resize, language switch, or chips rewrapping.
+   Reset to `''` once the transition ends, and on `resize` while open.
+
+A border draws even at `height:0`, so the collapsed bar's bottom border must
+be applied in the collapsed state only — otherwise a 1px accent line sits
+above the open panel. (Found by rendering; I had shipped it into my own first
+reference.)
