@@ -34,6 +34,13 @@
   --sold:#8A3E3E; --sold-soft:#F0DDDA;
   --shadow:0 1px 2px rgba(20,23,26,.06),0 8px 24px -12px rgba(20,23,26,.18);
   --on:#FBFBF9;
+  /* Surface for the embedded Tally form. Tally's content is fixed
+     light-theme (dark labels, white inputs; no dark variant, and the
+     iframe is cross-origin so we can't restyle it) — so in dark themes
+     this token stays a LIGHT card and the page frames it, instead of
+     putting light-theme labels on a dark panel where they vanish.
+     In light themes it's just the normal panel. */
+  --embed-bg:var(--panel); --embed-line:var(--line);
 }
 .rt.blue{
   --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
@@ -58,6 +65,7 @@
     --sold:#D98A85; --sold-soft:#33211F;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
     --on:#0B0F0E;
+    --embed-bg:#DFE2DC; --embed-line:#B6BCB4;
   }
   .rt.blue:not(.light){
     --bg:#0C1119; --bg2:#121924; --panel:#161E2A; --panel2:#1D2634;
@@ -69,6 +77,7 @@
     --sold:#D98A93; --sold-soft:#331F24;
     --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -14px rgba(0,0,0,.75);
     --on:#08111A;
+    --embed-bg:#E4E9F0; --embed-line:#AFBACB;
   }
 }
 /* explicit choice always wins in both directions */
@@ -82,6 +91,7 @@
   --sold:#D98A85; --sold-soft:#33211F;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
   --on:#0B0F0E;
+  --embed-bg:#DFE2DC; --embed-line:#B6BCB4;
 }
 .rt.blue.dark{
   --bg:#0C1119; --bg2:#121924; --panel:#161E2A; --panel2:#1D2634;
@@ -93,6 +103,7 @@
   --sold:#D98A93; --sold-soft:#331F24;
   --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -14px rgba(0,0,0,.75);
   --on:#08111A;
+  --embed-bg:#E4E9F0; --embed-line:#AFBACB;
 }
 
 /* ---------- base ----------
@@ -661,7 +672,11 @@ body.detail-open .browse{display:none}
 .msgbar{padding:.9rem 0}
 .msgbar .back{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted)}
 .msgbar .back:hover{color:var(--accent)}
-.msgframe{flex:1; width:100%; border:1px solid var(--line); background:var(--panel)}
+/* --embed-bg/--embed-line, not panel/line: the Tally form inside is
+   fixed light-theme, so dark themes give it a light card (defined per
+   palette in the token blocks up top) rather than a dark panel its
+   labels would vanish against. */
+.msgframe{flex:1; width:100%; border:1px solid var(--embed-line); background:var(--embed-bg)}
 @media(max-width:640px){ .msgpage{height:calc(100vh - 220px); min-height:460px} }
 
 /* missing translation — honest banner, never silent machine translation */
