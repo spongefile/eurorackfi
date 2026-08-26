@@ -1119,8 +1119,14 @@ function renderChrome(){
   el("noticeA").textContent=T2.noticeA;
   el("noticeB").textContent=T2.noticeB;
   var anchors=["#grid-top","#/wish","#/msg/"];
+  /* index 0 ("Everything") needs return false: closeDetail() computes
+     the real destination (#/s/<seller> or #/), and #grid-top — a plain
+     same-page anchor, not one of this app's own routes — must not be
+     left to overwrite it via the href's own default navigation. The
+     other two are fine as-is: #/wish and #/msg/ are exactly where they
+     should land regardless of what closeDetail() sets in between. */
   el("nav").innerHTML=T2.nav.map(function(n,i){
-    return '<a href="'+anchors[i]+'" onclick="closeDetail()">'+esc(n)+'</a>'; }).join("");
+    return '<a href="'+anchors[i]+'" onclick="closeDetail()'+(i===0?";return false":"")+'">'+esc(n)+'</a>'; }).join("");
   el("langseg").innerHTML=LANGS.map(function(l){
     return '<button data-lang="'+l+'" aria-pressed="'+(l===lang)+'">'+l+'</button>'; }).join("");
   document.documentElement.lang=lang;
@@ -1690,7 +1696,21 @@ function copyText(txt){
 /* photo is the default view whenever one exists — matches the grid card,
    which already shows the photo first; drawn panel becomes the alternate */
 function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#/m/"+id; }
-function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0) location.hash=S.who!=="all"?"#/s/"+S.who:"#/"; }
+/* the nav's "Everything" link used to be a plain href="#grid-top" same-
+   page anchor, which raced this: an onclick fires first, but the
+   anchor's own href navigation fires right after and would overwrite
+   whatever hash closeDetail() just computed. #grid-top isn't one of
+   this app's own routes, so that native jump did the scrolling but
+   silently destroyed the seller URL closeDetail() had just restored —
+   invisible in-session (S.who was still correct in memory) and only
+   real on reload. Scrolling now happens here instead, after the hash is
+   set, so there's nothing left for a stale href to win against. */
+function closeDetail(){
+  if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0){
+    location.hash=S.who!=="all"?"#/s/"+S.who:"#/";
+    var gt=el("grid-top"); if(gt) gt.scrollIntoView();
+  }
+}
 function route(){
   var h=location.hash;
   if(h.indexOf("#/wish")===0){
