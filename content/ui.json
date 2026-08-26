@@ -59,6 +59,11 @@
     "fi": "Myös osavaihto + rahaa",
     "sv": "Även delbyte + kontanter"
   },
+  "swapFor": {
+    "en": "Swapping for:",
+    "fi": "Vaihdossa kelpaa:",
+    "sv": "Byter mot:"
+  },
   "emptyTools": {
     "en": "Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     "fi": "Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",

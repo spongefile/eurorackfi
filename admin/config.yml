@@ -280,6 +280,13 @@ collections:
               - { label: "English", name: "en", widget: "string", required: false }
               - { label: "Finnish", name: "fi", widget: "string", required: false }
               - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Wishlist tile lead-in (before the module names)"
+            name: "swapFor"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
           - label: "Empty state: Other stuff tab"
             name: "emptyTools"
             widget: "object"
