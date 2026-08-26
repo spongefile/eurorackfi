@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — FAQ page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+  --rail:#B1B9C5; --rail-ink:#8891A0;
+  --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+.wrap{width:min(1160px,calc(100% - 3rem));margin-inline:auto}
+.rail{height:9px;background:var(--rail);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+  background-image:radial-gradient(circle at 5px 4px,var(--rail-ink) 0 1.6px,transparent 1.7px);
+  background-size:25.4px 100%}
+
+/* header, faithful */
+.site{padding:1.1rem 0}
+.site .wrap{display:flex;align-items:center;gap:1.25rem}
+.brand{font-weight:800;font-size:1.35rem;letter-spacing:-.03em;text-decoration:none;color:var(--ink);
+  font-stretch:96%}
+.brand .jack{width:.58em;height:.58em;display:inline-block;vertical-align:-.015em;
+  margin-left:.07em;transform:translate(-.016em,.015em)}
+.brand .dot{color:var(--accent)}
+nav.top{display:flex;gap:1.15rem;flex-wrap:wrap}
+nav.top a{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--ink2);text-decoration:none}
+nav.top a[aria-current]{color:var(--accent);font-weight:600}
+.hgroup{margin-left:auto;display:flex;gap:.5rem;align-items:center}
+.lang{display:flex;border:1px solid var(--line2)}
+.lang b{font-family:"IBM Plex Mono",monospace;font-size:.72rem;padding:.35rem .55rem;
+  background:var(--panel);color:var(--ink2);font-weight:400}
+.lang b.on{background:var(--accent);color:var(--on)}
+
+/* ---------------- the FAQ page ---------------- */
+.faq{padding:2.6rem 0 4.5rem}
+.faq .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.faq h1{font-size:2.6rem;letter-spacing:-.035em;font-stretch:96%;margin:0 0 .9rem;line-height:1.05}
+.faq .lede{font-family:"Newsreader",Georgia,serif;font-size:1.2rem;line-height:1.55;
+  color:var(--ink2);max-width:46ch;margin:0 0 2.6rem}
+
+/* Each entry is a two-column row: a mono gutter carrying the anchor, and the
+   Q&A itself. Same gutter idiom as the filter bar's .clabel and the module
+   page's spec rows, so the page reads as part of the site rather than as a
+   generic article. Gutter collapses on narrow screens. */
+.qa{display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 1.5rem;
+  padding:2rem 0;border-top:1px solid var(--line)}
+.qa:first-of-type{border-top:1px solid var(--line2)}
+.qa .num{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  color:var(--muted);padding-top:.5rem}
+.qa h2{font-size:1.32rem;letter-spacing:-.02em;margin:0 0 .85rem;line-height:1.25;
+  scroll-margin-top:1.5rem}
+/* the anchor is the affordance for deep links — hidden until hover/focus so it
+   never competes with the question, but always reachable by keyboard */
+.qa h2 a.anchor{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:.8em;
+  color:var(--line2);text-decoration:none;margin-left:.5rem;opacity:0;transition:opacity .12s}
+.qa:hover h2 a.anchor,.qa h2 a.anchor:focus-visible{opacity:1}
+.qa h2 a.anchor:hover{color:var(--accent)}
+.qa .a{font-family:"Newsreader",Georgia,serif;font-size:1.06rem;line-height:1.65;
+  color:var(--ink2);max-width:62ch}
+.qa .a p{margin:0 0 .9rem}
+.qa .a p:last-child{margin-bottom:0}
+.qa .a a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+
+.tail{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line2);
+  font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--muted)}
+.tail a{color:var(--accent);text-decoration:none}
+
+@media(max-width:640px){
+  .qa{grid-template-columns:1fr;gap:0}
+  .qa .num{padding-top:0;margin-bottom:.5rem}
+  .faq h1{font-size:2rem}
+  .faq .lede{font-size:1.08rem}
+}
+</style>
+</head>
+<body>
+
+<div class="rail"></div>
+<header class="site"><div class="wrap">
+  <a class="brand" href="#">eur<svg class="jack" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="18"/><circle cx="50" cy="50" r="14" fill="currentColor"/></svg>rack<span class="dot">.</span>fi</a>
+  <nav class="top">
+    <a href="#">Everything</a>
+    <a href="#">What we want</a>
+    <a href="#" aria-current="page">FAQ</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="hgroup"><div class="lang"><b>FI</b><b>SV</b><b class="on">EN</b></div></div>
+</div></header>
+<div class="rail"></div>
+
+<main class="faq"><div class="wrap">
+  <p class="eyebrow">Helsinki · neighbours</p>
+  <h1>Questions</h1>
+  <p class="lede">What this is, who is behind it, and how to join in.</p>
+
+  <section class="qa" id="what-is-this">
+    <div class="num">01</div>
+    <div>
+      <h2>What is this?<a class="anchor" href="#what-is-this" aria-label="Link to this question">#</a></h2>
+      <div class="a">
+        <p>A place to buy gear from people you can actually meet.</p>
+        <p>Finland's modular scene is small. If you've been on the forums a while, you have
+        probably already talked to whoever is selling — under some handle or other. This is the
+        same people, with the gear they're finished with.</p>
+        <p>Most of us are in Helsinki, which is small enough to count as one neighbourhood. It's
+        also where people passing through from Tampere or elsewhere can arrange a handover.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qa" id="why-not-tori">
+    <div class="num">02</div>
+    <div>
+      <h2>Why not Tori, Reverb or muusikoiden.net?<a class="anchor" href="#why-not-tori" aria-label="Link to this question">#</a></h2>
+      <div class="a">
+        <p>They all work. They're just not built for this.</p>
+        <p>Tori doesn't know what HP means, and whether the other person turns up is luck.
+        Reverb works well but takes a large cut. Muusikoiden.net has the right people on it —
+        you just can't browse it the way you actually shop for modules.</p>
+        <p>Because with eurorack you often don't know which module you want. You know the job:
+        something to fold a signal, something that fits the 6HP you have left. So everything
+        here is listed by what it does and how much room it takes, drawn to scale. And nobody
+        takes a percentage.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qa" id="who-are-you">
+    <div class="num">03</div>
+    <div>
+      <h2>Who are you?<a class="anchor" href="#who-are-you" aria-label="Link to this question">#</a></h2>
+      <div class="a">
+        <p>Two of us, so far.</p>
+        <p>We know each other from the Finnish Eurorack group on Facebook, which is where most
+        of this scene actually lives. Sampo ran Acapulco Modular, which a fair few people here
+        will recognise.</p>
+        <p>That's the whole credential. There's no company behind this — just people who ended
+        up with more modules than they use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qa" id="can-i-join">
+    <div class="num">04</div>
+    <div>
+      <h2>Can I put my stuff here too?<a class="anchor" href="#can-i-join" aria-label="Link to this question">#</a></h2>
+      <div class="a">
+        <p>Maybe — there are a couple of conditions.</p>
+        <p>We've only just started and are still working out what makes this manageable. What we
+        want to avoid is fifty people with one module each; that's an admin headache and not
+        much else.</p>
+        <p>So for now: <a href="#">get in touch</a> if you have more than ten modules to sell. If
+        we don't know you, ask a few people from the forums to vouch for you — that's how the
+        site stays worth trusting.</p>
+        <p>Listing is free. Send a list of what you have and what you want in return. Be
+        reasonably sure what it is before you send it — we'd rather wait a day than get
+        corrections every day.</p>
+        <p>If something does sell, a tip towards the admin is welcome. Nobody takes a cut, and
+        the tip stays optional.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="tail">Something else? <a href="#">Send us a message →</a></p>
+</div></main>
+
+<div class="rail"></div>
+</body>
+</html>
