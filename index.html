@@ -1119,14 +1119,18 @@ function renderChrome(){
   el("noticeA").textContent=T2.noticeA;
   el("noticeB").textContent=T2.noticeB;
   var anchors=["#grid-top","#/wish","#/msg/"];
-  /* index 0 ("Everything") needs return false: closeDetail() computes
-     the real destination (#/s/<seller> or #/), and #grid-top — a plain
-     same-page anchor, not one of this app's own routes — must not be
-     left to overwrite it via the href's own default navigation. The
-     other two are fine as-is: #/wish and #/msg/ are exactly where they
-     should land regardless of what closeDetail() sets in between. */
+  /* "#grid-top" needs return false: closeDetail() computes the real
+     destination (#/s/<seller> or #/), and #grid-top — a plain same-page
+     anchor, not one of this app's own routes — must not be left to
+     overwrite it via the href's own default navigation. Keyed off the
+     destination itself, not array position, so inserting a future nav
+     item (FAQ) ahead of "Everything" can't silently move the suppression
+     onto the wrong link — the exact shape of the bug this just was.
+     The other two hrefs are fine unsuppressed: #/wish and #/msg/ are
+     exactly where they should land regardless of what closeDetail()
+     sets in between. */
   el("nav").innerHTML=T2.nav.map(function(n,i){
-    return '<a href="'+anchors[i]+'" onclick="closeDetail()'+(i===0?";return false":"")+'">'+esc(n)+'</a>'; }).join("");
+    return '<a href="'+anchors[i]+'" onclick="closeDetail()'+(anchors[i]==="#grid-top"?";return false":"")+'">'+esc(n)+'</a>'; }).join("");
   el("langseg").innerHTML=LANGS.map(function(l){
     return '<button data-lang="'+l+'" aria-pressed="'+(l===lang)+'">'+l+'</button>'; }).join("");
   document.documentElement.lang=lang;
