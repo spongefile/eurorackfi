@@ -1618,7 +1618,7 @@ function wishHTML(){
   return '<div class="wrap wishpage"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button></div>'+
     '<h1>'+esc(T2.wishH)+'</h1>'+
     SELLERS.map(function(p){
-      return '<a class="wishsection" href="#/" data-setwho="'+p.key+'">'+
+      return '<a class="wishsection" href="#/s/'+p.key+'">'+
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
         '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'+
         '</a>'; }).join("")+
@@ -1690,7 +1690,7 @@ function copyText(txt){
 /* photo is the default view whenever one exists — matches the grid card,
    which already shows the photo first; drawn panel becomes the alternate */
 function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#/m/"+id; }
-function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0) location.hash="#/"; }
+function closeDetail(){ if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0) location.hash=S.who!=="all"?"#/s/"+S.who:"#/"; }
 function route(){
   var h=location.hash;
   if(h.indexOf("#/wish")===0){
@@ -1738,6 +1738,26 @@ function route(){
       '<button class="btn" onclick="closeDetail()">'+esc(t().nav[0])+'</button></div></div>';
     document.body.classList.add("detail-open"); window.scrollTo(0,0); return;
   }
+  /* #/s/<seller> — a shareable link onto the filtered grid, owner only.
+     format/type/search/sort are deliberately left untouched: they stay
+     session state and never enter the URL, so this promises "you're
+     looking at this seller's items", not "this exact screen". An
+     unknown/stale key degrades to the plain grid rather than getting
+     stuck on a filter nothing can clear. */
+  if(h.indexOf("#/s/")===0){
+    var sk=h.slice(4), sp=SELLER_BY_KEY[sk];
+    S.who=sp?sk:"all";
+    renderFilters(); renderGrid();
+    document.body.classList.remove("detail-open");
+    document.title=sp?(sp.name+" — eurorack.fi"):"eurorack.fi";
+    return;
+  }
+  /* plain "#/" is the one other place the owner filter can be cleared
+     from (Everyone chip, browser back/forward past a #/s/ visit,
+     closeDetail() with nothing to return to) — only re-render when it
+     actually needs clearing, so an ordinary detail-page close doesn't
+     rebuild the grid for no reason. */
+  if(S.who!=="all"){ S.who="all"; renderFilters(); renderGrid(); }
   document.body.classList.remove("detail-open");
   document.title="eurorack.fi";
 }
@@ -1771,7 +1791,18 @@ document.addEventListener("click",function(e){
   if(g){ openDetail(g.getAttribute("data-go")); return; }
   var L=e.target.closest("[data-lang]");
   if(L){ lang=L.getAttribute("data-lang"); try{localStorage.setItem("erfi-lang",lang);}catch(x){} renderAll(); route(); return; }
-  ["fmt","who","cat"].forEach(function(k){
+  /* owner is hash-driven, not direct state — #/s/<seller> is a shareable,
+     bookmarkable, back/forward-correct URL onto the filtered grid
+     (owner only; format/type/search/sort stay session state and never
+     enter the URL, deliberately). route() applies the actual filter
+     reactively off the hash; this click handler only ever navigates. */
+  var who=e.target.closest("[data-who]");
+  if(who){
+    var wv=who.getAttribute("data-who");
+    location.hash = wv==="all" ? "#/" : "#/s/"+wv;
+    return;
+  }
+  ["fmt","cat"].forEach(function(k){
     var c=e.target.closest("[data-"+k+"]");
     if(c){ S[k]=c.getAttribute("data-"+k); renderFilters(); renderGrid(); }
   });
@@ -1789,11 +1820,6 @@ document.addEventListener("click",function(e){
     }
     return;
   }
-  /* Toiveet → Home, that seller's owner filter preset. Runs before the
-     anchor's own href="#/" navigation, so S.who is already set by the
-     time hashchange fires route(). */
-  var sw=e.target.closest("[data-setwho]");
-  if(sw){ S.who=sw.getAttribute("data-setwho"); renderFilters(); renderGrid(); }
   if(e.target.closest("#themeb")){
     var r=document.documentElement;
     var isDark=r.classList.contains("dark")||(!r.classList.contains("light")&&matchMedia("(prefers-color-scheme:dark)").matches);
