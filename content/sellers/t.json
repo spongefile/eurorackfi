@@ -167,6 +167,21 @@
         "sc": 2
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ts-l.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Mannequins",
+      "name": "THREE SISTERS",
+      "hp": 10,
+      "tone": "alu",
+      "parts": {
+        "k": 5,
+        "j": 12,
+        "sl": 0,
+        "led": 0,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/three-sisters.jpg"
     }
   ]
 }
