@@ -1,0 +1,102 @@
+{
+  "parts": {
+    "k": 11,
+    "j": 12,
+    "sl": 3,
+    "led": 3,
+    "sc": 4
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/primaryosc.jpg",
+  "mgSlug": "pittsburgh-modular-lifeforms-primary-oscillator",
+  "site": "pittsburghmodular.com",
+  "hp": 12,
+  "price": 150,
+  "name": "Lifeforms Primary Oscillator b",
+  "fmt": "eu",
+  "extra": {
+    "depth": "25 mm",
+    "power": "+12V 112mA · −12V 104mA · no +5V",
+    "pull": {
+      "q": "The primary oscillator is not meant to be a clean oscillator that produces perfect waveforms.",
+      "src": "Pittsburgh Modular",
+      "url": "https://pittsburghmodular.com/lifeforms-primary-oscillator"
+    },
+    "quotes": [
+      {
+        "t": "The primary oscillator uses unique cascading waveform processing to create increasingly complex, fully modulatable waveforms.",
+        "s": "Pittsburgh Modular"
+      },
+      {
+        "t": "Custom waveshapers include a harmonic sine wave; a sine processed to add just enough harmonics to give a resonant filter something to dig into.",
+        "s": "Analogue Haven"
+      },
+      {
+        "t": "It is analog, so there is a warmup period of about 10 minutes, with users comfortable after 5 or 6 minutes.",
+        "s": "MOD WIGGLER · worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Pittsburgh Modular",
+        "title": "Lifeforms Primary Oscillator — the manufacturer's page and manual",
+        "url": "https://pittsburghmodular.com/lifeforms-primary-oscillator"
+      },
+      {
+        "src": "MOD WIGGLER",
+        "title": "Pittsburgh Lifeforms Primary Oscillator — the owners' thread",
+        "url": "https://modwiggler.com/forum/viewtopic.php?t=200576"
+      },
+      {
+        "src": "Synth Anatomy",
+        "title": "Pittsburgh Modular Lifeforms Primary Oscillator For Eurorack Is Now Available",
+        "url": "https://synthanatomy.com/2018/06/pittsburgh-modular-lifeforms-primary-oscillator-for-eurorack-is-now-available.html"
+      },
+      {
+        "src": "Analogue Haven",
+        "title": "Lifeforms Primary Oscillator — specs and signal path",
+        "url": "https://www.analoguehaven.com/pittsburgh-modular/lifeforms-primary-oscillator/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Lifeforms Primary Oscillator — specs and racks",
+        "url": "https://modulargrid.net/e/pittsburgh-modular-lifeforms-primary-oscillator"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Pittsburgh Modular Lifeforms Primary Oscillator Hands-On Demo",
+        "by": "Synthtopia · YouTube",
+        "url": "https://www.youtube.com/watch?v=oKFRrprBb0Q"
+      },
+      {
+        "title": "Lifeforms Primary Oscillator — sound demo",
+        "by": "Dziam Bass · YouTube",
+        "url": "https://www.youtube.com/watch?v=8nAahKNSxZE"
+      },
+      {
+        "title": "Lifeforms Primary Oscillator — demo #2 (no talking)",
+        "by": "Dziam Bass · YouTube",
+        "url": "https://www.youtube.com/watch?v=5VbeUkVke9c"
+      },
+      {
+        "title": "Pittsburgh Modular — Lifeforms Primary Oscillator",
+        "by": "SonicNinja · YouTube",
+        "url": "https://www.youtube.com/watch?v=5O6i34oSwCw"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Oscillator",
+  "mfr": "Pittsburgh Modular",
+  "blurb": {
+    "en": "All-analog VCO in 12HP, built on the dual-VCA core from the Microvolt 3900. The signal runs through a chain of waveshapers rather than one: blade bends ramp and pulse, fragments is an analog downsampler that crushes the wave, timbre folds it. Six separate outputs — sine, saw, blade, pulse, fragments, timbre — so you can take several stages at once. Hard sync, linear and exponential FM, temperature stabilised. Give it ten minutes to warm up before it tracks properly. Discontinued by Pittsburgh.",
+    "fi": "Täysin analoginen VCO 12HP:ssä, rakennettu Microvolt 3900:n kaksois-VCA-ytimen varaan. Signaali kulkee yhden aaltomuokkaimen sijaan niiden ketjun läpi: blade taivuttaa rampin ja pulssin, fragments on analoginen alinäytteistin joka rouhii aaltoa, timbre taittaa sen. Kuusi erillistä ulostuloa — sini, saha, blade, pulssi, fragments ja timbre — joten useamman vaiheen voi ottaa yhtä aikaa. Hard sync, lineaarinen ja eksponentiaalinen FM, lämpötilakompensoitu. Anna sen lämmetä kymmenen minuuttia ennen kuin vireys asettuu. Pittsburgh on lopettanut sen valmistuksen.",
+    "sv": "Helanalog VCO i 12HP, byggd på dubbel-VCA-kärnan från Microvolt 3900. Signalen går genom en kedja av vågformare i stället för en enda: blade böjer ramp och puls, fragments är en analog nedsamplare som krossar vågen, timbre viker den. Sex separata utgångar — sinus, sågtand, blade, puls, fragments och timbre — så flera steg kan tas ut samtidigt. Hard sync, linjär och exponentiell FM, temperaturkompenserad. Ge den tio minuter att bli varm innan stämningen sätter sig. Utgått ur Pittsburghs sortiment."
+  },
+  "id": "primaryosc",
+  "negotiating": false,
+  "cats": [
+    "Oscillator"
+  ],
+  "who": "t"
+}
