@@ -242,6 +242,14 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 
 /* ---------- filter bar ---------- */
 .controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+/* Collapsed, .collbar's own bottom edge IS the bar's edge (colored when an
+   owner is filtered) — .controls' --line divider would draw a second,
+   paler rule 1px below it. Clear by COLOR not width/none: removing the
+   border instead of making it transparent would shrink .controls by 1px
+   and shift the grid underneath. A shadow instead reads as "lifted above
+   the grid" rather than as a second lighter rule. Expanded, the --line
+   divider is real (the panel/grid boundary) and stays. */
+.controls.collapsed{border-bottom-color:transparent; box-shadow:var(--shadow)}
 /* Height animates from a MEASURED pixel value (JS, scrollHeight), never
    max-height — a max-height bigger than the real content leaves dead
    travel at the start of the transition, then a snap when it runs out.
@@ -256,8 +264,12 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .collbar{width:100%; height:0; overflow:hidden; display:flex; align-items:center; gap:.5rem;
   background:var(--accent-soft); color:var(--accent-hi); border:none;
   /* border only in the collapsed state — it draws even at height:0, so
-     left unconditional it leaves a 1px accent line above the open panel */
-  border-bottom:0 solid var(--accent);
+     left unconditional it leaves a 1px line above the open panel.
+     Neutral by default: colour on this edge means exactly one thing
+     (an owner is filtered), so the resting state can't also spend it —
+     renderFilters() sets --accent/3px only when a seller is picked and
+     clears back to this line2/1px default otherwise. */
+  border-bottom:0 solid var(--line2);
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; text-align:left; cursor:pointer; padding:0 .7rem;
   transition:height .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .collbar{height:44px; border-bottom-width:1px}
@@ -1247,14 +1259,29 @@ function renderFilters(){
   if(S.fmt!=="all") sumParts.push("<b>"+esc(T2.fmt[S.fmt])+"</b>");
   if(sellerFilter) sumParts.push('<span class="odot" style="background:'+sellerFilter.dot+'"></span><b>'+esc(sellerFilter.name)+"</b>");
   if(S.cat!=="all") sumParts.push("<b>"+esc(T2.cat[S.cat]||S.cat)+"</b>");
-  el("collbarlabel").innerHTML = sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all);
-  /* the bar's own accent identifies "this is a control"; an active owner
-     filter borrows that same edge to say which one, without touching the
-     fill — several sellers' dot colors fail AA against the bar's text at
-     the weight a fill would need, and Sampo's amber sits right next to
-     --signal, which this site reserves for caution. Colour identifies,
-     the ground stays constant. */
+  /* the leading dot always matches the bottom line — one signal at two
+     scales, not two independent decorations. Colour on that edge means
+     exactly one thing: an owner is filtered. It's not spent on the
+     resting state — the bar's --accent-soft fill already reads as "this
+     is a control", so the edge is free to carry meaning instead of
+     identity. Owner chosen: both take that owner's dot color, line at
+     3px. Everyone: both go neutral (--muted / --line2 — the CSS default,
+     not JS-set), line at 1px. Without a dot on the "everyone" fallback
+     too, the summary's left edge jumped horizontally between states. */
+  el("collbarlabel").innerHTML = sumParts.length ? sumParts.join(" · ")
+    : '<span class="odot" style="background:var(--muted)"></span>'+esc(T2.fmt.all);
+  /* an active owner filter borrows the bar's bottom edge to say which one
+     — several sellers' dot colors fail AA against the bar's text at the
+     weight a fill would need, and Sampo's amber sits right next to
+     --signal, which this site reserves for caution, so the edge (not the
+     fill) carries it. Width matches the wishcard's own 3px colored edge
+     (renderWish()'s border-left) when an owner is chosen, so it reads as
+     the same signal in both places; .collbar is border-box at a fixed
+     44px, so growing the border inward needs no compensation elsewhere.
+     Clearing to "" (not a color) lets the CSS default (--line2, neutral)
+     win for the "everyone" case — see .collbar's own border-bottom rule. */
   el("collbar").style.borderBottomColor = sellerFilter ? sellerFilter.dot : "";
+  el("collbar").style.borderBottomWidth = sellerFilter ? "3px" : "";
 }
 
 /* ---------- wish band ---------- */
