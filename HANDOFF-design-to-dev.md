@@ -796,3 +796,130 @@ A border draws even at `height:0`, so the collapsed bar's bottom border must
 be applied in the collapsed state only — otherwise a 1px accent line sits
 above the open panel. (Found by rendering; I had shipped it into my own first
 reference.)
+
+## FAQ page (copy approved 2026-08-25)
+
+Rendered design: `faq-page-mockup.html`. Copy below is the user's own words,
+revised by them across four passes — treat it as final English. **fi and sv do
+not exist yet** and the user writes them personally; the page must render with
+one language filled in.
+
+### Route and the deep-link constraint
+
+`#/faq` for the page. `#/faq/<id>` scrolls to one question.
+
+**`#/faq#can-i-join` is impossible and this is the thing to get right.** The
+site is hash-routed, and a URL has exactly one fragment — so the ordinary
+"anchor inside a page" trick is unavailable here. The second segment has to be
+part of the route, not a separate anchor. So `#/faq/can-i-join` is parsed by
+`route()`, which renders the page and scrolls that question into view. Bare
+`#/faq` renders the page unscrolled.
+
+The four ids, stable and already in the markup — these are addresses, keep them
+fixed even if the wording changes:
+`what-is-this`, `why-not-tori`, `who-are-you`, `can-i-join`.
+
+Each `h2` carries a `#` anchor link, hidden until the row is hovered or the
+link is focused. It sets `#/faq/<id>` so a reader can copy a link to one
+answer. `scroll-margin-top:1.5rem` on the `h2` keeps it off the sticky header.
+
+### Nav
+
+Label is **"FAQ" in all three languages** — the user's explicit decision, not
+UKK, not Vanliga frågor. Order: Everything / What we want / FAQ / Contact, so
+it inserts at index 2 of the `anchors` array, which becomes
+`["#grid-top","#/wish","#/faq","#/msg/"]`.
+
+**Measured, not assumed:** at a true 390px viewport a fourth nav item fits on
+one line only while the label is short. "FAQ" puts the nav at 293px, no
+overflow. "Vanliga frågor" or "Kysytyt kysymykset" takes it from 21px to 63px
+and wraps to three lines, breaking the header. This is why the label is an
+abbreviation in every language even though the page's own h1 could differ.
+
+**While inserting, fix the positional `return false`.** The nav suppresses the
+href on `i===0` because index 0 happens to be the neutral home destination.
+Adding a fourth item is exactly the change that makes that assumption fragile —
+key it off the destination instead, or the seller-URL bug returns silently the
+next time anyone reorders the nav.
+
+### Data
+
+`content/faq.json`, shape already landed:
+`{questions:[{id, q:{en,fi,sv}, a:{en,fi,sv}}]}`. Answers are multi-paragraph
+plain text: split on blank lines into `<p>`, autolink URLs. No markdown parser.
+Missing languages follow the same honest-missing pattern as item blurbs.
+
+### Layout
+
+- Two-column row per question: 64px mono gutter carrying a zero-padded index
+  (`01`…), then the Q&A. Same gutter idiom as the filter bar labels and the
+  module spec rows, so the page belongs to the site rather than reading as a
+  generic article. Collapses to one column at 640px.
+- Question: Archivo 1.32rem, `letter-spacing:-.02em`.
+- Answer: Newsreader 1.06rem, `--ink2`, **`max-width:62ch`**. The page
+  container is 1160px; do not let prose run its full width. These answers are
+  the only sustained body prose on the site and full-bleed Newsreader at that
+  measure is unreadable.
+- 1px `--line` rule between rows, `--line2` above the first.
+- Eyebrow `HELSINKI · NEIGHBOURS`, h1 `FAQ`, then the lede.
+- Tail line linking to `#/msg/`.
+
+### Approved English copy
+
+**Lede:** What this is, who is behind it, and how to join in.
+
+**01 · what-is-this — "What is this?"**
+> A place to buy gear from people you can actually meet.
+>
+> Finland's modular scene is small. If you've been on the forums a while, you
+> have probably already talked to whoever is selling — under some handle or
+> other. This is the same people, with the gear they're finished with.
+>
+> Most of us are in Helsinki, which is small enough to count as one
+> neighbourhood. We're also happy to arrange a handover with people passing
+> through from Tampere or elsewhere. But in person is the key here. Postage is
+> the exception. Community building matters too!
+
+**02 · why-not-tori — "Why not Tori, Reverb, etc?"**
+> Tori, Facebook marketplace and so on don't know what HP means, and often
+> messages go unanswered, and sometimes people aren't trustworthy. Reverb works
+> well but takes a large cut. Muusikoiden.net has the right people on it — you
+> just can't browse it the way you actually shop for modules.
+>
+> Because with eurorack you often don't have an exact module in mind. You know
+> the specs: something to fold a signal, something that fits the 6HP you have
+> left. Therefore everything here is listed by what it does and how much room it
+> takes, drawn to scale. And nobody takes a percentage.
+
+**03 · who-are-you — "Who are you?"**
+> Two of us, so far.
+>
+> We know each other from the Finnish Eurorack group on Facebook, which is where
+> most of this scene actually lives. Sampo ran Acapulco Modular. Spongefile has
+> posted various module cheatsheets on www.spongefile.com
+>
+> There's no company behind this — just people who ended up with spare modules
+> and are up for a swap or cash to buy something else.
+
+**04 · can-i-join — "Can I put my stuff here too?"**
+> Maybe — there are a couple of conditions.
+>
+> We've only just started and are still figuring out a system to make this
+> manageable if more people join. What we don't want is fifty people with one
+> module each, or people who change their minds every week. That's an admin
+> headache we are not signing up for.
+>
+> So for now: get in touch if you have more than ten modules to sell. If we
+> don't know you, ask a few people from the forums to vouch for you — that's how
+> the site stays trustworthy.
+>
+> Listing is free. Send a list of what you have and what you want in return. Be
+> reasonably sure what it is before you send it — we'd rather wait a day than get
+> corrections every day.
+>
+> If something does sell, a tip towards the admin is welcome. Nobody takes a
+> cut, and the tip stays optional. (Basically if you've made admin do a lot of
+> work, tip to make up for that.)
+
+Two links inside the copy: "get in touch" in 04 and the tail line both go to
+`#/msg/`. `www.spongefile.com` in 03 is external.
