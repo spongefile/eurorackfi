@@ -1,3 +1,56 @@
 {
-  "questions": []
+  "questions": [
+    {
+      "id": "what-is-this",
+      "q": {
+        "en": "What is this?",
+        "fi": "Mikä tämä on?",
+        "sv": "Vad är det här?"
+      },
+      "a": {
+        "en": "A place to buy gear from people you can actually meet.\n\nFinland's modular scene is small. If you've been on the forums a while, you have probably already talked to whoever is selling — under some handle or other. This is the same people, with the gear they're finished with.\n\nMost of us are in Helsinki, which is small enough to count as one neighbourhood. We're also happy to arrange a handover with people passing through from Tampere or elsewhere. But in person is the key here. Postage is the exception. Community building matters too!",
+        "fi": "Paikka ostaa laitteita ihmisiltä, jotka voi oikeasti tavata.\n\nSuomen modulaariskene on pieni. Jos olet pyörinyt foorumeilla jonkin aikaa, olet luultavasti jo jutellut myyjän kanssa — jollain nimimerkillä. Samat ihmiset, ja ne laitteet joita he eivät enää tarvitse.\n\nSuurin osa meistä on Helsingissä, joka on tarpeeksi pieni käydäkseen yhdestä naapurustosta. Sovimme mielellämme luovutuksen myös Tampereelta tai muualta käymässä olevien kanssa. Mutta kasvokkain on tässä se pointti. Posti on poikkeus. Yhteisön rakentamisellakin on väliä!",
+        "sv": "En plats att köpa prylar av folk man faktiskt kan träffa.\n\nFinlands modulärscen är liten. Har du hängt på forumen ett tag har du antagligen redan pratat med den som säljer — under något nick. Samma människor, med de prylar de är färdiga med.\n\nDe flesta av oss finns i Helsingfors, som är litet nog att räknas som ett enda kvarter. Vi ordnar gärna en överlämning också med folk som är på genomresa från Tammerfors eller annanstans. Men att ses på riktigt är poängen här. Posten är undantaget. Att bygga gemenskap betyder också något!"
+      }
+    },
+    {
+      "id": "why-not-tori",
+      "q": {
+        "en": "Why not Tori, Reverb, etc?",
+        "fi": "Miksi ei Tori, Reverb tai vastaava?",
+        "sv": "Varför inte Tori, Reverb eller liknande?"
+      },
+      "a": {
+        "en": "Tori, Facebook marketplace and so on don't know what HP means, and often messages go unanswered, and sometimes people aren't trustworthy. Reverb works well but takes a large cut. Muusikoiden.net has the right people on it — you just can't browse it the way you actually shop for modules.\n\nBecause with eurorack you often don't have an exact module in mind. You know the specs: something to fold a signal, something that fits the 6HP you have left. Therefore everything here is listed by what it does and how much room it takes, drawn to scale. And nobody takes a percentage.",
+        "fi": "Tori, Facebookin marketplace ja muut eivät tiedä mitä HP tarkoittaa, viesteihin jää usein vastaamatta, eikä kaikkiin voi luottaa. Reverb toimii hyvin mutta ottaa ison siivun. Muusikoiden.netissä on oikeat ihmiset — sitä ei vain voi selata niin kuin moduuleja oikeasti etsitään.\n\nEurorackissa kun harvoin on mielessä tietty moduuli. Mielessä on vaatimukset: jotain joka taittaa signaalia, jotain joka mahtuu jäljellä olevaan 6HP:hen. Siksi kaikki on täällä listattu sen mukaan mitä se tekee ja paljonko se vie tilaa, mittakaavassa piirrettynä. Eikä kukaan ota prosentteja.",
+        "sv": "Tori, Facebook marketplace och de andra vet inte vad HP betyder, meddelanden blir ofta obesvarade och alla går inte att lita på. Reverb fungerar bra men tar en stor andel. Muusikoiden.net har rätt folk — man kan bara inte bläddra där så som man faktiskt letar moduler.\n\nMed eurorack har man sällan en bestämd modul i tankarna. Man vet kraven: något som viker en signal, något som får plats på de 6HP man har kvar. Därför är allt här listat efter vad det gör och hur mycket plats det tar, ritat i skala. Och ingen tar någon procent."
+      }
+    },
+    {
+      "id": "who-are-you",
+      "q": {
+        "en": "Who are you?",
+        "fi": "Keitä te olette?",
+        "sv": "Vilka är ni?"
+      },
+      "a": {
+        "en": "Two of us, so far.\n\nWe know each other from the Finnish Eurorack group on Facebook, which is where most of this scene actually lives. Sampo ran Acapulco Modular. Spongefile has posted various module cheatsheets on www.spongefile.com\n\nThere's no company behind this — just people who ended up with spare modules and are up for a swap or cash to buy something else.",
+        "fi": "Meitä on toistaiseksi kaksi.\n\nTunnemme toisemme Facebookin suomalaisesta Eurorack-ryhmästä, jossa tämä skene pääosin elää. Sampo piti Acapulco Modularia. Spongefile on julkaissut moduulien lunttilappuja osoitteessa www.spongefile.com\n\nTämän takana ei ole yritystä — vain ihmisiä, joille on jäänyt ylimääräisiä moduuleja ja jotka ottavat mielellään vaihdon tai rahat jonkin muun ostamiseen.",
+        "sv": "Vi är två, tills vidare.\n\nVi känner varandra från den finska Eurorack-gruppen på Facebook, där den här scenen mest håller till. Sampo drev Acapulco Modular. Spongefile har lagt ut fusklappar för moduler på www.spongefile.com\n\nDet finns inget företag bakom det här — bara folk som blivit sittande med extra moduler och gärna byter eller tar pengar för att köpa något annat."
+      }
+    },
+    {
+      "id": "can-i-join",
+      "q": {
+        "en": "Can I put my stuff here too?",
+        "fi": "Voinko laittaa omat tavarani tänne?",
+        "sv": "Kan jag lägga upp mina saker här också?"
+      },
+      "a": {
+        "en": "Maybe — there are a couple of conditions.\n\nWe've only just started and are still figuring out a system to make this manageable if more people join. What we don't want is fifty people with one module each, or people who change their minds every week. That's an admin headache we are not signing up for.\n\nSo for now: get in touch if you have more than ten modules to sell. If we don't know you, ask a few people from the forums to vouch for you — that's how the site stays trustworthy.\n\nListing is free. Send a list of what you have and what you want in return. Be reasonably sure what it is before you send it — we'd rather wait a day than get corrections every day.\n\nIf something does sell, a tip towards the admin is welcome. Nobody takes a cut, and the tip stays optional. (Basically if you've made admin do a lot of work, tip to make up for that.)",
+        "fi": "Ehkä — pari ehtoa on.\n\nOlemme vasta aloittaneet ja mietimme yhä, miten tämä pysyy hallittavana jos mukaan tulee lisää väkeä. Emme halua viittäkymmentä ihmistä yhdellä moduulilla, emmekä niitä jotka muuttavat mieltään viikoittain. Siihen ylläpitovaivaan emme lähde.\n\nEli toistaiseksi: ota yhteyttä jos myytävää on yli kymmenen moduulia. Jos emme tunne sinua, pyydä pari foorumilaista takaamaan puolestasi — niin sivusto pysyy luotettavana.\n\nListaaminen on ilmaista. Lähetä lista siitä mitä sinulla on ja mitä haluat vastineeksi. Ole kohtuullisen varma mitä se on ennen kuin lähetät — mieluummin odotamme päivän kuin korjaamme joka päivä.\n\nJos jotain menee kaupaksi, tippi ylläpidolle on tervetullut. Kukaan ei ota siivua, ja tippi pysyy vapaaehtoisena. (Käytännössä: jos olet teettänyt ylläpidolla paljon työtä, hyvitä se tipillä.)",
+        "sv": "Kanske — det finns ett par villkor.\n\nVi har just börjat och funderar fortfarande på hur det här ska hållas hanterbart om fler kommer med. Vad vi inte vill ha är femtio personer med en modul var, eller folk som ändrar sig varje vecka. Det administrativa besväret tackar vi nej till.\n\nSå tills vidare: hör av dig om du har fler än tio moduler att sälja. Känner vi inte dig, be några från forumen gå i god för dig — det är så sajten håller sig pålitlig.\n\nAtt lista är gratis. Skicka en lista på vad du har och vad du vill ha i utbyte. Var någorlunda säker på vad det är innan du skickar — hellre väntar vi en dag än rättar varje dag.\n\nOm något säljs är en dricks till admin välkommen. Ingen tar någon andel, och dricksen förblir frivillig. (I praktiken: har du fått admin att göra mycket jobb, gottgör det med en dricks.)"
+      }
+    }
+  ]
 }
