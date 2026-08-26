@@ -1257,19 +1257,27 @@ function renderFilters(){
      label when nothing is selected. */
   var sumParts=[], sellerFilter=S.who!=="all"?SELLER_BY_KEY[S.who]:null;
   if(S.fmt!=="all") sumParts.push("<b>"+esc(T2.fmt[S.fmt])+"</b>");
-  if(sellerFilter) sumParts.push('<span class="odot" style="background:'+sellerFilter.dot+'"></span><b>'+esc(sellerFilter.name)+"</b>");
+  if(sellerFilter) sumParts.push("<b>"+esc(sellerFilter.name)+"</b>");
   if(S.cat!=="all") sumParts.push("<b>"+esc(T2.cat[S.cat]||S.cat)+"</b>");
-  /* the leading dot always matches the bottom line — one signal at two
-     scales, not two independent decorations. Colour on that edge means
-     exactly one thing: an owner is filtered. It's not spent on the
-     resting state — the bar's --accent-soft fill already reads as "this
-     is a control", so the edge is free to carry meaning instead of
-     identity. Owner chosen: both take that owner's dot color, line at
-     3px. Everyone: both go neutral (--muted / --line2 — the CSS default,
-     not JS-set), line at 1px. Without a dot on the "everyone" fallback
-     too, the summary's left edge jumped horizontally between states. */
-  el("collbarlabel").innerHTML = sumParts.length ? sumParts.join(" · ")
-    : '<span class="odot" style="background:var(--muted)"></span>'+esc(T2.fmt.all);
+  /* the leading dot is a property of the BAR, not of one branch of this
+     summary — it's the bar's own state indicator, the small-scale twin
+     of the bottom edge, not a name prefix like the dots on cards/chips.
+     Built once and always prepended, so a format- or category-only
+     filter (sumParts non-empty, no seller) still gets a dot instead of
+     silently losing it — that was the exact bug the dot was added to
+     fix, just relocated: the old code only put a dot in the "nothing
+     selected" fallback branch, so "Eurorack" (no owner) rendered with no
+     dot and the left edge still jumped. Colour on that edge means
+     exactly one thing: an owner is filtered. Owner chosen: both take
+     that owner's dot color, line at 3px. No owner (regardless of any
+     other filter): both go neutral (--muted / --line2 — the CSS
+     default, not JS-set), line at 1px. With format+owner+category all
+     active, the dot leads the whole string rather than sitting against
+     the owner's name — correct, since it's the bar's indicator, not the
+     owner's. */
+  var dotColor = sellerFilter ? sellerFilter.dot : "var(--muted)";
+  var dot = '<span class="odot" style="background:'+dotColor+'"></span>';
+  el("collbarlabel").innerHTML = dot + (sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all));
   /* an active owner filter borrows the bar's bottom edge to say which one
      — several sellers' dot colors fail AA against the bar's text at the
      weight a fill would need, and Sampo's amber sits right next to
