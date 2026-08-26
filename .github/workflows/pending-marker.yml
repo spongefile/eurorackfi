@@ -62,9 +62,14 @@ jobs:
               for k in ("en", "fi", "sv"):
                   if not (blurb.get(k) or "").strip():
                       return True
-              reviews = ((m.get("extra") or {}).get("reviews")) or []
-              if not reviews:
-                  return True
+              # Accessories (stickers, overlays, printable PDFs) have no
+              # publication that will ever review them - extra.reviews: []
+              # is their correct, final state, not a gap. Without this
+              # exception every fmt:"acc" item is permanently pending.
+              if m.get("fmt") != "acc":
+                  reviews = ((m.get("extra") or {}).get("reviews")) or []
+                  if not reviews:
+                      return True
               return False
 
           def want_reason(w):
@@ -92,6 +97,14 @@ jobs:
                   with open(path, encoding="utf-8") as f:
                       m = json.load(f)
               except Exception:
+                  continue
+              # Hidden means withdrawn or sold, archived on purpose - it
+              # must not exist for the site at all (index.html filters it
+              # the same way before anything else touches ITEMS). There is
+              # no research value in a photo for something that isn't on
+              # the site, and a hidden item would otherwise sit here
+              # forever looking like outstanding work.
+              if m.get("hidden"):
                   continue
               if is_stub_item(m):
                   items.append(m.get("id") or os.path.splitext(os.path.basename(path))[0])
