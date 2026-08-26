@@ -1,0 +1,127 @@
+{
+  "eyebrow": {
+    "en": "Helsinki · neighbours",
+    "fi": "Helsinki · naapureita",
+    "sv": "Helsingfors · grannar"
+  },
+  "h1a": {
+    "en": "Gear from ",
+    "fi": "Tavaraa ",
+    "sv": "Prylar från "
+  },
+  "h1b": {
+    "en": "down the road",
+    "fi": "naapurista",
+    "sv": "grannen"
+  },
+  "h1c": {
+    "en": ".",
+    "fi": ".",
+    "sv": "."
+  },
+  "lede": {
+    "en": "A few of us in Helsinki, listing what we are finished with. Mostly eurorack, sometimes other stuff. Trades possible!",
+    "fi": "Muutama helsinkiläinen myy tavaraa, jota ei enää tarvita. Enimmäkseen eurorackia, joskus muuta. Vaihdot käyvät!",
+    "sv": "Några av oss i Helsingfors säljer det vi inte behöver. Mest eurorack, ibland annat. Byten går bra!"
+  },
+  "noticeA": {
+    "en": "Modules, prices and specs are real.",
+    "fi": "Moduulit, hinnat ja tiedot ovat oikeita.",
+    "sv": "Moduler, priser och specar är riktiga."
+  },
+  "noticeB": {
+    "en": "Sampo’s wish list is still a placeholder.",
+    "fi": "Sampon toivelista puuttuu vielä.",
+    "sv": "Sampos önskelista saknas ännu."
+  },
+  "scale": {
+    "en": "Drawn to scale",
+    "fi": "Mittakaavassa",
+    "sv": "Skalenligt"
+  },
+  "hover": {
+    "en": "hover to find it below",
+    "fi": "osoita hiirellä",
+    "sv": "hovra"
+  },
+  "search": {
+    "en": "search maker or module",
+    "fi": "hae valmistaja tai moduuli",
+    "sv": "sök tillverkare eller modul"
+  },
+  "wishH": {
+    "en": "What each of us wants",
+    "fi": "Toiveet",
+    "sv": "Önskemål"
+  },
+  "wishK": {
+    "en": "Partial trade + cash also works",
+    "fi": "Myös osavaihto + rahaa",
+    "sv": "Även delbyte + kontanter"
+  },
+  "emptyTools": {
+    "en": "Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
+    "fi": "Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
+    "sv": "Inget än. Verktyg, byggsatser, sensorer och delar hamnar här."
+  },
+  "emptyNone": {
+    "en": "Nothing matches that. Clear a filter.",
+    "fi": "Ei osumia. Poista suodin.",
+    "sv": "Inga träffar. Ta bort ett filter."
+  },
+  "buyOrTrade": {
+    "en": "Buy, trade, or message",
+    "fi": "Osta, vaihda tai kysy",
+    "sv": "Köp, byt eller fråga"
+  },
+  "fIntro": {
+    "en": "A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
+    "fi": "Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
+    "sv": "Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av."
+  },
+  "fCollect": {
+    "en": "Collecting",
+    "fi": "Nouto",
+    "sv": "Hämtning"
+  },
+  "fCollectBody": {
+    "en": "Prices in EUR. In-person pickup preferred, posting possible.",
+    "fi": "Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
+    "sv": "Priser i euro. Helst hämtning, men vi kan posta."
+  },
+  "fTrade": {
+    "en": "Trading",
+    "fi": "Vaihto",
+    "sv": "Byte"
+  },
+  "fTradeBody": {
+    "en": "Trades welcome. Separate wishlists for separate owners.",
+    "fi": "Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
+    "sv": "Allt kan bytas. Två separata önskelistor."
+  },
+  "fContact": {
+    "en": "Contact",
+    "fi": "Yhteys",
+    "sv": "Kontakt"
+  },
+  "fContactBody": {
+    "en": "Send us a message through the form.",
+    "fi": "Lähetä viesti lomakkeella.",
+    "sv": "Skicka ett meddelande via formuläret."
+  },
+  "faqLede": {
+    "en": "What this is, who is behind it, and how to join in.",
+    "fi": "Mikä tämä on, keitä me olemme, ja miten pääset mukaan.",
+    "sv": "Vad det här är, vem som står bakom, och hur du kan vara med."
+  },
+  "faqTail": {
+    "en": "Something else?",
+    "fi": "Jotain muuta?",
+    "sv": "Något annat?"
+  },
+  "faqTailLink": {
+    "en": "Send us a message →",
+    "fi": "Lähetä meille viesti →",
+    "sv": "Skicka ett meddelande →"
+  }
+}

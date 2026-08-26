@@ -180,3 +180,194 @@ collections:
                   - { label: "English", name: "en", widget: "text", hint: "Plain text, no markdown — no headings, lists or bold. Leave a blank line between paragraphs; the page splits on it. A bare URL (https://...) becomes a link automatically." }
                   - { label: "Finnish", name: "fi", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead. Same plain-text, blank-line-paragraph rule as English." }
                   - { label: "Swedish", name: "sv", widget: "text", required: false, hint: "Leave blank rather than guess — the site shows an honest missing-translation banner instead. Same plain-text, blank-line-paragraph rule as English." }
+
+  # Site copy — the prose strings in index.html's T object, editable in
+  # admin. Every field is optional: a blank field means "keep the
+  # built-in text", because index.html bundles the same strings as its
+  # fallback and only overrides from this file key by key (applyUi).
+  # Structural strings stay out of here on purpose — nav labels (order
+  # is coupled to routing), format/category/sort names (keys are data
+  # values) — so a copy edit can never break navigation or filtering.
+  - name: "ui"
+    label: "Site copy"
+    files:
+      - name: "ui"
+        label: "Site copy"
+        file: "content/ui.json"
+        fields:
+          - label: "Eyebrow (small line above the headline)"
+            name: "eyebrow"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Headline, part 1"
+            name: "h1a"
+            widget: "object"
+            hint: "The headline is three pieces joined together; the middle piece renders in the accent colour. Mind the trailing space."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Headline, part 2 (the coloured word)"
+            name: "h1b"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Headline, part 3 (usually the full stop)"
+            name: "h1c"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Front-page lede"
+            name: "lede"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Top notice, first sentence"
+            name: "noticeA"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Top notice, second sentence"
+            name: "noticeB"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Rack caption, left"
+            name: "scale"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Rack caption, right"
+            name: "hover"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Search box placeholder"
+            name: "search"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Wishlist page title"
+            name: "wishH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Wishlist note (partial trades line)"
+            name: "wishK"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Empty state: Other stuff tab"
+            name: "emptyTools"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Empty state: no filter matches"
+            name: "emptyNone"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Contact button label"
+            name: "buyOrTrade"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer intro"
+            name: "fIntro"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 1 heading"
+            name: "fCollect"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 1 text"
+            name: "fCollectBody"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 2 heading"
+            name: "fTrade"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 2 text"
+            name: "fTradeBody"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 3 heading"
+            name: "fContact"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Footer column 3 text"
+            name: "fContactBody"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "FAQ page lede"
+            name: "faqLede"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "FAQ tail line (before the message link)"
+            name: "faqTail"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "FAQ tail link text"
+            name: "faqTailLink"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }

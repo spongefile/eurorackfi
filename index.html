@@ -1017,6 +1017,36 @@ function loadFaq(){
     return r.ok ? r.json() : {questions:[]};
   }).catch(function(){ return {questions:[]}; });
 }
+
+/* content/ui.json holds the CMS-editable site copy — prose only: hero,
+   notices, footer, empty states, FAQ lede/tail. Shape is per-key
+   {en,fi,sv}, same idiom as faq.json's q/a. The bundled T object below
+   stays the source of truth for STRUCTURE and the fallback for every
+   value: first paint renders from T without waiting on any fetch, and
+   applyUi() then overlays whatever ui.json provides, key by key, before
+   the post-load re-render. A missing file, a missing key, or an empty
+   string all just mean "keep the built-in text" — so a broken or partial
+   ui.json can never blank chrome, and admin's copy fields can be left
+   blank safely. Deliberately NOT editable this way: nav (order is
+   coupled to the anchors array in renderChrome), fmt/cat/sort/who maps
+   (keys are data values), and mechanical labels — a copy edit must not
+   be able to break routing or filtering. */
+function loadUi(){
+  return fetch(RAW_BASE+"content/ui.json").then(function(r){
+    return r.ok ? r.json() : {};
+  }).catch(function(){ return {}; });
+}
+function applyUi(ui){
+  Object.keys(ui||{}).forEach(function(key){
+    var langs=ui[key];
+    if(!langs || typeof langs!=="object") return;
+    ["en","fi","sv"].forEach(function(l){
+      if(T[l] && typeof T[l][key]==="string" && typeof langs[l]==="string" && langs[l].trim()!==""){
+        T[l][key]=langs[l];
+      }
+    });
+  });
+}
 </script>
 
 <script>
@@ -2215,7 +2245,7 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
    content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-Promise.all([loadItems(), loadSellers(), loadFaq()]).then(function(r){
+Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi()]).then(function(r){
   /* hidden items stay in content/items/ (data, photos, history all kept
      for a possible relist) but must not exist for the site at all —
      filtering here, before anything else touches ITEMS, means every
@@ -2229,6 +2259,7 @@ Promise.all([loadItems(), loadSellers(), loadFaq()]).then(function(r){
   WANTS={}; SELLER_BY_KEY={};
   SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
   FAQ=(r[2]&&r[2].questions)?r[2]:{questions:[]};
+  applyUi(r[3]);
   renderAll();
   route();
 }).catch(function(err){
