@@ -1466,22 +1466,24 @@ var wantLabelShort=function(w){ return typeof w==="string" ? w : w.name; };
    supports drag-to-reorder natively), so reordering there is how priority
    is set: top of the list shows first here, nothing extra to build. */
 var WISH_TEASER_CAP=5;
+/* The home-page band is a teaser for what people are after, so a seller
+   with an empty wishlist is left out of it entirely — they have nothing
+   to tease, and a card saying so takes a slot from someone who does.
+   They still appear on the Toiveet page itself (at the bottom, with a
+   stated empty state), so they aren't hidden from the site, just from
+   the shortlist. If nobody has wishes yet the whole band is hidden
+   rather than left as a heading over nothing. */
 function renderWish(){
   var T2=t();
-  el("wishgrid").innerHTML=SELLERS.map(function(p){
+  var withWishes=SELLERS.filter(function(p){ return p.wants.length>0; });
+  var band=el("wish");
+  if(band) band.hidden=withWishes.length===0;
+  el("wishgrid").innerHTML=withWishes.map(function(p){
     var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
-    /* A seller with nothing on their wishlist gets a stated empty state,
-       not a blank gap — next to someone else's twelve tiles an absence
-       reads as broken rather than as "nothing wanted yet". The
-       "swapping for:" lead-in is dropped in that case too, since it
-       would otherwise introduce a list that isn't there. */
-    var empty=p.wants.length===0;
     return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+(empty?'':' · '+esc(T2.swapFor))+'</div>'+
-      (empty
-        ? '<p class="wishempty">'+esc(T2.noWishes)+'</p>'
-        : '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
-          (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>')+
+      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
+      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
+      (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
       '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
 }
 
@@ -1831,7 +1833,13 @@ function wishHTML(){
   var T2=t();
   return '<div class="wrap wishpage"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button></div>'+
     '<h1>'+esc(T2.wishH)+'</h1>'+
-    SELLERS.map(function(p){
+    /* sellers with wishes first, empty ones after — the page is a list of
+       what people want, so the ones wanting nothing belong at the end
+       rather than interrupting it. Stable within each group, so the
+       underlying seller order is otherwise preserved. */
+    SELLERS.filter(function(p){ return p.wants.length>0; })
+      .concat(SELLERS.filter(function(p){ return p.wants.length===0; }))
+      .map(function(p){
       return '<a class="wishsection" href="#/s/'+p.key+'">'+
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
         (p.wants.length
