@@ -983,23 +983,35 @@ form `rjMyQo`. Duplicate that form and Tally mints new ids, so those params matc
 nothing. Tally ignores unknown params — it does not error. The form just opens
 blank, and it looks like the prefill was never wired up.
 
-**Order matters, and the obvious order is wrong.** My first instinct — switch
-the code to named fields before adding a second form — has the dependency
-backwards: the names must exist in the Tally dashboard *before* the code sends
-them, or prefill breaks on the live form the moment it ships. Correct order:
+**Resolved 2026-08-27 — no authoring was needed and this is now shipped
+(`3c87120`).** Dev read the form's own block definitions and found the four
+UUIDs were the block ids *of already-named hidden fields*: `module`, `seller`,
+`price`, `lang`. `TALLY_FIELDS` is now `{module:"module", …}` and duplicated
+forms prefill correctly. Check the artefact before planning around it — I
+specced a Tally-side prerequisite that did not exist.
 
-1. spongefile authors the four named hidden fields on form `rjMyQo`.
-2. Dev flips `TALLY_FIELDS` from UUIDs to those names.
-3. Only then is duplicating a form safe.
+Historic note on the ordering, since the reasoning still holds if fields are
+ever renamed: names must exist in Tally *before* the code sends them, so the
+order would be author → flip code → duplicate, never the reverse.
 
-Switch the four to **named hidden fields**.
+The four are **named hidden fields**.
 Tally references hidden fields by a name the form author picks
 (`?module=…&seller=…`), so one `TALLY_FIELDS` map works across every duplicate.
 Name them `module`, `seller`, `price`, `lang` in the Tally dashboard.
 
-Note hidden fields are not shown to the respondent. If the item should be
-visible in the form for confirmation, that is a Tally-side authoring choice —
-worth deciding, since right now the prefilled question blocks *are* visible.
+**Correction, 2026-08-27 — I got this wrong and it misled a decision.** I
+wrote that the prefilled blocks are currently visible to the sender. They are
+not, and never have been. The live form renders Name, Email, Reason, What
+you'd trade, Message — `module`/`seller`/`price` appear nowhere. The sender has
+never seen which item they are asking about.
+
+I asserted this from the code's use of prefill params without opening the form,
+despite having screenshotted it earlier the same day. The user then chose "keep
+them visible" believing that described the status quo. It does not: **visible
+is the change**, and it needs Tally-side authoring — either a text block
+recalling the hidden field, or real visible questions. Their decision stands
+but now costs work, so it is theirs to re-confirm. The editable-prefilled-price
+trade-off below only becomes live if they go ahead.
 
 ### Copy — needs the user, do not machine-translate
 
@@ -1021,7 +1033,9 @@ all three languages — do not reinstate the old string.
 
 ### Prerequisite, outside dev's control
 
-spongefile must create each seller's form in Tally (duplicate, set the
-notification recipient) and paste the URL into that seller's admin record. Until
-they do, every seller falls back to the shared form — which is exactly today's
-behaviour, so this can ship before any form exists.
+spongefile must duplicate the form per seller in Tally, set that copy's
+notification recipient to the seller's address, and paste the URL into the
+seller's admin record. Until they do, every seller falls back to the shared
+form — which is exactly today's behaviour, so this shipped before any per-seller
+form existed. No field authoring is required: the names carry across a
+duplicate.
