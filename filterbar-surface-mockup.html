@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — filter bar as one object</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{--bg:#E7EBF0;--bg2:#DCE2EA;--panel:#FAFBFD;--panel2:#EFF3F8;
+ --ink:#0F1722;--ink2:#36435A;--muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;--on:#FAFBFD;
+ --kalle:#3E9E82;--shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);}
+*{box-sizing:border-box}
+body{margin:0;padding:34px 40px 70px;background:var(--bg);color:var(--ink);
+ font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.025em;margin:0 0 .5rem}
+.sub{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;color:var(--ink2);
+ line-height:1.6;max-width:66ch;margin:0 0 1.2rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.5rem 0 .6rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+ margin-top:.7rem;line-height:1.7;max-width:82ch}
+.stage{border:1px dashed var(--line2);padding:0 0 1.2rem}
+.above{padding:1rem 1.2rem .3rem}
+.tv{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted)}
+.people{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2);margin-top:.5rem}
+.people b{font-family:"Archivo";font-size:.92rem}
+.people .d{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--kalle);margin-right:.35rem}
+.grid{padding:1rem 1.2rem 0;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+
+/* ---- the controls block ---- */
+.controls{position:relative}
+.hdr{min-height:38px;display:flex;align-items:center;gap:.5rem;padding:0 1.2rem;
+ font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--accent-hi)}
+.hdr .chev{width:13px;height:13px;color:var(--accent)}
+.hdr .ct{margin-left:auto;color:var(--accent)}
+.panel{padding:.7rem 1.2rem .8rem}
+.crow{display:flex;gap:.7rem;align-items:baseline;margin-bottom:.45rem}
+.lab{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.12em;
+ text-transform:uppercase;color:var(--muted);flex:0 0 52px;padding-top:.35rem}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:.68rem;padding:.28rem .55rem;
+ border:1px solid var(--line2);color:var(--ink2);background:var(--panel);white-space:nowrap}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on)}
+.chip .dt{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.3rem}
+
+/* A — as it is now */
+.vA .hdr{background:var(--accent-soft);border-bottom:3px solid var(--kalle)}
+.vA .panel{background:transparent}
+.vA .controls{border-top:1px solid var(--line)}
+
+/* B — panel gets a surface, line stays under the header */
+.vB .hdr{background:var(--accent-soft);border-bottom:3px solid var(--kalle)}
+.vB .panel{background:var(--panel2)}
+
+/* C — one surface, no separate header fill, line under the whole block */
+.vC .controls{background:var(--panel2);border-bottom:3px solid var(--kalle)}
+.vC .hdr{background:transparent;color:var(--ink2)}
+.vC .hdr .ct{color:var(--muted)}
+
+/* D — header keeps its tint, panel gets a surface, line under the whole block */
+.vD .controls{border-bottom:3px solid var(--kalle)}
+.vD .hdr{background:var(--accent-soft)}
+.vD .panel{background:var(--panel2)}
+</style></head>
+<body>
+<h1>The filter bar should read as one object</h1>
+<p class="sub">Right now the tinted strip and the coloured line sit <i>above</i> the filter
+options, and the options themselves have no surface — they are the same colour as the grid. So
+the strip reads as a bar belonging to nothing, and the owner's colour underlines the wrong
+thing.</p>
+<div id="out"></div>
+<script>
+function block(v){return '<div class="stage '+v+'">'+
+ '<div class="above"><div class="tv">Toiveet</div>'+
+ '<div class="people"><span class="d"></span><b>Kalle</b> Fumana · Polygogo · Mindphaser</div></div>'+
+ '<div class="controls">'+
+  '<div class="hdr"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg>'+
+  '<span class="ct">14 / 86</span></div>'+
+  '<div class="panel">'+
+   '<div class="crow"><span class="lab">Muoto</span><div class="chips">'+
+    '<span class="chip on">Kaikki 86</span><span class="chip">Eurorack 53</span>'+
+    '<span class="chip">Erillislaitteet 17</span><span class="chip">Tarvikkeet 11</span></div></div>'+
+   '<div class="crow"><span class="lab">Hylly</span><div class="chips">'+
+    '<span class="chip">Kaikki 86</span>'+
+    '<span class="chip on"><i class="dt" style="background:#8ecbb6"></i>Kalle 14</span>'+
+    '<span class="chip"><i class="dt" style="background:#C98A2E"></i>Sampo 20</span></div></div>'+
+  '</div></div>'+
+ '<div class="grid">14 / 86 kohdetta · 1720 € näkyvissä</div></div>';}
+var defs=[
+ ["A — as it is now","vA","The tinted strip has the coloured line under it and the options below have no surface of their own, so the line separates the strip from the options instead of enclosing them. The strip looks like a bar above the filters rather than part of them."],
+ ["B — options get a surface, line stays where it is","vB","The options now read as a panel rather than as loose chips on the page. But the coloured line still cuts between the strip and the panel, so the block still reads as two things stacked."],
+ ["C — one surface, no separate strip, line under the whole block (recommended)","vC","The header stops having its own fill while the panel is open — it does not need one, because the panel below it is already visible proof that it is open. One surface, one outline, and the owner's colour underlines the entire filter unit rather than a strip of it. The tint returns when collapsed, where it is the only thing on screen and does have to read as a control."],
+ ["D — keep the tint, move the line to the bottom","vD","Halfway: the strip keeps its tint so the toggle stays obvious, the panel gets a surface, and the owner's colour underlines the whole block. Still two tones inside one object, which is the thing C removes."]
+];
+var h="";defs.forEach(function(d){h+='<h2>'+d[0]+'</h2>'+block(d[1])+'<p class="cap">'+d[2]+'</p>';});
+document.getElementById('out').innerHTML=h;
+</script>
+</body></html>
