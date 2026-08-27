@@ -1306,7 +1306,15 @@ Absolute URLs only — scrapers do not resolve relative paths.
 <meta name="description"        content="…">
 ```
 
-**`og:description` needs the user** — it is the one new string here, and it is
-shown to Finnish readers. Do not machine-translate it; ask, or leave it out
-until they supply it. A missing description degrades gracefully; a wrong one
-does not.
+**`og:description` — supplied by the user 2026-08-27, their own Finnish:**
+
+> Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.
+
+Use verbatim, for both `og:description` and `<meta name="description">` so the
+share card and search results agree. Do not translate it for the sv/en cases:
+one card serves every share, `og:locale` is `fi_FI`, and the audience is the
+Finnish scene.
+
+`og:url` is the canonical `https://eurorack.fi/` **with the trailing slash** —
+www and the github.io host both still resolve, and a scraper landing on a
+redirect can attribute the card to the wrong origin.
