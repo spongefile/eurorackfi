@@ -1115,3 +1115,54 @@ not have this problem: CSS resolves them against the actual tile.
 If the under-fill ever looks wrong, the fix is **measurement** (ResizeObserver or
 a container query), **not raising the constant** — that would reintroduce the
 overflow at narrow widths, which is the bug we started from.
+
+## Filter bar: desktop closes on click, not on scroll (2026-08-27)
+
+Reference: `filter-collapse-manual.html` — scroll it, and narrow below 900px
+for the mobile behaviour.
+
+**Reverses an earlier decision, deliberately.** Auto-collapse-on-scroll was the
+user's own call and was applied at every width. A tester pushed back on
+desktop: *"I would prefer for the dropdown menu would stay visible until I
+decide to 'wrap' it. Now it is hidden the moment I scroll down and up again."*
+The user confirmed: **desktop stays open until clicked closed, and can be
+clicked open again.**
+
+Mobile is unchanged — a 225px bar on a short viewport earns its removal, where
+on desktop it only costs you your filters.
+
+### Behaviour
+
+- **≥900px:** the scroll handler returns early. Scrolling never collapses. The
+  bar is a **persistent 44px header** in both states; clicking it toggles.
+- **<900px:** exactly as today — auto-collapse on scroll down, click to expand.
+  The header is only present when collapsed.
+- Crossing the breakpoint while collapsed **re-expands**, or a desktop user
+  lands with the bar shut and no scroll trigger left to reopen it.
+
+### Why a persistent header rather than a floating close control
+
+Put the close affordance anywhere else and it sits in one place when open and
+another when closed — the control jumps out from under the cursor mid-use. As a
+fixed header the chevron never moves, it only rotates. Costs 44px permanently on
+desktop; the fallback if that reads as too much is a chevron at the bar's right
+edge, which is cheaper and does move.
+
+When open, the header shows chevron + count only — the chips below already say
+what is filtered, so the summary would just repeat them. Collapsed, the summary
+returns.
+
+### The trap — `inert` blocks real clicks but not scripted ones
+
+The collbar carries `inert` when it is not the active element, so hidden content
+stays out of the tab order. That logic assumed the header **only existed while
+collapsed**. Once it is permanent on desktop, `inert` while expanded makes it
+unclickable — the one control that closes the bar takes no clicks.
+
+    collbar.toggleAttribute("inert", !collapsed() && !DESKTOP.matches);
+
+**`inert` removes an element from hit-testing, but `element.click()` still
+fires on it.** So every scripted test passed while the prototype was unusable,
+and the user found it immediately. **Verify this one with a real click at real
+coordinates**, not `.click()` — and note screenshot coordinates are not page
+coordinates (1290 vs 1078 here), so a page-derived point misses.
