@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — Toiveet placement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  --bg:#E7EBF0; --bg2:#DCE2EA; --panel:#FAFBFD; --panel2:#EFF3F8;
+  --ink:#0F1722; --ink2:#36435A; --muted:#6A7789;
+  --line:#CAD3DF; --line2:#AFBACB;
+  --accent:#0B4F9E; --accent-hi:#083B77; --accent-soft:#D6E3F5; --on:#FAFBFD;
+  --signal:#A9660A; --signal-soft:#F5E6C8;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 60px;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.025em;margin:0 0 .5rem}
+.sub{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;color:var(--ink2);
+  line-height:1.6;max-width:62ch;margin:0 0 2rem}
+.pair{display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-start}
+.col{flex:1 1 300px;min-width:280px}
+.col h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .8rem}
+.col.now h2{color:var(--muted)}
+.col.prop h2{color:var(--accent)}
+.stack{position:relative;border:1px solid var(--line2);background:var(--panel)}
+.blk{border-bottom:1px solid var(--line);padding:.5rem .7rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
+  display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
+.blk .px{color:var(--muted);font-size:.62rem;flex:0 0 auto}
+.blk.hero{background:var(--panel2)}
+.blk.wish{background:var(--signal-soft);color:#6b4408}
+.blk.ctrl{background:var(--accent-soft);color:var(--accent-hi);font-weight:600}
+.blk.count{background:var(--panel2)}
+.blk.grid{background:var(--bg2);border-bottom:none}
+/* the fold marker sits at a typical laptop viewport height, scaled */
+.fold{position:absolute;left:0;right:0;border-top:2px dashed var(--sold,#8A3E4E);
+  pointer-events:none}
+.fold span{position:absolute;right:4px;top:-16px;font-family:"IBM Plex Mono",monospace;
+  font-size:.58rem;color:#8A3E4E;background:var(--bg);padding:0 4px}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  line-height:1.7;margin-top:.9rem}
+.verdict{margin-top:2.4rem;border-top:1px solid var(--line2);padding-top:1.4rem;max-width:70ch}
+.verdict h3{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .7rem}
+.verdict p{font-family:"Newsreader",Georgia,serif;font-size:1rem;color:var(--ink2);
+  line-height:1.65;margin:0 0 .8rem}
+.verdict b{color:var(--ink)}
+code{font-family:"IBM Plex Mono",monospace;font-size:.9em;background:var(--panel2);padding:0 .25em}
+</style>
+</head>
+<body>
+
+<h1>Toiveet: above or below the filter bar</h1>
+<p class="sub">Page stack drawn to scale from live measurements. The dashed line is roughly
+where a laptop viewport ends. It is a straight swap — the grid starts at 988px either way, so
+nothing gets longer.</p>
+
+<div class="pair">
+
+  <div class="col now">
+    <h2>Now</h2>
+    <div class="stack" id="s1">
+      <div class="blk hero" style="height:82px">Hero — rack, stats <span class="px">73–485</span></div>
+      <div class="blk ctrl" style="height:46px">Filter bar (sticky) <span class="px">485–712</span></div>
+      <div class="blk wish" style="height:45px">Toiveet <span class="px">711–935</span></div>
+      <div class="blk count" style="height:12px">Count line <span class="px">936–988</span></div>
+      <div class="blk grid" style="height:120px">Item grid <span class="px">988 →</span></div>
+      <div class="fold" style="top:166px"><span>laptop fold ≈ 828px</span></div>
+    </div>
+    <p class="note">Filter bar → <b>Toiveet</b> → count → grid.<br>
+    The count line belongs to the filter bar and sits 224px away from it.</p>
+  </div>
+
+  <div class="col prop">
+    <h2>Proposed</h2>
+    <div class="stack" id="s2">
+      <div class="blk hero" style="height:82px">Hero — rack, stats <span class="px">73–485</span></div>
+      <div class="blk wish" style="height:45px">Toiveet <span class="px">485–709</span></div>
+      <div class="blk ctrl" style="height:46px">Filter bar (sticky) <span class="px">709–936</span></div>
+      <div class="blk count" style="height:12px">Count line <span class="px">936–988</span></div>
+      <div class="blk grid" style="height:120px">Item grid <span class="px">988 →</span></div>
+      <div class="fold" style="top:166px"><span>laptop fold ≈ 828px</span></div>
+    </div>
+    <p class="note">Toiveet → filter bar → count → grid.<br>
+    Filter, count and results become one contiguous block.</p>
+  </div>
+
+</div>
+
+<div class="verdict">
+  <h3>What the swap buys</h3>
+  <p><b>The band ignores the filters.</b> Filtering to Sampo changes the count line to “20 / 86”
+  and leaves Toiveet byte-identical — still Kalle, Sampo and spongefile. So it currently sits
+  inside the filtered region while being immune to it. Filter to one person and the other two
+  people’s wishes stay sitting directly under the bar you just used.</p>
+  <p><b>It separates the filter bar from its own results.</b> The count line is the filter bar’s
+  own output and is pushed 224px below it by an unrelated section.</p>
+  <p><b>The sticky bar eats it.</b> Toiveet sits immediately under a sticky element, so it is the
+  first thing to slide underneath and disappear as you scroll — the worst spot on the page for
+  something meant to be noticed.</p>
+
+  <h3 style="margin-top:1.6rem">What it costs</h3>
+  <p>The filter bar drops from 485px to 709px, so on a laptop it lands at the fold rather than
+  comfortably above it. The bar is sticky, so one scroll pins it — and with the new desktop
+  behaviour it then stays open. But the first thing a visitor meets becomes the rack and the
+  wishlists rather than the controls.</p>
+  <p>Which may be the better introduction: <i>here is who we are and what we are after</i>,
+  then the tools.</p>
+</div>
+
+</body>
+</html>
