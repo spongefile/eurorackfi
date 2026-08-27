@@ -49,6 +49,11 @@
     "fi": "Myös osavaihto + rahaa",
     "sv": "Även delbyte + kontanter"
   },
+  "noWishes": {
+    "en": "No wishes at the moment.",
+    "fi": "Ei toiveita juuri nyt.",
+    "sv": "Inga önskemål just nu."
+  },
   "swapFor": {
     "en": "Swapping for:",
     "fi": "Vaihdossa kelpaa:",

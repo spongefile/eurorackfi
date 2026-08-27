@@ -435,6 +435,9 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    that margin would just push the lone label off-center in the box */
 .wishtile.placeholder .wl{margin-top:0}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
+/* stated empty state for a seller with no wishlist yet — muted, so it
+   reads as a fact about the shelf rather than as a missing tile */
+.wishempty{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); margin:.75rem 0 0}
 
 /* ---------- FAQ page ---------- */
 .faqpage{padding:2.5rem 0 4rem}
@@ -871,7 +874,7 @@ var T = {
     sItems:"kohdetta", sHp:"HP", sShelves:"hyllyä",
     scale:"Mittakaavassa", hover:"osoita hiirellä",
     search:"hae valmistaja tai moduuli",
-    wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:",
+    wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
     buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
@@ -897,7 +900,7 @@ var T = {
     sItems:"objekt", sHp:"HP", sShelves:"hyllor",
     scale:"Skalenligt", hover:"hovra",
     search:"sök tillverkare eller modul",
-    wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:",
+    wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
     buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
@@ -923,7 +926,7 @@ var T = {
     sItems:"items", sHp:"HP", sShelves:"shelves",
     scale:"Drawn to scale", hover:"hover to find it below",
     search:"search maker or module",
-    wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:",
+    wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
     ofItems:"of 29 items", onScreen:"€ on screen",
     buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
@@ -1467,10 +1470,18 @@ function renderWish(){
   var T2=t();
   el("wishgrid").innerHTML=SELLERS.map(function(p){
     var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
+    /* A seller with nothing on their wishlist gets a stated empty state,
+       not a blank gap — next to someone else's twelve tiles an absence
+       reads as broken rather than as "nothing wanted yet". The
+       "swapping for:" lead-in is dropped in that case too, since it
+       would otherwise introduce a list that isn't there. */
+    var empty=p.wants.length===0;
     return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
-      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
-      (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
+      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+(empty?'':' · '+esc(T2.swapFor))+'</div>'+
+      (empty
+        ? '<p class="wishempty">'+esc(T2.noWishes)+'</p>'
+        : '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
+          (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>')+
       '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
 }
 
@@ -1823,7 +1834,9 @@ function wishHTML(){
     SELLERS.map(function(p){
       return '<a class="wishsection" href="#/s/'+p.key+'">'+
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-        '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'+
+        (p.wants.length
+          ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
+          : '<p class="wishempty">'+esc(T2.noWishes)+'</p>')+
         '</a>'; }).join("")+
     '<p class="wishnote">'+esc(T2.wishK)+'</p>'+
     '</div>';
