@@ -1090,3 +1090,28 @@ an inconsistency.
 
 Belt and braces: `.wishtile .wf{max-width:100%; min-width:0}` so nothing can
 spill even if a future path sets a width some other way.
+
+### Fixed 2026-08-27 (`a507ed0`) — and one accepted trade-off
+
+Verified live at 380 / 520 / 760 / 1000 / 1280px: zero overflow at every width,
+against three real overflows on the same measurement before. Fumana holds its
+natural 1.66 ratio rather than cropping.
+
+Dev found two further routes to the same bug, neither visible on screen:
+
+- **`hp:0` wants.** `buildPanel` falls back to `W = H * 1.55` = 232px, so a
+  drawn want with no HP overflows exactly like Fumana. No live example yet — the
+  clamp covers it anyway.
+- **`wishImgFail`.** The dead-photo fallback rebuilt a full-size panel, so a wide
+  module whose photo 404s would overflow by that second route *after* the photo
+  fix. CSS cannot reach it — by then the `img` is gone. Now shares the clamp.
+
+**Accepted trade-off, do not "improve" it.** The drawn-panel clamp targets the
+narrowest column the grid can produce (~121px), because at render time it has no
+measurement to work from. So in a wider tile a drawn panel is smaller than it
+strictly needs to be — safe everywhere, conservative at most widths. Photos do
+not have this problem: CSS resolves them against the actual tile.
+
+If the under-fill ever looks wrong, the fix is **measurement** (ResizeObserver or
+a container query), **not raising the constant** — that would reintroduce the
+overflow at narrow widths, which is the bug we started from.
