@@ -1243,3 +1243,70 @@ used to be a border doing the separating.
 
 Verify at desktop and at 390px, and confirm the sticky bar still pins correctly
 now that more content precedes it.
+
+### Mobile: Toiveet collapses to names (2026-08-27)
+
+The move above the filter bar costs far more on a phone than on a desktop —
+measured at 390px, the band is **546px tall** (three full-width cards stacked),
+pushing the filter bar from ~797px to **1343px**, over a full screen further
+down. Desktop is only +224px.
+
+User's fix: **on mobile the cards shrink to just names.**
+
+Below the mobile breakpoint each seller becomes **one compact row** — the
+coloured left edge, the owner dot, the name, and the item count — with the row
+itself linking to `#/wish`. Drop the wanted-module chips and the "Katso koko
+lista →" line: the chips are the detail that costs the height, and the row is
+already the link.
+
+Roughly 160px instead of 546px, so the filter bar lands near ~960px rather than
+1343px. Desktop keeps the full cards — the space is affordable there and the
+chips are genuinely useful at that size.
+
+Keep the coloured left edge at its `3px`: it is the seller's identity and the
+same signal the filter bar's bottom edge uses.
+
+## Open Graph: one card for the whole site (decided 2026-08-27)
+
+**Not per-item.** The user chose the site-wide card, which avoids the routing
+change entirely.
+
+Worth recording *why* per-item was expensive, since it will come up again: the
+site is a hash-routed SPA, so everything after `#` is never sent to the server,
+and Facebook does not execute JS. `eurorack.fi/#/m/kastledrum` reaches their
+scraper as plain `eurorack.fi`. Real per-item previews would need real paths and
+a generated HTML file per item — a routing change, not a meta-tag change.
+
+Also: **item photos cannot be used as OG images.** Measured across the library,
+aspect ratios run **0.16 to 2.37** against OG's 1.91:1 — most are tall
+faceplates, and a 312×1998 module cropped to 1.91:1 is a horizontal sliver.
+
+### The card
+
+`share/og-card.png`, 1200×630, generated from `share/og-card.html` (headless
+Chrome, `--window-size=1200,630`). Regenerate from the HTML rather than editing
+the PNG. It reuses the site's **own approved Finnish** — the `HELSINKI ·
+NAAPUREITA` eyebrow and the `Tavaraa naapurista.` hero line — so no new copy
+needed sign-off.
+
+### Tags to add to `index.html`
+
+Absolute URLs only — scrapers do not resolve relative paths.
+
+```html
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://eurorack.fi/">
+<meta property="og:title"       content="eurorack.fi">
+<meta property="og:description" content="…">
+<meta property="og:image"       content="https://eurorack.fi/share/og-card.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale"      content="fi_FI">
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="description"        content="…">
+```
+
+**`og:description` needs the user** — it is the one new string here, and it is
+shown to Finnish readers. Do not machine-translate it; ask, or leave it out
+until they supply it. A missing description degrades gracefully; a wrong one
+does not.
