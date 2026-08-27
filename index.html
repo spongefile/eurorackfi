@@ -193,7 +193,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .themeb:hover{border-color:var(--accent); color:var(--accent)}
 
 /* ---------- hero ---------- */
-.hero{padding:3rem 0 2.5rem}
+.hero{padding:3rem 0 1.5rem}
 .hero .wrap{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:3rem; align-items:center}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem}
 .hero h1{font-size:clamp(2.1rem,4.4vw,3.2rem); letter-spacing:-.035em; font-weight:800; font-stretch:96%}
@@ -440,14 +440,21 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%}
 
 /* ---------- wish band ---------- */
-.wishband{padding:1.75rem 0 .5rem}
+/* Sits with the hero rather than as its own section: 68px of combined
+   padding read as a separate block, 28px reads as the hero's tail.
+   The people row belongs to its HEADING, not to the filters below —
+   9px above against 30px below, a 3.3:1 ratio. Equidistant, it floated
+   between the two and belonged to neither. Same principle as the
+   horizontal spacing inside the row, where 34px between people against
+   16px between module names is what makes the grouping legible. */
+.wishband{padding:.25rem 0 1.875rem}
 .wishband h2{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.9rem}
 /* One flowing row, not a card each. The user's brief: show THAT wishlists
    exist, WHAT KIND of thing is on them, and that people matter — not
    completeness. No rectangles is the point: this sits directly above a bar
    full of filter chips, and anything bordered here would read as another
    control rather than as something a person wants. */
-.wishhead{display:flex; align-items:baseline; gap:.75rem; margin-bottom:.9rem}
+.wishhead{display:flex; align-items:baseline; gap:.75rem; margin-bottom:.5625rem}
 .wishhead h2{margin-bottom:0}
 /* one CTA beside the heading, not one per person — every card used to carry
    its own and they all pointed at the same place */
@@ -851,7 +858,6 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
   <section class="wishband" id="wish"><div class="wrap">
     <div class="wishhead"><h2 id="wishH"></h2><a class="wishall" href="#/wish" id="wishAll"></a></div>
     <div class="wishflow" id="wishgrid"></div>
-    <p class="wishnote" id="wishK"></p>
   </div></section>
 
   <section class="controls" id="grid-top">
@@ -1360,7 +1366,6 @@ function renderChrome(){
   el("typeLabelEl").textContent=T2.typeLabel;
   el("wishH").textContent=T2.wishH;
   el("wishAll").innerHTML=esc(T2.seeFull)+' &rarr;';
-  el("wishK").textContent=T2.wishK;
   el("fIntro").textContent=T2.fIntro;
   el("fgrid").innerHTML=
     fcol(T2.fCollect,T2.fCollectBody)+fcol(T2.fTrade,T2.fTradeBody)+
