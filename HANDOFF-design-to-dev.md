@@ -946,3 +946,69 @@ Note this is separate from the **wish band**, where a seller with no wishes is
 excluded from the grid entirely (`renderWish` filters on `wants.length > 0`).
 The band is a teaser and an empty card wastes a slot; the popover is a direct
 question about one named person and deserves a direct answer.
+
+## Per-seller contact routing (specced 2026-08-27)
+
+**Problem.** Item enquiries all land in one shared Tally inbox. That was right
+for two people who read each other's mail; with Kalle it is already wrong, and
+it gets worse with every seller. An enquiry about Sampo's module should reach
+Sampo.
+
+**Not email addresses.** The obvious fix — `mailto:` per seller — publishes
+those addresses. `content/sellers/*.json` is fetched by every visitor's browser
+at runtime, so it is public no matter what the repo's visibility is; making the
+repo private would not hide it and *would* break the site, since content loads
+via `raw.githubusercontent.com`, which requires auth for private repos.
+
+**So: one Tally form per seller, all owned by spongefile's single account.**
+Tally's self-notification recipient can be any address and is free (dynamic
+answer-based routing is Pro; we do not need it — one form per seller gets the
+same result). Sellers need an email address, not a Tally account, and their
+address lives in Tally's settings, never in this repo.
+
+### Data
+
+Optional field on each seller: `form` — a Tally form URL. Absent means "use the
+shared form", so nothing breaks and a new seller works from day one.
+
+### Resolution
+
+- `#/msg/<id>` → the **item owner's** form if that seller has one, else `TALLY_URL`.
+- `#/msg/` (general contact) → **always** `TALLY_URL`. Unchanged.
+
+### The trap: prefill silently dies on a duplicated form
+
+`TALLY_FIELDS` currently holds four raw Tally **block UUIDs**, valid only for
+form `rjMyQo`. Duplicate that form and Tally mints new ids, so those params match
+nothing. Tally ignores unknown params — it does not error. The form just opens
+blank, and it looks like the prefill was never wired up.
+
+Fix before adding any second form: switch the four to **named hidden fields**.
+Tally references hidden fields by a name the form author picks
+(`?module=…&seller=…`), so one `TALLY_FIELDS` map works across every duplicate.
+Name them `module`, `seller`, `price`, `lang` in the Tally dashboard.
+
+Note hidden fields are not shown to the respondent. If the item should be
+visible in the form for confirmation, that is a Tally-side authoring choice —
+worth deciding, since right now the prefilled question blocks *are* visible.
+
+### Copy — needs the user, do not machine-translate
+
+`T2.inbox` currently reads "Goes to one shared inbox — we both read it." /
+"Menee yhteiseen postilaatikkoon — luemme sen molemmat." / "Går till en
+gemensam inkorg — vi läser den båda."
+
+**"We both" is already false** — there are three sellers. Two strings are needed
+where there is now one:
+
+- item enquiry, seller-routed — English draft: *"Goes straight to {name}."*
+- general contact, and the fallback — English draft: *"Goes to our shared inbox."*
+
+English is a draft for the user to replace; fi and sv are theirs to write.
+
+### Prerequisite, outside dev's control
+
+spongefile must create each seller's form in Tally (duplicate, set the
+notification recipient) and paste the URL into that seller's admin record. Until
+they do, every seller falls back to the shared form — which is exactly today's
+behaviour, so this can ship before any form exists.
