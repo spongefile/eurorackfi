@@ -21,8 +21,8 @@
     },
     "quotes": [
       {
-        "t": "This unit has an alternative faceplate overlay fitted, so it does not look like the stock photo.",
-        "s": "Worth knowing before you buy"
+        "t": "Light overlay panel with the jacks and knob arcs colour-coded by function — not what a stock Crave looks like. The photo is of this actual unit.",
+        "s": "What you are looking at"
       }
     ],
     "reviews": [
@@ -50,13 +50,13 @@
       }
     ]
   },
-  "tone": "black",
+  "tone": "white",
   "cat": "Synth",
   "mfr": "Behringer",
   "blurb": {
-    "en": "Desktop semi-modular: a 3340 oscillator, a ladder filter, and a 32-step sequencer, with a patchbay so it plugs into a rack rather than sitting apart from one. Runs on its own or as another voice in a modular setup. This one has an alternative faceplate overlay fitted over the original panel, so it does not look like a stock Crave.",
-    "fi": "Pöytämallinen puolimodulaari: 3340-oskillaattori, ladder-suodin ja 32-askelinen sekvensseri, sekä kytkentäpaneeli jolla se liittyy rackiin sen sijaan että olisi siitä erillään. Toimii yksinään tai lisä-äänenä modulaarikokoonpanossa. Tässä yksilössä on vaihtoehtoinen etupaneelipäällys alkuperäisen paneelin päällä, joten se ei näytä vakio-Cravelta.",
-    "sv": "Halvmodulär bordssynt: en 3340-oscillator, ett ladderfilter och en 32-stegssekvensiator, plus en kopplingspanel så att den ansluter till ett rack i stället för att stå för sig själv. Fungerar ensam eller som ytterligare en röst i en modulär uppsättning. Detta exemplar har ett alternativt frontpanelöverdrag monterat över originalpanelen, så den ser inte ut som en Crave från fabrik."
+    "en": "Desktop semi-modular: a 3340 oscillator, a ladder filter, and a 32-step sequencer, with a patchbay so it plugs into a rack rather than sitting apart from one. Runs on its own or as another voice in a modular setup. This one has an alternative faceplate overlay fitted over the original panel — light rather than the stock dark grey, with the jacks and knob arcs colour-coded by function. The photo is of the actual unit.",
+    "fi": "Pöytämallinen puolimodulaari: 3340-oskillaattori, ladder-suodin ja 32-askelinen sekvensseri, sekä kytkentäpaneeli jolla se liittyy rackiin sen sijaan että olisi siitä erillään. Toimii yksinään tai lisä-äänenä modulaarikokoonpanossa. Tässä yksilössä on vaihtoehtoinen etupaneelipäällys alkuperäisen paneelin päällä — vaalea vakion tummanharmaan sijaan, ja liittimet ja nuppien kaaret on värikoodattu toiminnoittain. Kuva on juuri tästä laitteesta.",
+    "sv": "Halvmodulär bordssynt: en 3340-oscillator, ett ladderfilter och en 32-stegssekvensiator, plus en kopplingspanel så att den ansluter till ett rack i stället för att stå för sig själv. Fungerar ensam eller som ytterligare en röst i en modulär uppsättning. Detta exemplar har ett alternativt frontpanelöverdrag monterat över originalpanelen — ljust i stället för fabrikens mörkgrå, med jack och rattbågar färgkodade efter funktion. Bilden är på just den här enheten."
   },
   "id": "crave",
   "negotiating": false,
@@ -65,5 +65,6 @@
     "Semi-modular",
     "Desktop"
   ],
-  "who": "kalle"
+  "who": "kalle",
+  "imgIsOwn": true
 }
