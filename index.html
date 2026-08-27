@@ -516,7 +516,13 @@ main{padding-bottom:3rem}
 .wishpop .wp-h{display:block; font-family:"IBM Plex Mono",monospace; font-size:.6rem; letter-spacing:.1em;
   text-transform:uppercase; color:var(--muted); margin-bottom:.5rem}
 .wishpop .wp-l{display:flex; flex-wrap:wrap; gap:.3rem}
-.wishpop .want{font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line2); color:var(--ink2); padding:.14rem .38rem}
+/* max-width/overflow-wrap are the safety net: labels here are short
+   (model only) but nothing guarantees a short model name, and a long one
+   used to run straight out past the panel's right edge */
+.wishpop .want{font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line2); color:var(--ink2); padding:.14rem .38rem;
+  max-width:100%; overflow-wrap:anywhere}
+/* the empty-wishlist line is a statement, not a want — no chip border */
+.wishpop .wp-none{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted)}
 .tags .wishpop{bottom:auto; top:calc(100% + 8px); right:auto; left:0}
 /* .card itself is a plain grid item (no stacking context), so its own
    z-index:40 popover can still end up visually behind the card in the row
@@ -1396,7 +1402,7 @@ function renderFilters(){
       return '<button class="chip owner haspop" data-who="'+p.key+'" aria-pressed="'+(S.who===p.key)+'">'+
         '<span class="odot" style="background:'+p.dot+'"></span>'+esc(p.name)+'<span class="c">'+n+'</span>'+
         '<span class="wishpop"><span class="wp-h">'+esc(p.name+" "+T2.hunting)+'</span>'+
-        '<span class="wp-l">'+(WANTS[p.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span></span>'+
+        '<span class="wp-l">'+wishPopBody(p.key)+'</span></span>'+
         '</button>'; }).join("");
   el("catchips").innerHTML=CATKEYS.map(function(k){
     var n=k==="all"?ITEMS.length:count({cat:k});
@@ -1457,6 +1463,19 @@ var wantLabel=function(w){ return typeof w==="string" ? w : (w.mfr+" "+w.name); 
    Model name only here; the Toiveet page has the width for the full label
    and is where being complete is the job. */
 var wantLabelShort=function(w){ return typeof w==="string" ? w : w.name; };
+/* Body of the hover popovers on owner chips and owner pills. Short labels
+   (model only) because .wishpop is 220px and a full "maker + model" like
+   "Noise Engineering Mimetic Digitwolis" overflows the panel — the module
+   page's trade panel is ~440px and deliberately keeps the full label,
+   where being complete is the job. A seller with nothing on their list
+   still gets a popover, saying so: someone hovering a named person's chip
+   has asked a question, and "nothing right now" answers it where an empty
+   box reads as broken. */
+function wishPopBody(key){
+  var list=WANTS[key]||[];
+  if(!list.length) return '<span class="wp-none">'+esc(t().noWishes)+'</span>';
+  return list.map(function(w){ return '<span class="want">'+esc(wantLabelShort(w))+'</span>'; }).join("");
+}
 /* Home is a light teaser, not the full inventory — the complete list is
    what the Toiveet page is for. Cap the chips shown here so a long
    wishlist doesn't eat the space between the filter bar and the grid, and
@@ -1499,7 +1518,7 @@ function card(m){
     '<span class="ownerpill haspop" data-pop="'+m.id+'"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
       '<span class="wishpop'+(S.pop===m.id?" open":"")+'">'+
         '<span class="wp-h">'+esc(p.name+" "+T2.hunting)+'</span>'+
-        '<span class="wp-l">'+(WANTS[p.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span>'+
+        '<span class="wp-l">'+wishPopBody(p.key)+'</span>'+
       '</span>'+
     '</span></div></div>'+
     '<div class="cardfoot"><span class="price">'+eur(m.price)+'</span>'+
@@ -1719,7 +1738,7 @@ function detailHTML(m){
         '<div class="tags"><span class="ownerpill haspop" data-pop="rel-'+o.id+'"><i style="background:'+op.dot+'"></i>'+esc(op.name)+
           '<span class="wishpop'+(S.pop===("rel-"+o.id)?" open":"")+'">'+
             '<span class="wp-h">'+esc(op.name+" "+T2.hunting)+'</span>'+
-            '<span class="wp-l">'+(WANTS[op.key]||[]).map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</span>'+
+            '<span class="wp-l">'+wishPopBody(op.key)+'</span>'+
           '</span>'+
         '</span></div></div>'+
         '<div class="cardfoot"><span class="price">'+eur(o.price)+'</span>'+
