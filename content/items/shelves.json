@@ -1,0 +1,68 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shelves.jpg",
+  "mgSlug": "mutable-instruments-shelves",
+  "site": "mutable-instruments.net",
+  "hp": 16,
+  "price": 180,
+  "name": "Shelves + expander",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 75mA · −12V 75mA",
+    "pull": {
+      "q": "The expander provides access to the low-pass, band-pass and high-pass outputs from Shelves' two parametric sections which are full-blown 12-dB multimode filters.",
+      "src": "Perfect Circuit",
+      "url": "https://www.perfectcircuit.com/mutable-instruments-shelves-expander.html"
+    },
+    "quotes": [
+      {
+        "t": "This one has a third-party black panel rather than Mutable's own, and the photo shows the standard panel.",
+        "s": "Worth knowing before you buy"
+      },
+      {
+        "t": "Mutable Instruments has closed. The module is well documented and open source, but there is no manufacturer support behind it any more.",
+        "s": "The honest state of the line"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Mutable Shelves — specs and racks",
+        "url": "https://modulargrid.net/e/mutable-instruments-shelves"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Shelves Expander — specs and racks",
+        "url": "https://modulargrid.net/e/mutable-instruments-shelves-expander"
+      },
+      {
+        "src": "Perfect Circuit",
+        "title": "Mutable Instruments Shelves Expander — what it adds",
+        "url": "https://www.perfectcircuit.com/mutable-instruments-shelves-expander.html"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "white",
+  "cat": "Filter",
+  "mfr": "Mutable Instruments",
+  "blurb": {
+    "en": "Four-band parametric EQ and filter in one: two shelving bands top and bottom, two full parametric mids with resonance, every parameter with its own CV input. Used as an EQ it is surgical; opened up with the resonance it becomes four filters you can play. Comes with the expander, which breaks out low-pass, band-pass and high-pass from the two parametric sections. Mutable has closed, so there is no more support. Note this unit has a third-party black panel, not Mutable's own — the photo shows the standard panel.",
+    "fi": "Nelikaistainen parametrinen taajuuskorjain ja suodin yhdessä: kaksi shelving-kaistaa ylhäällä ja alhaalla, kaksi täyttä parametrista keskikaistaa resonanssilla, ja jokaisella parametrilla oma CV-tulo. Taajuuskorjaimena se on kirurginen; resonanssi auki siitä tulee neljä soitettavaa suodinta. Mukana laajennin, joka tuo ulos alipäästö-, kaistanpäästö- ja ylipäästöulostulot kummastakin parametrisesta osasta. Mutable on lopettanut, joten tukea ei enää ole. Huomaa että tässä yksilössä on kolmannen osapuolen musta paneeli, ei Mutablen omaa — kuvassa on vakiopaneeli.",
+    "sv": "Fyrbands parametrisk EQ och filter i ett: två shelvingband högst upp och längst ner, två fulla parametriska mellanband med resonans, varje parameter med egen CV-ingång. Som EQ är den kirurgisk; med resonansen uppskruvad blir den fyra spelbara filter. Expandern ingår och tar ut lågpass, bandpass och högpass ur de två parametriska sektionerna. Mutable har lagt ner, så det finns ingen support längre. Observera att detta exemplar har en svart panel från tredje part, inte Mutables egen — bilden visar standardpanelen."
+  },
+  "id": "shelves",
+  "negotiating": false,
+  "cats": [
+    "Filter",
+    "EQ"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

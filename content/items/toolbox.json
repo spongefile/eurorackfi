@@ -1,0 +1,59 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/toolbox.jpg",
+  "mgSlug": "pittsburgh-modular-toolbox",
+  "site": "pittsburghmodular.com",
+  "hp": 6,
+  "price": 60,
+  "name": "Toolbox",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 30mA · −12V 30mA",
+    "pull": {
+      "q": "A multi-purpose Eurorack module featuring Adjustable Slew, Noise Source, Sample & Hold, and Voltage Inverter.",
+      "src": "Pittsburgh Modular",
+      "url": "https://pittsburghmodular.com/toolbox"
+    },
+    "quotes": [
+      {
+        "t": "Sold out at Pittsburgh — the utilities you only miss once the patch is already running.",
+        "s": "Why it is worth having"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Pittsburgh Modular",
+        "title": "Toolbox — the manufacturer's page",
+        "url": "https://pittsburghmodular.com/toolbox"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Pittsburgh Toolbox — specs and racks",
+        "url": "https://modulargrid.net/e/pittsburgh-modular-toolbox"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "alu",
+  "cat": "Modulation",
+  "mfr": "Pittsburgh Modular",
+  "blurb": {
+    "en": "Four small utilities in 6HP: adjustable slew, a noise source, sample and hold, and a voltage inverter. Nothing here is glamorous and all of it is the sort of thing you end up needing halfway through a patch. Sold out at Pittsburgh.",
+    "fi": "Neljä pientä työkalua 6HP:ssä: säädettävä slew, kohinalähde, sample and hold ja jännitteen kääntäjä. Mikään näistä ei ole hohdokasta ja kaikkia tarvitsee siinä vaiheessa kun patchi on puolivälissä. Loppuunmyyty Pittsburghilta.",
+    "sv": "Fyra små verktyg på 6HP: justerbar slew, en bruskälla, sample and hold och en spänningsinverterare. Inget av det är glamoröst och allt är sådant man kommer på att man behöver mitt i en patch. Slutsåld hos Pittsburgh."
+  },
+  "id": "toolbox",
+  "negotiating": false,
+  "cats": [
+    "Utility",
+    "Modulation"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

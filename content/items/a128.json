@@ -1,0 +1,59 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/a128.jpg",
+  "mgSlug": "doepfer-a-128",
+  "site": "doepfer.de",
+  "hp": 20,
+  "price": 80,
+  "name": "A-128 Fixed Filter Bank",
+  "fmt": "eu",
+  "extra": {
+    "depth": "60 mm",
+    "power": "+12V 20mA · −12V 20mA",
+    "pull": {
+      "q": "A filter bank, made up of 15 parallel band pass filters, all with fixed middle frequencies and bandwidth.",
+      "src": "Doepfer",
+      "url": "https://doepfer.de/a128.htm"
+    },
+    "quotes": [
+      {
+        "t": "The jacks are loose. It works, but this is a used module in modest condition and the price reflects that.",
+        "s": "The honest state of this one"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Doepfer",
+        "title": "A-128 Fixed Filter Bank — the manufacturer's page",
+        "url": "https://doepfer.de/a128.htm"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Doepfer A-128 — specs and racks",
+        "url": "https://modulargrid.net/e/doepfer-a-128"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "alu",
+  "cat": "Filter",
+  "mfr": "Doepfer",
+  "blurb": {
+    "en": "Fifteen parallel band-pass filters at fixed frequencies from 50 Hz to 11 kHz, each about half an octave wide with its own level control. Boost or cut a slice of the spectrum and the whole thing works as a coarse graphic EQ, or push it hard and it becomes a formant shaper. Condition is modest: it works, but the jacks are loose. Priced accordingly.",
+    "fi": "Viisitoista rinnakkaista kaistanpäästösuodinta kiinteillä taajuuksilla 50 Hz:stä 11 kHz:iin, kukin noin puolen oktaavin levyinen ja omalla tasosäätimellään. Korosta tai vaimenna siivu spektristä, niin koko laite toimii karkeana graafisena taajuuskorjaimena, tai aja se lujaa ja siitä tulee formanttimuokkain. Kunto on vaatimaton: se toimii, mutta liittimet ovat löysiä. Hinta on sen mukainen.",
+    "sv": "Femton parallella bandpassfilter på fasta frekvenser från 50 Hz till 11 kHz, vart och ett omkring en halv oktav brett med egen nivåkontroll. Höj eller sänk en skiva av spektrumet så fungerar det hela som en grov grafisk equalizer, eller kör hårt så blir det en formantformare. Skicket är måttligt: den fungerar, men jacken sitter löst. Priset är satt därefter."
+  },
+  "id": "a128",
+  "negotiating": false,
+  "cats": [
+    "Filter"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

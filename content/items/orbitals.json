@@ -1,0 +1,69 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/orbitals.jpg",
+  "mgSlug": "hexinverter-Electronique-orbitals",
+  "site": "hexinverter.net",
+  "hp": 42,
+  "price": 250,
+  "name": "Orbitals",
+  "fmt": "eu",
+  "extra": {
+    "depth": "30 mm",
+    "power": "+12V 90mA · −12V 20mA",
+    "pull": {
+      "q": "A dual 8-step or single 16-step bipolar, voltage controlled linear sequencer.",
+      "src": "Hexinverter",
+      "url": "http://www.hexinverter.net/orbitals"
+    },
+    "quotes": [
+      {
+        "t": "In quantised mode the clock input basically does nothing, and instead each time the input CV steps into a new voltage increment, the sequencer generates a new CV and gate for that step.",
+        "s": "Hexinverter · the mode that makes it unusual"
+      },
+      {
+        "t": "Discontinued, and 42HP — check you have the width before you commit.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Hexinverter",
+        "title": "Orbitals — the manufacturer's page",
+        "url": "http://www.hexinverter.net/orbitals"
+      },
+      {
+        "src": "Hexinverter",
+        "title": "Orbitals user manual (PDF)",
+        "url": "http://data.mutantbrainsurgery.hexinverter.net/ORBITALS_UserManual_v1.04.pdf"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Orbitals — specs and racks",
+        "url": "https://modulargrid.net/e/hexinverter-Electronique-orbitals"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "black",
+  "cat": "Sequencer",
+  "mfr": "Hexinverter Électronique",
+  "blurb": {
+    "en": "Dual eight-step or single sixteen-step analogue sequencer, and unusually it is bipolar and voltage controlled. Step selection can be driven by CV rather than only by clock: in clocked mode it behaves like a sample and hold, picking a step per pulse, and in quantised mode the clock does nothing at all and each new voltage increment on the input steps it along. 42HP of knob-per-step, and long discontinued.",
+    "fi": "Kaksi kahdeksanaskelista tai yksi kuusitoistaaskelinen analoginen sekvensseri, ja poikkeuksellisesti bipolaarinen ja jännitteellä ohjattava. Askelvalintaa voi ajaa CV:llä eikä pelkällä kellolla: kellotetussa tilassa se toimii kuin sample and hold poimien askeleen per pulssi, ja kvantisoidussa tilassa kello ei tee mitään ja jokainen uusi jänniteporras tulossa siirtää sitä eteenpäin. 42HP nuppia per askel, ja pitkään sitten lopetettu.",
+    "sv": "Dubbel åttastegs eller enkel sextonstegs analog sekvensiator, och ovanligt nog bipolär och spänningsstyrd. Stegvalet kan drivas med CV och inte bara av klocka: i klockat läge beter den sig som en sample and hold och plockar ett steg per puls, och i kvantiserat läge gör klockan ingenting alls utan varje nytt spänningssteg på ingången flyttar den vidare. 42HP av ratt-per-steg, och sedan länge utgången."
+  },
+  "id": "orbitals",
+  "negotiating": false,
+  "cats": [
+    "Sequencer",
+    "Analogue"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

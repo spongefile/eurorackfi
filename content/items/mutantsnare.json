@@ -1,0 +1,64 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mutantsnare.jpg",
+  "mgSlug": "hexinverter-Electronique-mutant-snare",
+  "site": "hexinverter.net",
+  "hp": 13,
+  "price": 140,
+  "name": "Mutant Snare",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 50mA · −12V 50mA",
+    "pull": {
+      "q": "Analog snare drum synthesis inspired by the legendary 808, capable of generating a wide variety of snare drum sounds with an external input.",
+      "src": "Hexinverter",
+      "url": "http://www.hexinverter.net/mutant-snare"
+    },
+    "quotes": [
+      {
+        "t": "Erica Synths has taken over manufacturing, sales and support of the Mutant modules, retaining functionality but with redesigned hardware.",
+        "s": "Erica Synths · on the line's future"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Hexinverter",
+        "title": "Mutant Snare — the manufacturer's page",
+        "url": "http://www.hexinverter.net/mutant-snare"
+      },
+      {
+        "src": "Erica Synths",
+        "title": "Hexinverter Mutant Snare — who supports it now",
+        "url": "https://www.ericasynths.lv/shop/eurorack-modules/by-series/hexinverter/hexinverter-mutant-snare/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Mutant Snare — specs and racks",
+        "url": "https://modulargrid.net/e/hexinverter-Electronique-mutant-snare"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "black",
+  "cat": "Synth",
+  "mfr": "Hexinverter Électronique",
+  "blurb": {
+    "en": "Analogue snare in the 808 lineage, but opened up: separate control over the tone pair and the noise, so it goes from a tight rimshot to a long wash without leaving the panel. An external input runs any signal through the noise section. Hexinverter has wound down; Erica Synths now makes a redesigned version, which makes the originals harder to find.",
+    "fi": "Analoginen virveli 808:n perinteessä, mutta avattuna: erilliset säädöt sävyparille ja kohinalle, joten se venyy tiukasta rimshotista pitkään ryöppyyn paneelilta poistumatta. Ulkoinen tulo ajaa minkä tahansa signaalin kohinaosan läpi. Hexinverter on lopettanut, ja Erica Synths tekee nykyään uudelleensuunnitellun version, mikä tekee alkuperäisistä harvinaisempia.",
+    "sv": "Analog virvel i 808:ans släkt, men öppnad: separat kontroll över tonparet och bruset, så den går från ett stramt rimshot till ett långt svall utan att man lämnar panelen. En extern ingång kör vilken signal som helst genom brusdelen. Hexinverter har lagt ner och Erica Synths gör numera en omgjord version, vilket gör originalen svårare att hitta."
+  },
+  "id": "mutantsnare",
+  "negotiating": false,
+  "cats": [
+    "Drum",
+    "Analogue"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

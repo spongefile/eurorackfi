@@ -1,0 +1,59 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/pp1.jpg",
+  "mgSlug": "behringer-perfect-pitch-pp1",
+  "site": "behringer.com",
+  "hp": 10,
+  "price": 50,
+  "name": "Perfect Pitch PP1",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 60mA · −12V 50mA",
+    "pull": {
+      "q": "Guitar, Microphone and Line Level Audio Conversion to MIDI, USB and CV.",
+      "src": "Behringer",
+      "url": "https://www.behringer.com/en/products/0720-ACV"
+    },
+    "quotes": [
+      {
+        "t": "Monophonic pitch tracking — it follows one note at a time, not chords.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Behringer",
+        "title": "Perfect Pitch PP1 — the manufacturer's page",
+        "url": "https://www.behringer.com/en/products/0720-ACV"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Behringer PP1 — specs and racks",
+        "url": "https://modulargrid.net/e/behringer-perfect-pitch-pp1"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "black",
+  "cat": "Controller",
+  "mfr": "Behringer",
+  "blurb": {
+    "en": "Pitch-to-voltage converter in 10HP: put a guitar, a microphone or a line signal in and get MIDI, USB and CV out. It tracks the pitch of a monophonic source and turns it into something the rack can play, which is the cheapest route from an instrument you already own into a modular.",
+    "fi": "Sävelkorkeudesta jännitteeksi -muunnin 10HP:ssä: laita sisään kitara, mikrofoni tai linjatasoinen signaali ja saat ulos MIDIä, USB:tä ja CV:tä. Se seuraa yksiäänisen lähteen sävelkorkeutta ja muuttaa sen muotoon jota rack osaa soittaa, mikä on halvin reitti jo omistamastasi soittimesta modulaariin.",
+    "sv": "Tonhöjd-till-spänning-omvandlare på 10HP: koppla in en gitarr, en mikrofon eller en linjesignal och få ut MIDI, USB och CV. Den följer tonhöjden hos en monofonisk källa och gör om den till något racket kan spela, vilket är den billigaste vägen från ett instrument du redan äger in i en modulär."
+  },
+  "id": "pp1",
+  "negotiating": false,
+  "cats": [
+    "Controller",
+    "Interface"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

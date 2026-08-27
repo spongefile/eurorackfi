@@ -1,0 +1,60 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/teakick.jpg",
+  "mgSlug": "bastl-instruments-tea-kick",
+  "site": "bastl-instruments.com",
+  "hp": 5,
+  "price": 90,
+  "name": "Tea Kick",
+  "fmt": "eu",
+  "extra": {
+    "depth": "35 mm, skiff friendly",
+    "power": "+12V 15mA · −12V 15mA",
+    "pull": {
+      "q": "A virtual electronic membrane which you strike with electricity.",
+      "src": "Bastl Instruments",
+      "url": "https://bastl-instruments.com/eurorack/modules/tea-kick"
+    },
+    "quotes": [
+      {
+        "t": "More than just a drum — the panel says so, and the WTF input is where that starts.",
+        "s": "Bastl Instruments · on the panel"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Bastl Instruments",
+        "title": "Tea Kick — the manufacturer's page",
+        "url": "https://bastl-instruments.com/eurorack/modules/tea-kick"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Bastl Tea Kick — specs and racks",
+        "url": "https://modulargrid.net/e/bastl-instruments-tea-kick"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "wood",
+  "cat": "Synth",
+  "mfr": "Bastl Instruments",
+  "blurb": {
+    "en": "Analogue drum voice built on a twin-T resonant circuit — a virtual membrane you strike with electricity. Tune and resonance shape the body, a separate click generator with its own tone control gives the attack, and there is a CV input with attenuator, a square output alongside the main one, and a WTF input that takes any signal into the circuit. This is the oak wood panel version. Discontinued by Bastl.",
+    "fi": "Analoginen rumpuääni, joka perustuu twin-T-resonanssipiiriin — virtuaalinen kalvo, jota lyödään sähköllä. Tune ja resonance muotoilevat rungon, erillinen klikkigeneraattori omalla sävynsäädöllä antaa iskun, ja mukana on CV-tulo vaimentimella, neliöaaltoulostulo pääulostulon rinnalla sekä WTF-tulo, joka ottaa minkä tahansa signaalin piiriin. Tämä on tammipaneeliversio. Bastl on lopettanut sen valmistuksen.",
+    "sv": "Analog trumröst byggd på en twin-T-resonanskrets — ett virtuellt membran som man slår an med elektricitet. Tune och resonance formar kroppen, en separat klickgenerator med egen tonkontroll ger anslaget, och det finns en CV-ingång med dämpare, en fyrkantsutgång vid sidan av huvudutgången och en WTF-ingång som tar in vilken signal som helst i kretsen. Detta är versionen med ekpanel. Utgått ur Bastls sortiment."
+  },
+  "id": "teakick",
+  "negotiating": false,
+  "cats": [
+    "Drum",
+    "Analogue"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

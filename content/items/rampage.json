@@ -1,0 +1,59 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/rampage.jpg",
+  "mgSlug": "befaco-rampage",
+  "site": "befaco.org",
+  "hp": 18,
+  "price": 120,
+  "name": "Rampage",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 110mA · −12V 90mA",
+    "pull": {
+      "q": "Befaco's approach to an old invention: the Serge/Buchla ramp generator, dual ramps for complex LFOs, logic and more.",
+      "src": "Befaco",
+      "url": "https://shop.befaco.org/full-kits/65-rampage.html"
+    },
+    "quotes": [
+      {
+        "t": "Sold here as a DIY build. The kit is a well-documented one, but the soldering is not the factory's.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Befaco",
+        "title": "Rampage — the manufacturer's kit page and build docs",
+        "url": "https://shop.befaco.org/full-kits/65-rampage.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Befaco Rampage — specs and racks",
+        "url": "https://modulargrid.net/e/befaco-rampage"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "alu",
+  "cat": "Modulation",
+  "mfr": "Befaco",
+  "blurb": {
+    "en": "Two linked function generators in the Serge and Buchla ramp tradition. Each side is a slew limiter, envelope, LFO or oscillator depending on how you patch it, with independent rise and fall, and the two sides feed a comparator and logic section giving MIN, MAX, OR and difference outputs. End-of-rise and end-of-cycle triggers make it self-patch into complex shapes. This one is a DIY build, not a factory unit.",
+    "fi": "Kaksi toisiinsa kytkettyä funktiogeneraattoria Sergen ja Buchlan ramppiperinteessä. Kumpikin puoli on slew-rajoitin, verhokäyrä, LFO tai oskillaattori riippuen kytkennästä, erillisillä nousu- ja laskuajoilla, ja puolet syöttävät komparaattori- ja logiikkaosaa, joka antaa MIN-, MAX-, OR- ja erotusulostulot. Nousun ja jakson lopun liipaisimet saavat sen kytkeytymään itseensä monimutkaisiksi muodoiksi. Tämä on itse rakennettu, ei tehdasvalmisteinen.",
+    "sv": "Två sammankopplade funktionsgeneratorer i Serge- och Buchla-traditionen. Varje sida är en slew-begränsare, envelope, LFO eller oscillator beroende på hur man kopplar, med oberoende stig- och falltid, och de båda sidorna matar en komparator- och logikdel som ger MIN-, MAX-, OR- och differensutgångar. Triggers vid stigningens och cykelns slut gör att den kan kopplas till sig själv för komplexa former. Detta är ett hembygge, inte en fabriksbyggd modul."
+  },
+  "id": "rampage",
+  "negotiating": false,
+  "cats": [
+    "Modulation",
+    "Utility"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}

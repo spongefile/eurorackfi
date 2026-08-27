@@ -1,0 +1,59 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mutanthihats.jpg",
+  "mgSlug": "hexinverter-Electronique-mutant-hihats",
+  "site": "hexinverter.net",
+  "hp": 13,
+  "price": 120,
+  "name": "Mutant Hihats",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 75mA · −12V 45mA",
+    "pull": {
+      "q": "Takes the 808 circuit and transforms it into a powerful creative tool for modular synthesis.",
+      "src": "Hexinverter",
+      "url": "http://www.hexinverter.net/mutant-hihats"
+    },
+    "quotes": [
+      {
+        "t": "Sold here as a DIY build. Hexinverter published the kit; the soldering on this one is not the factory's.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Hexinverter",
+        "title": "Mutant Hihats — the manufacturer's page",
+        "url": "http://www.hexinverter.net/mutant-hihats"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Mutant Hihats — specs and racks",
+        "url": "https://modulargrid.net/e/hexinverter-Electronique-mutant-hihats"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "black",
+  "cat": "Synth",
+  "mfr": "Hexinverter Électronique",
+  "blurb": {
+    "en": "The 808 hihat circuit rebuilt as a modular voice: six square-wave oscillators through a band-pass and a VCA, with control over decay and tone that the original never had. An external input lets you run anything through the hihat VCA. Sold as a DIY build, not a factory unit. Hexinverter has since wound down and Erica Synths took over the Mutant line.",
+    "fi": "808:n hi-hat-piiri rakennettuna uudelleen modulaariääneksi: kuusi neliöaalto-oskillaattoria kaistanpäästösuotimen ja VCA:n läpi, ja säädöt decaylle ja sävylle joita alkuperäisessä ei ollut. Ulkoinen tulo päästää minkä tahansa signaalin hi-hatin VCA:n läpi. Myydään itse rakennettuna, ei tehdasvalmisteisena. Hexinverter on sittemmin lopettanut ja Erica Synths otti Mutant-sarjan haltuunsa.",
+    "sv": "808:ans hihat-krets ombyggd till en modulär röst: sex fyrkantsoscillatorer genom ett bandpassfilter och en VCA, med kontroll över decay och ton som originalet aldrig hade. En extern ingång låter vad som helst gå genom hihatens VCA. Säljs som hembygge, inte fabriksbyggd. Hexinverter har sedan dess lagt ner och Erica Synths tog över Mutant-serien."
+  },
+  "id": "mutanthihats",
+  "negotiating": false,
+  "cats": [
+    "Drum",
+    "Analogue"
+  ],
+  "who": "kalle",
+  "imgIsModularGrid": true
+}
