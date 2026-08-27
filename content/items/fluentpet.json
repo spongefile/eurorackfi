@@ -1,0 +1,88 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/fluentpet.jpg",
+  "imgIsOwn": true,
+  "mgSlug": "",
+  "site": "fluent.pet",
+  "hp": 0,
+  "price": 15,
+  "name": "FluentPet HexTile kit (early)",
+  "fmt": "tools",
+  "extra": {
+    "specs": [
+      ["In the box", "6 recordable buttons, 3 HexTile mats, sticker sheet"],
+      ["Recording", "About a second per button, re-recordable"],
+      ["Generation", "Early kit — patterned tiles, pre-Speak Up! buttons"],
+      ["New price today", "€43.95 for the current Get Started Kit"]
+    ],
+    "pull": {
+      "q": "Hexagonal tiles to hold programmable sound buttons to record words or short phrases.",
+      "src": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/FluentPet"
+    },
+    "quotes": [
+      {
+        "t": "A big criticism of Rossano's project is that the animals might be copying their owners' behaviour without understanding what they're actually doing.",
+        "s": "Vice · on whether it really works"
+      },
+      {
+        "t": "Six buttons, six triggers, one second of sample each. Whether the cat learns anything is between you and the cat.",
+        "s": "What you are actually buying"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "FluentPet",
+        "title": "The manufacturer — current kits, for comparison with this one",
+        "url": "https://fluent.pet/"
+      },
+      {
+        "src": "Wikipedia",
+        "title": "FluentPet — what HexTiles are and the UC San Diego study behind them",
+        "url": "https://en.wikipedia.org/wiki/FluentPet"
+      },
+      {
+        "src": "Vice",
+        "title": "Is that dog talking or are we fooling ourselves?",
+        "url": "https://www.vice.com/en/article/do-fluentpet-buttons-work/"
+      },
+      {
+        "src": "TechCrunch",
+        "title": "FluentPet's talking button system lets you get a 'text' from your dog",
+        "url": "https://techcrunch.com/2023/01/05/fluentpets-talking-button-system-lets-you-get-a-text-from-your-dog/"
+      },
+      {
+        "src": "Wikipedia",
+        "title": "Bunny — the sheepadoodle that made these famous",
+        "url": "https://en.wikipedia.org/wiki/Bunny_(dog)"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Puppy's First Words?! Testing FluentPet Buttons",
+        "by": "Pawsitively Intrepid · YouTube",
+        "url": "https://www.youtube.com/watch?v=mo6X9jGk8rk"
+      }
+    ]
+  },
+  "tone": "white",
+  "cat": "Other",
+  "mfr": "FluentPet",
+  "blurb": {
+    "en": "Six recordable sound buttons and three interlocking HexTile mats. Record about a second per button, the animal stands on it, the sound plays. It is sold as a way to teach a dog or cat to talk, and some people have genuinely managed it — but it is also six cheap sample players with very large triggers, which makes it not the least modular thing on this site. Early kit: the tiles are patterned rather than plain and the buttons predate the louder Speak Up! redesign. Original box, sticker sheet included.",
+    "fi": "Kuusi äänitettävää painiketta ja kolme toisiinsa liittyvää HexTile-mattoa. Nauhoita noin sekunti painiketta kohti, eläin astuu sen päälle, ääni soi. Myydään keinona opettaa koira tai kissa puhumaan, ja jotkut ovat siinä oikeasti onnistuneet — mutta kyse on yhtä lailla kuudesta halvasta samplesoittimesta erittäin isoilla liipaisimilla, mikä ei tee siitä tämän sivuston epämodulaarisinta tavaraa. Varhainen setti: matot ovat kuvioituja eivätkä yksivärisiä, ja painikkeet ovat kovaäänisempää Speak Up! -uudistusta edeltävää mallia. Alkuperäinen laatikko ja tarra-arkki mukana.",
+    "sv": "Sex inspelningsbara ljudknappar och tre hopkopplingsbara HexTile-mattor. Spela in ungefär en sekund per knapp, djuret ställer sig på den, ljudet spelas upp. Säljs som ett sätt att lära en hund eller katt att prata, och en del har faktiskt lyckats — men det är lika gärna sex billiga samplerspelare med mycket stora triggers, vilket inte gör det till det minst modulära på den här sajten. Tidigt kit: mattorna är mönstrade i stället för enfärgade och knapparna är av modellen före den starkare Speak Up!-omgörningen. Originalförpackning och dekalark ingår."
+  },
+  "id": "fluentpet",
+  "negotiating": false,
+  "cats": [
+    "Other"
+  ],
+  "who": "spongefile"
+}
