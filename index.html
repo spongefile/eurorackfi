@@ -451,6 +451,22 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    that margin would just push the lone label off-center in the box */
 .wishtile.placeholder .wl{margin-top:0}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
+/* Mobile: each seller collapses to one row — coloured edge, dot, name,
+   count — and the row is already the link, so the wanted-module chips and
+   the "see the full list" line both go. The chips are what cost the
+   height: three stacked cards ran 546px, which pushed the filter bar a
+   full screen below the fold once Toiveet moved above it. Desktop keeps
+   the full cards, where the space is affordable and the chips earn it.
+   The 3px left edge stays at every width — it's the seller's identity,
+   the same signal the filter bar's own bottom edge carries. */
+@media(max-width:640px){
+  .wishgrid{grid-template-columns:1fr; gap:.45rem}
+  .wishcard{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .5rem; padding:.65rem .85rem}
+  .wishcard .nm{font-size:.98rem}
+  .wishcard .sub{margin-top:0}
+  .wishcard .sub .swap{display:none}
+  .wishcard ul,.wishcard .wishmore{display:none}
+}
 /* stated empty state for a seller with no wishlist yet — muted, so it
    reads as a fact about the shelf rather than as a missing tile */
 .wishempty{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); margin:.75rem 0 0}
@@ -1512,7 +1528,11 @@ function renderWish(){
   el("wishgrid").innerHTML=withWishes.map(function(p){
     var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
     return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-      '<div class="sub">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+' · '+esc(T2.swapFor)+'</div>'+
+      /* the "swapping for:" half is a separate span so the mobile rule can
+         drop it: below 640px the chips it introduces are hidden, and a
+         lead-in to a list that isn't there reads as broken text */
+      '<div class="sub"><span class="cnt">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+'</span>'+
+        '<span class="swap"> · '+esc(T2.swapFor)+'</span></div>'+
       '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
       (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
       '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
