@@ -290,6 +290,21 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; text-align:left; cursor:pointer; padding:0 .7rem;
   transition:height .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .collbar{height:44px; border-bottom-width:1px}
+/* Desktop: the bar is a PERSISTENT header, present open and closed, and
+   clicking it is the only way to fold the panel — scroll never does.
+   A fixed header keeps the close control in one place: any other
+   placement sits somewhere else when open than when closed, so it moves
+   out from under the cursor mid-use. Only the chevron rotates.
+   Costs 44px permanently, which the user has seen and accepted.
+   The bottom edge is kept in both states too, so the owner colour
+   renderFilters() sets inline reads the same open as closed instead of
+   appearing only once the panel is shut. */
+@media (min-width:900px){
+  .collbar{height:44px; border-bottom-width:1px}
+  /* open, the chips below already say what's filtered — repeating them in
+     the summary would say it twice. Chevron and count only. */
+  .controls:not(.collapsed) .collbar #collbarlabel{display:none}
+}
 .collbar .chev{width:14px; height:14px; flex:0 0 auto; color:var(--accent);
   transition:transform .26s cubic-bezier(.4,0,.2,1)}
 .controls.collapsed .chev{transform:rotate(180deg)}
@@ -2250,10 +2265,21 @@ var rz; window.addEventListener("resize",function(){
 
   function collapsed(){ return controls.classList.contains("collapsed"); }
 
+  /* >=900px the bar never auto-collapses: it stays open until clicked shut.
+     Below that, unchanged — scrolling down folds it away. */
+  var DESKTOP=window.matchMedia("(min-width:900px)");
+
   function syncInert(){
     var c=collapsed();
     wrap.toggleAttribute("inert", c);
-    bar.toggleAttribute("inert", !c);
+    /* inert only while the bar is NOT the live control. On desktop it is
+       always the live control — it's the only way to close the panel — so
+       it must never be inert there. Marking it inert while expanded made
+       that one control unclickable.
+       Note this cannot be caught by element.click(), which fires handlers
+       on an inert element regardless: inert removes it from HIT-TESTING,
+       not from dispatch. Verify with a real click at real coordinates. */
+    bar.toggleAttribute("inert", !c && !DESKTOP.matches);
     bar.setAttribute("aria-expanded", c?"false":"true");
   }
 
@@ -2292,6 +2318,7 @@ var rz; window.addEventListener("resize",function(){
     ticking=false;
     var y=window.scrollY, goingDown=y>lastY;
     lastY=y;
+    if(DESKTOP.matches) return; /* desktop closes on click only */
     if(Date.now()<suppressUntil) return; /* see click handler below */
     if(!collapsed() && goingDown && y>90) collapse();
   }
@@ -2300,7 +2327,10 @@ var rz; window.addEventListener("resize",function(){
   },{passive:true});
 
   bar.addEventListener("click",function(){
-    expand();
+    /* toggle: on desktop the bar is permanent, so clicking it is how the
+       panel closes as well as opens. Below the breakpoint the bar only
+       exists while collapsed, so this still only ever expands there. */
+    if(collapsed()) expand(); else collapse();
     lastY=window.scrollY;
     /* a real finger-scroll on a touchscreen keeps drifting for a bit after
        lift-off (momentum/inertia) — tapping to expand mid-drift still reads
@@ -2310,10 +2340,34 @@ var rz; window.addEventListener("resize",function(){
     suppressUntil=Date.now()+600;
   });
 
+  /* Crossing into desktop while collapsed must re-expand. Scroll is what
+     collapsed it, and on desktop scroll no longer reopens anything — the
+     user would land with the panel shut and only the bar to click, which
+     works but silently loses the filters they had open. Re-expanding also
+     re-syncs inert, which is the difference between the bar being
+     clickable and not. */
+  function onBreakpoint(){
+    if(DESKTOP.matches && collapsed()) expand();
+    else syncInert();
+  }
+  /* Driven from BOTH the media query and plain resize. matchMedia change
+     is the precise signal; resize is cheap redundancy for any context
+     where it doesn't arrive, and onBreakpoint is idempotent so a double
+     call costs nothing.
+     Neither fires when an IFRAME element is resized — measured: innerWidth
+     and mq.matches both update, but change and resize events stay at zero —
+     so an embedded copy can miss the crossing entirely. That's tolerable
+     rather than fixed, because the desktop bar is a permanent, never-inert
+     control: a user who lands collapsed just clicks it open. This re-expand
+     is a convenience, not the thing standing between them and a stuck UI. */
+  if(DESKTOP.addEventListener) DESKTOP.addEventListener("change",onBreakpoint);
+  else DESKTOP.addListener(onBreakpoint); /* older Safari */
+
   /* a resize mid-fold would animate toward a height measured at the old
      width; drop to auto and let it re-measure the next time it folds. */
   window.addEventListener("resize",function(){
     if(!collapsed()){ wrap.classList.remove("folding"); wrap.style.height=""; }
+    onBreakpoint();
   });
 
   syncInert();
