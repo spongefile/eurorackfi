@@ -66,6 +66,18 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 .rowD .lnk{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--accent);
  flex:0 0 auto;margin-left:auto}
 
+.rowE{background:var(--panel);border:1px solid var(--line);padding:.5rem .9rem;
+ display:block;text-decoration:none;color:inherit;margin-bottom:.4rem}
+.rowE .top{display:flex;align-items:baseline;gap:.5rem}
+.rowE i{width:9px;height:9px;border-radius:50%;flex:0 0 auto;align-self:center}
+.rowE .n{font-weight:700;font-size:1rem;flex:0 0 auto}
+.rowE .c{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);flex:0 0 auto}
+.rowE .wants{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2);
+ flex:1 1 auto;min-width:0;line-height:1.55;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rowE .wants .sep{color:var(--line2);padding:0 .1rem}
+.rowE .wants .more{color:var(--muted)}
+
 /* ---------- C: one row of chips ---------- */
 .rowC{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
 .chipC{display:inline-flex;align-items:center;gap:.45rem;background:var(--panel);
@@ -121,7 +133,19 @@ function D(n){var s=S.slice(0,n);return '<div class="wishband"><div class="bandh
   '<span class="lnk">Katso koko lista &rarr;</span></div></a>';}).join("")+
  '<div class="wishnote">Myös osavaihto + rahaa</div></div>';}
 
+function E(n){var s=S.slice(0,n);return '<div class="wishband"><div class="bandhead"><h3>Toiveet</h3>'+
+ '<a class="seeall" href="#">Katso koko lista &rarr;</a></div>'+
+ s.map(function(p){var w=W[p[0]]||[],shown=w.slice(0,5),extra=w.length-shown.length;
+  return '<a class="rowE" href="#" style="border-left:3px solid '+p[2]+'">'+
+  '<div class="top"><i style="background:'+p[2]+'"></i><span class="n">'+p[0]+'</span>'+
+  '<span class="c">'+p[1]+' kohdetta</span>'+
+  '<span class="wants">'+shown.join('<span class="sep"> · </span>')+
+  (extra>0?'<span class="more"> +'+extra+'</span>':'')+'</span></div></a>';}).join("")+
+ '<div class="wishnote">Myös osavaihto + rahaa</div></div>';}
+
 var defs=[
+ ["E — same, but one link for the section (recommended)",E,
+  "Identical rows, with the single change that \"Katso koko lista\" moves up beside the heading. At eight sellers D prints that link eight times, all going to the same page — a column of identical calls to action running down the right edge, competing with the names for attention. Since you want PEOPLE to be the thing that registers, removing seven redundant links is the cheapest way to get there. The link is still present, just once."],
  ["D — wants inline as plain text, beside the name (your idea)",D,
   "The wants stay visible, which is the point of the section, but they start on the name's own line and flow into at most one more before truncating with +N. No rectangles: these sit directly above a bar full of filter chips, and a bordered pill here reads as another control rather than as something someone wants. One row per seller, so a ninth seller adds one line."],
  ["A — compact card, link in every card",A,
