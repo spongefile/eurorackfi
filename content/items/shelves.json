@@ -22,8 +22,8 @@
     },
     "quotes": [
       {
-        "t": "Black panel rather than Mutable's standard silver. The photo is of this actual unit, with the expander next to it.",
-        "s": "What you are looking at"
+        "t": "Black panel rather than Mutable's standard silver, and the expander is included.",
+        "s": "Worth knowing before you buy"
       },
       {
         "t": "Mutable Instruments has closed. The module is well documented and open source, but there is no manufacturer support behind it any more.",
@@ -64,9 +64,9 @@
   "cat": "Filter",
   "mfr": "Mutable Instruments",
   "blurb": {
-    "en": "Four-band parametric EQ and filter in one: two shelving bands top and bottom, two full parametric mids with resonance, every parameter with its own CV input. Used as an EQ it is surgical; opened up with the resonance it becomes four filters you can play. Comes with the expander, which breaks out low-pass, band-pass and high-pass from the two parametric sections. Mutable has closed, so there is no more support. This one wears a black panel rather than Mutable's standard silver; the photo is of the actual unit, expander alongside.",
-    "fi": "Nelikaistainen parametrinen taajuuskorjain ja suodin yhdessä: kaksi shelving-kaistaa ylhäällä ja alhaalla, kaksi täyttä parametrista keskikaistaa resonanssilla, ja jokaisella parametrilla oma CV-tulo. Taajuuskorjaimena se on kirurginen; resonanssi auki siitä tulee neljä soitettavaa suodinta. Mukana laajennin, joka tuo ulos alipäästö-, kaistanpäästö- ja ylipäästöulostulot kummastakin parametrisesta osasta. Mutable on lopettanut, joten tukea ei enää ole. Tässä yksilössä on musta paneeli Mutablen vakiohopean sijaan; kuva on juuri tästä laitteesta, laajennin vieressä.",
-    "sv": "Fyrbands parametrisk EQ och filter i ett: två shelvingband högst upp och längst ner, två fulla parametriska mellanband med resonans, varje parameter med egen CV-ingång. Som EQ är den kirurgisk; med resonansen uppskruvad blir den fyra spelbara filter. Expandern ingår och tar ut lågpass, bandpass och högpass ur de två parametriska sektionerna. Mutable har lagt ner, så det finns ingen support längre. Detta exemplar har en svart panel i stället för Mutables standardsilver; bilden är på just den här enheten, med expandern bredvid."
+    "en": "Four-band parametric EQ and filter in one: two shelving bands top and bottom, two full parametric mids with resonance, every parameter with its own CV input. Used as an EQ it is surgical; opened up with the resonance it becomes four filters you can play. Comes with the expander, which breaks out low-pass, band-pass and high-pass from the two parametric sections. Mutable has closed, so there is no more support. This one wears a black panel rather than Mutable's standard silver.",
+    "fi": "Nelikaistainen parametrinen taajuuskorjain ja suodin yhdessä: kaksi shelving-kaistaa ylhäällä ja alhaalla, kaksi täyttä parametrista keskikaistaa resonanssilla, ja jokaisella parametrilla oma CV-tulo. Taajuuskorjaimena se on kirurginen; resonanssi auki siitä tulee neljä soitettavaa suodinta. Mukana laajennin, joka tuo ulos alipäästö-, kaistanpäästö- ja ylipäästöulostulot kummastakin parametrisesta osasta. Mutable on lopettanut, joten tukea ei enää ole. Tässä yksilössä on musta paneeli Mutablen vakiohopean sijaan.",
+    "sv": "Fyrbands parametrisk EQ och filter i ett: två shelvingband högst upp och längst ner, två fulla parametriska mellanband med resonans, varje parameter med egen CV-ingång. Som EQ är den kirurgisk; med resonansen uppskruvad blir den fyra spelbara filter. Expandern ingår och tar ut lågpass, bandpass och högpass ur de två parametriska sektionerna. Mutable har lagt ner, så det finns ingen support längre. Detta exemplar har en svart panel i stället för Mutables standardsilver."
   },
   "id": "shelves",
   "negotiating": false,
