@@ -983,7 +983,16 @@ form `rjMyQo`. Duplicate that form and Tally mints new ids, so those params matc
 nothing. Tally ignores unknown params — it does not error. The form just opens
 blank, and it looks like the prefill was never wired up.
 
-Fix before adding any second form: switch the four to **named hidden fields**.
+**Order matters, and the obvious order is wrong.** My first instinct — switch
+the code to named fields before adding a second form — has the dependency
+backwards: the names must exist in the Tally dashboard *before* the code sends
+them, or prefill breaks on the live form the moment it ships. Correct order:
+
+1. spongefile authors the four named hidden fields on form `rjMyQo`.
+2. Dev flips `TALLY_FIELDS` from UUIDs to those names.
+3. Only then is duplicating a form safe.
+
+Switch the four to **named hidden fields**.
 Tally references hidden fields by a name the form author picks
 (`?module=…&seller=…`), so one `TALLY_FIELDS` map works across every duplicate.
 Name them `module`, `seller`, `price`, `lang` in the Tally dashboard.
@@ -1001,10 +1010,14 @@ gemensam inkorg — vi läser den båda."
 **"We both" is already false** — there are three sellers. Two strings are needed
 where there is now one:
 
-- item enquiry, seller-routed — English draft: *"Goes straight to {name}."*
-- general contact, and the fallback — English draft: *"Goes to our shared inbox."*
+**Superseded 2026-08-27 — the user removed the caption entirely.** Asked
+directly, they said "delete that string", so `T2.inbox` and its `.inbox` rule
+are gone in all three languages rather than trimmed. That is the more durable
+call: *any* fixed claim about where a message lands goes stale again the moment
+one seller has their own form.
 
-English is a draft for the user to replace; fi and sv are theirs to write.
+If a seller-routed caption is ever wanted, it needs new copy from the user in
+all three languages — do not reinstate the old string.
 
 ### Prerequisite, outside dev's control
 
