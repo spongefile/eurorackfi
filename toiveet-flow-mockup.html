@@ -33,9 +33,13 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 .flow{line-height:2.05}
 .who{display:inline;white-space:normal}
 .who + .who{margin-left:.2rem}
+/* dot and name are ONE unbreakable unit — otherwise a line can end on a bare
+   coloured circle with its name starting the next line, which reads as a
+   stray mark rather than as a person. */
+.tag{white-space:nowrap}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;
  margin-right:.4rem;vertical-align:.02em}
-.nm{font-weight:700;font-size:1rem;white-space:nowrap}
+.nm{font-weight:700;font-size:1rem}
 .wants{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink2);
  margin-left:.45rem}
 .wants .sep{color:var(--line2);padding:0 .12rem}
@@ -68,8 +72,8 @@ function band(n,mode){
      var col = mode==='ink' ? 'var(--ink)' : (mode==='safe' ? p[3] : p[1+1]);
      var w=W[p[0]]||[],shown=w.slice(0,4),extra=w.length-shown.length;
      return (i?'<span class="gap"></span>':'')+
-      '<span class="who"><span class="dot" style="background:'+p[2]+'"></span>'+
-      '<span class="nm" style="color:'+col+'">'+p[0]+'</span>'+
+      '<span class="who"><span class="tag"><span class="dot" style="background:'+p[2]+'"></span>'+
+      '<span class="nm" style="color:'+col+'">'+p[0]+'</span></span>'+
       '<span class="wants">'+shown.join('<span class="sep"> · </span>')+
       (extra>0?'<span class="more"> +'+extra+'</span>':'')+'</span></span>';
    }).join("")+'</div><div class="note">Myös osavaihto + rahaa</div></div>';
