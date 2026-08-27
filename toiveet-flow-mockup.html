@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — Toiveet as a flowing row</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{--bg:#E7EBF0;--bg2:#DCE2EA;--panel:#FAFBFD;--ink:#0F1722;--ink2:#36435A;
+ --muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;--accent:#0B4F9E;}
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 70px;background:var(--bg);color:var(--ink);
+ font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.025em;margin:0 0 .5rem}
+.sub{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;color:var(--ink2);
+ line-height:1.6;max-width:66ch;margin:0 0 1.6rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 .3rem}
+.scale{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--accent);
+ letter-spacing:.1em;text-transform:uppercase;margin:1.2rem 0 .45rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+ margin-top:.7rem;line-height:1.7;max-width:82ch}
+.stage{border:1px dashed var(--line2);padding:1.3rem 1.4rem;background:var(--panel)}
+
+.band .bandhead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem}
+.band h3{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:0}
+.seeall{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--accent);text-decoration:none}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.9rem}
+
+/* the flow: no boxes at all. Each person is one inline group that will not
+   break across a line, so a name never separates from its own wants. */
+.flow{line-height:2.05}
+.who{display:inline;white-space:normal}
+.who + .who{margin-left:.2rem}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;
+ margin-right:.4rem;vertical-align:.02em}
+.nm{font-weight:700;font-size:1rem;white-space:nowrap}
+.wants{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink2);
+ margin-left:.45rem}
+.wants .sep{color:var(--line2);padding:0 .12rem}
+.wants .more{color:var(--muted)}
+/* a wider gap is the only separator between people, so it has to be decisive */
+.gap{display:inline-block;width:2.1rem}
+</style></head>
+<body>
+<h1>Toiveet as one flowing row</h1>
+<p class="sub">No rectangles, no cards. Circle, name, wants, next circle. The only question is
+what colour the name can be: <b>all three seller colours fail as text</b> — 2.45 to 2.78 against
+the page, where body text needs 4.5. So here are the three honest treatments.</p>
+<div id="out"></div>
+<script>
+var S=[["Kalle",14,"#4E9E7E","#39745D"],["Sampo",20,"#C98A2E","#8E6120"],
+ ["spongefile",52,"#678cd6","#4D69A0"],["Mikko",11,"#9B6BB0","#6E4A80"],
+ ["Riikka",27,"#C4576B","#8B3D4C"],["Jussi",18,"#3E8E8E","#2C6666"],
+ ["Aino",9,"#B0863E","#7C5F2C"],["Tero",31,"#5C7BC4","#42598E"]];
+var W={Kalle:["Fumana","Polygogo","Mindphaser","Versio","Rings","Maths","Plaits"],
+ Sampo:["Versio (any model)","Mangrove","Just Friends","Beads","Morphagene"],
+ spongefile:["MCO","AXON-1","Mangrove","W/","Dot","Mimetic Digitwolis","PoliMATHS","øchd expander","Neo Trinity"],
+ Mikko:["Rings","Clouds"],Riikka:["Pamela's","Disting","Batumi","Zularic"],
+ Jussi:["Maths","Optomix","Wogglebug"],Aino:["Plaits"],
+ Tero:["Marbles","Stages","Tides","Ripples","Veils","Links"]};
+function band(n,mode){
+  var s=S.slice(0,n);
+  return '<div class="band"><div class="bandhead"><h3>Toiveet</h3>'+
+   '<a class="seeall" href="#">Katso koko lista &rarr;</a></div><div class="flow">'+
+   s.map(function(p,i){
+     var col = mode==='ink' ? 'var(--ink)' : (mode==='safe' ? p[3] : p[1+1]);
+     var w=W[p[0]]||[],shown=w.slice(0,4),extra=w.length-shown.length;
+     return (i?'<span class="gap"></span>':'')+
+      '<span class="who"><span class="dot" style="background:'+p[2]+'"></span>'+
+      '<span class="nm" style="color:'+col+'">'+p[0]+'</span>'+
+      '<span class="wants">'+shown.join('<span class="sep"> · </span>')+
+      (extra>0?'<span class="more"> +'+extra+'</span>':'')+'</span></span>';
+   }).join("")+'</div><div class="note">Myös osavaihto + rahaa</div></div>';
+}
+var defs=[
+ ["1 — name in ink, colour carried by the circle",'ink',
+  "The plainest and the most legible: names at 15:1. The circle sits immediately before the name, so the association is never in doubt — this is already how the site handles owner chips and seller lines. Colour identifies; ink reads."],
+ ["2 — name in a darkened version of the seller's colour (recommended)",'safe',
+  "The circle keeps the bright identity colour, the name takes a darkened version of the same hue that clears 4.5:1 — #39745D, #8E6120, #4D69A0. You get the coloured names you asked for and they stay readable. Cost: the name is a shade deeper than the dot, so the pairing reads as the same hue at two weights rather than one flat colour. The site already does exactly this with --accent and --accent-hi."],
+ ["3 — name in the raw dot colour, as asked",'raw',
+  "What the description literally says, shown so the cost is visible rather than argued. Sampo at 2.45 and Kalle at 2.69 are the ones to look at — thin on this background, and worse for anyone reading on a phone outdoors. Not recommended, but it is your call and the difference from 2 is small at a glance."]
+];
+var h="";
+defs.forEach(function(d){
+  h+='<h2>'+d[0]+'</h2>';
+  h+='<div class="scale">three sellers — today</div><div class="stage">'+band(3,d[1])+'</div>';
+  h+='<div class="scale">eight sellers — later</div><div class="stage">'+band(8,d[1])+'</div>';
+  h+='<p class="cap">'+d[2]+'</p>';
+});
+document.getElementById('out').innerHTML=h;
+</script>
+</body></html>
