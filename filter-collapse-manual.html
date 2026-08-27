@@ -242,9 +242,16 @@ body{margin:0;background:var(--bg);color:var(--ink);
   function syncInert(){
     var c=collapsed();
     wrap.toggleAttribute("inert", c);
-    collbar.toggleAttribute("inert", !c);
+    /* inert ONLY when the header is genuinely absent — i.e. collapsed to 0
+       height on mobile. On desktop it is a persistent control and must stay
+       clickable while the panel is open, or the only way to close the bar is
+       unreachable. inert removes an element from hit-testing entirely, so a
+       programmatic .click() still fires and a real click does not: this passed
+       every scripted test and failed for the user. */
+    collbar.toggleAttribute("inert", !c && !DESKTOP.matches);
     collbar.setAttribute("aria-expanded", c ? "false" : "true");
   }
+  DESKTOP.addEventListener("change", syncInert);
 
   function settle(clearHeight){
     clearTimeout(foldTimer);
