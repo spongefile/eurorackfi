@@ -1006,12 +1006,14 @@ you'd trade, Message — `module`/`seller`/`price` appear nowhere. The sender ha
 never seen which item they are asking about.
 
 I asserted this from the code's use of prefill params without opening the form,
-despite having screenshotted it earlier the same day. The user then chose "keep
-them visible" believing that described the status quo. It does not: **visible
-is the change**, and it needs Tally-side authoring — either a text block
-recalling the hidden field, or real visible questions. Their decision stands
-but now costs work, so it is theirs to re-confirm. The editable-prefilled-price
-trade-off below only becomes live if they go ahead.
+despite having screenshotted it earlier the same day. The user first chose
+"keep them visible" believing that described the status quo.
+
+**Re-decided once corrected, 2026-08-27: "item details don't need to be
+visible."** So the fields stay hidden — which is what the form already does.
+Nothing to author, nothing to build, and the editable-prefilled-price
+trade-off never becomes live. Do not add visible item fields to a duplicated
+form.
 
 ### Copy — needs the user, do not machine-translate
 
