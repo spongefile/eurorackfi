@@ -2,5 +2,51 @@
   "key": "kalle",
   "name": "Kalle",
   "dot": "#3E9E82",
-  "wants": []
+  "wants": [
+    {
+      "type": "product",
+      "mfr": "Frap Tools",
+      "name": "Fumana",
+      "hp": 42,
+      "tone": "alu",
+      "parts": {
+        "k": 22,
+        "j": 20,
+        "sl": 0,
+        "led": 32,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/fumana.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "E-RM",
+      "name": "Polygogo",
+      "hp": 32,
+      "tone": "black",
+      "parts": {
+        "k": 10,
+        "j": 16,
+        "sl": 0,
+        "led": 8,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polygogo.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Hexinverter Électronique",
+      "name": "Mindphaser",
+      "hp": 30,
+      "tone": "black",
+      "parts": {
+        "k": 14,
+        "j": 20,
+        "sl": 0,
+        "led": 6,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mindphaser.jpg"
+    }
+  ]
 }
