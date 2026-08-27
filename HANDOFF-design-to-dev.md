@@ -1368,3 +1368,37 @@ was the obvious alternative and **fails** in the light theme at 3.80.
 The circle keeps the **raw** seller colour at every theme. 9px of saturated
 colour is identity, not text — the same division the filter bar's owner edge
 uses, where colour marks whose view you are in and never carries a word.
+
+### Spacing and the removed note (2026-08-27)
+
+Three changes from the user, measured live before and after.
+
+**1. Delete `.wishnote`** — "Partial trade + cash also works". Gone entirely,
+not hidden.
+
+**2. The people row belongs to its heading, not to the filters.** It sat 15px
+below the heading and 25px above the filter bar — nearly equidistant, so it
+read as floating between two things. Now **9px above, 30px below**, a ratio of
+3.3:1. Same principle as the horizontal spacing inside the row, where 34px
+between people against 16px between module names is what makes the grouping
+legible.
+
+**3. The block moves up to sit with the hero.** It was 68px below the hero's
+content (40px hero padding-bottom + 28px band padding-top), which read as a
+separate section. Now **28px total**.
+
+```
+.hero      padding-bottom  40px -> 24px
+.wishband  padding-top     28px -> 4px
+.wishband  padding-bottom   8px -> 30px
+.wishhead  margin-bottom   14.4px -> 9px
+```
+
+Measured result at desktop: hero → heading 4px, heading → people 9px, people →
+filter bar 30px, and the filter bar rises from 605px to **565px**.
+
+**Check this at 390px before calling it done.** These are absolute pixel
+values on elements that also govern the mobile layout, and the hero is far
+taller there — 4px of band padding-top may read as cramped against a stacked
+hero even though it is right on desktop. If it does, the mobile breakpoint
+should carry its own padding rather than these numbers being softened for both.
