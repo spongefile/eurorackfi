@@ -38,7 +38,13 @@
         "url": "https://modulargrid.net/e/synthrotek-echo"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "PT2399 echo circuit walk through and demo",
+        "by": "Gadget Sideload · YouTube",
+        "url": "https://www.youtube.com/watch?v=86B8lw0iFcM"
+      }
+    ]
   },
   "tone": "black",
   "cat": "FX",

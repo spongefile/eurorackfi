@@ -39,7 +39,23 @@
         "url": "https://modulargrid.net/e/doepfer-a-166"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Doepfer A-166 Dual Logic Basics",
+        "by": "Raul's World of Synths · YouTube",
+        "url": "https://www.youtube.com/watch?v=hEGarOW7V80"
+      },
+      {
+        "title": "A-166 Dual Logic — combining digital signals, part one",
+        "by": "Raul's World of Synths · YouTube",
+        "url": "https://www.youtube.com/watch?v=tUPqbvWMfQU"
+      },
+      {
+        "title": "Making a sequence with a Doepfer A-166 Logic",
+        "by": "GruithuisenCityMan · YouTube",
+        "url": "https://www.youtube.com/watch?v=RGNODF4djnw"
+      }
+    ]
   },
   "tone": "alu",
   "cat": "Other",

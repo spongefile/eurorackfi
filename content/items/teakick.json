@@ -39,7 +39,23 @@
         "url": "https://modulargrid.net/e/bastl-instruments-tea-kick"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Bastl TEA KICK: Drum, Drone & Audio FX Demo",
+        "by": "THE TUESDAY NIGHT MACHINES · YouTube",
+        "url": "https://www.youtube.com/watch?v=TZitQ7IKGWo"
+      },
+      {
+        "title": "Bastl Instruments Tea Kick Introduction",
+        "by": "SundayAfternoonModular · YouTube",
+        "url": "https://www.youtube.com/watch?v=dVTQ3VnP68s"
+      },
+      {
+        "title": "Modular drum machine — Tea Kick, Noise Square and Skis",
+        "by": "Bastl Instruments · YouTube",
+        "url": "https://www.youtube.com/watch?v=a0fymQ8ppG0"
+      }
+    ]
   },
   "tone": "wood",
   "cat": "Synth",

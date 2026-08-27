@@ -39,7 +39,18 @@
         "url": "https://modulargrid.net/e/doepfer-a-128"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Doepfer A-128 Fixed Filter Bank — A Patch A Week #31",
+        "by": "Mike Yip · YouTube",
+        "url": "https://www.youtube.com/watch?v=W6FC-KyYRqU"
+      },
+      {
+        "title": "Patch Lab #01: Noone's Filter Bank",
+        "by": "Soundria · YouTube",
+        "url": "https://www.youtube.com/watch?v=QeVKIVYKNN8"
+      }
+    ]
   },
   "tone": "alu",
   "cat": "Filter",

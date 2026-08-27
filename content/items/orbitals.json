@@ -48,7 +48,13 @@
         "url": "https://modulargrid.net/e/hexinverter-Electronique-orbitals"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "hexinverter.net ORBITALS step sequencer demo",
+        "by": "Hexinverter Électronique · YouTube",
+        "url": "https://www.youtube.com/watch?v=0dMCwZBU1ls"
+      }
+    ]
   },
   "tone": "black",
   "cat": "Sequencer",

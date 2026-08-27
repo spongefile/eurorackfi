@@ -47,7 +47,18 @@
         "url": "https://www.perfectcircuit.com/mutable-instruments-shelves-expander.html"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Mutable Instruments — Shelves",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=GTSXQ-Tpg7Q"
+      },
+      {
+        "title": "Mutable Instruments — Shelves: FM, feedback, oscillation",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=2tl3sn50-LA"
+      }
+    ]
   },
   "tone": "white",
   "cat": "Filter",

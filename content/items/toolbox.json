@@ -38,7 +38,13 @@
         "url": "https://modulargrid.net/e/pittsburgh-modular-toolbox"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Pittsburgh Modular Toolbox Demo",
+        "by": "Seth Shafer · YouTube",
+        "url": "https://www.youtube.com/watch?v=i0JITR-lhWM"
+      }
+    ]
   },
   "tone": "alu",
   "cat": "Modulation",

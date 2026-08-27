@@ -42,7 +42,28 @@
         "url": "https://modulargrid.net/e/rossum-electro-music-linnaeus"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Rossum Linnaeus — Superbooth 2019 product demo and overview",
+        "by": "Sound On Sound · YouTube",
+        "url": "https://www.youtube.com/watch?v=WBVNrQqlvt4"
+      },
+      {
+        "title": "Linnaeus — thru-zero frequency modulation",
+        "by": "Rossum Electro-Music · YouTube",
+        "url": "https://www.youtube.com/watch?v=YJRz8VDuNIA"
+      },
+      {
+        "title": "Linnaeus — features",
+        "by": "Rossum Electro-Music · YouTube",
+        "url": "https://www.youtube.com/watch?v=TAwjZEIGrco"
+      },
+      {
+        "title": "Linnaeus — internal ping mode demo",
+        "by": "Rossum Electro-Music · YouTube",
+        "url": "https://www.youtube.com/watch?v=MZ7cBSvvMXw"
+      }
+    ]
   },
   "tone": "black",
   "cat": "Filter",

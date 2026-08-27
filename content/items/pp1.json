@@ -38,7 +38,18 @@
         "url": "https://modulargrid.net/e/behringer-perfect-pitch-pp1"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Behringer Perfect Pitch PP1 guitar demo",
+        "by": "Bata · YouTube",
+        "url": "https://www.youtube.com/watch?v=0paqgQJXf5Y"
+      },
+      {
+        "title": "Perfect Pitch PP1 with guitar and eurorack",
+        "by": "Ebotronix · YouTube",
+        "url": "https://www.youtube.com/watch?v=OXKUVEu-Vyw"
+      }
+    ]
   },
   "tone": "black",
   "cat": "Controller",

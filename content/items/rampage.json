@@ -38,7 +38,23 @@
         "url": "https://modulargrid.net/e/befaco-rampage"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Rampage Eurorack Module Features",
+        "by": "Befaco · YouTube",
+        "url": "https://www.youtube.com/watch?v=_t-aRzfxuxA"
+      },
+      {
+        "title": "SELF PATCHED! Befaco Rampage — complex function generator modulation",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=e6v-oY_DAUM"
+      },
+      {
+        "title": "Befaco Rampage — tutorial",
+        "by": "Omri Cohen · YouTube",
+        "url": "https://www.youtube.com/watch?v=w9IJHkuiwOs"
+      }
+    ]
   },
   "tone": "alu",
   "cat": "Modulation",

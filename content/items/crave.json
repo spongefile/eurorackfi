@@ -32,7 +32,23 @@
         "url": "https://www.behringer.com/en/products/0718-AAJ"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Introducing the CRAVE Synthesizer",
+        "by": "Behringer · YouTube",
+        "url": "https://www.youtube.com/watch?v=u-rJb5tgPOg"
+      },
+      {
+        "title": "Behringer CRAVE: review, tutorial and patch ideas",
+        "by": "loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=GU0PQTswBt8"
+      },
+      {
+        "title": "Behringer Crave — unboxing and free play demo",
+        "by": "Studio Solutions · YouTube",
+        "url": "https://www.youtube.com/watch?v=mqeu5qtwTkc"
+      }
+    ]
   },
   "tone": "black",
   "cat": "Synth",

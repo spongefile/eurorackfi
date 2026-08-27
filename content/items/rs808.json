@@ -38,7 +38,18 @@
         "url": "https://modulargrid.net/e/tiptop-audio-rs808"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "title": "Tiptop Audio RS808 (Roland TR-808) sound demo, no talking",
+        "by": "Synmo · YouTube",
+        "url": "https://www.youtube.com/watch?v=XYDINun1SX4"
+      },
+      {
+        "title": "Tiptop Audio RS808",
+        "by": "Let's Listen · YouTube",
+        "url": "https://www.youtube.com/watch?v=642o5TETJks"
+      }
+    ]
   },
   "tone": "black",
   "cat": "Synth",
