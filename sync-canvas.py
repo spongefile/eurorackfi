@@ -4,7 +4,11 @@ canvas artifact's embedded appifact-doc record, so republishing the page
 carries the current design rather than the snapshot it was built from."""
 import re, json, os, sys
 
-REPO = '/Users/tina/eurorackfi'
+# Resolve from this script's own location, not a hardcoded path — otherwise
+# running it from a clone silently syncs the ORIGINAL checkout's sources into
+# the artifact, so edits made here would never reach the published canvas and
+# nothing would report an error.
+REPO = os.path.dirname(os.path.abspath(__file__))
 PAGE = os.path.join(REPO, 'eurorack-fi-listings.html')
 
 s = open(PAGE, encoding='utf-8').read()
