@@ -35,6 +35,13 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
  font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--accent-hi)}
 .hdr .chev{width:13px;height:13px;color:var(--accent)}
 .hdr .ct{margin-left:auto;color:var(--accent)}
+/* An untinted header still has to read as the control that closes the panel —
+   on desktop it is the only way. A word does that where a lone chevron does
+   not, and "Suodattimet" already exists as T2.filtersLabel, so no new copy. */
+.hdr{cursor:pointer}
+.hdr .hlab{font-family:"IBM Plex Mono",monospace}
+.vC .hdr:hover,.vC .hdr:focus-visible{background:var(--bg2)}
+.vA .hdr .hlab,.vB .hdr .hlab,.vD .hdr .hlab{display:none}
 .panel{padding:.7rem 1.2rem .8rem}
 .crow{display:flex;gap:.7rem;align-items:baseline;margin-bottom:.45rem}
 .lab{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.12em;
@@ -76,7 +83,8 @@ function block(v){return '<div class="stage '+v+'">'+
  '<div class="above"><div class="tv">Toiveet</div>'+
  '<div class="people"><span class="d"></span><b>Kalle</b> Fumana · Polygogo · Mindphaser</div></div>'+
  '<div class="controls">'+
-  '<div class="hdr"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg>'+
+  '<div class="hdr" tabindex="0"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg>'+
+  '<span class="hlab">Suodattimet</span>'+
   '<span class="ct">14 / 86</span></div>'+
   '<div class="panel">'+
    '<div class="crow"><span class="lab">Muoto</span><div class="chips">'+
@@ -91,7 +99,7 @@ function block(v){return '<div class="stage '+v+'">'+
 var defs=[
  ["A — as it is now","vA","The tinted strip has the coloured line under it and the options below have no surface of their own, so the line separates the strip from the options instead of enclosing them. The strip looks like a bar above the filters rather than part of them."],
  ["B — options get a surface, line stays where it is","vB","The options now read as a panel rather than as loose chips on the page. But the coloured line still cuts between the strip and the panel, so the block still reads as two things stacked."],
- ["C — one surface, no separate strip, line under the whole block (recommended)","vC","The header stops having its own fill while the panel is open — it does not need one, because the panel below it is already visible proof that it is open. One surface, one outline, and the owner's colour underlines the entire filter unit rather than a strip of it. The tint returns when collapsed, where it is the only thing on screen and does have to read as a control."],
+ ["C — one surface, no separate strip, line under the whole block (recommended)","vC","The header stops having its own fill while the panel is open — it does not need one, because the panel below it is already visible proof that it is open. One surface, one outline, and the owner's colour underlines the entire filter unit rather than a strip of it. The tint returns when collapsed, where it is the only thing on screen and does have to read as a control. Note the header keeps a WORD here, not just a chevron: without the tint it still has to look like the control that closes the panel, and on desktop it is the only one. Hover it."],
  ["D — keep the tint, move the line to the bottom","vD","Halfway: the strip keeps its tint so the toggle stays obvious, the panel gets a surface, and the owner's colour underlines the whole block. Still two tones inside one object, which is the thing C removes."]
 ];
 var h="";defs.forEach(function(d){h+='<h2>'+d[0]+'</h2>'+block(d[1])+'<p class="cap">'+d[2]+'</p>';});
