@@ -425,7 +425,8 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .wishtile{background:var(--bg2); border:1px solid var(--line); display:flex; flex-direction:column;
   align-items:center; justify-content:center; padding:.9rem .6rem; min-height:170px; transition:border-color .15s}
 .wishsection:hover .wishtile{border-color:var(--line2)}
-.wishtile .wf{display:flex; align-items:center; justify-content:center}
+/* backstop: the tile, not its contents, decides the width */
+.wishtile .wf{display:flex; align-items:center; justify-content:center; max-width:100%; min-width:0}
 .wishtile .wf img{border:1px solid var(--line2)}
 .wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
   text-align:center; line-height:1.4}
@@ -1839,9 +1840,26 @@ function adminField(af,label,type,extra){
    no label — the presence/absence of a drawing/photo is the whole signal,
    not a caption. */
 var WISH_TILE_H=150;
+/* Widest a tile's contents can be in the NARROWEST column the wish grid
+   produces: minmax(140px,1fr) less .wishtile's .6rem side padding. */
+var WISH_TILE_MAX_W=121;
+/* A drawn faceplate is absolutely-positioned pixel children, so max-width
+   would crop it rather than scale it — it has to be re-drawn smaller.
+   buildPanel derives width from the same hp × 5.08 × (H/hMm) as below, so
+   scaling the height by the overflow ratio scales the width with it and
+   keeps the panel in proportion. Photos take the opposite route (CSS,
+   see wishTileHTML): they scale as one image. Don't unify the two — one
+   path would clip the panel. */
+function wishPanelHTML(w){
+  var ww=w.hp>0?Math.round(w.hp*5.08*(WISH_TILE_H/128.5)):Math.round(WISH_TILE_H*1.55);
+  var H=ww>WISH_TILE_MAX_W?Math.round(WISH_TILE_H*(WISH_TILE_MAX_W/ww)):WISH_TILE_H;
+  return panelHTML(w,H);
+}
+/* a dead photo falls back to the drawn panel, so it needs the same clamp —
+   otherwise a wide module's broken image overflows the tile instead */
 function wishImgFail(img,data){
   var w=JSON.parse(data);
-  img.outerHTML=panelHTML(w,WISH_TILE_H);
+  img.outerHTML=wishPanelHTML(w);
 }
 function wishTileHTML(w){
   /* a placeholder want is free text (admin: "Just a note") — must render
@@ -1853,11 +1871,18 @@ function wishTileHTML(w){
      tile can carry real content now. */
   if(typeof w==="string") return '<div class="wishtile placeholder"><div class="wl">'+esc(w)+'</div></div>';
   var ww=w.hp>0?Math.round(w.hp*5.08*(WISH_TILE_H/128.5)):Math.round(WISH_TILE_H*1.55);
+  /* A photo is sized from HP alone, so a wide module (Fumana is 42HP =
+     249px) used to spill out of its ~147px tile. max-width hands the
+     tile the final say, and aspect-ratio + height:auto let the height
+     follow so the object-fit crop stays true instead of squashing. In a
+     tile wider than the natural size nothing changes — still 150px tall.
+     Pure CSS, so it stays correct at every column width with no
+     measurement. */
   var wf=w.img
     ? '<img src="'+esc(w.img)+'" alt="'+esc(w.mfr+" "+w.name)+'" loading="lazy" '+
-      'style="width:'+ww+'px;height:'+WISH_TILE_H+'px;object-fit:cover;display:block" '+
+      'style="width:'+ww+'px;max-width:100%;aspect-ratio:'+ww+'/'+WISH_TILE_H+';height:auto;object-fit:cover;display:block" '+
       'onerror="wishImgFail(this,\''+esc(JSON.stringify({mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts}))+'\')">'
-    : panelHTML(w,WISH_TILE_H);
+    : wishPanelHTML(w);
   return '<div class="wishtile"><div class="wf">'+wf+'</div>'+
     '<div class="wl">'+esc(w.mfr)+'<br>'+esc(w.name)+'</div></div>';
 }
