@@ -2,6 +2,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>eurorack.fi</title>
+<!-- Share card. ONE card for the whole site, deliberately: this is a
+     hash-routed SPA, so everything after "#" never reaches the server and
+     a scraper sees plain eurorack.fi however deep the shared link went.
+     Per-item previews would need real paths and a generated file per item
+     — a routing change, not a meta-tag change. Item photos couldn't serve
+     as the image either: aspect ratios across the library run 0.16 to 2.37
+     against OG's 1.91:1, so most would crop to a sliver.
+     Absolute URLs are required — scrapers don't resolve relative paths.
+     og:url carries the trailing slash on purpose: www and the github.io
+     host both still resolve, and a scraper landing on a redirect can
+     attribute the card to the wrong origin.
+     Regenerate the image from share/og-card.html rather than editing the
+     PNG (headless Chrome, --window-size=1200,630). -->
+<meta property="og:type"         content="website">
+<meta property="og:url"          content="https://eurorack.fi/">
+<meta property="og:title"        content="eurorack.fi">
+<meta property="og:description"  content="Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.">
+<meta property="og:image"        content="https://eurorack.fi/share/og-card.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale"       content="fi_FI">
+<meta name="twitter:card"        content="summary_large_image">
+<!-- same string as og:description, so the share card and search results
+     agree. Finnish in every language: one card serves every share, and
+     the audience is the Finnish scene. -->
+<meta name="description"         content="Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.">
 <link rel="icon" href="favicon/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon/favicon-16.png" sizes="16x16" type="image/png">
