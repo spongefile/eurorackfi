@@ -1041,3 +1041,52 @@ seller's admin record. Until they do, every seller falls back to the shared
 form — which is exactly today's behaviour, so this shipped before any per-seller
 form existed. No field authoring is required: the names carry across a
 duplicate.
+
+## Wishlist tiles: wide modules overflow (2026-08-27)
+
+Measured live on Toiveet at 1123px — grid resolves to six 166px columns:
+
+| want | drawn | tile | over |
+|---|---|---|---|
+| Frap Tools Fumana (42HP) | 249px | 166px | **+83** |
+| E-RM Polygogo | 190px | 166px | +24 |
+| Hexinverter Mindphaser | 178px | 166px | +12 |
+
+**Cause.** `wishTileHTML` sizes the faceplate from HP and a fixed tile height
+and never consults the tile: `ww = hp * 5.08 * (WISH_TILE_H/128.5)`, i.e.
+`hp * 5.93`. The tile's usable width is ~147px after padding, so **anything
+above ~25HP overflows** at this column size. Not an edge case — Fumana is 42HP
+and any wide want will do it.
+
+All three offenders are **photos**, rendered with inline
+`width:{ww}px; height:150px; object-fit:cover`.
+
+### Fix — photos
+
+Make the inline style responsive instead of fixed:
+
+```
+width:{ww}px; max-width:100%; aspect-ratio:{ww}/{WISH_TILE_H}; height:auto;
+object-fit:cover
+```
+
+- Tile wider than the natural width → renders exactly as today, 150px tall.
+- Tile narrower → shrinks to the tile and the height follows the ratio, so the
+  crop stays true.
+
+No JS measurement, correct at every column width, and it keeps `object-fit`.
+
+### Fix — drawn panels
+
+`panelHTML` builds absolutely-positioned px children, so CSS scaling would clip
+rather than shrink. None overflow *today*, but a wide "real product" want would
+hit it the moment a seller adds one. Clamp at render: if `ww` exceeds what the
+narrowest column can hold (`minmax(140px,…)` minus ~19px padding ≈ 121px),
+reduce the drawn height by the same ratio so the proportions hold.
+
+Two mechanisms because the two things scale differently — a photo scales as a
+unit, a drawn panel has to be re-drawn smaller. That is a real difference, not
+an inconsistency.
+
+Belt and braces: `.wishtile .wf{max-width:100%; min-width:0}` so nothing can
+spill even if a future path sets a width some other way.
