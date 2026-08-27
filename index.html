@@ -1752,31 +1752,15 @@ function detailHTML(m){
    so anything in it is public by construction.
    No form set = the shared form, which is what everyone had before. */
 var TALLY_URL="https://tally.so/r/rjMyQo";
-/* WARNING: these are Tally BLOCK IDs, and they are specific to form rjMyQo.
-   Duplicating that form in Tally mints new ids, and Tally ignores query
-   params it doesn't recognise instead of erroring — so a duplicate would
-   open blank and look like prefill was never wired up. Before any second
-   form exists these must become author-named fields, which survive
-   duplication because the name is chosen, not minted.
-
-   That swap can't land from this side alone — the names have to exist in
-   the Tally dashboard first, or prefill breaks on the live form the moment
-   this ships. When they do, replace the four values below with the names
-   themselves (case-sensitive): module, seller, price, lang.
-
-   Settled with the user: module/seller/price stay VISIBLE questions, so the
-   sender can see which item they're asking about and catch a wrong link
-   themselves; naming works for visible questions too, so visibility costs
-   nothing technically. lang is the only true hidden field — it's routing
-   telemetry, not something the sender needs to read. Known and accepted:
-   a visible prefilled price is editable before sending; the seller knows
-   their own price, so it isn't worth hiding over. */
-var TALLY_FIELDS={
-  module:"1a5c14a8-5ff4-4b4d-af90-68f6c07bf154",
-  seller:"2f0d1cb8-260d-47b2-a7ae-ae5b11696d21",
-  price: "ef696402-3271-4bd0-830c-08f6ebaaafa2",
-  lang:  "c55a5b51-5079-45d6-88cf-94f727c9d19a"
-};
+/* Tally hidden fields are addressed by the NAME the form author gave them
+   (?module=…&seller=…), and a name survives duplicating the form. These
+   used to be the fields' block UUIDs instead — which are minted fresh per
+   form, so every per-seller duplicate would have opened blank while Tally
+   silently ignored the unrecognised params. Verified against the live
+   form's own definition: block 1a5c14a8… is named "module", 2f0d1cb8…
+   "seller", ef696402… "price", c55a5b51… "lang".
+   Names are case-sensitive and must match the Tally dashboard exactly. */
+var TALLY_FIELDS={ module:"module", seller:"seller", price:"price", lang:"lang" };
 /* the form an enquiry about this item should land in */
 function formFor(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
