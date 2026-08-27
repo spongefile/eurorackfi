@@ -1166,3 +1166,36 @@ fires on it.** So every scripted test passed while the prototype was unusable,
 and the user found it immediately. **Verify this one with a real click at real
 coordinates**, not `.click()` — and note screenshot coordinates are not page
 coordinates (1290 vs 1078 here), so a page-derived point misses.
+
+### Harness traps found verifying this (2026-08-27)
+
+Three ways a check on this feature passes or fails for reasons that have
+nothing to do with the code. All three cost real time.
+
+1. **`inert` blocks real clicks but not `element.click()`.** The scripted test
+   reported the bar closing and reopening while it was completely unclickable.
+   Use **`elementsFromPoint`** at the control's own centre to prove it is the
+   topmost element — it returns the parent section when `inert` is set, and the
+   button when it is not. Cheap, and it answers "can a user reach this?", which
+   is a different question from "does the handler run?".
+2. **Screenshot coordinates are not page coordinates.** 1290 vs 1078 in one
+   window here. A click at a point taken from `getBoundingClientRect` misses.
+   Screenshot first, click what is in the picture.
+3. **Programmatic `scrollTo` does not trigger the collapse on any build** —
+   before or after this change. Dev nearly reported a regression, then ran the
+   pre-change build in a second iframe as a control and got identical
+   behaviour. Only a real mouse scroll collapses it. **Keep a known-good build
+   alongside** when a scroll-driven result looks wrong.
+
+**Breakpoint crossing cannot be tested in an iframe at all.** Resizing an
+iframe element updates `innerWidth` and `mq.matches` but fires **neither** a
+`matchMedia` change **nor** a window `resize` event — measured, both counters
+stayed at zero with listeners attached. So the iframe trick that works for
+width-dependent *layout* (the 390px nav measurement) is useless for
+width-dependent *behaviour*. A fresh iframe loaded **at** a width does exercise
+the right code path; only crossing is untestable that way.
+
+Accepted consequence: an embedded copy can miss the crossing and stay
+collapsed. Tolerable only because the header is persistent and never `inert` on
+desktop, so the user can just click it. The re-expand is a convenience, not the
+thing preventing a stuck UI.
