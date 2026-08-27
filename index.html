@@ -768,6 +768,13 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
 /* ---------- responsive ---------- */
 @media(max-width:900px){
   .hero .wrap{grid-template-columns:minmax(0,1fr); gap:2rem}
+  /* the 2rem bottom is load-bearing, not just a mobile nicety: .wishband
+     opens with only .25rem of its own, so this is most of the gap between
+     the hero and the Toiveet heading. It comes out at 36px here against
+     28px at desktop — deliberately the roomier way round, since the hero
+     is taller and stacked on a phone. Tightening this to match desktop
+     would leave the heading crowding the hero with nothing else to
+     absorb it. */
   .hero{padding:2.25rem 0 2rem}
   .buyarea{grid-template-columns:minmax(0,1fr); gap:1.75rem}
   .bench{height:300px}
