@@ -923,3 +923,26 @@ Missing languages follow the same honest-missing pattern as item blurbs.
 
 Two links inside the copy: "get in touch" in 04 and the tail line both go to
 `#/msg/`. `www.spongefile.com` in 03 is external.
+
+## Wishlist popovers (added 2026-08-27)
+
+Hover popovers on owner chips and owner pills are **220px wide**. They take
+`wantLabelShort` (model name only), the same label the home wishcards use —
+never `wantLabel` (`mfr + name`), which overflows the box: "Noise Engineering
+Mimetic Digitwolis" runs straight out of the panel's right edge.
+
+The module page's trade panel is the exception and keeps the **full**
+`wantLabel`. It is ~440px wide and being complete is the job there — same
+reasoning already recorded for the Toiveet page.
+
+**A seller with an empty wishlist still gets a popover**, showing
+`T2.noWishes` ("Ei toiveita juuri nyt." / "Inga önskemål just nu." / "No
+wishes at the moment.") in place of the chip list. The string already exists
+and is already used by `.wishempty` on Toiveet — no new copy. An empty box
+under a "X IS HUNTING FOR" heading reads as broken; an explicit "nothing right
+now" is an answer.
+
+Note this is separate from the **wish band**, where a seller with no wishes is
+excluded from the grid entirely (`renderWish` filters on `wants.length > 0`).
+The band is a teaser and an empty card wastes a slot; the popover is a direct
+question about one named person and deserves a direct answer.
