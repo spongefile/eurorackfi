@@ -1318,3 +1318,58 @@ Finnish scene.
 `og:url` is the canonical `https://eurorack.fi/` **with the trailing slash** —
 www and the github.io host both still resolve, and a scraper landing on a
 redirect can attribute the card to the wrong origin.
+
+## Toiveet becomes one flowing row (approved 2026-08-27)
+
+Reference: `toiveet-flow-final.html`. Replaces the wishcard grid entirely — no
+cards, no borders, no coloured left edges.
+
+**The brief, in the user's words:** show *the fact that wishlists exist*, *what
+kind of things are on them*, and *that people are important here*. Not
+completeness — a taste.
+
+### The shape
+
+One flowing inline row. Per seller: coloured circle, name in bold, then their
+wants as plain mono text, then the next circle. It wraps naturally, so an extra
+seller costs a fraction of a line rather than a whole card.
+
+- **No rectangles around the wants.** This sits directly above a bar full of
+  filter chips; a bordered pill here reads as another control instead of as
+  something someone wants. The user called this out and it is the point of the
+  change.
+- **Wants truncate at 4, then `+N`.** A sample, not a list.
+- **Separator is `·` in `--line2`, `padding:0 .26rem`, with NO literal spaces
+  in the join.** Measured 16px between names against a **34px** gap between
+  people — roughly 2:1, which is what makes each person read as one phrase.
+- **`Katso koko lista →` appears once**, beside the heading. Every card
+  previously carried it and every one pointed at the same `#/wish`; at eight
+  sellers that is eight identical calls to action competing with the names.
+- **Dot and name must be one `white-space:nowrap` unit.** Without it a line can
+  end on a bare coloured circle with its name starting the next line, which
+  reads as a stray mark. Verified fixed across 33 units.
+
+### Name colour — compute it, do not hardcode
+
+The name is bold in the seller's own hue, **but the raw dot colour cannot carry
+text.** Measured against the light background: Sampo 2.45, Kalle 2.69,
+spongefile 2.78, where body text needs 4.5.
+
+Adjust the dot colour toward **4.5:1 against the resolved background**, and
+apply it per theme:
+
+| | light bg `#E7EBF0` | dark bg `#0C1119` |
+|---|---|---|
+| Kalle `#4E9E7E` | `#39745D` (4.58) | raw, already 5.87 |
+| Sampo `#C98A2E` | `#8E6120` (4.52) | raw, already 6.45 |
+| spongefile `#678cd6` | `#4D69A0` (4.56) | raw, already 5.68 |
+
+**Do not implement this as "darken in light mode, leave alone in dark."** That
+happens to be right for these three and would silently fail for a future seller
+who picks a dark colour — which would then be unreadable on the dark theme with
+nothing flagging it. Compute against the actual background, stepping toward
+white or black as needed, and recompute on theme change.
+
+The circle keeps the **raw** colour at every theme: 9px of saturated colour is
+identity, not text, and it is the same treatment the filter bar's owner edge
+uses.
