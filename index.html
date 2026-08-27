@@ -442,57 +442,43 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 /* ---------- wish band ---------- */
 .wishband{padding:1.75rem 0 .5rem}
 .wishband h2{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; margin-bottom:.9rem}
-.wishgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem}
-.wishcard{background:var(--panel); border:1px solid var(--line); padding:1rem 1.1rem;
-  display:block; color:inherit; text-decoration:none; transition:border-color .15s, transform .15s, box-shadow .15s}
-.wishcard:hover{border-color:var(--line2); transform:translateY(-2px); box-shadow:var(--shadow); color:inherit}
-@media (prefers-reduced-motion:reduce){ .wishcard,.wishcard:hover{transition:none; transform:none} }
-.wishcard .nm{display:flex; align-items:center; gap:.5rem; font-weight:700; font-size:1.05rem}
-.wishcard .nm i{width:9px; height:9px; border-radius:50%; flex:0 0 auto}
-.wishcard .sub{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.2rem}
-.wishcard ul{list-style:none; margin:.75rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem}
-.wishcard li{font-family:"IBM Plex Mono",monospace; font-size:.72rem; border:1px solid var(--line2); color:var(--ink2); padding:.18rem .42rem}
-.wishcard li.more{color:var(--muted); border-style:dashed}
-.wishcard .wishmore{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--accent); margin-top:.8rem}
-
-/* ---------- Toiveet page ---------- */
-.wishpage{padding:2.5rem 0 4rem}
-.wishpage h1{font-size:1.9rem; letter-spacing:-.03em; margin-bottom:2rem}
-.wishsection{display:block; color:inherit; text-decoration:none; padding:1.25rem 0; border-top:1px solid var(--line)}
-.wishsection:first-of-type{border-top:none}
-.wishsection .nm{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.15rem; margin-bottom:1rem}
-.wishsection .nm i{width:10px; height:10px; border-radius:50%; flex:0 0 auto}
-.wish-imggrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:1rem}
-.wishtile{background:var(--bg2); border:1px solid var(--line); display:flex; flex-direction:column;
-  align-items:center; justify-content:center; padding:.9rem .6rem; min-height:170px; transition:border-color .15s}
-.wishsection:hover .wishtile{border-color:var(--line2)}
-/* backstop: the tile, not its contents, decides the width */
-.wishtile .wf{display:flex; align-items:center; justify-content:center; max-width:100%; min-width:0}
-.wishtile .wf img{border:1px solid var(--line2)}
-.wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
-  text-align:center; line-height:1.4}
-.wishtile.placeholder{border-style:dashed; border-color:var(--line2); background:transparent; min-height:170px}
-/* .wl normally sits below a faceplate/photo (.wf), so its margin-top
-   assumes something is above it — a placeholder tile has no .wf, and
-   that margin would just push the lone label off-center in the box */
-.wishtile.placeholder .wl{margin-top:0}
-.wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
-/* Mobile: each seller collapses to one row — coloured edge, dot, name,
-   count — and the row is already the link, so the wanted-module chips and
-   the "see the full list" line both go. The chips are what cost the
-   height: three stacked cards ran 546px, which pushed the filter bar a
-   full screen below the fold once Toiveet moved above it. Desktop keeps
-   the full cards, where the space is affordable and the chips earn it.
-   The 3px left edge stays at every width — it's the seller's identity,
-   the same signal the filter bar's own bottom edge carries. */
+/* One flowing row, not a card each. The user's brief: show THAT wishlists
+   exist, WHAT KIND of thing is on them, and that people matter — not
+   completeness. No rectangles is the point: this sits directly above a bar
+   full of filter chips, and anything bordered here would read as another
+   control rather than as something a person wants. */
+.wishhead{display:flex; align-items:baseline; gap:.75rem; margin-bottom:.9rem}
+.wishhead h2{margin-bottom:0}
+/* one CTA beside the heading, not one per person — every card used to carry
+   its own and they all pointed at the same place */
+.wishall{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--accent); white-space:nowrap}
+.wishflow{font-family:"IBM Plex Mono",monospace; font-size:.78rem; line-height:2;
+  color:var(--ink2)}
+/* The gap BETWEEN people is roughly double the gap between one person's
+   module names — that ratio is what makes each person read as one phrase
+   rather than a run of words. Measured, not guessed: 16px between names
+   against ~34px between people. At 1.15rem this came out at 18px, a ratio
+   of 1.13, and the row read as one undifferentiated run. */
+.wperson{margin-right:2.15rem}
+.wperson:last-child{margin-right:0}
+/* dot and name are one nowrap unit: without it a line can end on a bare
+   coloured circle with the name orphaned onto the next line */
+.wperson .who{white-space:nowrap; font-family:"Archivo",sans-serif; font-weight:700;
+  font-size:.92rem; margin-right:.4rem; color:var(--ink2)}
+.wperson .who i{display:inline-block; width:9px; height:9px; border-radius:50%;
+  margin-right:.4rem; vertical-align:.02em}
+.wperson .wants{color:var(--ink2)}
+.wperson .w{white-space:nowrap}
+.wperson .w.more{color:var(--muted)}
+/* no literal spaces around the separator — the padding IS the spacing, so
+   the measured gap stays put instead of adding a space character's width */
+.wperson .sep{color:var(--line2); padding:0 .26rem}
 @media(max-width:640px){
-  .wishgrid{grid-template-columns:1fr; gap:.45rem}
-  .wishcard{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .5rem; padding:.65rem .85rem}
-  .wishcard .nm{font-size:.98rem}
-  .wishcard .sub{margin-top:0}
-  .wishcard .sub .swap{display:none}
-  .wishcard ul,.wishcard .wishmore{display:none}
+  .wishflow{font-size:.74rem; line-height:1.95}
+  .wperson{margin-right:1.6rem}
+  .wperson .who{font-size:.88rem}
 }
+.wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 /* stated empty state for a seller with no wishlist yet — muted, so it
    reads as a fact about the shelf rather than as a missing tile */
 .wishempty{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); margin:.75rem 0 0}
@@ -863,8 +849,8 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
   </div></section>
 
   <section class="wishband" id="wish"><div class="wrap">
-    <h2 id="wishH"></h2>
-    <div class="wishgrid" id="wishgrid"></div>
+    <div class="wishhead"><h2 id="wishH"></h2><a class="wishall" href="#/wish" id="wishAll"></a></div>
+    <div class="wishflow" id="wishgrid"></div>
     <p class="wishnote" id="wishK"></p>
   </div></section>
 
@@ -1373,6 +1359,7 @@ function renderChrome(){
   el("shelfLabelEl").textContent=T2.shelfLabel;
   el("typeLabelEl").textContent=T2.typeLabel;
   el("wishH").textContent=T2.wishH;
+  el("wishAll").innerHTML=esc(T2.seeFull)+' &rarr;';
   el("wishK").textContent=T2.wishK;
   el("fIntro").textContent=T2.fIntro;
   el("fgrid").innerHTML=
@@ -1496,10 +1483,11 @@ function renderFilters(){
      — several sellers' dot colors fail AA against the bar's text at the
      weight a fill would need, and Sampo's amber sits right next to
      --signal, which this site reserves for caution, so the edge (not the
-     fill) carries it. Width matches the wishcard's own 3px colored edge
-     (renderWish()'s border-left) when an owner is chosen, so it reads as
-     the same signal in both places; .collbar is border-box at a fixed
-     44px, so growing the border inward needs no compensation elsewhere.
+     fill) carries it. 3px when an owner is chosen — it was matched to the
+     wish cards' own coloured edge, and stays at that weight now those have
+     become one flowing row, since it's the width that reads as deliberate
+     rather than as a hairline; .collbar is border-box at a fixed 44px, so
+     growing the border inward needs no compensation elsewhere.
      Clearing to "" (not a color) lets the CSS default (--line2, neutral)
      win for the "everyone" case — see .collbar's own border-bottom rule. */
   el("collbar").style.borderBottomColor = sellerFilter ? sellerFilter.dot : "";
@@ -1538,7 +1526,7 @@ function wishPopBody(key){
    whatever the seller dragged it into in the CMS (Decap's list widget
    supports drag-to-reorder natively), so reordering there is how priority
    is set: top of the list shows first here, nothing extra to build. */
-var WISH_TEASER_CAP=5;
+var WISH_FLOW_CAP=4;   /* a taste of what someone wants, not their list */
 /* The home-page band is a teaser for what people are after, so a seller
    with an empty wishlist is left out of it entirely — they have nothing
    to tease, and a card saying so takes a slot from someone who does.
@@ -1546,22 +1534,37 @@ var WISH_TEASER_CAP=5;
    stated empty state), so they aren't hidden from the site, just from
    the shortlist. If nobody has wishes yet the whole band is hidden
    rather than left as a heading over nothing. */
+/* The name and the wants both take --ink2, a fixed token, NOT the seller's
+   hue. Sellers pick their own colour in admin without either of us seeing
+   it, so deriving the name's colour from that choice makes readability
+   depend on a stranger's pick — a dark pick would vanish on the dark theme
+   with nothing to flag it. A fixed token removes that failure class rather
+   than handling it, and --ink2 clears 4.5 in both themes on its own (8.32
+   light, 11.29 dark). Not --muted, which fails light at 3.80.
+   The circle keeps the RAW seller colour in both themes: colour is
+   identity and never carries a word, exactly as the filter bar's owner
+   edge works. Bold Archivo against regular mono already separates the
+   name from the wants without a second colour. */
 function renderWish(){
   var T2=t();
   var withWishes=SELLERS.filter(function(p){ return p.wants.length>0; });
   var band=el("wish");
   if(band) band.hidden=withWishes.length===0;
+  /* One flowing row rather than a card each: this sits directly above a bar
+     full of filter chips, and anything bordered here reads as another
+     control instead of as something a person wants. Wrapping also means a
+     ninth seller costs a fraction of a line rather than a whole box.
+     The dot and the name are one nowrap unit — without it a line can end on
+     a bare coloured circle with its name orphaned onto the next. */
   el("wishgrid").innerHTML=withWishes.map(function(p){
-    var shown=p.wants.slice(0,WISH_TEASER_CAP), extra=p.wants.length-shown.length;
-    return '<a class="wishcard" href="#/wish" style="border-left:3px solid '+p.dot+'"><div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
-      /* the "swapping for:" half is a separate span so the mobile rule can
-         drop it: below 640px the chips it introduces are hidden, and a
-         lead-in to a list that isn't there reads as broken text */
-      '<div class="sub"><span class="cnt">'+ITEMS.filter(function(m){return m.who===p.key;}).length+' '+esc(T2.sItems)+'</span>'+
-        '<span class="swap"> · '+esc(T2.swapFor)+'</span></div>'+
-      '<ul>'+shown.map(function(w){return '<li>'+esc(wantLabelShort(w))+'</li>';}).join("")+
-      (extra>0?'<li class="more">+'+extra+'</li>':'')+'</ul>'+
-      '<div class="wishmore">'+esc(T2.seeFull)+' &rarr;</div></a>'; }).join("");
+    var shown=p.wants.slice(0,WISH_FLOW_CAP), extra=p.wants.length-shown.length;
+    var wants=shown.map(function(w){ return '<span class="w">'+esc(wantLabelShort(w))+'</span>'; })
+      .concat(extra>0?['<span class="w more">+'+extra+'</span>']:[])
+      .join('<span class="sep">·</span>');
+    return '<span class="wperson">'+
+      '<span class="who">'+
+        '<i style="background:'+p.dot+'"></i>'+esc(p.name)+'</span>'+
+      '<span class="wants">'+wants+'</span></span>'; }).join("");
 }
 
 /* ---------- grid ---------- */
