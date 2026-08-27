@@ -39,7 +39,13 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 .tag{white-space:nowrap}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;
  margin-right:.4rem;vertical-align:.02em}
+/* Names in --ink2, not --ink: gentler than full black and it clears 4.5 in
+   BOTH themes (8.32 light / 11.29 dark) with no per-seller computation at all.
+   The circle carries the identity colour; the name only has to read. */
 .nm{font-weight:700;font-size:1rem}
+/* Same ink as the name. They do not need a colour difference — bold 16px
+   Archivo against regular 12px mono is already two different voices, and
+   --muted would fail contrast in the light theme (3.80). */
 .wants{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink2);
  margin-left:.45rem}
 /* tight: the literal spaces around the middot are gone, the padding carries
@@ -52,10 +58,9 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.14em;
 </style></head>
 <body>
 <h1>Toiveet — flowing row, final</h1>
-<p class="sub">No rectangles. Circle in the seller's colour, name bold in a darkened version
-of that same hue, wants in neutral mono. Module names sit tight so each person reads as one
-phrase; the wide gap between people is the only separator, and it does all the work the boxes
-used to.</p>
+<p class="sub">No rectangles. Circle in the seller's colour, name bold in the site's softer
+ink, wants in mono. Module names sit tight so each person reads as one phrase; the wide gap
+between people is the only separator, and it does all the work the boxes used to.</p>
 <div id="out"></div>
 <script>
 var S=[["Kalle",14,"#4E9E7E","#39745D"],["Sampo",20,"#C98A2E","#8E6120"],
@@ -73,7 +78,7 @@ function band(n,mode){
   return '<div class="band"><div class="bandhead"><h3>Toiveet</h3>'+
    '<a class="seeall" href="#">Katso koko lista &rarr;</a></div><div class="flow">'+
    s.map(function(p,i){
-     var col = mode==='ink' ? 'var(--ink)' : (mode==='safe' ? p[3] : p[1+1]);
+     var col = 'var(--ink2)';
      var w=W[p[0]]||[],shown=w.slice(0,4),extra=w.length-shown.length;
      return (i?'<span class="gap"></span>':'')+
       '<span class="who"><span class="tag"><span class="dot" style="background:'+p[2]+'"></span>'+
@@ -83,8 +88,8 @@ function band(n,mode){
    }).join("")+'</div><div class="note">Myös osavaihto + rahaa</div></div>';
 }
 var defs=[
- ["Toiveet — final",'safe',
-  "The circle keeps the bright identity colour, the name takes a darkened version of the same hue that clears 4.5:1 — #39745D, #8E6120, #4D69A0. You get the coloured names you asked for and they stay readable. Cost: the name is a shade deeper than the dot, so the pairing reads as the same hue at two weights rather than one flat colour. The site already does exactly this with --accent and --accent-hi."],
+ ["Toiveet — final",'ink2',
+  "Names in --ink2 — the site's softer ink, gentler than full black. It clears 4.5 in both themes (8.32 light, 11.29 dark), so there is no per-seller colour computation and nothing that can silently fail when a new seller picks their own colour. The circle carries the identity; the name only has to read."],
 ];
 var h="";
 defs.forEach(function(d){

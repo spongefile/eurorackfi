@@ -1349,27 +1349,22 @@ seller costs a fraction of a line rather than a whole card.
   end on a bare coloured circle with its name starting the next line, which
   reads as a stray mark. Verified fixed across 33 units.
 
-### Name colour — compute it, do not hardcode
+### Name colour — `--ink2`, no computation
 
-The name is bold in the seller's own hue, **but the raw dot colour cannot carry
-text.** Measured against the light background: Sampo 2.45, Kalle 2.69,
-spongefile 2.78, where body text needs 4.5.
+Names are bold in **`--ink2`**, the site's existing softer ink. Not `--ink`:
+the user asked for something gentler than full black.
 
-Adjust the dot colour toward **4.5:1 against the resolved background**, and
-apply it per theme:
+It clears 4.5 in **both** themes without any per-seller work — 8.32 on the
+light background, 11.29 on the dark. That matters more than it sounds: sellers
+choose their own colour through admin, and an earlier version of this spec tied
+the name to a contrast-adjusted version of that colour, which would have needed
+computing against the resolved background and recomputing on theme change. A
+fixed token removes the whole class of failure.
 
-| | light bg `#E7EBF0` | dark bg `#0C1119` |
-|---|---|---|
-| Kalle `#4E9E7E` | `#39745D` (4.58) | raw, already 5.87 |
-| Sampo `#C98A2E` | `#8E6120` (4.52) | raw, already 6.45 |
-| spongefile `#678cd6` | `#4D69A0` (4.56) | raw, already 5.68 |
+**The wants use `--ink2` as well.** They do not need a colour difference — bold
+16px Archivo against regular 12px mono is already two distinct voices. `--muted`
+was the obvious alternative and **fails** in the light theme at 3.80.
 
-**Do not implement this as "darken in light mode, leave alone in dark."** That
-happens to be right for these three and would silently fail for a future seller
-who picks a dark colour — which would then be unreadable on the dark theme with
-nothing flagging it. Compute against the actual background, stepping toward
-white or black as needed, and recompute on theme change.
-
-The circle keeps the **raw** colour at every theme: 9px of saturated colour is
-identity, not text, and it is the same treatment the filter bar's owner edge
-uses.
+The circle keeps the **raw** seller colour at every theme. 9px of saturated
+colour is identity, not text — the same division the filter bar's owner edge
+uses, where colour marks whose view you are in and never carries a word.
