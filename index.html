@@ -1746,24 +1746,43 @@ function detailHTML(m){
   return out+'</div>';
 }
 
-/* ---------- message form: one shared inbox, not the owner ---------- */
+/* ---------- message form ---------- */
 /* The message form lives on Tally, not on this page — the site only opens it
-   prefilled, so there is no local "sent" state to fake. Hidden-field IDs are
-   Tally's own block ids, given to us straight from the Tally dashboard. */
+   prefilled, so there is no local "sent" state to fake.
+   A seller may have their own form (seller.form), so an enquiry about their
+   item reaches them rather than a shared inbox everyone has to read. The
+   address itself lives in that form's Tally notification settings, never in
+   content/sellers/*.json — seller JSON is fetched by the browser at runtime,
+   so anything in it is public by construction.
+   No form set = the shared form, which is what everyone had before. */
 var TALLY_URL="https://tally.so/r/rjMyQo";
+/* WARNING: these are Tally BLOCK IDs, and they are specific to form rjMyQo.
+   Duplicating that form in Tally mints new ids, and Tally ignores query
+   params it doesn't recognise instead of erroring — so a duplicate would
+   open blank and look like prefill was never wired up. Before any second
+   form exists these need to become NAMED hidden fields (?module=…&seller=…),
+   which survive duplication because the form author picks the name. That
+   swap can't land from this side alone: the named fields have to be authored
+   in the Tally dashboard first, or prefill breaks on the live form the
+   moment this ships. */
 var TALLY_FIELDS={
   module:"1a5c14a8-5ff4-4b4d-af90-68f6c07bf154",
   seller:"2f0d1cb8-260d-47b2-a7ae-ae5b11696d21",
   price: "ef696402-3271-4bd0-830c-08f6ebaaafa2",
   lang:  "c55a5b51-5079-45d6-88cf-94f727c9d19a"
 };
+/* the form an enquiry about this item should land in */
+function formFor(m){
+  var p=m?SELLER_BY_KEY[m.who]:null;
+  return (p && p.form) ? p.form : TALLY_URL;
+}
 function tallyLink(m){
   var p=SELLER_BY_KEY[m.who], q=[];
   q.push(TALLY_FIELDS.module+"="+encodeURIComponent(m.mfr+" — "+m.name));
   q.push(TALLY_FIELDS.seller+"="+encodeURIComponent(p.name));
   q.push(TALLY_FIELDS.price+"="+encodeURIComponent(eur(m.price)));
   q.push(TALLY_FIELDS.lang+"="+encodeURIComponent(lang));
-  return TALLY_URL+"?"+q.join("&");
+  return formFor(m)+"?"+q.join("&");
 }
 </script>
 

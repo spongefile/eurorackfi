@@ -120,6 +120,7 @@ collections:
         enableAlpha: false
         default: "#2E77C9"
         hint: "Pick a color not already used by another seller, so cards stay easy to tell apart at a glance."
+      - { label: "Own message form (optional)", name: "form", widget: "string", required: false, hint: "Tally form URL, e.g. https://tally.so/r/abc123 — enquiries about this seller's listings go here instead of the shared inbox. Leave blank and they go to the shared form, which is fine. Set the seller's email as the notification recipient inside Tally, not here: this file is fetched by every visitor's browser, so anything written in it is public." }
       - label: "Wishlist"
         name: "wants"
         widget: "list"
