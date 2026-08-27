@@ -1759,7 +1759,11 @@ var TALLY_URL="https://tally.so/r/rjMyQo";
    silently ignored the unrecognised params. Verified against the live
    form's own definition: block 1a5c14a8… is named "module", 2f0d1cb8…
    "seller", ef696402… "price", c55a5b51… "lang".
-   Names are case-sensitive and must match the Tally dashboard exactly. */
+   Names are case-sensitive and must match the Tally dashboard exactly.
+   These four are HIDDEN on the form: the sender doesn't see which item
+   they're asking about, and the user settled that they don't need to.
+   So don't add visible item fields to a duplicated form — that decision
+   was taken deliberately, not left undone. */
 var TALLY_FIELDS={ module:"module", seller:"seller", price:"price", lang:"lang" };
 /* the form an enquiry about this item should land in */
 function formFor(m){
