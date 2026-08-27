@@ -1199,3 +1199,47 @@ Accepted consequence: an embedded copy can miss the crossing and stay
 collapsed. Tolerable only because the header is persistent and never `inert` on
 desktop, so the user can just click it. The re-expand is a convenience, not the
 thing preventing a stuck UI.
+
+## Toiveet moves above the filter bar (approved 2026-08-27)
+
+Move `<section class="wishband" id="wish">` so it sits **above**
+`<section class="controls" id="grid-top">` — currently at index.html:841 and
+:808. New order: hero → Toiveet → filter bar → count line → grid.
+
+**A straight swap. The grid starts at 988px either way**, so nothing gets
+longer; only the relationships change.
+
+### Why
+
+- **The band ignores the filters.** Measured: filtering to Sampo changes the
+  count line to "20 / 86" and leaves the band byte-identical, still showing all
+  three sellers. It currently sits *inside* the filtered region while being
+  immune to it — filter to one person and the other two people's wishes remain
+  directly under the bar you just used.
+- **It splits the filter bar from its own output.** The count line belongs to
+  the filter bar and is pushed 224px below it by an unrelated section. After
+  the move, filter → count → grid is contiguous.
+- **The sticky bar eats it.** Sitting immediately under a sticky element makes
+  it the first thing to slide underneath and vanish on scroll — the worst
+  position on the page for something meant to be noticed.
+
+Accepted cost: the filter bar drops from 485px to 709px, so on a laptop it
+lands near the fold rather than above it. The bar is sticky and now stays open
+on desktop, so one scroll pins it. The user accepted this on the trade that the
+page opens with *who we are and what we want* before the controls.
+
+### Watch the seam — this is the same bug class as the pale line
+
+`.controls` carries `border-top:1px solid var(--line)` and `.wishband` has
+`padding:1.75rem 0 .5rem` with no border. Putting them adjacent puts that
+border directly under the wish cards, where previously it separated hero from
+filter bar. Check it reads as one intentional divider, not a stray rule under
+the cards, and that the `.5rem` bottom padding is still right when what follows
+is a bordered sticky bar rather than a count line.
+
+Also confirm the hero → Toiveet junction: `.hero` ends with `2.5rem` padding
+and `.wishband` opens with `1.75rem`, so 4.25rem of combined space where there
+used to be a border doing the separating.
+
+Verify at desktop and at 390px, and confirm the sticky bar still pins correctly
+now that more content precedes it.
