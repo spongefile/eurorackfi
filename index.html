@@ -698,7 +698,6 @@ body.detail-open .browse{display:none}
 .sent{border:1px solid var(--accent); background:var(--accent-soft); padding:1.5rem; margin-top:1.25rem}
 .sent h4{font-size:1.1rem; margin-bottom:.4rem}
 .sent p{font-family:"Newsreader",Georgia,serif; color:var(--ink2)}
-.inbox{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.9rem}
 .outnote{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:.55rem}
 .btn svg{width:14px; height:14px; margin-left:.5rem; flex:0 0 auto}
 
@@ -1148,7 +1147,6 @@ var TX={
      shots:["Panelipiirros","Kuva — edestä","Kuva — takaa","Kuva — rackissä"],
      fName:"Nimi",fMail:"Sähköposti",fWhat:"Mitä tarjoat vaihdossa",fMsg:"Viesti",fSend:"Lähetä",
      
-     inbox:"Menee yhteiseen postilaatikkoon — luemme sen molemmat.",
      sentH:"Kiitos",sentP:"Viesti on perillä. Otamme yhteyttä, yleensä parin päivän sisällä.",
      collectFirst:"Mieluiten nouto, mutta postitus onnistuu",
      photoLabel:"Valmistajan kuva", pcredit:"Kuva: valmistajan omalta sivustolta", seeFull:"Katso koko lista",
@@ -1164,7 +1162,6 @@ var TX={
      shots:["Panelritning","Bild — framifrån","Bild — bakifrån","Bild — i racket"],
      fName:"Namn",fMail:"E-post",fWhat:"Vad du erbjuder i byte",fMsg:"Meddelande",fSend:"Skicka",
      
-     inbox:"Går till en gemensam inkorg — vi läser den båda.",
      sentH:"Tack",sentP:"Meddelandet är framme. Vi hör av oss, oftast inom ett par dagar.",
      collectFirst:"Helst hämtning, men vi kan posta",
      photoLabel:"Tillverkarens bild", pcredit:"Bild: från tillverkarens egen sajt", seeFull:"Se hela listan",
@@ -1180,7 +1177,6 @@ var TX={
      shots:["Panel drawing","Photo — front","Photo — back","Photo — in the rack"],
      fName:"Name",fMail:"Email",fWhat:"What you would trade",fMsg:"Message",fSend:"Send",
      
-     inbox:"Goes to one shared inbox — we both read it.",
      sentH:"Thanks",sentP:"Your message is with us. We will be in touch, usually within a couple of days.",
      collectFirst:"Collection preferred, posting possible",
      photoLabel:"Manufacturer photo", pcredit:"Photo: the manufacturer's own site", seeFull:"See full list",
@@ -1669,7 +1665,7 @@ function detailHTML(m){
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
         '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'
       : '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>')+
-    (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>':'<p class="inbox">'+esc(T2.inbox)+'</p>')+
+    (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>':'')+
     (!m.shopUrl&&(WANTS[p.key]||[]).length?'<a class="tradepanel" href="#/wish"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
@@ -1760,11 +1756,21 @@ var TALLY_URL="https://tally.so/r/rjMyQo";
    Duplicating that form in Tally mints new ids, and Tally ignores query
    params it doesn't recognise instead of erroring — so a duplicate would
    open blank and look like prefill was never wired up. Before any second
-   form exists these need to become NAMED hidden fields (?module=…&seller=…),
-   which survive duplication because the form author picks the name. That
-   swap can't land from this side alone: the named fields have to be authored
-   in the Tally dashboard first, or prefill breaks on the live form the
-   moment this ships. */
+   form exists these must become author-named fields, which survive
+   duplication because the name is chosen, not minted.
+
+   That swap can't land from this side alone — the names have to exist in
+   the Tally dashboard first, or prefill breaks on the live form the moment
+   this ships. When they do, replace the four values below with the names
+   themselves (case-sensitive): module, seller, price, lang.
+
+   Settled with the user: module/seller/price stay VISIBLE questions, so the
+   sender can see which item they're asking about and catch a wrong link
+   themselves; naming works for visible questions too, so visibility costs
+   nothing technically. lang is the only true hidden field — it's routing
+   telemetry, not something the sender needs to read. Known and accepted:
+   a visible prefilled price is editable before sending; the seller knows
+   their own price, so it isn't worth hiding over. */
 var TALLY_FIELDS={
   module:"1a5c14a8-5ff4-4b4d-af90-68f6c07bf154",
   seller:"2f0d1cb8-260d-47b2-a7ae-ae5b11696d21",
