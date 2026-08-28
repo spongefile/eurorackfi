@@ -715,6 +715,7 @@ body.detail-open .browse{display:none}
 .imgcol{display:flex; flex-direction:column; gap:.6rem; min-width:0}
 .bench{background:var(--bg2); border:1px solid var(--line); display:flex; align-items:center;
   justify-content:center; flex:0 0 auto; height:400px; overflow:hidden; position:relative}
+.benchshot{width:100%; height:100%; display:flex; align-items:center; justify-content:center}
 .benchnav{position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%;
   border:1px solid var(--line); background:var(--bg); color:var(--ink); display:flex; align-items:center; justify-content:center;
   cursor:pointer; opacity:.85; transition:opacity .15s ease, border-color .15s ease, color .15s ease; z-index:2}
@@ -1703,8 +1704,20 @@ var SHOTS=[["render","Panel drawing"],["front","Photo — front"],["back","Photo
    as a slot for fmt:"acc" at all. The >1-shot gate that hides the photo
    switcher already does the rest: an accessory ends up with a bare photo
    and no chrome, same as any single-photo item. */
-function shotHas(m,i){ return (i===0 && m.fmt!=="acc") || (i===1 && !!m.img) || (i===2 && !!m.img2) || (i===3 && !!m.img3); }
+/* Slot 0 is the DRAWN faceplate, and it exists only when there is no real
+   photo of the thing. The drawing is derived from knob/jack/LED counts, so
+   it is an approximation and often visibly wrong next to the actual panel —
+   offering it as an alternative view of an item we have photographed
+   invites the comparison and loses it. It stays as the fallback for items
+   with no photo at all, where an approximate panel still tells you the
+   width and rough layout. Accessories never get one. */
+function shotHasPhoto(m){ return !!(m.img || m.img2 || m.img3); }
+function shotHas(m,i){ return (i===0 && m.fmt!=="acc" && !shotHasPhoto(m)) || (i===1 && !!m.img) || (i===2 && !!m.img2) || (i===3 && !!m.img3); }
 function shotAvail(m){ return [0,1,2,3].filter(function(i){ return shotHas(m,i); }); }
+/* S.shot survives navigation between items, so it can name a slot the new
+   item hasn't got — which would render an empty bench. Always land on a
+   slot that exists. */
+function shotFor(m){ var a=shotAvail(m); return a.indexOf(S.shot)>=0 ? S.shot : (a.length?a[0]:0); }
 var CHEVRON_L='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var CHEVRON_R='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* watch, youtu.be, embed and shorts links all map to the same 11-char id */
@@ -1772,7 +1785,8 @@ function detailHTML(m){
   var T2=t(), p=SELLER_BY_KEY[m.who], x=m.extra||{}, out="";
   out+='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2.nav[0])+'</button>'+
        '<span>/</span><span>'+esc(m.mfr)+'</span><span>/</span><span>'+esc(m.name)+'</span></div>'+
-    '<div class="buyarea"><div class="imgcol"><div class="bench">'+benchHTML(m)+
+    '<div class="buyarea"><div class="imgcol"><div class="bench">'+
+    '<div class="benchshot">'+benchHTML(m)+'</div>'+
     (shotAvail(m).length>1
       ? '<button class="benchnav prev" data-shotdir="prev" aria-label="'+esc(T2.prevPhoto)+'">'+CHEVRON_L+'</button>'+
         '<button class="benchnav next" data-shotdir="next" aria-label="'+esc(T2.nextPhoto)+'">'+CHEVRON_R+'</button>'
@@ -1788,10 +1802,15 @@ function detailHTML(m){
         : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:(m.imgIsOwn?T2.pcreditOwn:T2.pcredit))))
       +'</p>':'')+
     (shotAvail(m).length>1
-      ? '<div class="shotdots">'+T2.shots.map(function(sh,i){
-          var has = shotHas(m,i);
+      /* only the slots this item actually has. They used to render all four
+         with the missing ones disabled, which read as "no back photo" —
+         informative while every item had a drawing at slot 0. Now that the
+         drawing only exists for items without photos, a disabled leading
+         dot would be a permanently dead control on almost every page, and
+         still visually offers the thing we just decided not to offer. */
+      ? '<div class="shotdots">'+shotAvail(m).map(function(i){
           return '<button class="shotdot" data-shot="'+i+'" aria-pressed="'+(i===S.shot)+'" aria-label="'+
-            esc(i===1&&m.img?T2.photoLabel:sh)+'"'+(has?"":" disabled")+'></button>'; }).join("")+'</div>'
+            esc(i===1&&m.img?T2.photoLabel:T2.shots[i])+'"></button>'; }).join("")+'</div>'
       : '')+
     /* specs live here, inside .imgcol, not as a sibling below it — .imgcol
        is position:sticky, and a normal-flow sibling underneath a sticky
@@ -1937,12 +1956,17 @@ function tallyLink(m){
 <script>
 /* Faceplates are fixed-pixel art, so they cannot fluid-scale on their own.
    Measure the bench and pick the tallest H whose true-scale width still fits. */
+/* Re-draws the faceplate smaller when the bench is too narrow for it at
+   full height. Targets the shot container, NOT .bench: the prev/next
+   buttons are .bench's own children, so writing bench.innerHTML deleted
+   them — the arrows vanished on the drawn-panel slot and nowhere else,
+   which is exactly where this runs. */
 function fitPanel(m){
-  var bench=document.querySelector(".bench"); if(!bench) return;
-  var avail=bench.clientWidth-32;
+  var slot=document.querySelector(".bench .benchshot"); if(!slot) return;
+  var avail=slot.clientWidth-32;
   var perPx=m.hp>0 ? (m.hp*5.08/128.5) : 1.55;
   var H=Math.max(120,Math.min(282,Math.floor(avail/perPx)));
-  if(H<282) bench.innerHTML=panelHTML(m,H);
+  if(H<282) slot.innerHTML=panelHTML(m,H);
 }
 
 /* ---------- admin composer ---------- */
@@ -2153,7 +2177,7 @@ function copyText(txt){
 /* ---------- routing ---------- */
 /* photo is the default view whenever one exists — matches the grid card,
    which already shows the photo first; drawn panel becomes the alternate */
-function openDetail(id){ var m=byId(id); S.shot=(m&&m.img)?1:0; location.hash="#/m/"+id; }
+function openDetail(id){ var m=byId(id); S.shot=m?shotAvail(m)[0]:0; location.hash="#/m/"+id; }
 /* the nav's "Everything" link used to be a plain href="#grid-top" same-
    page anchor, which raced this: an onclick fires first, but the
    anchor's own href navigation fires right after and would overwrite
@@ -2251,7 +2275,7 @@ function route(){
     if(m){
       /* a direct/bookmarked load skips openDetail(), so decide once here —
          but never override a click the user already made on this item */
-      if(S.shot===null) S.shot=m.img?1:0;
+      S.shot = (S.shot===null) ? shotAvail(m)[0] : shotFor(m);
       el("detail").innerHTML=detailHTML(m);
       document.body.classList.add("detail-open");
       document.title=m.mfr+" "+m.name+" — eurorack.fi";
