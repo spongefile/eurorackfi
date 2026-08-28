@@ -65,7 +65,7 @@
     "sv": "Åttastegssekvensiator i 10HP, byggd kring åtta reglar som också fungerar som stegvis mute när man drar ner dem. Två utgångar samtidigt: en kvantiserad tonhöjds-CV över fyra oktaver i åtta skalor, och en fri 0–5V CV. Åtta riktningslägen inklusive pendel, stagger, skip och två sorters slump, justerbar mönsterlängd, tap tempo och klockdelare. Utgått ur Pittsburghs sortiment, så begagnat är enda vägen."
   },
   "id": "microsequence",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Sequencer",
     "Controller"
