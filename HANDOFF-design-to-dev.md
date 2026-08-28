@@ -1432,3 +1432,48 @@ Link it from:
 
 `scroll-margin-top` on the section heading, as the FAQ questions have, so a
 deep-linked section does not land under the sticky header.
+
+## Toiveet page on mobile — option D (approved 2026-08-28)
+
+Rendered spec: `wishpage-mobile-mockup.html`, option D. Pairs with the
+per-seller deep link above; neither is sufficient alone — the link puts you in
+the right place, the layout stops you drifting out of it.
+
+**Measured problem at 390px:** tiles go one per row at 362×198, spongefile's
+section runs **2400px — 2.7 screens**, and the owner's name appears once at
+16px **regular** weight. One swipe in, nothing on screen says whose list it is.
+On the page where names matter most, the name was less emphasised than on the
+home band.
+
+### Three changes
+
+1. **Two columns on mobile.** Halves the scroll — spongefile drops from ~2.7
+   screens to ~1.4. Tiles and their art shrink to suit. Acceptable here in a
+   way it would not be on the grid: these are *wants*, a taste of what someone
+   is after, not merchandise being sold.
+2. **The owner's name pins.** `position:sticky; top:0` on the section's `.nm`,
+   **bold**, keeping its dot. It holds for exactly as long as that person's
+   tiles are on screen, then the next name pushes it out. Needs an opaque
+   `--bg` background or tiles show through it.
+3. **The section carries the owner's colour** — `border-left:3px solid` in
+   their dot colour, with matching `padding-left`. The pinned name answers the
+   question when you look up; the coloured edge answers it without looking up.
+   Same 3px the wish cards used and the filter bar's owner edge uses, so the
+   colour already means "this belongs to this person" everywhere else.
+
+### Checked so you do not have to
+
+`.controls` **is in the DOM on `#/wish` but renders at height 0**, and nothing
+else on that page is sticky. So the pinned name can sit at `top:0` with no
+offset and no collision. If a sticky element is ever added to this page, that
+`top` becomes load-bearing.
+
+`scroll-margin-top` still needed on the section for the deep link, so an
+arriving reader does not land with the heading flush against the viewport edge.
+
+### Watch
+
+The pinned name must not be `inert` or otherwise unreachable — it is not
+interactive here, but the same class of mistake as the collbar. And check two
+columns at 320px, not just 390: the narrowest common phone is where a
+two-column tile gets too tight for a manufacturer name to wrap sanely.
