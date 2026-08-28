@@ -279,7 +279,17 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .rackfig figcaption{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.7rem; display:flex; justify-content:space-between; gap:1rem}
 
 /* ---------- filter bar ---------- */
-.controls{position:sticky; top:0; z-index:30; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+/* One surface for the whole filter unit. The header used to carry its own
+   tint while the panel was open, which made it read as a strip belonging
+   to nothing sitting above options that had no surface at all. Open, the
+   visible panel is already proof the thing is open, so the header doesn't
+   need a fill to say so — see .collbar.
+   .controls also carries the owner edge now, in BOTH states, so the colour
+   underlines the whole unit rather than the strip at its top. That also
+   leaves exactly one element with a bottom border in either state, which
+   is what keeps the pale double line from returning: it came back twice
+   before, once per fix that looked right in the DOM. */
+.controls{position:sticky; top:0; z-index:30; background:var(--panel2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 /* Collapsed, .collbar's own bottom edge IS the bar's edge (colored when an
    owner is filtered) — .controls' --line divider would draw a second,
    paler rule 1px below it. Must clear by WIDTH, not colour: background-clip
@@ -292,7 +302,7 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    changes this element's height by ~180px in the same transition; 1px on
    top of that is not a perceptible shift. Expanded, the --line divider is
    real (the panel/grid boundary) and stays. */
-.controls.collapsed{border-bottom-width:0; box-shadow:var(--shadow)}
+.controls.collapsed{box-shadow:var(--shadow)}
 /* Height animates from a MEASURED pixel value (JS, scrollHeight), never
    max-height — a max-height bigger than the real content leaves dead
    travel at the start of the transition, then a snap when it runs out.
@@ -305,17 +315,23 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    Collapsible at every width, not just mobile — same tappable summary
    row throughout. */
 .collbar{width:100%; height:0; overflow:hidden; display:flex; align-items:center; gap:.5rem;
-  background:var(--accent-soft); color:var(--accent-hi); border:none;
+  background:transparent; color:var(--ink2); border:none;
   /* border only in the collapsed state — it draws even at height:0, so
      left unconditional it leaves a 1px line above the open panel.
      Neutral by default: colour on this edge means exactly one thing
      (an owner is filtered), so the resting state can't also spend it —
      renderFilters() sets --accent/3px only when a seller is picked and
      clears back to this line2/1px default otherwise. */
-  border-bottom:0 solid var(--line2);
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; text-align:left; cursor:pointer; padding:0 .7rem;
   transition:height .26s cubic-bezier(.4,0,.2,1)}
-.controls.collapsed .collbar{height:44px; border-bottom-width:1px}
+/* collapsed, the bar IS the control and the only thing on screen, so it
+   takes the tint back */
+.controls.collapsed .collbar{height:44px; background:var(--accent-soft); color:var(--accent-hi)}
+/* open it has no fill, so it has to earn its affordance some other way: a
+   word rather than a lone chevron, and a hover. On desktop this is the
+   only way to close the panel, so it cannot be subtle. */
+.collbar:hover{background:var(--accent-soft)}
+.controls:not(.collapsed) .collbar{font-weight:600; letter-spacing:.02em}
 /* Desktop: the bar is a PERSISTENT header, present open and closed, and
    clicking it is the only way to fold the panel — scroll never does.
    A fixed header keeps the close control in one place: any other
@@ -326,10 +342,11 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    renderFilters() sets inline reads the same open as closed instead of
    appearing only once the panel is shut. */
 @media (min-width:900px){
-  .collbar{height:44px; border-bottom-width:1px}
-  /* open, the chips below already say what's filtered — repeating them in
-     the summary would say it twice. Chevron and count only. */
-  .controls:not(.collapsed) .collbar #collbarlabel{display:none}
+  .collbar{height:44px}
+  /* the open header shows the WORD (see syncBarLabel), not the summary —
+     the chips below already say what's filtered. It was hidden entirely
+     here when the header still had its own tint to carry the affordance;
+     without the tint the word is what makes it read as a control. */
 }
 .collbar .chev{width:14px; height:14px; flex:0 0 auto; color:var(--accent);
   transition:transform .26s cubic-bezier(.4,0,.2,1)}
@@ -1478,6 +1495,18 @@ function renderRack(){
 }
 
 /* ---------- filters ---------- */
+/* The header says "Suodattimet" while open and the filter summary while
+   collapsed, so its content depends on a class the collapse controller
+   owns rather than on filter state alone. Both callers go through here so
+   the two can't drift. */
+var WISH_SUMMARY="", WISH_SUMMARY_DOT="var(--muted)";
+function syncBarLabel(){
+  var lab=el("collbarlabel"); if(!lab) return;
+  var collapsed=el("grid-top").classList.contains("collapsed");
+  lab.innerHTML = collapsed
+    ? '<span class="odot" style="background:'+WISH_SUMMARY_DOT+'"></span>'+WISH_SUMMARY
+    : esc(t().filtersLabel);
+}
 function renderFilters(){
   var T2=t();
   var count=function(f){ return ITEMS.filter(function(m){
@@ -1513,47 +1542,37 @@ function renderFilters(){
     var cls=(k==="all"?"ico ic-all":"")+(faint?" faint":"");
     return '<button class="subchip'+(cls?" "+cls.trim():"")+'" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'">'+
       esc(T2.cat[k]||k)+'<span class="c">'+(faint?"–":n)+'</span></button>'; }).join("");
-  /* collapsed-bar summary — built from filter STATE (S), not scraped from
-     the chip DOM, so it stays correct regardless of how the chips
-     themselves render. No new copy: composed from the same translated
-     chip labels used above, falling back to the "everything" format
-     label when nothing is selected. */
-  var sumParts=[], sellerFilter=S.who!=="all"?SELLER_BY_KEY[S.who]:null;
+  /* Summary built from filter STATE (S), not scraped from the chip DOM, so
+     it stays correct regardless of how the chips render. No new copy:
+     composed from the same translated chip labels used above.
+
+     TWO RULES, which used to be one. While the summary was the only thing
+     the bar ever showed, "the dot matches the edge" said everything. The
+     open header now shows a word instead, so they come apart:
+
+       THE EDGE says whether an owner is filtered, in BOTH states —
+       3px in that owner's colour, or 1px --line when none.
+       THE DOT marks WHICH NAME you are reading, so it belongs to the
+       summary, which only exists when collapsed. No name, nothing to mark.
+
+     Open, the chips below already name the owner — the same argument that
+     took the summary text out of the open state.
+
+     The edge now lives on .controls rather than on .collbar. Under one
+     surface it has to underline the whole filter unit, not the strip at
+     its top; it also means exactly one element carries a bottom border in
+     either state, which is what stops the pale double line coming back. */
+  var sellerFilter = S.who!=="all" ? SELLER_BY_KEY[S.who] : null;
+  var sumParts=[];
   if(S.fmt!=="all") sumParts.push("<b>"+esc(T2.fmt[S.fmt])+"</b>");
   if(sellerFilter) sumParts.push("<b>"+esc(sellerFilter.name)+"</b>");
   if(S.cat!=="all") sumParts.push("<b>"+esc(T2.cat[S.cat]||S.cat)+"</b>");
-  /* the leading dot is a property of the BAR, not of one branch of this
-     summary — it's the bar's own state indicator, the small-scale twin
-     of the bottom edge, not a name prefix like the dots on cards/chips.
-     Built once and always prepended, so a format- or category-only
-     filter (sumParts non-empty, no seller) still gets a dot instead of
-     silently losing it — that was the exact bug the dot was added to
-     fix, just relocated: the old code only put a dot in the "nothing
-     selected" fallback branch, so "Eurorack" (no owner) rendered with no
-     dot and the left edge still jumped. Colour on that edge means
-     exactly one thing: an owner is filtered. Owner chosen: both take
-     that owner's dot color, line at 3px. No owner (regardless of any
-     other filter): both go neutral (--muted / --line2 — the CSS
-     default, not JS-set), line at 1px. With format+owner+category all
-     active, the dot leads the whole string rather than sitting against
-     the owner's name — correct, since it's the bar's indicator, not the
-     owner's. */
-  var dotColor = sellerFilter ? sellerFilter.dot : "var(--muted)";
-  var dot = '<span class="odot" style="background:'+dotColor+'"></span>';
-  el("collbarlabel").innerHTML = dot + (sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all));
-  /* an active owner filter borrows the bar's bottom edge to say which one
-     — several sellers' dot colors fail AA against the bar's text at the
-     weight a fill would need, and Sampo's amber sits right next to
-     --signal, which this site reserves for caution, so the edge (not the
-     fill) carries it. 3px when an owner is chosen — it was matched to the
-     wish cards' own coloured edge, and stays at that weight now those have
-     become one flowing row, since it's the width that reads as deliberate
-     rather than as a hairline; .collbar is border-box at a fixed 44px, so
-     growing the border inward needs no compensation elsewhere.
-     Clearing to "" (not a color) lets the CSS default (--line2, neutral)
-     win for the "everyone" case — see .collbar's own border-bottom rule. */
-  el("collbar").style.borderBottomColor = sellerFilter ? sellerFilter.dot : "";
-  el("collbar").style.borderBottomWidth = sellerFilter ? "3px" : "";
+  WISH_SUMMARY = sumParts.length ? sumParts.join(" · ") : esc(T2.fmt.all);
+  WISH_SUMMARY_DOT = sellerFilter ? sellerFilter.dot : "var(--muted)";
+  syncBarLabel();
+  var ctl=el("grid-top");
+  ctl.style.borderBottomColor = sellerFilter ? sellerFilter.dot : "";
+  ctl.style.borderBottomWidth = sellerFilter ? "3px" : "";
 }
 
 /* ---------- wish band ---------- */
@@ -1658,9 +1677,11 @@ function renderGrid(){
   var e=el("empty");
   e.hidden=list.length>0;
   e.textContent=(S.fmt==="tools")?T2.emptyTools:T2.emptyNone;
-  var sum=list.reduce(function(a,m){return a+m.price;},0);
-  el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>'+
-    '<span>'+sum+' '+esc(T2.onScreen)+'</span>';
+  /* count only — the combined price of everything visible was discouraging
+     to read and isn't a number anyone is shopping by. T2.onScreen is left
+     defined but unused rather than deleted: it's translated copy, and the
+     total may come back somewhere it reads as information. */
+  el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>';
   el("collcount").textContent=list.length+" / "+ITEMS.length;
 }
 </script>
@@ -2425,7 +2446,7 @@ var rz; window.addEventListener("resize",function(){
     void wrap.offsetHeight;
     controls.classList.add("collapsed");
     wrap.style.height="0px";
-    syncInert(); settle(false);
+    syncInert(); syncBarLabel(); settle(false);
   }
   function expand(){
     if(!collapsed()) return;
@@ -2435,7 +2456,7 @@ var rz; window.addEventListener("resize",function(){
     wrap.style.height="0px";
     void wrap.offsetHeight;
     wrap.style.height=target+"px";
-    syncInert(); settle(true);
+    syncInert(); syncBarLabel(); settle(true);
   }
 
   function onScroll(){
