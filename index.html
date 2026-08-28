@@ -485,6 +485,56 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   .wperson{margin-right:1.6rem}
   .wperson .who{font-size:.88rem}
 }
+/* ---------- Toiveet page (#/wish) ----------
+   Distinct from the home band above: that is a teaser and became one
+   flowing row, this is the full list with drawn faceplates. These rules
+   were deleted by accident when the band's card CSS was replaced — the
+   two sets sat adjacent and the removal range took both. */
+.wishpage{padding:2.5rem 0 4rem}
+.wishpage h1{font-size:1.9rem; letter-spacing:-.03em; margin-bottom:2rem}
+/* The section carries the owner's colour down its left edge — the pinned
+   name answers "whose list is this" when you look up, the edge answers it
+   without looking up. Same 3px the filter bar's owner edge uses. Hue is
+   set inline per seller; only the width and spacing live here. */
+.wishsection{display:block; color:inherit; text-decoration:none; padding:1.25rem 0; border-top:1px solid var(--line);
+  border-left:3px solid transparent; padding-left:.9rem; scroll-margin-top:1.5rem}
+.wishsection:first-of-type{border-top:none}
+.wishsection .nm{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.15rem; margin-bottom:1rem}
+.wishsection .nm i{width:10px; height:10px; border-radius:50%; flex:0 0 auto}
+.wish-imggrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:1rem}
+.wishtile{background:var(--bg2); border:1px solid var(--line); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:.9rem .6rem; min-height:170px; transition:border-color .15s}
+.wishsection:hover .wishtile{border-color:var(--line2)}
+@media (prefers-reduced-motion:reduce){ .wishtile{transition:none} }
+/* backstop: the tile, not its contents, decides the width */
+.wishtile .wf{display:flex; align-items:center; justify-content:center; max-width:100%; min-width:0}
+.wishtile .wf img{border:1px solid var(--line2)}
+.wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
+  text-align:center; line-height:1.4}
+.wishtile.placeholder{border-style:dashed; border-color:var(--line2); background:transparent; min-height:170px}
+/* .wl normally sits below a faceplate/photo (.wf), so its margin-top
+   assumes something is above it — a placeholder tile has no .wf, and
+   that margin would just push the lone label off-center in the box */
+.wishtile.placeholder .wl{margin-top:0}
+/* Toiveet page on mobile (option D). Measured problem at 390px: one tile
+   per row put spongefile's section at 2400px — 2.7 screens — with the
+   owner's name appearing once, unbolded, at the top. One swipe in and
+   nothing on screen said whose list it was, on the page where names matter
+   most. Two columns halve the scroll and the name pins so it can't be
+   lost mid-section. Two columns are acceptable here in a way they would
+   not be on the item grid: these are wants, a taste of what someone is
+   after, not merchandise. */
+@media(max-width:640px){
+  .wish-imggrid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:.6rem}
+  .wishtile{min-height:0; padding:.6rem .45rem}
+  .wishtile.placeholder{min-height:0}
+  .wishtile .wl{margin-top:.5rem; font-size:.62rem}
+  /* opaque --bg is load-bearing, not decoration: without it the tiles
+     scroll visibly through the pinned name. */
+  .wishsection .nm{position:sticky; top:0; z-index:2; background:var(--bg);
+    font-weight:800; padding:.5rem 0; margin-bottom:.6rem}
+  .wishpage{padding-top:1.5rem}
+}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 /* stated empty state for a seller with no wishlist yet — muted, so it
    reads as a fact about the shelf rather than as a missing tile */
@@ -1743,7 +1793,7 @@ function detailHTML(m){
         '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'
       : '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>')+
     (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>':'')+
-    (!m.shopUrl&&(WANTS[p.key]||[]).length?'<a class="tradepanel" href="#/wish"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
+    (!m.shopUrl&&(WANTS[p.key]||[]).length?'<a class="tradepanel" href="#/wish/'+esc(p.key)+'"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
     '</a>':'')+
@@ -1973,7 +2023,8 @@ function wishHTML(){
     SELLERS.filter(function(p){ return p.wants.length>0; })
       .concat(SELLERS.filter(function(p){ return p.wants.length===0; }))
       .map(function(p){
-      return '<a class="wishsection" href="#/s/'+p.key+'">'+
+      return '<a class="wishsection" id="wish-'+esc(p.key)+'" href="#/s/'+p.key+'"'+
+        ' style="border-left-color:'+p.dot+'">'+
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
         (p.wants.length
           ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
@@ -2115,11 +2166,23 @@ function syncNavCurrent(h){
 function route(){
   var h=location.hash;
   syncNavCurrent(h);
+  /* "#/wish" is the page; "#/wish/<sellerKey>" scrolls to that seller's
+     section. Same constraint as #/faq/<id>: a URL carries one fragment, so
+     the seller has to be a route segment rather than a second anchor —
+     "#/wish#sampo" isn't expressible. Scrolls rather than filters: the
+     other sellers staying visible is the point of this page, and the
+     pinned name plus the owner's coloured edge are what keep the reader
+     oriented once they're there.
+     An unknown or stale key falls through to the top of the page rather
+     than to a blank one. */
   if(h.indexOf("#/wish")===0){
+    var wkey = h.indexOf("#/wish/")===0 ? h.slice(7) : null;
     el("detail").innerHTML=wishHTML();
     document.body.classList.add("detail-open");
     document.title=t().wishH+" — eurorack.fi";
-    window.scrollTo(0,0); return;
+    var wtarget = wkey && el("wish-"+wkey);
+    if(wtarget) wtarget.scrollIntoView(); else window.scrollTo(0,0);
+    return;
   }
   /* "#/faq" is the page; "#/faq/<id>" scrolls to one question. The second
      segment has to be part of the route (not a separate "#id" browser
