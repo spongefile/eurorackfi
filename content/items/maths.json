@@ -1,0 +1,79 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/maths.jpg",
+  "mgSlug": "make-noise-maths",
+  "site": "makenoisemusic.com",
+  "hp": 20,
+  "price": 200,
+  "name": "Maths v2",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 60mA · −12V 60mA",
+    "pull": {
+      "q": "Maths will teach you math: analog computers were used to solve equations, and Maths is a musical analog computer.",
+      "src": "Make Noise",
+      "url": "https://www.makenoisemusic.com/modules/maths"
+    },
+    "quotes": [
+      {
+        "t": "Two channels of voltage-controlled slew with variable response, two attenuverters, and a summing bus.",
+        "s": "Make Noise"
+      },
+      {
+        "t": "This is the v2 panel. The circuit is unchanged from v1; the layout and jack spacing differ.",
+        "s": "Which version this is"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Make Noise",
+        "title": "Maths — the manufacturer's page and illustrated supplement",
+        "url": "https://www.makenoisemusic.com/modules/maths"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Make Noise Maths — specs and racks",
+        "url": "https://modulargrid.net/e/make-noise-maths"
+      }
+    ],
+    "videos": [
+      {
+        "title": "MATHS lesson, part 1",
+        "by": "Make Noise · YouTube",
+        "url": "https://www.youtube.com/watch?v=y2lcyvKp-rk"
+      },
+      {
+        "title": "Modular Monthly: a Make Noise MATHS lesson",
+        "by": "MusicRadar Tech · YouTube",
+        "url": "https://www.youtube.com/watch?v=ui2MKnGgJV4"
+      },
+      {
+        "title": "Make Noise Maths — beginner's guide with visual demonstrations",
+        "by": "Braintree56 · YouTube",
+        "url": "https://www.youtube.com/watch?v=l_sIXwrhuW0"
+      }
+    ]
+  },
+  "tone": "black",
+  "cat": "Modulation",
+  "mfr": "Make Noise",
+  "blurb": {
+    "en": "The function generator most modular systems end up with, and for good reason. Two voltage-controlled slew channels with variable response, two attenuverters between them, and a summing bus — so it is an envelope, an LFO, a slew limiter, a mixer, a lag processor and a logic source depending on the patch. Self-patching is the point: the manual is a set of illustrated patch recipes rather than a feature list.",
+    "fi": "Se funktiogeneraattori jonka useimmat modulaarit lopulta hankkivat, ja syystä. Kaksi jännitteellä ohjattua slew-kanavaa säädettävällä vasteella, kaksi attenuverteria niiden välissä ja summausväylä — joten se on verhokäyrä, LFO, slew-rajoitin, mikseri, viiveprosessori ja logiikkalähde patchista riippuen. Itseensä kytkeminen on koko idea: käyttöohje on kuvitettu kokoelma patch-reseptejä eikä ominaisuuslista.",
+    "sv": "Den funktionsgenerator de flesta modulärsystem till slut skaffar, och med rätta. Två spänningsstyrda slew-kanaler med variabel respons, två attenuvertrar mellan dem och en summeringsbuss — alltså en envelope, en LFO, en slew-begränsare, en mixer, en lag-processor och en logikkälla beroende på koppling. Att koppla den till sig själv är hela poängen: manualen är en samling illustrerade patchrecept snarare än en funktionslista."
+  },
+  "id": "maths",
+  "negotiating": false,
+  "cats": [
+    "Modulation",
+    "Utility"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

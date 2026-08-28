@@ -2,5 +2,82 @@
   "key": "kari",
   "name": "Kari",
   "dot": "#9068C8",
-  "wants": []
+  "wants": [
+    {
+      "type": "product",
+      "mfr": "Verbos Electronics",
+      "name": "Complex Oscillator",
+      "hp": 32,
+      "tone": "alu",
+      "parts": {
+        "k": 18,
+        "j": 26,
+        "sl": 0,
+        "led": 10,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/verbos-complex.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Verbos Electronics",
+      "name": "Foundation Oscillator",
+      "hp": 12,
+      "tone": "alu",
+      "parts": {
+        "k": 7,
+        "j": 11,
+        "sl": 0,
+        "led": 4,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/verbos-foundation.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Verbos Electronics",
+      "name": "Amp & Tone",
+      "hp": 10,
+      "tone": "alu",
+      "parts": {
+        "k": 6,
+        "j": 10,
+        "sl": 0,
+        "led": 2,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/verbos-amptone.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Tiptop Audio / Buchla",
+      "name": "Quad Lopass Gate Model 292t",
+      "hp": 16,
+      "tone": "alu",
+      "parts": {
+        "k": 12,
+        "j": 16,
+        "sl": 0,
+        "led": 4,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/buchla-292t.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Tokyo Tape Music Center",
+      "name": "Tokyo Gate",
+      "hp": 7,
+      "tone": "alu",
+      "parts": {
+        "k": 4,
+        "j": 8,
+        "sl": 0,
+        "led": 2,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/tokyo-gate.jpg"
+    }
+  ],
+  "form": "https://tally.so/r/gD6lbJ"
 }

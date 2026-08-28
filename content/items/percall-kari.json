@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/percall-kari.jpg",
+  "mgSlug": "befaco-percall",
+  "site": "befaco.org",
+  "hp": 12,
+  "price": 200,
+  "name": "Percall",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 80mA · −12V 60mA",
+    "pull": {
+      "q": "Four channels of decay envelope and VCA, with velocity, accent and a stereo mix output.",
+      "src": "Befaco",
+      "url": "https://www.befaco.org/percall/"
+    },
+    "quotes": [
+      {
+        "t": "Built for drums specifically — trigger in, shaped VCA out, four times over in 12HP.",
+        "s": "Befaco"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Befaco",
+        "title": "Percall — the manufacturer's page",
+        "url": "https://www.befaco.org/percall/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Befaco Percall — specs and racks",
+        "url": "https://modulargrid.net/e/befaco-percall"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Befaco Percall — a percussive quad decay envelope, VCA and mixer",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=327drWNpOn8"
+      },
+      {
+        "title": "Quick jam: Befaco Percall + Kickall",
+        "by": "Perfect Circuit · YouTube",
+        "url": "https://www.youtube.com/watch?v=j8Qsod-wka0"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Modulation",
+  "mfr": "Befaco",
+  "blurb": {
+    "en": "Four channels of decay envelope and VCA in 12HP, built for drums. Each channel takes a trigger and gives you a decay-shaped VCA, with velocity via CV, an accent bus, and a stereo mix out with per-channel panning. It is the module that turns four trigger outputs into four playable drum voices without a rack of separate VCAs and envelopes.",
+    "fi": "Neljä kanavaa decay-verhokäyrää ja VCA:ta 12HP:ssä, rumpuja varten rakennettuna. Jokainen kanava ottaa liipaisimen ja antaa decay-muotoillun VCA:n, mukana velocity CV:n kautta, aksenttiväylä sekä stereomiksausulostulo kanavakohtaisella panoroinnilla. Tämä moduuli muuttaa neljä liipaisuulostuloa neljäksi soitettavaksi rumpuääneksi ilman rekillistä erillisiä VCA:ita ja verhokäyriä.",
+    "sv": "Fyra kanaler decay-envelope och VCA på 12HP, byggd för trummor. Varje kanal tar en trigger och ger en decay-formad VCA, med velocity via CV, en accentbuss och en stereomixutgång med panorering per kanal. Det är modulen som gör fyra triggutgångar till fyra spelbara trumröster utan ett rack av separata VCA:er och envelopes."
+  },
+  "id": "percall-kari",
+  "negotiating": false,
+  "cats": [
+    "Utility",
+    "Envelope",
+    "VCA"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

@@ -1,0 +1,74 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/a107.jpg",
+  "mgSlug": "doepfer-a-107",
+  "site": "doepfer.de",
+  "hp": 26,
+  "price": 170,
+  "name": "A-107 Multitype Morphing Filter",
+  "fmt": "eu",
+  "extra": {
+    "depth": "50 mm",
+    "power": "+12V 200mA · −12V 60mA",
+    "pull": {
+      "q": "A voltage controlled multitype filter with 30 filter types, based on a switched capacitor filter circuit.",
+      "src": "Doepfer",
+      "url": "https://doepfer.de/a107.htm"
+    },
+    "quotes": [
+      {
+        "t": "The filter type itself is voltage controllable — you can morph between types rather than switch between them.",
+        "s": "Doepfer"
+      },
+      {
+        "t": "200mA on +12V is heavy for a filter. Check the supply has room.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Doepfer",
+        "title": "A-107 Multitype Morphing Filter — the manufacturer's page",
+        "url": "https://doepfer.de/a107.htm"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Doepfer A-107 — specs and racks",
+        "url": "https://modulargrid.net/e/doepfer-a-107"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Doepfer A-107 filter demo",
+        "by": "Jyoti Mishra · YouTube",
+        "url": "https://www.youtube.com/watch?v=6DSG2lS8VIE"
+      },
+      {
+        "title": "A-107 Multitype Morphing Filter — all 36 types",
+        "by": "StarChild · YouTube",
+        "url": "https://www.youtube.com/watch?v=zPZiGMHOAnI"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Filter",
+  "mfr": "Doepfer",
+  "blurb": {
+    "en": "Five-pole voltage-controlled filter built on an analogue switched-capacitor chip, with 30 filter types on tap — low pass, high pass, band pass, notch and combinations — and, unusually, you can morph between them under CV rather than switching. Separate CV over type, resonance and cutoff, so the character of the filter is itself a modulation destination. 26HP and a genuine oddity in the Doepfer range.",
+    "fi": "Viisinapainen jännitteellä ohjattava suodin, joka perustuu analogiseen switched capacitor -piiriin. Käytössä on 30 suodintyyppiä — alipäästö, ylipäästö, kaistanpäästö, notch ja yhdistelmiä — ja poikkeuksellisesti tyyppien välillä voi liukua CV:llä sen sijaan että niitä vaihdettaisiin kytkimellä. Erilliset CV-tulot tyypille, resonanssille ja rajataajuudelle, joten suotimen luonne on itsessään modulaatiokohde. 26HP ja aito erikoisuus Doepferin mallistossa.",
+    "sv": "Fempoligt spänningsstyrt filter byggt på ett analogt switched capacitor-chip, med 30 filtertyper — lågpass, högpass, bandpass, notch och kombinationer — och ovanligt nog kan man morfa mellan dem med CV i stället för att växla med en omkopplare. Separat CV över typ, resonans och gränsfrekvens, så filtrets karaktär är i sig ett modulationsmål. 26HP och en verklig raritet i Doepfers sortiment."
+  },
+  "id": "a107",
+  "negotiating": false,
+  "cats": [
+    "Filter"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

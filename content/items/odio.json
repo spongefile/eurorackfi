@@ -1,0 +1,74 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/odio.jpg",
+  "mgSlug": "audio-damage-adm09-odio",
+  "site": "audiodamage.com",
+  "hp": 4,
+  "price": 170,
+  "name": "ADM09 Odio",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 80mA · −12V 5mA",
+    "pull": {
+      "q": "A class-compliant USB audio device. No driver required for Linux, OS X, Windows, and iOS.",
+      "src": "Audio Damage",
+      "url": "https://modulargrid.net/e/audio-damage-adm09-odio"
+    },
+    "quotes": [
+      {
+        "t": "DC-coupled outputs and 10V p-p modular level audio paths to the Burr-Brown AD/DA convertors operating at 48kHz/16 bit.",
+        "s": "Audio Damage"
+      },
+      {
+        "t": "48kHz/16-bit, and USB 1.1 — fine for getting a rack into a laptop, but not a modern high-resolution interface.",
+        "s": "Worth knowing before you buy"
+      },
+      {
+        "t": "Audio Damage has discontinued its eurorack line and taken the product pages down — there is no manufacturer documentation left to link to.",
+        "s": "The honest state of the line"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Audio Damage ADM09 Odio — specs and racks",
+        "url": "https://modulargrid.net/e/audio-damage-adm09-odio"
+      },
+      {
+        "src": "Audio Damage",
+        "title": "Audio Damage — the maker, now software only",
+        "url": "https://www.audiodamage.com/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Audio Damage Odio and VST plugins — tutorial",
+        "by": "SYNTH ANATOMY · YouTube",
+        "url": "https://www.youtube.com/watch?v=R3P7jn1QIDo"
+      }
+    ],
+    "depth": "53 mm"
+  },
+  "tone": "black",
+  "cat": "Output",
+  "mfr": "Audio Damage",
+  "blurb": {
+    "en": "A class-compliant USB audio interface in 4HP — two in, two out, at modular levels. Burr-Brown converters at 48kHz/16-bit, DC-coupled outputs, and 10V peak-to-peak paths, so it moves audio and slow CV between the rack and a computer without a level-matching stage in the way. No driver on Linux, macOS, Windows or iOS; an iPad needs a Camera Connection Kit. Input LEDs show level in colour — blue is fine, violet is peaking, yellow is clipping. Audio Damage have discontinued their eurorack line, so this is the only way to get one.",
+    "fi": "Luokkayhteensopiva USB-äänirajapinta 4HP:ssä — kaksi sisään, kaksi ulos, modulaaritasoilla. Burr-Brown-muuntimet 48 kHz / 16 bittiä, DC-kytketyt ulostulot ja 10V huipusta huippuun -reitit, joten se siirtää ääntä ja hidasta CV:tä rackin ja tietokoneen välillä ilman erillistä tasonsovitusta. Ei ajuria Linuxilla, macOS:llä, Windowsilla eikä iOS:llä; iPad vaatii Camera Connection Kitin. Tulojen LEDit näyttävät tason värillä — sininen on kunnossa, violetti huippuja, keltainen leikkausta. Audio Damage on lopettanut eurorack-mallistonsa, joten käytetty on ainoa tie.",
+    "sv": "Ett class-compliant USB-ljudinterface på 4HP — två in, två ut, på modulärnivå. Burr-Brown-omvandlare i 48 kHz/16 bitar, DC-kopplade utgångar och 10V topp-till-topp, så den flyttar ljud och långsam CV mellan racket och en dator utan nivåanpassning emellan. Ingen drivrutin på Linux, macOS, Windows eller iOS; en iPad kräver Camera Connection Kit. Ingångarnas lysdioder visar nivån i färg — blått är bra, violett är toppar, gult är klippning. Audio Damage har lagt ner sin eurorackserie, så begagnat är enda vägen."
+  },
+  "id": "odio",
+  "negotiating": false,
+  "cats": [
+    "Output",
+    "Interface"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

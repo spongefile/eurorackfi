@@ -1,0 +1,76 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/strakalorsel.jpg",
+  "mgSlug": "touellskouarn-strakal-orsel",
+  "site": "touellskouarn.fr",
+  "hp": 12,
+  "price": 220,
+  "name": "Strakal Orsel",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 5mA · −12V 5mA · +5V 350mA",
+    "pull": {
+      "q": "Hand-built valve fuzz from a small Breton workshop, with a real tube in the signal path.",
+      "src": "TouellSkouarn",
+      "url": "https://touellskouarn.fr/"
+    },
+    "quotes": [
+      {
+        "t": "350mA on the +5V rail is the thing to check — many cases do not supply 5V at all.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "TouellSkouarn",
+        "title": "TouellSkouarn — the maker",
+        "url": "https://touellskouarn.fr/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "TouellSkouarn Strakal Orsel — specs and racks",
+        "url": "https://modulargrid.net/e/touellskouarn-strakal-orsel"
+      }
+    ],
+    "videos": [
+      {
+        "title": "TouellSkouarn Strakal Orsel Special",
+        "by": "NOISEBUG · YouTube",
+        "url": "https://www.youtube.com/watch?v=s0q7Xfb4gSQ"
+      },
+      {
+        "title": "Embrace chaos with Strakal Orsel and Skorn da Bask",
+        "by": "MusicRadar Tech · YouTube",
+        "url": "https://www.youtube.com/watch?v=-k3gy7SovRI"
+      },
+      {
+        "title": "Superbooth 18 — TouellSkouarn Strakal Orsel",
+        "by": "Thonk · YouTube",
+        "url": "https://www.youtube.com/watch?v=SQbuqk4Z3OM"
+      }
+    ]
+  },
+  "tone": "black",
+  "cat": "FX",
+  "mfr": "TouellSkouarn",
+  "blurb": {
+    "en": "Valve fuzz and distortion, hand-built in Brittany. A real tube in the signal path rather than a simulation of one, which is why it wants 350mA on the 5V rail — check you have that before committing. Filthy at the top of its range and surprisingly usable at the bottom. Small-workshop module, so support is a person rather than a company.",
+    "fi": "Putkifuzz ja särö, käsin rakennettu Bretagnessa. Signaalitiellä on oikea putki eikä sen simulaatio, minkä vuoksi se vaatii 350mA 5V-kiskolta — tarkista että sitä löytyy ennen kuin sitoudut. Yläpäässä likainen ja alapäässä yllättävän käyttökelpoinen. Pienen pajan moduuli, joten tuen takana on ihminen eikä yritys.",
+    "sv": "Rörfuzz och distorsion, handbyggd i Bretagne. Ett riktigt rör i signalvägen snarare än en simulering, vilket är varför den vill ha 350mA på 5V-skenan — kontrollera att du har det innan du slår till. Smutsig i övre delen av registret och förvånansvärt användbar i den nedre. Modul från en liten verkstad, så supporten är en människa och inte ett företag."
+  },
+  "id": "strakalorsel",
+  "negotiating": false,
+  "cats": [
+    "FX",
+    "Distortion",
+    "Tube"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

@@ -1,0 +1,84 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/performer2.jpg",
+  "mgSlug": "westlicht-per-former--",
+  "site": "westlicht.github.io",
+  "hp": 34,
+  "price": 320,
+  "name": "PER|FORMER + Launchpad Mini",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 100mA · −12V 15mA",
+    "pull": {
+      "q": "A eurorack sequencer module designed for both live performance and work in the studio, based on the concept of step sequencing.",
+      "src": "Westlicht",
+      "url": "https://westlicht.github.io/performer/"
+    },
+    "quotes": [
+      {
+        "t": "Open source — firmware, hardware design files and the manual are all published, and the simulator runs in a browser.",
+        "s": "Westlicht"
+      },
+      {
+        "t": "Sold with a Launchpad Mini, which it drives over USB as its grid controller.",
+        "s": "What is included"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Westlicht",
+        "title": "PER|FORMER — documentation, manual and browser simulator",
+        "url": "https://westlicht.github.io/performer/"
+      },
+      {
+        "src": "GitHub",
+        "title": "westlicht/performer — firmware source",
+        "url": "https://github.com/westlicht/performer"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Westlicht PER|FORMER — specs and racks",
+        "url": "https://modulargrid.net/e/westlicht-per-former--"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Westlicht Performer, part 1 — introduction and first patch",
+        "by": "Cinematic Laboratory · YouTube",
+        "url": "https://www.youtube.com/watch?v=f1Hh263Tp4s"
+      },
+      {
+        "title": "Westlicht Performer #5 — with a Launchpad Mini",
+        "by": "Markt · YouTube",
+        "url": "https://www.youtube.com/watch?v=1Nm7OUHuQiM"
+      },
+      {
+        "title": "Tutorial: basic note and modulation sequencing",
+        "by": "Earther · YouTube",
+        "url": "https://www.youtube.com/watch?v=5jLsQil8mnU"
+      }
+    ]
+  },
+  "tone": "black",
+  "cat": "Sequencer",
+  "mfr": "Westlicht",
+  "blurb": {
+    "en": "Eight-track CV and gate sequencer, open source, 34HP. Sixteen steps per page with note, gate length, retrigger and probability per step, song mode, and eight CV plus eight gate outputs. Comes with a Launchpad Mini, which it drives over USB as a grid controller — that is the intended way to play it rather than an afterthought. MIDI in and out, clock in and out, micro SD for projects.",
+    "fi": "Kahdeksanraitainen CV- ja porttisekvensseri, avointa lähdekoodia, 34HP. Kuusitoista askelta sivua kohti, ja jokaisella askeleella nuotti, portin pituus, uudelleenliipaisu ja todennäköisyys, lisäksi song mode sekä kahdeksan CV- ja kahdeksan porttiulostuloa. Mukana Launchpad Mini, jota se ohjaa USB:n yli ruudukko-ohjaimena — juuri niin sitä on tarkoituskin soittaa. MIDI sisään ja ulos, kello sisään ja ulos, micro SD projekteille.",
+    "sv": "Åttaspårig CV- och gate-sekvensiator, öppen källkod, 34HP. Sexton steg per sida med ton, gatelängd, omtrigg och sannolikhet per steg, song mode, samt åtta CV- och åtta gate-utgångar. En Launchpad Mini ingår, som den styr över USB som gridkontroller — det är så den är tänkt att spelas. MIDI in och ut, klocka in och ut, micro SD för projekt."
+  },
+  "id": "performer2",
+  "negotiating": false,
+  "cats": [
+    "Sequencer",
+    "Controller"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}

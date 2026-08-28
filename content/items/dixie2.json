@@ -1,0 +1,70 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/dixie2.jpg",
+  "mgSlug": "intellijel-dixie-ii",
+  "site": "intellijel.com",
+  "hp": 6,
+  "price": 160,
+  "name": "Dixie II",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 42mA · −12V 37mA",
+    "pull": {
+      "q": "A compact analogue VCO with a triangle core, offering simultaneous sine, triangle, saw and pulse outputs.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/dixie-ii-plus/"
+    },
+    "quotes": [
+      {
+        "t": "Thru-zero FM, hard and soft sync, and an LFO mode — a lot of oscillator for 6HP.",
+        "s": "Intellijel"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Dixie II — the manufacturer's page",
+        "url": "https://intellijel.com/shop/eurorack/dixie-ii-plus/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Dixie II — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-dixie-ii"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Dixie II — the six outputs",
+        "by": "Keith Hannen · YouTube",
+        "url": "https://www.youtube.com/watch?v=vO7bB3pWAsI"
+      },
+      {
+        "title": "One Osc Challenge: Intellijel Dixie II+",
+        "by": "lucafrancinimusic · YouTube",
+        "url": "https://www.youtube.com/watch?v=fOEkRmazR3U"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Oscillator",
+  "mfr": "Intellijel",
+  "blurb": {
+    "en": "Triangle-core analogue oscillator in 6HP, and one of the great small VCOs. Sine, triangle, saw and pulse out at once, thru-zero FM, hard and soft sync, and it drops to LFO range with a switch. Tracks properly across the range, which is the whole point of a triangle core.",
+    "fi": "Kolmioydinpohjainen analoginen oskillaattori 6HP:ssä, ja yksi parhaista pienistä VCO:ista. Sini, kolmio, saha ja pulssi ulos yhtä aikaa, thru-zero-FM, kova ja pehmeä sync, ja kytkimellä se laskeutuu LFO-alueelle. Vireys pitää koko alalta, mikä on kolmioytimen koko pointti.",
+    "sv": "Analog oscillator med triangelkärna på 6HP, och en av de bästa små VCO:erna. Sinus, triangel, sågtand och puls ut samtidigt, thru-zero-FM, hård och mjuk sync, och med en omkopplare går den ner i LFO-området. Den stämmer ordentligt över hela registret, vilket är hela poängen med en triangelkärna."
+  },
+  "id": "dixie2",
+  "negotiating": false,
+  "cats": [
+    "Oscillator",
+    "Analogue"
+  ],
+  "who": "kari",
+  "imgIsModularGrid": true
+}
