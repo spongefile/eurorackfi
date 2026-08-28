@@ -1,0 +1,93 @@
+{
+  "parts": {
+    "k": 13,
+    "j": 12,
+    "sl": 0,
+    "led": 36,
+    "sc": 4
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/quadrax.jpg",
+  "mgSlug": "intellijel-quadrax",
+  "site": "intellijel.com",
+  "hp": 14,
+  "price": 300,
+  "name": "Quadrax",
+  "fmt": "eu",
+  "extra": {
+    "depth": "38 mm",
+    "power": "+12V 106mA · −12V 9mA",
+    "pull": {
+      "q": "Each channel can be an AD envelope, an AHR envelope, a cycling envelope, a pulse burst generator, or a morphing, bipolar beat syncable LFO.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/quadrax/"
+    },
+    "quotes": [
+      {
+        "t": "Channels can be chained together to create complex multi-stage envelopes, each triggered by the previous channel's trigger, end-of-rise or end-of-fall.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Four CV inputs map to any parameter through a mod-matrix mode — rise, fall, shape or level.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Sold without the Qx expander, which is what gives you the end-of-rise and end-of-fall gates on their own jacks.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Quadrax — the manufacturer's page and manual",
+        "url": "https://intellijel.com/shop/eurorack/quadrax/"
+      },
+      {
+        "src": "Perfect Circuit",
+        "title": "Intellijel Quadrax Function Generator — specs and overview",
+        "url": "https://www.perfectcircuit.com/intellijel-quadrax.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Quadrax — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-quadrax"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Quadrax v1.1 — walkthrough, design and Q+A",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=l_alT9QgoyU"
+      },
+      {
+        "title": "The Intellijel Quadrax is four powerful function generators in 14HP",
+        "by": "Perfect Circuit · YouTube",
+        "url": "https://www.youtube.com/watch?v=EzIbiV8IFA0"
+      },
+      {
+        "title": "Quad envelope generator shoot-out: Klavis Quadigy vs Intellijel Quadrax vs Xaoc Zadar",
+        "by": "The Sound Convergence · YouTube",
+        "url": "https://www.youtube.com/watch?v=4OzmOTIH0Wg"
+      },
+      {
+        "title": "Exploring Intellijel Quadrax",
+        "by": "Fazer Fod · YouTube",
+        "url": "https://www.youtube.com/watch?v=_r8WuRIB1GA"
+      }
+    ]
+  },
+  "tone": "alu",
+  "cat": "Modulation",
+  "mfr": "Intellijel",
+  "blurb": {
+    "en": "Four function generators in 14HP, each one independently an attack-decay envelope, an attack-hold-release, a cycling envelope, a pulse burst generator or a beat-syncable bipolar LFO. Rise, fall and shape per channel, shape sweeping from log rise into linear into exponential. Four CV inputs assign to any parameter through a mod matrix, and channels chain off each other's trigger, end-of-rise or end-of-fall for envelopes several stages long. Sold on its own — no Qx expander.",
+    "fi": "Neljä funktiogeneraattoria 14HP:ssä, kukin erikseen joko attack-decay-verhokäyrä, attack-hold-release, syklinen verhokäyrä, pulssipurskegeneraattori tai tahtiin synkattava bipolaarinen LFO. Nousu, lasku ja muoto kanavaa kohti, ja muoto pyyhkäisee logaritmisesta noususta lineaarisen kautta eksponentiaaliseen. Neljä CV-tuloa kytkeytyy mihin tahansa parametriin modulaatiomatriisin kautta, ja kanavat ketjuuntuvat toistensa liipaisimesta, nousun lopusta tai laskun lopusta monivaiheisiksi verhokäyriksi. Myydään yksin — ei Qx-laajenninta.",
+    "sv": "Fyra funktionsgeneratorer på 14HP, var och en oberoende antingen en attack-decay-envelope, en attack-hold-release, en cyklande envelope, en pulsskurgenerator eller en taktsynkbar bipolär LFO. Stigning, fall och form per kanal, där formen sveper från logaritmisk stigning via linjär till exponentiell. Fyra CV-ingångar kopplas till valfri parameter via en modulationsmatris, och kanalerna kedjas via varandras trigger, slutet på stigningen eller slutet på fallet till envelopes i flera steg. Säljs ensam — ingen Qx-expander."
+  },
+  "id": "quadrax",
+  "negotiating": false,
+  "cats": [
+    "Modulation",
+    "Envelope"
+  ],
+  "who": "spongefile"
+}
