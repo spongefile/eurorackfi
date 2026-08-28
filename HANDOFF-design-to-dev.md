@@ -1402,3 +1402,33 @@ values on elements that also govern the mobile layout, and the hero is far
 taller there — 4px of band padding-top may read as cramped against a stacked
 hero even though it is right on desktop. If it does, the mobile breakpoint
 should carry its own padding rather than these numbers being softened for both.
+
+## Toiveet: per-seller deep link (2026-08-28)
+
+**The trade panel lands people in the wrong place.** `index.html:1746` renders
+the module page's "X is hunting for" panel with a flat `href="#/wish"`, and no
+per-seller wish route exists. So tapping *"Sampo is hunting for"* opens the top
+of the Toiveet page — Kalle's section — and leaves the reader to find Sampo
+among everyone else. The user's words: *"you end up seeing everyone else's
+wishes mixed in."*
+
+**Add `#/wish/<sellerKey>`**, parsed the same way `#/faq/<id>` already is: it
+renders the page and scrolls that seller's section into view. Bare `#/wish`
+stays as it is.
+
+Scroll-to rather than filter-to, for consistency with the FAQ precedent and
+because the other sellers staying visible is the point of the page — you arrive
+at Sampo and can still see who else wants things. What made it read as "mixed
+in" is that the sections are weakly marked, which the layout change fixes
+directly; hiding the others would be treating the symptom.
+
+Note the same hash-routing constraint as the FAQ: `#/wish#sampo` is impossible,
+a URL has one fragment, so the seller has to be a route segment.
+
+Link it from:
+- the module page trade panel → the item owner's section (`index.html:1746`)
+- anywhere else naming one seller. The home band's "Katso koko lista" is
+  section-level and correctly stays on bare `#/wish`.
+
+`scroll-margin-top` on the section heading, as the FAQ questions have, so a
+deep-linked section does not land under the sticky header.
