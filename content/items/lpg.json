@@ -1,20 +1,4 @@
 {
-  "id": "lpg",
-  "mfr": "Pittsburgh Modular",
-  "name": "LPG",
-  "price": 160,
-  "hp": 8,
-  "fmt": "eu",
-  "who": "spongefile",
-  "cat": "Filter",
-  "cats": [
-    "Filter",
-    "VCA",
-    "Lowpass"
-  ],
-  "mgSlug": "pittsburgh-modular-lpg",
-  "site": "pittsburghmodular.com",
-  "tone": "alu",
   "parts": {
     "k": 3,
     "j": 4,
@@ -22,13 +6,13 @@
     "led": 0,
     "sc": 0
   },
-  "blurb": {
-    "en": "Three-mode gate: VCA, 12dB Sallen-Key low-pass, or a true low-pass gate blending both. Self-oscillating resonance, vactrol-based response.",
-    "fi": "Kolmitilainen gate: VCA, 12dB:n Sallen-Key-alipäästö tai aito low-pass gate, joka sekoittaa molemmat. Itseheräävä resonanssi, vactrol-pohjainen vaste.",
-    "sv": "Trelägens gate: VCA, 12dB Sallen-Key-lågpass eller en äkta low-pass gate som blandar båda. Självsvängande resonans, vactrolbaserad respons."
-  },
   "img": "https://images.squarespace-cdn.com/content/v1/56aeb9254d088e3be58a3d47/1455502182535-7I259J8WU1Z9ICZX4ECZ/image-asset.jpeg",
-  "negotiating": false,
+  "mgSlug": "pittsburgh-modular-lpg",
+  "site": "pittsburghmodular.com",
+  "hp": 8,
+  "price": 160,
+  "name": "LPG",
+  "fmt": "eu",
   "extra": {
     "videos": [
       {
@@ -69,5 +53,21 @@
         "s": "Pittsburgh Modular — the designer's own notes"
       }
     ]
-  }
+  },
+  "tone": "alu",
+  "cat": "Filter",
+  "mfr": "Pittsburgh Modular",
+  "blurb": {
+    "en": "Three-mode gate: VCA, 12dB Sallen-Key low-pass, or a true low-pass gate blending both. Self-oscillating resonance, vactrol-based response.",
+    "fi": "Kolmitilainen gate: VCA, 12dB:n Sallen-Key-alipäästö tai aito low-pass gate, joka sekoittaa molemmat. Itseheräävä resonanssi, vactrol-pohjainen vaste.",
+    "sv": "Trelägens gate: VCA, 12dB Sallen-Key-lågpass eller en äkta low-pass gate som blandar båda. Självsvängande resonans, vactrolbaserad respons."
+  },
+  "id": "lpg",
+  "negotiating": true,
+  "cats": [
+    "Filter",
+    "VCA",
+    "Lowpass"
+  ],
+  "who": "spongefile"
 }
