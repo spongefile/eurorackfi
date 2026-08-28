@@ -33,6 +33,11 @@ collections:
       - label: "Owner"
         field: who
     fields:
+      # The two switches used most often, so they sit first rather than
+      # below every photo and credit field. Both are the kind of edit
+      # made repeatedly on an item that already exists.
+      - { label: "In negotiation", name: "negotiating", widget: "boolean", required: false, default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question. Leave off for shop items below — there's no message thread to negotiate in." }
+      - { label: "Hidden", name: "hidden", widget: "boolean", required: false, default: false, hint: "Removes this listing from the live site — grid, rack, counts, everything — without deleting it. Use this instead of Delete when a sale falls through or a piece might come back up for sale later: the entry, its photos and any history stay right here, just switch this off again to relist." }
       - { label: "ID", name: "id", widget: "string", hint: "short, lowercase, no spaces — e.g. ph3, bf22. Matches the filename." }
       - { label: "Maker", name: "mfr", widget: "string" }
       - { label: "Model", name: "name", widget: "string" }
@@ -99,8 +104,6 @@ collections:
       - { label: "Photo is a self-hosted ModularGrid fallback", name: "imgIsModularGrid", widget: "boolean", required: false, default: false }
       - { label: "Photo is of a DIY component, not the finished build", name: "imgIsComponent", widget: "boolean", required: false, default: false }
       - { label: "Photo is the seller's own, not the manufacturer's", name: "imgIsOwn", widget: "boolean", required: false, default: false, hint: "Check this when you took the photo yourself — otherwise the credit line says it came from the manufacturer's site, which would be wrong." }
-      - { label: "Hidden", name: "hidden", widget: "boolean", required: false, default: false, hint: "Removes this listing from the live site — grid, rack, counts, everything — without deleting it. Use this instead of Delete when a sale falls through or a piece might come back up for sale later: the entry, its photos and any history stay right here, just switch this off again to relist." }
-      - { label: "In negotiation", name: "negotiating", widget: "boolean", required: false, default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question. Leave off for shop items below — there's no message thread to negotiate in." }
       - { label: "Shop checkout URL", name: "shopUrl", widget: "string", required: false, hint: "Only for items bought straight from a webshop, not traded. Set this and the site swaps the whole Buy/message flow for a plain \"Buy\" button that links straight out to this URL — no in-site message form, no trade panel. Leave blank for every normal listing." }
 
   - name: "sellers"
