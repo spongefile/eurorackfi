@@ -902,24 +902,17 @@ Missing languages follow the same honest-missing pattern as item blurbs.
 > and are up for a swap or cash to buy something else.
 
 **04 · can-i-join — "Can I put my stuff here too?"**
-> Maybe — there are a couple of conditions.
+
+> **SUPERSEDED — the user has since edited this directly in admin.** The
+> threshold is now **more than eight modules**, not ten, and the
+> vouch-from-the-forums clause has been **removed entirely**. Read
+> `content/faq.json` for the current text; the version below is the original
+> approved copy and is kept only as a record of what was first agreed.
 >
-> We've only just started and are still figuring out a system to make this
-> manageable if more people join. What we don't want is fifty people with one
-> module each, or people who change their minds every week. That's an admin
-> headache we are not signing up for.
->
-> So for now: get in touch if you have more than ten modules to sell. If we
-> don't know you, ask a few people from the forums to vouch for you — that's how
-> the site stays trustworthy.
->
-> Listing is free. Send a list of what you have and what you want in return. Be
-> reasonably sure what it is before you send it — we'd rather wait a day than get
-> corrections every day.
->
-> If something does sell, a tip towards the admin is welcome. Nobody takes a
-> cut, and the tip stays optional. (Basically if you've made admin do a lot of
-> work, tip to make up for that.)
+> **Standing rule:** anything the user edits directly in admin IS the decision,
+> including rewritten copy and deleted clauses. Do not flag those as possible
+> oversights or offer to restore them. If an edit genuinely conflicts with a
+> design decision, name the conflict and let them resolve it.
 
 Two links inside the copy: "get in touch" in 04 and the tail line both go to
 `#/msg/`. `www.spongefile.com` in 03 is external.
