@@ -6,6 +6,7 @@
     "led": 0,
     "sc": 0
   },
+  "imgIsModularGrid": true,
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/percall-kari.jpg",
   "mgSlug": "befaco-percall",
   "site": "befaco.org",
@@ -60,12 +61,11 @@
     "sv": "Fyra kanaler decay-envelope och VCA på 12HP, byggd för trummor. Varje kanal tar en trigger och ger en decay-formad VCA, med velocity via CV, en accentbuss och en stereomixutgång med panorering per kanal. Det är modulen som gör fyra triggutgångar till fyra spelbara trumröster utan ett rack av separata VCA:er och envelopes."
   },
   "id": "percall-kari",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Utility",
     "Envelope",
     "VCA"
   ],
-  "who": "kari",
-  "imgIsModularGrid": true
+  "who": "kari"
 }
