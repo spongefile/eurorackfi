@@ -278,9 +278,14 @@ Login complete — this window should close automatically.
     /* ---------- public: live override state ---------- */
     if (p === "/state") {
       const state = await readState(env);
-      /* short cache: a seller's toggle should show up quickly, but this is
-         hit by every page load. */
-      return json(state, 200, { "Cache-Control": "public, max-age=20" });
+      /* NO CACHE, deliberately. A 20s max-age here bought almost nothing —
+         this response is tiny and the fetch runs in parallel with the item
+         loads — while adding up to 20 seconds during which a seller who
+         has just hidden something reloads the site and still sees it.
+         That is precisely the moment they conclude it did not work and
+         message the user, which is the admin load this feature exists to
+         remove. Freshness is worth more than the request. */
+      return json(state, 200, { "Cache-Control": "no-store" });
     }
 
     /* ---------- the user's page for one seller's link ---------- */
@@ -446,7 +451,11 @@ function sellerPage(sellerKey, tok) {
      unreviewed Finnish on the page. */
   var TXT={
     sub:"Vain sinä näet tämän sivun.",
-    gloss:"Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vain.",
+    /* "milloin VAAN", not "vain" — the user wrote it back this way. The
+       colloquial form, closer to the site's own voice ("Vaihtokaupatkin
+       käyvät!"). A later pass will want to correct it to the textbook
+       "vain" on grammatical grounds; that would undo their choice. */
+    gloss:"Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.",
     forsale:"Myynnissä", neg:"Neuvottelussa", hide:"Piilota",
     items:"kohdetta",
     /* "2 piilotettu", NOT "piilotettua" — the user's correction, and they
