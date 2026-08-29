@@ -1972,11 +1972,22 @@ function renderWish(){
     var shown=p.wants.slice(0,WISH_FLOW_CAP), extra=p.wants.length-shown.length;
     var wants=shown.map(function(w){ return '<span class="w">'+esc(wantLabelShort(w))+'</span>'; })
       .concat(extra>0?['<span class="w more">+'+extra+'</span>']:[])
-      .join('<span class="sep">·</span>');
+      /* <wbr> AFTER EACH SEPARATOR, and it is load-bearing. These spans are
+         joined with no whitespace between them, so the row had NO BREAK
+         OPPORTUNITY anywhere — white-space is normal throughout and it
+         would have wrapped happily, but there was nowhere to wrap. The
+         whole band sat on one unbreakable line and pushed the PAGE
+         sideways: 704px of document against a 358px phone, horizontally
+         scrollable, on every listing view.
+         <wbr> rather than a space: it is zero-width, so the 16px-between-
+         names against 34px-between-people ratio this band was measured to
+         is unchanged. A space would have been visible and would have
+         altered exactly what that comment says was tuned. */
+      .join('<span class="sep">·</span><wbr>');
     return '<span class="wperson">'+
       '<span class="who">'+
         '<i style="background:'+p.dot+'"></i>'+esc(p.name)+'</span>'+
-      '<span class="wants">'+wants+'</span></span>'; }).join("");
+      '<span class="wants">'+wants+'</span></span>'; }).join("<wbr>");
 }
 
 /* ---------- grid ---------- */
