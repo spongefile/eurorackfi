@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip banner — weight options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAECEF;--panel:#FBFBFC;--panel2:#F2F3F5;--line2:#D3D7DD;
+ --ink:#11161C;--ink2:#3A424C;--muted:#6B7480;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;
+ --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;--on:#FAFBFD}
+.dark{--bg:#0E1319;--panel:#151B23;--panel2:#1B222B;--line2:#2C3542;
+ --ink:#E8ECF1;--ink2:#B9C2CD;--muted:#7C8896;
+ --accent:#5AA9F0;--accent-hi:#93C8FB;--accent-soft:#0D2A47;
+ --signal:#E0AC53;--signal-soft:#2C2314;--sold:#E08A9B;--sold-soft:#2E1720;--on:#08111A}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Archivo",system-ui,sans-serif;background:#DDE0E4}
+.pane{padding:26px 24px 30px}
+.pane.dark{background:#0A0E13}
+.wrap{max-width:430px;margin:0 auto}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);margin:26px 0 8px;font-weight:400}
+h2:first-child{margin-top:0}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--muted);
+ line-height:1.6;margin:.35rem 0 0}
+.pane{background:var(--bg);color:var(--ink)}
+
+/* shared banner skeleton */
+.sp-tip{display:flex;gap:.6rem;align-items:center;text-decoration:none;
+ padding:.6rem .7rem;margin-bottom:10px}
+.sp-tip .jar{width:26px;height:26px;flex:0 0 auto}
+.sp-tip .t{display:block;font-size:.95rem;color:var(--ink2);line-height:1.4}
+.sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ font-weight:600;margin-top:.2rem}
+
+/* A — as shipped */
+.v-now{background:var(--panel2);border:1px solid var(--line2)}
+.v-now .jar{color:var(--accent)} .v-now .a{color:var(--accent)}
+
+/* B — accent band, solid heart */
+.v-band{background:var(--accent-soft);border:1px solid var(--accent);
+ padding:.75rem .85rem}
+.v-band .jar{color:var(--accent);width:29px;height:29px}
+.v-band .t{color:var(--ink)} .v-band .a{color:var(--accent)}
+
+/* C — amber, the one that collides */
+.v-amber{background:var(--signal-soft);border:1px solid var(--signal);
+ padding:.75rem .85rem}
+.v-amber .jar{color:var(--signal);width:29px;height:29px}
+.v-amber .t{color:var(--ink)} .v-amber .a{color:var(--signal)}
+
+/* the secrecy warning, for context */
+.warn{background:var(--signal-soft);border:1px solid var(--signal);
+ padding:.6rem .75rem;font-size:.82rem;color:var(--ink2);line-height:1.45;
+ margin-bottom:10px}
+.warn b{color:var(--signal)}
+.hag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+ font-weight:600;color:var(--sold);background:var(--sold-soft);
+ border:1px solid var(--sold);padding:.28rem .5rem;margin-top:10px}
+</style></head><body>
+<div class="pane"><div class="wrap">
+  <h2>A · as shipped</h2>
+  <a class="sp-tip v-now" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <p class="note">Panel grey on page grey. Reads as chrome.</p>
+
+  <h2>B · accent band, filled heart</h2>
+  <a class="sp-tip v-band" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="currentColor"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <p class="note">Site's own blue. No collision with the amber warning or
+  either red. Filled heart rather than outline.</p>
+
+  <h2>C · amber — and why it is a problem</h2>
+  <a class="sp-tip v-amber" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="currentColor"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <div class="warn"><b>Älä jaa tätä linkkiä.</b> Kuka tahansa jolla on tämä
+  osoite voi muokata kohteitasi.</div>
+  <p class="note">On a first visit both are amber, and the warning stops
+  being a warning. It only recovers once the note is dismissed.</p>
+  <span class="hag">saa tinkiä</span>
+  <p class="note">And red is already spoken for twice — this, and sold.</p>
+</div></div>
+
+<div class="pane dark"><div class="wrap">
+  <h2>A · as shipped</h2>
+  <a class="sp-tip v-now" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <h2>B · accent band, filled heart</h2>
+  <a class="sp-tip v-band" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="currentColor"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <h2>C · amber</h2>
+  <a class="sp-tip v-amber" href="#">
+    <svg class="jar" viewBox="0 0 100 100"><path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23 C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z" fill="currentColor"/></svg>
+    <span><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+  <div class="warn"><b>Älä jaa tätä linkkiä.</b> Kuka tahansa jolla on tämä
+  osoite voi muokata kohteitasi.</div>
+</div></div>
+</body></html>
