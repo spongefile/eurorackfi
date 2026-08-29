@@ -1833,3 +1833,37 @@ sized as an aside; if it ever grows to look like a primary action it is wrong.
 This is the same tip mentioned in FAQ 04 (*"if something does sell, a tip
 towards the admin is welcome"*) — same idea, now with somewhere to click, and
 placed where the person who owes the favour actually is.
+
+### 11. Tip banner reworked, security note dismissible (2026-08-29)
+
+**The tip banner moves off `--signal` to neutral.** Dev was right that adding
+it cost the security note its distinctiveness: the page opened with an amber
+banner, then the amber security note, then a grey gloss, and a pressed
+"Neuvottelussa" segment is amber too. The security note became the second of
+three amber blocks and read as furniture.
+
+My original reasoning for `--signal` was sound in isolation and wrong in
+company. The deciding question is dev's: **the banner is a request we would
+like read; the security note is the one whose being ignored has a consequence.**
+So the note keeps amber and the banner gives it up.
+
+Banner is now `--panel2` on `--line2`, link in `--accent`, with a tip-jar icon
+in accent. Still whole-block, still above the heading, still sized as an aside.
+
+- **Text (user's):** `Anna tippi ylläpidolle →` under
+  `Onko tästä sivustosta ollut sinulle hyötyä?`
+- **Icon:** jar with a coin dropping in, 100 viewBox, stroke 7 — the site's own
+  icon weight, not an icon-set import.
+
+**The security note becomes dismissible**, with a labelled `Ymmärrän` button.
+
+This is what makes the amber sustainable. It is a warning, not furniture: it
+should stop you once and then stop taking up the top of the page on every
+future visit. Dismissal persists per device.
+
+- **A labelled button, not an ✕.** Dismissing it is an assertion — *I have
+  understood the consequence* — and it should take a deliberate act rather than
+  a stray tap near the corner.
+- `Ymmärrän` is **mine and unreviewed**; en/sv still needed.
+- If dismissal state is unavailable (private browsing, cleared storage) it
+  shows again. That is the safe failure and needs no handling.
