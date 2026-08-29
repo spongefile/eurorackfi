@@ -267,9 +267,9 @@
     }
   ],
   "rulesTest": {
-    "en": "The test is whether someone in the Finnish eurorack group would stop scrolling at it. Weird headphones, yes. Baby clothes, no. A generic alarm clock, no — a strange one someone built, probably yes.",
-    "fi": "Testi on se, pysähtyisikö suomalaisen eurorack-porukan jäsen selaamasta sen kohdalle. Oudot kuulokkeet, kyllä. Vauvanvaatteet, ei. Tavallinen herätyskello, ei — jonkun itse rakentama kummajainen, luultavasti kyllä.",
-    "sv": "Testet är om någon i den finska eurorackgruppen skulle sluta scrolla vid det. Konstiga hörlurar, ja. Babykläder, nej. En vanlig väckarklocka, nej — en märklig som någon byggt själv, förmodligen ja."
+    "en": "The idea is to have items that are at least cousins of Eurorack items. Weird headphones, yes. Baby clothes, no. A generic alarm clock, no — a strange one someone built, probably yes.",
+    "fi": "Ideana on, että tavarat ovat edes jotain sukua eurorackille. Oudot kuulokkeet, kyllä. Vauvanvaatteet, ei. Tavallinen herätyskello, ei — jonkun itse rakentama kummajainen, luultavasti kyllä.",
+    "sv": "Tanken är att sakerna åtminstone ska vara släkt med eurorack. Konstiga hörlurar, ja. Babykläder, nej. En vanlig väckarklocka, nej — en märklig som någon byggt själv, förmodligen ja."
   },
   "rulesCall": {
     "en": "Suggest whatever you like. In the end we decide, because we built this and would rather not spend the evenings arguing about it.",
