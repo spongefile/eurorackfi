@@ -24,7 +24,7 @@ wording is already settled — do not re-translate them here.
 | `loadFailed` | Your items could not be loaded. Nothing changed on the site. Reload the page. | Objekten kunde inte hämtas. Ingenting ändrades på sajten. Ladda om sidan. |
 | `saved` | Saved. The site updates in about a minute. Reload eurorack.fi to see the change. | Sparat. Sajten uppdateras om ungefär en minut. Ladda om eurorack.fi för att se ändringen. |
 | `savedPrice` | Saved: {old} € → {new} €. The site updates in about a minute. Reload eurorack.fi to see the change. | Sparat: {old} € → {new} €. Sajten uppdateras om ungefär en minut. Ladda om eurorack.fi för att se ändringen. |
-| `askH` | Request an addition | Be om ett tillägg |
+| `askH` *(en is the user's pick)* | Ask us to add something | Be om ett tillägg |
 | `askItem` | New item for sale | Nytt objekt till salu |
 | `askWish` | Addition to the wishlist | Tillägg till önskelistan |
 | `askPriceLab` | Price | Pris |
@@ -71,5 +71,3 @@ sentence is not frightening.
   the kind of thing a native eye should confirm.
 - **`tipA` sv** — "Ge dricks till adminerna" is colloquial. Correct but
   informal; "administratörerna" is the safe formal alternative and is longer.
-- **`askH` en** — "Request an addition" is stiffer than the Finnish. "Ask us to
-  add something" is warmer and truer to the page, but longer as a heading.
