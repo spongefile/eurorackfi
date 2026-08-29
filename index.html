@@ -1651,31 +1651,25 @@ var faqAutolink=function(escaped){
     return '<a href="'+href+'" target="_blank" rel="noopener">'+u+'</a>';
   });
 };
-/* The "get in touch"/"ota yhteyttä"/"hör av dig" phrase inside can-i-join
-   is the one internal link in the copy (→ #/msg/), and the data is plain
-   text with no markup, so it's found by matching the literal phrase in
-   the current language rather than parsing anything — same "hand-matched
-   phrase" approach the mockup's own hardcoded <a href="#"> stood in for.
-   Fragile by nature (breaks silently if the wording changes); scoped to
-   exactly the one question it applies to so a miss just leaves plain
-   text instead of a wrong link elsewhere. */
-var FAQ_MSG_PHRASE={en:"get in touch", fi:"ota yhteyttä", sv:"hör av dig"};
-var faqLinkMsgPhrase=function(escaped,itemId){
-  if(itemId!=="can-i-join") return escaped;
-  var phrase=esc(FAQ_MSG_PHRASE[lang]||FAQ_MSG_PHRASE.en);
-  var idx=escaped.indexOf(phrase);
-  if(idx<0) return escaped;
-  return escaped.slice(0,idx)+'<a href="#/msg/">'+phrase+'</a>'+escaped.slice(idx+phrase.length);
-};
-/* blank-line-separated paragraphs, escaped then autolinked/hand-linked —
+/* THE HAND-MATCHED INLINE LINK IS GONE, and is not worth rebuilding.
+   can-i-join used to have one internal link, found by searching the
+   answer for the literal phrase "get in touch" / "ota yhteyttä" /
+   "hör av dig" in the current language. The comment here called it
+   "fragile by nature (breaks silently if the wording changes)", and that
+   is precisely how it ended: a copy edit in another lane reworded the
+   sentence, the phrase stopped matching, and the link vanished with no
+   error anywhere. It happened to be what the user wanted — but nothing
+   would have told anyone if it had not been.
+   The FAQ's link to the how-it-works page is deliberately NOT built this
+   way: it is rendered as its own element keyed on the question id, so
+   rewording an answer cannot silently drop it. */
+/* blank-line-separated paragraphs, escaped then autolinked —
    escaping first (not after) means a URL's own "&" in a query string
    becomes the harmless entity &amp; before the link is built around it,
    rather than an unescaped "&" reaching innerHTML. */
 var faqAnswerHTML=function(item){
   return faqAOf(item).split(/\n\s*\n/).map(function(p){
-    var e=faqAutolink(esc(p.trim()));
-    e=faqLinkMsgPhrase(e,item.id);
-    return "<p>"+e+"</p>";
+    return "<p>"+faqAutolink(esc(p.trim()))+"</p>";
   }).join("");
 };
 </script>
