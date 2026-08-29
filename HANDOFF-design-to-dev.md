@@ -2027,3 +2027,64 @@ shows. `Pidä se salassa!` still reads correctly and needs no rewording — but
 the credential is materially stronger than when that line was written, and
 `kerro meille niin teemme uuden` in the mail is now the more load-bearing
 sentence. Worth the user knowing the shape of what a leak costs.
+
+## Wishlist show/hide on the seller page (2026-08-29)
+
+Rendered spec: `seller-controls-mockup.html`, below the item list.
+
+### Per-entry, not whole-list — and it needs no ids
+
+The id problem is real but the solution is not a schema change. **Key on
+content, not position:** `mfr|name` for a product entry, the raw string for a
+placeholder.
+
+Verified across the live data: **21 wants across four sellers, 21 unique keys,
+zero collisions.**
+
+That gives a key which:
+
+- **survives reordering**, which was the whole objection — the CMS hint
+  actively invites dragging, and an index-keyed flag would silently move to a
+  different entry;
+- needs **no migration**, no `id` field, and nothing new in front of the user
+  in the admin for something they never type.
+
+Renaming an entry changes its key, so a hidden entry reappears. That fails
+**safe** — shown rather than silently missing — and is arguably correct: a
+renamed want is a different want.
+
+Collisions would need a seller to want two identical things, which is
+meaningless. If one ever occurs, both rows toggle together; that is a
+tolerable outcome, not a corruption.
+
+### Why per-entry rather than whole-list
+
+Whole-list answers *"I have no wishlist right now"*, which is rare. The
+frequent event is **"I got one of these"** — and that is exactly the staleness
+this whole feature exists to remove, in the one list the seller cannot
+currently prune themselves.
+
+It also completes the pair with the request queue: **additions need the admin**
+(research, images, panel data), **removals need nobody**. A seller who can ask
+for an addition but cannot remove a want they have already bought is left with
+a list that only grows.
+
+### Stacked below the items, not tabs
+
+The item list is why the page exists. Tabs would put it behind a state on a
+page whose whole virtue is having none — and half the time the seller would
+arrive to the wrong pane and have to correct.
+
+Wishlists are short (1–12 today), so the section costs little height, and
+scroll is navigation enough. If a seller's item list ever grows long enough
+that the wishlist is genuinely far away, add a jump link — **not** tabs.
+
+### The control is the same shape, one option fewer
+
+`[ Näkyy | Piilota ]` — the same segmented control as the item rows, with two
+options instead of three, because a want is only ever shown or not: there is no
+middle state for something you do not own. Same skeleton, same 44px targets,
+same recessed-but-never-moving treatment for hidden rows.
+
+`Näkyy` and the section note *"Uusia toiveita voit pyytää lisättäväksi
+alempana."* are **mine and unreviewed**. `Piilota` is the user's existing word.
