@@ -1,0 +1,88 @@
+{
+  "parts": {
+    "k": 9,
+    "j": 5,
+    "sl": 0,
+    "led": 8,
+    "sc": 4
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/chordpilot.jpg",
+  "imgIsModularGrid": true,
+  "mgSlug": "knobula-chord-pilot",
+  "site": "knobula.com",
+  "hp": 12,
+  "price": 300,
+  "name": "Chord Pilot",
+  "fmt": "eu",
+  "extra": {
+    "power": "+12V 40mA · −12V 1mA",
+    "pull": {
+      "q": "Generate extraordinary chords without using a keyboard.",
+      "src": "Knobula",
+      "url": "https://www.knobula.com/chord-pilot"
+    },
+    "quotes": [
+      {
+        "t": "To generate a new chord, Chord Pilot uses a series of controls that alter the width and spread of 'fingers' over a virtual keyboard before conforming them into a variety of musical moods, from the pure and harmonious to the terrifying and cacophonous.",
+        "s": "Knobula"
+      },
+      {
+        "t": "192 chord memories, a strummer, an arpeggiator and an 8 step chord progression sequencer, all in one compact 12hp package.",
+        "s": "Knobula"
+      },
+      {
+        "t": "It makes no sound of its own — it sends MIDI, so it needs a polyphonic voice to drive.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Knobula",
+        "title": "Chord Pilot — the manufacturer's page",
+        "url": "https://www.knobula.com/chord-pilot"
+      },
+      {
+        "src": "gearnews",
+        "title": "Knobula Chord Pilot: MIDI chords and arpeggiations in your modular",
+        "url": "https://www.gearnews.com/knobula-chord-pilot-midi-chords-and-arpeggiations-in-your-modular/"
+      },
+      {
+        "src": "rekkerd",
+        "title": "Knobula introduces Chord Pilot Eurorack-based MIDI controller",
+        "url": "https://rekkerd.org/knobula-introduces-chord-pilot-eurorack-based-midi-controller/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Knobula Chord Pilot — specs and racks",
+        "url": "https://modulargrid.net/e/knobula-chord-pilot"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Chord Pilot — new eurorack module from Knobula",
+        "by": "Knobula · YouTube",
+        "url": "https://www.youtube.com/watch?v=IcyHbmumL4Y"
+      },
+      {
+        "title": "Knobula Chord Pilot at Superbooth 2023",
+        "by": "Gearspace · YouTube",
+        "url": "https://www.youtube.com/watch?v=7pVxMZFZEEs"
+      }
+    ]
+  },
+  "tone": "black",
+  "cat": "Controller",
+  "mfr": "Knobula",
+  "blurb": {
+    "en": "A chord generator you play by feel rather than by knowing theory. Knobs set the width and spread of eight 'fingers' across a virtual keyboard, and a conform control pulls the result toward whatever mood you want — consonant at one end, wrecked at the other. 192 chord memories in banks of eight, a strummer, an arpeggiator and an eight-step progression sequencer. It sends MIDI and makes no sound itself, so it needs a polyphonic voice to drive. With the original box, stickers and manual.",
+    "fi": "Sointugeneraattori, jota soitetaan tuntumalla eikä teoriaa osaamalla. Nupit asettavat kahdeksan “sormen” leveyden ja hajonnan virtuaalisella koskettimistolla, ja conform-säädin vetää tuloksen haluttuun tunnelmaan — toisessa päässä konsonoiva, toisessa rikki. 192 sointumuistia kahdeksan erissä, strummeri, arpeggiaattori ja kahdeksanaskelinen sointukulkusekvensseri. Lähettää MIDIä eikä tuota itse ääntä, joten se tarvitsee moniäänisen äänilähteen ohjattavakseen. Mukana alkuperäinen laatikko, tarrat ja ohjekirja.",
+    "sv": "En ackordgenerator man spelar på känsla i stället för på teori. Rattarna ställer bredden och spridningen på åtta “fingrar” över ett virtuellt klaviatur, och en conform-kontroll drar resultatet mot önskad stämning — konsonant i ena änden, sönderslaget i den andra. 192 ackordminnen i banker om åtta, en strummer, en arpeggiator och en åttastegs ackordföljdssekvensiator. Den skickar MIDI och låter inte själv, så den behöver en polyfonisk röst att styra. Originalkartong, dekaler och manual medföljer."
+  },
+  "id": "chordpilot",
+  "negotiating": false,
+  "cats": [
+    "Controller",
+    "Sequencer"
+  ],
+  "who": "spongefile"
+}
