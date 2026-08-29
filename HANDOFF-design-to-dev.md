@@ -1497,20 +1497,17 @@ exists.
 
 The record survives, so `#/m/<id>` still resolves. That is the whole point.
 
-### 2. The hidden-item page can now name the module
+### 2. The hidden-item page stays GENERIC
 
-The old generic "that one's gone" existed **because nothing survived deletion**.
-That constraint is gone, so the page shows what the link was for: the module's
-maker and name, its photo **dimmed**, a `Myyty` marker in `--sold` /
-`--sold-soft`, and a way back to the grid.
+I proposed naming the module and showing its dimmed photo, since a record now
+survives and the old constraint had gone. **The user declined.** The page says
+what happened and nothing more — no name, no photo.
 
-The photo stays because it confirms the visitor found the right thing; at full
-strength it would read as still for sale. `--sold`/`--sold-soft` are reserved
-for exactly this and used nowhere else on the site.
+Copy is theirs, English as given: **"Owner has removed this module from sale."**
+Finnish and Swedish still to be written by them; do not machine-translate.
 
-Copy is **new and needs the user** — draft only, English, for them to replace
-and to write fi/sv: *"This one's gone. Have a look at the rest — similar things
-come up often."* Do not machine-translate.
+Marker and dressing stay `--sold` / `--sold-soft`, reserved for exactly this
+and used nowhere else on the site.
 
 ### 3. The seller's control page
 
@@ -1520,9 +1517,14 @@ was built to sell things to strangers; this is a control panel and should be
 plainer.
 
 - **One three-state choice per item, not two toggles.** For sale / In
-  negotiation / Sold cannot overlap and run in that order, so it is a single
+  negotiation / Hide cannot overlap and run in that order, so it is a single
   decision rather than two that interact. It also removes the question "what
   does in-negotiation mean once it is sold".
+- **The third control is labelled "Hide", the user's word**, with their gloss —
+  *"this is a way to mark the item as sold"* — shown **once at the top of the
+  page, not on every row**. "Hide" is an action where the other two are states,
+  so the sentence does the work the label cannot; twenty copies of it would be
+  noise. fi/sv for both still to be written by the user.
 - **Every target is a full-width third of the row, minimum 44px.**
 - **A sold row recedes but never moves.** No reordering, no vanishing. The undo
   must be exactly where the seller last saw the item — and something jumping
@@ -1549,3 +1551,18 @@ reads as a soft sold and nobody messages:
 
 Still never amber (amber means caution sitewide) and never red (which would say
 *gone* about something still for sale).
+
+### 5. Settled alongside it (2026-08-29)
+
+- **Hidden means hidden on eurorack.fi only.** Shop accessories *can* be
+  hidden; the item stays live on the webshop, which the user treats as a
+  separate interface. So a hidden accessory still exists to buy — just not
+  here. This does not soften the counts rule: hidden is hidden everywhere on
+  this site.
+- The token is **permanent until regenerated**, and toggling sends the user **no
+  notification**. Nothing to design for either.
+- A hidden listing **keeps all its research** — specs, photo, pull quotes,
+  video, trilingual copy. The user notes it could serve as a template if
+  someone later sells the same module. Not built and not specced, but it argues
+  against hidden items vanishing completely from the admin, and is worth
+  remembering before anyone "tidies" hidden records away.
