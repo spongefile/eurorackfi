@@ -1592,7 +1592,7 @@ form does not fit.
 | For sale (segment) | For sale | `Myynnissä` | `Till salu` |
 | Hide (segment) | Hide | `Piilota` | `Dölj` |
 | Gloss | this is a way to mark the item as sold | `Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.` | `Genom att dölja markerar du varan som såld. Du kan ångra det när som helst.` |
-| Private-page note | only you can see this page | `Vain sinä näet tämän sivun.` | `Bara du ser den här sidan.` |
+| Private-page note *(see §9)* | — | — | — |
 | Hidden count | hidden | `piilotettu` *(user-corrected)* | `dolda` |
 | Gone page | Owner has removed this module from sale. | `Omistaja on poistanut tämän moduulin myynnistä.` | `Ägaren har tagit bort den här modulen från försäljning.` |
 
@@ -1722,3 +1722,31 @@ without adding certainty, against a brief that said do not overwhelm.
 **No jargon.** "If the site is open somewhere else" covers another tab, another
 phone, or a laptop left open in the kitchen, and asks no technical vocabulary
 of the reader.
+
+### 9. The secrecy note — REPLACES the old private-page line (2026-08-29)
+
+The old note said `Vain sinä näet tämän sivun.` — *only you can see this page*.
+**That was not true**, and the user replaced it. Anyone holding the link can
+see and change that seller's listings; the token is permanent until
+regenerated. A flat claim of privacy would have left a seller with no reason
+not to forward it.
+
+| en | fi | sv |
+|---|---|---|
+| Only you can see this page — as long as you don't give the link to anyone. Keep it secret! | `Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!` | `Bara du ser den här sidan – så länge du inte ger länken till någon. Håll den hemlig!` |
+
+English is the user's. fi/sv are **mine and unreviewed**.
+
+**It states the condition, then asks for the behaviour.** The claim is still
+reassuring, but it is now conditional on the one thing the seller controls, and
+the imperative follows immediately so there is something to *do* rather than
+merely know.
+
+**Dressed in `--signal` / `--signal-soft`** — the site's attention colour,
+already meaning *caution, read this*, and used nowhere else on this page. This
+is the one line worth stopping at.
+
+Matches the hint on the admin field, which tells whoever sends the link the
+same thing from the other end: *anyone who has it can change that seller's
+listings — send it directly, do not post it anywhere.* The two exist as a pair;
+if either is reworded the other should be checked.

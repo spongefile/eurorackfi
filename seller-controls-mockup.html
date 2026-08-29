@@ -30,6 +30,14 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
 .sp-who i{width:11px;height:11px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
 .sp-note{font-family:"Newsreader",Georgia,serif;font-size:.95rem;color:var(--ink2);
  line-height:1.5;margin-top:.4rem}
+/* the old note claimed "only you can see this page", which is not true of a
+   link anyone can forward. It now states the CONDITION that makes it true, and
+   asks for the one behaviour that keeps it true. --signal is the site's
+   attention colour and this is the one thing on the page worth stopping at. */
+.sp-secret{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--signal);
+ background:var(--signal-soft);border:1px solid var(--signal);padding:.5rem .6rem;
+ margin-top:10px;line-height:1.5}
+.sp-secret b{font-weight:600}
 .sp-gloss{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
  background:var(--panel2);border:1px solid var(--line);padding:.5rem .6rem;margin-top:12px;line-height:1.5}
 .sp-gloss span{color:var(--signal);font-size:.62rem}
@@ -90,7 +98,9 @@ impossible.</p>
 <div class="phone">
   <div class="sp-head">
     <div class="sp-who"><i></i>Sampo</div>
-    <div class="sp-note">Merkitse myydyt pois. Vain sinä näet tämän sivun.</div>
+    <div class="sp-note">Merkitse myydyt pois.</div>
+    <div class="sp-secret">Vain sinä näet tämän sivun, jos et anna linkkiä muille.
+      <b>Pidä se salassa!</b></div>
   </div>
   <div class="sp-gloss">Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.<br>
    <span>fi/sv below are MINE and unreviewed — spongefile reads both and will correct.</span></div>
