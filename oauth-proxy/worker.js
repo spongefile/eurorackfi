@@ -448,7 +448,12 @@ function sellerPage(sellerKey, tok) {
     sub:"Vain sinä näet tämän sivun.",
     gloss:"Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vain.",
     forsale:"Myynnissä", neg:"Neuvottelussa", hide:"Piilota",
-    items:"kohdetta", hiddenCount:"piilotettua",
+    items:"kohdetta",
+    /* "2 piilotettu", NOT "piilotettua" — the user's correction, and they
+       read Finnish. A later pass will want to "fix" this toward textbook
+       partitive agreement after a number; that would undo a deliberate
+       choice for this telegraphic count line. Leave it. */
+    hiddenCount:"piilotettu",
     failed:"Could not save \u2014 try again. [EN, awaiting fi]"
   };
 
