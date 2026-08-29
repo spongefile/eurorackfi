@@ -1882,6 +1882,14 @@ future visit. Dismissal persists per device.
 - **A labelled button, not an ✕.** Dismissing it is an assertion — *I have
   understood the consequence* — and it should take a deliberate act rather than
   a stray tap near the corner.
-- `Ymmärrän` is **mine and unreviewed**; en/sv still needed.
+- Dismiss button, settled 2026-08-29:
+
+  | fi | en | sv |
+  |---|---|---|
+  | `Ymmärrän` | `I understand` | `Jag förstår` |
+
+  `Ymmärrän` and `I understand` are approved. `Jag förstår` is **mine** — the
+  direct equivalent, and the register is plain enough that there is no warmer
+  or terser Swedish worth reaching for here.
 - If dismissal state is unavailable (private browsing, cleared storage) it
   shows again. That is the safe failure and needs no handling.
