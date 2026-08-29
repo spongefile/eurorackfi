@@ -58,7 +58,11 @@ function pageString(lang, key) {
   const start = worker.indexOf(`  TXT_ALL.${lang}={`);
   if (start < 0) return null;
   const end = worker.indexOf("\n  };", start);
-  const m = worker.slice(start, end).match(new RegExp(`^\\s*${key}:("(?:[^"\\\\]|\\\\.)*")`, "m"));
+  /* Not anchored to line start: several keys share a line (the tab labels
+     are declared three to a line), and a ^-anchored pattern silently
+     misses all but the first. Word-boundary before the key is enough —
+     key names here never appear inside other identifiers. */
+  const m = worker.slice(start, end).match(new RegExp(`\\b${key}:("(?:[^"\\\\]|\\\\.)*")`));
   return m ? JSON.parse(m[1]) : null;
 }
 
@@ -78,6 +82,25 @@ for (const { lang, first } of PAIRS) {
   }
 }
 if (!failed) console.log(`  secrecy sentence: identical in page and email for ${PAIRS.map((p) => p.lang).join(", ")}`);
+
+/* wishLead NAMES the Add tab ("Lisää-välilehdellä", "on the Add tab", "på
+   fliken Lägg till") — a same-file pairing: rewording tabAsk without
+   rewording wishLead leaves the wishlist pointing sellers at a tab that no
+   longer exists by that name. Checked per language. */
+for (const lang of ["fi", "en", "sv"]) {
+  const tab = pageString(lang, "tabAsk");
+  const lead = pageString(lang, "wishLead");
+  if (!tab || !lead) { fail(`missing tabAsk or wishLead for ${lang}`); continue; }
+  if (!lead.includes(tab)) {
+    fail(
+      `${lang}: wishLead does not contain the tabAsk label.\n` +
+      `        tabAsk:   ${JSON.stringify(tab)}\n` +
+      `        wishLead: ${JSON.stringify(lead)}\n` +
+      "      The lead names that tab; reword one, reword both."
+    );
+  }
+}
+if (!failed) console.log("  wishLead names the Add tab in all three languages");
 
 /* The email's structure is what stops it reading as phishing: every reader
    must meet a fact they can check BEFORE they meet a URL. With three

@@ -1125,7 +1125,26 @@ function sellerPage(sellerKey, tok) {
  padding:0 .5rem;background:var(--panel2);color:var(--ink2);border:1px solid var(--line)}
 .langs button[aria-pressed="true"]{background:var(--accent);color:var(--on);border-color:var(--accent)}
 
-/* Wishlist section, STACKED under the items rather than behind a tab.
+/* The tab bar: three equal columns, same idiom as the state segments and
+   the language switcher, so it is the third instance of one control shape
+   rather than a new thing to learn. Counts on the first two tabs are the
+   actual fix for "sellers never noticed the rest of the page": a number
+   says there is something here without scrolling. */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;margin:0 0 1rem}
+.tabs button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.74rem;
+ background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);
+ color:var(--on);font-weight:600}
+.tabs button .n{color:var(--muted);font-weight:400;margin-left:.35rem}
+.tabs button[aria-selected="true"] .n{color:var(--on);opacity:.75}
+[role="tabpanel"][hidden]{display:none}
+/* as panels, the old stacked-page top margins would gap the second and
+   third tabs below the bar while the first sat flush — the bar's own
+   margin is the spacing now */
+.wsec[role="tabpanel"]{margin-top:0}
+.ask[role="tabpanel"]{margin-top:0}
+
+/* Wishlist section, formerly STACKED under the items, now a tab panel.
    The item list is why this page exists; tabs would put it behind a state
    on a page whose whole virtue is having none, and half the time the
    seller would arrive on the wrong pane and have to correct before doing
@@ -1202,15 +1221,28 @@ function sellerPage(sellerKey, tok) {
   <div class="hdrow"><h1 id="hd">…</h1><div class="langs" id="langs" hidden></div></div>
   <p class="sub" id="sub"></p>
   <div class="keep" id="keep" hidden></div>
-  <div class="gloss" id="gloss"></div>
+  <!-- Tabs, per the user: one long scroll meant most sellers never met the
+       wishlist or the request form at the end of it. The tip banner and
+       the secrecy warning stay ABOVE the tab bar — they apply to the whole
+       page, not to a tab. The err strip does too: a save confirmation must
+       stay visible wherever you tab next. The GLOSS moved inside the items
+       panel — it explains the Piilota button, which only exists there. -->
+  <div class="tabs" id="tabs" role="tablist">
+    <button role="tab" data-tab="items" aria-selected="true" id="tabitems"></button>
+    <button role="tab" data-tab="wish" aria-selected="false" id="tabwish"></button>
+    <button role="tab" data-tab="ask" aria-selected="false" id="tabask"></button>
+  </div>
   <div id="err"></div>
-  <div id="list"></div>
-  <div class="wsec" id="wsec" hidden>
+  <div id="panel-items" role="tabpanel">
+    <div class="gloss" id="gloss"></div>
+    <div id="list"></div>
+  </div>
+  <div class="wsec" id="wsec" role="tabpanel" hidden>
     <h2 id="wsech"></h2>
     <p class="lead" id="wseclead"></p>
     <div id="wlist"></div>
   </div>
-  <div class="ask">
+  <div class="ask" role="tabpanel" hidden>
     <h2 id="askh"></h2>
     <div class="kinds">
       <button type="button" data-kind="item" aria-pressed="true" id="kitem"></button>
@@ -1348,8 +1380,14 @@ function sellerPage(sellerKey, tok) {
        rather than this time. */
     askHow:"Kerro mitä lisätään ja missä kunnossa se on.",
     /* design's, unreviewed */
+    /* Tab labels. "Kohteet" and NOT "Myynnissä" for the first tab: that
+       word is already the per-item state button, and the tab also holds
+       hidden items — the same word meaning two things on one screen. */
+    tabItems:"Kohteet", tabWish:"Toiveet", tabAsk:"Lisää",
     wishH:"Toivelistasi",
-    wishLead:"Uusia toiveita voit pyytää lisättäväksi alempana.",
+    /* NAMES the Lisää tab — if tabAsk is ever reworded, this follows in
+       the same change; check-shared-strings enforces the pairing. */
+    wishLead:"Uusia toiveita voit pyytää lisättäväksi Lisää-välilehdellä.",
     wishShown:"Näkyy",
     /* Plural on purpose, and NOT to be harmonised toward "sinä" later.
        This page says YOU about the seller's own actions and WE about the
@@ -1408,7 +1446,8 @@ function sellerPage(sellerKey, tok) {
     askSend:"Send request",
     askHow:"Tell us what to add and what condition it is in.",
     wishH:"Your wishlist",
-    wishLead:"You can ask for new wishes to be added below.",
+    tabItems:"Items", tabWish:"Wishlist", tabAsk:"Add",
+    wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
     askPlaceholderItem:"E.g. Make Noise Maths, good condition, original box",
@@ -1444,7 +1483,8 @@ function sellerPage(sellerKey, tok) {
     askSend:"Skicka förfrågan",
     askHow:"Berätta vad som ska läggas till och i vilket skick det är.",
     wishH:"Din önskelista",
-    wishLead:"Nya önskningar kan du be om att få tillagda nedan.",
+    tabItems:"Objekt", tabWish:"Önskemål", tabAsk:"Lägg till",
+    wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
     askPlaceholderItem:"T.ex. Make Noise Maths, bra skick, originalkartong",
@@ -1479,8 +1519,28 @@ function sellerPage(sellerKey, tok) {
     TXT=Object.assign({}, TXT_ALL.fi, TXT_ALL[LANG]||{});
     try{ localStorage.setItem(LANG_KEY, code); }catch(e){}
     document.documentElement.lang=code;
-    paintChrome(); render(); renderWants(); paintAsk();
+    paintChrome(); render(); renderWants(); paintAsk(); paintTabs();
   }
+
+  /* ---------- tabs ---------- */
+  var TAB="items";
+  function paintTabs(){
+    var t=document.getElementById('tabitems');
+    if(!t) return;
+    /* counts, not persistence: sellers land here rarely, Kohteet is the
+       right landing every time, and the numbers are what tell them the
+       other tabs are worth opening */
+    t.innerHTML=esc(TXT.tabItems)+'<span class="n">'+ITEMS.length+'</span>';
+    document.getElementById('tabwish').innerHTML=esc(TXT.tabWish)+'<span class="n">'+WANTS.length+'</span>';
+    document.getElementById('tabask').textContent=TXT.tabAsk;
+    ['items','wish','ask'].forEach(function(k){
+      document.querySelector('.tabs [data-tab="'+k+'"]').setAttribute('aria-selected',String(k===TAB));
+    });
+    document.getElementById('panel-items').hidden = TAB!=='items';
+    document.getElementById('wsec').hidden = TAB!=='wish';
+    document.querySelector('.ask').hidden = TAB!=='ask';
+  }
+  function setTab(k){ TAB=k; paintTabs(); }
 
   /* Nothing at all while Finnish is the only complete language, rather than
      a single dead button. One option is not a choice. */
@@ -1598,6 +1658,8 @@ function sellerPage(sellerKey, tok) {
   document.addEventListener("click",function(e){
     var lb=e.target.closest(".langs button");
     if(lb){ setLang(lb.getAttribute("data-lang")); return; }
+    var tb=e.target.closest(".tabs [data-tab]");
+    if(tb){ setTab(tb.getAttribute("data-tab")); return; }
     if(e.target.closest("#ack")){
       /* hide first, persist second — if storage is unavailable the tap
          still works for this visit and the note simply returns next time */
@@ -1688,10 +1750,12 @@ function sellerPage(sellerKey, tok) {
 
   function renderWants(){
     var sec=el("wsec");
-    /* No wishlist, no section — an empty panel explaining what a wishlist
-       would be is furniture on a page that is otherwise all controls. */
-    if(!WANTS.length){ sec.hidden=true; return; }
-    sec.hidden=false;
+    /* VISIBILITY BELONGS TO THE TABS NOW — this used to hide the section
+       when the wishlist was empty, which was right for a stacked page and
+       wrong for a tab: a tab that shows nothing when opened reads as
+       broken. An empty wishlist tab shows the heading and the lead, which
+       points at the Add tab — exactly what an empty list should say. The
+       count on the tab already said "0" before they opened it. */
     el("wsech").textContent=TXT.wishH;
     el("wseclead").textContent=TXT.wishLead;
     el("wlist").innerHTML=WANTS.map(function(w){
@@ -1806,7 +1870,7 @@ function sellerPage(sellerKey, tok) {
        again — the regrouping is what they see NEXT time they open the
        page. */
     ITEMS.sort(function(a,b){ return (stateOf(a).hidden?1:0)-(stateOf(b).hidden?1:0); });
-    render();
+    render(); paintTabs();
   }).catch(function(){
     document.getElementById("sub").textContent="";
     document.getElementById("err").innerHTML='<div class="err">'+esc(TXT.loadFailed)+'</div>';
@@ -1818,6 +1882,7 @@ function sellerPage(sellerKey, tok) {
      to reach a human — which is exactly when they would most want one. */
   paintAsk();
   paintChrome();
+  paintTabs();
 
   /* The wishlist loads on its own chain too, for the same reason: it needs
      the seller file and the want state, not the catalogue, so a failure in
@@ -1828,7 +1893,7 @@ function sellerPage(sellerKey, tok) {
   ]).then(function(r){
     WANTS=(r[0]&&r[0].wants)||[];
     WANTHIDDEN=(r[1]||{})[SELLER]||{};
-    renderWants();
+    renderWants(); paintTabs();
   }).catch(function(){ /* no wishlist section rather than a broken one */ });
   </script>`
   }, { noindex: true });
