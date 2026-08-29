@@ -7,9 +7,10 @@
  *    two-endpoint handshake Decap expects.
  *      /auth, /callback
  *
- * 2. Per-seller controls. Sellers mark their own items hidden or in
- *    negotiation without a GitHub account or admin access. Their
- *    credential is a secret link; there is no login.
+ * 2. Per-seller controls. Sellers set their own items hidden, in
+ *    negotiation or open to offers, AND EDIT THEIR PRICES, without a
+ *    GitHub account or admin access. Their credential is a secret link;
+ *    there is no login.
  *      /token/<sellerKey>  the user's page to copy or regenerate a link
  *                          (gated on being a repo COLLABORATOR)
  *      /s/<token>          the seller's own page
@@ -19,8 +20,9 @@
  * THIS WORKER HOLDS NO GITHUB WRITE CREDENTIAL, deliberately. It only
  * ever writes to KV. A scheduled GitHub Action reconciles KV back into
  * content/items/*.json using the repo access Actions already has. So the
- * worst a compromise of this worker can do is set wrong toggle values,
- * which revert from git — rather than rewriting the repository.
+ * worst a compromise of this worker can do is set wrong toggle values or
+ * prices on EXISTING items, all of which revert from git — rather than
+ * rewriting the repository.
  *
  * TOKENS LIVE IN KV ONLY, NEVER IN THE REPO: spongefile/eurorackfi is
  * public, so a token committed to content/sellers/*.json would be
@@ -41,24 +43,22 @@ const SITE = "https://eurorack.fi";
    browsing. Pinning it means the address in a mail doesn't depend on
    where the sender was standing.
 
-   THIS IS THE ONE LINE TO CHANGE when linkki.eurorack.fi exists. It is
-   still workers.dev because the custom domain could not be created: the
-   eurorack.fi zone is not in this Cloudflare account, and a Workers
-   custom domain needs the zone and the worker in the same account. See
-   wrangler.toml for the full note.
-
-   Pointing it at a hostname that does not resolve yet would hand out dead
-   links and mail dead links, so it follows the domain rather than leading
-   it. Old links keep working either way: tokens are looked up by path and
-   both hostnames reach this same worker. */
+   A linkki.eurorack.fi subdomain was investigated and DROPPED — it needs
+   the zone and the worker in one Cloudflare account, the zone is Sampo's,
+   and closing that gap would have changed the workers.dev hostname and
+   killed every link already sent. wrangler.toml has the detail. This
+   constant still earns its place: preview URLs and any future hostname
+   would otherwise mint links that are wrong or ephemeral. */
 const PUBLIC_ORIGIN = "https://eurorackfi-cms-auth.aspiala.workers.dev";
 
-/* ...but OAuth must stay on workers.dev, because the GitHub OAuth app has
-   exactly one registered callback URL and GitHub rejects a login started
-   from any other host. So the admin surfaces bounce there rather than
-   being served on the new domain, which would fail at the GitHub step
-   with an error the user couldn't act on. Moving them is an OAuth app
-   edit first, code second. */
+/* OAuth is HOST-SENSITIVE: the GitHub OAuth app has exactly one
+   registered callback URL, and GitHub rejects a login started from any
+   other hostname. The admin routes therefore refuse to serve anywhere but
+   here, rather than failing later at GitHub with an error the user could
+   not act on. Currently the same value as PUBLIC_ORIGIN, so the guard
+   never fires — it is kept because preview URLs (disabled in
+   wrangler.toml, but a Cloudflare default) and any future domain would
+   both bring a second hostname back, and it fails safe. */
 const ADMIN_ORIGIN = "https://eurorackfi-cms-auth.aspiala.workers.dev";
 
 /* one KV key holds the whole override map, so a page load is one read.
@@ -102,8 +102,12 @@ function newSessionId() {
    readable and stops being worth attacking.
    Rejection-sampled rather than a bare modulo, which would quietly bias
    the early words in the list.
-   A leaked link is bounded anyway: hide/un-hide on that seller's own
-   items, reversible, and regenerating kills it. */
+   A leaked link is bounded but NO LONGER TRIVIAL: on that seller's own
+   items it can hide, un-hide, flag negotiation or offers, and CHANGE
+   PRICES. All of it is reversible and regenerating kills the link, but a
+   silently altered price is the one change nobody may notice quickly, so
+   this is a stronger reason to regenerate on any doubt than it was when
+   the link only moved toggles. */
 const WORDS = `
   amber anchor ankle apple apron arbor arrow aspen attic autumn awning bacon badge bagel
   balcony bamboo banjo barley basil basket batch beacon beetle bellow berry birch
@@ -539,8 +543,9 @@ Login complete — this window should close automatically.
               leaks or someone leaves — there is no other way to revoke one.</p>
           </div>
           <p class="note">The link is the whole credential: anyone holding it can hide and
-            un-hide this seller's items and nothing else. It can't add, edit or price
-            anything, and it can't touch another seller.</p>
+            un-hide this seller's items, mark them negotiating or open to offers, and
+            change their prices. It can't add or delete a listing, edit any other
+            field, or touch another seller.</p>
           <script>
             document.getElementById("copy").addEventListener("click", function(){
               navigator.clipboard.writeText(document.getElementById("lnk").textContent.trim());
@@ -570,7 +575,7 @@ Login complete — this window should close automatically.
     if (p === "/api/set" && request.method === "POST") {
       let body;
       try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
-      const { token, id, hidden, negotiating, haggle } = body || {};
+      const { token, id, hidden, negotiating, haggle, price } = body || {};
       const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
       if (!sellerKey) return json({ error: "bad token" }, 403);
       if (!id || typeof id !== "string") return json({ error: "bad id" }, 400);
@@ -592,6 +597,23 @@ Login complete — this window should close automatically.
          negotiation and still open to offers — so this arrives on its own
          and each field is only written when the caller actually sent it. */
       if (typeof haggle === "boolean") cur.haggle = haggle;
+      /* PRICE IS THE FIRST NON-BOOLEAN A SELLER CAN SET, so it is the
+         first one that can be wrong rather than merely on or off. The
+         booleans above are self-correcting — a wrong toggle is visibly
+         wrong and one tap back — while a price is plausible at any value,
+         so a fat-fingered 20 for 200 looks like a decision rather than a
+         slip and stays live until someone notices.
+         Validated as a whole integer in a sane range. The ceiling is not
+         a price judgement, it is a typo net: it catches a stuck key
+         without blocking anything anyone would really list. Rejected
+         rather than clamped — silently storing a different number than
+         the one that was typed is worse than refusing it. */
+      if (price !== undefined) {
+        if (typeof price !== "number" || !Number.isInteger(price) || price < 0 || price > 100000) {
+          return json({ error: "bad price" }, 400);
+        }
+        cur.price = price;
+      }
       cur.by = sellerKey;
       cur.at = new Date().toISOString();
       state[id] = cur;
@@ -630,7 +652,25 @@ function sellerPage(sellerKey, tok) {
    not the same as owning it, and the price stays a CMS field. */
 .rowtop{display:flex;gap:.6rem;align-items:flex-start}
 .rowtop .pr{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;
- font-variant-numeric:tabular-nums;margin-left:auto;flex:0 0 auto;padding-left:.5rem}
+ font-variant-numeric:tabular-nums;margin-left:auto;flex:0 0 auto;padding-left:.5rem;
+ display:flex;align-items:center;gap:.25rem}
+/* The € sits OUTSIDE the input, so the field holds a bare number and the
+   seller never has to think about whether the symbol is part of what they
+   are typing — and a paste of "€250" can be cleaned without fighting the
+   caret. Sized to the digits it holds rather than stretched: a wide box
+   for a three-digit price reads as a form, and this row is a control
+   panel, not a form. */
+.rowtop .pr input{width:5.2rem;font-family:inherit;font-size:.82rem;font-weight:600;
+ font-variant-numeric:tabular-nums;text-align:right;padding:.3rem .4rem;
+ background:var(--panel2);border:1px solid var(--line2);color:var(--ink);min-height:34px}
+.rowtop .pr input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.rowtop .pr button{font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:34px;
+ padding:0 .55rem;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
+/* Save only exists once the number has actually changed. A permanently
+   live save button next to a price invites a confirming tap that changes
+   nothing, and trains the eye to ignore it — so its appearance IS the
+   signal that there is something unsaved. */
+.rowtop .pr button[hidden]{display:none}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem}
 .seg button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
  background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
@@ -754,6 +794,12 @@ function sellerPage(sellerKey, tok) {
     forsale:"Myynnissä", neg:"Neuvottelussa", hide:"Piilota",
     /* the user's own Finnish, same string the site's sticker uses */
     haggle:"Saa tinkiä",
+    /* MINE AND UNREVIEWED, all three — flagged to design and to the user
+       rather than passed off as settled. They are the only strings on this
+       page nobody has read yet. */
+    save:"Tallenna",
+    priceLabel:"Hinta euroina",
+    badPrice:"Tarkista hinta. Sivustolla ei muuttunut mitään.",
     items:"kohdetta",
     /* "2 piilotettu", NOT "piilotettua" — the user's correction, and they
        read Finnish. A later pass will want to "fix" this toward textbook
@@ -789,7 +835,11 @@ function sellerPage(sellerKey, tok) {
     var s=STATE[m.id]||{};
     return {hidden: s.hidden!==undefined ? s.hidden : !!m.hidden,
             negotiating: s.negotiating!==undefined ? s.negotiating : !!m.negotiating,
-            haggle: s.haggle!==undefined ? s.haggle : !!m.haggle};
+            haggle: s.haggle!==undefined ? s.haggle : !!m.haggle,
+            /* typeof, not a truthiness check: a live override of 0 is a
+               real price a seller may have set, and || would silently
+               fall back to the committed one. */
+            price: typeof s.price==="number" ? s.price : m.price};
   }
 
   function render(){
@@ -811,16 +861,24 @@ function sellerPage(sellerKey, tok) {
     document.getElementById("list").innerHTML=ITEMS.map(function(m){
       var st=stateOf(m);
       /* three-state read of two booleans, with hidden winning — the seller
-         sees one decision, the data keeps both flags. Rows never reorder
-         and hidden rows never vanish: the undo has to stay exactly where
-         the item was when it was tapped. */
+         sees one decision, the data keeps both flags. Hidden rows never
+         vanish, and never move WITHIN a session: the undo has to stay
+         exactly where the item was when it was tapped. They are grouped to
+         the bottom once at load instead — see the sort in the loader. */
       var mode = st.hidden ? "sold" : (st.negotiating ? "neg" : "forsale");
       return '<div class="row'+(st.hidden?" isHidden":"")+'" data-id="'+esc(m.id)+'">'+
         '<div class="rowtop">'+
           '<div><div class="mk">'+esc(m.mfr)+'</div><div class="nm">'+esc(m.name)+'</div></div>'+
           /* guarded rather than assumed: this page renders whatever is in
-             the repo, and an item with no price shouldn't print "€undefined" */
-          (typeof m.price==="number"?'<div class="pr">€'+m.price+'</div>':'')+
+             the repo, and an item with no price shouldn't print "€undefined".
+             An item that has never had a price gets no editor either —
+             adding one is a listing decision, and this page deliberately
+             edits what exists rather than creating anything. */
+          (typeof st.price==="number"
+            ? '<div class="pr">€<input type="text" inputmode="numeric" value="'+st.price+'" '+
+              'data-price="'+st.price+'" aria-label="'+esc(TXT.priceLabel)+'">'+
+              '<button class="savep" hidden>'+esc(TXT.save)+'</button></div>'
+            : '')+
         '</div>'+
         '<div class="seg">'+
           '<button data-mode="forsale" aria-pressed="'+(mode==="forsale")+'">'+esc(TXT.forsale)+'</button>'+
@@ -868,8 +926,52 @@ function sellerPage(sellerKey, tok) {
       return;
     }
     var k=e.target.closest(".tk");
-    if(k) save(k.closest(".row").getAttribute("data-id"),{haggle:k.getAttribute("data-haggle")==="true"});
+    if(k){ save(k.closest(".row").getAttribute("data-id"),{haggle:k.getAttribute("data-haggle")==="true"}); return; }
+    var sp=e.target.closest(".savep");
+    if(sp) savePrice(sp.closest(".row"));
   });
+
+  /* Shows the save button only once the value actually differs from what
+     is stored, so its presence means "you have an unsaved change" rather
+     than being permanent furniture. Compared as trimmed strings against
+     the rendered value, not as numbers, so leading zeroes or a stray
+     space still count as different and still offer the save. */
+  document.addEventListener("input",function(e){
+    var inp=e.target.closest(".pr input"); if(!inp) return;
+    var btn=inp.parentNode.querySelector(".savep");
+    btn.hidden = inp.value.trim()===inp.getAttribute("data-price");
+  });
+  /* Enter saves, Escape abandons. A number field where Enter does nothing
+     is a trap: it is the obvious way to commit a typed value, and the
+     seller has no reason to expect a button is required. */
+  document.addEventListener("keydown",function(e){
+    var inp=e.target.closest(".pr input"); if(!inp) return;
+    if(e.key==="Enter"){ e.preventDefault(); savePrice(inp.closest(".row")); }
+    if(e.key==="Escape"){ inp.value=inp.getAttribute("data-price");
+      inp.parentNode.querySelector(".savep").hidden=true; }
+  });
+
+  function savePrice(row){
+    var inp=row.querySelector(".pr input");
+    /* Tolerate what a person actually types: spaces, a pasted euro sign,
+       a thousands separator, and the Finnish decimal comma. What survives
+       must be only digits — "250,50" and "abc" both fail here rather than
+       being silently rounded into a price nobody chose.
+       THE DOUBLE BACKSLASHES ARE LOAD-BEARING. This whole script is inside
+       a JS template literal, so the literal eats one level of escaping
+       before the browser ever sees it: \\d written here arrives as \\d,
+       while a single \\d would arrive as a bare "d". That shipped once —
+       /^d+$/ matches only the letter d, so every price was rejected as
+       invalid and the bug was invisible until a real value was typed. */
+    var raw=inp.value.replace(/[\\s€]/g,"").replace(/[.,](?=\\d{3}\\b)/g,"");
+    var n=/^\\d+$/.test(raw) ? parseInt(raw,10) : NaN;
+    if(!isFinite(n) || n<0 || n>100000){
+      document.getElementById("err").innerHTML='<div class="err">'+esc(TXT.badPrice)+'</div>';
+      inp.focus(); inp.select();
+      return;
+    }
+    save(row.getAttribute("data-id"),{price:n});
+  }
 
   Promise.all([
     fetch(RAW+"content/items-index.json").then(function(r){return r.json();}),
@@ -882,6 +984,21 @@ function sellerPage(sellerKey, tok) {
   }).then(function(all){
     ITEMS=all.filter(Boolean).filter(function(m){return m.who===SELLER;})
              .sort(function(a,b){return (a.mfr+a.name).localeCompare(b.mfr+b.name);});
+    /* Hidden items sink to the bottom, ONCE, HERE — at load, never during
+       the session. The two halves of that matter separately.
+       Grouping them is worth it because hidden rows are done with: they
+       are the ones the seller has finished dealing with, and leaving them
+       interleaved makes the list of things still for sale something you
+       have to pick out rather than read.
+       Doing it only at load is the part that would be easy to "improve"
+       into a live re-sort, and that would be wrong: the row must not move
+       out from under the finger that just tapped it. A seller who hides
+       something by mistake needs the undo exactly where they are looking,
+       not relocated to the bottom of a list they now have to scroll. So
+       the order is fixed from this snapshot and render() never touches it
+       again — the regrouping is what they see NEXT time they open the
+       page. */
+    ITEMS.sort(function(a,b){ return (stateOf(a).hidden?1:0)-(stateOf(b).hidden?1:0); });
     render();
   }).catch(function(){
     document.getElementById("sub").textContent="";

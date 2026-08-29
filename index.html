@@ -1286,6 +1286,10 @@ function applySellerState(items,state){
     if(typeof s.hidden==="boolean") m.hidden=s.hidden;
     if(typeof s.negotiating==="boolean") m.negotiating=s.negotiating;
     if(typeof s.haggle==="boolean") m.haggle=s.haggle;
+    /* price is the one live override that is a NUMBER, so it is checked by
+       type rather than truthiness — a legitimate 0 would be dropped by a
+       falsy test and the item would show its old committed price. */
+    if(typeof s.price==="number") m.price=s.price;
     return m;
   });
 }

@@ -1,6 +1,7 @@
 name: Reconcile seller toggles
 
-# Sellers flip "in negotiation" and "hidden" on their own private page,
+# Sellers flip "in negotiation", "hidden" and "open to offers", and edit
+# their prices, on their own private page,
 # which writes to the worker's KV. The site reads that KV live, so a
 # toggle shows up immediately — this job is not what makes it work. Its
 # only job is to fold that live state back into content/items/*.json so
@@ -12,7 +13,8 @@ name: Reconcile seller toggles
 # reads over plain HTTP and commits with the token Actions already has.
 # That is the whole point of the split: the public-facing worker holds no
 # GitHub write access, so compromising it can only set wrong toggle
-# values, which revert from git — it cannot rewrite the repository.
+# values and prices on existing items, which revert from git — it cannot
+# rewrite the repository.
 #
 # Commits ONLY when a value actually differs, so an idle day produces no
 # commits and no Pages rebuilds, and a seller toggling something twice
@@ -81,6 +83,21 @@ jobs:
                   if field in override and isinstance(override[field], bool):
                       if bool(data.get(field, False)) != override[field]:
                           diff[field] = override[field]
+
+              # Price is the one NON-BOOLEAN a seller can set, so it needs
+              # its own branch and its own validation. isinstance(True, int)
+              # is True in Python, so bool must be excluded explicitly or a
+              # stray {"price": true} would land in git as a price of 1.
+              # Bounds match the worker's on purpose: this job must never
+              # widen what the write endpoint already refused, or a value
+              # rejected at the door gets written by the back one.
+              if "price" in override:
+                  p_new = override["price"]
+                  if isinstance(p_new, int) and not isinstance(p_new, bool) and 0 <= p_new <= 100000:
+                      if data.get("price") != p_new:
+                          diff["price"] = p_new
+                  else:
+                      print(f"::warning::ignoring out-of-range price for {item_id}: {p_new!r}")
               if not diff:
                   continue
 
