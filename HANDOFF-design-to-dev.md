@@ -1672,3 +1672,42 @@ Admin copy stays English, as the rest of the admin does. The hint is not
 decoration: the token is permanent until regenerated, so the cost of it leaking
 is ongoing, and the person pasting it needs to know that at the moment they
 paste it.
+
+### 8. "When does it go live" — MINE, UNREVIEWED (2026-08-29)
+
+Shown on the seller page after a toggle saves.
+
+| en | fi | sv |
+|---|---|---|
+| Saved. The site updates in a moment. If the site is open somewhere else, reload it. | `Tallennettu. Sivusto päivittyy hetken kuluttua. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Sajten uppdateras om en stund. Om sajten är öppen någon annanstans, ladda om den.` |
+
+**No number, deliberately.** The user's brief was: assume a non-technical
+reader, say what to expect and what to do, short sentences, do not overwhelm. A
+figure fails all four — it invites the reader to time it, and a "5 seconds"
+that is occasionally 40 destroys more confidence than a vague phrase that is
+always true. `hetken kuluttua` / `om en stund` stays honest whatever the real
+latency turns out to be.
+
+**Three sentences, one job each:**
+
+1. **`Tallennettu.`** — the thing they actually want to know. It saved. One
+   word, first, before anything else.
+2. **`Sivusto päivittyy hetken kuluttua.`** — sets the expectation that it is
+   not instant, so a short delay reads as normal rather than as failure.
+3. **The reload instruction** — the only sentence that asks anything of them,
+   and it is last.
+
+**Sentence 3 is the one that earns its place.** The likeliest failure is not
+latency at all: the seller taps Hide, switches to a eurorack.fi tab that was
+already open, sees the item still listed, and concludes it did not work. Then
+they message the user to check — which is exactly the admin load this feature
+exists to remove. That sentence is the whole defence against it.
+
+**No jargon.** "If the site is open somewhere else" rather than *tab* or
+*browser* — it covers another tab, another phone, or a laptop left open in the
+kitchen, and asks no technical vocabulary of the reader.
+
+**Still verify the real latency** (question outstanding with dev). If the
+honest worst case turns out to be minutes rather than seconds, `hetken
+kuluttua` is too soft and this string needs revisiting — the copy is written to
+survive a small number, not a large one.
