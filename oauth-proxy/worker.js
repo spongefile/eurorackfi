@@ -1105,6 +1105,15 @@ function sellerPage(sellerKey, tok) {
  padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+/* Same idiom as the main site's FI/SV/EN control, so a seller who has used
+   eurorack.fi meets a thing they recognise. Right-aligned and quiet: it is
+   a preference, not one of the controls they came here to use. */
+.langs{display:flex;gap:.3rem;justify-content:flex-end;margin-bottom:.6rem}
+.langs[hidden]{display:none}
+.langs button{font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:32px;
+ padding:0 .5rem;background:var(--panel2);color:var(--ink2);border:1px solid var(--line)}
+.langs button[aria-pressed="true"]{background:var(--accent);color:var(--on);border-color:var(--accent)}
+
 /* Wishlist section, STACKED under the items rather than behind a tab.
    The item list is why this page exists; tabs would put it behind a state
    on a page whose whole virtue is having none, and half the time the
@@ -1165,6 +1174,7 @@ function sellerPage(sellerKey, tok) {
  font-size:.72rem;margin-bottom:1rem}
 `,
     html: `
+  <div class="langs" id="langs" hidden></div>
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
     <!-- A heart, and it STAYS --accent rather than going red. Red is spoken
          for twice on this site already — --haggle for "make offer",
@@ -1177,8 +1187,8 @@ function sellerPage(sellerKey, tok) {
                C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z"
             fill="currentColor"/>
     </svg>
-    <span class="txt"><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
-    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
+    <span class="txt"><span class="t" id="tipt"></span>
+    <span class="a" id="tipa"></span></span></a>
   <h1 id="hd">…</h1>
   <p class="sub" id="sub"></p>
   <div class="keep" id="keep" hidden></div>
@@ -1231,7 +1241,19 @@ function sellerPage(sellerKey, tok) {
      NOT TRANSLATED, flagged to design rather than invented here: the
      save-failure message. It stays in English rather than have me put
      unreviewed Finnish on the page. */
-  var TXT={
+  /* PER LANGUAGE, and every existing TXT.x reference keeps working: the
+     active language's strings are assigned to TXT, so switching is one
+     reassignment plus a re-render rather than rewriting sixty call sites.
+     A language is OFFERED only when it is COMPLETE — same rule as the
+     how-it-works page. A half-translated control panel is worse than a
+     Finnish one: the seller cannot tell whether a Finnish word among
+     English ones is an oversight or a term of art, and this page is where
+     they change what the public sees.
+     Finnish is the reference. Any language missing a key falls back to it
+     rather than rendering blank, but that fallback is a backstop, not a
+     licence to ship a partial language — LANGS_READY is what decides. */
+  var TXT_ALL={};
+  TXT_ALL.fi={
     /* NOT a flat "only you can see this page" — that was false, and it
        left a seller with no reason not to forward the link. Anyone
        holding it can change this seller's listings, and it stays valid
@@ -1333,6 +1355,60 @@ function sellerPage(sellerKey, tok) {
     askFailed:"Pyyntö ei lähtenyt. Yritä uudelleen.",
     askFull:"Sinulla on jo useita avoimia pyyntöjä. Odota että käsittelemme ne."
   };
+  /* The tip banner used to be hardcoded Finnish in the markup. Moved here
+     so that everything a reader sees is in one place and a translator gets
+     one list rather than a list plus "and also check the HTML". */
+  TXT_ALL.fi.tipT="Onko tästä sivustosta ollut sinulle hyötyä?";
+  TXT_ALL.fi.tipA="Anna tippi ylläpidolle →";
+
+  /* en and sv are deliberately absent until someone has written them. An
+     empty object here would advertise a language that renders as Finnish;
+     absent means the switcher does not offer it at all. */
+
+  var LANG_NAMES={fi:"FI", sv:"SV", en:"EN"};
+  var LANG_KEY="eurorackfi:seller-lang";
+  /* Complete means EVERY key Finnish has. Not "has some strings" — see the
+     note on TXT_ALL. */
+  function langComplete(code){
+    var t=TXT_ALL[code]; if(!t) return false;
+    for(var k in TXT_ALL.fi){ if(!t[k] || !String(t[k]).trim()) return false; }
+    return true;
+  }
+  var LANGS_READY=["fi","sv","en"].filter(langComplete);
+  var LANG="fi";
+  try{ var saved=localStorage.getItem(LANG_KEY);
+       if(saved && LANGS_READY.indexOf(saved)>=0) LANG=saved; }catch(e){}
+  /* Finnish underneath so a missing key can never render blank. */
+  var TXT=Object.assign({}, TXT_ALL.fi, TXT_ALL[LANG]||{});
+
+  function setLang(code){
+    if(LANGS_READY.indexOf(code)<0) return;
+    LANG=code;
+    TXT=Object.assign({}, TXT_ALL.fi, TXT_ALL[LANG]||{});
+    try{ localStorage.setItem(LANG_KEY, code); }catch(e){}
+    document.documentElement.lang=code;
+    paintChrome(); render(); renderWants(); paintAsk();
+  }
+
+  /* Nothing at all while Finnish is the only complete language, rather than
+     a single dead button. One option is not a choice. */
+  function paintLangs(){
+    var box=document.getElementById("langs"); if(!box) return;
+    if(LANGS_READY.length<2){ box.hidden=true; return; }
+    box.hidden=false;
+    box.innerHTML=LANGS_READY.map(function(c){
+      return '<button data-lang="'+c+'" aria-pressed="'+(c===LANG)+'">'+esc(LANG_NAMES[c]||c)+'</button>';
+    }).join("");
+  }
+  /* Everything outside the item rows that carries copy. render() covers the
+     rows themselves; these are the fixed parts around them. */
+  function paintChrome(){
+    paintLangs();
+    var tt=document.getElementById("tipt"), ta=document.getElementById("tipa");
+    if(tt) tt.textContent=TXT.tipT;
+    if(ta) ta.textContent=TXT.tipA;
+  }
+
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
@@ -1428,6 +1504,8 @@ function sellerPage(sellerKey, tok) {
   }
 
   document.addEventListener("click",function(e){
+    var lb=e.target.closest(".langs button");
+    if(lb){ setLang(lb.getAttribute("data-lang")); return; }
     if(e.target.closest("#ack")){
       /* hide first, persist second — if storage is unavailable the tap
          still works for this visit and the note simply returns next time */
@@ -1647,6 +1725,7 @@ function sellerPage(sellerKey, tok) {
      catalogue. If the item fetch fails, the seller still has a working way
      to reach a human — which is exactly when they would most want one. */
   paintAsk();
+  paintChrome();
 
   /* The wishlist loads on its own chain too, for the same reason: it needs
      the seller file and the want state, not the catalogue, so a failure in
