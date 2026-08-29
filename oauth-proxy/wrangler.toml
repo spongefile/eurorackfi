@@ -10,17 +10,27 @@ compatibility_date = "2025-01-01"
 # add a route, keep this line.
 workers_dev = true
 
-# A linkki.eurorack.fi custom domain is WANTED but cannot be created from
-# here: the eurorack.fi zone is not in this Cloudflare account
-# (518b8afeb554ac93de22c9ff0822ebba), and a Workers custom domain requires
-# the zone and the worker to live in the same account. Wrangler reports it
-# as "Could not find zone for eurorack.fi".
-# To finish it: move or add the zone to this account, then restore
-#   [[routes]]
-#   pattern = "linkki.eurorack.fi"
-#   custom_domain = true
-#   zone_name = "eurorack.fi"
-# and flip PUBLIC_ORIGIN in worker.js to the new host in the same commit.
+# PREVIEW URLS ARE OFF DELIBERATELY, and this is a security setting, not
+# tidiness. With workers.dev enabled and this unset, Cloudflare publishes
+# EVERY deployed version at its own permanent public URL
+# (<version>-<worker>.<subdomain>.workers.dev), each with the same KV
+# binding and secrets as production. Verified: three past versions were
+# answering /state with 200. That means any version that ever shipped with
+# a weaker check stays reachable and exploitable forever, and a fix
+# deployed to production does not retire the flawed one. Nothing here needs
+# them - previewing is done locally against a stubbed KV.
+preview_urls = false
+
+# NO CUSTOM DOMAIN. linkki.eurorack.fi was investigated and dropped: a
+# Workers custom domain requires the zone and the worker in the SAME
+# Cloudflare account, and eurorack.fi's zone belongs to Sampo while this
+# worker is in spongefile's. Closing that gap meant either moving the zone
+# or moving the worker, and moving the worker would change the workers.dev
+# hostname - killing every seller link already sent. Not worth it: the
+# mail's opening sentence, not its hostname, is what separates it from a
+# phishing message.
+# If this is ever revisited, note that adding [[routes]] flips workers_dev
+# to false. That is what caused the outage above.
 
 # Live seller toggle state. The worker writes ONLY here — it holds no
 # GitHub credential — and a scheduled Action folds this back into
