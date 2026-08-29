@@ -2,6 +2,7 @@
   "key": "spongefile",
   "name": "spongefile",
   "dot": "#678cd6",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/spongefile",
   "wants": [
     {
       "type": "product",

@@ -2,6 +2,7 @@
   "key": "kalle",
   "name": "Kalle",
   "dot": "#3E9E82",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/kalle",
   "wants": [
     {
       "type": "product",

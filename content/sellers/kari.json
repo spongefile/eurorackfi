@@ -2,6 +2,7 @@
   "key": "kari",
   "name": "Kari",
   "dot": "#9068C8",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/kari",
   "wants": [
     {
       "type": "product",

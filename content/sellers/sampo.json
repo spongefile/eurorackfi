@@ -2,6 +2,7 @@
   "key": "sampo",
   "name": "Sampo",
   "dot": "#C98A2E",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/sampo",
   "wants": [
     {
       "type": "product",

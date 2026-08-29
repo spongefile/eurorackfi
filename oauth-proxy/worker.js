@@ -454,7 +454,14 @@ function sellerPage(sellerKey, tok) {
        partitive agreement after a number; that would undo a deliberate
        choice for this telegraphic count line. Leave it. */
     hiddenCount:"piilotettu",
-    failed:"Could not save \u2014 try again. [EN, awaiting fi]"
+    /* Both error strings state THE STATE OF THE WORLD before saying what
+       to do. A seller hits these on a phone seconds after selling
+       something, and their real question isn't "what went wrong" but "is
+       the public site now wrong because of me" — left hanging, they
+       don't retry, they message the user. Neither says virhe/error: the
+       category is useless to them, the consequence isn't. */
+    failed:"Ei tallentunut. Kohde näkyy sivustolla ennallaan. Yritä uudelleen.",
+    loadFailed:"Kohteita ei saatu haettua. Sivustolla ei muuttunut mitään. Lataa sivu uudelleen."
   };
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -519,7 +526,7 @@ function sellerPage(sellerKey, tok) {
     render();
   }).catch(function(){
     document.getElementById("sub").textContent="";
-    document.getElementById("err").innerHTML='<div class="err">Could not load. [EN, awaiting fi]</div>';
+    document.getElementById("err").innerHTML='<div class="err">'+esc(TXT.loadFailed)+'</div>';
   });
   </script>`
   }, { noindex: true });

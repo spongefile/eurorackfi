@@ -558,6 +558,9 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
     font-weight:800; padding:.5rem 0; margin-bottom:.6rem}
   .wishpage{padding-top:1.5rem}
 }
+.gone .soldmark{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.66rem;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--sold); background:var(--sold-soft);
+  padding:.28rem .55rem; margin-bottom:.9rem}
 .wishnote{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--muted); margin-top:.8rem}
 /* stated empty state for a seller with no wishlist yet — muted, so it
    reads as a fact about the shelf rather than as a missing tile */
@@ -1010,7 +1013,7 @@ var T = {
     sItems:"kohdetta", sHp:"HP", sShelves:"hyllyä",
     scale:"Mittakaavassa", hover:"osoita hiirellä",
     search:"hae valmistaja tai moduuli",
-    wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
+    soldMark:"Myyty", wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
     buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
@@ -1036,7 +1039,7 @@ var T = {
     sItems:"objekt", sHp:"HP", sShelves:"hyllor",
     scale:"Skalenligt", hover:"hovra",
     search:"sök tillverkare eller modul",
-    wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
+    soldMark:"Såld", wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
     buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
@@ -1062,7 +1065,7 @@ var T = {
     sItems:"items", sHp:"HP", sShelves:"shelves",
     scale:"Drawn to scale", hover:"hover to find it below",
     search:"search maker or module",
-    wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
+    soldMark:"Sold", wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
     ofItems:"of 29 items", onScreen:"€ on screen",
     buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
@@ -2310,12 +2313,14 @@ function route(){
       if(S.shot===0) fitPanel(m);
       window.scrollTo(0,0); return;
     }
-    /* no record survives a delisting, so this is deliberately generic */
+    /* Deliberately generic even though a hidden item's record now DOES
+       survive — the user declined naming the module here. Covers both a
+       genuinely deleted item and one a seller has just hidden. */
     el("detail").innerHTML='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
-      /* design proposed a "Myyty" marker in --sold here; it isn't in the
-         copy set they finalised, and inventing the Finnish for it is
-         exactly what we don't do — asked for, not shipped. */
-      '<div class="gone"><h2>'+esc(GONE[lang].h)+'</h2><p>'+esc(GONE[lang].p)+'</p>'+
+      /* buyer-facing, so it says SOLD — "hide" is the seller's own
+         vocabulary and means nothing to someone who followed a link. */
+      '<div class="gone"><span class="soldmark">'+esc(t().soldMark)+'</span>'+
+      '<h2>'+esc(GONE[lang].h)+'</h2><p>'+esc(GONE[lang].p)+'</p>'+
       '<button class="btn" onclick="closeDetail()">'+esc(t().nav[0])+'</button></div></div>';
     document.body.classList.add("detail-open"); window.scrollTo(0,0); return;
   }
