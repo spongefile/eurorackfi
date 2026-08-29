@@ -183,6 +183,36 @@
         "sc": 4
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/percall.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Doepfer",
+      "name": "A-196 PLL",
+      "hp": 8,
+      "tone": "alu",
+      "parts": {
+        "k": 2,
+        "j": 6,
+        "sl": 0,
+        "led": 1,
+        "sc": 2
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/a196.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Make Noise",
+      "name": "Wogglebug",
+      "hp": 10,
+      "tone": "black",
+      "parts": {
+        "k": 4,
+        "j": 12,
+        "sl": 0,
+        "led": 1,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wogglebug.jpg"
     }
   ],
   "form": "https://tally.so/r/lbkgvB"
