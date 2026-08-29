@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toiveet row — wrapped lines on a phone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Archivo:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAECEF;--ink:#11161C;--ink2:#3A424C;--muted:#6B7480;
+ --line2:#D3D7DD;--accent:#0B4F9E;
+ --k:#2E7D6B;--kari:#7A4FA3;--sampo:#C2761B;--sf:#0B4F9E}
+*{box-sizing:border-box}
+body{margin:0;background:#DDE0E4;font-family:"Archivo",system-ui,sans-serif}
+.phone{width:360px;margin:0 auto;background:var(--bg);padding:14px 14px 22px}
+.lbl{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);margin:22px 0 6px}
+.lbl:first-child{margin-top:0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .9rem}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--muted);
+ line-height:1.7;margin:.5rem 0 0}
+.rule{border:0;border-top:1px solid var(--line2);margin:20px 0 0}
+
+.wishflow{font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.95;
+ color:var(--ink2)}
+.wperson{margin-right:1.6rem}
+.wperson:last-child{margin-right:0}
+.wperson .who{white-space:nowrap;font-family:"Archivo",sans-serif;font-weight:700;
+ font-size:.88rem;margin-right:.4rem;color:var(--ink2)}
+.wperson .who i{display:inline-block;width:9px;height:9px;border-radius:50%;
+ margin-right:.4rem;vertical-align:.02em}
+.wperson .w{white-space:nowrap}
+.wperson .w.more{color:var(--muted)}
+.wperson .sep{color:var(--line2);padding:0 .26rem}
+
+/* PROPOSED, mobile only. Each person becomes a block so the wrapped lines
+   can hang under the NAME instead of under the dot. Desktop keeps the
+   flowing row untouched — this whole rule sits inside the 640px query. */
+.fix .wperson{display:block;margin-right:0;
+  padding-left:1rem;text-indent:-1rem}
+.fix .wperson + .wperson{margin-top:.34rem}
+</style></head><body>
+<div class="phone">
+
+<p class="lbl">Now — 360px</p>
+<h2>Toiveet</h2>
+<div class="wishflow">
+<span class="wperson"><span class="who"><i style="background:var(--k)"></i>Kalle</span><span class="wants"><span class="w">Fumana</span><span class="sep">·</span><wbr><span class="w">Polygogo</span><span class="sep">·</span><wbr><span class="w">Mindphaser</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--kari)"></i>Kari</span><span class="wants"><span class="w">Complex Oscillator</span><span class="sep">·</span><wbr><span class="w">Foundation Oscillator</span><span class="sep">·</span><wbr><span class="w">Amp &amp; Tone</span><span class="sep">·</span><wbr><span class="w">Quad Lopass Gate Model 292t</span><span class="sep">·</span><wbr><span class="w more">+1</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--sampo)"></i>Sampo</span><span class="wants"><span class="w">Versio (any model)</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--sf)"></i>spongefile</span><span class="wants"><span class="w">MCO</span><span class="sep">·</span><wbr><span class="w">AXON-1</span><span class="sep">·</span><wbr><span class="w">Mangrove</span><span class="sep">·</span><wbr><span class="w">W/</span><span class="sep">·</span><wbr><span class="w more">+8</span></span></span>
+</div>
+<p class="note">Kari runs to three lines. The continuations start at 14px —
+the dot column — so each one reads for a beat as a person whose dot is missing.</p>
+
+<hr class="rule">
+
+<p class="lbl">Hanging indent — 360px</p>
+<h2>Toiveet</h2>
+<div class="wishflow fix">
+<span class="wperson"><span class="who"><i style="background:var(--k)"></i>Kalle</span><span class="wants"><span class="w">Fumana</span><span class="sep">·</span><wbr><span class="w">Polygogo</span><span class="sep">·</span><wbr><span class="w">Mindphaser</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--kari)"></i>Kari</span><span class="wants"><span class="w">Complex Oscillator</span><span class="sep">·</span><wbr><span class="w">Foundation Oscillator</span><span class="sep">·</span><wbr><span class="w">Amp &amp; Tone</span><span class="sep">·</span><wbr><span class="w">Quad Lopass Gate Model 292t</span><span class="sep">·</span><wbr><span class="w more">+1</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--sampo)"></i>Sampo</span><span class="wants"><span class="w">Versio (any model)</span></span></span><wbr><span class="wperson"><span class="who"><i style="background:var(--sf)"></i>spongefile</span><span class="wants"><span class="w">MCO</span><span class="sep">·</span><wbr><span class="w">AXON-1</span><span class="sep">·</span><wbr><span class="w">Mangrove</span><span class="sep">·</span><wbr><span class="w">W/</span><span class="sep">·</span><wbr><span class="w more">+8</span></span></span>
+</div>
+<p class="note">Wrapped lines start clear of the dot column, so only a dot
+begins a person. A small gap between people restores the grouping that the
+uniform line spacing was flattening.</p>
+
+</div>
+</body></html>
