@@ -1396,7 +1396,11 @@ function sellerPage(sellerKey, tok) {
     loadFailed:"Your items could not be loaded. Nothing changed on the site. Reload the page.",
     saved:"Saved. The site updates in about a minute. Reload eurorack.fi to see the change.",
     savedPrice:"Saved: {old} € → {new} €. The site updates in about a minute. Reload eurorack.fi to see the change.",
-    askH:"Request an addition",
+    /* THE USER'S OWN WORDING — the first of these 34 to be reviewed. They
+       picked it over "Request an addition"; warmer, and it says who is
+       being asked. The Swedish still carries the older register ("Be om
+       ett tillägg") pending their nod on a parallel form. */
+    askH:"Ask us to add something",
     askItem:"New item for sale",
     askWish:"Addition to the wishlist",
     askPriceLab:"Price",
