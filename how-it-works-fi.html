@@ -83,6 +83,14 @@ b{color:var(--ink)}
 .test{background:var(--accent-soft);border:1px solid var(--accent);padding:.9rem 1.1rem;
  font-family:"Newsreader",Georgia,serif;font-size:1.08rem;color:var(--accent-hi);
  line-height:1.5;max-width:62ch}
+/* The stop-scrolling box sits directly under the rules grid, so its right
+   edge must land ON the YES column's edge — calc(50% - .5rem) IS the 1fr
+   column width under a 1rem gap. 62ch nearly agreed with it, which read as
+   a failed alignment rather than a choice. The batching note keeps 62ch:
+   its neighbours (the steps) are full-width, so the column edge means
+   nothing there. */
+p.test{max-width:calc(50% - .5rem)}
+@media(max-width:720px){ p.test{max-width:none} }
 .steps{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
 .step{display:flex;gap:.9rem;border:1px solid var(--line2);background:var(--panel);padding:1rem 1.1rem}
 .step .n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on);
