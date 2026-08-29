@@ -1106,9 +1106,20 @@ function sellerPage(sellerKey, tok) {
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
 /* Same idiom as the main site's FI/SV/EN control, so a seller who has used
-   eurorack.fi meets a thing they recognise. Right-aligned and quiet: it is
-   a preference, not one of the controls they came here to use. */
-.langs{display:flex;gap:.3rem;justify-content:flex-end;margin-bottom:.6rem}
+   eurorack.fi meets a thing they recognise. Quiet on purpose: nearly every
+   seller arrives from a link in a mail already in their language and will
+   never touch this, so it wants to be findable rather than prominent.
+   ON THE HEADING LINE, not above the tip banner. Above the banner it was
+   the topmost thing on a page that had no chrome at all, and it pushed the
+   banner down; here it costs no vertical space and reads as belonging to
+   the page. Measured before moving it, since the worry was a narrow phone:
+   at 320px the longest seller name is 121px and the switcher 103px, so
+   they share a line with room to spare. flex-wrap is the backstop if a
+   longer name ever appears — the switcher drops to its own line rather
+   than crushing the name. */
+.hdrow{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.hdrow h1{flex:0 1 auto}
+.langs{display:flex;gap:.3rem;margin-left:auto}
 .langs[hidden]{display:none}
 .langs button{font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:32px;
  padding:0 .5rem;background:var(--panel2);color:var(--ink2);border:1px solid var(--line)}
@@ -1174,7 +1185,6 @@ function sellerPage(sellerKey, tok) {
  font-size:.72rem;margin-bottom:1rem}
 `,
     html: `
-  <div class="langs" id="langs" hidden></div>
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
     <!-- A heart, and it STAYS --accent rather than going red. Red is spoken
          for twice on this site already — --haggle for "make offer",
@@ -1189,7 +1199,7 @@ function sellerPage(sellerKey, tok) {
     </svg>
     <span class="txt"><span class="t" id="tipt"></span>
     <span class="a" id="tipa"></span></span></a>
-  <h1 id="hd">…</h1>
+  <div class="hdrow"><h1 id="hd">…</h1><div class="langs" id="langs" hidden></div></div>
   <p class="sub" id="sub"></p>
   <div class="keep" id="keep" hidden></div>
   <div class="gloss" id="gloss"></div>
@@ -1229,18 +1239,17 @@ function sellerPage(sellerKey, tok) {
   /* Finnish supplied by design (a953694), UNREVIEWED by the user — they
      read both languages and their correction is final when it comes.
      "Neuvottelussa" and "kohdetta" are already-approved site strings, and
-     the gloss's FIRST sentence is the user's own (4eb2118). Its second
-     sentence is design's and still unreviewed — kept deliberately,
-     because someone about to pull their own listing off a public site
-     wants to know it is reversible at that moment.
+     the gloss's FIRST sentence is the user's own (4eb2118).
      The gloss appears ONCE, not per row: twenty copies of an explanatory
-     sentence is noise. Its second sentence ("you can get it back any
-     time") is deliberately not in the English — the person tapping this
-     is removing their own listing from a public site, and reversibility
-     is what they want to know at that moment.
-     NOT TRANSLATED, flagged to design rather than invented here: the
-     save-failure message. It stays in English rather than have me put
-     unreviewed Finnish on the page. */
+     sentence is noise.
+     Its SECOND sentence — that the item comes back any time — is in ALL
+     THREE languages. An earlier version of this comment claimed the
+     omission from English was deliberate while giving, as its reason, an
+     argument for including it: someone pulling their own listing off a
+     public site wants to know at that moment that it is reversible. The
+     omission was an artefact of the page being Finnish-only, where "the
+     English" meant nothing. That sentence is what stops the first one
+     reading as final. */
   /* PER LANGUAGE, and every existing TXT.x reference keeps working: the
      active language's strings are assigned to TXT, so switching is one
      reassignment plus a re-render rather than rewriting sixty call sites.
@@ -1361,9 +1370,87 @@ function sellerPage(sellerKey, tok) {
   TXT_ALL.fi.tipT="Onko tästä sivustosta ollut sinulle hyötyä?";
   TXT_ALL.fi.tipA="Anna tippi ylläpidolle →";
 
-  /* en and sv are deliberately absent until someone has written them. An
-     empty object here would advertise a language that renders as Finnish;
-     absent means the switcher does not offer it at all. */
+  /* English and Swedish are design's and UNREVIEWED by the user, same
+     standing as the how-it-works page's copy. Three are reused verbatim
+     rather than retranslated, and checks enforce the first of them:
+     "keep" is character-for-character the seller-link mail's wording,
+     "ack" is the user's English with design's Swedish, and "haggle" is the
+     site sticker's own words.
+     NO BACKTICKS ANYWHERE IN THIS COMMENT — it lives inside the seller
+     page's template literal, so a backtick around a key name terminates
+     the string and the whole worker stops parsing. Cost me a build. */
+  TXT_ALL.en={
+    keep:"Only you can see this page, as long as you don't give the link to anyone else. Keep it secret!",
+    ack:"I understand",
+    haggle:"Make offer",
+    gloss:"Hiding an item marks it sold. You can bring it back any time.",
+    forsale:"For sale",
+    neg:"In negotiation",
+    hide:"Hide",
+    save:"Save",
+    priceLabel:"Price in euros",
+    badPrice:"Check the price. Nothing changed on the site.",
+    items:"items",
+    hiddenCount:"hidden",
+    failed:"Not saved. The item still shows on the site as it was. Try again.",
+    loadFailed:"Your items could not be loaded. Nothing changed on the site. Reload the page.",
+    saved:"Saved. The site updates in about a minute. Reload eurorack.fi to see the change.",
+    savedPrice:"Saved: {old} € → {new} €. The site updates in about a minute. Reload eurorack.fi to see the change.",
+    askH:"Request an addition",
+    askItem:"New item for sale",
+    askWish:"Addition to the wishlist",
+    askPriceLab:"Price",
+    askSend:"Send request",
+    askHow:"Tell us what to add and what condition it is in.",
+    wishH:"Your wishlist",
+    wishLead:"You can ask for new wishes to be added below.",
+    wishShown:"Shown",
+    askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
+    askPlaceholderItem:"E.g. Make Noise Maths, good condition, original box",
+    askPlaceholderWish:"E.g. Intellijel Quad VCA",
+    askSent:"Request sent. We will get back to you.",
+    askEmpty:"Write what you want added.",
+    askFailed:"The request did not send. Try again.",
+    askFull:"You already have several open requests. Wait until we have dealt with them.",
+    tipT:"Has this site been useful to you?",
+    tipA:"Tip the admins →",
+  };
+  TXT_ALL.sv={
+    keep:"Bara du ser den här sidan, så länge du inte ger länken till någon annan. Håll den hemlig!",
+    ack:"Jag förstår",
+    haggle:"Prutbart",
+    gloss:"Genom att dölja markerar du objektet som sålt. Du får tillbaka det när som helst.",
+    forsale:"Till salu",
+    neg:"Under förhandling",
+    hide:"Dölj",
+    save:"Spara",
+    priceLabel:"Pris i euro",
+    badPrice:"Kontrollera priset. Ingenting ändrades på sajten.",
+    items:"objekt",
+    hiddenCount:"dolda",
+    failed:"Sparades inte. Objektet visas på sajten som förut. Försök igen.",
+    loadFailed:"Objekten kunde inte hämtas. Ingenting ändrades på sajten. Ladda om sidan.",
+    saved:"Sparat. Sajten uppdateras om ungefär en minut. Ladda om eurorack.fi för att se ändringen.",
+    savedPrice:"Sparat: {old} € → {new} €. Sajten uppdateras om ungefär en minut. Ladda om eurorack.fi för att se ändringen.",
+    askH:"Be om ett tillägg",
+    askItem:"Nytt objekt till salu",
+    askWish:"Tillägg till önskelistan",
+    askPriceLab:"Pris",
+    askSend:"Skicka förfrågan",
+    askHow:"Berätta vad som ska läggas till och i vilket skick det är.",
+    wishH:"Din önskelista",
+    wishLead:"Nya önskningar kan du be om att få tillagda nedan.",
+    wishShown:"Visas",
+    askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
+    askPlaceholderItem:"T.ex. Make Noise Maths, bra skick, originalkartong",
+    askPlaceholderWish:"T.ex. Intellijel Quad VCA",
+    askSent:"Förfrågan skickad. Vi återkommer.",
+    askEmpty:"Skriv vad du vill få tillagt.",
+    askFailed:"Förfrågan skickades inte. Försök igen.",
+    askFull:"Du har redan flera öppna förfrågningar. Vänta tills vi har hanterat dem.",
+    tipT:"Har den här sajten varit till nytta för dig?",
+    tipA:"Ge dricks till adminerna →",
+  };
 
   var LANG_NAMES={fi:"FI", sv:"SV", en:"EN"};
   var LANG_KEY="eurorackfi:seller-lang";

@@ -19,30 +19,65 @@ const worker = fs.readFileSync(path.join(root, "oauth-proxy/worker.js"), "utf8")
 let failed = false;
 const fail = (msg) => { failed = true; console.error("FAIL: " + msg); };
 
-/* Anchored on the four-space indentation of the TXT block. An earlier
-   version of this extraction used a loose /keep:"([^"]+)"/ and matched
-   ACK_KEY="eurorackfi:ack:keep:" instead, then cheerfully reported the two
-   strings as different. Loose patterns over source are how this class of
-   check lies. */
-const pageKeep = worker.match(/^ {4}keep:"([^"]+)",\s*$/m);
-const mailKeep = worker.match(/`(Vain sinä näet[^`\\]*)\\n`/);
+/* DOES IT PARSE AS A MODULE — which is what Cloudflare loads it as. This
+   is first because everything below it reads the file as text and would
+   happily report success on a worker that cannot start.
+   `node --check worker.js` is NOT this check: it parses as a script, and
+   it passed a file whose seller-page template literal had been terminated
+   early by a backtick inside a comment. The worker was unloadable and the
+   syntax gate said fine. */
+try {
+  await import("data:text/javascript;base64," + Buffer.from(worker).toString("base64"));
+  console.log("  worker.js parses and loads as an ES module");
+} catch (e) {
+  fail("oauth-proxy/worker.js does not load as a module: " + e.message +
+    "\n      Nothing below this is trustworthy until it does.");
+  console.error("      (a backtick inside the seller page's template literal is the usual cause)");
+  process.exit(1);
+}
 
-if (!pageKeep) fail("could not find the seller page's TXT.keep line");
-if (!mailKeep) fail("could not find the Finnish secrecy sentence in the seller-link email");
+/* ALL THREE LANGUAGES, not just Finnish. When this was written Finnish was
+   the only language both surfaces had, so one pair was all it could check —
+   but the moment en and sv landed on the seller page it would have gone on
+   reporting success while covering a third of what it claims. Widened in
+   the same commit that landed them, so the window where that was true is
+   zero commits long.
 
-if (pageKeep && mailKeep) {
-  if (pageKeep[1] !== mailKeep[1]) {
+   Extraction is anchored, and JSON.parse'd rather than regex-unescaped: an
+   earlier version used a loose /keep:"([^"]+)"/ and matched
+   ACK_KEY="eurorackfi:ack:keep:" instead, then cheerfully reported two
+   identical strings as different. Loose patterns over source are how this
+   class of check lies. */
+const PAIRS = [
+  { lang: "fi", first: "Vain sinä näet" },
+  { lang: "en", first: "Only you can see this page" },
+  { lang: "sv", first: "Bara du ser den här sidan" },
+];
+
+function pageString(lang, key) {
+  const start = worker.indexOf(`  TXT_ALL.${lang}={`);
+  if (start < 0) return null;
+  const end = worker.indexOf("\n  };", start);
+  const m = worker.slice(start, end).match(new RegExp(`^\\s*${key}:("(?:[^"\\\\]|\\\\.)*")`, "m"));
+  return m ? JSON.parse(m[1]) : null;
+}
+
+for (const { lang, first } of PAIRS) {
+  const page = pageString(lang, "keep");
+  const mail = worker.match(new RegExp("`(" + first + "[^`\\\\]*)\\\\n`"));
+  if (!page) { fail(`no "keep" string for ${lang} on the seller page`); continue; }
+  if (!mail) { fail(`no ${lang} secrecy sentence in the seller-link email`); continue; }
+  if (page !== mail[1]) {
     fail(
-      "the Finnish secrecy sentence differs between the seller page and the email.\n" +
+      `the ${lang} secrecy sentence differs between the seller page and the email.\n` +
       "      They are deliberately the same words, so a seller meets the identical\n" +
       "      warning in both places. Reword one, reword both.\n" +
-      `        page:  ${JSON.stringify(pageKeep[1])}\n` +
-      `        email: ${JSON.stringify(mailKeep[1])}`
+      `        page:  ${JSON.stringify(page)}\n` +
+      `        email: ${JSON.stringify(mail[1])}`
     );
-  } else {
-    console.log("  secrecy sentence: identical in the seller page and the email");
   }
 }
+if (!failed) console.log(`  secrecy sentence: identical in page and email for ${PAIRS.map((p) => p.lang).join(", ")}`);
 
 /* The email's structure is what stops it reading as phishing: every reader
    must meet a fact they can check BEFORE they meet a URL. With three
