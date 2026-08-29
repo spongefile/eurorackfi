@@ -2255,3 +2255,38 @@ address never touches this site at all.
 additions wait, everything self-service is instant. Saying *every few weeks*
 plainly beats leaving someone to infer it from silence — the disappointment
 lands at the point of asking, not three weeks later.
+
+---
+
+## Sellers differ in what they can be asked to do (2026-08-29)
+
+The contact-form work ended somewhere neither lane proposed, and the shape is
+worth keeping because it will recur in every seller-facing feature.
+
+Two sellers, same problem, different answers. Kari can add four exactly-named
+hidden fields to his form. Kalle is not a technical user and asking him to
+would produce three fields, one typo, and nobody knowing — the failure is
+silent on both sides, which is how this went unnoticed across 22 listings in
+the first place.
+
+**So design the floor first, and make it require nothing.** The floor here is
+one visible question on the seller's form — "which module are you asking
+about?" — plus our side showing the buyer the module's name next to the
+contact link so it is there to copy. That works for a Tally form, a personal
+site's contact page, anything. Kalle needs to do nothing at all.
+
+**Anything better than the floor is an optimisation, recorded per seller, and
+never load-bearing.** Hidden-field prefill is that optimisation. It is a
+per-seller flag rather than an assumption, because capability varies by person
+and cannot be inferred from the form URL.
+
+**A flag that needs a human to stay accurate will go stale, so choose which
+way it falls.** The module-naming note is unconditional — shown whether or not
+the flag is set. A stale `true` then costs a buyer one redundant sentence
+instead of returning us to an anonymous enquiry. Same principle as `hidden:true`
+on want entries: pick the direction of the error rather than trying to prevent it.
+
+**For the how-it-works page this means the joining sequence says nothing about
+hidden fields.** A prospective owner is told the floor and only the floor. The
+optimisation is a conversation we have with an individual seller afterwards, if
+they turn out to want it.
