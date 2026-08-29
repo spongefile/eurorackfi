@@ -2088,3 +2088,66 @@ same recessed-but-never-moving treatment for hidden rows.
 
 `Näkyy` and the section note *"Uusia toiveita voit pyytää lisättäväksi
 alempana."* are **mine and unreviewed**. `Piilota` is the user's existing word.
+
+## Request form and the admin queue (2026-08-29)
+
+### The plural voice is correct — do not "fix" it
+
+`Emme lisää kohteita heti…` is the first *we* sentence on a page that addresses
+the seller as *sinä* throughout. That is not an inconsistency: the page says
+**you** about the seller's actions and **we** about the admins'. Two parties,
+two pronouns.
+
+It is also load-bearing. The sentence exists to say *someone else does this
+part*, which cannot be said in the second person. `Pyyntö lähetetty. Palaamme
+asiaan.` is right for the same reason.
+
+Consistent with the mail's `— eurorack.fi adminit`, which established the
+collective voice.
+
+### One line is in the wrong place
+
+`Kerro mitä lisätään ja missä kunnossa se on.` currently sits **after the send
+button**, with `Emme lisää kohteita heti…`. It tells the seller *what to
+write*, so it has to appear **above the textarea** — an instruction after the
+button is an instruction for the next time, not this time.
+
+`Emme lisää kohteita heti…` stays below the button. It describes what happens
+*after* sending, so after the button is where it belongs.
+
+That split is the general rule for this panel: **before the field, what to
+type; after the button, what happens next.**
+
+### The queue — group by KIND, not by seller
+
+Oldest-first is right. What is missing is one split.
+
+**Group item requests and wishlist requests separately**, because they are
+different work: an item needs research, photos, a price and panel data; a
+wishlist entry needs a panel drawing and nothing else. The user triages by
+*what the job is*, not by whose it is.
+
+Grouping by seller would scatter one kind of work across four groups and make
+every batch mixed.
+
+- **Seller stays a label on each row**, not a grouping.
+- **A copy-all block per group**, so one paste is one batch to secretary.
+  A single copy-all across both kinds produces a list that has to be sorted
+  by hand at the other end.
+
+At four sellers and twenty requests nothing else is needed. If it ever grows
+past that, the next thing to add is a per-seller filter — not more grouping.
+
+### Copy — reviewed, all dev's, all fine
+
+`Pyydä lisäystä` · `Uusi kohde myyntiin` / `Lisäys toivelistalle` ·
+`Lähetä pyyntö` · `Pyyntö lähetetty. Palaamme asiaan.` ·
+`Kirjoita mitä haluat lisättävän.` · `Pyyntö ei lähtenyt. Yritä uudelleen.` ·
+`Sinulla on jo useita avoimia pyyntöjä. Odota että käsittelemme ne.`
+
+`Pyyntö ei lähtenyt` correctly omits a reassurance about the public site —
+there is nothing to reassure about, since a request that did not send changed
+nothing anywhere. The two seller-page error strings need that sentence because
+a failed *toggle* leaves a real question about what the site now shows.
+
+`Hinta €` is consistent with the price editor's `Hinta euroina`.
