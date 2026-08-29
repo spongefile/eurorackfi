@@ -58,6 +58,58 @@ for (const l of LANGS) {
   }
 }
 
+/* THE CMS CONFIG MUST COVER EVERY KEY. Decap writes back only the fields
+   it is configured with, so a key present in how.json but absent from
+   admin/config.yml is DELETED the first time the user publishes this file
+   from admin — including the _comment keys, which is why those are carried
+   as hidden widgets rather than left out. Nothing about that failure is
+   visible until the content is already gone from the commit.
+   Parsed with python3's yaml rather than a regex over the file: a pattern
+   matching `name:` lines would also match the en/fi/sv children and the
+   other collections, which is the same too-narrow-scope mistake this whole
+   script exists to prevent. */
+{
+  const { spawnSync } = await import("node:child_process");
+  const prog = [
+    "import yaml, json, sys",
+    "d = yaml.safe_load(open('admin/config.yml'))",
+    "hows = [c for c in d['collections'] if c['name'] == 'how']",
+    "if not hows: print(json.dumps(None)); sys.exit(0)",
+    "f = hows[0]['files'][0]",
+    "print(json.dumps([x['name'] for x in f['fields']]))",
+  ].join("\n");
+  const r = spawnSync("python3", ["-c", prog], { cwd: root, encoding: "utf8" });
+  if (r.status !== 0) {
+    console.error("\nFAIL: could not read admin/config.yml — " + (r.stderr || "").slice(0, 200));
+    failed = true;
+  } else {
+    const cfg = JSON.parse(r.stdout);
+    if (cfg === null) {
+      console.error("\nFAIL: admin/config.yml has no \"how\" collection, so content/how.json");
+      console.error("      cannot be edited in admin at all.");
+      failed = true;
+    } else {
+      const inCfg = new Set(cfg);
+      const missing = Object.keys(how).filter((k) => !inCfg.has(k));
+      const extra = cfg.filter((k) => !(k in how));
+      if (missing.length) {
+        failed = true;
+        console.error(`\nFAIL: ${missing.length} key(s) in content/how.json are missing from the`);
+        console.error(`      "how" collection in admin/config.yml. Publishing that file from admin`);
+        console.error(`      would DELETE them: ${missing.join(", ")}`);
+      }
+      if (extra.length) {
+        failed = true;
+        console.error(`\nFAIL: admin/config.yml configures key(s) that do not exist in`);
+        console.error(`      content/how.json: ${extra.join(", ")}`);
+      }
+      if (!missing.length && !extra.length) {
+        console.log(`  admin/config.yml covers all ${cfg.length} keys`);
+      }
+    }
+  }
+}
+
 if (!live.includes("en")) {
   failed = true;
   console.error(`\nFAIL: "en" is not in live. English is the fallback every other language`);

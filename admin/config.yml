@@ -394,3 +394,374 @@ collections:
               - { label: "English", name: "en", widget: "string", required: false }
               - { label: "Finnish", name: "fi", widget: "string", required: false }
               - { label: "Swedish", name: "sv", widget: "string", required: false }
+
+  # Generated from content/how.json — see scripts/check-how.mjs, which fails
+  # if this config and that file ever disagree. THAT CHECK IS LOAD-BEARING:
+  # Decap writes back only the fields it is told about, so a key present in
+  # the JSON but missing here is silently DELETED the first time this file
+  # is published from admin.
+  - name: "how"
+    label: "How this works page"
+    files:
+      - name: "how"
+        label: "How this works page"
+        file: "content/how.json"
+        fields:
+          # kept so publishing from admin does not strip it
+          - { label: "_comment", name: "_comment", widget: "hidden" }
+          # kept so publishing from admin does not strip it
+          - { label: "_liveComment", name: "_liveComment", widget: "hidden" }
+          - label: "Languages this page is public in"
+            name: "live"
+            widget: "select"
+            multiple: true
+            options: ["en", "fi", "sv"]
+            default: ["en"]
+            hint: "A language appears on the site only if it is ticked here AND fully written. ALWAYS LEAVE ENGLISH TICKED — every other language falls back to it. Ticking a language publishes that whole language at once, so read it through first."
+          - label: "Eyebrow (small line above the title)"
+            name: "eyebrow"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Page title"
+            name: "title"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Lede (the sentence under the title)"
+            name: "lede"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Link label in the FAQ"
+            name: "faqLink"
+            widget: "object"
+            hint: "Shown at the end of the FAQ's joining answer, which is the only place this page is linked from."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Section 1 heading"
+            name: "zonesTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Left panel heading"
+            name: "zonesLeftH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Left panel subtitle"
+            name: "zonesLeftSub"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Left panel bullets"
+            name: "zonesLeft"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Right panel heading"
+            name: "zonesRightH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Right panel subtitle"
+            name: "zonesRightSub"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Right panel bullets"
+            name: "zonesRight"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Note under the two panels"
+            name: "zonesNote"
+            widget: "object"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Section 2 heading"
+            name: "splitTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Instant column heading"
+            name: "splitNowH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Instant column subtitle"
+            name: "splitNowSub"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Instant column bullets"
+            name: "splitNow"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "By asking column heading"
+            name: "splitAskH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "By asking column subtitle"
+            name: "splitAskSub"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "By asking column bullets"
+            name: "splitAsk"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Note under the two columns"
+            name: "splitNote"
+            widget: "object"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Section 3 heading"
+            name: "whyTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Paragraphs"
+            name: "why"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Section 4 heading"
+            name: "rulesTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Yes list heading"
+            name: "rulesYesH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Yes list"
+            name: "rulesYes"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "No list heading"
+            name: "rulesNoH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "No list"
+            name: "rulesNo"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "The stop-scrolling test"
+            name: "rulesTest"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Closing line of the test box"
+            name: "rulesCall"
+            widget: "object"
+            hint: "Appears inside the test box, under a dividing rule."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Section 5 heading"
+            name: "startTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Step 1 heading"
+            name: "step1H"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Step 1 bullets"
+            name: "step1"
+            widget: "list"
+            hint: "The last bullet here is the one the form box appears inside. You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Step 1 bullets after the form box"
+            name: "step1Tail"
+            widget: "list"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Form box heading"
+            name: "formBoxH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Form box opening paragraph"
+            name: "formBoxLead"
+            widget: "object"
+            hint: "The box that sits inside the last Step 1 bullet. You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Form box list intro"
+            name: "formBoxFourH"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "The four questions"
+            name: "formBoxFour"
+            widget: "list"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Form box closing paragraph"
+            name: "formBoxNoForm"
+            widget: "object"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          # kept so publishing from admin does not strip it
+          - { label: "_sendHrefComment", name: "_sendHrefComment", widget: "hidden" }
+          - label: "Where the joining form lives"
+            name: "sendHref"
+            widget: "string"
+            hint: "Where the “Send it all through” link points. #/msg/ is the site's own contact form; swap it for a dedicated joining form when one exists."
+          - label: "Where to send it"
+            name: "sendVia"
+            widget: "object"
+            hint: "Must contain {href} inside the link brackets — it is replaced with the address in \"Where the joining form lives\" below. You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Step 2 heading"
+            name: "step2H"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Step 2 bullets"
+            name: "step2"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Step 3 heading"
+            name: "step3H"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Step 3 bullets"
+            name: "step3"
+            widget: "list"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "The two-contacts note"
+            name: "contactsNote"
+            widget: "object"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "The batching note"
+            name: "batchNote"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
+          - label: "Section 6 heading"
+            name: "aiTitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Finnish", name: "fi", widget: "string", required: false }
+              - { label: "Swedish", name: "sv", widget: "string", required: false }
+          - label: "Paragraphs"
+            name: "ai"
+            widget: "list"
+            hint: "You can use **bold**, *italic* and [link text](https://example.com). Nothing else — other HTML is shown as plain text."
+            fields:
+              - { label: "English", name: "en", widget: "text", required: false }
+              - { label: "Finnish", name: "fi", widget: "text", required: false }
+              - { label: "Swedish", name: "sv", widget: "text", required: false }
