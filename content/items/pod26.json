@@ -1,0 +1,73 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/pod26.jpg",
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/pod26-power.jpg",
+  "mgSlug": "",
+  "site": "4mscompany.com",
+  "hp": 26,
+  "price": 60,
+  "name": "Pod26 (powered)",
+  "fmt": "eu",
+  "extra": {
+    "power": "4ms Box Power 1.0 — +12V 700mA · −12V 280mA · +5V 1000mA",
+    "depth": "33mm available module depth",
+    "pull": {
+      "q": "Low-cost, portable, compact enclosure that turns Eurorack modules into table-top instruments.",
+      "src": "4ms",
+      "url": "https://4mscompany.com/pod26.php"
+    },
+    "quotes": [
+      {
+        "t": "Made from 100% anodized aluminum, Pods are light, tough and perfect for on-the-go set ups.",
+        "s": "4ms"
+      },
+      {
+        "t": "Check the depth of your modules before purchasing as some modules may not fit in the Pod26.",
+        "s": "4ms · worth knowing before you buy"
+      },
+      {
+        "t": "No power brick with this one. It takes 15–20V DC, 2.1mm positive tip, and 4ms never included one anyway — but you do have to buy it before the case does anything.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "4ms",
+        "title": "Pod26 — the manufacturer's page and full specs",
+        "url": "https://4mscompany.com/pod26.php"
+      },
+      {
+        "src": "4ms",
+        "title": "Pods — the whole range, if you need one deeper than 33mm",
+        "url": "https://4mscompany.com/pods.php"
+      },
+      {
+        "src": "Thomann",
+        "title": "Pod26 (powered) — new price, and the brick sold beside it",
+        "url": "https://www.thomannmusic.com/4ms_pod26_powered.htm"
+      }
+    ],
+    "videos": []
+  },
+  "tone": "black",
+  "cat": "Other",
+  "mfr": "4ms",
+  "blurb": {
+    "en": "A 26HP desktop case in black anodised aluminium — two or three modules, standing on your desk instead of living in a rack. The powered version, so the Box Power board is built in: +12V 700mA, −12V 280mA, +5V 1000mA, two 16-pin headers, and a second barrel jack so you can daisy-chain another Pod off it. M3 threaded rails, rubber feet, 190 grams. Two things to know. Only 33mm of module depth, which is shallow — check yours before you buy, because plenty of modules are deeper than that. And no power brick: it wants 15–20V DC on a 2.1mm positive-tip plug, and you will need to buy one before the case will do anything.",
+    "fi": "26HP:n pöytäkotelo mustaksi anodisoitua alumiinia — kaksi tai kolme moduulia pöydällä telineen sijaan. Virtalähteellinen versio, eli Box Power -kortti on sisäänrakennettu: +12V 700mA, −12V 280mA, +5V 1000mA, kaksi 16-napaista liitintä ja toinen holkkiliitin, josta voi ketjuttaa toisen Podin. M3-kierrekiskot, kumijalat, 190 grammaa. Kaksi asiaa on syytä tietää. Moduulisyvyyttä on vain 33 mm, mikä on vähän — tarkista omiesi mitat, sillä moni moduuli on tätä syvempi. Eikä mukana ole virtalähdettä: kotelo tarvitsee 15–20V DC:tä 2,1 mm:n plusnapaisella liittimellä, ja sellainen on hankittava ennen kuin kotelolla tekee mitään.",
+    "sv": "Ett 26HP bordskabinett i svartanodiserad aluminium — två eller tre moduler på skrivbordet i stället för i ett rack. Den strömförsedda versionen, så Box Power-kortet sitter i: +12V 700mA, −12V 280mA, +5V 1000mA, två 16-poliga kontakter och ett andra hylsuttag för att kedjekoppla ännu en Pod. M3-gängade skenor, gummifötter, 190 gram. Två saker att veta. Bara 33 mm moduldjup, vilket är grunt — mät dina moduler först, för många är djupare än så. Och ingen nätadapter medföljer: kabinettet vill ha 15–20V DC med 2,1 mm pluspol i mitten, och en sådan måste köpas innan kabinettet gör någonting."
+  },
+  "id": "pod26",
+  "negotiating": false,
+  "cats": [
+    "Other",
+    "Case"
+  ],
+  "who": "spongefile"
+}
