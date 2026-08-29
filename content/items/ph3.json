@@ -27,7 +27,7 @@
     "fi": "Kaksi morffaavaa wavetable-oskillaattoria, 512 aaltoa 16-bittisenä 8x8x8-kuutiossa. Toimii myös CV-ohjattuna waveshaperina.",
     "sv": "Två morfande wavetable-oscillatorer, 512 vågor i 16 bitar i en 8x8x8-kub. Fungerar även som CV-styrd vågformare."
   },
-  "img": "https://ime-assets.s3.amazonaws.com/uploads/image/image/39/piston_honda_3.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/ph3.jpg",
   "negotiating": false,
   "extra": {
     "depth": "40 mm",

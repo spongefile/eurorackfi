@@ -28,7 +28,7 @@
     "fi": "Monome-tyylinen RGB-padiruudukko NeoTrellis-korteista. Puhuu grid-protokollaa ja toimii nornsin kanssa.",
     "sv": "Monome-liknande RGB-padrutnät byggt av NeoTrellis-kort. Talar grid-protokollet och funkar med norns."
   },
-  "img": "https://cdn-shop.adafruit.com/970x728/3938-09.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/neotrellis.jpg",
   "imgIsComponent": true,
   "negotiating": false,
   "extra": {

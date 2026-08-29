@@ -6,7 +6,7 @@
     "led": 3,
     "sc": 0
   },
-  "img": "https://mutable-instruments.net/modules/links/images/front.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/links.jpg",
   "mgSlug": "mutable-instruments-links",
   "site": "mutable-instruments.net",
   "hp": 4,

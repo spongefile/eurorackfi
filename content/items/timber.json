@@ -26,7 +26,7 @@
     "fi": "Kaksi muokkauspiiriä, driver ja folder, sekä jänniteohjattu ristihäivytys niiden ja puhtaan signaalin välillä.",
     "sv": "Två formningskretsar, en driver och en folder, med spänningsstyrd crossfade mellan dem och den rena signalen."
   },
-  "img": "https://bastl-instruments.com/thumbs/eurorack/modules/timber/001-326x1200.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/timber.jpg",
   "negotiating": false,
   "extra": {
     "quotes": [

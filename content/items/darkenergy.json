@@ -27,7 +27,7 @@
     "fi": "Analoginen monosyna, täysi CV-patchbay yläreunassa ja USB-MIDI sisään. Doepfer pöydälle.",
     "sv": "Analog monosynt med full CV-patchbay längs överkanten och USB-MIDI in. Doepfer för skrivbordet."
   },
-  "img": "https://doepfer.de/Dark_Energy_II_medium.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/darkenergy.jpg",
   "negotiating": false,
   "extra": {
     "reviews": [

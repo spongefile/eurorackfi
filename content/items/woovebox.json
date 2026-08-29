@@ -28,7 +28,7 @@
     "fi": "Kämmenkokoinen groovebox: 16-osainen monitimbraalinen syntetisaattori, 512-paikkainen sampleri ja täysi step/song-sekvensseri 69 grammassa. Kuusitoista kosketuskytkintä toimii sekä näppäiminä että padeina, mukana langaton MIDI ja audio-lähtö, joka toimii myös sync-lähtönä modulaariin patchattaessa.",
     "sv": "Ficksynt med 16-delad multitimbral syntmotor, 512-plats sampler och en fullständig step/song-sekvensiator på 69 gram. Sexton touchknappar fungerar både som tangenter och pads, med trådlös MIDI och en audioutgång som även fungerar som sync-utgång vid patchning mot en modul."
   },
-  "img": "https://d2kvhj8ixnchwb.cloudfront.net/woovebox-prod-kfsrescdn/gallery/71abaa78-2677-4020-8810-1127694d82d5.jpg.5049e8ae82b501c75ca315142f9171bf",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/woovebox.jpg",
   "negotiating": false,
   "extra": {
     "quotes": [

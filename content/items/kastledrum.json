@@ -27,7 +27,7 @@
     "fi": "Taskukokoinen rumpusyna patch-piikeillä ja AA-paristoilla. Kaksi oskillaattoria, kohinalähde ja paljon meteliä.",
     "sv": "Fickstor trumsynt med patchstift och AA-batterier. Två oscillatorer, en brusgenerator och mycket oväsen."
   },
-  "img": "https://bastl-instruments.com/thumbs/instruments/kastle-drum/001-1000x847.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/kastledrum.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

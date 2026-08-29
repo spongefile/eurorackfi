@@ -27,7 +27,7 @@
     "fi": "Vokaalien morffaus stereona, suoraan NF-1:stä: kymmenen valmista vokaalia, neljä muokattavaa kaistaa, kaikki CV:n alla.",
     "sv": "Stereo vokalmorfning rakt ur NF-1: tio färdiga vokaler, fyra redigerbara band, allt under CV."
   },
-  "img": "https://www.modormusic.com/images/FormantEurorack.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/modor.jpg",
   "negotiating": false,
   "extra": {
     "pull": {

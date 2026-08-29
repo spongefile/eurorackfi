@@ -27,7 +27,7 @@
     "fi": "Analoginen kaksikanavainen funktiogeneraattori, VCA per kanava. Verhokäyrä, slew tai LFO samasta kymmenestä HP:stä.",
     "sv": "Analog dubbel funktionsgenerator med en VCA per kanal. Envelope, slew eller LFO ur samma tio HP."
   },
-  "img": "https://cosmotronic.nl/cms/wp-content/uploads/2023/04/Delta-v-front.png",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/deltav.jpg",
   "negotiating": false,
   "extra": {
     "videos": [

@@ -26,7 +26,7 @@
     "fi": "Puolimodulaarinen sekvensseri-syna patchbaylla ja luonteella, joka väittää vastaan. Ensimmäinen versio.",
     "sv": "Halvmodulär sekvensiator-synt med patchbay och ett humör som säger emot. Första revisionen."
   },
-  "img": "https://bastl-instruments.com/thumbs/instruments/softpop/004-1677x1200.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/softpop.jpg",
   "negotiating": false,
   "extra": {
     "pull": {
