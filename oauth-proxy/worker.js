@@ -126,6 +126,66 @@ function newToken() {
   return out.join("-");
 }
 
+/* SELLER EMAIL ADDRESSES LIVE HERE, IN KV, FOR THE SAME REASON THE TOKENS
+   DO. spongefile/eurorackfi is public and content/sellers/*.json is fetched
+   by every visitor's browser, so an address written there would be
+   world-readable, permanent in git history even if later removed, and
+   harvestable. admin/config.yml already carries that rule on the `form`
+   field; this is the same rule. Addresses are entered on /token/<key>,
+   which is gated on being a repo collaborator, and never leave KV. */
+const emailKey = (sellerKey) => "email:" + sellerKey;
+
+/* Deliberately loose. This is a sanity check against a slip of the
+   keyboard, not an attempt to decide what a valid address is — the real
+   verdict comes from whether the mail is delivered, and over-strict
+   patterns reject legitimate addresses. */
+const looksLikeEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@.]+\.[^\s@]+$/.test(s.trim());
+
+/* Sending goes through Resend. The API key is a worker SECRET and is never
+   committed:  wrangler secret put RESEND_API_KEY
+   MAIL_FROM must be an address on a domain verified in that Resend
+   account, or every send is rejected — set it with:
+      wrangler secret put MAIL_FROM
+   Returns a result rather than throwing: a failed send must leave the page
+   usable and say what happened, since the link itself is still right there
+   to copy by hand. */
+async function sendSellerLink(env, { to, sellerKey, link }) {
+  if (!env.RESEND_API_KEY) {
+    return { ok: false, error: "No RESEND_API_KEY set on the worker — run: wrangler secret put RESEND_API_KEY" };
+  }
+  const from = env.MAIL_FROM || "eurorack.fi <noreply@eurorack.fi>";
+
+  /* FINNISH BELOW IS MINE AND UNREVIEWED — flagged to the user and to
+     design rather than presented as settled copy. The secrecy sentence is
+     the ONE exception: it is quoted verbatim from the seller page, where
+     it is the user's own approved wording, so the warning a seller reads
+     in the mail is word-for-word the one they meet on the page. If that
+     line is ever reworded, reword it here too. */
+  const subject = "Oma linkkisi eurorack.fi:hin";
+  const text =
+    `Hei,\n\n` +
+    `tässä oma linkkisi eurorack.fi:hin. Sillä voit merkitä omat kohteesi myydyiksi tai neuvottelussa oleviksi:\n\n` +
+    `${link}\n\n` +
+    `Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!\n\n` +
+    `— eurorack.fi\n`;
+
+  try {
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from, to: [to], subject, text }),
+    });
+    if (!r.ok) {
+      const detail = await r.text().catch(() => "");
+      return { ok: false, error: `Resend refused it (${r.status}). ${detail.slice(0, 300)}` };
+    }
+    await env.SELLER_STATE.put("emailsent:" + sellerKey, new Date().toISOString());
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: `Could not reach Resend: ${e}` };
+  }
+}
+
 async function readState(env) {
   const raw = await env.SELLER_STATE.get(STATE_KEY);
   return raw ? JSON.parse(raw) : {};
@@ -312,6 +372,24 @@ Login complete — this window should close automatically.
           await env.SELLER_STATE.put("tok:" + tok, sellerKey);
           return new Response(null, { status: 303, headers: { Location: p } });
         }
+        if (form.get("action") === "sendlink") {
+          const addr = String(form.get("email") || "").trim();
+          if (!looksLikeEmail(addr)) {
+            return new Response(null, { status: 303, headers: { Location: p + "?sent=bad" } });
+          }
+          /* Save first, send second. If the send fails the address is still
+             stored, so retrying is one button rather than retyping it. */
+          await env.SELLER_STATE.put(emailKey(sellerKey), addr);
+          let tok = await env.SELLER_STATE.get("sel:" + sellerKey);
+          if (!tok) {
+            tok = newToken();
+            await env.SELLER_STATE.put("sel:" + sellerKey, tok);
+            await env.SELLER_STATE.put("tok:" + tok, sellerKey);
+          }
+          const res = await sendSellerLink(env, { to: addr, sellerKey, link: `${url.origin}/s/${tok}` });
+          const q = res.ok ? "?sent=ok" : "?sent=fail&why=" + encodeURIComponent(res.error || "");
+          return new Response(null, { status: 303, headers: { Location: p + q } });
+        }
       }
 
       let tok = await env.SELLER_STATE.get("sel:" + sellerKey);
@@ -321,13 +399,50 @@ Login complete — this window should close automatically.
         await env.SELLER_STATE.put("tok:" + tok, sellerKey);
       }
       const link = `${url.origin}/s/${tok}`;
+      const storedEmail = (await env.SELLER_STATE.get(emailKey(sellerKey))) || "";
+      const lastSent = await env.SELLER_STATE.get("emailsent:" + sellerKey);
+      const sent = url.searchParams.get("sent");
+      const why = url.searchParams.get("why") || "";
+      /* Says what happened to the WORLD, not just to the request: on a
+         failure the link is still valid and still copyable above, and
+         that is the thing the user needs to know before deciding whether
+         to retry or just paste it into a message themselves. */
+      const notice =
+        sent === "ok" ? `<div class="okbox">Sent to ${esc(storedEmail)}.</div>`
+        : sent === "bad" ? `<div class="errbox">That doesn't look like an email address — nothing was sent or saved.</div>`
+        : sent === "fail" ? `<div class="errbox">Not sent. The address is saved and the link above is still valid, so you can retry or send it by hand.<br><span class="mono">${esc(why)}</span></div>`
+        : "";
       return new Response(
-        page(`${sellerKey} — link`, `
+        page(`${sellerKey} — link`, {
+          css: `
+.okbox{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);
+ padding:.6rem .8rem;margin-bottom:1rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem}
+.errbox{background:var(--sold-soft);color:var(--sold);border:1px solid var(--sold);
+ padding:.6rem .8rem;margin-bottom:1rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.5}
+.mailrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem}
+.mailrow input{flex:1 1 16rem;min-width:0;font-family:"IBM Plex Mono",monospace;font-size:.8rem;
+ padding:.55rem .7rem;background:var(--panel2);border:1px solid var(--line2);color:var(--ink)}
+`,
+          html: `
           <h1>${esc(sellerKey)}</h1>
           <p class="sub">Their private link. Send it to them however you like.</p>
+          ${notice}
           <div class="card">
             <code class="link" id="lnk">${esc(link)}</code>
             <button class="btn" id="copy" type="button">Copy link</button>
+          </div>
+          <div class="card">
+            <form method="POST">
+              <input type="hidden" name="action" value="sendlink">
+              <div class="mailrow">
+                <input type="email" name="email" placeholder="seller@example.com"
+                  value="${esc(storedEmail)}" autocomplete="off" spellcheck="false">
+                <button class="btn" type="submit">${storedEmail ? "Send link again" : "Save &amp; send link"}</button>
+              </div>
+            </form>
+            <p class="note">Mails them this link in Finnish. The address is stored on the worker,
+              NOT in the repo — the repo is public, so an address committed there would be
+              world-readable and permanent.${lastSent ? ` Last sent ${esc(lastSent.slice(0, 16).replace("T", " "))} UTC.` : ""}</p>
           </div>
           <div class="card">
             <form method="POST">
@@ -345,7 +460,8 @@ Login complete — this window should close automatically.
               navigator.clipboard.writeText(document.getElementById("lnk").textContent.trim());
               this.textContent="Copied";
             });
-          </script>`),
+          </script>`,
+        }),
         { headers: { "Content-Type": "text/html; charset=utf-8" } }
       );
     }
@@ -485,11 +601,16 @@ function sellerPage(sellerKey, tok) {
 `,
     html: `
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
+    <!-- A heart, and it STAYS --accent rather than going red. Red is spoken
+         for twice on this site already — --haggle for "make offer",
+         --sold for gone — and a third warm-red meaning would dilute both.
+         This banner can sit on the same page as the red haggle toggle, so
+         a red heart would be the third red in view. Blue reads as unusual
+         for about a second and then reads as the site's own colour. -->
     <svg class="jar" viewBox="0 0 100 100" aria-hidden="true">
-      <rect x="26" y="34" width="48" height="50" rx="6" fill="none" stroke="currentColor" stroke-width="7"/>
-      <path d="M22 34h56" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-      <path d="M42 46h16" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-      <circle cx="50" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="7"/>
+      <path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23
+               C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z"
+            fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
     </svg>
     <span class="txt"><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
     <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
@@ -534,7 +655,10 @@ function sellerPage(sellerKey, tok) {
        link not to post it. The protection needs both halves, so if either
        is reworded check the other. */
     keep:"Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!",
-    /* design's, unreviewed by the user */
+    /* The user's own. This page has no language switcher — it is Finnish
+       only — so en/sv exist but are unused; recorded here so they aren't
+       re-derived if that ever changes: "I understand" (the user's),
+       "Jag förstår" (design's). */
     ack:"Ymmärrän",
     /* "milloin VAAN", not "vain" — the user wrote it back this way. The
        colloquial form, closer to the site's own voice ("Vaihtokaupatkin
