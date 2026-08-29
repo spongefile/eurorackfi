@@ -53,6 +53,9 @@ b{color:var(--ink)}
 
 /* ---------- diagram 2: what you can change ---------- */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.9rem}
+/* What the seller controls sits on the RIGHT. Flipped with order, not in the
+   source, so the stacked mobile layout still opens with it. */
+.col.ask{order:1} .col.now{order:2}
 .col{border:1px solid var(--line2);background:var(--panel)}
 .col .hd{padding:.75rem 1rem;border-bottom:1px solid var(--line2)}
 .col.now .hd{background:var(--accent-soft)}
@@ -99,6 +102,7 @@ b{color:var(--ink)}
  .zones{grid-template-columns:1fr}
  .gap{width:auto;height:34px}
  .split,.rules{grid-template-columns:1fr}
+ .col.ask,.col.now{order:0}
  h1{font-size:2rem}
 }
 </style></head>
@@ -126,7 +130,7 @@ control, and what belongs here.</p>
   <div class="gap">→</div>
   <div class="zone them">
     <h3>On Tally</h3>
-    <div class="sub">the contact form, not us</div>
+    <div class="sub">your own form, not us</div>
     <ul>
       <li>Buyers' names and emails</li>
       <li>What they wrote to you</li>
@@ -134,9 +138,10 @@ control, and what belongs here.</p>
     </ul>
   </div>
 </div>
-<p class="note">We hold no buyer details at all. Messages go through Tally's form
-straight to a shared inbox — nothing about a buyer is ever stored on this site, so
-there is nothing here to leak, sell, or ask us to delete.</p>
+<p class="note">We hold no buyer details at all. Messages go through your own form
+straight to your Tally inbox — <b>we never see them.</b> Nothing about a buyer is
+ever stored on this site, so there is nothing here to leak, sell, or ask us to
+delete.</p>
 
 <h2>What you change, and what you ask for</h2>
 <div class="split">
@@ -221,8 +226,9 @@ scrolling at it. Weird headphones, yes. Baby clothes, no. A generic phone charge
         Everything arrives hidden, so nothing goes public until you say so.</li>
       <li><b>Prices</b> for the ones you would sell.</li>
       <li><b>A wishlist</b> — what you are looking for.</li>
-      <li><b>A way for buyers to reach you.</b> A Tally form of your own with
-        <i>notify by email</i> switched on, or honestly any page where someone can
+      <li><b>A way for buyers to reach you.</b> A Tally form of your own —
+        enquiries land in your Tally inbox, and by email too if you switch
+        notifications on. Or honestly any page where someone can
         contact you — your own site's contact form is fine.</li>
       <li><b>Your email address</b>, so we can send you your link. This one is for
         us, not for buyers.</li>
