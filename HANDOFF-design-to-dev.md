@@ -1679,35 +1679,39 @@ Shown on the seller page after a toggle saves.
 
 | en | fi | sv |
 |---|---|---|
-| Saved. The site updates in a moment. If the site is open somewhere else, reload it. | `Tallennettu. Sivusto päivittyy hetken kuluttua. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Sajten uppdateras om en stund. Om sajten är öppen någon annanstans, ladda om den.` |
+| Saved. The change shows on the site within a minute. If the site is open somewhere else, reload it. | `Tallennettu. Muutos näkyy sivustolla minuutin sisällä. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Ändringen syns på sajten inom en minut. Om sajten är öppen någon annanstans, ladda om den.` |
 
-**No number, deliberately.** The user's brief was: assume a non-technical
-reader, say what to expect and what to do, short sentences, do not overwhelm. A
-figure fails all four — it invites the reader to time it, and a "5 seconds"
-that is occasionally 40 destroys more confidence than a vague phrase that is
-always true. `hetken kuluttua` / `om en stund` stays honest whatever the real
-latency turns out to be.
+**The measured facts this is written against** (dev, 2026-08-29):
+
+- Their own page updates **instantly** — local state re-renders before the
+  request goes out, rolling back only on a real failure.
+- A **fresh load** of the site shows the change in **under a second** measured,
+  but Cloudflare KV is documented as eventually consistent up to ~60s across
+  regions. Sub-second is the realistic case here; **"within a minute" is the
+  one that is always true**, so that is what we promise.
+- **A stale tab NEVER updates.** Not slowly — never. The site reads state once
+  at load and does not poll.
+
+**That last fact rewrote this string.** My first draft said *"the site updates
+in a moment"*, which is actively harmful: a seller reads it, switches to a
+eurorack.fi tab they already had open, and waits for something that will never
+happen. The sentence would have manufactured the exact failure the string
+exists to prevent.
 
 **Three sentences, one job each:**
 
-1. **`Tallennettu.`** — the thing they actually want to know. It saved. One
-   word, first, before anything else.
-2. **`Sivusto päivittyy hetken kuluttua.`** — sets the expectation that it is
-   not instant, so a short delay reads as normal rather than as failure.
-3. **The reload instruction** — the only sentence that asks anything of them,
-   and it is last.
+1. **`Tallennettu.`** — what they want to know, first, one word.
+2. **A bounded promise that is always true.** "Within a minute" beats a vague
+   "shortly" *and* beats an accurate "under a second": it sets a ceiling, so
+   any real wait feels early rather than late.
+3. **The reload instruction** — the only ask, and the one that matters, since
+   an open tab is otherwise permanently wrong.
 
-**Sentence 3 is the one that earns its place.** The likeliest failure is not
-latency at all: the seller taps Hide, switches to a eurorack.fi tab that was
-already open, sees the item still listed, and concludes it did not work. Then
-they message the user to check — which is exactly the admin load this feature
-exists to remove. That sentence is the whole defence against it.
+**Deliberately not mentioned:** that their own page is instant (they can see
+that — it is the row they just tapped), and the 5-minute git reconcile, which
+dev confirmed is bookkeeping invisible to visitors. Both would add words
+without adding certainty, against a brief that said do not overwhelm.
 
-**No jargon.** "If the site is open somewhere else" rather than *tab* or
-*browser* — it covers another tab, another phone, or a laptop left open in the
-kitchen, and asks no technical vocabulary of the reader.
-
-**Still verify the real latency** (question outstanding with dev). If the
-honest worst case turns out to be minutes rather than seconds, `hetken
-kuluttua` is too soft and this string needs revisiting — the copy is written to
-survive a small number, not a large one.
+**No jargon.** "If the site is open somewhere else" covers another tab, another
+phone, or a laptop left open in the kitchen, and asks no technical vocabulary
+of the reader.
