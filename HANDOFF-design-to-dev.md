@@ -213,11 +213,18 @@ ready. Do not swap in press shots.
 | Form sent | form swaps for a confirmation panel |
 | Publish (admin) | **disabled** while Swedish copy is missing |
 
-**There is no cash-only state, and no sold state.** Cash-only went when the
-inventory was corrected. Sold went later: an item no longer for sale is **deleted
-from the data outright**, so it vanishes from grid, rack, counts and seller totals.
-There is no record to key on — the stale-link page is generic ("that one's gone"),
-dressed in `--sold` / `--sold-soft`, and cannot name the module. Do not build either state.
+**There is no cash-only state.** That went when the inventory was corrected.
+
+**SOLD IS NOW A HIDDEN STATE, NOT A DELETION — reversed by the user 2026-08-29.**
+This supersedes the previous rule, which deleted the record outright and
+forbade building either state. Ignore that; it is quoted below only so the
+change is legible.
+
+> *Previously:* "an item no longer for sale is deleted from the data outright…
+> There is no record to key on — the stale-link page is generic ('that one's
+> gone') and cannot name the module. Do not build either state."
+
+A hidden item keeps its record and disappears from everything a buyer sees.
 
 **In negotiation** replaced it: someone has messaged, the item is still for sale.
 A hand-tagged id map. Never amber — amber means caution sitewide — and never red,
@@ -1470,3 +1477,75 @@ The pinned name must not be `inert` or otherwise unreachable — it is not
 interactive here, but the same class of mistake as the collbar. And check two
 columns at 320px, not just 390: the narrowest common phone is where a
 two-column tile gets too tight for a manufacturer name to wrap sanely.
+
+## Seller controls and the hidden state (approved 2026-08-29)
+
+Rendered spec: `seller-controls-mockup.html`. Two new surfaces. Mechanism is
+dev's; the states and the look are here.
+
+### 1. What "hidden" does to counts — state it, do not infer it
+
+A hidden item **drops out of everything a buyer sees**: the grid, the rack
+figure, the HP total, the hero stats, every category count, and the seller's
+own item count.
+
+**This is deliberately the OPPOSITE of the accessories rule**, where shop items
+count everywhere. The two are not inconsistent: those counts answer *what can I
+buy*, and an accessory can be bought while a hidden item cannot. Do not
+generalise either rule from the other — that is exactly why this paragraph
+exists.
+
+The record survives, so `#/m/<id>` still resolves. That is the whole point.
+
+### 2. The hidden-item page can now name the module
+
+The old generic "that one's gone" existed **because nothing survived deletion**.
+That constraint is gone, so the page shows what the link was for: the module's
+maker and name, its photo **dimmed**, a `Myyty` marker in `--sold` /
+`--sold-soft`, and a way back to the grid.
+
+The photo stays because it confirms the visitor found the right thing; at full
+strength it would read as still for sale. `--sold`/`--sold-soft` are reserved
+for exactly this and used nowhere else on the site.
+
+Copy is **new and needs the user** — draft only, English, for them to replace
+and to write fi/sv: *"This one's gone. Have a look at the rest — similar things
+come up often."* Do not machine-translate.
+
+### 3. The seller's control page
+
+The only part of this site whose audience is a **seller**, not a buyer. Usually
+reached on a phone, one-handed, the minute something sells. The visual language
+was built to sell things to strangers; this is a control panel and should be
+plainer.
+
+- **One three-state choice per item, not two toggles.** For sale / In
+  negotiation / Sold cannot overlap and run in that order, so it is a single
+  decision rather than two that interact. It also removes the question "what
+  does in-negotiation mean once it is sold".
+- **Every target is a full-width third of the row, minimum 44px.**
+- **A sold row recedes but never moves.** No reordering, no vanishing. The undo
+  must be exactly where the seller last saw the item — and something jumping
+  away under the thumb is alarming when it was tapped by mistake.
+- **Hidden items are listed**, recessed, with their control fully legible. If
+  they were filtered out the undo would be unreachable by the one person who
+  needs it.
+- **No prices, no editing, no adding.** The state is the whole job.
+- Header names the seller with their dot, and says plainly that only they can
+  see the page.
+
+Needs `<meta name="robots" content="noindex">` — the URL is secret and should
+not end up in an index. Dev's call how, but it is a design requirement that
+this page never appears in search.
+
+### 4. In negotiation, now seller-set
+
+Unchanged in meaning and copy, but it stops being a hand-tagged id map. **The
+required still-available clause matters more, not less** — sellers set this
+themselves now, so more items will carry it, and without the clause the state
+reads as a soft sold and nobody messages:
+`fi "Neuvottelussa — voit silti kysyä"` / `sv "Under förhandling — du kan ändå fråga"` /
+`en "In negotiation — you can still ask"`.
+
+Still never amber (amber means caution sitewide) and never red (which would say
+*gone* about something still for sale).
