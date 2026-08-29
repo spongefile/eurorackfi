@@ -1914,9 +1914,9 @@ https://eurorack.fi/s/ostrich-hair-cookie-lamp
 
 Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!
 
-Jos linkki karkaa vääriin käsiin, kerro minulle niin teen uuden.
+Jos linkki karkaa vääriin käsiin, kerro meille niin teemme uuden.
 
-— spongefile
+— eurorack.fi adminit
 ```
 
 All of it is **mine and unreviewed** except the secrecy sentence, which is the
@@ -1942,10 +1942,19 @@ untrustworthy when it arrives without context.
    or in negotiation.
 3. **The subject names their gear, not the link.** `Tavarasi eurorack.fi:ssä`
    is about them; a subject about a link is what a phishing mail leads with.
-4. **Signed by a person.** These people know spongefile, not a domain. Make the
-   signature a **configurable name** rather than hardcoding it — Sampo may send
-   these too, and a mail signed by the wrong person is worse than one signed by
-   a site.
+4. **Signed `— eurorack.fi adminit`** — the user's wording, overruling my
+   "sign it with a person's name". Theirs is better: several people may send
+   these, so a singular name would be wrong for whoever did not, and it needs
+   no configuration. It also matches the site's own plural voice — *"Muutama
+   meistä…"*, *"Tiedät keneltä ostat."*
+
+   **This pluralises the recovery line too**: `kerro meille niin teemme uuden`,
+   not `kerro minulle niin teen uuden`. A first-person promise under a
+   collective signature reads as a slip.
+
+   My trust argument for a personal name does not survive contact with the
+   rewrite anyway — the work is done by the opening sentence, which states a
+   fact only a real sender knows. The signature was never carrying it.
 5. **Says what to do if it leaks.** The page can rely on being re-openable; the
    mail will be sitting in an inbox in a year, and it is the only place a
    worried reader will look. It also makes the secrecy line feel like care
