@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — saa tinkiä badge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{--bg:#E7EBF0;--bg2:#DCE2EA;--panel:#FAFBFD;--panel2:#EFF3F8;
+ --ink:#0F1722;--ink2:#36435A;--muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;--on:#FAFBFD;
+ --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;
+ --haggle:#D22B2B;
+ --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);}
+*{box-sizing:border-box}
+body{margin:0;padding:32px 36px 70px;background:var(--bg);color:var(--ink);
+ font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.025em;margin:0 0 .5rem}
+.sub{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;color:var(--ink2);
+ line-height:1.6;max-width:68ch;margin:0 0 1.8rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.2rem 0 .6rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--muted);
+ line-height:1.7;margin:.7rem 0 0;max-width:74ch}
+.row{display:flex;gap:1.8rem;flex-wrap:wrap;align-items:flex-start}
+
+/* ---------- the badge ---------- */
+.tink{position:relative;display:inline-block;width:var(--s,68px);height:var(--s,68px);
+ flex:0 0 auto;transform:rotate(-9deg)}
+.tink svg{display:block;width:100%;height:100%;
+ filter:drop-shadow(0 1px 2px rgba(15,23,34,.35))}
+.tink span{position:absolute;inset:0;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;color:#fff;
+ font-family:"IBM Plex Mono",monospace;font-weight:600;
+ font-size:calc(var(--s,68px)*.165);line-height:1.15;letter-spacing:.02em;
+ text-transform:lowercase;text-align:center}
+
+/* ---------- grid card ---------- */
+.card{width:250px;background:var(--panel);border:1px solid var(--line2);box-shadow:var(--shadow)}
+.card .ph{position:relative;aspect-ratio:4/3;
+ background:linear-gradient(160deg,#2f343a,#1d2126);display:flex;align-items:center;
+ justify-content:center;font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:#7f8794}
+.card .ph .tink{position:absolute;left:8px;bottom:8px}
+.card .cb{padding:.7rem .8rem}
+.card .mk{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.09em;
+ text-transform:uppercase;color:var(--muted)}
+.card h3{font-size:.98rem;margin:.15rem 0 .4rem;letter-spacing:-.01em}
+.card .pr{font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-weight:600}
+
+/* ---------- product page ---------- */
+.pp{width:340px}
+.pp .bench{position:relative;height:190px;background:linear-gradient(160deg,#2f343a,#1d2126);
+ border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+ font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:#7f8794}
+.pp .bench .tink{position:absolute;left:12px;bottom:12px}
+.pp .mk{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--muted);margin-top:14px}
+.pp h3{font-size:1.5rem;letter-spacing:-.025em;margin:.2rem 0 .5rem}
+.pp .price{font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+.pp .line{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--haggle);margin-top:.35rem}
+
+/* ---------- seller row ---------- */
+.sr{width:390px;background:var(--panel);border:1px solid var(--line);padding:10px}
+.sr .top{display:flex;gap:10px;align-items:flex-start}
+.sr .th{width:44px;height:44px;flex:0 0 auto;background:linear-gradient(160deg,#3d434b,#23272d)}
+.sr .mk{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.08em;
+ text-transform:uppercase;color:var(--muted)}
+.sr .nm{font-weight:700;font-size:.95rem;line-height:1.25}
+.sr .pr{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;
+ margin-left:auto;flex:0 0 auto;padding-left:.5rem}
+.seg{display:flex;margin-top:9px;border:1px solid var(--line2);background:var(--panel)}
+.seg button{flex:1 1 0;min-height:44px;border:none;background:none;cursor:pointer;
+ font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
+ border-right:1px solid var(--line2)}
+.seg button:last-child{border-right:none}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on);font-weight:600}
+.tk{display:flex;align-items:center;gap:.5rem;margin-top:8px;min-height:44px;
+ border:1px solid var(--line2);background:var(--panel);padding:0 .6rem;cursor:pointer;width:100%}
+.tk[aria-pressed="true"]{border-color:var(--haggle);background:#FBE9E9}
+.tk .box{width:18px;height:18px;border:1px solid var(--line2);flex:0 0 auto;
+ display:flex;align-items:center;justify-content:center;background:var(--panel)}
+.tk[aria-pressed="true"] .box{background:var(--haggle);border-color:var(--haggle);color:#fff}
+.tk .lb{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+.tk[aria-pressed="true"] .lb{color:var(--haggle);font-weight:600}
+</style></head>
+<body>
+<h1>“Saa tinkiä” badge, and prices on the seller page</h1>
+<p class="sub">A sticker, deliberately unlike the rest of the site — that is the point of a
+sale badge. Shown at the two sizes it needs to work at, on the dark photos it will usually sit
+on.</p>
+
+<div class="row">
+  <div>
+    <h2>Grid card — bottom left</h2>
+    <div class="card">
+      <div class="ph">PHOTO
+        <span class="tink" style="--s:60px"><svg viewBox="0 0 100 100"><polygon points="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,19.39 87.79,17.26 84.07,28.10 95.48,29.23 88.86,38.59 99.49,42.88 90.50,50.00 99.49,57.12 88.86,61.41 95.48,70.77 84.07,71.90 87.79,82.74 76.52,80.61 77.03,92.06 66.82,86.84 64.09,97.97 55.76,90.09 50.00,100.00 44.24,90.09 35.91,97.97 33.18,86.84 22.97,92.06 23.48,80.61 12.21,82.74 15.93,71.90 4.52,70.77 11.14,61.41 0.51,57.12 9.50,50.00 0.51,42.88 11.14,38.59 4.52,29.23 15.93,28.10 12.21,17.26 23.48,19.39 22.97,7.94 33.18,13.16 35.91,2.03 44.24,9.91" fill="var(--haggle)"/></svg><span>saa<br>tinkiä</span></span>
+      </div>
+      <div class="cb"><div class="mk">Befaco</div><h3>BF-22 Sallen Key Filter</h3><div class="pr">€150</div></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Product page</h2>
+    <div class="pp">
+      <div class="bench">PHOTO
+        <span class="tink" style="--s:84px"><svg viewBox="0 0 100 100"><polygon points="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,19.39 87.79,17.26 84.07,28.10 95.48,29.23 88.86,38.59 99.49,42.88 90.50,50.00 99.49,57.12 88.86,61.41 95.48,70.77 84.07,71.90 87.79,82.74 76.52,80.61 77.03,92.06 66.82,86.84 64.09,97.97 55.76,90.09 50.00,100.00 44.24,90.09 35.91,97.97 33.18,86.84 22.97,92.06 23.48,80.61 12.21,82.74 15.93,71.90 4.52,70.77 11.14,61.41 0.51,57.12 9.50,50.00 0.51,42.88 11.14,38.59 4.52,29.23 15.93,28.10 12.21,17.26 23.48,19.39 22.97,7.94 33.18,13.16 35.91,2.03 44.24,9.91" fill="var(--haggle)"/></svg><span>saa<br>tinkiä</span></span>
+      </div>
+      <div class="mk">Befaco</div><h3>BF-22 Sallen Key Filter</h3>
+      <div class="price">€150</div>
+      <div class="line">Saa tinkiä</div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Seller page row — price + the toggle</h2>
+    <div class="sr">
+      <div class="top"><div class="th"></div>
+        <div><div class="mk">Befaco</div><div class="nm">BF-22 Sallen Key Filter</div></div>
+        <div class="pr">€150</div>
+      </div>
+      <div class="seg"><button aria-pressed="true">Myynnissä</button><button aria-pressed="false">Neuvottelussa</button><button aria-pressed="false">Piilota</button></div>
+      <button class="tk" aria-pressed="true"><span class="box">✓</span><span class="lb">Saa tinkiä</span></button>
+    </div>
+    <div class="sr" style="margin-top:10px">
+      <div class="top"><div class="th"></div>
+        <div><div class="mk">Westlicht</div><div class="nm">PER|FORMER</div></div>
+        <div class="pr">€290</div>
+      </div>
+      <div class="seg"><button aria-pressed="true">Myynnissä</button><button aria-pressed="false">Neuvottelussa</button><button aria-pressed="false">Piilota</button></div>
+      <button class="tk" aria-pressed="false"><span class="box"></span><span class="lb">Saa tinkiä</span></button>
+    </div>
+  </div>
+</div>
+
+<p class="cap"><b>The red is a NEW colour and deliberately not <code>--sold</code>.</b>
+<code>--sold</code> is a muted maroon <code>#8A3E4E</code> reserved for gone; this is a vivid
+<code>#D22B2B</code>. They must not be confusable — one says <i>this is over</i>, the other says
+<i>make me an offer</i>. Different hue, much higher saturation, and they never appear together,
+since a hidden item has no card.<br><br>
+<b>It is a separate axis, not a fourth segment.</b> An item can be for sale AND open to
+haggling, or in negotiation and still open to it. So the seller row keeps the three-state
+control and gains one independent toggle below it — pressed state in the same red, so the
+control and the badge are visibly the same fact.<br><br>
+<b>Tilted ~9° with a drop shadow</b> so it reads as stuck on rather than drawn in. That is the
+sticker idiom doing the work; upright and flat it would look like a system label.<br><br>
+<b>Prices now show on the seller page</b>, at the user's request — reversing my earlier
+"no prices". They help the seller identify the right item at a glance, which matters more than
+the tidiness of leaving them out.</p>
+</body></html>
