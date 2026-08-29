@@ -1099,7 +1099,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     soldMark:"Myyty", wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
+    buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", msgExternalNote:"Avautuu myyjän omalle sivulle uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
@@ -1130,7 +1130,7 @@ var T = {
     search:"sök tillverkare eller modul",
     soldMark:"Såld", wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
+    buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", msgExternalNote:"Öppnas på säljarens egen sida i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
@@ -1162,7 +1162,7 @@ var T = {
     search:"search maker or module",
     soldMark:"Sold", wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
+    buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", msgExternalNote:"Opens the seller's own page in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
@@ -2049,8 +2049,15 @@ function detailHTML(m){
       ? '<a class="btn" href="'+esc(m.shopUrl)+'" target="_blank" rel="noopener">'+esc(T2.buyShop)+
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
         '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'
-      : '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>')+
-    (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>':'')+
+      : (isEmbeddableForm(formFor(m))
+        ? '<a class="btn" href="#/msg/'+m.id+'">'+esc(T2.buyOrTrade)+'</a>'
+        /* seller's own page: same button, but it leaves the site, so it
+           carries the same external mark and note as the shop link */
+        : '<a class="btn" href="'+esc(formFor(m))+'" target="_blank" rel="noopener">'+esc(T2.buyOrTrade)+
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+          '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'))+
+    (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>'
+      : (!isEmbeddableForm(formFor(m))?'<p class="outnote">'+esc(T2.msgExternalNote)+'</p>':''))+
     (!m.shopUrl&&(WANTS[p.key]||[]).length?'<a class="tradepanel" href="#/wish/'+esc(p.key)+'"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
@@ -2155,13 +2162,34 @@ function formFor(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
   return (p && p.form) ? p.form : TALLY_URL;
 }
+/* A SELLER'S FORM NEED NOT BE A TALLY FORM. The joining sequence lets a
+   seller send any page a buyer can reach them on — their own site's
+   contact page counts — and everything below this line is Tally-specific,
+   so an arbitrary URL has to take a different path:
+
+   - data-tally-src is mounted by Tally's embed.js, which only recognises
+     its own URLs. Anything else never mounts and the panel stays blank.
+   - Even mounted, most sites send X-Frame-Options or frame-ancestors and
+     refuse to be framed at all.
+   - The query string is Tally HIDDEN FIELD NAMES. On someone else's URL
+     they are meaningless, and they would push the item and its price into
+     a third party's logs for nothing.
+
+   So: Tally forms embed as before; anything else opens in a new tab, the
+   same shape shopUrl already uses for an outbound shop. */
+function isEmbeddableForm(url){
+  return /^https:\/\/([a-z0-9-]+\.)*tally\.so\//i.test(String(url||""));
+}
 function tallyLink(m){
+  var target=formFor(m);
+  /* the params are Tally's or nobody's */
+  if(!isEmbeddableForm(target)) return target;
   var p=SELLER_BY_KEY[m.who], q=[];
   q.push(TALLY_FIELDS.module+"="+encodeURIComponent(m.mfr+" — "+m.name));
   q.push(TALLY_FIELDS.seller+"="+encodeURIComponent(p.name));
   q.push(TALLY_FIELDS.price+"="+encodeURIComponent(eur(m.price)));
   q.push(TALLY_FIELDS.lang+"="+encodeURIComponent(lang));
-  return formFor(m)+"?"+q.join("&");
+  return target+"?"+q.join("&");
 }
 </script>
 
@@ -2471,6 +2499,13 @@ function route(){
   if(h.indexOf("#/msg/")===0){
     var m=byId(h.slice(6));
     var backHref = m ? "#/m/"+m.id : "#/";
+    /* A bookmarked or hand-typed #/msg/<id> can still land here for a
+       seller whose form is their own page. Send them to it rather than
+       render an iframe that would come back blank — the detail page's
+       button already goes straight out, so this only catches direct hits. */
+    if(m && !isEmbeddableForm(formFor(m))){
+      location.replace(formFor(m)); return;
+    }
     el("detail").innerHTML='<div class="wrap msgpage">'+
       '<div class="msgbar"><a class="back" href="'+backHref+'">&larr; '+esc(t().nav[0])+'</a></div>'+
       '<iframe class="msgframe" data-tally-src="'+(m?tallyLink(m):TALLY_URL)+(m?"&":"?")+'transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Message eurorack.fi"></iframe>'+
