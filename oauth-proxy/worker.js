@@ -13,7 +13,10 @@
  *    there is no login.
  *      /token/<sellerKey>  the user's page to copy or regenerate a link
  *                          (gated on being a repo COLLABORATOR)
+ *      /requests           the admin queue of seller requests
+ *                          (gated on being a repo COLLABORATOR)
  *      /s/<token>          the seller's own page
+ *      /api/request        a seller asking the admins to add something
  *      /api/set            the write, ownership-checked server-side
  *      /state              public read of the live overrides
  *
@@ -245,6 +248,38 @@ async function sendSellerLink(env, { to, sellerKey, link }) {
   }
 }
 
+/* Requests a seller sends the admins: "add this module at this price", or
+   "add this to my wishlist". One KV key per request rather than an array
+   under one key, so deleting one is a delete rather than a
+   read-modify-write of everybody's queue — the admin triages these by
+   throwing most of them away, so deletion is the common operation.
+   Key sorts newest-last within a seller and is listed by prefix. */
+const REQ_PREFIX = "req:";
+
+/* Caps exist because the seller page's credential is a LINK. Anyone
+   holding a leaked one could otherwise fill KV with junk, and the person
+   who pays for that is the user, reading the queue. A cap per seller is
+   the right shape rather than a global one: it bounds the damage to the
+   seller whose link leaked and leaves everyone else's queue usable. */
+const REQ_MAX_PER_SELLER = 20;
+const REQ_MAX_TEXT = 500;
+
+async function listRequests(env, sellerKey) {
+  const prefix = REQ_PREFIX + (sellerKey ? sellerKey + ":" : "");
+  const out = [];
+  let cursor;
+  /* Paginated deliberately: list() returns at most 1000 keys and sets
+     list_complete=false when there are more. Reading only the first page
+     would silently under-report a long queue, which for a triage screen
+     means requests that quietly never get seen. */
+  do {
+    const page = await env.SELLER_STATE.list({ prefix, cursor });
+    for (const k of page.keys) out.push(k.name);
+    cursor = page.list_complete ? null : page.cursor;
+  } while (cursor);
+  return out;
+}
+
 async function readState(env) {
   const raw = await env.SELLER_STATE.get(STATE_KEY);
   return raw ? JSON.parse(raw) : {};
@@ -327,7 +362,7 @@ export default {
        303 would drop the form body and silently do nothing, so it is
        refused with an explanation instead. */
     if (url.hostname !== new URL(ADMIN_ORIGIN).hostname &&
-        (p === "/auth" || p === "/callback" || p.startsWith("/token/"))) {
+        (p === "/auth" || p === "/callback" || p === "/requests" || p.startsWith("/token/"))) {
       if (request.method !== "GET") {
         return new Response("Admin actions live on " + ADMIN_ORIGIN + p + " — open that host and retry.", {
           status: 421, headers: { "Content-Type": "text/plain; charset=utf-8" },
@@ -430,6 +465,105 @@ Login complete — this window should close automatically.
     }
 
     /* ---------- the user's page for one seller's link ---------- */
+    /* The admin queue. Gated on the SAME collaborator check as the token
+       pages — see the session lookup below, which is copied deliberately
+       rather than shared, because it is the one thing here that must not
+       be refactored into something clever. */
+    if (p === "/requests") {
+      const sess = await session(request, env);
+      if (!sess) return Response.redirect(`${url.origin}/auth?next=${encodeURIComponent(p)}`, 302);
+
+      if (request.method === "POST") {
+        const form = await request.formData();
+        const act = form.get("action");
+        if (act === "delete") {
+          const k = String(form.get("key") || "");
+          /* Prefix-checked, so a crafted form can't delete sel:, tok: or
+             the state key through this endpoint. */
+          if (k.startsWith(REQ_PREFIX)) await env.SELLER_STATE.delete(k);
+        } else if (act === "deletemany") {
+          for (const k of form.getAll("key")) {
+            if (String(k).startsWith(REQ_PREFIX)) await env.SELLER_STATE.delete(String(k));
+          }
+        }
+        return new Response(null, { status: 303, headers: { Location: p } });
+      }
+
+      const keys = await listRequests(env, null);
+      const rows = (await Promise.all(keys.map(async (k) => {
+        const raw = await env.SELLER_STATE.get(k);
+        if (!raw) return null;
+        try { return { key: k, ...JSON.parse(raw) }; } catch { return null; }
+      }))).filter(Boolean).sort((a, b) => String(a.at).localeCompare(String(b.at)));
+
+      /* One plain-text block for the whole queue, because the user hands
+         these to the secretary by copy-paste. Built server-side so what
+         is copied is exactly what is displayed. */
+      const forSecretary = rows.map((r) =>
+        `- [${r.kind === "item" ? "ADD ITEM" : "WISHLIST"}] ${r.seller}: ${r.text}` +
+        (typeof r.price === "number" ? ` (asking €${r.price})` : "")
+      ).join("\n");
+
+      return new Response(page("Requests", {
+        css: `
+.q{border:1px solid var(--line);background:var(--panel);padding:.8rem .9rem;margin-bottom:.5rem;
+ display:flex;gap:.75rem;align-items:flex-start}
+.q .who{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.08em;
+ text-transform:uppercase;color:var(--muted)}
+.q .what{font-size:.98rem;line-height:1.4;margin-top:.15rem;overflow-wrap:anywhere}
+.q .meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.3rem}
+.q .kind{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.08em;
+ text-transform:uppercase;border:1px solid var(--line2);padding:.1rem .35rem;color:var(--ink2)}
+.q form{margin-left:auto;flex:0 0 auto}
+.q .del{font-family:"IBM Plex Mono",monospace;font-size:.7rem;background:none;color:var(--sold);
+ border:1px solid var(--line2);padding:.4rem .6rem;min-height:38px}
+.q .del:hover{border-color:var(--sold);background:var(--sold-soft)}
+.copybox{width:100%;min-height:9rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;
+ line-height:1.6;padding:.7rem .8rem;background:var(--panel2);border:1px solid var(--line);
+ color:var(--ink);white-space:pre;overflow:auto}
+.empty{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);padding:1.2rem 0}
+`,
+        html: `
+          <h1>Requests</h1>
+          <p class="sub">${rows.length} waiting. Sellers ask here; nothing is added automatically.</p>
+          ${rows.length === 0 ? '<p class="empty">Nothing in the queue.</p>' : ""}
+          ${rows.map((r) => `
+            <div class="q">
+              <div>
+                <div class="who">${esc(r.seller)} <span class="kind">${r.kind === "item" ? "item" : "wishlist"}</span></div>
+                <div class="what">${esc(r.text)}</div>
+                <div class="meta">${esc(String(r.at).slice(0, 16).replace("T", " "))} UTC${
+                  typeof r.price === "number" ? ` &middot; asking &euro;${r.price}` : ""}</div>
+              </div>
+              <form method="POST">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="key" value="${esc(r.key)}">
+                <button class="del" type="submit">Trash</button>
+              </form>
+            </div>`).join("")}
+          ${rows.length ? `
+            <div class="card" style="margin-top:1.2rem">
+              <h2 style="font-size:1rem;margin:0 0 .5rem">Send to secretary</h2>
+              <textarea class="copybox" id="cb" readonly>${esc(forSecretary)}</textarea>
+              <button class="btn" id="copyall" type="button" style="margin-top:.6rem">Copy all</button>
+              <p class="note">Copy this, hand it to the secretary, then trash the ones that got done.
+                Nothing here expires on its own.</p>
+            </div>
+            <form method="POST" style="margin-top:.8rem">
+              <input type="hidden" name="action" value="deletemany">
+              ${rows.map((r) => `<input type="hidden" name="key" value="${esc(r.key)}">`).join("")}
+              <button class="btn ghost" type="submit">Trash all ${rows.length}</button>
+            </form>` : ""}
+          <script>
+            var c=document.getElementById("copyall");
+            if(c) c.addEventListener("click",function(){
+              navigator.clipboard.writeText(document.getElementById("cb").value);
+              this.textContent="Copied";
+            });
+          </script>`,
+      }), { headers: { "Content-Type": "text/html; charset=utf-8" }, });
+    }
+
     if (p.startsWith("/token/")) {
       const sellerKey = decodeURIComponent(p.slice("/token/".length)).replace(/\/$/, "");
       if (!sellerKey) return new Response("Missing seller key.", { status: 400 });
@@ -572,6 +706,44 @@ Login complete — this window should close automatically.
     }
 
     /* ---------- the write ---------- */
+    /* A seller asking the admins to add something. Same credential as
+       /api/set — the token proves which seller — but no ownership check,
+       because a request names nothing that exists yet. It creates no
+       listing and changes nothing on the site: it only puts a note in a
+       queue a human reads. That is the whole safety argument for letting
+       a link-authenticated page write free text at all. */
+    if (p === "/api/request" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+      const { token, kind, text, price } = body || {};
+      const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
+      if (!sellerKey) return json({ error: "bad token" }, 403);
+      if (kind !== "item" && kind !== "wish") return json({ error: "bad kind" }, 400);
+
+      const t = typeof text === "string" ? text.trim() : "";
+      if (!t) return json({ error: "empty" }, 400);
+      if (t.length > REQ_MAX_TEXT) return json({ error: "too long" }, 400);
+
+      /* Price is optional and only meaningful for an item. Same bounds as
+         /api/set so a number refused there can't arrive by this door. */
+      let p2;
+      if (price !== undefined && price !== null && price !== "") {
+        if (typeof price !== "number" || !Number.isInteger(price) || price < 0 || price > 100000) {
+          return json({ error: "bad price" }, 400);
+        }
+        p2 = price;
+      }
+
+      const existing = await listRequests(env, sellerKey);
+      if (existing.length >= REQ_MAX_PER_SELLER) return json({ error: "queue full" }, 429);
+
+      const key = REQ_PREFIX + sellerKey + ":" + new Date().toISOString() + "-" + crypto.randomUUID().slice(0, 8);
+      await env.SELLER_STATE.put(key, JSON.stringify({
+        seller: sellerKey, kind, text: t, price: p2, at: new Date().toISOString(),
+      }));
+      return json({ ok: true });
+    }
+
     if (p === "/api/set" && request.method === "POST") {
       let body;
       try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
@@ -720,6 +892,32 @@ function sellerPage(sellerKey, tok) {
  padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+/* The request form sits BELOW the list, not above it. A seller opens this
+   page to change something that already exists; asking for something new
+   is the rarer errand, and putting it first would push the reason they
+   came off the top of the screen. */
+.ask{margin-top:1.6rem;border:1px solid var(--line);background:var(--panel);padding:.9rem 1rem}
+.ask h2{font-size:1rem;margin:0 0 .5rem}
+.ask .kinds{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-bottom:.6rem}
+.ask .kinds button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
+.ask .kinds button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);
+ color:var(--accent);font-weight:600}
+.ask textarea{width:100%;min-height:76px;font-family:inherit;font-size:.92rem;line-height:1.45;
+ padding:.55rem .65rem;background:var(--panel2);border:1px solid var(--line2);color:var(--ink);resize:vertical}
+.ask .askprice{display:flex;align-items:center;gap:.4rem;margin-top:.5rem;
+ font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink2)}
+.ask .askprice input{width:6rem;font-family:inherit;font-size:.8rem;text-align:right;
+ padding:.4rem .5rem;background:var(--panel2);border:1px solid var(--line2);color:var(--ink);min-height:38px}
+.ask .askprice[hidden]{display:none}
+.ask .send{margin-top:.7rem;min-height:44px;padding:0 1rem;font-family:"IBM Plex Mono",monospace;
+ font-size:.74rem;font-weight:600;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
+/* Sets expectations BEFORE the send, not after. The user was explicit that
+   adding a product is not instant: the details have to be filled in by
+   hand and the request has to be checked for spam. A seller who does not
+   know that reads the silence as it not having worked, and sends again. */
+.ask .note2{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+ line-height:1.6;margin-top:.55rem}
 .ok{background:var(--accent-soft);color:var(--accent);padding:.6rem .8rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;margin-bottom:1rem}
 .err{background:var(--sold-soft);color:var(--sold);padding:.6rem .8rem;font-family:"IBM Plex Mono",monospace;
@@ -746,6 +944,18 @@ function sellerPage(sellerKey, tok) {
   <div class="gloss" id="gloss"></div>
   <div id="err"></div>
   <div id="list"></div>
+  <div class="ask">
+    <h2 id="askh"></h2>
+    <div class="kinds">
+      <button type="button" data-kind="item" aria-pressed="true" id="kitem"></button>
+      <button type="button" data-kind="wish" aria-pressed="false" id="kwish"></button>
+    </div>
+    <textarea id="asktext" maxlength="500"></textarea>
+    <div class="askprice" id="askprice"><span id="askpricelab"></span>
+      <span>€ <input type="text" inputmode="numeric" id="askpriceval"></span></div>
+    <button class="send" id="asksend" type="button"></button>
+    <p class="note2" id="asknote"></p>
+  </div>
   <script>
   var TOKEN=${JSON.stringify(tok)}, SELLER=${JSON.stringify(sellerKey)};
   var RAW=${JSON.stringify(RAW)}, API=location.origin+"/api/set";
@@ -825,7 +1035,39 @@ function sellerPage(sellerKey, tok) {
        And the reload sentence is load-bearing rather than politeness — an
        already-open tab reads /state once and never again, so a seller
        watching one will wait forever for something that cannot happen. */
-    saved:"Tallennettu. Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen."
+    saved:"Tallennettu. Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen.",
+    /* PRICE SAVES ONLY, and the old value in it is THE ONLY UNDO A PRICE
+       HAS. The moment it saves, the previous number is gone from the
+       screen and from the seller's memory of it — they typed 20, and they
+       are no longer sure it was 200 rather than 250. This keeps it on
+       screen long enough to retype, and puts the check where attention
+       already is rather than demanding a separate act.
+       Deliberately NOT a confirmation dialog: that would tax the
+       ninety-nine correct edits to catch the one wrong one, and one that
+       appears every time stops being read by the third use. If this ever
+       proves insufficient, the escalation is confirmation SCALED TO
+       MAGNITUDE — only when the new price is under half the old — never a
+       flat confirm, which is the version that gets clicked through. */
+    savedPrice:"Tallennettu: {old} € → {new} €. Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen.",
+
+    /* EVERY STRING BELOW IS MINE AND UNREVIEWED — the request form. Sent
+       to design to correct rather than presented as settled. */
+    askH:"Pyydä lisäystä",
+    askItem:"Uusi kohde myyntiin",
+    askWish:"Lisäys toivelistalle",
+    askPriceLab:"Hinta",
+    askSend:"Lähetä pyyntö",
+    /* Says NOT INSTANT and says WHY, before the send rather than after.
+       Both halves are the user's requirement: the details are filled in by
+       hand, and the request is checked. A seller who doesn't know that
+       reads the silence as failure and sends the same thing again. */
+    askNote:"Emme lisää kohteita heti: täydennämme tiedot käsin ja tarkistamme pyynnöt. Kerro mitä lisätään ja missä kunnossa se on.",
+    askPlaceholderItem:"Esim. Make Noise Maths, hyväkuntoinen, alkuperäinen laatikko",
+    askPlaceholderWish:"Esim. Intellijel Quad VCA",
+    askSent:"Pyyntö lähetetty. Palaamme asiaan.",
+    askEmpty:"Kirjoita mitä haluat lisättävän.",
+    askFailed:"Pyyntö ei lähtenyt. Yritä uudelleen.",
+    askFull:"Sinulla on jo useita avoimia pyyntöjä. Odota että käsittelemme ne."
   };
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -897,13 +1139,13 @@ function sellerPage(sellerKey, tok) {
      read at page load, and vice versa. That matters because the two
      controls are independent axes: whichever one the seller didn't touch
      must come through untouched. */
-  function save(id,next){
+  function save(id,next,okMsg){
     var prev=STATE[id]?JSON.parse(JSON.stringify(STATE[id])):undefined;
     STATE[id]=Object.assign({},STATE[id],next); render();   /* optimistic */
     fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify(Object.assign({token:TOKEN,id:id},next))})
       .then(function(r){ if(!r.ok) throw 0;
-        document.getElementById("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
+        document.getElementById("err").innerHTML='<div class="ok">'+esc(okMsg||TXT.saved)+'</div>'; })
       .catch(function(){
         if(prev===undefined) delete STATE[id]; else STATE[id]=prev;
         render();
@@ -970,7 +1212,63 @@ function sellerPage(sellerKey, tok) {
       inp.focus(); inp.select();
       return;
     }
-    save(row.getAttribute("data-id"),{price:n});
+    var was=inp.getAttribute("data-price");
+    save(row.getAttribute("data-id"),{price:n},
+      TXT.savedPrice.replace("{old}",was).replace("{new}",String(n)));
+  }
+
+  /* ---------- request form ---------- */
+  var ASK_KIND="item";
+  function paintAsk(){
+    el("askh").textContent=TXT.askH;
+    el("kitem").textContent=TXT.askItem;
+    el("kwish").textContent=TXT.askWish;
+    el("askpricelab").textContent=TXT.askPriceLab;
+    el("asksend").textContent=TXT.askSend;
+    el("asknote").textContent=TXT.askNote;
+    el("kitem").setAttribute("aria-pressed", String(ASK_KIND==="item"));
+    el("kwish").setAttribute("aria-pressed", String(ASK_KIND==="wish"));
+    /* A price belongs to a thing being sold, not to a wish. Hiding it for
+       a wishlist request keeps the form honest about what it is asking
+       for rather than showing a field that would be meaningless. */
+    el("askprice").hidden = ASK_KIND!=="item";
+    el("asktext").placeholder = ASK_KIND==="item" ? TXT.askPlaceholderItem : TXT.askPlaceholderWish;
+  }
+  function el(id){ return document.getElementById(id); }
+
+  document.addEventListener("click",function(e){
+    var kb=e.target.closest(".kinds button");
+    if(kb){ ASK_KIND=kb.getAttribute("data-kind"); paintAsk(); return; }
+    if(e.target.closest("#asksend")) sendAsk();
+  });
+
+  function sendAsk(){
+    var box=el("err");
+    var text=el("asktext").value.trim();
+    if(!text){ box.innerHTML='<div class="err">'+esc(TXT.askEmpty)+'</div>'; el("asktext").focus(); return; }
+    var body={token:TOKEN, kind:ASK_KIND, text:text};
+    if(ASK_KIND==="item"){
+      /* Same cleaning as the price editor, and optional here: a seller may
+         genuinely not know what to ask yet. Junk is dropped rather than
+         rejected — this is a note to a human who can ask, not a field that
+         sets anything, so refusing the whole request over a malformed
+         price would cost more than it saves. */
+      var raw=el("askpriceval").value.replace(/[\\s€]/g,"").replace(/[.,](?=\\d{3}\\b)/g,"");
+      if(/^\\d+$/.test(raw)){ var n=parseInt(raw,10); if(n>=0 && n<=100000) body.price=n; }
+    }
+    var btn=el("asksend"); btn.disabled=true;
+    fetch(location.origin+"/api/request",{method:"POST",
+      headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
+      .then(function(r){
+        if(r.status===429) throw "full";
+        if(!r.ok) throw 0;
+        el("asktext").value=""; el("askpriceval").value="";
+        box.innerHTML='<div class="ok">'+esc(TXT.askSent)+'</div>';
+      })
+      .catch(function(why){
+        box.innerHTML='<div class="err">'+esc(why==="full"?TXT.askFull:TXT.askFailed)+'</div>';
+      })
+      .then(function(){ btn.disabled=false; });
   }
 
   Promise.all([
@@ -1004,6 +1302,12 @@ function sellerPage(sellerKey, tok) {
     document.getElementById("sub").textContent="";
     document.getElementById("err").innerHTML='<div class="err">'+esc(TXT.loadFailed)+'</div>';
   });
+
+  /* Painted OUTSIDE the item load, and that is deliberate: the form asks
+     for something that does not exist yet, so it needs nothing from the
+     catalogue. If the item fetch fails, the seller still has a working way
+     to reach a human — which is exactly when they would most want one. */
+  paintAsk();
   </script>`
   }, { noindex: true });
 }
