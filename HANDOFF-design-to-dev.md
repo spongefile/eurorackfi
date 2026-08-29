@@ -1970,3 +1970,60 @@ reassurance in the copy is undercut by the URL beneath it.
 
 **The link must stay a bare URL on its own line** — mail clients linkify those
 reliably and mangle anything cleverer.
+
+### 13. Price editing — the echo, not a confirmation (2026-08-29)
+
+**No confirmation step.** Price editing is routine; a dialog on every save
+taxes the ninety-nine correct edits to catch the one wrong one, and a dialog
+that appears every time stops being read by the third use.
+
+**Instead, echo the old value in the success line.**
+
+```
+Tallennettu: 200 € → 20 €.
+Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen.
+```
+
+`Tallennettu: {old} € → {new} €.` replaces the bare `Tallennettu.` for price
+saves only. Toggles keep the existing line.
+
+**The echo is not decoration — it is the only undo a price has.** A toggle is
+self-correcting: visibly wrong, one tap back. A price is plausible at any
+value, so 20-for-200 reads as a decision and stays live. And the moment it
+saves, **the old value is gone from the screen and from the seller's memory of
+what it was.** The echo keeps it there long enough to retype. Without it there
+is nothing to undo *from*.
+
+It also puts the check where attention already is — the seller is looking at
+that line to confirm the save worked — rather than demanding a separate act.
+
+**If the echo proves insufficient**, the next step is confirmation *scaled to
+magnitude* — only when the new price is, say, less than half the old — so the
+friction lands on the changes that are worth pausing over and nowhere else.
+Do not add a flat confirmation; that is the version that gets clicked through.
+
+`Tallennettu: … → …` is **mine and unreviewed**.
+
+### The three new strings — reviewed
+
+| | verdict |
+|---|---|
+| `Tallenna` | correct, standard |
+| `Hinta euroina` | good — names the unit, which the bare field cannot |
+| `Tarkista hinta. Sivustolla ei muuttunut mitään.` | correct, and the inversion is right |
+
+**On `Tarkista hinta` leading with the instruction**, where the other two error
+strings state the world first: that inversion is correct here, not a
+misapplication. The other two report a **system failure** — the seller did
+nothing wrong and their first question is *what have I broken*. This is a
+**rejection of input**: they did do something, the thing to fix is theirs, and
+the fix comes first. The reassurance still follows, which is the part of the
+pattern that matters.
+
+### The secrecy line's stakes went up
+
+The seller link can now change **what someone pays**, not just whether an item
+shows. `Pidä se salassa!` still reads correctly and needs no rewording — but
+the credential is materially stronger than when that line was written, and
+`kerro meille niin teemme uuden` in the mail is now the more load-bearing
+sentence. Worth the user knowing the shape of what a leak costs.
