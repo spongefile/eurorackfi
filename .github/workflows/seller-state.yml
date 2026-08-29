@@ -1,0 +1,104 @@
+name: Reconcile seller toggles
+
+# Sellers flip "in negotiation" and "hidden" on their own private page,
+# which writes to the worker's KV. The site reads that KV live, so a
+# toggle shows up immediately — this job is not what makes it work. Its
+# only job is to fold that live state back into content/items/*.json so
+# git stays the source of truth and the site keeps working, on the last
+# built state, if KV is ever unreachable.
+#
+# NO CREDENTIALS ARE NEEDED. The worker's /state endpoint is public
+# (it's the same data every visitor's browser already fetches), so this
+# reads over plain HTTP and commits with the token Actions already has.
+# That is the whole point of the split: the public-facing worker holds no
+# GitHub write access, so compromising it can only set wrong toggle
+# values, which revert from git — it cannot rewrite the repository.
+#
+# Commits ONLY when a value actually differs, so an idle day produces no
+# commits and no Pages rebuilds, and a seller toggling something twice
+# back to where it started produces none either.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seller-state
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply KV state to content/items
+        env:
+          STATE_URL: https://eurorackfi-cms-auth.aspiala.workers.dev/state
+        run: |
+          python3 - <<'PY'
+          import json, os, glob, urllib.request
+
+          url = os.environ["STATE_URL"]
+          try:
+              with urllib.request.urlopen(url, timeout=20) as r:
+                  state = json.load(r)
+          except Exception as e:
+              # Never fail the run on a transient worker/network problem:
+              # the site is unaffected either way, and the next run picks
+              # it up. A red cron every five minutes would just be noise.
+              print(f"could not read state ({e}) — nothing to do")
+              raise SystemExit(0)
+
+          if not isinstance(state, dict) or not state:
+              print("no overrides set — nothing to do")
+              raise SystemExit(0)
+
+          changed = []
+          for item_id, override in state.items():
+              path = f"content/items/{item_id}.json"
+              if not os.path.exists(path):
+                  # item deleted since the toggle; the override is stale
+                  continue
+              with open(path, encoding="utf-8") as f:
+                  data = json.load(f)
+
+              diff = {}
+              for field in ("hidden", "negotiating"):
+                  if field in override and isinstance(override[field], bool):
+                      if bool(data.get(field, False)) != override[field]:
+                          diff[field] = override[field]
+              if not diff:
+                  continue
+
+              data.update(diff)
+              with open(path, "w", encoding="utf-8") as f:
+                  json.dump(data, f, indent=2, ensure_ascii=False)
+                  f.write("\n")
+              changed.append(f"{item_id}: " + ", ".join(f"{k}={v}" for k, v in diff.items()))
+
+          if changed:
+              print("changed:\n  " + "\n  ".join(changed))
+          else:
+              print("already in sync — nothing to commit")
+
+          with open(os.environ["GITHUB_ENV"], "a") as f:
+              f.write(f"CHANGED_COUNT={len(changed)}\n")
+          PY
+
+      - name: Commit if changed
+        run: |
+          if [ "${CHANGED_COUNT:-0}" = "0" ]; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/items
+          git diff --cached --quiet || git commit -m "Seller toggles: sync $CHANGED_COUNT item(s) from live state"
+          # another run may have pushed between checkout and here
+          git pull --rebase --autostash origin main
+          git push

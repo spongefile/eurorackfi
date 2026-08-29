@@ -1,3 +1,10 @@
 name = "eurorackfi-cms-auth"
 main = "worker.js"
 compatibility_date = "2025-01-01"
+
+# Live seller toggle state. The worker writes ONLY here — it holds no
+# GitHub credential — and a scheduled Action folds this back into
+# content/items/*.json so git stays the source of truth.
+[[kv_namespaces]]
+binding = "SELLER_STATE"
+id = "ba3db7c44a7946618b64c12d7cf0593c"

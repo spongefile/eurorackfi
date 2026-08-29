@@ -1155,6 +1155,33 @@ function normalizeWants(list){
    degrades to an empty FAQ page rather than blocking the rest of the
    site, same "don't let optional data break rendering" rule as the
    SELLER_DOTS fallback above. */
+/* Sellers flip "hidden" and "in negotiation" themselves, on a private
+   page served by the worker; those live values sit in KV and are read
+   here so a toggle shows on the site immediately rather than waiting for
+   the reconcile job to fold them back into content/items/*.json.
+   MUST DEGRADE, NEVER BREAK: if the worker is unreachable this resolves
+   to {} and every item keeps whatever git last built. Stale, never
+   broken — the site's independence from a running service is a property
+   worth more than the freshness. */
+var SELLER_STATE_URL="https://eurorackfi-cms-auth.aspiala.workers.dev/state";
+function loadSellerState(){
+  return fetch(SELLER_STATE_URL)
+    .then(function(r){ return r.ok ? r.json() : {}; })
+    .catch(function(){ return {}; });
+}
+/* live values win over the built file; anything the seller hasn't touched
+   keeps the committed value */
+function applySellerState(items,state){
+  if(!state) return items;
+  return items.map(function(m){
+    var s=state[m.id];
+    if(!s) return m;
+    if(typeof s.hidden==="boolean") m.hidden=s.hidden;
+    if(typeof s.negotiating==="boolean") m.negotiating=s.negotiating;
+    return m;
+  });
+}
+
 var FAQ={questions:[]};
 function loadFaq(){
   return fetch(RAW_BASE+"content/faq.json").then(function(r){
@@ -2285,6 +2312,9 @@ function route(){
     }
     /* no record survives a delisting, so this is deliberately generic */
     el("detail").innerHTML='<div class="wrap"><div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
+      /* design proposed a "Myyty" marker in --sold here; it isn't in the
+         copy set they finalised, and inventing the Finnish for it is
+         exactly what we don't do — asked for, not shipped. */
       '<div class="gone"><h2>'+esc(GONE[lang].h)+'</h2><p>'+esc(GONE[lang].p)+'</p>'+
       '<button class="btn" onclick="closeDetail()">'+esc(t().nav[0])+'</button></div></div>';
     document.body.classList.add("detail-open"); window.scrollTo(0,0); return;
@@ -2312,10 +2342,14 @@ function route(){
   document.body.classList.remove("detail-open");
   document.title="eurorack.fi";
 }
+/* Deliberately generic even though a hidden item's record now survives.
+   Design proposed naming the module and showing a dimmed photo; the user
+   declined — it says what happened and nothing more. English is theirs;
+   fi/sv are design's (a953694) and UNREVIEWED, so expect their edit. */
 var GONE={
-  fi:{h:"Tätä ei enää ole",p:"Kohde on poistettu listalta. Kaikki myynnissä oleva on etusivulla."},
-  sv:{h:"Borta",p:"Objektet är borta från listan. Allt som är till salu finns på förstasidan."},
-  en:{h:"That one's gone",p:"This listing has come off the site. Everything still for sale is on the front page."}
+  fi:{h:"Tätä ei enää ole",p:"Omistaja on poistanut tämän moduulin myynnistä."},
+  sv:{h:"Borta",p:"Ägaren har tagit bort den här modulen från försäljning."},
+  en:{h:"That one's gone",p:"Owner has removed this module from sale."}
 };
 
 /* ---------- events ---------- */
@@ -2555,7 +2589,7 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
    content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi()]).then(function(r){
+Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState()]).then(function(r){
   /* hidden items stay in content/items/ (data, photos, history all kept
      for a possible relist) but must not exist for the site at all —
      filtering here, before anything else touches ITEMS, means every
@@ -2563,7 +2597,11 @@ Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi()]).then(function(r){
      lookups) automatically excludes them with no special-casing needed.
      A direct/bookmarked link to a hidden item's #/m/ page already falls
      through to the existing generic "gone" page, same as a deleted one. */
-  ITEMS=r[0].filter(function(m){ return !m.hidden; });
+  /* seller overrides applied BEFORE the hidden filter, so an item a
+     seller has just hidden drops out of everything downstream — grid,
+     rack, HP total, counts, wish band — with no special-casing, and one
+     they have just un-hidden comes straight back. */
+  ITEMS=applySellerState(r[0],r[4]).filter(function(m){ return !m.hidden; });
   SELLERS=r[1];
   SELLERS.forEach(function(p,i){ if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length]; p.wants=normalizeWants(p.wants); });
   WANTS={}; SELLER_BY_KEY={};
