@@ -2653,6 +2653,44 @@ function howHTML(){
     '<h1>'+esc(howT(H.title))+'</h1>'+
     (missing?'<div class="xlate"><span>&#9888;</span><span>'+esc(XLATE[lang])+'</span></div>':'')+
     '<p class="lede">'+howMd(howT(H.lede))+'</p>'+
+    /* SECTION ORDER IS THE USER'S: what belongs here and how to start sit
+       ABOVE the join-form link; everything after Getting started is "under
+       the button" — the trust and architecture material for whoever keeps
+       reading. The two-contacts and batching notes travel WITH Getting
+       started as its footnotes, and the stop-scrolling test box belongs to
+       What belongs here; none of the three is free-floating.
+       The lede still lists the sections in the OLD order ("what we hold,
+       what you control, and what belongs here") — left alone deliberately,
+       because every lede word is live in three languages; flagged to the
+       user rather than reworded. */
+    '<h2>'+esc(howT(H.rulesTitle))+'</h2>'+
+    '<div class="rules">'+
+      '<div class="rule yes"><h4>'+esc(howT(H.rulesYesH))+'</h4><ul>'+howList(H.rulesYes)+'</ul></div>'+
+      '<div class="rule no"><h4>'+esc(howT(H.rulesNoH))+'</h4><ul>'+howList(H.rulesNo)+'</ul></div>'+
+    '</div>'+
+    '<p class="test">'+howMd(howT(H.rulesTest))+
+      '<span class="test-call">'+howMd(howT(H.rulesCall))+'</span></p>'+
+
+    '<h2>'+esc(howT(H.startTitle))+'</h2>'+
+    '<div class="steps">'+
+      '<div class="step"><div class="n">1</div><div class="sb">'+
+        '<h3>'+esc(howT(H.step1H))+'</h3><ul>'+howList(H.step1)+
+        '<li><div class="formbox"><h4>'+esc(howT(H.formBoxH))+'</h4>'+
+          '<p>'+howMd(howT(H.formBoxLead))+'</p>'+
+          '<p>'+esc(howT(H.formBoxFourH))+'</p>'+
+          '<ol class="ff">'+howList(H.formBoxFour)+'</ol>'+
+          '<p>'+howMd(howT(H.formBoxNoForm))+'</p>'+
+        '</div></li>'+
+        howList(H.step1Tail)+'</ul>'+
+        '<p class="sendvia">'+howMd(sendVia)+'</p>'+
+      '</div></div>'+
+      '<div class="step"><div class="n">2</div><div class="sb">'+
+        '<h3>'+esc(howT(H.step2H))+'</h3><ul>'+howList(H.step2)+'</ul></div></div>'+
+      '<div class="step"><div class="n">3</div><div class="sb">'+
+        '<h3>'+esc(howT(H.step3H))+'</h3><ul>'+howList(H.step3)+'</ul></div></div>'+
+    '</div>'+
+    '<p class="note contacts">'+howMd(howT(H.contactsNote))+'</p>'+
+    '<div class="test batch">'+howMd(howT(H.batchNote))+'</div>'+
 
     '<h2>'+esc(howT(H.zonesTitle))+'</h2>'+
     '<div class="zones">'+
@@ -2684,35 +2722,6 @@ function howHTML(){
 
     '<h2>'+esc(howT(H.whyTitle))+'</h2>'+
     (H.why||[]).map(function(x){ return '<p>'+howMd(howT(x))+'</p>'; }).join("")+
-
-    '<h2>'+esc(howT(H.rulesTitle))+'</h2>'+
-    '<div class="rules">'+
-      '<div class="rule yes"><h4>'+esc(howT(H.rulesYesH))+'</h4><ul>'+howList(H.rulesYes)+'</ul></div>'+
-      '<div class="rule no"><h4>'+esc(howT(H.rulesNoH))+'</h4><ul>'+howList(H.rulesNo)+'</ul></div>'+
-    '</div>'+
-    '<p class="test">'+howMd(howT(H.rulesTest))+
-      '<span class="test-call">'+howMd(howT(H.rulesCall))+'</span></p>'+
-
-    '<h2>'+esc(howT(H.startTitle))+'</h2>'+
-    '<div class="steps">'+
-      '<div class="step"><div class="n">1</div><div class="sb">'+
-        '<h3>'+esc(howT(H.step1H))+'</h3><ul>'+howList(H.step1)+
-        '<li><div class="formbox"><h4>'+esc(howT(H.formBoxH))+'</h4>'+
-          '<p>'+howMd(howT(H.formBoxLead))+'</p>'+
-          '<p>'+esc(howT(H.formBoxFourH))+'</p>'+
-          '<ol class="ff">'+howList(H.formBoxFour)+'</ol>'+
-          '<p>'+howMd(howT(H.formBoxNoForm))+'</p>'+
-        '</div></li>'+
-        howList(H.step1Tail)+'</ul>'+
-        '<p class="sendvia">'+howMd(sendVia)+'</p>'+
-      '</div></div>'+
-      '<div class="step"><div class="n">2</div><div class="sb">'+
-        '<h3>'+esc(howT(H.step2H))+'</h3><ul>'+howList(H.step2)+'</ul></div></div>'+
-      '<div class="step"><div class="n">3</div><div class="sb">'+
-        '<h3>'+esc(howT(H.step3H))+'</h3><ul>'+howList(H.step3)+'</ul></div></div>'+
-    '</div>'+
-    '<p class="note contacts">'+howMd(howT(H.contactsNote))+'</p>'+
-    '<div class="test batch">'+howMd(howT(H.batchNote))+'</div>'+
 
     '<h2>'+esc(howT(H.aiTitle))+'</h2>'+
     (H.ai||[]).map(function(x){ return '<p>'+howMd(howT(x))+'</p>'; }).join("")+
