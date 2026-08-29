@@ -36,6 +36,31 @@ const REPO = "spongefile/eurorackfi";
 const RAW = `https://raw.githubusercontent.com/${REPO}/main/`;
 const SITE = "https://eurorack.fi";
 
+/* The hostname seller links are BUILT with, always — never url.origin,
+   which would mint a link on whichever host the admin happened to be
+   browsing. Pinning it means the address in a mail doesn't depend on
+   where the sender was standing.
+
+   THIS IS THE ONE LINE TO CHANGE when linkki.eurorack.fi exists. It is
+   still workers.dev because the custom domain could not be created: the
+   eurorack.fi zone is not in this Cloudflare account, and a Workers
+   custom domain needs the zone and the worker in the same account. See
+   wrangler.toml for the full note.
+
+   Pointing it at a hostname that does not resolve yet would hand out dead
+   links and mail dead links, so it follows the domain rather than leading
+   it. Old links keep working either way: tokens are looked up by path and
+   both hostnames reach this same worker. */
+const PUBLIC_ORIGIN = "https://eurorackfi-cms-auth.aspiala.workers.dev";
+
+/* ...but OAuth must stay on workers.dev, because the GitHub OAuth app has
+   exactly one registered callback URL and GitHub rejects a login started
+   from any other host. So the admin surfaces bounce there rather than
+   being served on the new domain, which would fail at the GitHub step
+   with an error the user couldn't act on. Moving them is an OAuth app
+   edit first, code second. */
+const ADMIN_ORIGIN = "https://eurorackfi-cms-auth.aspiala.workers.dev";
+
 /* one KV key holds the whole override map, so a page load is one read.
    Writes are read-modify-write: with three sellers toggling occasionally
    the lost-update window is not worth a locking scheme, and the next
@@ -153,21 +178,51 @@ async function sendSellerLink(env, { to, sellerKey, link }) {
   if (!env.RESEND_API_KEY) {
     return { ok: false, error: "No RESEND_API_KEY set on the worker — run: wrangler secret put RESEND_API_KEY" };
   }
+  /* MAIL_FROM's display name is worth setting to something a seller
+     recognises. It is NOT a person's name, deliberately: several people
+     may send these, so a singular name would be wrong for whoever didn't,
+     and it would need configuring to stay right. The plural signature
+     below matches the site's own voice ("Muutama meistä…") and needs no
+     configuration. The trust work is done by the opening sentence, which
+     states a fact only a real sender knows — the signature never carried
+     it. */
   const from = env.MAIL_FROM || "eurorack.fi <noreply@eurorack.fi>";
 
-  /* FINNISH BELOW IS MINE AND UNREVIEWED — flagged to the user and to
-     design rather than presented as settled copy. The secrecy sentence is
-     the ONE exception: it is quoted verbatim from the seller page, where
-     it is the user's own approved wording, so the warning a seller reads
-     in the mail is word-for-word the one they meet on the page. If that
-     line is ever reworded, reword it here too. */
-  const subject = "Oma linkkisi eurorack.fi:hin";
+  /* THIS MAIL IS SHAPED AGAINST BEING MISTAKEN FOR PHISHING, which the
+     first draft was: it opened "here is your link", presented a URL on an
+     unrelated host, and told the reader to keep it secret. A stranger can
+     do all three. Not clicking it was the correct response.
+
+     So, in order:
+     - The FIRST CLAUSE is a fact only a real sender knows — that this
+       person's gear is listed on eurorack.fi — and one the reader can
+       check without clicking anything. That is the whole difference.
+     - The SUBJECT is about their gear, not about a link. A subject about
+       a link is what phishing leads with.
+     - The LINK is on linkki.eurorack.fi, matching the site the mail is
+       about. Copy cannot fix a mismatched hostname: every reassurance
+       above it is undone by the address itself.
+     - The LEAK REMEDY is here and not only on the page. The page can rely
+       on being reopened; this mail will still be in an inbox in a year and
+       is where a worried reader will look. It also turns the secrecy line
+       from a warning with no remedy into something that reads as care.
+
+     Finnish is design's and UNREVIEWED, except the secrecy sentence,
+     which is the user's own approved wording — unchanged and unreflowed,
+     shared verbatim with the seller page. Reword one, reword both.
+
+     Paragraphs are single lines with no hard wrapping: mail clients
+     reflow to the reader's width, and a hand-wrapped plain-text body
+     breaks raggedly on a phone. The LINK STAYS A BARE URL ON ITS OWN
+     LINE — clients linkify that reliably and mangle anything cleverer. */
+  const subject = "Tavarasi eurorack.fi:ssä";
   const text =
-    `Hei,\n\n` +
-    `tässä oma linkkisi eurorack.fi:hin. Sillä voit merkitä omat kohteesi myydyiksi tai neuvottelussa oleviksi:\n\n` +
+    `Moi,\n\n` +
+    `sinun tavaroitasi on myynnissä eurorack.fi:ssä. Tässä oma linkkisi, jolla voit merkitä kohteesi myydyiksi tai neuvottelussa oleviksi:\n\n` +
     `${link}\n\n` +
     `Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!\n\n` +
-    `— eurorack.fi\n`;
+    `Jos linkki karkaa vääriin käsiin, kerro meille niin teemme uuden.\n\n` +
+    `— eurorack.fi adminit\n`;
 
   try {
     const r = await fetch("https://api.resend.com/emails", {
@@ -260,6 +315,22 @@ export default {
     const p = url.pathname;
 
     if (request.method === "OPTIONS") return new Response(null, { headers: cors() });
+
+    /* Admin and OAuth only exist on the workers.dev host — see
+       ADMIN_ORIGIN. A GET that wandered onto the seller domain is sent
+       there rather than served, so the user lands somewhere that works
+       instead of hitting a GitHub error page. A POST is NOT redirected:
+       303 would drop the form body and silently do nothing, so it is
+       refused with an explanation instead. */
+    if (url.hostname !== new URL(ADMIN_ORIGIN).hostname &&
+        (p === "/auth" || p === "/callback" || p.startsWith("/token/"))) {
+      if (request.method !== "GET") {
+        return new Response("Admin actions live on " + ADMIN_ORIGIN + p + " — open that host and retry.", {
+          status: 421, headers: { "Content-Type": "text/plain; charset=utf-8" },
+        });
+      }
+      return Response.redirect(ADMIN_ORIGIN + p + url.search, 302);
+    }
 
     /* ---------- Decap OAuth (unchanged behaviour) ---------- */
     if (p === "/auth") {
@@ -386,7 +457,7 @@ Login complete — this window should close automatically.
             await env.SELLER_STATE.put("sel:" + sellerKey, tok);
             await env.SELLER_STATE.put("tok:" + tok, sellerKey);
           }
-          const res = await sendSellerLink(env, { to: addr, sellerKey, link: `${url.origin}/s/${tok}` });
+          const res = await sendSellerLink(env, { to: addr, sellerKey, link: `${PUBLIC_ORIGIN}/s/${tok}` });
           const q = res.ok ? "?sent=ok" : "?sent=fail&why=" + encodeURIComponent(res.error || "");
           return new Response(null, { status: 303, headers: { Location: p + q } });
         }
@@ -398,7 +469,7 @@ Login complete — this window should close automatically.
         await env.SELLER_STATE.put("sel:" + sellerKey, tok);
         await env.SELLER_STATE.put("tok:" + tok, sellerKey);
       }
-      const link = `${url.origin}/s/${tok}`;
+      const link = `${PUBLIC_ORIGIN}/s/${tok}`;
       const storedEmail = (await env.SELLER_STATE.get(emailKey(sellerKey))) || "";
       const lastSent = await env.SELLER_STATE.get("emailsent:" + sellerKey);
       const sent = url.searchParams.get("sent");
@@ -419,6 +490,11 @@ Login complete — this window should close automatically.
  padding:.6rem .8rem;margin-bottom:1rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem}
 .errbox{background:var(--sold-soft);color:var(--sold);border:1px solid var(--sold);
  padding:.6rem .8rem;margin-bottom:1rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.5}
+/* .btn is an <a> here as well as a <button>, so it needs the bits a
+   button gets for free: no underline, and matched line-height so the two
+   sit on the same baseline rather than the link riding high. */
+.btnrow{display:flex;gap:.5rem;flex-wrap:wrap;align-items:stretch}
+.btnrow .btn{display:inline-flex;align-items:center;text-decoration:none}
 .mailrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem}
 .mailrow input{flex:1 1 16rem;min-width:0;font-family:"IBM Plex Mono",monospace;font-size:.8rem;
  padding:.55rem .7rem;background:var(--panel2);border:1px solid var(--line2);color:var(--ink)}
@@ -429,7 +505,17 @@ Login complete — this window should close automatically.
           ${notice}
           <div class="card">
             <code class="link" id="lnk">${esc(link)}</code>
-            <button class="btn" id="copy" type="button">Copy link</button>
+            <div class="btnrow">
+              <button class="btn" id="copy" type="button">Copy link</button>
+              <!-- Opens the seller's own page, so the link can be checked
+                   without copy-pasting it into a new tab. New tab rather
+                   than same tab: this page is the only place the link
+                   exists, and navigating away from it to look at the thing
+                   it describes is the wrong trade. rel=noopener because
+                   target=_blank otherwise hands the opened page a
+                   window.opener handle back to this one. -->
+              <a class="btn ghost" href="${esc(link)}" target="_blank" rel="noopener">Open their page</a>
+            </div>
           </div>
           <div class="card">
             <form method="POST">

@@ -2,6 +2,26 @@ name = "eurorackfi-cms-auth"
 main = "worker.js"
 compatibility_date = "2025-01-01"
 
+# workers_dev IS EXPLICIT AND LOAD-BEARING, not a default worth trimming.
+# Declaring any [[routes]] entry flips this to false, which unpublishes the
+# workers.dev hostname — and because every seller link, the Decap OAuth
+# base_url and the site's /state fetch all point there, that takes the
+# whole worker offline with Cloudflare error 1042. It happened once. If you
+# add a route, keep this line.
+workers_dev = true
+
+# A linkki.eurorack.fi custom domain is WANTED but cannot be created from
+# here: the eurorack.fi zone is not in this Cloudflare account
+# (518b8afeb554ac93de22c9ff0822ebba), and a Workers custom domain requires
+# the zone and the worker to live in the same account. Wrangler reports it
+# as "Could not find zone for eurorack.fi".
+# To finish it: move or add the zone to this account, then restore
+#   [[routes]]
+#   pattern = "linkki.eurorack.fi"
+#   custom_domain = true
+#   zone_name = "eurorack.fi"
+# and flip PUBLIC_ORIGIN in worker.js to the new host in the same commit.
+
 # Live seller toggle state. The worker writes ONLY here — it holds no
 # GitHub credential — and a scheduled Action folds this back into
 # content/items/*.json so git stays the source of truth.
