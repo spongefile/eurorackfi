@@ -1566,3 +1566,44 @@ Still never amber (amber means caution sitewide) and never red (which would say
   someone later sells the same module. Not built and not specced, but it argues
   against hidden items vanishing completely from the admin, and is worth
   remembering before anyone "tidies" hidden records away.
+
+### 6. Seller-page copy — DRAFTED BY ME, UNREVIEWED
+
+The user said go ahead rather than wait, so these are drafts to build against.
+**They are mine, not approved.** spongefile reads both languages and will
+correct; treat any of their edits as final without asking (see the
+admin-edits-are-decisions rule).
+
+**Reused, already approved — do not redraft:**
+
+| | fi | sv |
+|---|---|---|
+| In negotiation (segment) | `Neuvottelussa` | `Förhandlas` |
+| items (count) | `kohdetta` | `objekt` |
+
+Note the Swedish segment reuses `negRibbon` (`Förhandlas`), not `negotiating`
+(`Under förhandling`) — the segment is a third of a 390px row and the longer
+form does not fit.
+
+**New, mine, unreviewed:**
+
+| | en (user's, fixed) | fi | sv |
+|---|---|---|---|
+| For sale (segment) | For sale | `Myynnissä` | `Till salu` |
+| Hide (segment) | Hide | `Piilota` | `Dölj` |
+| Gloss | this is a way to mark the item as sold | `Näin merkitset kohteen myydyksi. Saat sen takaisin milloin vain.` | `Så markerar du en vara som såld. Du kan ångra det när som helst.` |
+| Private-page note | only you can see this page | `Vain sinä näet tämän sivun.` | `Bara du ser den här sidan.` |
+| Hidden count | hidden | `piilotettua` | `dolda` |
+| Gone page | Owner has removed this module from sale. | `Omistaja on poistanut tämän moduulin myynnistä.` | `Ägaren har tagit bort den här modulen från försäljning.` |
+
+**Written as Finnish, not translated.** The gloss is the one that would most
+easily have become translationese: a literal *"tämä on tapa merkitä kohde
+myydyksi"* reads like a manual. `Näin merkitset kohteen myydyksi` is what a
+Finn would actually say, and the second sentence — *you can get it back any
+time* — is not in the English at all. It is there because the person tapping
+this is about to remove their own listing from a public site, and reversibility
+is the thing they will want to know at that moment.
+
+**Least confident, flag these first:** `piilotettua` (partitive plural after a
+number — `2 piilotettua`, not `2 piilotettu`), and whether `Saat sen takaisin`
+is the natural phrasing over something like `voit palauttaa sen`.
