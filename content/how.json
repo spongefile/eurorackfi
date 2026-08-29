@@ -88,7 +88,7 @@
   ],
   "zonesNote": {
     "en": "We hold no buyer details at all. Messages go through your own form straight to your Tally inbox — **we never see them.** Nothing about a buyer is ever stored on this site, so there is nothing here to leak, sell, or ask us to delete.",
-    "fi": "Emme säilytä ostajista mitään. Viestit kulkevat oman lomakkeesi kautta suoraan Tally-postilaatikkoosi — **me emme näe niitä.** Ostajista ei tallenneta tälle sivustolle mitään, joten täältä ei ole mitään vuodettavaa, myytävää tai poistettavaksi pyydettävää.",
+    "fi": "Emme säilytä ostajista mitään tietoja. Viestit kulkevat oman lomakkeesi kautta suoraan Tally-postilaatikkoosi — **me emme näe niitä.** Ostajista ei tallenneta tälle sivustolle mitään tietoja, joten täällä ei ole mitään vuodettavaa, myytävää tai poistettavaksi pyydettävää.",
     "sv": "Vi lagrar ingenting om köpare. Meddelanden går via ditt eget formulär direkt till din Tally-inkorg — **vi ser dem aldrig.** Ingenting om en köpare sparas på den här sajten, så det finns ingenting här att läcka, sälja eller be oss radera."
   },
   "splitTitle": {
@@ -119,12 +119,12 @@
     },
     {
       "en": "Change a price",
-      "fi": "Vaihda hintaa",
+      "fi": "Muuta hintaa",
       "sv": "Ändra ett pris"
     },
     {
       "en": "Say a price is negotiable",
-      "fi": "Merkitse että saa tinkiä",
+      "fi": "Merkitse, että saa tinkiä",
       "sv": "Ange att priset är prutbart"
     },
     {
@@ -134,7 +134,7 @@
     },
     {
       "en": "Put any of it back",
-      "fi": "Palauta mikä tahansa näistä",
+      "fi": "Peru mikä tahansa näistä",
       "sv": "Ångra vad som helst av det"
     }
   ],
@@ -172,7 +172,7 @@
   ],
   "splitNote": {
     "en": "**You control the facts only you know** — what sold, what it costs, whether you will haggle. **We handle the parts that need work** — photographing it, checking the specs, drawing the panel to scale, writing it in three languages.",
-    "fi": "**Sinä päätät asioista jotka vain sinä tiedät** — mikä meni kaupaksi, mitä se maksaa, tingitkö. **Me hoidamme ne osat jotka teettävät työtä** — kuvaamisen, tietojen tarkistuksen, paneelin piirtämisen mittakaavaan ja tekstit kolmella kielellä.",
+    "fi": "**Sinä kontrolloit asioita jotka vain sinä tiedät** — mikä meni kaupaksi, mitä se maksaa, sallitko tinkimisen. **Me hoidamme ne osat jotka teettävät työtä** — kuvaamisen, tietojen tarkistuksen, paneelin piirtämisen mittakaavaan ja tekstit kolmella kielellä.",
     "sv": "**Du styr det som bara du vet** — vad som sålts, vad det kostar, om du prutar. **Vi tar hand om det som kräver arbete** — fotograferingen, kontrollen av uppgifterna, panelritningen i skala och texterna på tre språk."
   },
   "whyTitle": {
@@ -225,7 +225,7 @@
   "rulesYes": [
     {
       "en": "Eurorack modules and cases",
-      "fi": "Eurorack-moduulit ja -kotelot",
+      "fi": "Eurorack-moduulit ja -keissit",
       "sv": "Eurorackmoduler och lådor"
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "en": "**Prices** for the ones you would sell.",
-      "fi": "**Hinnat** niille jotka myisit.",
+      "fi": "**Hinnat** niille jotka myydä.",
       "sv": "**Priser** för dem du skulle sälja."
     },
     {
@@ -322,7 +322,7 @@
   },
   "formBoxLead": {
     "en": "**Include a question asking which module they mean.** It is the one thing tying an enquiry to an item. Without it, messages arrive reading *“is this still available?”* with no way to tell what *this* is. Our side helps: the contact link on each module page shows the buyer that module’s name, so it is sitting in front of them to copy.",
-    "fi": "**Ota mukaan kysymys siitä, mistä moduulista on kyse.** Se on ainoa asia joka sitoo yhteydenoton kohteeseen. Ilman sitä viestit tulevat muodossa *“onko tämä vielä vapaana?”* eikä ole mitään keinoa tietää mikä *tämä* on. Meidän puolemme auttaa: jokaisen moduulin sivulla yhteydenottolinkki näyttää ostajalle moduulin nimen, joten se on hänen edessään valmiina kopioitavaksi.",
+    "fi": "**Mainitse mistä moduulista on kyse.** Se on ainoa asia joka sitoo yhteydenoton kohteeseen. Ilman sitä viestit tulevat muodossa *“onko tämä vielä vapaana?”* eikä ole mitään keinoa tietää mikä *tämä* on. Meidän puolemme auttaa: jokaisen moduulin sivulla yhteydenottolinkki näyttää ostajalle moduulin nimen, joten se on hänen edessään valmiina kopioitavaksi.",
     "sv": "**Ta med en fråga om vilken modul de menar.** Det är det enda som knyter en förfrågan till ett objekt. Utan den kommer meddelanden som lyder *“är den här fortfarande ledig?”* utan något sätt att veta vad *den här* är. Vår sida hjälper till: kontaktlänken på varje modulsida visar köparen modulens namn, så det ligger framför dem att kopiera."
   },
   "formBoxFourH": {
@@ -405,7 +405,7 @@
   },
   "batchNote": {
     "en": "Adding something new later — an item or a wishlist entry — means asking us, and we deal with those in batches every few weeks rather than daily. Everything you can change yourself is instant. It is only new content that waits.",
-    "fi": "Uuden lisääminen myöhemmin — kohteen tai toiveen — tapahtuu meiltä pyytämällä, ja hoidamme ne erissä muutaman viikon välein, emme päivittäin. Kaikki minkä voit muuttaa itse tapahtuu heti. Vain uusi sisältö odottaa.",
+    "fi": "Uuden kohteen tai toiveen lisääminen tapahtuu meiltä pyytämällä, ja hoidamme ne erissä muutaman viikon välein, emme päivittäin. Kaikki minkä voit muuttaa itse tapahtuu heti. Vain uusi sisältö odottaa.",
     "sv": "Att lägga till något nytt senare — ett objekt eller en önskan — sker genom att fråga oss, och vi tar dem i omgångar med några veckors mellanrum, inte dagligen. Allt du kan ändra själv sker direkt. Det är bara nytt innehåll som väntar."
   },
   "aiTitle": {
