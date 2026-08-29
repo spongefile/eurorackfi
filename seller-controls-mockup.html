@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — seller controls</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{--bg:#E7EBF0;--bg2:#DCE2EA;--panel:#FAFBFD;--panel2:#EFF3F8;
+ --ink:#0F1722;--ink2:#36435A;--muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;--on:#FAFBFD;
+ --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;
+ --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);}
+*{box-sizing:border-box}
+body{margin:0;padding:32px 36px 70px;background:var(--bg);color:var(--ink);
+ font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+h1{font-size:1.35rem;letter-spacing:-.025em;margin:0 0 .5rem}
+.sub{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;color:var(--ink2);
+ line-height:1.6;max-width:68ch;margin:0 0 1.6rem}
+.two{display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .5rem}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--muted);
+ line-height:1.7;margin:.7rem 0 0;width:390px}
+.phone{width:390px;min-height:560px;border:1px solid var(--line2);background:var(--bg);padding:16px 14px 28px}
+
+/* ---------- seller page ---------- */
+.sp-head{margin-bottom:14px}
+.sp-who{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
+.sp-who i{width:11px;height:11px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
+.sp-note{font-family:"Newsreader",Georgia,serif;font-size:.95rem;color:var(--ink2);
+ line-height:1.5;margin-top:.4rem}
+.sp-count{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+ margin:14px 0 8px;letter-spacing:.06em;text-transform:uppercase}
+
+.it{display:flex;gap:10px;align-items:flex-start;background:var(--panel);
+ border:1px solid var(--line);padding:10px;margin-bottom:8px}
+.it .th{width:44px;height:44px;flex:0 0 auto;background:linear-gradient(160deg,#3d434b,#23272d)}
+.it .body{flex:1 1 auto;min-width:0}
+.it .mk{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.08em;
+ text-transform:uppercase;color:var(--muted)}
+.it .nm{font-weight:700;font-size:.95rem;line-height:1.25;margin-top:1px}
+/* three states, one choice. Full-width so every target clears 44px on a phone. */
+.seg{display:flex;margin-top:9px;border:1px solid var(--line2);background:var(--panel)}
+.seg button{flex:1 1 0;min-height:44px;border:none;background:none;cursor:pointer;
+ font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
+ border-right:1px solid var(--line2);padding:0 .2rem}
+.seg button:last-child{border-right:none}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on);font-weight:600}
+.seg button.neg[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-hi)}
+.seg button.sold[aria-pressed="true"]{background:var(--sold-soft);color:var(--sold)}
+/* a sold row recedes but never disappears and never moves — the undo has to be
+   where the seller last saw the item */
+.it.isSold .th,.it.isSold .mk,.it.isSold .nm{opacity:.45}
+.it.isSold{background:var(--bg2)}
+
+/* ---------- gone page ---------- */
+.gp{padding:20px 4px}
+.gp .crumb{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-bottom:16px}
+.gp .shot{height:150px;background:linear-gradient(160deg,#3d434b,#23272d);opacity:.4;margin-bottom:14px}
+.gp .mk{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--muted)}
+.gp h3{font-size:1.5rem;letter-spacing:-.02em;margin:.2rem 0 .5rem}
+.gp .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+ background:var(--sold-soft);color:var(--sold);padding:.25rem .55rem;margin-bottom:14px}
+.gp p{font-family:"Newsreader",Georgia,serif;font-size:1rem;color:var(--ink2);line-height:1.55;margin:0 0 16px}
+.gp .btn{display:inline-flex;min-height:44px;align-items:center;padding:0 1rem;
+ background:var(--accent);color:var(--on);text-decoration:none;
+ font-family:"IBM Plex Mono",monospace;font-size:.74rem;font-weight:600;
+ border:1px solid var(--accent-hi);box-shadow:0 2px 0 var(--accent-hi)}
+</style></head>
+<body>
+<h1>Seller controls, and what a hidden item leaves behind</h1>
+<p class="sub">Two new surfaces. The left one is the only part of this site a seller ever
+touches — usually on a phone, one-handed, the minute something sells. The right one is what a
+shared link now shows once an item is hidden, which the old delete-outright rule made
+impossible.</p>
+
+<div class="two">
+<div>
+<h2>Seller controls — 390px</h2>
+<div class="phone">
+  <div class="sp-head">
+    <div class="sp-who"><i></i>Sampo</div>
+    <div class="sp-note">Merkitse myydyt pois. Vain sinä näet tämän sivun.</div>
+  </div>
+  <div class="sp-count">20 kohdetta · 2 piilotettu</div>
+
+  <div class="it"><div class="th"></div><div class="body">
+    <div class="mk">Westlicht</div><div class="nm">PER|FORMER</div>
+    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+  </div></div>
+
+  <div class="it"><div class="th"></div><div class="body">
+    <div class="mk">Industrial Music Electronics</div><div class="nm">Piston Honda MK III</div>
+    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="true">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+  </div></div>
+
+  <div class="it isSold"><div class="th"></div><div class="body">
+    <div class="mk">Befaco</div><div class="nm">BF-22 Sallen Key Filter</div>
+    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="true">Myyty</button></div>
+  </div></div>
+
+  <div class="it"><div class="th"></div><div class="body">
+    <div class="mk">Modor Music</div><div class="nm">Formant Filter</div>
+    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+  </div></div>
+</div>
+<p class="cap"><b>One choice, not two toggles.</b> Three states that cannot overlap — for
+sale, someone is talking, gone — so it is one decision rather than two that interact. Every
+target is a full-width third of the row at 44px minimum, reachable one-handed.<br><br>
+<b>A sold row recedes but never moves.</b> No reordering, no vanishing: the undo has to be
+exactly where the seller last saw the item, and something jumping away under the thumb is
+alarming when you have just tapped it by mistake.<br><br>
+No prices, no editing, no adding. The state is the whole job.</p>
+</div>
+
+<div>
+<h2>What a shared link shows once hidden — 390px</h2>
+<div class="phone"><div class="gp">
+  <div class="crumb">← Kaikki</div>
+  <div class="shot"></div>
+  <div class="mk">Befaco</div>
+  <h3>BF-22 Sallen Key Filter</h3>
+  <div class="tag">Myyty</div>
+  <p>Tämä on mennyt. Katso muut — samanlaisia löytyy usein.</p>
+  <a class="btn" href="#">Katso kaikki →</a>
+</div></div>
+<p class="cap"><b>It can name the module now.</b> The old rule deleted the record, so a stale
+link could only say "that one's gone" about nothing in particular. A hidden record means the
+page can show what the link was for — which is what the person clicking actually wants
+confirmed.<br><br>
+Dressed in <code>--sold</code> / <code>--sold-soft</code>, the palette already reserved for
+exactly this and used nowhere else.<br><br>
+The photo stays but dimmed. It confirms they found the right thing; full strength would read
+as still for sale.</p>
+</div>
+</div>
+</body></html>
