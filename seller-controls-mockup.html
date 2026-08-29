@@ -25,6 +25,16 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
 .phone{width:390px;min-height:560px;border:1px solid var(--line2);background:var(--bg);padding:16px 14px 28px}
 
 /* ---------- seller page ---------- */
+/* Sits above everything: the seller has come here to do a job, so the ask has
+   to land before they do it and leave. Signal colours, not accent — it is an
+   aside, not the page's own business, and it must not compete with the
+   controls for the tap. */
+.sp-tip{display:block;text-decoration:none;background:var(--signal-soft);
+ border:1px solid var(--signal);padding:.6rem .7rem;margin-bottom:16px}
+.sp-tip .t{display:block;font-family:"Newsreader",Georgia,serif;font-size:.95rem;
+ color:var(--ink2);line-height:1.4}
+.sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ font-weight:600;color:var(--signal);margin-top:.3rem}
 .sp-head{margin-bottom:14px}
 .sp-who{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
 .sp-who i{width:11px;height:11px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
@@ -96,6 +106,10 @@ impossible.</p>
 <div>
 <h2>Seller controls — 390px</h2>
 <div class="phone">
+  <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
+    <span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Tippaa ylläpidolle →</span></a>
+
   <div class="sp-head">
     <div class="sp-who"><i></i>Sampo</div>
     <div class="sp-note">Merkitse myydyt pois.</div>

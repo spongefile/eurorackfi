@@ -1802,3 +1802,34 @@ red so the control and the badge are visibly the same fact.
 
 `Saa tinkiä` is the user's own Finnish. **en/sv still needed** — do not write
 them; ask.
+
+### 10. Tip banner on the seller page (2026-08-29)
+
+Top of every seller page, above the heading.
+
+- **Link:** `https://www.spongefile.com/#/portal/support`
+- **en (user's):** Has this site helped you? Give the admin a tip!
+- **fi (mine, unreviewed):** `Onko tästä sivustosta ollut sinulle hyötyä?` /
+  `Tippaa ylläpidolle →`
+- **sv (mine, unreviewed):** `Har den här sajten varit till hjälp?` /
+  `Ge admin ett bidrag →`
+
+**Placed above everything, deliberately.** The seller came to do one thing and
+will leave the moment it is done, so an ask below the list is an ask nobody
+reads. Above the controls it is seen; it still does not block them.
+
+**Split into a question and an action.** The question in Newsreader, the link
+in mono with an arrow — so it reads as one aside with a way out, not as a
+banner shouting two things.
+
+**`--signal` / `--signal-soft`, not `--accent`.** Accent is what the site uses
+for its own controls, and this is not the page's business — it is a request on
+behalf of someone else. Signal already means *stop and read this* and is used
+on this page only here and on the secrecy note.
+
+**It must not compete with the controls for the tap.** Whole-block link, but
+sized as an aside; if it ever grows to look like a primary action it is wrong.
+
+This is the same tip mentioned in FAQ 04 (*"if something does sell, a tip
+towards the admin is welcome"*) — same idea, now with somewhere to click, and
+placed where the person who owes the favour actually is.
