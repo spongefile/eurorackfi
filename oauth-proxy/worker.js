@@ -1043,16 +1043,25 @@ function sellerPage(sellerKey, tok) {
    and leaves the moment it is done, so an ask below the list is an ask
    nobody reaches. Sized as an aside; if it ever starts looking like the
    primary action it has gone wrong.
-   NEUTRAL, not --signal, and that was a correction. The security note
-   below is the one thing on this page whose being ignored has a
-   consequence, and it only reads as that while it is the only amber block
-   on screen. This is a request we would LIKE read; that one is a warning.
-   Two amber blocks stacked turned the warning into furniture. */
+   A BAND, not a panel. It was --panel2 on --line2, and panel grey on page
+   grey read as chrome rather than as an ask — the user said it was too
+   subtle and they were right. --accent-soft ground with an --accent border
+   gives it weight without borrowing a meaning that is already taken.
+   NOT AMBER, and that is now a decision rather than an accident. The
+   secrecy warning above the list is amber, and two amber blocks on a first
+   visit turn the warning into furniture. That constraint is TEMPORARY —
+   the warning is dismissible, so from the second visit this would be the
+   only amber block on the page — but the first visit is exactly when the
+   warning has to land, so amber loses permanently.
+   NOT RED either; see the heart's own note in the markup below. */
 .sp-tip{display:flex;gap:.6rem;align-items:center;text-decoration:none;
- background:var(--panel2);border:1px solid var(--line2);padding:.6rem .7rem;margin-bottom:16px}
-.sp-tip .jar{width:26px;height:26px;flex:0 0 auto;color:var(--accent)}
+ background:var(--accent-soft);border:1px solid var(--accent);
+ padding:.75rem .85rem;margin-bottom:16px}
+.sp-tip .jar{width:29px;height:29px;flex:0 0 auto;color:var(--accent)}
 .sp-tip .txt{min-width:0}
-.sp-tip .t{display:block;font-size:.95rem;color:var(--ink2);line-height:1.4}
+/* --ink, not --ink2: on the tinted ground the softer ink lost too much
+   contrast, and this is the line actually being read. */
+.sp-tip .t{display:block;font-size:.95rem;color:var(--ink);line-height:1.4}
 .sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
  font-weight:600;color:var(--accent);margin-top:.2rem}
 /* Dismissible, because it is a warning and not furniture: it should stop
@@ -1137,7 +1146,7 @@ function sellerPage(sellerKey, tok) {
     <svg class="jar" viewBox="0 0 100 100" aria-hidden="true">
       <path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23
                C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z"
-            fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+            fill="currentColor"/>
     </svg>
     <span class="txt"><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
     <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
