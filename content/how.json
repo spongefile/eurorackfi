@@ -357,8 +357,8 @@
     "fi": "**Ei vielä lomaketta?** [tally.so](https://tally.so) on ilmainen ja vie noin viisi minuuttia. Tee tunnus, lisää nuo neljä kysymystä, julkaise ja lähetä meille linkki. Laita samalla *sähköposti-ilmoitukset* päälle, muuten näet yhteydenotot vasta kun seuraavan kerran avaat sen.",
     "sv": "**Inget formulär än?** [tally.so](https://tally.so) är gratis och tar ungefär fem minuter. Skapa ett konto, lägg till de fyra frågorna, publicera och skicka oss länken. Slå på *e-postnotiser* medan du är där, annars ser du förfrågningar först när du öppnar det nästa gång."
   },
-  "_sendHrefComment": "Points at the general contact form for now. The user intends a dedicated joining form later — swap this value and nothing else changes; the sentence works either way.",
-  "sendHref": "#/msg/",
+  "_sendHrefComment": "The user's own \"Add to eurorack.fi\" Tally form. Was #/msg/ until 2026-08-29. Swap this value and nothing else changes; the sentence works either way. Existing sellers do NOT use this — they have the in-page request form on their token link, which lands in the /requests queue.",
+  "sendHref": "https://tally.so/r/VLOgVl",
   "sendVia": {
     "en": "Send it all through [the contact form on eurorack.fi]({href}).",
     "fi": "Lähetä kaikki [eurorack.fi:n yhteydenottolomakkeella]({href}).",
