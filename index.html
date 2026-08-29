@@ -2516,12 +2516,19 @@ function howMd(str){
   e=e.replace(/\*([^*]+)\*/g,"<i>$1</i>");
   return e;
 }
-/* Falls back to English rather than showing an empty page: fi/sv are
-   deliberately unwritten, and a blank line is worse than an English one
-   next to a banner that says so. */
+/* SERVES A LANGUAGE ONLY IF IT IS PUBLISHED, not merely if it is written.
+   That distinction became load-bearing the moment real translations landed
+   in how.json: before, unpublished meant empty, so falling back on
+   emptiness happened to be correct. With the text present but unapproved,
+   the same code rendered a fully Finnish page underneath a banner saying
+   the page was English only — the banner and the page contradicting each
+   other, and unreviewed copy shown anyway.
+   So the gate decides the language, and emptiness is only the last-resort
+   fallback within a published one. */
 function howT(v){
   if(!v) return "";
-  return (v[lang] && v[lang].trim()) ? v[lang] : (v.en||"");
+  var use = howHasLang(lang) ? lang : "en";
+  return (v[use] && v[use].trim()) ? v[use] : (v.en||"");
 }
 function howList(arr){
   return (arr||[]).map(function(x){ return '<li>'+howMd(howT(x))+'</li>'; }).join("");

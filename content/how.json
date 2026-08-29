@@ -6,18 +6,18 @@
   ],
   "eyebrow": {
     "en": "For owners",
-    "fi": "",
-    "sv": ""
+    "fi": "Omistajille",
+    "sv": "För ägare"
   },
   "title": {
     "en": "How this works",
-    "fi": "",
-    "sv": ""
+    "fi": "Näin tämä toimii",
+    "sv": "Så här fungerar det"
   },
   "lede": {
     "en": "Before you send us a list, here is exactly what we hold, what you control, and what belongs here.",
-    "fi": "",
-    "sv": ""
+    "fi": "Ennen kuin lähetät meille listaa: tässä on tarkalleen mitä me säilytämme, mitä hallitset itse ja mikä tänne kuuluu.",
+    "sv": "Innan du skickar oss en lista: här är exakt vad vi lagrar, vad du styr själv och vad som hör hemma här."
   },
   "faqLink": {
     "en": "How this works, in full",
@@ -26,400 +26,400 @@
   },
   "zonesTitle": {
     "en": "Where things live",
-    "fi": "",
-    "sv": ""
+    "fi": "Missä mikäkin on",
+    "sv": "Var sakerna finns"
   },
   "zonesLeftH": {
     "en": "On eurorack.fi",
-    "fi": "",
-    "sv": ""
+    "fi": "eurorack.fi:ssä",
+    "sv": "På eurorack.fi"
   },
   "zonesLeftSub": {
     "en": "public, in the open",
-    "fi": "",
-    "sv": ""
+    "fi": "julkisesti, kaikkien nähtävillä",
+    "sv": "offentligt, synligt för alla"
   },
   "zonesLeft": [
     {
       "en": "Your name and colour",
-      "fi": "",
-      "sv": ""
+      "fi": "Nimesi ja värisi",
+      "sv": "Ditt namn och din färg"
     },
     {
       "en": "Your items — photos, specs, prices",
-      "fi": "",
-      "sv": ""
+      "fi": "Kohteesi — kuvat, tiedot, hinnat",
+      "sv": "Dina objekt — bilder, uppgifter, priser"
     },
     {
       "en": "Your wishlist",
-      "fi": "",
-      "sv": ""
+      "fi": "Toiveesi",
+      "sv": "Din önskelista"
     },
     {
       "en": "What is sold, hidden, or in negotiation",
-      "fi": "",
-      "sv": ""
+      "fi": "Mikä on myyty, piilotettu tai neuvottelussa",
+      "sv": "Vad som är sålt, dolt eller under förhandling"
     }
   ],
   "zonesRightH": {
     "en": "On Tally",
-    "fi": "",
-    "sv": ""
+    "fi": "Tallyssa",
+    "sv": "På Tally"
   },
   "zonesRightSub": {
     "en": "your own form, not us",
-    "fi": "",
-    "sv": ""
+    "fi": "oma lomakkeesi, ei meidän",
+    "sv": "ditt eget formulär, inte vårt"
   },
   "zonesRight": [
     {
       "en": "Buyers' names and emails",
-      "fi": "",
-      "sv": ""
+      "fi": "Ostajien nimet ja sähköpostit",
+      "sv": "Köparnas namn och e-postadresser"
     },
     {
       "en": "What they wrote to you",
-      "fi": "",
-      "sv": ""
+      "fi": "Mitä he kirjoittivat sinulle",
+      "sv": "Vad de skrev till dig"
     },
     {
       "en": "Which item they asked about",
-      "fi": "",
-      "sv": ""
+      "fi": "Mistä kohteesta he kysyivät",
+      "sv": "Vilket objekt de frågade om"
     }
   ],
   "zonesNote": {
     "en": "We hold no buyer details at all. Messages go through your own form straight to your Tally inbox — **we never see them.** Nothing about a buyer is ever stored on this site, so there is nothing here to leak, sell, or ask us to delete.",
-    "fi": "",
-    "sv": ""
+    "fi": "Emme säilytä ostajista mitään. Viestit kulkevat oman lomakkeesi kautta suoraan Tally-postilaatikkoosi — **me emme näe niitä.** Ostajista ei tallenneta tälle sivustolle mitään, joten täältä ei ole mitään vuodettavaa, myytävää tai poistettavaksi pyydettävää.",
+    "sv": "Vi lagrar ingenting om köpare. Meddelanden går via ditt eget formulär direkt till din Tally-inkorg — **vi ser dem aldrig.** Ingenting om en köpare sparas på den här sajten, så det finns ingenting här att läcka, sälja eller be oss radera."
   },
   "splitTitle": {
     "en": "What you change, and what you ask for",
-    "fi": "",
-    "sv": ""
+    "fi": "Mitä muutat itse, mitä pyydät meiltä",
+    "sv": "Vad du ändrar, och vad du ber om"
   },
   "splitNowH": {
     "en": "Instantly, from your own link",
-    "fi": "",
-    "sv": ""
+    "fi": "Heti, omasta linkistäsi",
+    "sv": "Direkt, från din egen länk"
   },
   "splitNowSub": {
     "en": "no login, works on a phone",
-    "fi": "",
-    "sv": ""
+    "fi": "ei kirjautumista, toimii puhelimella",
+    "sv": "ingen inloggning, funkar i mobilen"
   },
   "splitNow": [
     {
       "en": "Mark something sold",
-      "fi": "",
-      "sv": ""
+      "fi": "Merkitse myydyksi",
+      "sv": "Markera något som sålt"
     },
     {
       "en": "Mark something in negotiation",
-      "fi": "",
-      "sv": ""
+      "fi": "Merkitse neuvottelussa olevaksi",
+      "sv": "Markera något som under förhandling"
     },
     {
       "en": "Change a price",
-      "fi": "",
-      "sv": ""
+      "fi": "Vaihda hintaa",
+      "sv": "Ändra ett pris"
     },
     {
       "en": "Say a price is negotiable",
-      "fi": "",
-      "sv": ""
+      "fi": "Merkitse että saa tinkiä",
+      "sv": "Ange att priset är prutbart"
     },
     {
       "en": "Hide a wishlist entry you have found",
-      "fi": "",
-      "sv": ""
+      "fi": "Piilota toive jonka olet jo löytänyt",
+      "sv": "Dölja en önskan du redan hittat"
     },
     {
       "en": "Put any of it back",
-      "fi": "",
-      "sv": ""
+      "fi": "Palauta mikä tahansa näistä",
+      "sv": "Ångra vad som helst av det"
     }
   ],
   "splitAskH": {
     "en": "By asking us",
-    "fi": "",
-    "sv": ""
+    "fi": "Meiltä pyytämällä",
+    "sv": "Genom att fråga oss"
   },
   "splitAskSub": {
     "en": "a form on the same page",
-    "fi": "",
-    "sv": ""
+    "fi": "lomake samalla sivulla",
+    "sv": "ett formulär på samma sida"
   },
   "splitAsk": [
     {
       "en": "Adding a new item",
-      "fi": "",
-      "sv": ""
+      "fi": "Uuden kohteen lisääminen",
+      "sv": "Lägga till ett nytt objekt"
     },
     {
       "en": "Adding a wishlist entry",
-      "fi": "",
-      "sv": ""
+      "fi": "Uuden toiveen lisääminen",
+      "sv": "Lägga till en önskan"
     },
     {
       "en": "Changing a photo or description",
-      "fi": "",
-      "sv": ""
+      "fi": "Kuvan tai kuvauksen vaihtaminen",
+      "sv": "Byta bild eller beskrivning"
     },
     {
       "en": "Fixing specs, HP, or power draw",
-      "fi": "",
-      "sv": ""
+      "fi": "Tietojen, HP:n tai virrankulutuksen korjaaminen",
+      "sv": "Rätta uppgifter, HP eller strömförbrukning"
     }
   ],
   "splitNote": {
     "en": "**You control the facts only you know** — what sold, what it costs, whether you will haggle. **We handle the parts that need work** — photographing it, checking the specs, drawing the panel to scale, writing it in three languages.",
-    "fi": "",
-    "sv": ""
+    "fi": "**Sinä päätät asioista jotka vain sinä tiedät** — mikä meni kaupaksi, mitä se maksaa, tingitkö. **Me hoidamme ne osat jotka teettävät työtä** — kuvaamisen, tietojen tarkistuksen, paneelin piirtämisen mittakaavaan ja tekstit kolmella kielellä.",
+    "sv": "**Du styr det som bara du vet** — vad som sålts, vad det kostar, om du prutar. **Vi tar hand om det som kräver arbete** — fotograferingen, kontrollen av uppgifterna, panelritningen i skala och texterna på tre språk."
   },
   "whyTitle": {
     "en": "Why it is built this way",
-    "fi": "",
-    "sv": ""
+    "fi": "Miksi tämä on tehty näin",
+    "sv": "Varför det är byggt så här"
   },
   "why": [
     {
       "en": "This is a hobby project. A couple of people, evenings.",
-      "fi": "",
-      "sv": ""
+      "fi": "Tämä on harrasteprojekti. Pari ihmistä, iltaisin.",
+      "sv": "Det här är ett hobbyprojekt. Ett par personer, på kvällarna."
     },
     {
       "en": "There are two ways to build something like this. One assumes nobody can be trusted: accounts, passwords, moderation, spam defences, and a plan for the day someone abuses it. That is a swamp of a project that never stops asking for attention.",
-      "fi": "",
-      "sv": ""
+      "fi": "Tällaisen voi rakentaa kahdella tavalla. Toisessa oletetaan ettei kehenkään voi luottaa: tunnukset, salasanat, moderointi, roskapostisuojaukset ja suunnitelma sen varalle että joku käyttää sitä väärin. Siitä tulee suo, joka ei lakkaa vaatimasta huomiota.",
+      "sv": "Man kan bygga något sådant här på två sätt. Det ena utgår från att ingen går att lita på: konton, lösenord, moderering, spamskydd och en plan för dagen någon missbrukar det. Det blir ett träsk av ett projekt som aldrig slutar kräva uppmärksamhet."
     },
     {
       "en": "The other assumes **you** can be trusted, because we know who you are. It is a fraction of the work and it stays small.",
-      "fi": "",
-      "sv": ""
+      "fi": "Toisessa oletetaan että **sinuun** voi luottaa, koska tiedämme kuka olet. Se on murto-osa työstä ja pysyy pienenä.",
+      "sv": "Det andra utgår från att **du** går att lita på, för vi vet vem du är. Det är en bråkdel av arbetet och det förblir litet."
     },
     {
       "en": "We are doing the second one — and honestly, the first one would not exist. Not because it is a worse idea, but because nobody here wants to spend their evenings running it.",
-      "fi": "",
-      "sv": ""
+      "fi": "Me teemme jälkimmäisen — ja rehellisesti sanottuna ensimmäistä ei olisi olemassakaan. Ei siksi että se olisi huonompi idea, vaan koska kukaan täällä ei halua käyttää iltojaan sen pyörittämiseen.",
+      "sv": "Vi gör det andra — och ärligt talat skulle det första inte finnas. Inte för att det är en sämre idé, utan för att ingen här vill lägga sina kvällar på att sköta det."
     },
     {
       "en": "**That is also why we ask for more than eight modules, and why someone vouches for you if we do not know you.** That trust is doing the job a login screen would otherwise be doing. It is not gatekeeping for its own sake — it is the thing holding the whole arrangement up.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Siksi myös pyydämme yli kahdeksaa moduulia, ja siksi joku takaa puolestasi jos emme tunne sinua.** Se luottamus tekee sen työn jonka kirjautumissivu muuten tekisi. Kyse ei ole portin vartioimisesta sen itsensä vuoksi — se on se mikä pitää koko homman kasassa.",
+      "sv": "**Det är också därför vi ber om fler än åtta moduler, och därför någon går i god för dig om vi inte känner dig.** Den tilliten gör jobbet som en inloggningssida annars skulle göra. Det handlar inte om att vakta grinden för sakens skull — det är det som håller hela upplägget uppe."
     },
     {
       "en": "What you get out of it: no account to make, no password to forget, one link that works on a phone. What you give up: you cannot add or rewrite content yourself, and new things wait for us.",
-      "fi": "",
-      "sv": ""
+      "fi": "Mitä siitä saat: ei tunnusta tehtäväksi, ei salasanaa unohdettavaksi, yksi linkki joka toimii puhelimella. Mistä luovut: et voi itse lisätä tai kirjoittaa sisältöä uusiksi, ja uudet asiat odottavat meitä.",
+      "sv": "Vad du får ut av det: inget konto att skapa, inget lösenord att glömma, en länk som fungerar i mobilen. Vad du avstår från: du kan inte lägga till eller skriva om innehåll själv, och nya saker väntar på oss."
     }
   ],
   "rulesTitle": {
     "en": "What belongs here",
-    "fi": "",
-    "sv": ""
+    "fi": "Mikä tänne kuuluu",
+    "sv": "Vad som hör hemma här"
   },
   "rulesYesH": {
     "en": "Yes",
-    "fi": "",
-    "sv": ""
+    "fi": "Kyllä",
+    "sv": "Ja"
   },
   "rulesYes": [
     {
       "en": "Eurorack modules and cases",
-      "fi": "",
-      "sv": ""
+      "fi": "Eurorack-moduulit ja -kotelot",
+      "sv": "Eurorackmoduler och lådor"
     },
     {
       "en": "Desktop and standalone gear",
-      "fi": "",
-      "sv": ""
+      "fi": "Pöytälaitteet ja erillislaitteet",
+      "sv": "Bordsapparater och fristående utrustning"
     },
     {
       "en": "Accessories — cables, power, tools, panels",
-      "fi": "",
-      "sv": ""
+      "fi": "Tarvikkeet — kaapelit, virtalähteet, työkalut, paneelit",
+      "sv": "Tillbehör — kablar, strömförsörjning, verktyg, paneler"
     },
     {
       "en": "Odd sound things: strange headphones, contact mics, unusual pedals",
-      "fi": "",
-      "sv": ""
+      "fi": "Oudot äänilaitteet: kummalliset kuulokkeet, kontaktimikrofonit, erikoiset pedaalit",
+      "sv": "Udda ljudsaker: konstiga hörlurar, kontaktmikrofoner, ovanliga pedaler"
     }
   ],
   "rulesNoH": {
     "en": "No",
-    "fi": "",
-    "sv": ""
+    "fi": "Ei",
+    "sv": "Nej"
   },
   "rulesNo": [
     {
       "en": "Anything unrelated to sound",
-      "fi": "",
-      "sv": ""
+      "fi": "Mikään mikä ei liity ääneen",
+      "sv": "Allt som inte har med ljud att göra"
     },
     {
       "en": "Generic electronics anyone sells",
-      "fi": "",
-      "sv": ""
+      "fi": "Yleiselektroniikka jota myy kuka tahansa",
+      "sv": "Allmän elektronik som vem som helst säljer"
     },
     {
       "en": "Bulk or trade quantities",
-      "fi": "",
-      "sv": ""
+      "fi": "Tukkuerät ja kauppatavara",
+      "sv": "Parti- eller handelsmängder"
     }
   ],
   "rulesTest": {
     "en": "The test is whether someone in the Finnish eurorack group would stop scrolling at it. Weird headphones, yes. Baby clothes, no. A generic alarm clock, no — a strange one someone built, probably yes.",
-    "fi": "",
-    "sv": ""
+    "fi": "Testi on se, pysähtyisikö suomalaisen eurorack-porukan jäsen selaamasta sen kohdalle. Oudot kuulokkeet, kyllä. Vauvanvaatteet, ei. Tavallinen herätyskello, ei — jonkun itse rakentama kummajainen, luultavasti kyllä.",
+    "sv": "Testet är om någon i den finska eurorackgruppen skulle sluta scrolla vid det. Konstiga hörlurar, ja. Babykläder, nej. En vanlig väckarklocka, nej — en märklig som någon byggt själv, förmodligen ja."
   },
   "rulesCall": {
     "en": "Suggest whatever you like. In the end we decide, because we built this and would rather not spend the evenings arguing about it.",
-    "fi": "",
-    "sv": ""
+    "fi": "Ehdota mitä tahansa. Lopulta me päätämme, koska me tämän rakensimme emmekä halua käyttää iltoja väittelyyn.",
+    "sv": "Föreslå vad du vill. Till slut är det vi som bestämmer, för vi byggde det här och vill helst inte lägga kvällarna på att diskutera saken."
   },
   "startTitle": {
     "en": "Getting started",
-    "fi": "",
-    "sv": ""
+    "fi": "Näin pääset alkuun",
+    "sv": "Kom igång"
   },
   "step1H": {
     "en": "You send us",
-    "fi": "",
-    "sv": ""
+    "fi": "Sinä lähetät meille",
+    "sv": "Du skickar oss"
   },
   "step1": [
     {
       "en": "**A list of your modules** — including ones you are not selling yet. Everything arrives hidden, so nothing goes public until you say so.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Listan moduuleistasi** — myös niistä joita et vielä myy. Kaikki saapuu piilotettuna, joten mikään ei tule julkiseksi ennen kuin sanot niin.",
+      "sv": "**En lista över dina moduler** — även de du inte säljer ännu. Allt kommer in dolt, så ingenting blir offentligt förrän du säger till."
     },
     {
       "en": "**Prices** for the ones you would sell.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Hinnat** niille jotka myisit.",
+      "sv": "**Priser** för dem du skulle sälja."
     },
     {
       "en": "**A wishlist** — what you are looking for.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Toivelistan** — mitä etsit.",
+      "sv": "**En önskelista** — vad du letar efter."
     },
     {
       "en": "**A way for buyers to reach you.** A Tally form of your own — enquiries land in your Tally inbox, and by email too if you switch notifications on. Or honestly any page where someone can contact you — your own site's contact form is fine.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Tavan jolla ostajat tavoittavat sinut.** Oman Tally-lomakkeen — yhteydenotot tulevat Tally-postilaatikkoosi, ja sähköpostiin jos laitat ilmoitukset päälle. Tai ihan minkä tahansa sivun jolta sinuun saa yhteyden — oman sivustosi yhteydenottolomake käy hyvin.",
+      "sv": "**Ett sätt för köpare att nå dig.** Ett eget Tally-formulär — förfrågningar hamnar i din Tally-inkorg, och i mejlen också om du slår på notiser. Eller ärligt talat vilken sida som helst där någon kan kontakta dig — din egen sajts kontaktformulär duger."
     }
   ],
   "step1Tail": [
     {
       "en": "**Your email address**, so we can send you your link. This one is for us, not for buyers.",
-      "fi": "",
-      "sv": ""
+      "fi": "**Sähköpostiosoitteesi**, jotta voimme lähettää sinulle linkkisi. Tämä on meitä varten, ei ostajia.",
+      "sv": "**Din e-postadress**, så att vi kan skicka dig din länk. Den här är för oss, inte för köpare."
     }
   ],
   "formBoxH": {
     "en": "Whatever form you use",
-    "fi": "",
-    "sv": ""
+    "fi": "Käytit mitä lomaketta tahansa",
+    "sv": "Vilket formulär du än använder"
   },
   "formBoxLead": {
-    "en": "**Include a question asking which module they mean.** It is the one thing tying an enquiry to an item. Without it, messages arrive reading *“is this still available?”* with no way to tell what *this* is. Our side helps: the contact link on each module page shows the buyer that module's name, so it is sitting in front of them to copy.",
-    "fi": "",
-    "sv": ""
+    "en": "**Include a question asking which module they mean.** It is the one thing tying an enquiry to an item. Without it, messages arrive reading *“is this still available?”* with no way to tell what *this* is. Our side helps: the contact link on each module page shows the buyer that module’s name, so it is sitting in front of them to copy.",
+    "fi": "**Ota mukaan kysymys siitä, mistä moduulista on kyse.** Se on ainoa asia joka sitoo yhteydenoton kohteeseen. Ilman sitä viestit tulevat muodossa *“onko tämä vielä vapaana?”* eikä ole mitään keinoa tietää mikä *tämä* on. Meidän puolemme auttaa: jokaisen moduulin sivulla yhteydenottolinkki näyttää ostajalle moduulin nimen, joten se on hänen edessään valmiina kopioitavaksi.",
+    "sv": "**Ta med en fråga om vilken modul de menar.** Det är det enda som knyter en förfrågan till ett objekt. Utan den kommer meddelanden som lyder *“är den här fortfarande ledig?”* utan något sätt att veta vad *den här* är. Vår sida hjälper till: kontaktlänken på varje modulsida visar köparen modulens namn, så det ligger framför dem att kopiera."
   },
   "formBoxFourH": {
     "en": "Four questions is plenty:",
-    "fi": "",
-    "sv": ""
+    "fi": "Neljä kysymystä riittää:",
+    "sv": "Fyra frågor räcker:"
   },
   "formBoxFour": [
     {
       "en": "**Which module are you asking about?** — the one that matters",
-      "fi": "",
-      "sv": ""
+      "fi": "**Mistä moduulista kysyt?** — tämä on se tärkeä",
+      "sv": "**Vilken modul frågar du om?** — den viktiga"
     },
     {
       "en": "**Your name**",
-      "fi": "",
-      "sv": ""
+      "fi": "**Nimesi**",
+      "sv": "**Ditt namn**"
     },
     {
       "en": "**Your email** — so you can reply",
-      "fi": "",
-      "sv": ""
+      "fi": "**Sähköpostisi** — tarvitset tämän vastaamiseen",
+      "sv": "**Din e-post** — den behöver du för att kunna svara"
     },
     {
       "en": "**Your message**",
-      "fi": "",
-      "sv": ""
+      "fi": "**Viestisi**",
+      "sv": "**Ditt meddelande**"
     }
   ],
   "formBoxNoForm": {
     "en": "**No form yet?** [tally.so](https://tally.so) is free and takes about five minutes. Make an account, add those four questions, publish, and send us the link. Switch on *email notifications* while you are there, or you will only see enquiries when you next open it.",
-    "fi": "",
-    "sv": ""
+    "fi": "**Ei vielä lomaketta?** [tally.so](https://tally.so) on ilmainen ja vie noin viisi minuuttia. Tee tunnus, lisää nuo neljä kysymystä, julkaise ja lähetä meille linkki. Laita samalla *sähköposti-ilmoitukset* päälle, muuten näet yhteydenotot vasta kun seuraavan kerran avaat sen.",
+    "sv": "**Inget formulär än?** [tally.so](https://tally.so) är gratis och tar ungefär fem minuter. Skapa ett konto, lägg till de fyra frågorna, publicera och skicka oss länken. Slå på *e-postnotiser* medan du är där, annars ser du förfrågningar först när du öppnar det nästa gång."
   },
   "_sendHrefComment": "Points at the general contact form for now. The user intends a dedicated joining form later — swap this value and nothing else changes; the sentence works either way.",
   "sendHref": "#/msg/",
   "sendVia": {
     "en": "Send it all through [the contact form on eurorack.fi]({href}).",
-    "fi": "",
-    "sv": ""
+    "fi": "Lähetä kaikki [eurorack.fi:n yhteydenottolomakkeella]({href}).",
+    "sv": "Skicka allt via [kontaktformuläret på eurorack.fi]({href})."
   },
   "step2H": {
     "en": "We do the work",
-    "fi": "",
-    "sv": ""
+    "fi": "Me teemme työn",
+    "sv": "Vi gör jobbet"
   },
   "step2": [
     {
       "en": "We add every module's details — photos, specs, HP, power, panel drawing, and the description in three languages.",
-      "fi": "",
-      "sv": ""
+      "fi": "Lisäämme jokaisen moduulin tiedot — kuvat, spesifikaatiot, HP:n, virrankulutuksen, paneelipiirroksen ja kuvauksen kolmella kielellä.",
+      "sv": "Vi lägger in varje moduls uppgifter — bilder, specifikationer, HP, ström, panelritning och beskrivningen på tre språk."
     },
     {
       "en": "We send you your own link.",
-      "fi": "",
-      "sv": ""
+      "fi": "Lähetämme sinulle oman linkkisi.",
+      "sv": "Vi skickar dig din egen länk."
     }
   ],
   "step3H": {
     "en": "You go live",
-    "fi": "",
-    "sv": ""
+    "fi": "Sinä julkaiset",
+    "sv": "Du går live"
   },
   "step3": [
     {
       "en": "Unhide whatever you actually want to sell.",
-      "fi": "",
-      "sv": ""
+      "fi": "Poista piilotus niistä joita oikeasti haluat myydä.",
+      "sv": "Ta bort döljningen från det du faktiskt vill sälja."
     },
     {
       "en": "From then on it is yours — sold, negotiation, prices, wishlist.",
-      "fi": "",
-      "sv": ""
+      "fi": "Siitä eteenpäin se on sinun — myyty, neuvottelu, hinnat, toiveet.",
+      "sv": "Från och med då är det ditt — sålt, förhandling, priser, önskelista."
     }
   ],
   "contactsNote": {
     "en": "**Two different contacts, and they are not the same thing.** The contact form is public and is how buyers reach you — we never see those messages. Your email address is private and is only used to send you your link.",
-    "fi": "",
-    "sv": ""
+    "fi": "**Kaksi eri yhteystietoa, eivätkä ne ole sama asia.** Yhteydenottolomake on julkinen ja sen kautta ostajat tavoittavat sinut — me emme näe niitä viestejä. Sähköpostiosoitteesi on yksityinen ja sitä käytetään vain linkkisi lähettämiseen.",
+    "sv": "**Två olika kontaktvägar, och de är inte samma sak.** Kontaktformuläret är offentligt och det är så köpare når dig — vi ser aldrig de meddelandena. Din e-postadress är privat och används bara för att skicka dig din länk."
   },
   "batchNote": {
     "en": "Adding something new later — an item or a wishlist entry — means asking us, and we deal with those in batches every few weeks rather than daily. Everything you can change yourself is instant. It is only new content that waits.",
-    "fi": "",
-    "sv": ""
+    "fi": "Uuden lisääminen myöhemmin — kohteen tai toiveen — tapahtuu meiltä pyytämällä, ja hoidamme ne erissä muutaman viikon välein, emme päivittäin. Kaikki minkä voit muuttaa itse tapahtuu heti. Vain uusi sisältö odottaa.",
+    "sv": "Att lägga till något nytt senare — ett objekt eller en önskan — sker genom att fråga oss, och vi tar dem i omgångar med några veckors mellanrum, inte dagligen. Allt du kan ändra själv sker direkt. Det är bara nytt innehåll som väntar."
   },
   "aiTitle": {
     "en": "Made with AI",
-    "fi": "",
-    "sv": ""
+    "fi": "Tehty tekoälyllä",
+    "sv": "Gjort med AI"
   },
   "ai": [
     {
       "en": "This entire project has been made with AI. That means there will be inevitable mistakes and inaccuracies — but we hope the human and personal component of this (the fact that we are a community and not strangers on the internet) will smooth over those *“the site has the wrong colour panel shown”* moments.",
-      "fi": "",
-      "sv": ""
+      "fi": "Koko tämä projekti on tehty tekoälyllä. Se tarkoittaa että virheitä ja epätarkkuuksia tulee väistämättä — mutta toivomme että tämän inhimillinen ja henkilökohtainen puoli (se että olemme yhteisö emmekä tuntemattomia netissä) tasoittaa ne *“sivustolla näkyy väärän värinen paneeli”* -hetket.",
+      "sv": "Hela det här projektet är gjort med AI. Det betyder att fel och felaktigheter är oundvikliga — men vi hoppas att det mänskliga och personliga i det här (att vi är en gemenskap och inte främlingar på internet) jämnar ut de där *“sajten visar fel färg på panelen”*-stunderna."
     }
   ]
 }
