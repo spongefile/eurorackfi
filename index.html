@@ -1583,7 +1583,40 @@ function benchHTML(m){
 
 /* ---------- i18n ---------- */
 var LANGS=["fi","sv","en"], lang="fi";
+/* ?lang= WINS OVER THE STORED PREFERENCE, because it is an explicit
+   instruction from whoever shared the link and the reader has not chosen
+   anything yet on this visit. Without it a link to #/how always opened in
+   Finnish whatever the sender intended, since the language lived only in
+   this browser's storage and nothing about the address carried it.
+   A QUERY PARAM RATHER THAN PART OF THE HASH: the hash is the router, and
+   every route here is matched by prefix on location.hash, so putting the
+   language in there would mean re-parsing every one of them and would
+   break every link anyone has already shared. ?lang= sits outside all of
+   that and needs no route to know about it.
+   Validated against LANGS and against T: an unknown or malformed value is
+   ignored rather than blanking the page. */
 try{ var saved=localStorage.getItem("erfi-lang"); if(saved&&T[saved]) lang=saved; }catch(e){}
+try{
+  var qs=new URLSearchParams(location.search).get("lang");
+  if(qs && LANGS.indexOf(qs)>=0 && T[qs]){
+    lang=qs;
+    /* stored, so the choice survives the reader's next visit without the
+       link — same as using the switcher */
+    try{ localStorage.setItem("erfi-lang",lang); }catch(e){}
+  }
+}catch(e){}
+/* Keeps the address honest: whatever language is on screen is the language
+   in the URL, so copying the address bar shares what you are looking at.
+   replaceState rather than pushState — a language switch is not a place
+   you should have to press Back through. */
+function syncLangInUrl(){
+  try{
+    var u=new URL(location.href);
+    if(lang==="fi") u.searchParams.delete("lang");   /* the default needs no marker */
+    else u.searchParams.set("lang",lang);
+    if(u.href!==location.href) history.replaceState(null,"",u.href);
+  }catch(e){}
+}
 /* ---- strings I authored (design's T above is their reviewed copy; these are mine,
    pending a register check from design — held to "written as the language") ---- */
 var TX={
@@ -2959,7 +2992,7 @@ document.addEventListener("click",function(e){
   var g=e.target.closest("[data-go]");
   if(g){ openDetail(g.getAttribute("data-go")); return; }
   var L=e.target.closest("[data-lang]");
-  if(L){ lang=L.getAttribute("data-lang"); try{localStorage.setItem("erfi-lang",lang);}catch(x){} renderAll(); route(); return; }
+  if(L){ lang=L.getAttribute("data-lang"); try{localStorage.setItem("erfi-lang",lang);}catch(x){} syncLangInUrl(); renderAll(); route(); return; }
   /* owner is hash-driven, not direct state — #/s/<seller> is a shareable,
      bookmarkable, back/forward-correct URL onto the filtered grid
      (owner only; format/type/search/sort stay session state and never
