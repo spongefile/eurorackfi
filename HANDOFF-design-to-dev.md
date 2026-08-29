@@ -2348,3 +2348,41 @@ directly and will want to.
 claim about how the site behaves and what is acceptable, so it needs the user's
 eye before it goes near the site, and Finnish and Swedish are theirs to write.
 Do not machine-translate it.
+
+---
+
+## The Toiveet row needs break opportunities, not just width (2026-08-29)
+
+The flowing row of wishlist names caused **704px of document against a 358px
+phone** — the home view scrolled sideways. It predates Join and predates this
+week; it was found while checking something else.
+
+**The cause was not width.** The names are spans joined with `.join('')`, so
+there was no whitespace anywhere in the row and therefore **no break
+opportunity**. `white-space` is normal throughout — the band would have wrapped
+happily, it simply had nowhere to wrap. Every "why won't it wrap" theory about
+flex and `min-width` came up empty because none of them were the problem.
+
+**Fixed with `<wbr>`, not spaces, and that choice is load-bearing.** The row's
+16px-between-names against 34px-between-people ratio was measured, not guessed;
+it is what makes the row read as grouped by person. A space would have changed
+exactly the thing that ratio protects. `<wbr>` is zero-width, so the rhythm is
+byte-for-byte unchanged.
+
+**Anything built by joining spans has this hazard.** It is invisible on desktop,
+because a wide layout never needs the break, and it only appears at phone
+widths. If this row is ever rebuilt, the `<wbr>` goes back in.
+
+**Open, for the user rather than for dev:** now that the row wraps at all,
+continuation lines start at the left margin where the coloured dots sit, so a
+wrapped item can momentarily read as a new person. A hanging indent — wrapped
+lines indented to sit under the name rather than under the dot — would remove
+that. Not built; worth their eye first, since it only shows on a phone with a
+long wishlist.
+
+**Method note.** Headless `--window-size` renders were what produced my WRONG
+diagnosis: I read a horizontal scroll offset as the nav overflowing, which is
+the same picture from a different cause. A same-origin iframe at the target
+width gives the inner document a genuine viewport, so the site's own media
+queries apply and `scrollWidth` vs `clientWidth` is measurable. Use that for any
+narrow-viewport claim. Confirmed after the fix: 360/360, no overflow.
