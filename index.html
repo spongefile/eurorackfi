@@ -550,7 +550,11 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    module names — that ratio is what makes each person read as one phrase
    rather than a run of words. Measured, not guessed: 16px between names
    against ~34px between people. At 1.15rem this came out at 18px, a ratio
-   of 1.13, and the row read as one undifferentiated run. */
+   of 1.13, and the row read as one undifferentiated run.
+   DESKTOP ONLY: under 640px each person becomes a block with a hanging
+   indent and the grouping comes from vertical spacing instead — same job,
+   rotated. Do not try to unify the two forms; they solve the same problem
+   with different axes. */
 .wperson{margin-right:2.15rem}
 .wperson:last-child{margin-right:0}
 /* dot and name are one nowrap unit: without it a line can end on a bare
@@ -567,7 +571,21 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .wperson .sep{color:var(--line2); padding:0 .26rem}
 @media(max-width:640px){
   .wishflow{font-size:.74rem; line-height:1.95}
-  .wperson{margin-right:1.6rem}
+  /* HANGING INDENT, the row's phone form. padding-left pushes the whole
+     block right; text-indent pulls only the FIRST line back to the margin.
+     So the dot-and-name unit starts at the left edge and every wrapped
+     line hangs 1rem in, clear of the dot column — only a dot ever begins
+     a person. Before this, a wrapped continuation started at exactly the
+     dot column's x and read as a new person whose dot failed to render.
+     margin-right:0 replaces the old 1.6rem: a block has no use for a
+     right margin, and 1.6rem of a 360px line is not nothing.
+     The between-people gap moves to the vertical margin below — on a
+     phone the grouping cannot come from horizontal space, so it comes
+     from vertical instead. The <wbr> break points in the markup are
+     unchanged: the indent changes where wrapped lines START, not where
+     breaks happen. */
+  .wperson{display:block; margin-right:0; padding-left:1rem; text-indent:-1rem}
+  .wperson + .wperson{margin-top:.34rem}
   .wperson .who{font-size:.88rem}
 }
 /* ---------- Toiveet page (#/wish) ----------
