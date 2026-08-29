@@ -1465,7 +1465,7 @@ function sellerPage(sellerKey, tok) {
   TXT_ALL.sv={
     keep:"Bara du ser den här sidan, så länge du inte ger länken till någon annan. Håll den hemlig!",
     ack:"Jag förstår",
-    haggle:"Prutbart",
+    haggle:"Ge bud",   /* quotes the sticker, follows the sticker */
     gloss:"Genom att dölja markerar du objektet som sålt. Du får tillbaka det när som helst.",
     forsale:"Till salu",
     neg:"Under förhandling",

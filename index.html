@@ -900,7 +900,7 @@ main{padding-bottom:3rem}
   .negribbon{width:143px; height:143px}
   .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
 }
-/* ---------- haggle sticker ("anna tarjous" / "make offer" / "prutbart") ----------
+/* ---------- haggle sticker ("anna tarjous" / "make offer" / "ge bud") ----------
    A starburst sale sticker, and deliberately unlike everything else on the
    site — that is what makes it read as a sticker rather than a system
    label. The tilt and the drop shadow are doing that work: upright and
@@ -1293,12 +1293,14 @@ var T = {
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
-    /* "prutbart" — the Swedish small-ad idiom, one word, so it holds a
-       single line on the badge at every size. Design's, approved by the
-       user. It was picked over "price negotiable" partly because that
-       visibly overflows the badge edges at 60px — so haggle2 is empty
-       here and the badge renders one line, which tinkHTML handles. */
-    haggle1:"prutbart", haggle2:"", haggle:"Prutbart",
+    /* "Ge bud" — the user's own Swedish, replacing "prutbart" by their
+       ruling (2026-08-30). All three languages now share the two-line
+       badge shape and the tell-the-buyer-what-to-do register. The
+       one-line special case that "prutbart" needed still works (tinkHTML
+       omits the break when haggle2 is empty) — kept for a future language,
+       not exercised by any current one. Measured: 17.8px widest line
+       against the 55.6px inner circle, the roomiest of the three. */
+    haggle1:"ge", haggle2:"bud", haggle:"Ge bud",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
@@ -2071,12 +2073,12 @@ var TINK_POINTS="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,1
    on a card the price is a link to that page — so nothing is announced
    twice and nothing is announced only in colour. */
 /* MEASURED, not assumed, because the badge is a fixed circle and the
-   longest line varies by language: at design's .165 ratio the widest
-   string we ship, Swedish "prutbart", renders 50.4px inside a 55.6px inner
-   circle on a 60px card badge. Tight but clear, and it is the constraint
-   that picked the word. Anything longer than about nine characters will
-   NOT fit — measure a new string here before adding it rather than
-   trusting the ratio. */
+   longest line varies by language. The ceiling is about NINE CHARACTERS
+   per line at design's .165 ratio — established when Swedish shipped the
+   one-word "prutbart" at 50.4px inside the 55.6px inner circle. Nothing
+   current is near it ("tarjous" at 44.4px is now the widest), but the
+   ceiling binds whoever adds a fourth language: measure a new string here
+   before trusting the ratio. */
 function tinkHTML(m,size){
   if(!m.haggle) return "";
   var T2=t();
