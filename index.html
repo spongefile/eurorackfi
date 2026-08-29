@@ -2526,11 +2526,22 @@ function howT(v){
 function howList(arr){
   return (arr||[]).map(function(x){ return '<li>'+howMd(howT(x))+'</li>'; }).join("");
 }
-/* The page exists in a language only when its lede has been written there.
-   Used to keep it off fi/sv until the user has translated it, rather than
-   quietly serving them English. */
+/* TWO SEPARATE CONDITIONS, deliberately, because they are two different
+   facts. An earlier version gated purely on "has this language been
+   written", which quietly made TRANSLATED and APPROVED the same signal —
+   so pasting a draft translation into how.json would have published it in
+   that language, in one commit, which is precisely what the review was
+   meant to prevent. Translations get handed over routinely; approval is a
+   deliberate act by the user after reading.
+   So a language goes live only when it is BOTH listed in HOW.live and
+   actually written. A draft can now sit in this file safely. Absent or
+   malformed live means English only — the failure falls towards not
+   publishing. */
 function howHasLang(l){
-  return !!(HOW && HOW.lede && HOW.lede[l] && HOW.lede[l].trim());
+  if(!HOW) return false;
+  var live=Array.isArray(HOW.live)&&HOW.live.length?HOW.live:["en"];
+  if(live.indexOf(l)<0) return false;
+  return !!(HOW.lede && HOW.lede[l] && HOW.lede[l].trim());
 }
 function howHTML(){
   var T2=t(), H=HOW;

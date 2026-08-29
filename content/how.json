@@ -1,84 +1,272 @@
 {
   "_comment": "Copy for the 'How this works' page (#/how). English is design's draft and UNREVIEWED by the user; fi and sv are deliberately empty until the user writes them, and the page refuses to render in a language whose lede is blank. Layout lives in index.html because the structure is fixed and approved; only the words live here, so revising them is cheap. Inline markup: **bold**, *italic*, [text](url) — nothing else, and everything is escaped before it is applied.",
-  "eyebrow": { "en": "For owners", "fi": "", "sv": "" },
-  "title": { "en": "How this works", "fi": "", "sv": "" },
+  "_liveComment": "Which languages this page is PUBLISHED in. Separate from whether a translation exists, because those are different facts: a draft translation can sit in this file without going live. A language appears on the site only if it is listed here AND its text is written. Absent or empty means English only. Adding a code here is the act of publishing, and it is the user's to make after reading that language.",
+  "live": [
+    "en"
+  ],
+  "eyebrow": {
+    "en": "For owners",
+    "fi": "",
+    "sv": ""
+  },
+  "title": {
+    "en": "How this works",
+    "fi": "",
+    "sv": ""
+  },
   "lede": {
     "en": "Before you send us a list, here is exactly what we hold, what you control, and what belongs here.",
     "fi": "",
     "sv": ""
   },
-  "faqLink": { "en": "How this works, in full", "fi": "", "sv": "" },
-
-  "zonesTitle": { "en": "Where things live", "fi": "", "sv": "" },
-  "zonesLeftH": { "en": "On eurorack.fi", "fi": "", "sv": "" },
-  "zonesLeftSub": { "en": "public, in the open", "fi": "", "sv": "" },
+  "faqLink": {
+    "en": "How this works, in full",
+    "fi": "",
+    "sv": ""
+  },
+  "zonesTitle": {
+    "en": "Where things live",
+    "fi": "",
+    "sv": ""
+  },
+  "zonesLeftH": {
+    "en": "On eurorack.fi",
+    "fi": "",
+    "sv": ""
+  },
+  "zonesLeftSub": {
+    "en": "public, in the open",
+    "fi": "",
+    "sv": ""
+  },
   "zonesLeft": [
-    { "en": "Your name and colour", "fi": "", "sv": "" },
-    { "en": "Your items — photos, specs, prices", "fi": "", "sv": "" },
-    { "en": "Your wishlist", "fi": "", "sv": "" },
-    { "en": "What is sold, hidden, or in negotiation", "fi": "", "sv": "" }
+    {
+      "en": "Your name and colour",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Your items — photos, specs, prices",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Your wishlist",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "What is sold, hidden, or in negotiation",
+      "fi": "",
+      "sv": ""
+    }
   ],
-  "zonesRightH": { "en": "On Tally", "fi": "", "sv": "" },
-  "zonesRightSub": { "en": "your own form, not us", "fi": "", "sv": "" },
+  "zonesRightH": {
+    "en": "On Tally",
+    "fi": "",
+    "sv": ""
+  },
+  "zonesRightSub": {
+    "en": "your own form, not us",
+    "fi": "",
+    "sv": ""
+  },
   "zonesRight": [
-    { "en": "Buyers' names and emails", "fi": "", "sv": "" },
-    { "en": "What they wrote to you", "fi": "", "sv": "" },
-    { "en": "Which item they asked about", "fi": "", "sv": "" }
+    {
+      "en": "Buyers' names and emails",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "What they wrote to you",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Which item they asked about",
+      "fi": "",
+      "sv": ""
+    }
   ],
   "zonesNote": {
     "en": "We hold no buyer details at all. Messages go through your own form straight to your Tally inbox — **we never see them.** Nothing about a buyer is ever stored on this site, so there is nothing here to leak, sell, or ask us to delete.",
     "fi": "",
     "sv": ""
   },
-
-  "splitTitle": { "en": "What you change, and what you ask for", "fi": "", "sv": "" },
-  "splitNowH": { "en": "Instantly, from your own link", "fi": "", "sv": "" },
-  "splitNowSub": { "en": "no login, works on a phone", "fi": "", "sv": "" },
+  "splitTitle": {
+    "en": "What you change, and what you ask for",
+    "fi": "",
+    "sv": ""
+  },
+  "splitNowH": {
+    "en": "Instantly, from your own link",
+    "fi": "",
+    "sv": ""
+  },
+  "splitNowSub": {
+    "en": "no login, works on a phone",
+    "fi": "",
+    "sv": ""
+  },
   "splitNow": [
-    { "en": "Mark something sold", "fi": "", "sv": "" },
-    { "en": "Mark something in negotiation", "fi": "", "sv": "" },
-    { "en": "Change a price", "fi": "", "sv": "" },
-    { "en": "Say a price is negotiable", "fi": "", "sv": "" },
-    { "en": "Hide a wishlist entry you have found", "fi": "", "sv": "" },
-    { "en": "Put any of it back", "fi": "", "sv": "" }
+    {
+      "en": "Mark something sold",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Mark something in negotiation",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Change a price",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Say a price is negotiable",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Hide a wishlist entry you have found",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Put any of it back",
+      "fi": "",
+      "sv": ""
+    }
   ],
-  "splitAskH": { "en": "By asking us", "fi": "", "sv": "" },
-  "splitAskSub": { "en": "a form on the same page", "fi": "", "sv": "" },
+  "splitAskH": {
+    "en": "By asking us",
+    "fi": "",
+    "sv": ""
+  },
+  "splitAskSub": {
+    "en": "a form on the same page",
+    "fi": "",
+    "sv": ""
+  },
   "splitAsk": [
-    { "en": "Adding a new item", "fi": "", "sv": "" },
-    { "en": "Adding a wishlist entry", "fi": "", "sv": "" },
-    { "en": "Changing a photo or description", "fi": "", "sv": "" },
-    { "en": "Fixing specs, HP, or power draw", "fi": "", "sv": "" }
+    {
+      "en": "Adding a new item",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Adding a wishlist entry",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Changing a photo or description",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Fixing specs, HP, or power draw",
+      "fi": "",
+      "sv": ""
+    }
   ],
   "splitNote": {
     "en": "**You control the facts only you know** — what sold, what it costs, whether you will haggle. **We handle the parts that need work** — photographing it, checking the specs, drawing the panel to scale, writing it in three languages.",
     "fi": "",
     "sv": ""
   },
-
-  "whyTitle": { "en": "Why it is built this way", "fi": "", "sv": "" },
+  "whyTitle": {
+    "en": "Why it is built this way",
+    "fi": "",
+    "sv": ""
+  },
   "why": [
-    { "en": "This is a hobby project. A couple of people, evenings.", "fi": "", "sv": "" },
-    { "en": "There are two ways to build something like this. One assumes nobody can be trusted: accounts, passwords, moderation, spam defences, and a plan for the day someone abuses it. That is a swamp of a project that never stops asking for attention.", "fi": "", "sv": "" },
-    { "en": "The other assumes **you** can be trusted, because we know who you are. It is a fraction of the work and it stays small.", "fi": "", "sv": "" },
-    { "en": "We are doing the second one — and honestly, the first one would not exist. Not because it is a worse idea, but because nobody here wants to spend their evenings running it.", "fi": "", "sv": "" },
-    { "en": "**That is also why we ask for more than eight modules, and why someone vouches for you if we do not know you.** That trust is doing the job a login screen would otherwise be doing. It is not gatekeeping for its own sake — it is the thing holding the whole arrangement up.", "fi": "", "sv": "" },
-    { "en": "What you get out of it: no account to make, no password to forget, one link that works on a phone. What you give up: you cannot add or rewrite content yourself, and new things wait for us.", "fi": "", "sv": "" }
+    {
+      "en": "This is a hobby project. A couple of people, evenings.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "There are two ways to build something like this. One assumes nobody can be trusted: accounts, passwords, moderation, spam defences, and a plan for the day someone abuses it. That is a swamp of a project that never stops asking for attention.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "The other assumes **you** can be trusted, because we know who you are. It is a fraction of the work and it stays small.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "We are doing the second one — and honestly, the first one would not exist. Not because it is a worse idea, but because nobody here wants to spend their evenings running it.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**That is also why we ask for more than eight modules, and why someone vouches for you if we do not know you.** That trust is doing the job a login screen would otherwise be doing. It is not gatekeeping for its own sake — it is the thing holding the whole arrangement up.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "What you get out of it: no account to make, no password to forget, one link that works on a phone. What you give up: you cannot add or rewrite content yourself, and new things wait for us.",
+      "fi": "",
+      "sv": ""
+    }
   ],
-
-  "rulesTitle": { "en": "What belongs here", "fi": "", "sv": "" },
-  "rulesYesH": { "en": "Yes", "fi": "", "sv": "" },
+  "rulesTitle": {
+    "en": "What belongs here",
+    "fi": "",
+    "sv": ""
+  },
+  "rulesYesH": {
+    "en": "Yes",
+    "fi": "",
+    "sv": ""
+  },
   "rulesYes": [
-    { "en": "Eurorack modules and cases", "fi": "", "sv": "" },
-    { "en": "Desktop and standalone gear", "fi": "", "sv": "" },
-    { "en": "Accessories — cables, power, tools, panels", "fi": "", "sv": "" },
-    { "en": "Odd sound things: strange headphones, contact mics, unusual pedals", "fi": "", "sv": "" }
+    {
+      "en": "Eurorack modules and cases",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Desktop and standalone gear",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Accessories — cables, power, tools, panels",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Odd sound things: strange headphones, contact mics, unusual pedals",
+      "fi": "",
+      "sv": ""
+    }
   ],
-  "rulesNoH": { "en": "No", "fi": "", "sv": "" },
+  "rulesNoH": {
+    "en": "No",
+    "fi": "",
+    "sv": ""
+  },
   "rulesNo": [
-    { "en": "Anything unrelated to sound", "fi": "", "sv": "" },
-    { "en": "Generic electronics anyone sells", "fi": "", "sv": "" },
-    { "en": "Bulk or trade quantities", "fi": "", "sv": "" }
+    {
+      "en": "Anything unrelated to sound",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Generic electronics anyone sells",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "Bulk or trade quantities",
+      "fi": "",
+      "sv": ""
+    }
   ],
   "rulesTest": {
     "en": "The test is whether someone in the Finnish eurorack group would stop scrolling at it. Weird headphones, yes. Baby clothes, no. A generic alarm clock, no — a strange one someone built, probably yes.",
@@ -90,52 +278,128 @@
     "fi": "",
     "sv": ""
   },
-
-  "startTitle": { "en": "Getting started", "fi": "", "sv": "" },
-  "step1H": { "en": "You send us", "fi": "", "sv": "" },
+  "startTitle": {
+    "en": "Getting started",
+    "fi": "",
+    "sv": ""
+  },
+  "step1H": {
+    "en": "You send us",
+    "fi": "",
+    "sv": ""
+  },
   "step1": [
-    { "en": "**A list of your modules** — including ones you are not selling yet. Everything arrives hidden, so nothing goes public until you say so.", "fi": "", "sv": "" },
-    { "en": "**Prices** for the ones you would sell.", "fi": "", "sv": "" },
-    { "en": "**A wishlist** — what you are looking for.", "fi": "", "sv": "" },
-    { "en": "**A way for buyers to reach you.** A Tally form of your own — enquiries land in your Tally inbox, and by email too if you switch notifications on. Or honestly any page where someone can contact you — your own site's contact form is fine.", "fi": "", "sv": "" }
+    {
+      "en": "**A list of your modules** — including ones you are not selling yet. Everything arrives hidden, so nothing goes public until you say so.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**Prices** for the ones you would sell.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**A wishlist** — what you are looking for.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**A way for buyers to reach you.** A Tally form of your own — enquiries land in your Tally inbox, and by email too if you switch notifications on. Or honestly any page where someone can contact you — your own site's contact form is fine.",
+      "fi": "",
+      "sv": ""
+    }
   ],
   "step1Tail": [
-    { "en": "**Your email address**, so we can send you your link. This one is for us, not for buyers.", "fi": "", "sv": "" }
+    {
+      "en": "**Your email address**, so we can send you your link. This one is for us, not for buyers.",
+      "fi": "",
+      "sv": ""
+    }
   ],
-  "formBoxH": { "en": "Whatever form you use", "fi": "", "sv": "" },
+  "formBoxH": {
+    "en": "Whatever form you use",
+    "fi": "",
+    "sv": ""
+  },
   "formBoxLead": {
     "en": "**Include a question asking which module they mean.** It is the one thing tying an enquiry to an item. Without it, messages arrive reading *“is this still available?”* with no way to tell what *this* is. Our side helps: the contact link on each module page shows the buyer that module's name, so it is sitting in front of them to copy.",
     "fi": "",
     "sv": ""
   },
-  "formBoxFourH": { "en": "Four questions is plenty:", "fi": "", "sv": "" },
+  "formBoxFourH": {
+    "en": "Four questions is plenty:",
+    "fi": "",
+    "sv": ""
+  },
   "formBoxFour": [
-    { "en": "**Which module are you asking about?** — the one that matters", "fi": "", "sv": "" },
-    { "en": "**Your name**", "fi": "", "sv": "" },
-    { "en": "**Your email** — so you can reply", "fi": "", "sv": "" },
-    { "en": "**Your message**", "fi": "", "sv": "" }
+    {
+      "en": "**Which module are you asking about?** — the one that matters",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**Your name**",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**Your email** — so you can reply",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "**Your message**",
+      "fi": "",
+      "sv": ""
+    }
   ],
   "formBoxNoForm": {
     "en": "**No form yet?** [tally.so](https://tally.so) is free and takes about five minutes. Make an account, add those four questions, publish, and send us the link. Switch on *email notifications* while you are there, or you will only see enquiries when you next open it.",
     "fi": "",
     "sv": ""
   },
-
   "_sendHrefComment": "Points at the general contact form for now. The user intends a dedicated joining form later — swap this value and nothing else changes; the sentence works either way.",
   "sendHref": "#/msg/",
-  "sendVia": { "en": "Send it all through [the contact form on eurorack.fi]({href}).", "fi": "", "sv": "" },
-
-  "step2H": { "en": "We do the work", "fi": "", "sv": "" },
+  "sendVia": {
+    "en": "Send it all through [the contact form on eurorack.fi]({href}).",
+    "fi": "",
+    "sv": ""
+  },
+  "step2H": {
+    "en": "We do the work",
+    "fi": "",
+    "sv": ""
+  },
   "step2": [
-    { "en": "We add every module's details — photos, specs, HP, power, panel drawing, and the description in three languages.", "fi": "", "sv": "" },
-    { "en": "We send you your own link.", "fi": "", "sv": "" }
+    {
+      "en": "We add every module's details — photos, specs, HP, power, panel drawing, and the description in three languages.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "We send you your own link.",
+      "fi": "",
+      "sv": ""
+    }
   ],
-  "step3H": { "en": "You go live", "fi": "", "sv": "" },
+  "step3H": {
+    "en": "You go live",
+    "fi": "",
+    "sv": ""
+  },
   "step3": [
-    { "en": "Unhide whatever you actually want to sell.", "fi": "", "sv": "" },
-    { "en": "From then on it is yours — sold, negotiation, prices, wishlist.", "fi": "", "sv": "" }
+    {
+      "en": "Unhide whatever you actually want to sell.",
+      "fi": "",
+      "sv": ""
+    },
+    {
+      "en": "From then on it is yours — sold, negotiation, prices, wishlist.",
+      "fi": "",
+      "sv": ""
+    }
   ],
-
   "contactsNote": {
     "en": "**Two different contacts, and they are not the same thing.** The contact form is public and is how buyers reach you — we never see those messages. Your email address is private and is only used to send you your link.",
     "fi": "",
@@ -146,9 +410,16 @@
     "fi": "",
     "sv": ""
   },
-
-  "aiTitle": { "en": "Made with AI", "fi": "", "sv": "" },
+  "aiTitle": {
+    "en": "Made with AI",
+    "fi": "",
+    "sv": ""
+  },
   "ai": [
-    { "en": "This entire project has been made with AI. That means there will be inevitable mistakes and inaccuracies — but we hope the human and personal component of this (the fact that we are a community and not strangers on the internet) will smooth over those *“the site has the wrong colour panel shown”* moments.", "fi": "", "sv": "" }
+    {
+      "en": "This entire project has been made with AI. That means there will be inevitable mistakes and inaccuracies — but we hope the human and personal component of this (the fact that we are a community and not strangers on the internet) will smooth over those *“the site has the wrong colour panel shown”* moments.",
+      "fi": "",
+      "sv": ""
+    }
   ]
 }
