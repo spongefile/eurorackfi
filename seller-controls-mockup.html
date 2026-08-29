@@ -29,12 +29,18 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
    to land before they do it and leave. Signal colours, not accent — it is an
    aside, not the page's own business, and it must not compete with the
    controls for the tap. */
-.sp-tip{display:block;text-decoration:none;background:var(--signal-soft);
- border:1px solid var(--signal);padding:.6rem .7rem;margin-bottom:16px}
+/* NEUTRAL, not --signal. The security note below is the one thing on this page
+   whose being ignored has a consequence, and it only reads as that while it is
+   the only amber block on screen. This is a request we would like read; that
+   one is a warning. */
+.sp-tip{display:flex;gap:.6rem;align-items:center;text-decoration:none;
+ background:var(--panel2);border:1px solid var(--line2);padding:.6rem .7rem;margin-bottom:16px}
+.sp-tip .jar{width:26px;height:26px;flex:0 0 auto;color:var(--accent)}
+.sp-tip .txt{min-width:0}
 .sp-tip .t{display:block;font-family:"Newsreader",Georgia,serif;font-size:.95rem;
  color:var(--ink2);line-height:1.4}
 .sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
- font-weight:600;color:var(--signal);margin-top:.3rem}
+ font-weight:600;color:var(--accent);margin-top:.2rem}
 .sp-head{margin-bottom:14px}
 .sp-who{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
 .sp-who i{width:11px;height:11px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
@@ -48,6 +54,12 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
  background:var(--signal-soft);border:1px solid var(--signal);padding:.5rem .6rem;
  margin-top:10px;line-height:1.5}
 .sp-secret b{font-weight:600}
+/* dismissible: it is a warning, not furniture. Once acknowledged it should not
+   compete with the controls on every future visit — but it must be a
+   deliberate act, not a stray tap, so it is a labelled button and not an X. */
+.sp-secret .ack{display:block;margin-top:.55rem;min-height:38px;padding:0 .9rem;
+ background:var(--signal);color:#fff;border:1px solid var(--signal);cursor:pointer;
+ font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600}
 .sp-gloss{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
  background:var(--panel2);border:1px solid var(--line);padding:.5rem .6rem;margin-top:12px;line-height:1.5}
 .sp-gloss span{color:var(--signal);font-size:.62rem}
@@ -107,14 +119,21 @@ impossible.</p>
 <h2>Seller controls — 390px</h2>
 <div class="phone">
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
-    <span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
-    <span class="a">Tippaa ylläpidolle →</span></a>
+    <svg class="jar" viewBox="0 0 100 100" aria-hidden="true">
+      <rect x="26" y="34" width="48" height="50" rx="6" fill="none" stroke="currentColor" stroke-width="7"/>
+      <path d="M22 34h56" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <path d="M42 46h16" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="50" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="7"/>
+    </svg>
+    <span class="txt"><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle →</span></span></a>
 
   <div class="sp-head">
     <div class="sp-who"><i></i>Sampo</div>
     <div class="sp-note">Merkitse myydyt pois.</div>
     <div class="sp-secret">Vain sinä näet tämän sivun, jos et anna linkkiä muille.
-      <b>Pidä se salassa!</b></div>
+      <b>Pidä se salassa!</b>
+      <button class="ack" type="button">Ymmärrän</button></div>
   </div>
   <div class="sp-gloss">Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.<br>
    <span>fi/sv below are MINE and unreviewed — spongefile reads both and will correct.</span></div>
