@@ -129,5 +129,6 @@
   "cats": [
     "Other"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "haggle": true
 }

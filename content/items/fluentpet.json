@@ -16,10 +16,22 @@
   "fmt": "tools",
   "extra": {
     "specs": [
-      ["In the box", "6 recordable buttons, 3 HexTile mats, sticker sheet"],
-      ["Recording", "About a second per button, re-recordable"],
-      ["Generation", "Early kit — patterned tiles, pre-Speak Up! buttons"],
-      ["New price today", "€43.95 for the current Get Started Kit"]
+      [
+        "In the box",
+        "6 recordable buttons, 3 HexTile mats, sticker sheet"
+      ],
+      [
+        "Recording",
+        "About a second per button, re-recordable"
+      ],
+      [
+        "Generation",
+        "Early kit — patterned tiles, pre-Speak Up! buttons"
+      ],
+      [
+        "New price today",
+        "€43.95 for the current Get Started Kit"
+      ]
     ],
     "pull": {
       "q": "Hexagonal tiles to hold programmable sound buttons to record words or short phrases.",
@@ -84,5 +96,6 @@
   "cats": [
     "Other"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "haggle": true
 }
