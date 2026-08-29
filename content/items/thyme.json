@@ -28,7 +28,7 @@
     "fi": "Digitaalinen nauhaefekti: viive, granulaarinen suttu, pitch ja modulaatio, ja tallennuspaikat, joita oikeasti käyttää.",
     "sv": "Digital bandeffekt: delay, granulär utsmetning, pitch och modulation, med sparplatser du faktiskt använder."
   },
-  "img": "https://bastl-instruments.com/thumbs/instruments/thyme/006-547x1000.jpg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/thyme.jpg",
   "negotiating": false,
   "extra": {
     "pull": {
