@@ -1618,3 +1618,52 @@ over-translation.
 `piilotettua`, reasoning partitive after a number. They read Finnish and I do
 not — `2 piilotettu` is right in this telegraphic count line. Do not "fix" it
 back.
+
+### 7. Seller-page error and marker copy — MINE, UNREVIEWED (2026-08-29)
+
+Four strings the earlier table missed. Same rules: written as Finnish and
+Swedish rather than translated, and **none of these are approved.**
+
+#### The two error messages
+
+These are the only strings a seller sees when something has gone wrong — on a
+phone, probably seconds after selling something, wanting it off the site. The
+job is not to report an error. It is to answer the two questions they will
+actually have: **did my change stick, and is the public site now wrong?**
+
+That second question is the one a generic "an error occurred" leaves hanging,
+and it is the frightening one — a seller who thinks they may have broken a
+public page will not just try again, they will message the user.
+
+So both strings state the state of the world before saying what to do.
+
+| | en | fi | sv |
+|---|---|---|---|
+| Save failed | Didn't save. The item still shows as before. Try again. | `Ei tallentunut. Kohde näkyy sivustolla ennallaan. Yritä uudelleen.` | `Sparades inte. Varan visas som förut. Försök igen.` |
+| Load failed | Couldn't load your items. Nothing on the site has changed. Reload. | `Kohteita ei saatu haettua. Sivustolla ei muuttunut mitään. Lataa sivu uudelleen.` | `Kunde inte hämta dina varor. Inget har ändrats på sajten. Ladda om sidan.` |
+
+Neither uses the word *virhe* / *error*. The seller does not need the category,
+they need the consequence.
+
+#### The sold marker
+
+The tag on the hidden-item page. Buyer-facing, so it says **sold** — the
+hide/sold distinction is the seller's vocabulary and means nothing here.
+
+| en | fi | sv |
+|---|---|---|
+| Sold | `Myyty` | `Såld` |
+
+#### The admin field for the token link
+
+On the Sellers collection, holding `/token/<key>`.
+
+- **Label:** `Seller link`
+- **Hint:** `Private link that lets this seller mark their own items sold.
+  Anyone who has it can change that seller's listings — send it to them
+  directly, do not post it anywhere.`
+
+Admin copy stays English, as the rest of the admin does. The hint is not
+decoration: the token is permanent until regenerated, so the cost of it leaking
+is ongoing, and the person pasting it needs to know that at the moment they
+paste it.
