@@ -1591,7 +1591,7 @@ form does not fit.
 |---|---|---|---|
 | For sale (segment) | For sale | `Myynnissä` | `Till salu` |
 | Hide (segment) | Hide | `Piilota` | `Dölj` |
-| Gloss | this is a way to mark the item as sold | `Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vain.` | `Genom att dölja markerar du varan som såld. Du kan ångra det när som helst.` |
+| Gloss | this is a way to mark the item as sold | `Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.` | `Genom att dölja markerar du varan som såld. Du kan ångra det när som helst.` |
 | Private-page note | only you can see this page | `Vain sinä näet tämän sivun.` | `Bara du ser den här sidan.` |
 | Hidden count | hidden | `piilotettu` *(user-corrected)* | `dolda` |
 | Gone page | Owner has removed this module from sale. | `Omistaja on poistanut tämän moduulin myynnistä.` | `Ägaren har tagit bort den här modulen från försäljning.` |
@@ -1608,11 +1608,16 @@ single-`t` forms are the weak-grade ones, `piilotan` / `piilotettu`.
 Swedish reworked to match the construction rather than my old one:
 `Genom att dölja markerar du varan som såld.`
 
-**The second sentence is still mine** — *you can get it back any time* — and is
-not in the user's text. Kept because the person tapping this is about to pull
-their own listing off a public site and reversibility is what they will want to
-know at that moment. Cut it if they say so; do not drop it as an
-over-translation.
+**The second sentence — APPROVED by the user 2026-08-29.** It was mine and is
+not in their English. They kept it, and wrote it back as `milloin vaan`, the
+colloquial form, rather than my `milloin vain`. I have adopted their spelling:
+it is their language and it sits closer to the site's own voice, which is
+already conversational (`Vaihtokaupatkin käyvät!`, `Tavaraa naapurista.`).
+If `vaan` was a slip rather than a preference, revert it — but do not
+"correct" it on grammatical grounds.
+
+It earns its place: the person tapping this is about to pull their own listing
+off a public site, and reversibility is what they want to know at that moment.
 
 **`piilotettu` is the user's correction, 2026-08-29.** I had written
 `piilotettua`, reasoning partitive after a number. They read Finnish and I do
