@@ -2221,3 +2221,37 @@ Its own page, linked from FAQ 04 (*"Can I put my stuff here too?"*), which
 stays the short answer. This is the long one, for someone who has decided to
 ask and wants to know what they are joining. **Not** in the nav — it is for
 prospective sellers, not buyers, and the nav is already at four items.
+
+### Getting started — the joining sequence (2026-08-29)
+
+Three numbered steps, added to the bottom of the how-it-works page. Draft, mine.
+
+**1. You send us** — a list of your modules *including ones you are not selling
+yet*, prices, a wishlist, a way for buyers to reach you, and your email address.
+
+**2. We do the work** — every module's details, then your link.
+
+**3. You go live** — unhide what you actually want to sell; from then on it is
+yours.
+
+**"Everything arrives hidden" is the load-bearing sentence in step 1.** It is
+what makes sending a full inventory a low-stakes act rather than a commitment.
+Without it, a seller sends only what they are certain about, and the rest of
+the collection never appears — which is precisely the gear the site wants.
+
+**The two contacts are called out explicitly**, because they will otherwise be
+conflated: the **contact form is public** and is how buyers reach them (we
+never see those messages); their **email address is private** and is only used
+to send the link.
+
+**Note this changes the per-seller Tally plan.** The earlier spec had spongefile
+duplicating forms inside their own Tally account. The user's instruction is that
+**the seller makes their own form** — Tally with *notify by email*, or any page
+where someone can reach them, a personal site's contact form included. That is
+better than what I specced: nothing to maintain per seller, and the seller's
+address never touches this site at all.
+
+**The batching expectation is stated where it will be believed**, at the end:
+additions wait, everything self-service is instant. Saying *every few weeks*
+plainly beats leaving someone to infer it from silence — the disappointment
+lands at the point of asking, not three weeks later.
