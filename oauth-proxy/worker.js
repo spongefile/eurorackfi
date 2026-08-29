@@ -206,17 +206,32 @@ async function sendSellerLink(env, { to, sellerKey, link }) {
        check without clicking anything. That is the whole difference.
      - The SUBJECT is about their gear, not about a link. A subject about
        a link is what phishing leads with.
-     - The LINK is on linkki.eurorack.fi, matching the site the mail is
-       about. Copy cannot fix a mismatched hostname: every reassurance
-       above it is undone by the address itself.
      - The LEAK REMEDY is here and not only on the page. The page can rely
        on being reopened; this mail will still be in an inbox in a year and
        is where a worried reader will look. It also turns the secrecy line
        from a warning with no remedy into something that reads as care.
 
-     Finnish is design's and UNREVIEWED, except the secrecy sentence,
-     which is the user's own approved wording — unchanged and unreflowed,
-     shared verbatim with the seller page. Reword one, reword both.
+     TRILINGUAL, AND THE ORDER IS WHAT KEEPS IT SAFE. Stacking three
+     complete letters — Finnish with the link inside it, then English, then
+     Swedish — would break the first rule above for two audiences out of
+     three: a Swedish reader would meet Finnish they cannot read and then a
+     bare URL, having verified nothing. So ALL THREE INTROS COME FIRST, the
+     link appears ONCE after them, and the three reassurance blocks follow.
+     Whichever language a reader has, they meet a checkable fact before a
+     URL. Do not regroup this by language.
+
+     Finnish is design's and UNREVIEWED, except the secrecy sentence, which
+     is the user's own approved wording — unchanged and unreflowed, shared
+     verbatim with the seller page. Reword one, reword both. The English and
+     Swedish are the secretary's and also unreviewed; their versions of the
+     secrecy sentence deliberately keep its shape (condition first, then the
+     ask) rather than flattening to "only you can see this page", which was
+     the false claim the whole line was rewritten to remove.
+
+     THE SUBJECT STAYS FINNISH pending the user's ruling. All three at once
+     runs to about 78 characters and truncates on a phone, quite possibly
+     mid-Finnish — which would cost exactly the property the subject was
+     designed for, that it is about their gear rather than about a link.
 
      Paragraphs are single lines with no hard wrapping: mail clients
      reflow to the reader's width, and a hand-wrapped plain-text body
@@ -225,10 +240,24 @@ async function sendSellerLink(env, { to, sellerKey, link }) {
   const subject = "Tavarasi eurorack.fi:ssä";
   const text =
     `Moi,\n\n` +
-    `sinun tavaroitasi on myynnissä eurorack.fi:ssä. Tässä oma linkkisi, jolla voit merkitä kohteesi myydyiksi tai neuvottelussa oleviksi:\n\n` +
+    `sinun tavaroitasi on myynnissä eurorack.fi:ssä. Alla oma linkkisi, jolla voit merkitä kohteesi myydyiksi tai neuvottelussa oleviksi.\n\n` +
+    `Hi,\n\n` +
+    `your gear is listed for sale on eurorack.fi. Below is your own link, for marking your items sold or in negotiation.\n\n` +
+    `Hej,\n\n` +
+    `dina prylar ligger till salu på eurorack.fi. Nedan är din egen länk, där du kan markera dina objekt som sålda eller under förhandling.\n\n` +
     `${link}\n\n` +
-    `Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!\n\n` +
+    `Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!\n` +
     `Jos linkki karkaa vääriin käsiin, kerro meille niin teemme uuden.\n\n` +
+    `Only you can see this page, as long as you don't give the link to anyone else. Keep it secret!\n` +
+    `If the link ends up in the wrong hands, tell us and we'll make a new one.\n\n` +
+    `Bara du ser den här sidan, så länge du inte ger länken till någon annan. Håll den hemlig!\n` +
+    `Om länken hamnar i fel händer, säg till så gör vi en ny.\n\n` +
+    /* "adminit", not a bare "— eurorack.fi": the collective sign-off is the
+       user's own decision, taken together with pluralising the recovery
+       line to "kerro meille niin teemme uuden". The trilingual draft came
+       back with it flattened, which would have undone half a choice while
+       keeping the other half. It stays Finnish in an otherwise trilingual
+       mail on purpose — it is a signature, not a sentence to translate. */
     `— eurorack.fi adminit\n`;
 
   try {
