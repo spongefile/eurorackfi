@@ -1398,8 +1398,9 @@ function sellerPage(sellerKey, tok) {
     savedPrice:"Saved: {old} € → {new} €. The site updates in about a minute. Reload eurorack.fi to see the change.",
     /* THE USER'S OWN WORDING — the first of these 34 to be reviewed. They
        picked it over "Request an addition"; warmer, and it says who is
-       being asked. The Swedish still carries the older register ("Be om
-       ett tillägg") pending their nod on a parallel form. */
+       being asked. The Swedish stays "Be om ett tillägg" BY THE USER'S
+       DECISION — a warmer parallel was offered and declined, so don't
+       "harmonise" it toward the English later. */
     askH:"Ask us to add something",
     askItem:"New item for sale",
     askWish:"Addition to the wishlist",
