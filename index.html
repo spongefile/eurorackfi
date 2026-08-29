@@ -138,6 +138,36 @@
   --embed-bg:#E4E9F0; --embed-line:#AFBACB;
 }
 
+/* ---------- haggle red ----------
+   Deliberately NOT in the six palette blocks above, and deliberately two
+   tokens rather than one.
+
+   --haggle is the sticker. It never changes between themes because a
+   sticker is a physical object stuck onto a photograph, and the photograph
+   doesn't change either — the badge sits on arbitrary imagery, so there is
+   no theme background for it to adapt to. White on it clears 5.1:1.
+
+   --haggle-ink is the same fact rendered as TEXT on the page's own
+   background, and #D22B2B fails 4.5:1 as text in BOTH themes (4.13 light,
+   3.69 dark). Since that line exists precisely for people who can't read
+   the badge, shipping it under-contrast would defeat its only purpose. So
+   it gets per-theme values: 5.4 light, 5.8 dark.
+
+   It is NOT --sold. --sold is a muted maroon reserved for gone; this is
+   vivid, and they must never be confusable — one says this is over, the
+   other says make me an offer. The dark pair is the closer of the two, so
+   the dark value is pushed warmer and much more saturated (65% vs --sold's
+   39%) to hold that apart. Design specified the light red; the dark one is
+   mine and wants their eye.
+
+   One rule each rather than six palette edits: the light value serves both
+   teal and blue, and so does the dark. Splitting it across the palettes
+   would mean four identical dark declarations and a landmine the day
+   someone adds a fifth palette and only remembers three of them. */
+.rt{--haggle:#D22B2B; --haggle-ink:#B71F1F}
+@media (prefers-color-scheme:dark){ .rt:not(.light){--haggle-ink:#FF6A5A} }
+.rt.dark{--haggle-ink:#FF6A5A}
+
 /* ---------- base ----------
    The reset lives in :where() so it has ZERO specificity and cannot beat
    .btn / .chip / .card. A bare `.rt button` reset (0,1,1) silently won this
@@ -691,6 +721,28 @@ main{padding-bottom:3rem}
   .negribbon{width:143px; height:143px}
   .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
 }
+/* ---------- "saa tinkiä" sticker ----------
+   A starburst sale sticker, and deliberately unlike everything else on the
+   site — that is what makes it read as a sticker rather than a system
+   label. The tilt and the drop shadow are doing that work: upright and
+   flat, the same shape reads as chrome we drew, not as something stuck on.
+   Ported from design's tinkia-badge-mockup.html; the 22 points, the -9deg
+   and the .165 ratio are theirs, don't tidy them.
+   Everything scales off --s, so one rule serves the 60px card badge and
+   the 84px product-page one. */
+.tink{position:absolute; left:8px; bottom:8px; width:var(--s,60px); height:var(--s,60px);
+  transform:rotate(-9deg); pointer-events:none; z-index:2}
+.tink svg{display:block; width:100%; height:100%; filter:drop-shadow(0 1px 2px rgba(15,23,34,.35))}
+.tink span{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:600;
+  font-size:calc(var(--s,60px)*.165); line-height:1.15; letter-spacing:.02em; text-align:center}
+/* white on --haggle, hard-coded rather than --on: --on flips to near-black
+   in dark themes, and the sticker doesn't flip with it */
+.bench .tink{left:12px; bottom:12px}
+/* The same fact in plain text under the price, for anyone the badge
+   doesn't reach — it sits on the page background, so it takes
+   --haggle-ink, not the sticker red. See the token comment up top. */
+.haggleline{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--haggle-ink); margin-top:.4rem}
 .empty{padding:3.5rem 0; text-align:center; font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:.85rem}
 
 /* ---------- module page ---------- */
@@ -1019,6 +1071,11 @@ var T = {
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
+    /* the user's own Finnish. Two lines on the badge — haggle1/haggle2 —
+       because the sticker is round and the words have to break in a fixed
+       place; auto-wrapping a single string inside a starburst lands
+       differently at 60px and 84px. */
+    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
@@ -1045,6 +1102,12 @@ var T = {
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
+    /* PLACEHOLDER — the Finnish, deliberately. Design is asking the user
+       for the Swedish and English and told me not to write them, so this
+       shows the fi string rather than an invented translation. Same
+       principle as the XLATE banner: visibly untranslated beats quietly
+       wrong. Replace when design supplies the sv. */
+    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
@@ -1071,6 +1134,9 @@ var T = {
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
+    /* PLACEHOLDER — the Finnish, pending design asking the user for the
+       English. See the sv note above. */
+    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
@@ -1181,6 +1247,7 @@ function applySellerState(items,state){
     if(!s) return m;
     if(typeof s.hidden==="boolean") m.hidden=s.hidden;
     if(typeof s.negotiating==="boolean") m.negotiating=s.negotiating;
+    if(typeof s.haggle==="boolean") m.haggle=s.haggle;
     return m;
   });
 }
@@ -1686,10 +1753,25 @@ function renderWish(){
 }
 
 /* ---------- grid ---------- */
+/* 22-point starburst, radii 50/40.5 on a 100 viewBox — design's geometry,
+   pasted from their mockup rather than recomputed, so the shape stays
+   identical if this is ever regenerated. */
+var TINK_POINTS="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,19.39 87.79,17.26 84.07,28.10 95.48,29.23 88.86,38.59 99.49,42.88 90.50,50.00 99.49,57.12 88.86,61.41 95.48,70.77 84.07,71.90 87.79,82.74 76.52,80.61 77.03,92.06 66.82,86.84 64.09,97.97 55.76,90.09 50.00,100.00 44.24,90.09 35.91,97.97 33.18,86.84 22.97,92.06 23.48,80.61 12.21,82.74 15.93,71.90 4.52,70.77 11.14,61.41 0.51,57.12 9.50,50.00 0.51,42.88 11.14,38.59 4.52,29.23 15.93,28.10 12.21,17.26 23.48,19.39 22.97,7.94 33.18,13.16 35.91,2.03 44.24,9.91";
+/* aria-hidden and pointer-events:none: the badge is decoration here. On the
+   product page the same fact is stated in text right under the price, and
+   on a card the price is a link to that page — so nothing is announced
+   twice and nothing is announced only in colour. */
+function tinkHTML(m,size){
+  if(!m.haggle) return "";
+  var T2=t();
+  return '<span class="tink" style="--s:'+size+'px" aria-hidden="true">'+
+    '<svg viewBox="0 0 100 100"><polygon points="'+TINK_POINTS+'" fill="var(--haggle)"/></svg>'+
+    '<span>'+esc(T2.haggle1)+'<br>'+esc(T2.haggle2)+'</span></span>';
+}
 function card(m){
   var T2=t(), p=SELLER_BY_KEY[m.who];
   return '<button class="card" data-go="'+m.id+'">'+
-    '<div class="shot">'+shotHTML(m,182)+'</div>'+
+    '<div class="shot">'+shotHTML(m,182)+tinkHTML(m,60)+'</div>'+
     (m.negotiating?'<span class="negribbon"><span>'+esc(T2.negRibbon)+'</span></span>':'')+
     '<div class="cbody"><div class="mfr">'+esc(m.mfr)+'</div><h3>'+esc(m.name)+'</h3>'+
     '<p class="blurb">'+esc(blurbOf(m))+'</p>'+
@@ -1821,6 +1903,10 @@ function detailHTML(m){
       ? '<button class="benchnav prev" data-shotdir="prev" aria-label="'+esc(T2.prevPhoto)+'">'+CHEVRON_L+'</button>'+
         '<button class="benchnav next" data-shotdir="next" aria-label="'+esc(T2.nextPhoto)+'">'+CHEVRON_R+'</button>'
       : '')+
+    /* sibling of .benchshot, not inside it — switching photos replaces
+       .benchshot's contents, and the sticker is about the item, not the
+       shot, so it must not blink out when you page through the photos */
+    tinkHTML(m,84)+
     '</div>'+
     /* every other credit variant attributes someone else's image (ModularGrid,
        the manufacturer, a component shot) — a shop product photo is the
@@ -1857,7 +1943,8 @@ function detailHTML(m){
     '</div>'+
     '<div class="buycol"><div class="mfr">'+esc(m.mfr)+'</div><h2>'+esc(m.name)+'</h2>'+
     '<div class="tags">'+m.cats.map(function(c){return '<span class="tag">'+esc(c)+'</span>';}).join("")+'</div>'+
-    '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span></div>'+
+    '<div style="margin-top:1.1rem"><span class="bigprice">'+eur(m.price)+'</span>'+
+    (m.haggle?'<div class="haggleline">'+esc(T2.haggle)+'</div>':'')+'</div>'+
     '<div class="sellerline"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
     /* collection/inbox copy describes the peer-to-peer message flow — meaningless
        once Buy points straight at an outbound shop checkout instead */
@@ -2023,7 +2110,7 @@ function adminOutput(){
     blurb:{en:AS.blurbEn||"", fi:AS.blurbFi||"", sv:AS.blurbSv||""},
     mgSlug:AS.mgSlug||"", site:AS.site||"", tone:AS.tone,
     parts:{k:+AS.k||0, j:+AS.j||0, sl:+AS.sl||0, led:+AS.led||0, sc:AS.sc?1:0},
-    negotiating:false
+    negotiating:false, haggle:false
   };
   return {json:JSON.stringify(item,null,2), id:id};
 }

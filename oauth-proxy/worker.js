@@ -165,11 +165,17 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ""}
 <style>
 :root{--bg:#E7EBF0;--panel:#FAFBFD;--panel2:#EFF3F8;--ink:#0F1722;--ink2:#36435A;
  --muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;--accent:#0B4F9E;--accent-soft:#D6E3F5;
- --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;--on:#FAFBFD}
+ --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;--on:#FAFBFD;
+ /* --haggle is the sticker red, the same in both themes because on the
+    site it sits on a photograph rather than on a theme background.
+    --haggle-ink is that same fact as TEXT, which needs per-theme values:
+    #D22B2B fails 4.5:1 as text in both. Mirrors index.html's tokens. */
+ --haggle:#D22B2B;--haggle-ink:#B71F1F;--haggle-soft:#FBE9E9}
 @media(prefers-color-scheme:dark){:root{--bg:#0C1119;--panel:#161E2A;--panel2:#1D2634;
  --ink:#E6ECF4;--ink2:#BEC9D8;--muted:#8590A1;--line:#252F3C;--line2:#364253;
  --accent:#5AA9F0;--accent-soft:#0D2A47;--signal:#E0AC53;--signal-soft:#2C2314;
- --sold:#D98A93;--sold-soft:#331F24;--on:#08111A}}
+ --sold:#D98A93;--sold-soft:#331F24;--on:#08111A;
+ --haggle-ink:#FF6A5A;--haggle-soft:#33191A}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.5}
@@ -362,7 +368,7 @@ Login complete — this window should close automatically.
     if (p === "/api/set" && request.method === "POST") {
       let body;
       try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
-      const { token, id, hidden, negotiating } = body || {};
+      const { token, id, hidden, negotiating, haggle } = body || {};
       const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
       if (!sellerKey) return json({ error: "bad token" }, 403);
       if (!id || typeof id !== "string") return json({ error: "bad id" }, 400);
@@ -380,6 +386,10 @@ Login complete — this window should close automatically.
       const cur = state[id] || {};
       if (typeof hidden === "boolean") cur.hidden = hidden;
       if (typeof negotiating === "boolean") cur.negotiating = negotiating;
+      /* Independent of the other two on purpose — an item can be in
+         negotiation and still open to offers — so this arrives on its own
+         and each field is only written when the caller actually sent it. */
+      if (typeof haggle === "boolean") cur.haggle = haggle;
       cur.by = sellerKey;
       cur.at = new Date().toISOString();
       state[id] = cur;
@@ -411,6 +421,14 @@ function sellerPage(sellerKey, tok) {
 .row .nm{font-weight:700;font-size:1rem;line-height:1.25}
 .row .mk{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
  text-transform:uppercase;letter-spacing:.08em}
+/* Prices ARE shown here, reversing the original "no prices, no editing,
+   no adding" rule — at the user's request, because a seller scanning
+   twenty rows for the right item recognises it by price faster than by
+   model name. Still no editing and still no adding: showing a number is
+   not the same as owning it, and the price stays a CMS field. */
+.rowtop{display:flex;gap:.6rem;align-items:flex-start}
+.rowtop .pr{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;
+ font-variant-numeric:tabular-nums;margin-left:auto;flex:0 0 auto;padding-left:.5rem}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem}
 .seg button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
  background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
@@ -418,6 +436,31 @@ function sellerPage(sellerKey, tok) {
  color:var(--accent);font-weight:600}
 .seg button.neg[aria-pressed="true"]{background:var(--signal-soft);border-color:var(--signal);color:var(--signal)}
 .seg button.sold[aria-pressed="true"]{background:var(--sold-soft);border-color:var(--sold);color:var(--sold)}
+/* A SEPARATE AXIS, not a fourth segment. The three buttons above are one
+   decision with one answer; this is an independent yes/no that can be true
+   alongside any of them — an item can be in negotiation and still open to
+   offers. Putting it in the row would have forced a false choice, so it
+   gets its own full-width control underneath, in the same red as the
+   sticker it produces, so the control and the badge read as one fact. */
+.tk{display:flex;align-items:center;gap:.5rem;width:100%;min-height:44px;
+ border:1px solid var(--line);background:var(--panel2);padding:0 .6rem;text-align:left}
+.tk .box{width:18px;height:18px;flex:0 0 auto;border:1px solid var(--line2);background:var(--panel);
+ display:flex;align-items:center;justify-content:center;font-size:.7rem;line-height:1}
+.tk .lb{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+.tk[aria-pressed="true"]{border-color:var(--haggle);background:var(--haggle-soft)}
+.tk[aria-pressed="true"] .box{background:var(--haggle);border-color:var(--haggle);color:#fff}
+.tk[aria-pressed="true"] .lb{color:var(--haggle-ink);font-weight:600}
+/* Above the heading, deliberately: the seller came here to do one thing
+   and leaves the moment it is done, so an ask below the list is an ask
+   nobody reaches. Signal colours rather than accent — accent is this
+   page's own controls, and this is a request on someone else's behalf.
+   Sized as an aside; if it ever starts looking like the primary action
+   it has gone wrong. */
+.sp-tip{display:block;text-decoration:none;background:var(--signal-soft);
+ border:1px solid var(--signal);padding:.6rem .7rem;margin-bottom:16px}
+.sp-tip .t{display:block;font-size:.95rem;color:var(--ink2);line-height:1.4}
+.sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ font-weight:600;color:var(--signal);margin-top:.3rem}
 .keep{background:var(--signal-soft);color:var(--signal);border:1px solid var(--signal);
  padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
@@ -428,6 +471,9 @@ function sellerPage(sellerKey, tok) {
  font-size:.72rem;margin-bottom:1rem}
 `,
     html: `
+  <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
+    <span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Tippaa ylläpidolle &rarr;</span></a>
   <h1 id="hd">…</h1>
   <p class="sub" id="sub"></p>
   <p class="keep" id="keep"></p>
@@ -470,6 +516,8 @@ function sellerPage(sellerKey, tok) {
        "vain" on grammatical grounds; that would undo their choice. */
     gloss:"Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.",
     forsale:"Myynnissä", neg:"Neuvottelussa", hide:"Piilota",
+    /* the user's own Finnish, same string the site's sticker uses */
+    haggle:"Saa tinkiä",
     items:"kohdetta",
     /* "2 piilotettu", NOT "piilotettua" — the user's correction, and they
        read Finnish. A later pass will want to "fix" this toward textbook
@@ -504,7 +552,8 @@ function sellerPage(sellerKey, tok) {
   function stateOf(m){
     var s=STATE[m.id]||{};
     return {hidden: s.hidden!==undefined ? s.hidden : !!m.hidden,
-            negotiating: s.negotiating!==undefined ? s.negotiating : !!m.negotiating};
+            negotiating: s.negotiating!==undefined ? s.negotiating : !!m.negotiating,
+            haggle: s.haggle!==undefined ? s.haggle : !!m.haggle};
   }
 
   function render(){
@@ -522,23 +571,34 @@ function sellerPage(sellerKey, tok) {
          the item was when it was tapped. */
       var mode = st.hidden ? "sold" : (st.negotiating ? "neg" : "forsale");
       return '<div class="row'+(st.hidden?" isHidden":"")+'" data-id="'+esc(m.id)+'">'+
-        '<div><div class="mk">'+esc(m.mfr)+'</div><div class="nm">'+esc(m.name)+'</div></div>'+
+        '<div class="rowtop">'+
+          '<div><div class="mk">'+esc(m.mfr)+'</div><div class="nm">'+esc(m.name)+'</div></div>'+
+          /* guarded rather than assumed: this page renders whatever is in
+             the repo, and an item with no price shouldn't print "€undefined" */
+          (typeof m.price==="number"?'<div class="pr">€'+m.price+'</div>':'')+
+        '</div>'+
         '<div class="seg">'+
           '<button data-mode="forsale" aria-pressed="'+(mode==="forsale")+'">'+esc(TXT.forsale)+'</button>'+
           '<button class="neg" data-mode="neg" aria-pressed="'+(mode==="neg")+'">'+esc(TXT.neg)+'</button>'+
           '<button class="sold" data-mode="sold" aria-pressed="'+(mode==="sold")+'">'+esc(TXT.hide)+'</button>'+
-        '</div></div>';
+        '</div>'+
+        '<button class="tk" data-haggle="'+(!st.haggle)+'" aria-pressed="'+(!!st.haggle)+'">'+
+          '<span class="box">'+(st.haggle?"✓":"")+'</span><span class="lb">'+esc(TXT.haggle)+'</span>'+
+        '</button></div>';
     }).join("");
   }
 
-  document.addEventListener("click",function(e){
-    var b=e.target.closest(".seg button"); if(!b) return;
-    var row=b.closest(".row"), id=row.getAttribute("data-id"), mode=b.getAttribute("data-mode");
-    var next={hidden:mode==="sold", negotiating:mode==="neg"};
+  /* One save path for both controls. It sends ONLY the fields in "next",
+     and the worker likewise writes only the fields it receives — so
+     toggling "saa tinkiä" cannot silently republish a stale hidden value
+     read at page load, and vice versa. That matters because the two
+     controls are independent axes: whichever one the seller didn't touch
+     must come through untouched. */
+  function save(id,next){
     var prev=STATE[id]?JSON.parse(JSON.stringify(STATE[id])):undefined;
     STATE[id]=Object.assign({},STATE[id],next); render();   /* optimistic */
     fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({token:TOKEN,id:id,hidden:next.hidden,negotiating:next.negotiating})})
+      body:JSON.stringify(Object.assign({token:TOKEN,id:id},next))})
       .then(function(r){ if(!r.ok) throw 0;
         document.getElementById("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
       .catch(function(){
@@ -546,6 +606,17 @@ function sellerPage(sellerKey, tok) {
         render();
         document.getElementById("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>';
       });
+  }
+
+  document.addEventListener("click",function(e){
+    var b=e.target.closest(".seg button");
+    if(b){
+      var row=b.closest(".row"), mode=b.getAttribute("data-mode");
+      save(row.getAttribute("data-id"),{hidden:mode==="sold", negotiating:mode==="neg"});
+      return;
+    }
+    var k=e.target.closest(".tk");
+    if(k) save(k.closest(".row").getAttribute("data-id"),{haggle:k.getAttribute("data-haggle")==="true"});
   });
 
   Promise.all([

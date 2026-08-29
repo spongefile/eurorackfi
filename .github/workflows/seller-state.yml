@@ -74,7 +74,10 @@ jobs:
                   data = json.load(f)
 
               diff = {}
-              for field in ("hidden", "negotiating"):
+              # Every field a seller can set from their own page must be
+              # listed here, or that toggle works on the live site and then
+              # silently reverts the next time Pages rebuilds from git.
+              for field in ("hidden", "negotiating", "haggle"):
                   if field in override and isinstance(override[field], bool):
                       if bool(data.get(field, False)) != override[field]:
                           diff[field] = override[field]

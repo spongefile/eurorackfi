@@ -38,6 +38,7 @@ collections:
       # made repeatedly on an item that already exists.
       - { label: "In negotiation", name: "negotiating", widget: "boolean", required: false, default: false, hint: "Set by hand after a real Buying/Trading message arrives — never for a generic question. Leave off for shop items below — there's no message thread to negotiate in." }
       - { label: "Hidden", name: "hidden", widget: "boolean", required: false, default: false, hint: "Removes this listing from the live site — grid, rack, counts, everything — without deleting it. Use this instead of Delete when a sale falls through or a piece might come back up for sale later: the entry, its photos and any history stay right here, just switch this off again to relist." }
+      - { label: "Open to offers", name: "haggle", widget: "boolean", required: false, default: false, hint: "Puts a red \"Saa tinkiä\" sticker on the photo and a line under the price. This is a separate thing from the two above, not a third state — an item can be in negotiation and still open to offers." }
       - { label: "ID", name: "id", widget: "string", hint: "short, lowercase, no spaces — e.g. ph3, bf22. Matches the filename." }
       - { label: "Maker", name: "mfr", widget: "string" }
       - { label: "Model", name: "name", widget: "string" }
