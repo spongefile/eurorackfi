@@ -1315,8 +1315,11 @@ function sellerPage(sellerKey, tok) {
        "vain" on grammatical grounds; that would undo their choice. */
     gloss:"Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vaan.",
     forsale:"Myynnissä", neg:"Neuvottelussa", hide:"Piilota",
-    /* the user's own Finnish, same string the site's sticker uses */
-    haggle:"Saa tinkiä",
+    /* SAME STRING THE SITE'S STICKER USES — that is this label's whole
+       job, so it follows the sticker: "Anna tarjous" per the user's
+       ruling, replacing their earlier "Saa tinkiä". The en and sv labels
+       already quote their stickers. */
+    haggle:"Anna tarjous",
     /* MINE AND UNREVIEWED, all three — flagged to design and to the user
        rather than passed off as settled. They are the only strings on this
        page nobody has read yet. */

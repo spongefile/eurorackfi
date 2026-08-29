@@ -900,7 +900,7 @@ main{padding-bottom:3rem}
   .negribbon{width:143px; height:143px}
   .negribbon span{right:-48px; top:26px; width:196px; padding:.34rem 0; font-size:.58rem}
 }
-/* ---------- "saa tinkiä" sticker ----------
+/* ---------- haggle sticker ("anna tarjous" / "make offer" / "prutbart") ----------
    A starburst sale sticker, and deliberately unlike everything else on the
    site — that is what makes it read as a sticker rather than a system
    label. The tilt and the drop shadow are doing that work: upright and
@@ -1255,11 +1255,16 @@ var T = {
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
-    /* the user's own Finnish. Two lines on the badge — haggle1/haggle2 —
-       because the sticker is round and the words have to break in a fixed
-       place; auto-wrapping a single string inside a starburst lands
-       differently at 60px and 84px. */
-    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
+    /* The user's own Finnish — "anna tarjous" replaced their original
+       "saa tinkiä" by their ruling (2026-08-30), joining the English's
+       tell-the-buyer-what-to-do register. Two lines on the badge —
+       haggle1/haggle2 — because the sticker is round and the words have
+       to break in a fixed place; auto-wrapping a single string inside a
+       starburst lands differently at 60px and 84px.
+       Measured before shipping: "tarjous" is 41.5px against the 55.6px
+       inner circle at the 60px badge — 6px narrower than the Swedish
+       "prutbart" that set the ceiling. */
+    haggle1:"anna", haggle2:"tarjous", haggle:"Anna tarjous",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
