@@ -80,6 +80,18 @@ b{color:var(--ink)}
 .test{background:var(--accent-soft);border:1px solid var(--accent);padding:.9rem 1.1rem;
  font-family:"Newsreader",Georgia,serif;font-size:1.08rem;color:var(--accent-hi);
  line-height:1.5;max-width:62ch}
+.steps{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
+.step{display:flex;gap:.9rem;border:1px solid var(--line2);background:var(--panel);padding:1rem 1.1rem}
+.step .n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on);
+ display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;
+ font-size:.82rem;font-weight:600}
+.step .sb{flex:1 1 auto;min-width:0}
+.step h3{font-family:"Archivo";font-size:1.05rem;letter-spacing:-.01em;margin:.15rem 0 .5rem}
+.step ul{list-style:none;margin:0;padding:0}
+.step li{font-family:"Newsreader",Georgia,serif;font-size:1rem;color:var(--ink2);
+ line-height:1.55;padding:.22rem 0 .22rem 1rem;position:relative}
+.step li::before{content:"";position:absolute;left:0;top:.72rem;width:5px;height:5px;
+ border-radius:50%;background:var(--line2)}
 .flag{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--signal);
  background:var(--signal-soft);border:1px solid var(--signal);padding:.5rem .7rem;
  margin:2.5rem 0 0;line-height:1.6;max-width:72ch}
@@ -192,6 +204,51 @@ entries.</p>
 <p class="test">The test is whether someone in the Finnish eurorack group would stop
 scrolling at it. Weird headphones, yes. Baby clothes, no. A generic phone charger, no
 — a strange one someone built, probably yes.</p>
+
+<h2>Getting started</h2>
+
+<div class="steps">
+  <div class="step"><div class="n">1</div><div class="sb">
+    <h3>You send us</h3>
+    <ul>
+      <li><b>A list of your modules</b> — including ones you are not selling yet.
+        Everything arrives hidden, so nothing goes public until you say so.</li>
+      <li><b>Prices</b> for the ones you would sell.</li>
+      <li><b>A wishlist</b> — what you are looking for.</li>
+      <li><b>A way for buyers to reach you.</b> A Tally form of your own with
+        <i>notify by email</i> switched on, or honestly any page where someone can
+        contact you — your own site's contact form is fine.</li>
+      <li><b>Your email address</b>, so we can send you your link. This one is for
+        us, not for buyers.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">2</div><div class="sb">
+    <h3>We do the work</h3>
+    <ul>
+      <li>We add every module's details — photos, specs, HP, power, panel drawing,
+        and the description in three languages.</li>
+      <li>We send you your own link.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">3</div><div class="sb">
+    <h3>You go live</h3>
+    <ul>
+      <li>Unhide whatever you actually want to sell.</li>
+      <li>From then on it is yours — sold, negotiation, prices, wishlist.</li>
+    </ul>
+  </div></div>
+</div>
+
+<p class="note" style="max-width:62ch"><b>Two different contacts, and they are not the
+same thing.</b> The contact form is public and is how buyers reach you — we never see
+those messages. Your email address is private and is only used to send you your link.</p>
+
+<div class="test" style="margin-top:1.2rem">Adding something new later — an item or a
+wishlist entry — means asking us, and we deal with those in batches every few weeks
+rather than daily. Everything you can change yourself is instant. It is only new
+content that waits.</div>
 
 <p class="flag">DRAFT — English only, and mine rather than the user's. Every line here
 is a claim about how the site works and what is acceptable, so it needs their eye
