@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eurorack.fi — näin tämä toimii, omistajille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+:root{--bg:#E7EBF0;--bg2:#DCE2EA;--panel:#FAFBFD;--panel2:#EFF3F8;
+ --ink:#0F1722;--ink2:#36435A;--muted:#6A7789;--line:#CAD3DF;--line2:#AFBACB;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;--on:#FAFBFD;
+ --signal:#A9660A;--signal-soft:#F5E6C8;--sold:#8A3E4E;--sold-soft:#F0DAE0;
+ --rail:#B1B9C5;--rail-ink:#8891A0;
+ --shadow:0 1px 2px rgba(15,23,34,.07),0 8px 24px -12px rgba(15,23,34,.22);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+.wrap{width:min(1000px,calc(100% - 3rem));margin-inline:auto}
+.rail{height:9px;background:var(--rail);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+ background-image:radial-gradient(circle at 5px 4px,var(--rail-ink) 0 1.6px,transparent 1.7px);
+ background-size:25.4px 100%}
+.page{padding:2.6rem 0 5rem}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+h1{font-size:2.6rem;letter-spacing:-.035em;font-stretch:96%;margin:0 0 .9rem;line-height:1.05}
+.lede{font-family:"Newsreader",Georgia,serif;font-size:1.2rem;line-height:1.55;
+ color:var(--ink2);max-width:52ch;margin:0 0 2.6rem}
+h2{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;
+ margin:2.8rem 0 1rem;padding-top:1.4rem;border-top:1px solid var(--line2)}
+p{font-family:"Newsreader",Georgia,serif;font-size:1.05rem;line-height:1.65;
+ color:var(--ink2);max-width:62ch;margin:0 0 1rem}
+b{color:var(--ink)}
+
+/* ---------- diagram 1: where things live ---------- */
+.zones{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-bottom:.9rem}
+.zone{border:1px solid var(--line2);background:var(--panel);padding:1rem 1.1rem}
+.zone.them{background:var(--panel2)}
+.zone h3{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.12em;
+ text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 .2rem}
+.zone.them h3{color:var(--muted)}
+.zone .sub{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--muted);margin-bottom:.7rem}
+.zone ul{list-style:none;margin:0;padding:0}
+.zone li{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2);
+ padding:.28rem 0 .28rem .9rem;position:relative;line-height:1.45}
+.zone li::before{content:"";position:absolute;left:0;top:.62rem;width:5px;height:5px;
+ border-radius:50%;background:var(--accent)}
+.zone.them li::before{background:var(--muted)}
+.gap{width:52px;display:flex;align-items:center;justify-content:center;
+ font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--muted)}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+ line-height:1.6;margin:0 0 1.6rem;max-width:66ch}
+
+/* ---------- diagram 2: what you can change ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.9rem}
+/* What the seller controls sits on the RIGHT. Flipped with order, not in the
+   source, so the stacked mobile layout still opens with it. */
+.col.ask{order:1} .col.now{order:2}
+.col{border:1px solid var(--line2);background:var(--panel)}
+.col .hd{padding:.75rem 1rem;border-bottom:1px solid var(--line2)}
+.col.now .hd{background:var(--accent-soft)}
+.col.ask .hd{background:var(--signal-soft)}
+.col .hd b{display:block;font-family:"Archivo";font-size:1.02rem;letter-spacing:-.01em}
+.col.now .hd b{color:var(--accent-hi)} .col.ask .hd b{color:var(--signal)}
+.col .hd span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+ color:var(--muted);margin-top:.15rem}
+.col ul{list-style:none;margin:0;padding:.7rem 1rem 1rem}
+.col li{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink2);
+ padding:.32rem 0 .32rem 1.1rem;position:relative;line-height:1.45}
+.col.now li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:600}
+.col.ask li::before{content:"·";position:absolute;left:.25rem;color:var(--signal);font-weight:700}
+
+/* ---------- content rules ---------- */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.4rem 0 1rem}
+.rule{border:1px solid var(--line2);background:var(--panel);padding:.9rem 1rem}
+.rule.no{background:var(--panel2)}
+.rule h4{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;
+ text-transform:uppercase;margin:0 0 .5rem;font-weight:600}
+.rule.yes h4{color:var(--accent)} .rule.no h4{color:var(--sold)}
+.rule ul{list-style:none;margin:0;padding:0}
+.rule li{font-family:"IBM Plex Mono",monospace;font-size:.73rem;color:var(--ink2);
+ padding:.22rem 0;line-height:1.45}
+.test{background:var(--accent-soft);border:1px solid var(--accent);padding:.9rem 1.1rem;
+ font-family:"Newsreader",Georgia,serif;font-size:1.08rem;color:var(--accent-hi);
+ line-height:1.5;max-width:62ch}
+.steps{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
+.step{display:flex;gap:.9rem;border:1px solid var(--line2);background:var(--panel);padding:1rem 1.1rem}
+.step .n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on);
+ display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;
+ font-size:.82rem;font-weight:600}
+.step .sb{flex:1 1 auto;min-width:0}
+.step h3{font-family:"Archivo";font-size:1.05rem;letter-spacing:-.01em;margin:.15rem 0 .5rem}
+.step ul{list-style:none;margin:0;padding:0}
+.step li{font-family:"Newsreader",Georgia,serif;font-size:1rem;color:var(--ink2);
+ line-height:1.55;padding:.22rem 0 .22rem 1rem;position:relative}
+.step li::before{content:"";position:absolute;left:0;top:.72rem;width:5px;height:5px;
+ border-radius:50%;background:var(--line2)}
+.test-call{display:block;margin-top:.6rem;padding-top:.6rem;
+ border-top:1px solid var(--accent);opacity:.85}
+.tallybox{background:var(--accent-soft);border-left:2px solid var(--accent);
+ padding:.7rem .9rem;margin:.55rem 0 .3rem}
+.tallybox h4{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+ letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+.tallybox p{font-size:.86rem;line-height:1.55;margin:.45rem 0;color:var(--ink2)}
+.tallybox .ff{margin:.4rem 0 .6rem;padding-left:1.4rem}
+.tallybox .ff li{font-size:.84rem;line-height:1.5;color:var(--ink2);
+ padding:.16rem 0}
+.tallybox a{color:var(--accent-hi)}
+.sendvia{font-size:.88rem;line-height:1.55;color:var(--ink2);
+ margin:.7rem 0 0;padding-top:.7rem;border-top:1px solid var(--line2)}
+.sendvia a{color:var(--accent-hi)}
+.flag{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--signal);
+ background:var(--signal-soft);border:1px solid var(--signal);padding:.5rem .7rem;
+ margin:2.5rem 0 0;line-height:1.6;max-width:72ch}
+@media(max-width:720px){
+ .zones{grid-template-columns:1fr}
+ .gap{width:auto;height:34px}
+ .split,.rules{grid-template-columns:1fr}
+ .col.ask,.col.now{order:0}
+ h1{font-size:2rem}
+}
+</style></head>
+<body><div class="rail"></div>
+<div class="page"><div class="wrap">
+
+<p class="eyebrow">Omistajille</p>
+<h1>Näin tämä toimii</h1>
+<p class="lede">Ennen kuin lähetät meille listaa: tässä on tarkalleen mitä me
+säilytämme, mitä hallitset itse ja mikä tänne kuuluu.</p>
+
+<h2>Missä mikäkin on</h2>
+<div class="zones">
+  <div class="zone">
+    <h3>eurorack.fi:ssä</h3>
+    <div class="sub">julkisesti, kaikkien nähtävillä</div>
+    <ul>
+      <li>Nimesi ja värisi</li>
+      <li>Kohteesi — kuvat, tiedot, hinnat</li>
+      <li>Toiveesi</li>
+      <li>Mikä on myyty, piilotettu tai neuvottelussa</li>
+    </ul>
+  </div>
+  <div class="gap">→</div>
+  <div class="zone them">
+    <h3>Tallyssa</h3>
+    <div class="sub">oma lomakkeesi, ei meidän</div>
+    <ul>
+      <li>Ostajien nimet ja sähköpostit</li>
+      <li>Mitä he kirjoittivat sinulle</li>
+      <li>Mistä kohteesta he kysyivät</li>
+    </ul>
+  </div>
+</div>
+<p class="note">Emme säilytä ostajista mitään. Viestit kulkevat oman lomakkeesi
+kautta suoraan Tally-postilaatikkoosi — <b>me emme näe niitä.</b> Ostajista ei
+tallenneta tälle sivustolle mitään, joten täältä ei ole mitään vuodettavaa,
+myytävää tai poistettavaksi pyydettävää.</p>
+
+<h2>Mitä muutat itse, mitä pyydät meiltä</h2>
+<div class="split">
+  <div class="col now">
+    <div class="hd"><b>Heti, omasta linkistäsi</b>
+      <span>ei kirjautumista, toimii puhelimella</span></div>
+    <ul>
+      <li>Merkitse myydyksi</li>
+      <li>Merkitse neuvottelussa olevaksi</li>
+      <li>Vaihda hintaa</li>
+      <li>Merkitse että saa tinkiä</li>
+      <li>Piilota toive jonka olet jo löytänyt</li>
+      <li>Palauta mikä tahansa näistä</li>
+    </ul>
+  </div>
+  <div class="col ask">
+    <div class="hd"><b>Meiltä pyytämällä</b>
+      <span>lomake samalla sivulla</span></div>
+    <ul>
+      <li>Uuden kohteen lisääminen</li>
+      <li>Uuden toiveen lisääminen</li>
+      <li>Kuvan tai kuvauksen vaihtaminen</li>
+      <li>Tietojen, HP:n tai virrankulutuksen korjaaminen</li>
+    </ul>
+  </div>
+</div>
+<p class="note"><b>Sinä päätät asioista jotka vain sinä tiedät</b> — mikä meni
+kaupaksi, mitä se maksaa, tingitkö. <b>Me hoidamme ne osat jotka teettävät työtä</b>
+— kuvaamisen, tietojen tarkistuksen, paneelin piirtämisen mittakaavaan ja tekstit
+kolmella kielellä.</p>
+
+<h2>Miksi tämä on tehty näin</h2>
+<p>Tämä on harrasteprojekti. Pari ihmistä, iltaisin.</p>
+<p>Tällaisen voi rakentaa kahdella tavalla. Toisessa oletetaan ettei kehenkään voi
+luottaa: tunnukset, salasanat, moderointi, roskapostisuojaukset ja suunnitelma sen
+varalle että joku käyttää sitä väärin. Siitä tulee suo, joka ei lakkaa vaatimasta
+huomiota.</p>
+<p>Toisessa oletetaan että <b>sinuun</b> voi luottaa, koska tiedämme kuka olet. Se on
+murto-osa työstä ja pysyy pienenä.</p>
+<p>Me teemme jälkimmäisen — ja rehellisesti sanottuna ensimmäistä ei olisi
+olemassakaan. Ei siksi että se olisi huonompi idea, vaan koska kukaan täällä ei
+halua käyttää iltojaan sen pyörittämiseen.</p>
+<p><b>Siksi myös pyydämme yli kahdeksaa moduulia, ja siksi joku takaa puolestasi jos
+emme tunne sinua.</b> Se luottamus tekee sen työn jonka kirjautumissivu muuten
+tekisi. Kyse ei ole portinvartioinnista sen itsensä vuoksi — se on se mikä pitää
+koko homman kasassa.</p>
+<p>Mitä siitä saat: ei tunnusta tehtäväksi, ei salasanaa unohdettavaksi, yksi linkki
+joka toimii puhelimella. Mistä luovut: et voi itse lisätä tai kirjoittaa sisältöä
+uusiksi, ja uudet asiat odottavat meitä.</p>
+
+<h2>Mikä tänne kuuluu</h2>
+<div class="rules">
+  <div class="rule yes">
+    <h4>Kyllä</h4>
+    <ul>
+      <li>Eurorack-moduulit ja -kotelot</li>
+      <li>Pöytälaitteet ja erillislaitteet</li>
+      <li>Tarvikkeet — kaapelit, virtalähteet, työkalut, paneelit</li>
+      <li>Oudot äänilaitteet: kummalliset kuulokkeet,<br>kontaktimikrofonit, erikoiset pedaalit</li>
+    </ul>
+  </div>
+  <div class="rule no">
+    <h4>Ei</h4>
+    <ul>
+      <li>Mikään mikä ei liity ääneen</li>
+      <li>Yleiselektroniikka jota myy kuka tahansa</li>
+      <li>Tukkuerät ja kauppatavara</li>
+    </ul>
+  </div>
+</div>
+<p class="test">Testi on se, pysähtyisikö suomalaisen eurorack-porukan jäsen
+selaamasta sen kohdalle. Oudot kuulokkeet, kyllä. Vauvanvaatteet, ei. Tavallinen
+herätyskello, ei — jonkun itse rakentama kummajainen, luultavasti kyllä.
+<span class="test-call">Ehdota mitä tahansa. Lopulta me päätämme, koska me tämän
+rakensimme emmekä halua käyttää iltoja väittelyyn.</span></p>
+
+<h2>Näin pääset alkuun</h2>
+
+<div class="steps">
+  <div class="step"><div class="n">1</div><div class="sb">
+    <h3>Sinä lähetät meille</h3>
+    <ul>
+      <li><b>Listan moduuleistasi</b> — myös niistä joita et vielä myy. Kaikki
+        saapuu piilotettuna, joten mikään ei tule julkiseksi ennen kuin sanot niin.</li>
+      <li><b>Hinnat</b> niille jotka myisit.</li>
+      <li><b>Toivelistan</b> — mitä etsit.</li>
+      <li><b>Tavan jolla ostajat tavoittavat sinut.</b> Oman Tally-lomakkeen —
+        yhteydenotot tulevat Tally-postilaatikkoosi, ja sähköpostiin jos laitat
+        ilmoitukset päälle. Tai ihan minkä tahansa sivun jolta sinuun saa yhteyden
+        — oman sivustosi yhteydenottolomake käy hyvin.
+        <div class="tallybox">
+    <h4>Käytit mitä lomaketta tahansa</h4>
+    <p><b>Ota mukaan kysymys siitä, mistä moduulista on kyse.</b> Se on ainoa asia
+    joka sitoo yhteydenoton kohteeseen. Ilman sitä viestit tulevat muodossa
+    <i>&ldquo;onko tämä vielä vapaana?&rdquo;</i> eikä ole mitään keinoa tietää mikä
+    <i>tämä</i> on. Meidän puolemme auttaa: jokaisen moduulin sivulla
+    yhteydenottolinkki näyttää ostajalle moduulin nimen, joten se on hänen edessään
+    valmiina kopioitavaksi.</p>
+    <p>Neljä kysymystä riittää:</p>
+    <ol class="ff">
+      <li><b>Mistä moduulista kysyt?</b> &mdash; tämä on se tärkeä</li>
+      <li><b>Nimesi</b></li>
+      <li><b>Sähköpostisi</b> &mdash; tarvitset tämän vastaamiseen</li>
+      <li><b>Viestisi</b></li>
+    </ol>
+    <p><b>Ei vielä lomaketta?</b> <a href="https://tally.so" target="_blank" rel="noopener">tally.so</a>
+    on ilmainen ja vie noin viisi minuuttia. Tee tunnus, lisää nuo neljä kysymystä,
+    julkaise ja lähetä meille linkki. Laita samalla <i>sähköposti-ilmoitukset</i>
+    päälle, muuten näet yhteydenotot vasta kun seuraavan kerran avaat sen.</p>
+  </div></li>
+      <li><b>Sähköpostiosoitteesi</b>, jotta voimme lähettää sinulle linkkisi. Tämä
+        on meitä varten, ei ostajia.</li>
+    </ul>
+    <!-- Points at the general contact form for now. Swap the href when the
+         dedicated joining form exists; the sentence works either way. -->
+    <p class="sendvia">Lähetä kaikki
+      <a href="https://eurorack.fi/#/msg/" target="_blank" rel="noopener">eurorack.fi:n
+      yhteydenottolomakkeella</a>.</p>
+  </div></div>
+
+  <div class="step"><div class="n">2</div><div class="sb">
+    <h3>Me teemme työn</h3>
+    <ul>
+      <li>Lisäämme jokaisen moduulin tiedot — kuvat, spesifikaatiot, HP:n,
+        virrankulutuksen, paneelipiirroksen ja kuvauksen kolmella kielellä.</li>
+      <li>Lähetämme sinulle oman linkkisi.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">3</div><div class="sb">
+    <h3>Sinä julkaiset</h3>
+    <ul>
+      <li>Poista piilotus niistä joita oikeasti haluat myydä.</li>
+      <li>Siitä eteenpäin se on sinun — myyty, neuvottelu, hinnat, toiveet.</li>
+    </ul>
+  </div></div>
+</div>
+
+<p class="note" style="max-width:62ch"><b>Kaksi eri yhteystietoa, eivätkä ne ole sama
+asia.</b> Yhteydenottolomake on julkinen ja sen kautta ostajat tavoittavat sinut — me
+emme näe niitä viestejä. Sähköpostiosoitteesi on yksityinen ja sitä käytetään vain
+linkkisi lähettämiseen.</p>
+
+<div class="test" style="margin-top:1.2rem">Uuden lisääminen myöhemmin — kohteen tai
+toiveen — tapahtuu meiltä pyytämällä, ja hoidamme ne erissä muutaman viikon välein,
+emme päivittäin. Kaikki minkä voit muuttaa itse tapahtuu heti. Vain uusi sisältö
+odottaa.</div>
+
+<h2>Tehty tekoälyllä</h2>
+<p>Koko tämä projekti on tehty tekoälyllä. Se tarkoittaa että virheitä ja
+epätarkkuuksia tulee väistämättä — mutta toivomme että tämän inhimillinen ja
+henkilökohtainen puoli (se että olemme yhteisö emmekä tuntemattomia netissä)
+tasoittaa ne <i>&ldquo;sivustolla näkyy väärän värinen paneeli&rdquo;</i> -hetket.</p>
+
+<p class="flag">LUONNOS — suomi on minun kirjoittamaani, ei käyttäjän. Jokainen rivi
+on väite siitä miten sivusto toimii ja mikä on hyväksyttävää, joten se pitää lukea
+läpi ennen kuin se menee lähellekään sivustoa.</p>
+
+</div></div>
+<div class="rail"></div>
+</body></html>
