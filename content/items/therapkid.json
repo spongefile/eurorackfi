@@ -27,7 +27,7 @@
     "fi": "Kahdeksanbittinen chip-syna, nuppi per toiminto, ei valikoita. Kuulostaa konsolilta, jota työnnetään sinne, minne ei pitäisi.",
     "sv": "Åttabitars chipsynt, en ratt per funktion, inga menyer. Låter som en konsol som pressas dit den inte borde."
   },
-  "negotiating": false,
+  "negotiating": true,
   "extra": {
     "videos": [
       {
