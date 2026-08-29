@@ -1800,8 +1800,26 @@ open to it. So the seller row keeps the three-state control and gains **one
 independent toggle** beneath it — full-width, 44px, pressed state in the same
 red so the control and the badge are visibly the same fact.
 
-`Saa tinkiä` is the user's own Finnish. **en/sv still needed** — do not write
-them; ask.
+**All three languages settled 2026-08-29:**
+
+| fi | en | sv |
+|---|---|---|
+| `Saa tinkiä` | `make offer` | `prutbart` |
+
+`Saa tinkiä` and `make offer` are the user's own. `prutbart` was mine and they
+approved it.
+
+**`make offer`, not `open to offers`.** I had argued for the latter, on the
+grounds that *saa tinkiä* means haggling is permitted rather than that the
+price is open. The user overruled it and was right: **the badge never appears
+without a price beside it** — directly below on a card, adjacent on the product
+page — so the "no fixed price" reading is not available to anyone. What is left
+is the difference between telling a buyer what to *do* and stating a policy.
+Two short words also take the largest type of any candidate.
+
+**`prutbart` is one word**, the Swedish small-ad idiom, and survives the badge
+at any size on a single line. Verified in place: `price negotiable`, by
+contrast, overflows the badge edges at 60px.
 
 ### 10. Tip banner on the seller page (2026-08-29)
 
