@@ -2659,10 +2659,11 @@ function howHTML(){
        reading. The two-contacts and batching notes travel WITH Getting
        started as its footnotes, and the stop-scrolling test box belongs to
        What belongs here; none of the three is free-floating.
-       The lede still lists the sections in the OLD order ("what we hold,
-       what you control, and what belongs here") — left alone deliberately,
-       because every lede word is live in three languages; flagged to the
-       user rather than reworded. */
+       THE LEDE TRACKS THIS ORDER. The user reworded it in all three
+       languages when the sections moved (072c00c), so it now walks the
+       page top to bottom — which means any future reorder needs a lede
+       pass in fi, en and sv in the SAME change, or the first sentence
+       promises a different page than the one below it. */
     '<h2>'+esc(howT(H.rulesTitle))+'</h2>'+
     '<div class="rules">'+
       '<div class="rule yes"><h4>'+esc(howT(H.rulesYesH))+'</h4><ul>'+howList(H.rulesYes)+'</ul></div>'+
