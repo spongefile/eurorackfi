@@ -2151,3 +2151,73 @@ nothing anywhere. The two seller-page error strings need that sentence because
 a failed *toggle* leaves a real question about what the site now shows.
 
 `Hinta €` is consistent with the price editor's `Hinta euroina`.
+
+## "How this works" — a page for prospective owners (2026-08-29)
+
+Rendered spec: `how-it-works-mockup.html`. **All copy is mine and a draft** —
+every line is a claim about how the site works or what is acceptable, so it
+needs the user before it ships, and fi/sv are theirs.
+
+Four sections, each answering a question a prospective seller actually has.
+
+### 1. Where things live — two zones, not one
+
+`On eurorack.fi` (name, items, wishlist, state) → `On Tally` (buyers' names,
+emails, what they wrote).
+
+**The point of the diagram is the second box.** We hold no buyer details at
+all: messages go through Tally's form to a shared inbox and nothing about a
+buyer is stored here. That is worth showing rather than saying, because it
+answers a question people are trained to ask — *what are you keeping about
+whoever contacts me* — and the honest answer is *nothing*, which is hard to
+believe from a sentence and obvious from a picture.
+
+### 2. What you change vs what you ask for
+
+Two columns: **instantly, from your own link** (sold, negotiation, price,
+negotiable, hide a want, undo any of it) against **by asking us** (new item,
+new want, photo or description, specs).
+
+**The line is not arbitrary, and the page says so explicitly:** you control the
+facts only you know — what sold, what it costs, whether you will haggle. We
+handle the parts that need work — photographing, checking specs, drawing the
+panel to scale, three languages.
+
+Stating the principle matters more than the lists. A seller who understands the
+rule can predict which side anything falls on; one who only has two lists will
+ask about every case that is not on them.
+
+### 3. Why it is built this way
+
+Three short paragraphs: no accounts to learn; a real admin would be weeks of
+work and the part that breaks; and the trade stated plainly —
+
+> **you get less power, and in exchange nothing is ever your problem.**
+
+That sentence is the section. The rest is support. It reframes a limitation as
+a service, which is honest here: the seller genuinely never sees a login, never
+loses a draft, never wonders whether an upload worked.
+
+### 4. What belongs here
+
+Yes: eurorack modules and cases · desktop and standalone gear · related
+accessories · odd sound things (strange headphones, contact mics, unusual
+pedals).
+No: anything unrelated to sound · generic electronics anyone sells · bulk.
+
+**The rule of thumb carries this, not the lists:**
+
+> The test is whether someone in the Finnish eurorack group would stop
+> scrolling at it. Weird headphones, yes. Baby clothes, no. A generic phone
+> charger, no — a strange one someone built, probably yes.
+
+Lists cannot cover the edges and always read as bureaucracy. A heuristic the
+reader can apply themselves handles the cases nobody thought of, and it names
+the actual audience, which is the real standard.
+
+### Placement
+
+Its own page, linked from FAQ 04 (*"Can I put my stuff here too?"*), which
+stays the short answer. This is the long one, for someone who has decided to
+ask and wants to know what they are joining. **Not** in the nav — it is for
+prospective sellers, not buyers, and the nav is already at four items.
