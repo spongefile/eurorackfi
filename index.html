@@ -165,8 +165,32 @@
    (#F76945); the light one moves the same way while holding lightness at
    42% and contrast at 4.70, because in light mode BOTH colours are forced
    dark against a pale ground, so lightness is not a lever there and hue is
-   all there is. Note --sold is hue 0 in the teal palette and 347 in blue,
-   so the teal pair was the identical hue before this. */
+   all there is.
+
+   ALL FOUR PALETTE/THEME COMBINATIONS, measured against the shipped
+   values, because this token was twice reasoned about from a single
+   sample and was wrong both times:
+
+     blue light   24.5deg from --sold   4.74 on bg
+     teal light   11.8deg               4.70
+     blue dark    19.0deg               6.36
+     teal dark     8.6deg               6.36
+
+   The teal pair was the identical hue before this — --sold is hue 0 in
+   teal and 347 in blue, and the old --haggle-ink was hue 0 — so in that
+   palette nothing but saturation separated "make offer" from "gone".
+
+   TEAL DARK IS NOW THE FLOOR at 8.6deg, and it is the combination neither
+   pass had looked at: one of us checked blue dark, the other fixed teal
+   light. It holds because 6.7 points of lightness separation carry it
+   where hue is thin — the same two-lever argument that motivated the dark
+   shift. Acceptable, not comfortable.
+
+   That matters more than it reads, because the teal palette is currently
+   UNREACHABLE: blue is the only one that ships, teal stays defined with no
+   switcher. So none of this is visible today, and it becomes real the
+   moment someone re-enables teal — which is exactly the moment nobody will
+   think to re-measure. If you are that person: check teal dark first. */
 
 /* One rule each rather than six palette edits: the light value serves both
    teal and blue, and so does the dark. Splitting it across the palettes
