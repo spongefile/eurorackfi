@@ -2060,7 +2060,14 @@ function detailHTML(m){
       /* Naming the module rather than warning that it is missing: the
          buyer is looking at the title, so this makes it a copy-paste
          instead of asking them to remember. */
-      : (!formPrefillReliable(m)
+      /* Shown for EVERY seller-owned form. This is the only thing that
+         connects an enquiry to an item once the message leaves our form,
+         so it must not depend on anything anyone has to keep accurate —
+         no flag, no verification step, nothing that can go stale without
+         announcing it. It pairs with the "which module?" question the
+         seller is asked to put on their own form: they ask, and this
+         hands the buyer the exact name to answer with. */
+      : (sellerOwnsForm(m)
         ? '<p class="outnote">'+esc(
             (isEmbeddableForm(formFor(m)) ? T2.msgNameNote : T2.msgExternalNote)
               .replace("{name}", m.mfr+" "+m.name))+'</p>'
@@ -2187,25 +2194,30 @@ function formFor(m){
 function isEmbeddableForm(url){
   return /^https:\/\/([a-z0-9-]+\.)*tally\.so\//i.test(String(url||""));
 }
-/* PREFILL IS ONLY GUARANTEED ON THE FORM WE CONTROL, and assuming
-   otherwise was already wrong in production. The hidden fields are matched
-   by NAME, so they only exist on a form that was duplicated from ours —
-   a seller who built their own Tally form from scratch has no fields
-   called module/seller/price/lang, and Tally silently drops parameters it
-   does not recognise. Checked against the live forms: the shared form and
-   spongefile's carry all four; Kalle's and Kari's carry none, so every
-   enquiry about their 22 listings has been arriving with no indication of
-   which item it is about, and nothing anywhere said so.
-   Being a tally.so URL is therefore NOT sufficient — the question is
-   whether WE built the form, and only the shared one qualifies. */
-function formPrefillReliable(m){
+/* PREFILL ONLY WORKS ON THE SHARED FORM, and that is now settled policy
+   rather than a limitation to route around.
+   The hidden fields are matched by NAME, so they exist only on a form that
+   came from ours. Checked against the live forms: the shared form and
+   spongefile's carry module/seller/price/lang; Kalle's and Kari's carry
+   none — every enquiry about their 22 listings arrived with no indication
+   of which item it was about, and nothing on either side reported it.
+   THE ANSWER IS NOT TO MAKE SELLERS USE OUR FORM. Sellers make their own,
+   the user has confirmed that is how it will keep working, and a Tally
+   public template would only have covered the sellers who happen to use
+   Tally at all. Instead the seller is asked to put a visible "which
+   module?" question on their form, and the note below hands the buyer the
+   exact name to put in it. That works for any contact method — Tally, a
+   personal site, anything — needs no template to maintain, and has no
+   per-seller flag anyone has to keep accurate. */
+function sellerOwnsForm(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
-  return !(p && p.form);
+  return !!(p && p.form);
 }
 function tallyLink(m){
   var target=formFor(m);
-  /* the params are Tally's or nobody's */
-  if(!isEmbeddableForm(target)) return target;
+  /* the params belong to the shared form alone — a seller's own form has
+     no fields to receive them, so appending them is noise at best */
+  if(!isEmbeddableForm(target) || sellerOwnsForm(m)) return target;
   var p=SELLER_BY_KEY[m.who], q=[];
   q.push(TALLY_FIELDS.module+"="+encodeURIComponent(m.mfr+" — "+m.name));
   q.push(TALLY_FIELDS.seller+"="+encodeURIComponent(p.name));
