@@ -1208,7 +1208,7 @@ var TONE = {
 
 var T = {
   fi: {
-    nav:["Kaikki","Toiveet","FAQ","Yhteys"],
+    nav:["Kaikki","Toiveet","FAQ","Yhteys"], navJoin:"Liity",
     faqLede:"Mikä tämä on, keitä me olemme, ja miten pääset mukaan.",
     faqTail:"Jotain muuta?", faqTailLink:"Lähetä meille viesti →", faqAnchor:"Linkki tähän kysymykseen",
     eyebrow:"Helsinki · naapureita", h1a:"Tavaraa ", h1b:"naapurista", h1c:".",
@@ -1239,7 +1239,9 @@ var T = {
     sortLabel:{"hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
   },
   sv: {
-    nav:["Allt","Önskemål","FAQ","Kontakt"],
+    /* "Gå med" is MINE and unreviewed — the user gave fi "Liity" and en
+       "Join"; this is the Swedish nobody has checked. */
+    nav:["Allt","Önskemål","FAQ","Kontakt"], navJoin:"Gå med",
     faqLede:"Vad det här är, vem som står bakom, och hur du kan vara med.",
     faqTail:"Något annat?", faqTailLink:"Skicka ett meddelande →", faqAnchor:"Länk till denna fråga",
     eyebrow:"Helsingfors · grannar", h1a:"Prylar från ", h1b:"grannen", h1c:".",
@@ -1271,7 +1273,7 @@ var T = {
     sortLabel:{"hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
   },
   en: {
-    nav:["Everything","What we want","FAQ","Contact"],
+    nav:["Everything","What we want","FAQ","Contact"], navJoin:"Join",
     faqLede:"What this is, who is behind it, and how to join in.",
     faqTail:"Something else?", faqTailLink:"Send us a message →", faqAnchor:"Link to this question",
     eyebrow:"Helsinki · neighbours", h1a:"Gear from ", h1b:"down the road", h1c:".",
@@ -1724,7 +1726,22 @@ var shown=function(){ return sortList(ITEMS.filter(matches)); };
 /* ---------- chrome ---------- */
 function renderChrome(){
   var T2=t();
-  var anchors=["#grid-top","#/wish","#/faq","#/msg/"];
+  /* Entries carry their own href rather than relying on a parallel array,
+     because "Join" is CONDITIONAL — the how-it-works page only exists in a
+     language the user has published, so this list is a different length in
+     different languages. Anything keyed on array position would then point
+     at the wrong thing in one language and be right in another, which is
+     the worst version of this bug: it works when you test it.
+     Sits before Contact: join, then get in touch. The user asked for it in
+     the nav; design had argued the nav was for buyers only, and this
+     overrules that. */
+  var navItems=[
+    {href:"#grid-top", label:T2.nav[0]},
+    {href:"#/wish",    label:T2.nav[1]},
+    {href:"#/faq",     label:T2.nav[2]},
+  ];
+  if(HOW && howHasLang(lang)) navItems.push({href:"#/how", label:T2.navJoin});
+  navItems.push({href:"#/msg/", label:T2.nav[3]});
   /* "#grid-top" needs return false: closeDetail() computes the real
      destination (#/s/<seller> or #/), and #grid-top — a plain same-page
      anchor, not one of this app's own routes — must not be left to
@@ -1735,8 +1752,8 @@ function renderChrome(){
      The other two hrefs are fine unsuppressed: #/wish and #/msg/ are
      exactly where they should land regardless of what closeDetail()
      sets in between. */
-  el("nav").innerHTML=T2.nav.map(function(n,i){
-    return '<a href="'+anchors[i]+'" onclick="closeDetail()'+(anchors[i]==="#grid-top"?";return false":"")+'">'+esc(n)+'</a>'; }).join("");
+  el("nav").innerHTML=navItems.map(function(n){
+    return '<a href="'+n.href+'" onclick="closeDetail()'+(n.href==="#grid-top"?";return false":"")+'">'+esc(n.label)+'</a>'; }).join("");
   el("langseg").innerHTML=LANGS.map(function(l){
     return '<button data-lang="'+l+'" aria-pressed="'+(l===lang)+'">'+l+'</button>'; }).join("");
   document.documentElement.lang=lang;
@@ -2762,13 +2779,23 @@ function closeDetail(){
    fresh by renderChrome() on every language switch, so this must be
    re-applied every route() call rather than set once. */
 function syncNavCurrent(h){
-  var sec = h.indexOf("#/wish")===0 ? 1
-    : h.indexOf("#/faq")===0 ? 2
-    : h.indexOf("#/msg/")===0 ? 3
-    : h.indexOf("#/admin")===0 ? -1
-    : 0;
-  Array.prototype.forEach.call(el("nav").querySelectorAll("a"),function(a,i){
-    if(i===sec) a.setAttribute("aria-current","page");
+  /* MATCHED ON HREF, NOT POSITION. This used to compare an index against
+     the link's position in the list, which was correct only while the list
+     was always the same four items. "Join" is conditional — it is absent in
+     a language the how-it-works page has not been published in — so every
+     index after it shifts in some languages and not others, and the marker
+     would land on the wrong link in exactly the languages nobody tests.
+     The file already learned this once, for the #grid-top click
+     suppression; the comment there says keyed off the destination itself,
+     not array position. Same rule, applied to the other half. */
+  var want = h.indexOf("#/wish")===0 ? "#/wish"
+    : h.indexOf("#/faq")===0 ? "#/faq"
+    : h.indexOf("#/how")===0 ? "#/how"
+    : h.indexOf("#/msg/")===0 ? "#/msg/"
+    : h.indexOf("#/admin")===0 ? null   /* not a nav destination */
+    : "#grid-top";
+  Array.prototype.forEach.call(el("nav").querySelectorAll("a"),function(a){
+    if(want && a.getAttribute("href")===want) a.setAttribute("aria-current","page");
     else a.removeAttribute("aria-current");
   });
 }
