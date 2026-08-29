@@ -2293,3 +2293,58 @@ comes up.
 what a form has. Nothing in this repo — code, comments, JSON or handoff — should
 characterise a seller's skills. `content/` is public and these are real people
 and neighbours.
+
+---
+
+## How this works — a page for prospective owners (2026-08-29)
+
+`how-it-works-mockup.html`, approved by the user through several rounds. Ready
+to build. **It cannot go public as it stands** — see the blocker at the end.
+
+**Who it is for.** Someone considering joining, before they have sent anything.
+Not buyers. It answers what we hold, what they control, why it is built this
+way, what belongs here, and how to start.
+
+**Suggested route `#/how`.** Not in the main nav — nav is for buyers. Link it
+from the FAQ answer about joining (`can-i-join`), which is where this question
+actually gets asked.
+
+**Six sections, in this order:**
+
+1. **Where things live** — two panels, on eurorack.fi vs on Tally. Their side
+   sits on the RIGHT throughout the page, per the user.
+2. **What you change, and what you ask for** — instant vs by asking. Flipped
+   with CSS `order`, NOT source order, so the stacked mobile layout still opens
+   with what they control rather than with a list of things they cannot do.
+3. **Why it is built this way** — the hobby-project argument.
+4. **What belongs here** — yes/no lists plus the stop-scrolling test.
+5. **Getting started** — three steps.
+6. **Made with AI** — a full section, not fine print.
+
+**Lines that are load-bearing. Do not trim these in translation or edit:**
+
+- *"Everything arrives hidden, so nothing goes public until you say so."*
+  This is what makes sending a full inventory low-stakes. Without it people
+  send only what they are certain about, and the rest never appears.
+- *"We never see them"* about buyer messages. Verified true — sellers own their
+  forms. It stops being true the moment a seller uses a form in our account.
+- *"Include a question asking which module they mean."* For three of four
+  sellers this is the ONLY thing connecting an enquiry to an item.
+- **The two-contacts distinction.** Public form for buyers, private address for
+  their link. People conflate these and send one address for both.
+- *"Suggest whatever you like. In the end we decide."* The user's decision,
+  deliberately blunt.
+
+**One href will change.** Step 1 links `#/msg/` as where to send the joining
+details. The user intends a dedicated Tally form for this later. There is an
+HTML comment at the link; the sentence works unchanged either way.
+
+**Copy home.** Prefer per-block `content/how.json` with en/fi/sv, matching
+`faq.json`, since this page will keep changing. If that is expensive against
+the structure, i18n strings are acceptable — but the user edits content
+directly and will want to.
+
+**BLOCKER: the page is English only, and the English is mine.** Every line is a
+claim about how the site behaves and what is acceptable, so it needs the user's
+eye before it goes near the site, and Finnish and Swedish are theirs to write.
+Do not machine-translate it.
