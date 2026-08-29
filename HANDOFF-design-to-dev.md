@@ -1591,19 +1591,28 @@ form does not fit.
 |---|---|---|---|
 | For sale (segment) | For sale | `Myynnissä` | `Till salu` |
 | Hide (segment) | Hide | `Piilota` | `Dölj` |
-| Gloss | this is a way to mark the item as sold | `Näin merkitset kohteen myydyksi. Saat sen takaisin milloin vain.` | `Så markerar du en vara som såld. Du kan ångra det när som helst.` |
+| Gloss | this is a way to mark the item as sold | `Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vain.` | `Genom att dölja markerar du varan som såld. Du kan ångra det när som helst.` |
 | Private-page note | only you can see this page | `Vain sinä näet tämän sivun.` | `Bara du ser den här sidan.` |
 | Hidden count | hidden | `piilotettua` | `dolda` |
 | Gone page | Owner has removed this module from sale. | `Omistaja on poistanut tämän moduulin myynnistä.` | `Ägaren har tagit bort den här modulen från försäljning.` |
 
-**Written as Finnish, not translated.** The gloss is the one that would most
-easily have become translationese: a literal *"tämä on tapa merkitä kohde
-myydyksi"* reads like a manual. `Näin merkitset kohteen myydyksi` is what a
-Finn would actually say, and the second sentence — *you can get it back any
-time* — is not in the English at all. It is there because the person tapping
-this is about to remove their own listing from a public site, and reversibility
-is the thing they will want to know at that moment.
+**The gloss's first sentence is the USER'S OWN, given 2026-08-29:**
+`Piilottamalla merkitset kohteen myydyksi` — "by hiding, you mark the item as
+sold". It replaces my `Näin merkitset…`. Theirs is better: it names the action
+and its consequence in one move, where mine pointed vaguely at "this".
 
-**Least confident, flag these first:** `piilotettua` (partitive plural after a
-number — `2 piilotettua`, not `2 piilotettu`), and whether `Saat sen takaisin`
-is the natural phrasing over something like `voit palauttaa sen`.
+`piilottamalla` is spelled correctly — third infinitive adessive of
+`piilottaa`, which keeps the strong grade (as `ottaa → ottamalla`). The
+single-`t` forms are the weak-grade ones, `piilotan` / `piilotettu`.
+
+Swedish reworked to match the construction rather than my old one:
+`Genom att dölja markerar du varan som såld.`
+
+**The second sentence is still mine** — *you can get it back any time* — and is
+not in the user's text. Kept because the person tapping this is about to pull
+their own listing off a public site and reversibility is what they will want to
+know at that moment. Cut it if they say so; do not drop it as an
+over-translation.
+
+**Still unreviewed and least confident:** `piilotettua` (partitive plural after
+a number — `2 piilotettua`, not `2 piilotettu`).
