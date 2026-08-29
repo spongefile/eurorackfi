@@ -1099,7 +1099,7 @@ var T = {
     search:"hae valmistaja tai moduuli",
     soldMark:"Myyty", wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
-    buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", msgExternalNote:"Avautuu myyjän omalle sivulle uuteen välilehteen.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
+    buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", msgExternalNote:"Avautuu myyjän omalle sivulle uuteen välilehteen. Mainitse moduuli: {name}.", msgNameNote:"Mainitse moduuli: {name}.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
     emptyNone:"Ei osumia. Poista suodin.",
     negotiating:"Neuvottelussa", negRibbon:"Neuvottelussa", negBar:"Neuvottelussa — voit silti kysyä",
@@ -1130,7 +1130,7 @@ var T = {
     search:"sök tillverkare eller modul",
     soldMark:"Såld", wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
-    buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", msgExternalNote:"Öppnas på säljarens egen sida i en ny flik.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
+    buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", msgExternalNote:"Öppnas på säljarens egen sida i en ny flik. Nämn modulen: {name}.", msgNameNote:"Nämn modulen: {name}.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
@@ -1162,7 +1162,7 @@ var T = {
     search:"search maker or module",
     soldMark:"Sold", wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
     ofItems:"of 29 items", onScreen:"€ on screen",
-    buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", msgExternalNote:"Opens the seller's own page in a new tab.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
+    buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", msgExternalNote:"Opens the seller's own page in a new tab. Mention the module: {name}.", msgNameNote:"Mention the module: {name}.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
@@ -2057,7 +2057,14 @@ function detailHTML(m){
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
           '<path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>'))+
     (m.shopUrl?'<p class="outnote">'+esc(T2.buyShopNote)+'</p>'
-      : (!isEmbeddableForm(formFor(m))?'<p class="outnote">'+esc(T2.msgExternalNote)+'</p>':''))+
+      /* Naming the module rather than warning that it is missing: the
+         buyer is looking at the title, so this makes it a copy-paste
+         instead of asking them to remember. */
+      : (!formPrefillReliable(m)
+        ? '<p class="outnote">'+esc(
+            (isEmbeddableForm(formFor(m)) ? T2.msgNameNote : T2.msgExternalNote)
+              .replace("{name}", m.mfr+" "+m.name))+'</p>'
+        : ''))+
     (!m.shopUrl&&(WANTS[p.key]||[]).length?'<a class="tradepanel" href="#/wish/'+esc(p.key)+'"><h4>'+esc(p.name+" "+T2.hunting)+'</h4>'+
       '<p>'+esc(T2.wishK)+'</p>'+
       '<div class="wants">'+WANTS[p.key].map(function(w){return '<span class="want">'+esc(wantLabel(w))+'</span>';}).join("")+'</div>'+
@@ -2179,6 +2186,21 @@ function formFor(m){
    same shape shopUrl already uses for an outbound shop. */
 function isEmbeddableForm(url){
   return /^https:\/\/([a-z0-9-]+\.)*tally\.so\//i.test(String(url||""));
+}
+/* PREFILL IS ONLY GUARANTEED ON THE FORM WE CONTROL, and assuming
+   otherwise was already wrong in production. The hidden fields are matched
+   by NAME, so they only exist on a form that was duplicated from ours —
+   a seller who built their own Tally form from scratch has no fields
+   called module/seller/price/lang, and Tally silently drops parameters it
+   does not recognise. Checked against the live forms: the shared form and
+   spongefile's carry all four; Kalle's and Kari's carry none, so every
+   enquiry about their 22 listings has been arriving with no indication of
+   which item it is about, and nothing anywhere said so.
+   Being a tally.so URL is therefore NOT sufficient — the question is
+   whether WE built the form, and only the shared one qualifies. */
+function formPrefillReliable(m){
+  var p=m?SELLER_BY_KEY[m.who]:null;
+  return !(p && p.form);
 }
 function tallyLink(m){
   var target=formFor(m);
