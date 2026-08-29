@@ -710,10 +710,22 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   padding:.22rem 0; line-height:1.45}
 .howpage .test{background:var(--accent-soft); border:1px solid var(--accent); padding:.9rem 1.1rem;
   font-family:"Newsreader",Georgia,serif; font-size:1.08rem; color:var(--accent-hi);
-  line-height:1.5; max-width:62ch}
+  line-height:1.5;
+  /* calc(50% - .5rem) IS the width of one 1fr column under the .rules
+     grid's 1rem gap, so the box's right edge lands exactly on the YES
+     panel's edge at every viewport. It was 62ch — a prose measure — which
+     at common widths came out ~35px past the panel edge: two sizing
+     systems nearly agreeing, reading as a failed alignment rather than a
+     free choice. The user caught it with a ruler on a screenshot. If the
+     .rules grid's gap ever changes, this changes with it. */
+  max-width:calc(50% - .5rem)}
 .howpage .test-call{display:block; margin-top:.6rem; padding-top:.6rem;
   border-top:1px solid var(--accent); opacity:.85}
-.howpage .test.batch{margin-top:1.2rem}
+/* The batching note reuses .test for its look but sits under the STEPS,
+   which are full width — half-width under a full-width neighbour would be
+   the same mismatch the calc above fixes, inverted. So it keeps the prose
+   measure. */
+.howpage .test.batch{margin-top:1.2rem; max-width:62ch}
 .howpage .steps{display:flex; flex-direction:column; gap:.7rem; margin-bottom:1.2rem}
 .howpage .step{display:flex; gap:.9rem; border:1px solid var(--line2); background:var(--panel); padding:1rem 1.1rem}
 .howpage .step .n{flex:0 0 30px; height:30px; border-radius:50%; background:var(--accent); color:var(--on);
@@ -748,6 +760,9 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   .howpage .gap{width:auto; height:34px}
   .howpage .split, .howpage .rules{grid-template-columns:1fr}
   .howpage .col.ask, .howpage .col.now{order:0}
+  /* the rules stack to full width here, so the test box matches them —
+     half-width under a full-width panel would be the desktop bug inverted */
+  .howpage .test{max-width:none}
 }
 /* the one link into this page, from the FAQ's joining answer. It is a real
    .btn sm — the user asked for a button, not a subtle link — so this sets
