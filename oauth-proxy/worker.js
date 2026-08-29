@@ -420,6 +420,8 @@ function sellerPage(sellerKey, tok) {
 .seg button.sold[aria-pressed="true"]{background:var(--sold-soft);border-color:var(--sold);color:var(--sold)}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+.ok{background:var(--accent-soft);color:var(--accent);padding:.6rem .8rem;
+ font-family:"IBM Plex Mono",monospace;font-size:.72rem;margin-bottom:1rem}
 .err{background:var(--sold-soft);color:var(--sold);padding:.6rem .8rem;font-family:"IBM Plex Mono",monospace;
  font-size:.72rem;margin-bottom:1rem}
 `,
@@ -470,7 +472,19 @@ function sellerPage(sellerKey, tok) {
        don't retry, they message the user. Neither says virhe/error: the
        category is useless to them, the consequence isn't. */
     failed:"Ei tallentunut. Kohde näkyy sivustolla ennallaan. Yritä uudelleen.",
-    loadFailed:"Kohteita ei saatu haettua. Sivustolla ei muuttunut mitään. Lataa sivu uudelleen."
+    loadFailed:"Kohteita ei saatu haettua. Sivustolla ei muuttunut mitään. Lataa sivu uudelleen.",
+    /* Shown on SUCCESS, which the page previously said nothing about.
+       Three jobs in one line, and the order matters: it confirms the save,
+       bounds the wait, and then tells them to reload.
+       "noin minuutissa" is a ceiling, not a measurement — the real
+       propagation is sub-second, so this reads as early rather than late.
+       It NAMES eurorack.fi rather than saying "the page": the seller is
+       already looking at a page as they read it, so "reload the page"
+       would be ambiguous exactly where it cannot afford to be.
+       And the reload sentence is load-bearing rather than politeness — an
+       already-open tab reads /state once and never again, so a seller
+       watching one will wait forever for something that cannot happen. */
+    saved:"Tallennettu. Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen."
   };
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -513,7 +527,8 @@ function sellerPage(sellerKey, tok) {
     STATE[id]=Object.assign({},STATE[id],next); render();   /* optimistic */
     fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({token:TOKEN,id:id,hidden:next.hidden,negotiating:next.negotiating})})
-      .then(function(r){ if(!r.ok) throw 0; })
+      .then(function(r){ if(!r.ok) throw 0;
+        document.getElementById("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
       .catch(function(){
         if(prev===undefined) delete STATE[id]; else STATE[id]=prev;
         render();
