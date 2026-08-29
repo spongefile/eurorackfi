@@ -1593,7 +1593,7 @@ form does not fit.
 | Hide (segment) | Hide | `Piilota` | `Dölj` |
 | Gloss | this is a way to mark the item as sold | `Piilottamalla merkitset kohteen myydyksi. Saat sen takaisin milloin vain.` | `Genom att dölja markerar du varan som såld. Du kan ångra det när som helst.` |
 | Private-page note | only you can see this page | `Vain sinä näet tämän sivun.` | `Bara du ser den här sidan.` |
-| Hidden count | hidden | `piilotettua` | `dolda` |
+| Hidden count | hidden | `piilotettu` *(user-corrected)* | `dolda` |
 | Gone page | Owner has removed this module from sale. | `Omistaja on poistanut tämän moduulin myynnistä.` | `Ägaren har tagit bort den här modulen från försäljning.` |
 
 **The gloss's first sentence is the USER'S OWN, given 2026-08-29:**
@@ -1614,5 +1614,7 @@ their own listing off a public site and reversibility is what they will want to
 know at that moment. Cut it if they say so; do not drop it as an
 over-translation.
 
-**Still unreviewed and least confident:** `piilotettua` (partitive plural after
-a number — `2 piilotettua`, not `2 piilotettu`).
+**`piilotettu` is the user's correction, 2026-08-29.** I had written
+`piilotettua`, reasoning partitive after a number. They read Finnish and I do
+not — `2 piilotettu` is right in this telegraphic count line. Do not "fix" it
+back.
