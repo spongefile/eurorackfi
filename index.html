@@ -2216,15 +2216,17 @@ function sellerOwnsForm(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
   return !!(p && p.form);
 }
-/* PER SELLER, because the sellers are not interchangeable. Prefill needs
-   four hidden fields named module/seller/price/lang, and they exist only
-   on a form built to have them. Kari is adding them to his existing form —
-   same URL, same inbox, past submissions intact — so his listings can
-   prefill. Kalle is not being asked: he isn't a technical user, and the
-   note below already does the job without him touching anything.
+/* PER SELLER, because not every seller will do a fiddly setup step and
+   the design must not require one. Prefill needs four hidden fields named
+   module/seller/price/lang, and they exist only on a form built to have
+   them — adding them by hand is exact, error-prone work that some sellers
+   will do and others reasonably won't.
+   So this records what a FORM has, and nothing about whoever owns it. A
+   seller who never touches theirs loses nothing: the note below already
+   names the module without any setup at all, and prefill is strictly an
+   optimisation on top.
    ABSENT MEANS FALSE, and it stays absent until someone has actually
-   opened that seller's form and seen the four names. Both are absent
-   today, including Kari's, because he hasn't added them yet. */
+   opened that seller's form and seen the four names. */
 function formHasOurFields(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
   if(!p || !p.form) return true;      /* the shared form is ours */
