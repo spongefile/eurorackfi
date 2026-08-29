@@ -1750,3 +1750,55 @@ Matches the hint on the admin field, which tells whoever sends the link the
 same thing from the other end: *anyone who has it can change that seller's
 listings — send it directly, do not post it anywhere.* The two exist as a pair;
 if either is reworded the other should be checked.
+
+## "Saa tinkiä" badge + prices on the seller page (2026-08-29)
+
+Rendered spec: `tinkia-badge-mockup.html`.
+
+### Prices on the seller page — reverses my earlier rule
+
+My original spec said "no prices, no editing, no adding". **Prices are now
+shown**, at the user's request. They help a seller pick the right item at a
+glance, which matters more than the tidiness of leaving them out. Right-aligned
+on the row's top line. Still no editing and no adding.
+
+### The badge
+
+A round spiky sticker, bottom-left of the photo on **grid cards** and on the
+**product page**, plus a plain `Saa tinkiä` line under the price on the product
+page for anyone who cannot see the badge.
+
+- **22-point starburst**, SVG polygon, alternating radius 50 / 40.5 on a 100
+  viewBox.
+- **Tilted ~9° with a drop shadow**, so it reads as *stuck on* rather than
+  drawn in. Upright and flat it looks like a system label; the tilt is the
+  sticker idiom doing the work.
+- Text `saa tinkiä` over two lines, mono 600, white, sized from the badge
+  (`font-size: calc(var(--s) * .165)`) so one rule serves both sizes.
+- **60px on grid cards, 84px on the product page.**
+
+### The red is a NEW token and must not be `--sold`
+
+`--haggle: #D22B2B` — vivid. `--sold` is `#8A3E4E`, a muted maroon reserved for
+*gone*. These two must never be confusable: one says *this is over*, the other
+says *make me an offer*. Different hue, far higher saturation.
+
+They never co-occur — a hidden item has no card — so the risk is not overlap
+but **learned association**. If a visitor reads maroon as "gone", a red sticker
+must be visibly a different thing at a glance, from across a grid.
+
+Note this also sits against the existing rule that in-negotiation is **never
+red, because red would say gone about something still available**. That rule
+still holds for *state* markers. This is not a state marker: it is a sticker
+about price, on an item that is emphatically still for sale, and it carries its
+own words.
+
+### It is a separate axis, not a fourth segment
+
+An item can be for sale **and** open to haggling, or in negotiation and still
+open to it. So the seller row keeps the three-state control and gains **one
+independent toggle** beneath it — full-width, 44px, pressed state in the same
+red so the control and the badge are visibly the same fact.
+
+`Saa tinkiä` is the user's own Finnish. **en/sv still needed** — do not write
+them; ask.
