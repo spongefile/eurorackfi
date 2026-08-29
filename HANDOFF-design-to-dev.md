@@ -2258,27 +2258,25 @@ lands at the point of asking, not three weeks later.
 
 ---
 
-## Sellers differ in what they can be asked to do (2026-08-29)
+## Design the floor first (2026-08-29)
 
 The contact-form work ended somewhere neither lane proposed, and the shape is
 worth keeping because it will recur in every seller-facing feature.
 
-Two sellers, same problem, different answers. Kari can add four exactly-named
-hidden fields to his form. Kalle is not a technical user and asking him to
-would produce three fields, one typo, and nobody knowing — the failure is
-silent on both sides, which is how this went unnoticed across 22 listings in
-the first place.
+**Not every seller will do a fiddly setup step, and no design should need them
+to.** A step like "add four hidden fields, named exactly" fails silently when
+it goes wrong — three fields, one typo, and nothing reports it on either side.
+That is how this went unnoticed across 22 listings in the first place.
 
 **So design the floor first, and make it require nothing.** The floor here is
 one visible question on the seller's form — "which module are you asking
 about?" — plus our side showing the buyer the module's name next to the
 contact link so it is there to copy. That works for a Tally form, a personal
-site's contact page, anything. Kalle needs to do nothing at all.
+site's contact page, anything, without the seller configuring a thing.
 
-**Anything better than the floor is an optimisation, recorded per seller, and
-never load-bearing.** Hidden-field prefill is that optimisation. It is a
-per-seller flag rather than an assumption, because capability varies by person
-and cannot be inferred from the form URL.
+**Anything better than the floor is an optimisation, recorded per form, and
+never load-bearing.** Hidden-field prefill is that optimisation. It is a flag
+set by looking at a form, not an assumption inferred from its URL.
 
 **A flag that needs a human to stay accurate will go stale, so choose which
 way it falls.** The module-naming note is unconditional — shown whether or not
@@ -2288,5 +2286,10 @@ on want entries: pick the direction of the error rather than trying to prevent i
 
 **For the how-it-works page this means the joining sequence says nothing about
 hidden fields.** A prospective owner is told the floor and only the floor. The
-optimisation is a conversation we have with an individual seller afterwards, if
-they turn out to want it.
+optimisation is a conversation with an individual seller afterwards, if it
+comes up.
+
+**Record the state of a form, never a judgement about a person.** The flag says
+what a form has. Nothing in this repo — code, comments, JSON or handoff — should
+characterise a seller's skills. `content/` is public and these are real people
+and neighbours.
