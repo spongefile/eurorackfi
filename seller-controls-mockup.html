@@ -30,6 +30,9 @@ h2{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;
 .sp-who i{width:11px;height:11px;border-radius:50%;background:#C98A2E;flex:0 0 auto}
 .sp-note{font-family:"Newsreader",Georgia,serif;font-size:.95rem;color:var(--ink2);
  line-height:1.5;margin-top:.4rem}
+.sp-gloss{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink2);
+ background:var(--panel2);border:1px solid var(--line);padding:.5rem .6rem;margin-top:12px;line-height:1.5}
+.sp-gloss span{color:var(--signal);font-size:.62rem}
 .sp-count{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
  margin:14px 0 8px;letter-spacing:.06em;text-transform:uppercase}
 
@@ -84,31 +87,36 @@ impossible.</p>
     <div class="sp-who"><i></i>Sampo</div>
     <div class="sp-note">Merkitse myydyt pois. Vain sinä näet tämän sivun.</div>
   </div>
+  <div class="sp-gloss">Hide = this is a way to mark the item as sold.<br>
+   <span>English is the user's wording; fi / sv still theirs to write.</span></div>
   <div class="sp-count">20 kohdetta · 2 piilotettu</div>
 
   <div class="it"><div class="th"></div><div class="body">
     <div class="mk">Westlicht</div><div class="nm">PER|FORMER</div>
-    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Hide</button></div>
   </div></div>
 
   <div class="it"><div class="th"></div><div class="body">
     <div class="mk">Industrial Music Electronics</div><div class="nm">Piston Honda MK III</div>
-    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="true">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="true">Neuvottelussa</button><button class="sold" aria-pressed="false">Hide</button></div>
   </div></div>
 
   <div class="it isSold"><div class="th"></div><div class="body">
     <div class="mk">Befaco</div><div class="nm">BF-22 Sallen Key Filter</div>
-    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="true">Myyty</button></div>
+    <div class="seg"><button aria-pressed="false">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="true">Hide</button></div>
   </div></div>
 
   <div class="it"><div class="th"></div><div class="body">
     <div class="mk">Modor Music</div><div class="nm">Formant Filter</div>
-    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Myyty</button></div>
+    <div class="seg"><button aria-pressed="true">Myynnissä</button><button class="neg" aria-pressed="false">Neuvottelussa</button><button class="sold" aria-pressed="false">Hide</button></div>
   </div></div>
 </div>
 <p class="cap"><b>One choice, not two toggles.</b> Three states that cannot overlap — for
 sale, someone is talking, gone — so it is one decision rather than two that interact. Every
 target is a full-width third of the row at 44px minimum, reachable one-handed.<br><br>
+<b>The gloss sits once at the top, not on every row.</b> "Hide" is the user's word and it is
+an action where the other two are states, so the sentence explaining that hiding is how you
+mark something sold does the work the label cannot — but twenty copies of it would be noise.<br><br>
 <b>A sold row recedes but never moves.</b> No reordering, no vanishing: the undo has to be
 exactly where the seller last saw the item, and something jumping away under the thumb is
 alarming when you have just tapped it by mistake.<br><br>
@@ -119,21 +127,19 @@ No prices, no editing, no adding. The state is the whole job.</p>
 <h2>What a shared link shows once hidden — 390px</h2>
 <div class="phone"><div class="gp">
   <div class="crumb">← Kaikki</div>
-  <div class="shot"></div>
-  <div class="mk">Befaco</div>
-  <h3>BF-22 Sallen Key Filter</h3>
   <div class="tag">Myyty</div>
-  <p>Tämä on mennyt. Katso muut — samanlaisia löytyy usein.</p>
+  <p>Owner has removed this module from sale.</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--signal)">
+    English is the user's wording. fi / sv still to be written by them.</p>
   <a class="btn" href="#">Katso kaikki →</a>
 </div></div>
-<p class="cap"><b>It can name the module now.</b> The old rule deleted the record, so a stale
-link could only say "that one's gone" about nothing in particular. A hidden record means the
-page can show what the link was for — which is what the person clicking actually wants
-confirmed.<br><br>
+<p class="cap"><b>Deliberately generic.</b> A record now survives, so this page COULD name the
+module and show its photo — the user has decided it should not. It says what happened and
+nothing more.<br><br>
 Dressed in <code>--sold</code> / <code>--sold-soft</code>, the palette already reserved for
 exactly this and used nowhere else.<br><br>
-The photo stays but dimmed. It confirms they found the right thing; full strength would read
-as still for sale.</p>
+The wording is the user's: <i>"Owner has removed this module from sale."</i> Finnish and
+Swedish are still theirs to write.</p>
 </div>
 </div>
 </body></html>
