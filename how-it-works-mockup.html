@@ -114,9 +114,13 @@ p.test{max-width:calc(50% - .5rem)}
 .tallybox .ff li{font-size:.84rem;line-height:1.5;color:var(--ink2);
  padding:.16rem 0}
 .tallybox a{color:var(--accent-hi)}
-.sendvia{font-size:.88rem;line-height:1.55;color:var(--ink2);
- margin:.7rem 0 0;padding-top:.7rem;border-top:1px solid var(--line2)}
-.sendvia a{color:var(--accent-hi)}
+.sendvia{margin:.8rem 0 0;padding-top:.8rem;border-top:1px solid var(--line2)}
+/* the join CTA is a BUTTON — declares its own color and text-decoration,
+   the FAQ-button lesson */
+.sendvia a{display:inline-block;font-family:"IBM Plex Mono",monospace;
+ font-size:.76rem;font-weight:600;letter-spacing:.03em;padding:.62rem 1rem;
+ background:var(--accent);color:#FBFBF9;border:1px solid var(--accent);
+ text-decoration:none;box-shadow:0 2px 0 var(--accent-hi)}
 .flag{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--signal);
  background:var(--signal-soft);border:1px solid var(--signal);padding:.5rem .7rem;
  margin:2.5rem 0 0;line-height:1.6;max-width:72ch}
@@ -201,9 +205,7 @@ built this and would rather not spend the evenings arguing about it.</span></p>
     </ul>
     <!-- Points at the general contact form for now. Swap the href when the
          dedicated joining form exists; the sentence works either way. -->
-    <p class="sendvia">Send it all through
-      <a href="https://eurorack.fi/#/msg/" target="_blank" rel="noopener">the contact
-      form on eurorack.fi</a>.</p>
+    <p class="sendvia"><a href="https://tally.so/r/VLOgVl" target="_blank" rel="noopener">Send it all with this form →</a></p>
   </div></div>
 
   <div class="step"><div class="n">2</div><div class="sb">
