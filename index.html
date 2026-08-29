@@ -1775,6 +1775,13 @@ var TINK_POINTS="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,1
    product page the same fact is stated in text right under the price, and
    on a card the price is a link to that page — so nothing is announced
    twice and nothing is announced only in colour. */
+/* MEASURED, not assumed, because the badge is a fixed circle and the
+   longest line varies by language: at design's .165 ratio the widest
+   string we ship, Swedish "prutbart", renders 50.4px inside a 55.6px inner
+   circle on a 60px card badge. Tight but clear, and it is the constraint
+   that picked the word. Anything longer than about nine characters will
+   NOT fit — measure a new string here before adding it rather than
+   trusting the ratio. */
 function tinkHTML(m,size){
   if(!m.haggle) return "";
   var T2=t();
