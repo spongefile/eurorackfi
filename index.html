@@ -720,10 +720,10 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .howpage .formbox .ff li{font-family:"Newsreader",Georgia,serif; font-size:.84rem; line-height:1.5;
   color:var(--ink2); padding:.16rem 0; list-style:decimal}
 .howpage .formbox .ff li::before{display:none}
-.howpage .formbox a{color:var(--accent-hi)}
+:where(.howpage .formbox) a{color:var(--accent-hi)}
 .howpage .sendvia{font-size:.88rem; line-height:1.55; color:var(--ink2);
   margin:.7rem 0 0; padding-top:.7rem; border-top:1px solid var(--line2)}
-.howpage .sendvia a{color:var(--accent-hi)}
+:where(.howpage .sendvia) a{color:var(--accent-hi)}
 .howpage .note.contacts{max-width:62ch}
 @media(max-width:720px){
   .howpage .zones{grid-template-columns:1fr}
@@ -731,9 +731,10 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   .howpage .split, .howpage .rules{grid-template-columns:1fr}
   .howpage .col.ask, .howpage .col.now{order:0}
 }
-/* the one link into this page, from the FAQ's joining answer */
+/* the one link into this page, from the FAQ's joining answer. It is a real
+   .btn sm — the user asked for a button, not a subtle link — so this sets
+   spacing only and never colour: the component owns that. */
 .howlink{margin-top:.9rem}
-.howlink a{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--accent)}
 .faqpage{padding:2.5rem 0 4rem}
 .faqpage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 .9rem; line-height:1.05}
 .faqpage .lede{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; line-height:1.5;
@@ -759,11 +760,19 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
   color:var(--ink2); max-width:62ch}
 .qa .a p{margin:0 0 .85rem}
 .qa .a p:last-child{margin-bottom:0}
-.qa .a a{color:var(--accent); text-decoration:underline; text-underline-offset:2px}
+/* :where() so a COMPONENT dropped into an answer keeps its own colours.
+   Unwrapped, this was (0,2,1) and beat .btn (0,1,0): the how-it-works
+   button rendered as a solid blue block with its label painted the same
+   blue as its background — a button with no visible text, which no syntax
+   check or scripted assertion would catch. Third time this exact trap has
+   bitten in this file; the other two are commented at the button and link
+   resets up top. The rule there is the rule here: anything that colours
+   links BY CONTEXT belongs in :where(), so components always win. */
+:where(.qa .a) a{color:var(--accent); text-decoration:underline; text-underline-offset:2px}
 .qa .xlate{margin-bottom:.85rem}
 .faqpage .tail{margin-top:2rem; padding-top:1.3rem; border-top:1px solid var(--line2);
   font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted)}
-.faqpage .tail a{color:var(--accent); text-decoration:none}
+:where(.faqpage .tail) a{color:var(--accent); text-decoration:none}
 @media(max-width:640px){
   .qa{grid-template-columns:1fr; gap:0}
   .qa .num{padding-top:0; margin-bottom:.4rem}
@@ -931,7 +940,12 @@ body.detail-open .browse{display:none}
   background:var(--accent-soft); border:1px solid var(--accent); color:var(--accent);
   font-family:"IBM Plex Mono",monospace; font-size:.76rem}
 .negbar i{background:var(--accent)}
-.btn{font-family:"IBM Plex Mono",monospace; font-size:.82rem; letter-spacing:.03em; padding:0 1.2rem; height:62px;
+/* text-decoration is declared HERE, on the component, because .btn is used
+   on <a> as often as on <button> and any context that underlines its links
+   would otherwise underline the button label too — which is what happened
+   the moment this landed inside a FAQ answer. A component owns its own
+   appearance; contexts must not have to remember to switch things off. */
+.btn{text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:.82rem; letter-spacing:.03em; padding:0 1.2rem; height:62px;
   width:100%; background:var(--accent); color:var(--on); border:1px solid var(--accent); box-shadow:0 2px 0 var(--accent-hi);
   display:inline-flex; align-items:center; justify-content:center; margin-top:1rem}
 .btn:hover{background:var(--accent-hi)}
@@ -2649,7 +2663,7 @@ function faqHTML(){
              cannot silently drop it. Shown only in a language the page
              has actually been written in. */
           (item.id==="can-i-join" && HOW && howHasLang(lang)
-            ? '<p class="howlink"><a href="#/how">'+esc(howT(HOW.faqLink))+' &rarr;</a></p>'
+            ? '<p class="howlink"><a class="btn sm" href="#/how">'+esc(howT(HOW.faqLink))+' &rarr;</a></p>'
             : '')+
         '</div>'+
         '</div></section>';
