@@ -932,11 +932,18 @@ function sellerPage(sellerKey, tok) {
 .rowtop .pr input:focus{outline:2px solid var(--accent);outline-offset:-1px}
 .rowtop .pr button{font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:34px;
  padding:0 .55rem;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
-/* Save only exists once the number has actually changed. A permanently
-   live save button next to a price invites a confirming tap that changes
-   nothing, and trains the eye to ignore it — so its appearance IS the
-   signal that there is something unsaved. */
-.rowtop .pr button[hidden]{display:none}
+/* ALWAYS PRESENT, disabled until the number actually changes. It used to
+   be hidden at rest, on the reasoning that its appearance was itself the
+   signal that something was unsaved. That was wrong in the way that only
+   shows up when someone uses it: the user went looking for a save button,
+   found nothing beside the price, and assumed the page had not finished
+   loading. An affordance you cannot see until after you have already done
+   the thing it enables does not teach anyone that the step exists — and
+   not knowing it exists is exactly how a typed price gets abandoned.
+   Disabled rather than hidden keeps the "nothing to save" state honest
+   while still saying, at rest, that saving is how this works. */
+.rowtop .pr button:disabled{background:var(--panel2); color:var(--muted);
+ border-color:var(--line2); cursor:default}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem}
 .seg button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
  background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
@@ -1093,6 +1100,9 @@ function sellerPage(sellerKey, tok) {
      has not acknowledged anything. Not scoped to the TOKEN, though —
      regenerating a link doesn't unlearn the warning. */
   var ACK_KEY="eurorackfi:ack:keep:"+SELLER;
+  /* Prices typed but not yet saved, by item id. Kept outside the DOM so a
+     redraw cannot lose them — see the note in the price cell. */
+  var PENDING={};
 
   /* Finnish supplied by design (a953694), UNREVIEWED by the user — they
      read both languages and their correction is final when it comes.
@@ -1259,9 +1269,19 @@ function sellerPage(sellerKey, tok) {
              adding one is a listing decision, and this page deliberately
              edits what exists rather than creating anything. */
           (typeof st.price==="number"
-            ? '<div class="pr">€<input type="text" inputmode="numeric" value="'+st.price+'" '+
-              'data-price="'+st.price+'" aria-label="'+esc(TXT.priceLabel)+'">'+
-              '<button class="savep" hidden>'+esc(TXT.save)+'</button></div>'
+            ? (function(){
+                /* A pending edit survives a redraw. render() rebuilds every
+                   row from saved state, so toggling anything on ANOTHER row
+                   used to silently discard a price the seller had typed but
+                   not saved — the field snapped back with no message. The
+                   typed value is kept in PENDING and re-applied here. */
+                var pend=PENDING[m.id];
+                var shown=(pend!==undefined)?pend:String(st.price);
+                var dirty=shown!==String(st.price);
+                return '<div class="pr">€<input type="text" inputmode="numeric" value="'+esc(shown)+'" '+
+                  'data-price="'+st.price+'" aria-label="'+esc(TXT.priceLabel)+'">'+
+                  '<button class="savep"'+(dirty?"":" disabled")+'>'+esc(TXT.save)+'</button></div>';
+              })()
             : '')+
         '</div>'+
         '<div class="seg">'+
@@ -1322,8 +1342,10 @@ function sellerPage(sellerKey, tok) {
      space still count as different and still offer the save. */
   document.addEventListener("input",function(e){
     var inp=e.target.closest(".pr input"); if(!inp) return;
-    var btn=inp.parentNode.querySelector(".savep");
-    btn.hidden = inp.value.trim()===inp.getAttribute("data-price");
+    var row=inp.closest(".row"), id=row.getAttribute("data-id");
+    var clean=inp.value.trim(), saved=inp.getAttribute("data-price");
+    if(clean===saved) delete PENDING[id]; else PENDING[id]=inp.value;
+    inp.parentNode.querySelector(".savep").disabled = (clean===saved);
   });
   /* Enter saves, Escape abandons. A number field where Enter does nothing
      is a trap: it is the obvious way to commit a typed value, and the
@@ -1331,8 +1353,10 @@ function sellerPage(sellerKey, tok) {
   document.addEventListener("keydown",function(e){
     var inp=e.target.closest(".pr input"); if(!inp) return;
     if(e.key==="Enter"){ e.preventDefault(); savePrice(inp.closest(".row")); }
-    if(e.key==="Escape"){ inp.value=inp.getAttribute("data-price");
-      inp.parentNode.querySelector(".savep").hidden=true; }
+    if(e.key==="Escape"){
+      delete PENDING[inp.closest(".row").getAttribute("data-id")];
+      inp.value=inp.getAttribute("data-price");
+      inp.parentNode.querySelector(".savep").disabled=true; }
   });
 
   function savePrice(row){
@@ -1355,6 +1379,7 @@ function sellerPage(sellerKey, tok) {
       return;
     }
     var was=inp.getAttribute("data-price");
+    delete PENDING[row.getAttribute("data-id")];   /* it is no longer pending */
     save(row.getAttribute("data-id"),{price:n},
       TXT.savedPrice.replace("{old}",was).replace("{new}",String(n)));
   }
