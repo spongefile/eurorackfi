@@ -1679,7 +1679,7 @@ Shown on the seller page after a toggle saves.
 
 | en | fi | sv |
 |---|---|---|
-| Saved. The change shows on the site within a minute. If the site is open somewhere else, reload it. | `Tallennettu. Muutos näkyy sivustolla minuutin sisällä. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Ändringen syns på sajten inom en minut. Om sajten är öppen någon annanstans, ladda om den.` |
+| Saved. The change shows on the site in seconds — a minute at most. If the site is open somewhere else, reload it. | `Tallennettu. Muutos näkyy sivustolla sekunneissa, viimeistään minuutin kuluttua. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Ändringen syns på sajten inom sekunder, som mest en minut. Om sajten är öppen någon annanstans, ladda om den.` |
 
 **The measured facts this is written against** (dev, 2026-08-29):
 
@@ -1701,9 +1701,15 @@ exists to prevent.
 **Three sentences, one job each:**
 
 1. **`Tallennettu.`** — what they want to know, first, one word.
-2. **A bounded promise that is always true.** "Within a minute" beats a vague
-   "shortly" *and* beats an accurate "under a second": it sets a ceiling, so
-   any real wait feels early rather than late.
+2. **Both ends of the real range**, at the user's instruction — "in seconds, a
+   minute at most". They suggested "1–10 minutes" as a placeholder and asked
+   for whatever the true best and worst case are; those are **under a second
+   measured** and **~60 seconds** as KV's documented ceiling, so the range is
+   seconds-to-a-minute and nothing like ten.
+
+   Giving both ends beats either alone. The best case is the reassuring half —
+   it usually IS instant — and the ceiling means any real wait feels early
+   rather than late.
 3. **The reload instruction** — the only ask, and the one that matters, since
    an open tab is otherwise permanently wrong.
 
