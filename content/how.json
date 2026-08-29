@@ -1,9 +1,7 @@
 {
   "_comment": "Copy for the 'How this works' page (#/how). English is design's draft and UNREVIEWED by the user; fi and sv are deliberately empty until the user writes them, and the page refuses to render in a language whose lede is blank. Layout lives in index.html because the structure is fixed and approved; only the words live here, so revising them is cheap. Inline markup: **bold**, *italic*, [text](url) — nothing else, and everything is escaped before it is applied.",
   "_liveComment": "Which languages this page is PUBLISHED in. Separate from whether a translation exists, because those are different facts: a draft translation can sit in this file without going live. A language appears on the site only if it is listed here AND its text is written. Absent or empty means English only. Adding a code here is the act of publishing, and it is the user's to make after reading that language.",
-  "live": [
-    "en"
-  ],
+  "live": ["en", "fi", "sv"],
   "eyebrow": {
     "en": "For owners",
     "fi": "Omistajille",
