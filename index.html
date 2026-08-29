@@ -2060,13 +2060,16 @@ function detailHTML(m){
       /* Naming the module rather than warning that it is missing: the
          buyer is looking at the title, so this makes it a copy-paste
          instead of asking them to remember. */
-      /* Shown for EVERY seller-owned form. This is the only thing that
-         connects an enquiry to an item once the message leaves our form,
-         so it must not depend on anything anyone has to keep accurate —
-         no flag, no verification step, nothing that can go stale without
-         announcing it. It pairs with the "which module?" question the
-         seller is asked to put on their own form: they ask, and this
-         hands the buyer the exact name to answer with. */
+      /* Shown for EVERY seller-owned form, WHETHER OR NOT prefill works.
+         Deliberately not conditional on formHasOurFields: that flag needs
+         a human to look at a form and stay right as sellers change them,
+         so it can go stale without announcing it. Keeping the note
+         unconditional means a stale true costs a buyer one redundant
+         sentence, while a conditional note would put us straight back to
+         the silent anonymous enquiry this exists to prevent. Choose the
+         direction the error falls in.
+         It also pairs with the visible "which module?" question sellers
+         are asked to add: they ask, this hands the buyer the answer. */
       : (sellerOwnsForm(m)
         ? '<p class="outnote">'+esc(
             (isEmbeddableForm(formFor(m)) ? T2.msgNameNote : T2.msgExternalNote)
@@ -2213,11 +2216,25 @@ function sellerOwnsForm(m){
   var p=m?SELLER_BY_KEY[m.who]:null;
   return !!(p && p.form);
 }
+/* PER SELLER, because the sellers are not interchangeable. Prefill needs
+   four hidden fields named module/seller/price/lang, and they exist only
+   on a form built to have them. Kari is adding them to his existing form —
+   same URL, same inbox, past submissions intact — so his listings can
+   prefill. Kalle is not being asked: he isn't a technical user, and the
+   note below already does the job without him touching anything.
+   ABSENT MEANS FALSE, and it stays absent until someone has actually
+   opened that seller's form and seen the four names. Both are absent
+   today, including Kari's, because he hasn't added them yet. */
+function formHasOurFields(m){
+  var p=m?SELLER_BY_KEY[m.who]:null;
+  if(!p || !p.form) return true;      /* the shared form is ours */
+  return p.formFields===true;         /* opt-in, verified by looking */
+}
 function tallyLink(m){
   var target=formFor(m);
-  /* the params belong to the shared form alone — a seller's own form has
-     no fields to receive them, so appending them is noise at best */
-  if(!isEmbeddableForm(target) || sellerOwnsForm(m)) return target;
+  /* only where there are fields to receive them: the shared form always,
+     a seller's own form only once we have looked and ticked the box */
+  if(!isEmbeddableForm(target) || !formHasOurFields(m)) return target;
   var p=SELLER_BY_KEY[m.who], q=[];
   q.push(TALLY_FIELDS.module+"="+encodeURIComponent(m.mfr+" — "+m.name));
   q.push(TALLY_FIELDS.seller+"="+encodeURIComponent(p.name));
