@@ -418,6 +418,8 @@ function sellerPage(sellerKey, tok) {
  color:var(--accent);font-weight:600}
 .seg button.neg[aria-pressed="true"]{background:var(--signal-soft);border-color:var(--signal);color:var(--signal)}
 .seg button.sold[aria-pressed="true"]{background:var(--sold-soft);border-color:var(--sold);color:var(--sold)}
+.keep{background:var(--signal-soft);color:var(--signal);border:1px solid var(--signal);
+ padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
 .ok{background:var(--accent-soft);color:var(--accent);padding:.6rem .8rem;
@@ -427,7 +429,8 @@ function sellerPage(sellerKey, tok) {
 `,
     html: `
   <h1 id="hd">…</h1>
-  <p class="sub" id="sub">Ladataan…</p>
+  <p class="sub" id="sub"></p>
+  <p class="keep" id="keep"></p>
   <div class="gloss" id="gloss"></div>
   <div id="err"></div>
   <div id="list"></div>
@@ -452,7 +455,15 @@ function sellerPage(sellerKey, tok) {
      save-failure message. It stays in English rather than have me put
      unreviewed Finnish on the page. */
   var TXT={
-    sub:"Vain sinä näet tämän sivun.",
+    /* NOT a flat "only you can see this page" — that was false, and it
+       left a seller with no reason not to forward the link. Anyone
+       holding it can change this seller's listings, and it stays valid
+       until regenerated. So: state the condition, then ask for the
+       behaviour, with something to DO rather than merely know.
+       Pairs with the admin field hint, which tells the person sending the
+       link not to post it. The protection needs both halves, so if either
+       is reworded check the other. */
+    keep:"Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!",
     /* "milloin VAAN", not "vain" — the user wrote it back this way. The
        colloquial form, closer to the site's own voice ("Vaihtokaupatkin
        käyvät!"). A later pass will want to correct it to the textbook
@@ -500,7 +511,8 @@ function sellerPage(sellerKey, tok) {
     var hid=ITEMS.filter(function(m){return stateOf(m).hidden;}).length;
     document.getElementById("hd").textContent=SELLER;
     document.getElementById("sub").textContent=
-      TXT.sub+"  ·  "+ITEMS.length+" "+TXT.items+(hid?("  ·  "+hid+" "+TXT.hiddenCount):"");
+      ITEMS.length+" "+TXT.items+(hid?("  ·  "+hid+" "+TXT.hiddenCount):"");
+    document.getElementById("keep").textContent=TXT.keep;
     document.getElementById("gloss").textContent=TXT.gloss;
     document.getElementById("list").innerHTML=ITEMS.map(function(m){
       var st=stateOf(m);
