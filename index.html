@@ -2698,7 +2698,13 @@ function howHTML(){
           '<p>'+howMd(howT(H.formBoxNoForm))+'</p>'+
         '</div></li>'+
         howList(H.step1Tail)+'</ul>'+
-        '<p class="sendvia">'+howMd(sendVia)+'</p>'+
+        /* The join CTA is a BUTTON, not a text link — the user found the
+           text form lost inside step 1. The class is grafted onto howMd's
+           output rather than special-cased inside howMd, which stays a
+           plain three-token renderer. The :where() wrap on the context
+           link rules is what makes this safe: .btn's own colours win, so
+           the accent-on-accent trap the FAQ button hit cannot recur here. */
+        '<p class="sendvia">'+howMd(sendVia).replace('<a ','<a class="btn sm" ')+'</p>'+
       '</div></div>'+
       '<div class="step"><div class="n">2</div><div class="sb">'+
         '<h3>'+esc(howT(H.step2H))+'</h3><ul>'+howList(H.step2)+'</ul></div></div>'+

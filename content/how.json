@@ -1,7 +1,11 @@
 {
   "_comment": "Copy for the 'How this works' page (#/how). English is design's draft and UNREVIEWED by the user; fi and sv are deliberately empty until the user writes them, and the page refuses to render in a language whose lede is blank. Layout lives in index.html because the structure is fixed and approved; only the words live here, so revising them is cheap. Inline markup: **bold**, *italic*, [text](url) — nothing else, and everything is escaped before it is applied.",
   "_liveComment": "Which languages this page is PUBLISHED in. Separate from whether a translation exists, because those are different facts: a draft translation can sit in this file without going live. A language appears on the site only if it is listed here AND its text is written. Absent or empty means English only. Adding a code here is the act of publishing, and it is the user's to make after reading that language.",
-  "live": ["en", "fi", "sv"],
+  "live": [
+    "en",
+    "fi",
+    "sv"
+  ],
   "eyebrow": {
     "en": "For owners",
     "fi": "Omistajille",
@@ -357,7 +361,7 @@
     "fi": "**Ei vielä lomaketta?** [tally.so](https://tally.so) on ilmainen ja vie noin viisi minuuttia. Tee tunnus, lisää nuo neljä kysymystä, julkaise ja lähetä meille linkki. Laita samalla *sähköposti-ilmoitukset* päälle, muuten näet yhteydenotot vasta kun seuraavan kerran avaat sen.",
     "sv": "**Inget formulär än?** [tally.so](https://tally.so) är gratis och tar ungefär fem minuter. Skapa ett konto, lägg till de fyra frågorna, publicera och skicka oss länken. Slå på *e-postnotiser* medan du är där, annars ser du förfrågningar först när du öppnar det nästa gång."
   },
-  "_sendHrefComment": "The user's own \"Add to eurorack.fi\" Tally form. Was #/msg/ until 2026-08-29. Swap this value and nothing else changes; the sentence works either way. Existing sellers do NOT use this — they have the in-page request form on their token link, which lands in the /requests queue.",
+  "_sendHrefComment": "The user's own 'Add to eurorack.fi' Tally form. Was #/msg/ until 2026-08-29. Swapping this value is safe ONLY BECAUSE the sendVia sentence is destination-neutral ('this form') — an earlier version named the destination, the href was swapped, and the sentence went on describing the old one. If sendVia is ever reworded to name where it points, this value and that sentence become one edit, not two.",
   "sendHref": "https://tally.so/r/VLOgVl",
   "sendVia": {
     "en": "[Send it all with this form →]({href})",
