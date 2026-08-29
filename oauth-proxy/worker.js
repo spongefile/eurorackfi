@@ -170,12 +170,12 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ""}
     site it sits on a photograph rather than on a theme background.
     --haggle-ink is that same fact as TEXT, which needs per-theme values:
     #D22B2B fails 4.5:1 as text in both. Mirrors index.html's tokens. */
- --haggle:#D22B2B;--haggle-ink:#B71F1F;--haggle-soft:#FBE9E9}
+ --haggle:#D22B2B;--haggle-ink:#B73D1F;--haggle-soft:#FBE9E9}
 @media(prefers-color-scheme:dark){:root{--bg:#0C1119;--panel:#161E2A;--panel2:#1D2634;
  --ink:#E6ECF4;--ink2:#BEC9D8;--muted:#8590A1;--line:#252F3C;--line2:#364253;
  --accent:#5AA9F0;--accent-soft:#0D2A47;--signal:#E0AC53;--signal-soft:#2C2314;
  --sold:#D98A93;--sold-soft:#331F24;--on:#08111A;
- --haggle-ink:#FF6A5A;--haggle-soft:#33191A}}
+ --haggle-ink:#F76945;--haggle-soft:#33191A}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.5}
@@ -452,15 +452,28 @@ function sellerPage(sellerKey, tok) {
 .tk[aria-pressed="true"] .lb{color:var(--haggle-ink);font-weight:600}
 /* Above the heading, deliberately: the seller came here to do one thing
    and leaves the moment it is done, so an ask below the list is an ask
-   nobody reaches. Signal colours rather than accent — accent is this
-   page's own controls, and this is a request on someone else's behalf.
-   Sized as an aside; if it ever starts looking like the primary action
-   it has gone wrong. */
-.sp-tip{display:block;text-decoration:none;background:var(--signal-soft);
- border:1px solid var(--signal);padding:.6rem .7rem;margin-bottom:16px}
+   nobody reaches. Sized as an aside; if it ever starts looking like the
+   primary action it has gone wrong.
+   NEUTRAL, not --signal, and that was a correction. The security note
+   below is the one thing on this page whose being ignored has a
+   consequence, and it only reads as that while it is the only amber block
+   on screen. This is a request we would LIKE read; that one is a warning.
+   Two amber blocks stacked turned the warning into furniture. */
+.sp-tip{display:flex;gap:.6rem;align-items:center;text-decoration:none;
+ background:var(--panel2);border:1px solid var(--line2);padding:.6rem .7rem;margin-bottom:16px}
+.sp-tip .jar{width:26px;height:26px;flex:0 0 auto;color:var(--accent)}
+.sp-tip .txt{min-width:0}
 .sp-tip .t{display:block;font-size:.95rem;color:var(--ink2);line-height:1.4}
 .sp-tip .a{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
- font-weight:600;color:var(--signal);margin-top:.3rem}
+ font-weight:600;color:var(--accent);margin-top:.2rem}
+/* Dismissible, because it is a warning and not furniture: it should stop
+   you once and then stop occupying the top of the page forever after.
+   A LABELLED BUTTON, NOT AN X — dismissing it asserts "I have understood
+   the consequence", and that deserves a deliberate act rather than a
+   stray tap near a corner. */
+.keep .ack{display:block;margin-top:.55rem;min-height:38px;padding:0 .9rem;
+ background:var(--signal);color:#fff;border:1px solid var(--signal);
+ font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600}
 .keep{background:var(--signal-soft);color:var(--signal);border:1px solid var(--signal);
  padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
@@ -472,11 +485,17 @@ function sellerPage(sellerKey, tok) {
 `,
     html: `
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
-    <span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
-    <span class="a">Tippaa ylläpidolle &rarr;</span></a>
+    <svg class="jar" viewBox="0 0 100 100" aria-hidden="true">
+      <rect x="26" y="34" width="48" height="50" rx="6" fill="none" stroke="currentColor" stroke-width="7"/>
+      <path d="M22 34h56" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <path d="M42 46h16" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="50" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="7"/>
+    </svg>
+    <span class="txt"><span class="t">Onko tästä sivustosta ollut sinulle hyötyä?</span>
+    <span class="a">Anna tippi ylläpidolle &rarr;</span></span></a>
   <h1 id="hd">…</h1>
   <p class="sub" id="sub"></p>
-  <p class="keep" id="keep"></p>
+  <div class="keep" id="keep" hidden></div>
   <div class="gloss" id="gloss"></div>
   <div id="err"></div>
   <div id="list"></div>
@@ -484,6 +503,11 @@ function sellerPage(sellerKey, tok) {
   var TOKEN=${JSON.stringify(tok)}, SELLER=${JSON.stringify(sellerKey)};
   var RAW=${JSON.stringify(RAW)}, API=location.origin+"/api/set";
   var ITEMS=[], STATE={};
+  /* Scoped to the seller, not just the device: two people sharing a laptop
+     are two different sellers with two different links, and the second one
+     has not acknowledged anything. Not scoped to the TOKEN, though —
+     regenerating a link doesn't unlearn the warning. */
+  var ACK_KEY="eurorackfi:ack:keep:"+SELLER;
 
   /* Finnish supplied by design (a953694), UNREVIEWED by the user — they
      read both languages and their correction is final when it comes.
@@ -510,6 +534,8 @@ function sellerPage(sellerKey, tok) {
        link not to post it. The protection needs both halves, so if either
        is reworded check the other. */
     keep:"Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!",
+    /* design's, unreviewed by the user */
+    ack:"Ymmärrän",
     /* "milloin VAAN", not "vain" — the user wrote it back this way. The
        colloquial form, closer to the site's own voice ("Vaihtokaupatkin
        käyvät!"). A later pass will want to correct it to the textbook
@@ -561,7 +587,16 @@ function sellerPage(sellerKey, tok) {
     document.getElementById("hd").textContent=SELLER;
     document.getElementById("sub").textContent=
       ITEMS.length+" "+TXT.items+(hid?("  ·  "+hid+" "+TXT.hiddenCount):"");
-    document.getElementById("keep").textContent=TXT.keep;
+    /* Dismissal is per device and persists. Wrapped because storage throws
+       outright in some privacy modes rather than returning null — and the
+       FAILURE MODE IS DELIBERATE: if we can't tell whether they've
+       acknowledged it, the warning shows. Better a seller reads it twice
+       than a seller who never read it at all. */
+    var acked=false; try{ acked=localStorage.getItem(ACK_KEY)==="1"; }catch(e){}
+    var keep=document.getElementById("keep");
+    keep.hidden=acked;
+    if(!acked) keep.innerHTML=esc(TXT.keep)+
+      '<button class="ack" id="ack" type="button">'+esc(TXT.ack)+'</button>';
     document.getElementById("gloss").textContent=TXT.gloss;
     document.getElementById("list").innerHTML=ITEMS.map(function(m){
       var st=stateOf(m);
@@ -609,6 +644,13 @@ function sellerPage(sellerKey, tok) {
   }
 
   document.addEventListener("click",function(e){
+    if(e.target.closest("#ack")){
+      /* hide first, persist second — if storage is unavailable the tap
+         still works for this visit and the note simply returns next time */
+      document.getElementById("keep").hidden=true;
+      try{ localStorage.setItem(ACK_KEY,"1"); }catch(err){}
+      return;
+    }
     var b=e.target.closest(".seg button");
     if(b){
       var row=b.closest(".row"), mode=b.getAttribute("data-mode");

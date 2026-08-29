@@ -155,18 +155,26 @@
 
    It is NOT --sold. --sold is a muted maroon reserved for gone; this is
    vivid, and they must never be confusable — one says this is over, the
-   other says make me an offer. The dark pair is the closer of the two, so
-   the dark value is pushed warmer and much more saturated (65% vs --sold's
-   39%) to hold that apart. Design specified the light red; the dark one is
-   mine and wants their eye.
+   other says make me an offer.
 
-   One rule each rather than six palette edits: the light value serves both
+   BOTH -ink values are hue ~12, not hue 0, and that is the whole point of
+   them. Design's first dark pick and my own were separated from --sold by
+   SATURATION ALONE — same brightness, barely any hue apart — which
+   collapses on a desaturated display or with red-deficient vision. Hue 12
+   buys separation that survives both. The dark value is design's
+   (#F76945); the light one moves the same way while holding lightness at
+   42% and contrast at 4.70, because in light mode BOTH colours are forced
+   dark against a pale ground, so lightness is not a lever there and hue is
+   all there is. Note --sold is hue 0 in the teal palette and 347 in blue,
+   so the teal pair was the identical hue before this. */
+
+/* One rule each rather than six palette edits: the light value serves both
    teal and blue, and so does the dark. Splitting it across the palettes
    would mean four identical dark declarations and a landmine the day
    someone adds a fifth palette and only remembers three of them. */
-.rt{--haggle:#D22B2B; --haggle-ink:#B71F1F}
-@media (prefers-color-scheme:dark){ .rt:not(.light){--haggle-ink:#FF6A5A} }
-.rt.dark{--haggle-ink:#FF6A5A}
+.rt{--haggle:#D22B2B; --haggle-ink:#B73D1F}
+@media (prefers-color-scheme:dark){ .rt:not(.light){--haggle-ink:#F76945} }
+.rt.dark{--haggle-ink:#F76945}
 
 /* ---------- base ----------
    The reset lives in :where() so it has ZERO specificity and cannot beat
@@ -1102,12 +1110,12 @@ var T = {
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
     emptyNone:"Inga träffar. Ta bort ett filter.",
     negotiating:"Under förhandling", negRibbon:"Förhandlas", negBar:"Under förhandling — du kan ändå fråga",
-    /* PLACEHOLDER — the Finnish, deliberately. Design is asking the user
-       for the Swedish and English and told me not to write them, so this
-       shows the fi string rather than an invented translation. Same
-       principle as the XLATE banner: visibly untranslated beats quietly
-       wrong. Replace when design supplies the sv. */
-    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
+    /* "prutbart" — the Swedish small-ad idiom, one word, so it holds a
+       single line on the badge at every size. Design's, approved by the
+       user. It was picked over "price negotiable" partly because that
+       visibly overflows the badge edges at 60px — so haggle2 is empty
+       here and the badge renders one line, which tinkHTML handles. */
+    haggle1:"prutbart", haggle2:"", haggle:"Prutbart",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
@@ -1134,9 +1142,15 @@ var T = {
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
     emptyNone:"Nothing matches that. Clear a filter.",
     negotiating:"In negotiation", negRibbon:"Negotiating", negBar:"In negotiation — you can still ask",
-    /* PLACEHOLDER — the Finnish, pending design asking the user for the
-       English. See the sv note above. */
-    haggle1:"saa", haggle2:"tinkiä", haggle:"Saa tinkiä",
+    /* "make offer", NOT "open to offers", and the difference is deliberate.
+       The objection to it was that "saa tinkiä" means haggling is
+       PERMITTED, not that the price is unfixed — but the badge never
+       appears without a price beside it (below it on a card, next to it on
+       the product page), so the "no fixed price" reading isn't available to
+       anyone. What's left is telling a buyer what to DO rather than stating
+       a policy, and two short words take the largest type of any candidate.
+       The user's, and they overruled design to get here. */
+    haggle1:"make", haggle2:"offer", haggle:"Make offer",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
@@ -1766,7 +1780,7 @@ function tinkHTML(m,size){
   var T2=t();
   return '<span class="tink" style="--s:'+size+'px" aria-hidden="true">'+
     '<svg viewBox="0 0 100 100"><polygon points="'+TINK_POINTS+'" fill="var(--haggle)"/></svg>'+
-    '<span>'+esc(T2.haggle1)+'<br>'+esc(T2.haggle2)+'</span></span>';
+    '<span>'+esc(T2.haggle1)+(T2.haggle2?'<br>'+esc(T2.haggle2):'')+'</span></span>';
 }
 function card(m){
   var T2=t(), p=SELLER_BY_KEY[m.who];
