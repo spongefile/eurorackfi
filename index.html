@@ -1248,6 +1248,42 @@ function loadSellers(){ return loadDir("content/sellers"); }
    object/string shape wantLabel()/wishTileHTML() already expect and that
    hand-authored JSON (content/sellers/*.json as committed) uses directly.
    Normalized once here so no render function has to care which produced it. */
+/* THE WISHLIST CONTENT KEY. This exact function also exists in
+   oauth-proxy/worker.js, and the two MUST agree: a want hidden on the
+   seller page but keyed differently here stays visible on the public
+   site, which fails silently and reads as the toggle not working.
+   scripts/check-wantkey.mjs runs both over the live data and fails if
+   they diverge — run it if you touch either.
+   Keyed on CONTENT, never array position: the CMS invites the user to
+   drag wants into priority order, and an index-keyed flag would follow
+   the position and hide a different entry after any reorder. */
+function wantKey(w){
+  if(typeof w==="string") return w;
+  if(!w || typeof w!=="object") return String(w);
+  if(w.text!=null && w.text!=="") return String(w.text);
+  return String(w.mfr||"")+"|"+String(w.name||"");
+}
+/* Hidden wants are dropped ONCE, HERE, at load — not filtered at each
+   place a wishlist is drawn. Wants are rendered in FIVE surfaces (the
+   Toiveet page grid, the home flowing row, the card popover, the product
+   page trade panel, and the owner popover), and filtering per surface
+   would mean five chances to miss one and no signal when it happened.
+   Removing them from p.wants and WANTS makes every consumer correct by
+   construction. */
+function dropHiddenWants(list,hiddenMap){
+  return (list||[]).filter(function(w){
+    /* TWO SOURCES, live winning over committed, same rule as items.
+       hiddenMap is the worker's KV, so a seller's toggle shows within
+       seconds; w.hidden is what the reconcile job folded into
+       content/sellers/*.json, so the choice survives a KV loss and a
+       Pages rebuild. If the worker is unreachable hiddenMap is {} and the
+       committed flag alone still holds — stale at worst, never
+       resurrecting something a seller pruned. */
+    var live = hiddenMap && hiddenMap[wantKey(w)];
+    if(live!==undefined) return !live;
+    return !(w && w.hidden);
+  });
+}
 function normalizeWants(list){
   return (list||[]).map(function(w){
     if(w && w.type==="placeholder") return w.text||"";
@@ -1271,6 +1307,16 @@ function normalizeWants(list){
    broken — the site's independence from a running service is a property
    worth more than the freshness. */
 var SELLER_STATE_URL="https://eurorackfi-cms-auth.aspiala.workers.dev/state";
+/* Separate endpoint from /state, and separately degradable: if this fails
+   every wishlist simply shows in full, which is the safe direction — a
+   want shown that should be hidden is untidy, one hidden that should show
+   is a seller's request silently lost. */
+var WANT_STATE_URL="https://eurorackfi-cms-auth.aspiala.workers.dev/wants";
+function loadWantState(){
+  return fetch(WANT_STATE_URL)
+    .then(function(r){ return r.ok ? r.json() : {}; })
+    .catch(function(){ return {}; });
+}
 function loadSellerState(){
   return fetch(SELLER_STATE_URL)
     .then(function(r){ return r.ok ? r.json() : {}; })
@@ -2730,7 +2776,7 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
    content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState()]).then(function(r){
+Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(), loadWantState()]).then(function(r){
   /* hidden items stay in content/items/ (data, photos, history all kept
      for a possible relist) but must not exist for the site at all —
      filtering here, before anything else touches ITEMS, means every
@@ -2744,7 +2790,13 @@ Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState()]
      they have just un-hidden comes straight back. */
   ITEMS=applySellerState(r[0],r[4]).filter(function(m){ return !m.hidden; });
   SELLERS=r[1];
-  SELLERS.forEach(function(p,i){ if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length]; p.wants=normalizeWants(p.wants); });
+  SELLERS.forEach(function(p,i){
+    if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length];
+    /* normalise first, THEN drop hidden: wantKey handles both shapes, but
+       normalising first means the key is computed from the same shape the
+       rest of the site sees. */
+    p.wants=dropHiddenWants(normalizeWants(p.wants), (r[5]||{})[p.key]);
+  });
   WANTS={}; SELLER_BY_KEY={};
   SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
   FAQ=(r[2]&&r[2].questions)?r[2]:{questions:[]};

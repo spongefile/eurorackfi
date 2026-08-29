@@ -280,6 +280,44 @@ async function listRequests(env, sellerKey) {
   return out;
 }
 
+/* THE WISHLIST CONTENT KEY. This exact function also exists in
+   index.html, and the two MUST agree: a want hidden here but keyed
+   differently there stays visible on the public site, which fails silently
+   and looks like the toggle simply not working. Kept identical rather than
+   shared because the two run in different documents with no build step
+   between them; scripts/check-wantkey.mjs runs both over the live data and
+   fails if they ever diverge.
+
+   Keyed on CONTENT, not array position, and that is the whole point. The
+   CMS invites the user to drag wishlist entries into priority order — an
+   index-keyed flag would silently follow the position and hide a different
+   entry after any reorder.
+
+   Handles every shape a want takes: a bare string, Decap's typed
+   {type:"placeholder",text}, and a product object, whether raw from the
+   repo or normalised by the site. Verified across the live data: 21 wants,
+   21 unique keys, no collisions.
+
+   Two edges, both benign and both chosen. Renaming an entry changes its
+   key, so a hidden one reappears — fails SHOWN rather than silently
+   missing, and a renamed want is arguably a different want. A collision
+   would need a seller to want two identical things, which is meaningless;
+   both rows would then toggle together, which is tolerable rather than
+   corrupt. */
+function wantKey(w) {
+  if (typeof w === "string") return w;
+  if (!w || typeof w !== "object") return String(w);
+  if (w.text != null && w.text !== "") return String(w.text);
+  return String(w.mfr || "") + "|" + String(w.name || "");
+}
+
+const WANTSTATE_KEY = "wantstate:v1";
+
+async function readWantState(env) {
+  const raw = await env.SELLER_STATE.get(WANTSTATE_KEY);
+  return raw ? JSON.parse(raw) : {};
+}
+
 async function readState(env) {
   const raw = await env.SELLER_STATE.get(STATE_KEY);
   return raw ? JSON.parse(raw) : {};
@@ -496,41 +534,29 @@ Login complete — this window should close automatically.
         try { return { key: k, ...JSON.parse(raw) }; } catch { return null; }
       }))).filter(Boolean).sort((a, b) => String(a.at).localeCompare(String(b.at)));
 
-      /* One plain-text block for the whole queue, because the user hands
-         these to the secretary by copy-paste. Built server-side so what
-         is copied is exactly what is displayed. */
-      const forSecretary = rows.map((r) =>
-        `- [${r.kind === "item" ? "ADD ITEM" : "WISHLIST"}] ${r.seller}: ${r.text}` +
+      /* GROUPED BY KIND, NOT BY SELLER, because the two are different
+         work: an item needs research, photos, a price and panel data; a
+         wishlist entry needs a panel drawing and nothing else. The user
+         triages by what the job IS. Grouping by seller would scatter one
+         kind of work across four groups and make every batch mixed.
+         Seller stays a label on each row. Oldest first within a group. */
+      const groups = [
+        { kind: "item", label: "New listings", tag: "ADD ITEM" },
+        { kind: "wish", label: "Wishlist additions", tag: "WISHLIST" },
+      ];
+
+      /* EACH GROUP GETS ITS OWN copy block. One combined copy would hand
+         the secretary a list they have to re-sort at the other end, which
+         is exactly the work the button exists to remove. */
+      const blockFor = (kind, tag) => rows.filter((r) => r.kind === kind).map((r) =>
+        `- [${tag}] ${r.seller}: ${r.text}` +
         (typeof r.price === "number" ? ` (asking €${r.price})` : "")
       ).join("\n");
 
-      return new Response(page("Requests", {
-        css: `
-.q{border:1px solid var(--line);background:var(--panel);padding:.8rem .9rem;margin-bottom:.5rem;
- display:flex;gap:.75rem;align-items:flex-start}
-.q .who{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.08em;
- text-transform:uppercase;color:var(--muted)}
-.q .what{font-size:.98rem;line-height:1.4;margin-top:.15rem;overflow-wrap:anywhere}
-.q .meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.3rem}
-.q .kind{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.08em;
- text-transform:uppercase;border:1px solid var(--line2);padding:.1rem .35rem;color:var(--ink2)}
-.q form{margin-left:auto;flex:0 0 auto}
-.q .del{font-family:"IBM Plex Mono",monospace;font-size:.7rem;background:none;color:var(--sold);
- border:1px solid var(--line2);padding:.4rem .6rem;min-height:38px}
-.q .del:hover{border-color:var(--sold);background:var(--sold-soft)}
-.copybox{width:100%;min-height:9rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;
- line-height:1.6;padding:.7rem .8rem;background:var(--panel2);border:1px solid var(--line);
- color:var(--ink);white-space:pre;overflow:auto}
-.empty{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);padding:1.2rem 0}
-`,
-        html: `
-          <h1>Requests</h1>
-          <p class="sub">${rows.length} waiting. Sellers ask here; nothing is added automatically.</p>
-          ${rows.length === 0 ? '<p class="empty">Nothing in the queue.</p>' : ""}
-          ${rows.map((r) => `
+      const rowHTML = (r) => `
             <div class="q">
               <div>
-                <div class="who">${esc(r.seller)} <span class="kind">${r.kind === "item" ? "item" : "wishlist"}</span></div>
+                <div class="who">${esc(r.seller)}</div>
                 <div class="what">${esc(r.text)}</div>
                 <div class="meta">${esc(String(r.at).slice(0, 16).replace("T", " "))} UTC${
                   typeof r.price === "number" ? ` &middot; asking &euro;${r.price}` : ""}</div>
@@ -540,25 +566,54 @@ Login complete — this window should close automatically.
                 <input type="hidden" name="key" value="${esc(r.key)}">
                 <button class="del" type="submit">Trash</button>
               </form>
-            </div>`).join("")}
-          ${rows.length ? `
-            <div class="card" style="margin-top:1.2rem">
-              <h2 style="font-size:1rem;margin:0 0 .5rem">Send to secretary</h2>
-              <textarea class="copybox" id="cb" readonly>${esc(forSecretary)}</textarea>
-              <button class="btn" id="copyall" type="button" style="margin-top:.6rem">Copy all</button>
-              <p class="note">Copy this, hand it to the secretary, then trash the ones that got done.
-                Nothing here expires on its own.</p>
-            </div>
-            <form method="POST" style="margin-top:.8rem">
-              <input type="hidden" name="action" value="deletemany">
-              ${rows.map((r) => `<input type="hidden" name="key" value="${esc(r.key)}">`).join("")}
-              <button class="btn ghost" type="submit">Trash all ${rows.length}</button>
-            </form>` : ""}
+            </div>`;
+
+      return new Response(page("Requests", {
+        css: `
+.q{border:1px solid var(--line);background:var(--panel);padding:.8rem .9rem;margin-bottom:.5rem;
+ display:flex;gap:.75rem;align-items:flex-start}
+.q .who{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.08em;
+ text-transform:uppercase;color:var(--muted)}
+.q .what{font-size:.98rem;line-height:1.4;margin-top:.15rem;overflow-wrap:anywhere}
+.q .meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.3rem}
+.q form{margin-left:auto;flex:0 0 auto}
+.q .del{font-family:"IBM Plex Mono",monospace;font-size:.7rem;background:none;color:var(--sold);
+ border:1px solid var(--line2);padding:.4rem .6rem;min-height:38px}
+.q .del:hover{border-color:var(--sold);background:var(--sold-soft)}
+h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--muted);font-weight:500;margin:1.8rem 0 .6rem}
+.copybox{width:100%;min-height:7rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;
+ line-height:1.6;padding:.7rem .8rem;background:var(--panel2);border:1px solid var(--line);
+ color:var(--ink);white-space:pre;overflow:auto}
+.empty{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);padding:1.2rem 0}
+`,
+        html: `
+          <h1>Requests</h1>
+          <p class="sub">${rows.length} waiting. Sellers ask here; nothing is added automatically.</p>
+          ${rows.length === 0 ? '<p class="empty">Nothing in the queue.</p>' : ""}
+          ${groups.map((g) => {
+            const mine = rows.filter((r) => r.kind === g.kind);
+            if (!mine.length) return "";
+            return `
+            <h2 class="grp">${g.label} &middot; ${mine.length}</h2>
+            ${mine.map(rowHTML).join("")}
+            <div class="card">
+              <textarea class="copybox" id="cb-${g.kind}" readonly>${esc(blockFor(g.kind, g.tag))}</textarea>
+              <button class="btn copyall" data-for="cb-${g.kind}" type="button" style="margin-top:.6rem">Copy these ${mine.length}</button>
+              <form method="POST" style="display:inline-block;margin-left:.4rem">
+                <input type="hidden" name="action" value="deletemany">
+                ${mine.map((r) => `<input type="hidden" name="key" value="${esc(r.key)}">`).join("")}
+                <button class="btn ghost" type="submit">Trash these ${mine.length}</button>
+              </form>
+            </div>`;
+          }).join("")}
+          ${rows.length ? `<p class="note">Copy a group, hand it to the secretary, then trash the ones that got
+            done. Nothing here expires on its own.</p>` : ""}
           <script>
-            var c=document.getElementById("copyall");
-            if(c) c.addEventListener("click",function(){
-              navigator.clipboard.writeText(document.getElementById("cb").value);
-              this.textContent="Copied";
+            document.addEventListener("click",function(e){
+              var b=e.target.closest(".copyall"); if(!b) return;
+              navigator.clipboard.writeText(document.getElementById(b.getAttribute("data-for")).value);
+              b.textContent="Copied";
             });
           </script>`,
       }), { headers: { "Content-Type": "text/html; charset=utf-8" }, });
@@ -744,6 +799,45 @@ Login complete — this window should close automatically.
       return json({ ok: true });
     }
 
+    /* Public read of which wants are hidden, mirroring /state for items.
+       A SEPARATE ENDPOINT rather than a new field inside /state, because
+       /state's shape is a flat item-id map that the live site already
+       parses — nesting it would have been a breaking change to a document
+       every visitor fetches. Two endpoints also fail independently. */
+    if (p === "/wants") {
+      return json(await readWantState(env), 200, { "Cache-Control": "no-store" });
+    }
+
+    if (p === "/api/setwant" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+      const { token, key, hidden } = body || {};
+      const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
+      if (!sellerKey) return json({ error: "bad token" }, 403);
+      if (typeof key !== "string" || !key || key.length > 200) return json({ error: "bad key" }, 400);
+      if (typeof hidden !== "boolean") return json({ error: "bad hidden" }, 400);
+
+      /* OWNERSHIP, SERVER-SIDE, same principle as /api/set: the token says
+         which seller you are, and this proves the want is actually on that
+         seller's list. Without it, a seller could hide another seller's
+         wishlist entries by naming their key. */
+      const seller = await fetch(RAW + "content/sellers/" + encodeURIComponent(sellerKey) + ".json",
+        { cf: { cacheTtl: 60 } }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      if (!seller) return json({ error: "unknown seller" }, 404);
+      const owns = (seller.wants || []).some((w) => wantKey(w) === key);
+      if (!owns) return json({ error: "not your want" }, 403);
+
+      const state = await readWantState(env);
+      const mine = state[sellerKey] || {};
+      /* Deleted rather than stored as false, so the map only ever holds
+         hidden entries and cannot grow without bound as a seller toggles
+         things back and forth. */
+      if (hidden) mine[key] = true; else delete mine[key];
+      if (Object.keys(mine).length) state[sellerKey] = mine; else delete state[sellerKey];
+      await env.SELLER_STATE.put(WANTSTATE_KEY, JSON.stringify(state));
+      return json({ ok: true });
+    }
+
     if (p === "/api/set" && request.method === "POST") {
       let body;
       try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
@@ -892,6 +986,33 @@ function sellerPage(sellerKey, tok) {
  padding:.7rem .85rem;margin:0 0 1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
 .gloss{background:var(--panel2);border:1px solid var(--line);padding:.7rem .85rem;margin-bottom:1.2rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+/* Wishlist section, STACKED under the items rather than behind a tab.
+   The item list is why this page exists; tabs would put it behind a state
+   on a page whose whole virtue is having none, and half the time the
+   seller would arrive on the wrong pane and have to correct before doing
+   what they came for. Wishlists run 1-12 entries, so the section costs
+   little height and scrolling is navigation enough. */
+.wsec{margin-top:1.8rem}
+.wsec h2{font-size:1rem;margin:0 0 .35rem}
+.wsec .lead{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);margin:0 0 .7rem}
+.wrow{display:flex;flex-direction:column;gap:.5rem;background:var(--panel);
+ border:1px solid var(--line);border-left:3px solid var(--line2);padding:.7rem .8rem;margin-bottom:.45rem;
+ transition:opacity .15s}
+.wrow.isHidden{opacity:.55}
+.wrow .nm{font-weight:700;font-size:.95rem;line-height:1.3}
+.wrow .mk{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+ text-transform:uppercase;letter-spacing:.08em}
+/* The item rows' segmented control with ONE OPTION FEWER — a want is only
+   ever shown or not, with no middle state for something you don't own.
+   Same skeleton, same 44px targets, so there is one interaction to learn
+   on this page rather than two. */
+.wseg{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+.wseg button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
+.wseg button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);
+ color:var(--accent);font-weight:600}
+.wseg button.hide[aria-pressed="true"]{background:var(--sold-soft);border-color:var(--sold);color:var(--sold)}
+
 /* The request form sits BELOW the list, not above it. A seller opens this
    page to change something that already exists; asking for something new
    is the rarer errand, and putting it first would push the reason they
@@ -918,6 +1039,7 @@ function sellerPage(sellerKey, tok) {
    know that reads the silence as it not having worked, and sends again. */
 .ask .note2{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
  line-height:1.6;margin-top:.55rem}
+.ask .how{margin:0 0 .4rem}
 .ok{background:var(--accent-soft);color:var(--accent);padding:.6rem .8rem;
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;margin-bottom:1rem}
 .err{background:var(--sold-soft);color:var(--sold);padding:.6rem .8rem;font-family:"IBM Plex Mono",monospace;
@@ -944,12 +1066,18 @@ function sellerPage(sellerKey, tok) {
   <div class="gloss" id="gloss"></div>
   <div id="err"></div>
   <div id="list"></div>
+  <div class="wsec" id="wsec" hidden>
+    <h2 id="wsech"></h2>
+    <p class="lead" id="wseclead"></p>
+    <div id="wlist"></div>
+  </div>
   <div class="ask">
     <h2 id="askh"></h2>
     <div class="kinds">
       <button type="button" data-kind="item" aria-pressed="true" id="kitem"></button>
       <button type="button" data-kind="wish" aria-pressed="false" id="kwish"></button>
     </div>
+    <p class="note2 how" id="askhow"></p>
     <textarea id="asktext" maxlength="500"></textarea>
     <div class="askprice" id="askprice"><span id="askpricelab"></span>
       <span>€ <input type="text" inputmode="numeric" id="askpriceval"></span></div>
@@ -1061,7 +1189,21 @@ function sellerPage(sellerKey, tok) {
        Both halves are the user's requirement: the details are filled in by
        hand, and the request is checked. A seller who doesn't know that
        reads the silence as failure and sends the same thing again. */
-    askNote:"Emme lisää kohteita heti: täydennämme tiedot käsin ja tarkistamme pyynnöt. Kerro mitä lisätään ja missä kunnossa se on.",
+    /* BEFORE THE FIELD, WHAT TO TYPE. AFTER THE BUTTON, WHAT HAPPENS NEXT.
+       These two started as one sentence below the button, which put the
+       writing instruction after the send — an instruction for next time
+       rather than this time. */
+    askHow:"Kerro mitä lisätään ja missä kunnossa se on.",
+    /* design's, unreviewed */
+    wishH:"Toivelistasi",
+    wishLead:"Uusia toiveita voit pyytää lisättäväksi alempana.",
+    wishShown:"Näkyy",
+    /* Plural on purpose, and NOT to be harmonised toward "sinä" later.
+       This page says YOU about the seller's own actions and WE about the
+       admins' — two parties, two pronouns. The sentence exists to say
+       SOMEONE ELSE DOES THIS PART, which cannot be said in the second
+       person. Same voice as the mail's "— eurorack.fi adminit". */
+    askNote:"Emme lisää kohteita heti: täydennämme tiedot käsin ja tarkistamme pyynnöt.",
     askPlaceholderItem:"Esim. Make Noise Maths, hyväkuntoinen, alkuperäinen laatikko",
     askPlaceholderWish:"Esim. Intellijel Quad VCA",
     askSent:"Pyyntö lähetetty. Palaamme asiaan.",
@@ -1217,6 +1359,62 @@ function sellerPage(sellerKey, tok) {
       TXT.savedPrice.replace("{old}",was).replace("{new}",String(n)));
   }
 
+  /* ---------- wishlist ---------- */
+  var WANTS=[], WANTHIDDEN={};
+
+  /* THE MODULE'S OWN wantKey, INJECTED AS SOURCE rather than retyped.
+     There were briefly three copies of this function — one here, one at
+     module scope for the ownership check, one in index.html — and a
+     divergence between any two silently breaks hiding. Interpolating the
+     real one removes a whole copy and makes the seller page and the write
+     endpoint provably identical, because they are now the same function.
+     Only index.html's copy remains separate, and scripts/check-wantkey.mjs
+     exists to prove that one still agrees. */
+  ${wantKey.toString()}
+  function wantMaker(w){ return (w && typeof w==="object" && w.mfr) ? w.mfr : ""; }
+  function wantName(w){
+    if(typeof w==="string") return w;
+    if(!w || typeof w!=="object") return String(w);
+    if(w.text!=null && w.text!=="") return String(w.text);
+    return String(w.name||"");
+  }
+
+  function renderWants(){
+    var sec=el("wsec");
+    /* No wishlist, no section — an empty panel explaining what a wishlist
+       would be is furniture on a page that is otherwise all controls. */
+    if(!WANTS.length){ sec.hidden=true; return; }
+    sec.hidden=false;
+    el("wsech").textContent=TXT.wishH;
+    el("wseclead").textContent=TXT.wishLead;
+    el("wlist").innerHTML=WANTS.map(function(w){
+      var k=wantKey(w), hid=!!WANTHIDDEN[k], mk=wantMaker(w);
+      return '<div class="wrow'+(hid?" isHidden":"")+'" data-wkey="'+esc(k)+'">'+
+        '<div>'+(mk?'<div class="mk">'+esc(mk)+'</div>':'')+
+          '<div class="nm">'+esc(wantName(w))+'</div></div>'+
+        '<div class="wseg">'+
+          '<button data-whide="false" aria-pressed="'+(!hid)+'">'+esc(TXT.wishShown)+'</button>'+
+          '<button class="hide" data-whide="true" aria-pressed="'+hid+'">'+esc(TXT.hide)+'</button>'+
+        '</div></div>';
+    }).join("");
+  }
+
+  function saveWant(k,hidden){
+    var prev=WANTHIDDEN[k];
+    if(hidden) WANTHIDDEN[k]=true; else delete WANTHIDDEN[k];
+    renderWants();   /* optimistic, same as the item rows */
+    fetch(location.origin+"/api/setwant",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({token:TOKEN,key:k,hidden:hidden})})
+      .then(function(r){ if(!r.ok) throw 0;
+        el("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
+      .catch(function(){
+        if(prev===undefined) delete WANTHIDDEN[k]; else WANTHIDDEN[k]=prev;
+        renderWants();
+        el("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>';
+      });
+  }
+
   /* ---------- request form ---------- */
   var ASK_KIND="item";
   function paintAsk(){
@@ -1225,6 +1423,7 @@ function sellerPage(sellerKey, tok) {
     el("kwish").textContent=TXT.askWish;
     el("askpricelab").textContent=TXT.askPriceLab;
     el("asksend").textContent=TXT.askSend;
+    el("askhow").textContent=TXT.askHow;
     el("asknote").textContent=TXT.askNote;
     el("kitem").setAttribute("aria-pressed", String(ASK_KIND==="item"));
     el("kwish").setAttribute("aria-pressed", String(ASK_KIND==="wish"));
@@ -1237,6 +1436,9 @@ function sellerPage(sellerKey, tok) {
   function el(id){ return document.getElementById(id); }
 
   document.addEventListener("click",function(e){
+    var wb=e.target.closest(".wseg button");
+    if(wb){ saveWant(wb.closest(".wrow").getAttribute("data-wkey"),
+                     wb.getAttribute("data-whide")==="true"); return; }
     var kb=e.target.closest(".kinds button");
     if(kb){ ASK_KIND=kb.getAttribute("data-kind"); paintAsk(); return; }
     if(e.target.closest("#asksend")) sendAsk();
@@ -1308,6 +1510,18 @@ function sellerPage(sellerKey, tok) {
      catalogue. If the item fetch fails, the seller still has a working way
      to reach a human — which is exactly when they would most want one. */
   paintAsk();
+
+  /* The wishlist loads on its own chain too, for the same reason: it needs
+     the seller file and the want state, not the catalogue, so a failure in
+     one list doesn't take out the other. */
+  Promise.all([
+    fetch(RAW+"content/sellers/"+encodeURIComponent(SELLER)+".json").then(function(r){return r.ok?r.json():null;}),
+    fetch(location.origin+"/wants").then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+  ]).then(function(r){
+    WANTS=(r[0]&&r[0].wants)||[];
+    WANTHIDDEN=(r[1]||{})[SELLER]||{};
+    renderWants();
+  }).catch(function(){ /* no wishlist section rather than a broken one */ });
   </script>`
   }, { noindex: true });
 }

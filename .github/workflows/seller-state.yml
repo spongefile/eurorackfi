@@ -107,6 +107,65 @@ jobs:
                   f.write("\n")
               changed.append(f"{item_id}: " + ", ".join(f"{k}={v}" for k, v in diff.items()))
 
+          # ---- wishlist visibility, from a SEPARATE endpoint ----
+          # Folded into content/sellers/*.json for the same reason item
+          # toggles are folded into content/items: without this, hiding a
+          # want lives only in KV, and any KV loss silently un-hides
+          # everything a seller deliberately pruned. Git stays the truth.
+          #
+          # Matched on the CONTENT KEY, never the array index — the CMS
+          # invites the user to drag wants into priority order, and an
+          # index would follow the position and hide the wrong entry.
+          # This must compute the key EXACTLY as index.html and worker.js
+          # do; scripts/check-wantkey.mjs guards those two against each
+          # other, and this is the third implementation, so keep it in
+          # step by hand.
+          def want_key(w):
+              if isinstance(w, str):
+                  return w
+              if not isinstance(w, dict):
+                  return str(w)
+              t = w.get("text")
+              if t is not None and t != "":
+                  return str(t)
+              return f"{w.get('mfr', '') or ''}|{w.get('name', '') or ''}"
+
+          try:
+              wreq = urllib.request.Request(
+                  url.replace("/state", "/wants"),
+                  headers={"User-Agent": "eurorackfi-reconcile"})
+              with urllib.request.urlopen(wreq, timeout=20) as r:
+                  wantstate = json.load(r)
+          except Exception as e:
+              print(f"::warning::could not read want state: {e}")
+              wantstate = {}
+
+          if isinstance(wantstate, dict):
+              for seller_key, hidden_map in wantstate.items():
+                  spath = f"content/sellers/{seller_key}.json"
+                  if not os.path.exists(spath) or not isinstance(hidden_map, dict):
+                      continue
+                  with open(spath, encoding="utf-8") as f:
+                      sdata = json.load(f)
+                  touched = False
+                  for w in sdata.get("wants", []):
+                      if not isinstance(w, dict):
+                          # a bare string want can't carry a flag; skip rather
+                          # than rewrite it into an object behind the user's back
+                          continue
+                      want_hidden = bool(hidden_map.get(want_key(w), False))
+                      if bool(w.get("hidden", False)) != want_hidden:
+                          if want_hidden:
+                              w["hidden"] = True
+                          else:
+                              w.pop("hidden", None)
+                          touched = True
+                  if touched:
+                      with open(spath, "w", encoding="utf-8") as f:
+                          json.dump(sdata, f, indent=2, ensure_ascii=False)
+                          f.write("\n")
+                      changed.append(f"{seller_key}: wishlist visibility")
+
           if changed:
               print("changed:\n  " + "\n  ".join(changed))
           else:
@@ -124,7 +183,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/items
+          git add content/items content/sellers
           git diff --cached --quiet || git commit -m "Seller toggles: sync $CHANGED_COUNT item(s) from live state"
           # another run may have pushed between checkout and here
           git pull --rebase --autostash origin main

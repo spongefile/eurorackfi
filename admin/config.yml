@@ -141,6 +141,11 @@ collections:
             name: "product"
             widget: "object"
             fields:
+              # Sellers set this themselves from their own page; it appears
+              # here so the state is visible and correctable in one place.
+              # Safe to edit by hand — the reconcile job only rewrites an
+              # entry when the seller's live choice actually differs.
+              - { label: "Hidden", name: "hidden", widget: "boolean", required: false, default: false, hint: "Hides this want everywhere on the site. Sellers can set this themselves on their own page — usually because they've now got one." }
               - { label: "Maker", name: "mfr", widget: "string" }
               - { label: "Model", name: "name", widget: "string" }
               - { label: "HP", name: "hp", widget: "number", value_type: "int", default: 0 }
@@ -162,6 +167,7 @@ collections:
             name: "placeholder"
             widget: "object"
             fields:
+              - { label: "Hidden", name: "hidden", widget: "boolean", required: false, default: false, hint: "Hides this want everywhere on the site. Sellers can set this themselves on their own page." }
               - { label: "Text", name: "text", widget: "string", hint: "e.g. \"quad VCA\" or \"drum module\"." }
 
   - name: "faq"
