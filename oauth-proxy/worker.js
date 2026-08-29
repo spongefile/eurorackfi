@@ -391,7 +391,23 @@ export default {
     const url = new URL(request.url);
     const p = url.pathname;
 
-    if (request.method === "OPTIONS") return new Response(null, { headers: cors() });
+    if (request.method === "OPTIONS") {
+      /* The login exchange answers only the site's own origin, so its
+         PREFLIGHT has to say so too. With the blanket wildcard below, a
+         cross-origin POST passed preflight, reached the worker and SPENT
+         the one-time code — the browser then refused to show the caller
+         the answer, so nobody could use the token, but the real login was
+         broken by then. Confirmed by watching a code disappear from KV
+         after a fetch the browser had blocked. */
+      if (p === "/api/login-exchange") {
+        return new Response(null, { headers: {
+          "Access-Control-Allow-Origin": SITE,
+          "Access-Control-Allow-Methods": "POST,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        }});
+      }
+      return new Response(null, { headers: cors() });
+    }
 
     /* Admin and OAuth only exist on the workers.dev host — see
        ADMIN_ORIGIN. A GET that wandered onto the seller domain is sent
@@ -468,25 +484,83 @@ export default {
         });
       }
 
-      // Decap's own handshake: the popup waits for the opener to say
-      // "authorizing:github" first, then replies with the token.
+      /* Decap's handshake is a POPUP handshake: this page talks to the tab
+         that opened it. ON MOBILE THERE OFTEN ISN'T ONE — the browser opens
+         a tab rather than a popup, and GitHub's own pages send
+         Cross-Origin-Opener-Policy, either of which leaves window.opener
+         null. The old version called window.opener.postMessage
+         unconditionally, so it threw immediately and the page sat there
+         reading "Login complete — this window should close automatically",
+         which was both untrue and unactionable. Reproduced exactly with a
+         null opener before changing it.
+         So: opener present, behave exactly as before. Opener absent, hand
+         the browser a ONE-TIME CODE and send it back to /admin/ in the same
+         tab, where a short script trades it for the token.
+         THE TOKEN ITSELF NEVER GOES IN THE URL. A code in a fragment lands
+         in browser history; a GitHub token with repo scope must not. The
+         code is single-use, expires in two minutes, and is worthless once
+         redeemed. */
+      const loginCode = newSessionId();
+      await env.SELLER_STATE.put("login:" + loginCode, tokenData.access_token, { expirationTtl: 120 });
+
       const message = "authorization:github:success:" + JSON.stringify({ token: tokenData.access_token, provider: "github" });
       const html = `<!DOCTYPE html>
-<html><body>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0;padding:2rem 1.25rem;font-family:system-ui,sans-serif;line-height:1.5}</style>
+</head><body>
+<p id="msg">Signing you in…</p>
 <script>
 (function () {
   var message = ${JSON.stringify(message)};
-  function receiveMessage(e) {
-    window.opener.postMessage(message, e.origin);
-    window.removeEventListener("message", receiveMessage, false);
+  var code = ${JSON.stringify(loginCode)};
+  var adminUrl = ${JSON.stringify(SITE + "/admin/")};
+  try {
+    if (window.opener && window.opener !== window) {
+      /* desktop popup: unchanged */
+      window.addEventListener("message", function receiveMessage(e) {
+        window.opener.postMessage(message, e.origin);
+        window.removeEventListener("message", receiveMessage, false);
+      }, false);
+      window.opener.postMessage("authorizing:github", "*");
+      document.getElementById("msg").textContent = "Login complete — this window should close automatically.";
+      return;
+    }
+    location.replace(adminUrl + "#erfi_login=" + encodeURIComponent(code));
+  } catch (err) {
+    document.getElementById("msg").textContent =
+      "Signed in, but this window could not hand the session back automatically. Open " + adminUrl + " again.";
   }
-  window.addEventListener("message", receiveMessage, false);
-  window.opener.postMessage("authorizing:github", "*");
 })();
 </script>
-Login complete — this window should close automatically.
+<noscript>This page needs JavaScript to finish signing you in.</noscript>
 </body></html>`;
       return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+    }
+
+    /* Trades a one-time login code for the GitHub token, once. Used only
+       by /admin/ when the popup handshake was unavailable — see /callback.
+       DELETED BEFORE IT IS RETURNED, so a replayed code gets nothing even
+       if the same request is sent twice. Answers only to the site's own
+       origin rather than the usual wildcard: everything else here is public
+       data, and this is a credential. */
+    if (p === "/api/login-exchange" && request.method === "POST") {
+      const cors2 = {
+        "Access-Control-Allow-Origin": SITE,
+        "Access-Control-Allow-Methods": "POST,OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      };
+      let body;
+      try { body = await request.json(); } catch { body = null; }
+      const code = body && typeof body.code === "string" ? body.code : "";
+      if (!code) return new Response(JSON.stringify({ error: "no code" }), { status: 400,
+        headers: { "Content-Type": "application/json", ...cors2 } });
+      const key = "login:" + code;
+      const token = await env.SELLER_STATE.get(key);
+      await env.SELLER_STATE.delete(key);
+      if (!token) return new Response(JSON.stringify({ error: "expired" }), { status: 404,
+        headers: { "Content-Type": "application/json", ...cors2 } });
+      return new Response(JSON.stringify({ token }), {
+        headers: { "Content-Type": "application/json", "Cache-Control": "no-store", ...cors2 } });
     }
 
     /* ---------- public: live override state ---------- */

@@ -2,14 +2,74 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>eurorack.fi — content admin</title>
-  <style>body{margin:0;font-family:sans-serif}</style>
+  <style>body{margin:0;font-family:system-ui,sans-serif}</style>
 </head>
 <body>
-  <!-- Decap CMS loaded from its own CDN — standard, documented practice for
-       this tool. This page is served from the real site (GitHub Pages), not
-       an Artifact preview, so there's no sandbox restriction on it. -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+  /* MOBILE LOGIN LANDS HERE, in this tab, rather than in a popup.
+     Decap's GitHub login is a popup handshake: the popup posts the token
+     back to the tab that opened it. On a phone there is frequently no such
+     tab — the browser opens a tab instead of a popup, and GitHub's own
+     pages send Cross-Origin-Opener-Policy — so window.opener is null, the
+     handshake throws, and the login dead-ends on a page claiming it will
+     close itself. The worker now detects that and sends the browser back
+     here with a ONE-TIME CODE in the fragment instead.
+
+     This runs BEFORE decap-cms.js on purpose. Decap reads its stored
+     session once, at startup, so the session has to be in place before the
+     bundle loads — hence the script is injected by hand below rather than
+     sitting in a <script src> tag that would race it.
+
+     The code is exchanged for the token over HTTPS and the fragment is
+     stripped immediately. The token is never in the URL: a fragment
+     survives in browser history, and a GitHub token with repo scope must
+     not. */
+  (function () {
+    var WORKER = "https://eurorackfi-cms-auth.aspiala.workers.dev";
+    /* Verified against decap-cms@3's own source rather than assumed: the
+       auth store is localStorage["decap-cms-user"], JSON, and currentUser()
+       only restores an entry whose backendName matches the configured
+       backend. token + backendName is all restoreUser needs; it fetches the
+       rest from GitHub itself. */
+    var STORE_KEY = "decap-cms-user";
+
+    function loadCms() {
+      var s = document.createElement("script");
+      s.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+      document.body.appendChild(s);
+    }
+
+    var m = /[#&]erfi_login=([^&]+)/.exec(location.hash || "");
+    if (!m) { loadCms(); return; }
+
+    var code = decodeURIComponent(m[1]);
+    /* Cleared before the network call, not after: if anything below fails,
+       a reload must not retry a code that has already been spent. */
+    history.replaceState(null, "", location.pathname + location.search);
+
+    fetch(WORKER + "/api/login-exchange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: code })
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.token) {
+          try {
+            localStorage.setItem(STORE_KEY, JSON.stringify({ token: d.token, backendName: "github" }));
+          } catch (e) { /* private mode: fall through to the normal login screen */ }
+        }
+      })
+      /* ALWAYS loads the CMS, whatever happened. A failed exchange should
+         leave the ordinary "Login with GitHub" screen, which still works —
+         never a blank page, which is the failure this whole change exists
+         to remove. */
+      .catch(function () {})
+      .then(loadCms);
+  })();
+  </script>
 </body>
 </html>
