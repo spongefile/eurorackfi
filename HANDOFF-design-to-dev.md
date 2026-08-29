@@ -1899,3 +1899,65 @@ future visit. Dismissal persists per device.
   or terser Swedish worth reaching for here.
 - If dismissal state is unavailable (private browsing, cleared storage) it
   shows again. That is the safe failure and needs no handling.
+
+### 12. The seller link email — rewritten (2026-08-29)
+
+**Subject:** `Tavarasi eurorack.fi:ssä`
+
+```
+Moi,
+
+sinun tavaroitasi on myynnissä eurorack.fi:ssä. Tässä oma linkkisi, jolla
+voit merkitä kohteesi myydyiksi tai neuvottelussa oleviksi:
+
+https://eurorack.fi/s/ostrich-hair-cookie-lamp
+
+Vain sinä näet tämän sivun, jos et anna linkkiä muille. Pidä se salassa!
+
+Jos linkki karkaa vääriin käsiin, kerro minulle niin teen uuden.
+
+— spongefile
+```
+
+All of it is **mine and unreviewed** except the secrecy sentence, which is the
+user's approved wording, **unchanged and unreflowed** — the shared string with
+the seller page needs no edit.
+
+#### What the previous draft got wrong
+
+It opened *"tässä oma linkkisi"* — here is your link — which presumes the
+reader is expecting one. If a seller is added and mailed before anyone mentions
+it, they meet **an unexplained URL from an unfamiliar sender, immediately
+followed by an instruction to keep it secret.** That is the shape of a phishing
+mail, and a careful recipient's correct response is not to click it. The
+secrecy line, which exists to protect them, is precisely what makes it look
+untrustworthy when it arrives without context.
+
+#### What the rewrite does
+
+1. **Context before the link.** The first clause is *your gear is for sale on
+   eurorack.fi* — a fact only a real sender knows, and one the reader can check
+   without clicking anything.
+2. **Then what the link is for**, in the user's own framing: marking items sold
+   or in negotiation.
+3. **The subject names their gear, not the link.** `Tavarasi eurorack.fi:ssä`
+   is about them; a subject about a link is what a phishing mail leads with.
+4. **Signed by a person.** These people know spongefile, not a domain. Make the
+   signature a **configurable name** rather than hardcoding it — Sampo may send
+   these too, and a mail signed by the wrong person is worse than one signed by
+   a site.
+5. **Says what to do if it leaks.** The page can rely on being re-openable; the
+   mail will be sitting in an inbox in a year, and it is the only place a
+   worried reader will look. It also makes the secrecy line feel like care
+   rather than a warning without a remedy.
+
+#### The hostname is the remaining problem, and copy cannot fix it
+
+The link is `workers.dev`, not `eurorack.fi`. A reader who trusts the site
+still sees a hostname that does not match it, directly under a sentence telling
+them to keep it secret. **Route the worker on a subdomain of `eurorack.fi`**
+— the mail above is written as though that is done. Until it is, every
+reassurance in the copy is undercut by the URL beneath it.
+
+**The link must stay a bare URL on its own line** — mail clients linkify those
+reliably and mangle anything cleverer.
