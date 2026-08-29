@@ -1679,7 +1679,7 @@ Shown on the seller page after a toggle saves.
 
 | en | fi | sv |
 |---|---|---|
-| Saved. The change shows on the site in seconds — a minute at most. If the site is open somewhere else, reload it. | `Tallennettu. Muutos näkyy sivustolla sekunneissa, viimeistään minuutin kuluttua. Jos sivusto on auki jossain muualla, lataa se uudelleen.` | `Sparat. Ändringen syns på sajten inom sekunder, som mest en minut. Om sajten är öppen någon annanstans, ladda om den.` |
+| Saved. The site updates in about a minute. Reload eurorack.fi to see the change. | `Tallennettu. Sivusto päivittyy noin minuutissa. Lataa eurorack.fi uudelleen nähdäksesi muutoksen.` | `Sparat. Sajten uppdateras på ungefär en minut. Ladda om eurorack.fi för att se ändringen.` |
 
 **The measured facts this is written against** (dev, 2026-08-29):
 
@@ -1701,17 +1701,18 @@ exists to prevent.
 **Three sentences, one job each:**
 
 1. **`Tallennettu.`** — what they want to know, first, one word.
-2. **Both ends of the real range**, at the user's instruction — "in seconds, a
-   minute at most". They suggested "1–10 minutes" as a placeholder and asked
-   for whatever the true best and worst case are; those are **under a second
-   measured** and **~60 seconds** as KV's documented ceiling, so the range is
-   seconds-to-a-minute and nothing like ten.
+2. **"About a minute" — the user's call.** I had offered both ends of the real
+   range (under a second measured, ~60s as KV's documented ceiling). They chose
+   the single rounded figure, and it is the better call for this reader: one
+   number to hold rather than two, and it still sets a ceiling so any real wait
+   feels early.
 
-   Giving both ends beats either alone. The best case is the reassuring half —
-   it usually IS instant — and the ceiling means any real wait feels early
-   rather than late.
-3. **The reload instruction** — the only ask, and the one that matters, since
-   an open tab is otherwise permanently wrong.
+3. **`Lataa eurorack.fi uudelleen nähdäksesi muutoksen.`** — the only ask, and
+   the one that matters, since an open tab is otherwise permanently wrong.
+   **Names the site rather than saying "the page"**: the seller is already
+   looking at a page, so "reload the page" is ambiguous at exactly the moment
+   it must not be. Imperative first, purpose second, matching the register of
+   `Poista suodin.` and `Lähetä viesti lomakkeella.`
 
 **Deliberately not mentioned:** that their own page is instant (they can see
 that — it is the row they just tapped), and the 5-minute git reconcile, which
