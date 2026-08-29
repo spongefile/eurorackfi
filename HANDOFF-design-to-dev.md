@@ -1870,8 +1870,14 @@ in accent. Still whole-block, still above the heading, still sized as an aside.
 
 - **Text (user's):** `Anna tippi ylläpidolle →` under
   `Onko tästä sivustosta ollut sinulle hyötyä?`
-- **Icon:** jar with a coin dropping in, 100 viewBox, stroke 7 — the site's own
-  icon weight, not an icon-set import.
+- **Icon: a heart**, 100 viewBox, stroke 8, `stroke-linejoin:round` — the
+  site's own icon weight, not an icon-set import. My first attempt was a tip
+  jar; the user rejected it and was right, it was a rectangle with a line
+  through it.
+- **The heart is `--accent`, not red.** Red is spoken for twice over on this
+  site — `--haggle` for *make offer* and `--sold` for *gone* — and a third
+  warm-red meaning would dilute both. Accent is the site's own colour and reads
+  as warmth here without competing.
 
 **The security note becomes dismissible**, with a labelled `Ymmärrän` button.
 
