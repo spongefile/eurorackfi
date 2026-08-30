@@ -182,7 +182,8 @@
         "led": 4,
         "sc": 4
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/percall.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/percall.jpg",
+      "hidden": true
     },
     {
       "type": "product",
