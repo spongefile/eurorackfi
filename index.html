@@ -2863,7 +2863,18 @@ function openDetail(id){ var m=byId(id); S.shot=m?shotAvail(m)[0]:0; location.ha
    real on reload. Scrolling now happens here instead, after the hash is
    set, so there's nothing left for a stale href to win against. */
 function closeDetail(){
-  if(location.hash.indexOf("#/m/")===0 || location.hash.indexOf("#/msg/")===0 || location.hash.indexOf("#/admin")===0 || location.hash.indexOf("#/wish")===0 || location.hash.indexOf("#/faq")===0){
+  /* INVERTED: navigate back unless already on a grid view, rather than
+     keeping a list of pages to navigate back FROM. The old allowlist
+     (#/m/, #/msg/, #/admin, #/wish, #/faq) predated #/how — so on the how
+     page, "Kaikki" in the nav and the page's own back-crumb both hit this,
+     matched nothing, and the click was swallowed by the return false that
+     suppresses the #grid-top anchor. A dead button, only on the newest
+     page: every route added after this list was written would have joined
+     it silently. Naming what counts as "already home" instead means a new
+     page can never fall out of it. */
+  var h=location.hash;
+  var onGrid = h==="" || h==="#/" || h==="#grid-top" || h.indexOf("#/s/")===0;
+  if(!onGrid){
     location.hash=S.who!=="all"?"#/s/"+S.who:"#/";
     var gt=el("grid-top"); if(gt) gt.scrollIntoView();
   }
