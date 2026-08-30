@@ -1,0 +1,90 @@
+{
+  "id": "blackfilterbank",
+  "mfr": "Flame",
+  "name": "Black Filterbank",
+  "price": 330,
+  "hp": 22,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Filter",
+  "cats": [
+    "Filter",
+    "Sequencer",
+    "FX"
+  ],
+  "mgSlug": "flame-black-filterbank-",
+  "site": "flame-instruments.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/blackfilterbank.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 6,
+    "j": 12,
+    "sl": 12,
+    "led": 1,
+    "sc": 4
+  },
+  "extra": {
+    "power": "+12V 250mA · −12V 180mA",
+    "depth": "42mm",
+    "pull": {
+      "q": "An analog 12-channel 24dB filter bank with a digital control for each filter band and an integrated analog stereo overdrive.",
+      "src": "Flame",
+      "url": "https://www.flame-instruments.com/pdf/Manual_Flame_BlackFilterbank_module_v100_eng.pdf"
+    },
+    "quotes": [
+      {
+        "t": "A modulation sequencer allows the rhythmic modulation of each individual band and can be synchronized with an external clock via MIDI clock or via analog clock and reset inputs.",
+        "s": "Flame"
+      },
+      {
+        "t": "The first 11 filter bands are 24dB bandpasses with fixed frequencies and medium resonance, with the exception of channel 12, a 24dB highpass.",
+        "s": "Flame"
+      },
+      {
+        "t": "250mA on +12V and 42mm deep — this is a hungry, deep module. Check your case has both before you buy.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Flame",
+        "title": "Black Filterbank — the full manual (PDF)",
+        "url": "https://www.flame-instruments.com/pdf/Manual_Flame_BlackFilterbank_module_v100_eng.pdf"
+      },
+      {
+        "src": "SYNTH ANATOMY",
+        "title": "Flame Black Filterbank & FM Kosmos — the announcement and what it does",
+        "url": "https://synthanatomy.com/2024/10/flame-black-filterbank-fm-kosmos.html"
+      },
+      {
+        "src": "alex4",
+        "title": "Black Filterbank — a dealer page, for the new price",
+        "url": "https://www.alex4.de/item/flame-black-filterbank"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Black Filterbank — specs and racks",
+        "url": "https://modulargrid.net/e/flame-black-filterbank-"
+      }
+    ],
+    "videos": [
+      {
+        "title": "New Module: Black Filterbank! (Flame Instruments)",
+        "by": "Black Snow On Christmas · YouTube",
+        "url": "https://www.youtube.com/watch?v=_4_xfbySHfw"
+      },
+      {
+        "title": "Black Filterbank (Flame Instruments) First Demo Jams",
+        "by": "Black Snow On Christmas · YouTube",
+        "url": "https://www.youtube.com/watch?v=6WZ_T1auHDU"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Twelve analogue 24dB filter bands with a sequencer wired to them, which is what separates this from every other filterbank. Eleven fixed-frequency bandpasses from 90Hz to 3.9kHz plus a highpass on top, each with its own 60mm fader — and a modulation sequencer that can open and close individual bands in time, clocked from MIDI or from analogue clock and reset. 99 memory slots of pre-programmed patterns, and you can load your own up to four bars over SysEx. There is an analogue stereo overdrive built in, germanium-diode OCD type, switchable. Stereo audio in and out, plus a mono jack. Descended from the Flame Curves, condensed. Note it wants 250mA on +12V and sits 42mm deep.",
+    "fi": "Kaksitoista analogista 24 dB:n suodinkaistaa ja niihin kytketty sekvensseri — juuri se erottaa tämän muista suodinpankeista. Yksitoista kiinteätaajuista kaistanpäästöä 90 Hz:stä 3,9 kHz:iin ja ylipäästö päällimmäisenä, kullakin oma 60 mm:n liuku — ja modulaatiosekvensseri joka voi avata ja sulkea yksittäisiä kaistoja tahdissa, MIDI-kellosta tai analogisesta kellosta ja resetistä. 99 muistipaikkaa valmiita kuvioita, ja omia voi ladata neljän tahdin verran SysExillä. Sisäänrakennettu analoginen stereosäröpiiri, germaniumdiodeilla toteutettu OCD-tyyppi, kytkettävissä päälle. Stereoäänitulo ja -lähtö sekä monoliitin. Polveutuu Flamen Curvesista tiivistettynä. Huomaa: vaatii 250 mA +12V:llä ja on 42 mm syvä.",
+    "sv": "Tolv analoga 24 dB filterband med en sekvensiator kopplad till sig — det är det som skiljer den från andra filterbankar. Elva bandpass med fasta frekvenser från 90 Hz till 3,9 kHz plus ett högpass överst, vart och ett med en egen 60 mm regel — och en modulationssekvensiator som kan öppna och stänga enskilda band i takt, klockad från MIDI eller från analog klocka och reset. 99 minnesplatser med förprogrammerade mönster, och egna kan laddas in upp till fyra takter via SysEx. Inbyggd analog stereoöverstyrning av OCD-typ med germaniumdioder, inkopplingsbar. Stereoljud in och ut, plus ett monouttag. Härstammar från Flames Curves, förtätad. Observera att den vill ha 250 mA på +12V och är 42 mm djup."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

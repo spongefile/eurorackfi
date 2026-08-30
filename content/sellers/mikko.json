@@ -1,0 +1,53 @@
+{
+  "key": "mikko",
+  "name": "Mikko",
+  "dot": "#C4657A",
+  "wants": [
+    {
+      "type": "product",
+      "mfr": "Verbos Electronics",
+      "name": "Harmonic Oscillator",
+      "hp": 32,
+      "tone": "alu",
+      "parts": {
+        "k": 10,
+        "j": 26,
+        "sl": 8,
+        "led": 9,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/harmonicosc.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Tobinski",
+      "name": "Sequencer",
+      "hp": 36,
+      "tone": "alu",
+      "parts": {
+        "k": 10,
+        "j": 33,
+        "sl": 16,
+        "led": 40,
+        "sc": 28
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/tobinskiseq.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Verbos Electronics",
+      "name": "Dual Four Pole",
+      "hp": 21,
+      "tone": "alu",
+      "parts": {
+        "k": 8,
+        "j": 10,
+        "sl": 0,
+        "led": 0,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dualfourpole.jpg"
+    }
+  ],
+  "form": "https://tally.so/r/vG9MWQ"
+}

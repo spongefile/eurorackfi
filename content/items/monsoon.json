@@ -1,0 +1,74 @@
+{
+  "id": "monsoon",
+  "mfr": "Jak Plugg",
+  "name": "Monsoon",
+  "price": 160,
+  "hp": 12,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Sampler",
+    "Granular"
+  ],
+  "mgSlug": "other-unknown-monsoon----------",
+  "site": "github.com/jakplugg",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/monsoon.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 6,
+    "j": 10,
+    "sl": 4,
+    "led": 8,
+    "sc": 2
+  },
+  "extra": {
+    "power": "+12V 120mA · −12V 10mA",
+    "depth": "25mm",
+    "pull": {
+      "q": "Monsoon (altered Mutable Instruments Clouds), redesigned by Jak Plugg down to 12hp.",
+      "src": "ModularGrid",
+      "url": "https://modulargrid.net/e/other-unknown-monsoon----------"
+    },
+    "quotes": [
+      {
+        "t": "A variation of Mutable Instruments Clouds with separate CV and controls for the 4 blend functions — wet/dry, stereo spread, feedback and reverb each get their own knob and input.",
+        "s": "Jak Plugg"
+      },
+      {
+        "t": "The 4 LEDs on the sliders indicate incoming control voltage for the 4 main parameters.",
+        "s": "Jak Plugg"
+      },
+      {
+        "t": "This is a licensed derivative, not a Mutable Instruments original. Panel, PCB and schematic are released by Jakplugg under CC-BY-SA-3.0, and units were built by several different shops.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "GitHub",
+        "title": "jakplugg/Monsoon — the hardware source and licence",
+        "url": "https://github.com/jakplugg/Monsoon"
+      },
+      {
+        "src": "Michigan Synth Works",
+        "title": "Monsoon — a builder's product page, with the firmware options",
+        "url": "https://michigansynthworks.com/products/monsoon-10hp-clouds-with-independent-parameter-controls"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Monsoon — specs and racks",
+        "url": "https://modulargrid.net/e/other-unknown-monsoon----------"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Mutable Instruments' Clouds, redrawn by Jak Plugg into 12HP with the four blend parameters given their own knobs instead of hiding behind a button. Wet/dry, stereo spread, feedback and reverb each get a knob and a CV input, which is the whole reason this version exists — the original made you hold a button and hunt. Granular texture processing: feed it audio, and it chops the incoming sound into grains and rebuilds it as a cloud you can stretch, freeze and smear. Sliders for position, density, size and texture, each with its own LED showing incoming CV. Runs Parasites firmware. It is a licensed derivative under CC-BY-SA, not a Mutable original.",
+    "fi": "Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.",
+    "sv": "Mutable Instruments Clouds, omritad av Jak Plugg till 12HP med de fyra blend-parametrarna på egna rattar i stället för gömda bakom en knapp. Wet/dry, stereobredd, återkoppling och rumsklang får var sin ratt och CV-ingång — det är hela skälet till att den här versionen finns, för i originalet fick man hålla in en knapp och leta. Granulär texturbearbetning: mata in ljud, så hackar den det inkommande i korn och bygger om det till ett moln du kan tänja, frysa och smeta ut. Reglar för position, density, size och texture, var och en med en egen lysdiod som visar inkommande CV. Kör Parasites-firmware. Det är en CC-BY-SA-licensierad derivat, inte ett original från Mutable."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

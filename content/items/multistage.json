@@ -1,0 +1,83 @@
+{
+  "id": "multistage",
+  "mfr": "Verbos Electronics",
+  "name": "Voltage Multistage",
+  "price": 350,
+  "hp": 30,
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Sequencer"
+  ],
+  "mgSlug": "verbos-electronics-voltage-multistage",
+  "site": "verboselectronics.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/multistage.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 3,
+    "j": 20,
+    "sl": 16,
+    "led": 11,
+    "sc": 12
+  },
+  "extra": {
+    "power": "+12V 70mA · −12V 30mA",
+    "depth": "26mm",
+    "pull": {
+      "q": "In theory, a sophisticated enough control voltage source can replace all of the control voltage sources in a modular system.",
+      "src": "Verbos Electronics",
+      "url": "https://modulargrid.net/e/verbos-electronics-voltage-multistage"
+    },
+    "quotes": [
+      {
+        "t": "That includes saw, square, pulse, triangle LFOs, AR, AD, ADSR, multistage envelopes, tracking generators, quantizers and of course sequencers.",
+        "s": "Verbos Electronics"
+      },
+      {
+        "t": "So flexible and versatile — it's far, far more than a sequencer. Perfect for techno or rhythmic percussion because you can tune the time stages to work along with drum machines.",
+        "s": "MOD WIGGLER"
+      },
+      {
+        "t": "The learning curve is incredibly steep, and even basic functionality of its separate elements is difficult to decipher. Budget an evening with the manual before it makes sense.",
+        "s": "MOD WIGGLER · worth knowing before you buy"
+      },
+      {
+        "t": "This is the original eight-stage version. Verbos have since made a Voltage Multistage 10 and a 16 — same 30HP for the 10, more stages.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Verbos Electronics",
+        "title": "Voltage Multistage 10 — the current model, for comparison",
+        "url": "https://verboselectronics.com/voltage-multistage-10/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Voltage Multistage — specs and racks",
+        "url": "https://modulargrid.net/e/verbos-electronics-voltage-multistage"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Verbos Electronics Voltage Multistage demo",
+        "by": "manmade madman · YouTube",
+        "url": "https://www.youtube.com/watch?v=lajkI8A5V48"
+      },
+      {
+        "title": "Verbos Voltage Multistage & Sequence Selector Demo",
+        "by": "Lucas Marchal (dc11) · YouTube",
+        "url": "https://www.youtube.com/watch?v=vXuc-CPZsFw"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Eight stages, two sliders each, and a time control — from which you can build almost any control voltage a modular needs. Set it running and it is an LFO or a sequencer; set it to stop at a stage and it is an envelope; put slides between stages and it becomes a portamento line or a slow tracking generator. Each stage has a slide/off/on switch, its own gate output, and two independent CV rows so you can run two related voltages in parallel. Time is voltage-controllable, with enable, sustain and analogue inputs, and start, stop, advance and strobe on buttons and jacks both. The original eight-stage version — Verbos have since built a 10 and a 16. It rewards study rather than poking, and the panel does not explain itself.",
+    "fi": "Kahdeksan askelmaa, kaksi liukua kussakin ja aikasäädin — ja niistä rakentuu lähes mikä tahansa ohjausjännite jota modulaari tarvitsee. Laita se käymään, ja se on LFO tai sekvensseri; pysäytä se askelmalle, ja se on verhokäyrä; laita liu'ut askelmien väliin, ja siitä tulee portamentolinja tai hidas seurantageneraattori. Jokaisella askelmalla on slide/off/on-kytkin, oma gate-ulostulo ja kaksi erillistä CV-riviä, joten kahta toisiinsa liittyvää jännitettä voi ajaa rinnakkain. Aikaa voi ohjata jännitteellä, mukana enable-, sustain- ja analog-tulot sekä start, stop, advance ja strobe sekä napeilla että liittimillä. Alkuperäinen kahdeksanaskelmainen versio — Verbos on sittemmin tehnyt 10:n ja 16:n. Se palkitsee perehtymisen eikä näpelöintiä, eikä paneeli selitä itseään.",
+    "sv": "Åtta steg, två reglar var, och en tidsreglering — och av det bygger man nästan vilken styrspänning som helst som en modularsyntar behöver. Låt den gå så är den en LFO eller en sekvensiator; låt den stanna på ett steg så är den en envelop; lägg glid mellan stegen så blir den en portamentolinje eller en långsam följningsgenerator. Varje steg har en slide/off/on-omkopplare, en egen gate-utgång och två oberoende CV-rader, så två besläktade spänningar kan köras parallellt. Tiden är spänningsstyrbar, med enable-, sustain- och analoga ingångar, och start, stop, advance och strobe på både knappar och uttag. Den ursprungliga åttastegsversionen — Verbos har sedan byggt en 10:a och en 16:a. Den belönar studier snarare än pillande, och panelen förklarar inte sig själv."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

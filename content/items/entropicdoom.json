@@ -1,0 +1,80 @@
+{
+  "id": "entropicdoom",
+  "mfr": "AJH Synth",
+  "name": "Entropic Doom",
+  "price": 240,
+  "hp": 14,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Noise",
+    "Waveshaper"
+  ],
+  "mgSlug": "ajh-synth-entropic-doom",
+  "site": "ajhsynth.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/entropicdoom.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 7,
+    "j": 12,
+    "sl": 0,
+    "led": 0,
+    "sc": 1
+  },
+  "extra": {
+    "power": "+12V 45mA · −12V 28mA",
+    "depth": "26mm",
+    "pull": {
+      "q": "A voltage controlled noise based oscillator, or noisillator for short.",
+      "src": "AJH Synth",
+      "url": "https://ajhsynth.com/Entropic.html"
+    },
+    "quotes": [
+      {
+        "t": "It generates 1/f noise and this is then sent through a feedback loop which allows the noise to be tuned to varying degrees depending on the settings of the frequency and resonance controls.",
+        "s": "AJH Synth"
+      },
+      {
+        "t": "There are bright and dark outputs, which are pre and post filter respectively. The Bright output will always have a degree of noise present in the signal, whereas the Dark output can be tuned noise only when 4 pole resonance is selected.",
+        "s": "AJH Synth"
+      },
+      {
+        "t": "Drones, sweeps and bleeps aplenty, ranging from tamed to out-of-control filth.",
+        "s": "Juno Daily"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "AJH Synth",
+        "title": "Entropic Doom — the manufacturer's page",
+        "url": "https://ajhsynth.com/Entropic.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Entropic Doom — specs and racks",
+        "url": "https://modulargrid.net/e/ajh-synth-entropic-doom"
+      }
+    ],
+    "videos": [
+      {
+        "title": "AJH Synth — Entropic Doom",
+        "by": "Stromkult · YouTube",
+        "url": "https://www.youtube.com/watch?v=ux10a1d6iNU"
+      },
+      {
+        "title": "Huge analog sound with Entropic Doom (Noisillator) module from AJH Synth",
+        "by": "Dziam Bass · YouTube",
+        "url": "https://www.youtube.com/watch?v=Zy6ucjMzx88"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A noise source you can play like an oscillator. It makes 1/f noise, then runs it through a resonant feedback loop so the noise takes on a pitch — turn the resonance down and it is a hiss, turn it up and it becomes a tone with the grit still in it. Two-, three- or four-pole switching, frequency coarse and fine, 1v/oct tracking, FM, and an XOR ring modulator with its own VCA for processing external audio. Bright and dark outputs are pre and post filter: bright always keeps some noise, dark can be pure tuned noise at four poles. Fourteen HP, 45mA. Not a subtle module, and not trying to be — it is for drones, sweeps and things falling apart on purpose.",
+    "fi": "Kohinalähde, jota voi soittaa kuin oskillaattoria. Se tuottaa 1/f-kohinaa ja ajaa sen resonoivan takaisinkytkentäsilmukan läpi, jolloin kohina saa sävelkorkeuden — laske resonanssi ja se on suhinaa, nosta se ja siitä tulee sävel jossa rouheus on yhä tallella. Kaksi-, kolmi- tai nelinapainen kytkentä, karkea ja hieno taajuussäätö, 1V/okt-seuranta, FM sekä XOR-rengasmodulaattori omalla VCA:llaan ulkoisen äänen käsittelyyn. Bright- ja dark-ulostulot ovat suotimen edestä ja takaa: brightissa on aina kohinaa mukana, dark voi olla puhdasta viritettyä kohinaa nelinapaisena. Neljätoista HP, 45 mA. Ei hienovarainen moduuli eikä yritäkään olla — se on droneille, pyyhkäisyille ja tarkoituksella hajoaville asioille.",
+    "sv": "En bruskälla man kan spela som en oscillator. Den skapar 1/f-brus och kör det sedan genom en resonant återkopplingsslinga så att bruset får en tonhöjd — vrid ner resonansen och det är ett väsande, vrid upp den och det blir en ton med grovheten kvar. Två-, tre- eller fyrpolig omkoppling, grov och fin frekvensinställning, 1V/okt, FM och en XOR-ringmodulator med egen VCA för bearbetning av externt ljud. Bright- och dark-utgångarna ligger före respektive efter filtret: bright behåller alltid en del brus, dark kan vara rent stämt brus vid fyra poler. Fjorton HP, 45 mA. Ingen subtil modul och försöker inte vara det — den är till för dröner, svep och saker som faller isär med flit."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

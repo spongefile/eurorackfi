@@ -1,0 +1,74 @@
+{
+  "id": "drumbrute1984",
+  "mfr": "Arturia",
+  "name": "DrumBrute Impact 1984",
+  "price": 175,
+  "hp": 0,
+  "fmt": "desk",
+  "tone": "white",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Analogue",
+    "Sequencer"
+  ],
+  "mgSlug": "arturia-drumbrute-impact",
+  "site": "arturia.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/drumbrute1984.jpg",
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/drumbrute1984-back.jpg",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "extra": {
+    "power": "12V 1A external supply",
+    "depth": "320 × 290 mm",
+    "pull": {
+      "q": "A 10-voice analog drum machine reimagined in an iconic off-white finish.",
+      "src": "Arturia",
+      "url": "https://www.arturia.com/products/hardware-synths/drumbrute-impact-1984/overview"
+    },
+    "quotes": [
+      {
+        "t": "Ten analog voices — kick, two snares, toms, hats, cowbell, cymbal and an FM drum — with per-voice Color controls, built-in analog distortion and a polyrhythmic 64-step sequencer.",
+        "s": "Arturia"
+      },
+      {
+        "t": "The limited-edition variant features orange-accented off-white stylings, but under the hood is identical to the original version, which was released in 2018.",
+        "s": "MusicRadar"
+      },
+      {
+        "t": "Individual outputs are only on kick, snares, hi-hats and FM drum — the rest come out of the mix. Worth checking against how you intend to record it.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Arturia",
+        "title": "DrumBrute Impact 1984 — the manufacturer's page",
+        "url": "https://www.arturia.com/products/hardware-synths/drumbrute-impact-1984/overview"
+      },
+      {
+        "src": "MusicRadar",
+        "title": "Arturia's limited-edition DrumBrute Impact 1984 gives its drum machine an '80s facelift",
+        "url": "https://www.musicradar.com/music-tech/arturias-limited-edition-drumbrute-impact-1984-gives-its-analogue-drum-machine-an-80s-facelift"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "DrumBrute Impact — specs",
+        "url": "https://modulargrid.net/e/arturia-drumbrute-impact"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Ten analogue drum voices and a 64-step sequencer in a desktop box — kick, two snares, toms, cowbell, cymbal, hats and an FM drum, each with a Color button that switches it to a second character. There is an analogue distortion across the mix output with its own knob, which is the thing that gives it teeth. The sequencer does polyrhythm properly: individual tracks can run different lengths against each other, so a pattern drifts rather than loops flat. 64 patterns, chainable into 16 songs, MIDI in and out, clock in and out, USB. Individual outputs for kick, snares, hi-hats and FM drum. The 1984 is the limited off-white and orange edition — the same machine as the standard model underneath, in a different suit.",
+    "fi": "Kymmenen analogista rumpuääntä ja 64-askelinen sekvensseri pöytälaatikossa — basari, kaksi virveliä, tomit, lehmänkello, symbaali, hi-hatit ja FM-rumpu, kullakin Color-nappi joka vaihtaa sen toiseen luonteeseen. Miksausulostulossa on analoginen särö omalla nupillaan, ja juuri se antaa koneelle hampaat. Sekvensseri hoitaa polyrytmin kunnolla: yksittäiset raidat voivat olla eri mittaisia toisiinsa nähden, jolloin kuvio ajautuu eikä vain toistu tasaisena. 64 kuviota, ketjutettavissa 16 kappaleeksi, MIDI sisään ja ulos, kello sisään ja ulos, USB. Erillislähdöt basarille, virveleille, hi-hateille ja FM-rummulle. 1984 on rajoitettu luonnonvalkoinen ja oranssi versio — sisältä sama kone kuin vakiomalli, eri puvussa.",
+    "sv": "Tio analoga trumröster och en 64-stegs sekvensiator i en bordslåda — bastrumma, två virvlar, tomtrummor, koskälla, cymbal, hi-hats och en FM-trumma, var och en med en Color-knapp som växlar till en andra karaktär. Över mixutgången ligger en analog distorsion med egen ratt, och det är den som ger maskinen tänder. Sekvensiatorn klarar polyrytm ordentligt: enskilda spår kan ha olika längd mot varandra, så ett mönster driver i stället för att loopa platt. 64 mönster, kedjebara till 16 låtar, MIDI in och ut, klocka in och ut, USB. Separata utgångar för bastrumma, virvlar, hi-hats och FM-trumma. 1984 är den begränsade gräddvita och orange utgåvan — samma maskin som standardmodellen inuti, i en annan kostym."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

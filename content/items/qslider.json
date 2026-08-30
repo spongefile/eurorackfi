@@ -1,0 +1,73 @@
+{
+  "id": "qslider",
+  "mfr": "Flame",
+  "name": "QSlider",
+  "price": 120,
+  "hp": 14,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Controller",
+  "cats": [
+    "Controller",
+    "Modulation"
+  ],
+  "mgSlug": "flame-qslider",
+  "site": "flame-instruments.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/qslider.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 8,
+    "j": 0,
+    "sl": 4,
+    "led": 0,
+    "sc": 2
+  },
+  "extra": {
+    "power": "+12V 42mA · −12V 40mA · +5V 10mA",
+    "depth": "28mm",
+    "pull": {
+      "q": "The QSlider is an analog CV source with four 60 mm faders.",
+      "src": "Flame",
+      "url": "https://modulargrid.net/e/flame-qslider"
+    },
+    "quotes": [
+      {
+        "t": "The control range of the four sliders can be set with two min / max pots. The Min pot determines the output voltage when the slider is in the zero position.",
+        "s": "Flame"
+      },
+      {
+        "t": "Two common channels can be operated unipolar or bipolar, 0 to +10V or ±5V. The slider can also be used as a crossmix fader.",
+        "s": "Flame"
+      },
+      {
+        "t": "Look at the panel: there are no jacks on it. The QSlider is the fader module only — the 4HP output module that carries the sockets is a separate module, and it is not part of this listing unless the seller says otherwise.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Flame QSlider — specs, and the note that the output module is separate",
+        "url": "https://modulargrid.net/e/flame-qslider"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "QSlider output module — the 4HP half with the jacks on it",
+        "url": "https://modulargrid.net/e/flame-qslider-output-module"
+      },
+      {
+        "src": "Flame",
+        "title": "Flame Instruments",
+        "url": "https://www.flame-instruments.com/flame2/index.html"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Four 60mm faders as a hand-played CV source, 14HP. Each pair of sliders shares a min and a max pot, so you set the range a fader sweeps rather than always running 0 to 10 — useful when you want a slider to move a filter across a fifth instead of the whole spectrum. Each pair can run unipolar 0 to +10V or bipolar ±5V, and a slider can be used as a crossmix fader. Read the panel carefully before you buy: there are no jacks on it. The QSlider is the fader half of a two-module pair, and the 4HP output module carrying the sockets is separate — it can mount to the left or right. Without it, this outputs nothing.",
+    "fi": "Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä, 14HP. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. Katso paneelia tarkkaan ennen ostoa: siinä ei ole liittimiä. QSlider on kahden moduulin parin liukupuolisko, ja liittimet sisältävä 4HP:n lähtömoduuli on erillinen — sen voi asentaa vasemmalle tai oikealle. Ilman sitä tästä ei tule ulos mitään.",
+    "sv": "Fyra 60 mm reglar som en handspelad CV-källa, 14HP. Varje reglarpar delar en min- och en max-potentiometer, så du ställer in området en regel sveper över i stället för att alltid gå från 0 till 10 — användbart när du vill att en regel ska flytta ett filter en kvint i stället för över hela spektrumet. Varje par kan köras unipolärt 0 till +10V eller bipolärt ±5V, och en regel kan användas som korsfadare. Läs panelen noga före köp: den har inga uttag. QSlider är regelhalvan av ett par moduler, och den 4HP utgångsmodul som bär uttagen är separat — den kan monteras till vänster eller höger. Utan den kommer ingenting ut."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

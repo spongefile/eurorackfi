@@ -1,0 +1,68 @@
+{
+  "id": "bartender",
+  "mfr": "After Later Audio",
+  "name": "Bartender v1",
+  "price": 240,
+  "hp": 24,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "Mixer"
+  ],
+  "mgSlug": "after-later-audio-bartender",
+  "site": "afterlateraudio.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bartender.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 14,
+    "j": 28,
+    "sl": 5,
+    "led": 12,
+    "sc": 20
+  },
+  "extra": {
+    "power": "+12V 260mA · −12V 225mA",
+    "depth": "35mm",
+    "pull": {
+      "q": "The centerpiece of the mixer system. Four stereo channels, with two stereo aux sends and two stereo returns.",
+      "src": "After Later Audio",
+      "url": "https://afterlateraudio.com/products/bartender"
+    },
+    "quotes": [
+      {
+        "t": "A built in cueing system so you can monitor channels in your headphones and control the blend with the main output.",
+        "s": "After Later Audio"
+      },
+      {
+        "t": "The mono out on this unit does not work. Everything else does — stereo main, the four channels, both sends and returns, the cue system and the headphone jack.",
+        "s": "Worth knowing before you buy"
+      },
+      {
+        "t": "This is the v1. Version 2 added fixes for minor audio bleed and crosstalk between channels, plus expansion headers for sends, EQ, main insert and direct outs. v1 units cannot use the v2 expanders.",
+        "s": "After Later Audio · worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "After Later Audio",
+        "title": "Bartender — the manufacturer's page, and the v1 vs v2 differences",
+        "url": "https://afterlateraudio.com/products/bartender"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Bartender — specs and racks",
+        "url": "https://modulargrid.net/e/after-later-audio-bartender"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "A four-channel stereo performance mixer in 24HP, with two stereo aux sends, two stereo returns, and a cue system that lets you audition a channel in headphones before you bring it up. Each channel has gain, pan, a 60mm fader, a mute, pre/post send switching and a stereo/mono switch — and in mono mode the pan becomes a crossfade, so four stereo channels turn into eight mono ones. Main stereo out with a VU meter, plus a headphone jack. Two things you need to know. The mono output on this unit does not work; the summed mono jack is dead, and everything else — stereo main, all four channels, both sends and returns, cue and headphones — works. And this is a v1: v2 fixed some channel bleed and crosstalk and added expander headers, and v1 cannot take those expanders.",
+    "fi": "Nelikanavainen stereomikseri esiintymiskäyttöön, 24HP, kaksi stereo-aux-lähtöä, kaksi stereopaluuta ja cue-järjestelmä jolla kanavan voi kuunnella kuulokkeista ennen kuin sen nostaa. Jokaisella kanavalla on gain, panorointi, 60 mm:n liuku, mute, pre/post-valinta lähetykselle sekä stereo/mono-kytkin — ja monotilassa panoroinnista tulee ristihäivytys, joten neljästä stereokanavasta tulee kahdeksan monokanavaa. Stereopääulostulo VU-mittarilla ja kuulokeliitäntä. Kaksi asiaa on syytä tietää. Tämän yksilön monoulostulo ei toimi: summattu monoliitin on kuollut, ja kaikki muu — stereopääulostulo, neljä kanavaa, molemmat lähdöt ja paluut, cue ja kuulokkeet — toimii. Ja tämä on v1: v2 korjasi kanavien välistä vuotoa ja ylikuulumista ja lisäsi laajennusliittimet, joita v1 ei voi käyttää.",
+    "sv": "En fyrkanalig stereomixer för liveframträdanden, 24HP, med två stereo-aux-sänder, två stereoreturer och ett cue-system som låter dig lyssna på en kanal i hörlurarna innan du tar upp den. Varje kanal har gain, panorering, en 60 mm regel, mute, pre/post för sänden och en stereo/mono-omkopplare — och i monoläge blir panoreringen en korsfadning, så fyra stereokanaler blir åtta monokanaler. Stereohuvudutgång med VU-mätare, plus hörlursuttag. Två saker du behöver veta. Monoutgången på just den här enheten fungerar inte: det summerade monouttaget är dött, och allt annat — stereohuvudutgången, de fyra kanalerna, båda sänder och returer, cue och hörlurar — fungerar. Och detta är en v1: v2 åtgärdade visst överhör mellan kanalerna och lade till expanderkontakter, som v1 inte kan använda."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

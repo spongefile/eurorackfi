@@ -1,0 +1,69 @@
+{
+  "id": "rosie",
+  "mfr": "Make Noise",
+  "name": "Rosie",
+  "price": 60,
+  "hp": 8,
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "Mixer"
+  ],
+  "mgSlug": "make-noise-rosie",
+  "site": "makenoisemusic.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/rosie.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 4,
+    "j": 7,
+    "sl": 0,
+    "led": 1,
+    "sc": 0
+  },
+  "extra": {
+    "power": "+12V 45mA · −12V 40mA",
+    "depth": "29mm",
+    "pull": {
+      "q": "Rosie is an output interfacing module with the added functionalities of FX Loop, Crossfader and Auto-Cue system.",
+      "src": "Make Noise",
+      "url": "https://www.makenoisemusic.com/modules/rosie"
+    },
+    "quotes": [
+      {
+        "t": "It is designed to facilitate live performance on the modular synthesizer by allowing the artist to preview and modify portions of a patch before bringing them into the main mix.",
+        "s": "Make Noise"
+      },
+      {
+        "t": "Make Noise have retired it — it lives on their discontinued-modules page now, so there is no new stock and no current warranty.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Make Noise",
+        "title": "Rosie — the manufacturer's page",
+        "url": "https://www.makenoisemusic.com/modules/rosie"
+      },
+      {
+        "src": "Make Noise",
+        "title": "Rosie in the retired-modules archive",
+        "url": "https://www.makenoisemusic.com/retired/retired-modules/rosie/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Rosie — specs and racks",
+        "url": "https://modulargrid.net/e/make-noise-rosie"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "The bit at the end of a patch: line output, headphone output, and a crossfader between two channels, in 8HP. What makes it more than an output module is the cue system — you can listen to a channel in headphones and work on it before you fade it into the main mix, which is the DJ trick applied to a modular. There is also a send and return, mono or stereo, so an outboard pedal or effect can sit in the signal path. Line out is a TRS jack with an overload indicator. Make Noise have retired it, so this is the used market only now.",
+    "fi": "Se osa joka tulee patchin loppuun: linjalähtö, kuulokelähtö ja ristihäivytin kahden kanavan välillä, 8HP. Pelkkää ulostulomoduulia enemmän siitä tekee cue-järjestelmä — kanavaa voi kuunnella kuulokkeista ja työstää sitä ennen kuin sen häivyttää pääsummaan, eli sama temppu jota DJ:t käyttävät, sovellettuna modulaariin. Mukana on myös lähetys ja paluu, mono tai stereo, joten ulkoinen pedaali tai efekti mahtuu signaalitielle. Linjalähtö on TRS-liitin ylikuormituksen merkkivalolla. Make Noise on poistanut sen tuotannosta, joten tarjolla on enää käytettyjä.",
+    "sv": "Den del som kommer sist i en patch: linjeutgång, hörlursutgång och en korsfadare mellan två kanaler, 8HP. Det som gör den till mer än en utgångsmodul är cue-systemet — du kan lyssna på en kanal i hörlurarna och arbeta med den innan du tonar in den i huvudmixen, alltså DJ-tricket tillämpat på en modularsyntar. Det finns också en sänd och retur, mono eller stereo, så en extern pedal eller effekt får plats i signalvägen. Linjeutgången är ett TRS-uttag med överbelastningsindikator. Make Noise har lagt ner den, så det är begagnatmarknaden som gäller."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

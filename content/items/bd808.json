@@ -1,0 +1,75 @@
+{
+  "id": "bd808",
+  "mfr": "Tiptop Audio",
+  "name": "BD808",
+  "price": 80,
+  "hp": 4,
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Analogue"
+  ],
+  "mgSlug": "tiptop-audio-bd808",
+  "site": "tiptopaudio.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bd808.jpg",
+  "imgIsModularGrid": true,
+  "parts": {
+    "k": 4,
+    "j": 3,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "extra": {
+    "power": "+12V 13mA · −12V 6mA",
+    "depth": "14mm",
+    "pull": {
+      "q": "Part of our new series of drum modules that brings analog percussion into the modular synth world.",
+      "src": "Tiptop Audio",
+      "url": "https://tiptopaudio.com/bd808/"
+    },
+    "quotes": [
+      {
+        "t": "Its small size, minimalist design and modern production methods have allowed us to bring the classic 808 circuit into eurorack at 4HP.",
+        "s": "Tiptop Audio"
+      },
+      {
+        "t": "An 808 kick is a specific sound, not a general-purpose one. Level, tone, decay and accent are the whole control set — there is no pitch envelope to shape and no click layer to dial in.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Tiptop Audio",
+        "title": "BD808 — the manufacturer's page",
+        "url": "https://tiptopaudio.com/bd808/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "BD808 — specs and racks",
+        "url": "https://modulargrid.net/e/tiptop-audio-bd808"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Tiptop Audio BD808 Kick Drum Module Demo",
+        "by": "Sweetwater · YouTube",
+        "url": "https://www.youtube.com/watch?v=s-QnB7rsO2Q"
+      },
+      {
+        "title": "Tiptop Audio BD808 — 808 bass drum",
+        "by": "modularmodularmodular · YouTube",
+        "url": "https://www.youtube.com/watch?v=EpKxZ50-Ado"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The TR-808 bass drum as an analogue circuit in 4HP. Four knobs — level, tone, decay and accent — a gate in, an accent CV in, and an output, and that is the whole module. Tone works the click at the front of the hit; decay is the one that takes it from a tight kick to the long booming note that carried a decade of records. Accent has its own CV input so a sequencer can put weight on individual hits rather than every one landing the same. 13mA and 14mm deep, so it fits anywhere, including a shallow case.",
+    "fi": "TR-808:n bassorumpu analogisena piirinä 4HP:ssä. Neljä nuppia — level, tone, decay ja accent — gate-tulo, accent-CV-tulo ja ulostulo, siinä koko moduuli. Tone säätää iskun alun naksahdusta; decay on se joka vie äänen tiukasta potkusta pitkään jyriseväään säveleen, joka kantoi vuosikymmenen levytuotannon. Accentilla on oma CV-tulo, joten sekvensseri voi painottaa yksittäisiä iskuja sen sijaan että kaikki osuisivat samalla voimalla. 13 mA ja 14 mm syvä, joten se mahtuu minne vain, myös matalaan koteloon.",
+    "sv": "TR-808:ans bastrumma som analog krets i 4HP. Fyra rattar — level, tone, decay och accent — en gate-ingång, en accent-CV-ingång och en utgång, och det är hela modulen. Tone formar klicket i början av slaget; decay är den som tar ljudet från en stram kick till den långa mullrande ton som bar ett decennium av skivor. Accent har en egen CV-ingång så att en sekvensiator kan lägga tyngd på enskilda slag i stället för att alla landar likadant. 13 mA och 14 mm djup, så den får plats var som helst, även i en grund låda."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}
