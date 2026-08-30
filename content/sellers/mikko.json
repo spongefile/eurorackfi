@@ -2,6 +2,7 @@
   "key": "mikko",
   "name": "Mikko",
   "dot": "#C4657A",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/mikko",
   "wants": [
     {
       "type": "product",
