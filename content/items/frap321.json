@@ -54,10 +54,11 @@
     "sv": "Tre identiska scale/flip/shift-sektioner, DC-kopplade för CV eller audio, summerade på två sätt: en full mix och en mix av bara de opatchade kanalerna."
   },
   "id": "frap321",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Utility",
     "CV utility"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "hidden": true
 }

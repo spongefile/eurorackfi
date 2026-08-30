@@ -53,10 +53,11 @@
     "sv": "6U / 104HP bärbar låda, två rader, björkplywood under en svart ballistisk beläggning, i handbagagestorlek för flyg. Avtagbart lock med 5 cm fritt utrymme, så den går att stänga över en färdig patch. En Make Noise-strömskena: 1,4A på +12V, 1A på −12V, 250mA på +5V, fördelat på tjugo strömkontakter — mindre än Low-Gain-skenan dessa brukar ha, så kontrollera strömbudgeten."
   },
   "id": "elite208",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Other",
     "Case"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "hidden": true
 }

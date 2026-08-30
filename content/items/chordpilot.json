@@ -79,7 +79,7 @@
     "sv": "En ackordgenerator man spelar på känsla i stället för på teori. Rattarna ställer bredden och spridningen på åtta “fingrar” över ett virtuellt klaviatur, och en conform-kontroll drar resultatet mot önskad stämning — konsonant i ena änden, sönderslaget i den andra. 192 ackordminnen i banker om åtta, en strummer, en arpeggiator och en åttastegs ackordföljdssekvensiator. Den skickar MIDI och låter inte själv, så den behöver en polyfonisk röst att styra. Originalkartong, dekaler och manual medföljer."
   },
   "id": "chordpilot",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Controller",
     "Sequencer"

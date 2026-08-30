@@ -64,7 +64,7 @@
     "sv": "Ett 26HP bordskabinett i svartanodiserad aluminium — två eller tre moduler på skrivbordet i stället för i ett rack. Den strömförsedda versionen, så Box Power-kortet sitter i: +12V 700mA, −12V 280mA, +5V 1000mA, två 16-poliga kontakter och ett andra hylsuttag för att kedjekoppla ännu en Pod. M3-gängade skenor, gummifötter, 190 gram. Två saker att veta. Bara 33 mm moduldjup, vilket är grunt — mät dina moduler först, för många är djupare än så. Och ingen nätadapter medföljer: kabinettet vill ha 15–20V DC med 2,1 mm pluspol i mitten, och en sådan måste köpas innan kabinettet gör någonting."
   },
   "id": "pod26",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Other",
     "Case"

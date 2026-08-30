@@ -54,11 +54,12 @@
     "sv": "Tre rörledningsverktyg på 4HP: en buffrad mult med tre utgångar, en unity-gain-mixer med två in/två ut och en medelvärdesbildare med tre ingångar. Utgången Mutable-klassiker."
   },
   "id": "links",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Utility",
     "Mixer",
     "Discontinued"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "hidden": true
 }
