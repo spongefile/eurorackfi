@@ -292,9 +292,9 @@
   },
   "step1": [
     {
-      "en": "**A list of your modules** — including ones you are not selling yet. Everything arrives hidden, so nothing goes public until you say so.",
-      "fi": "**Listan moduuleistasi** — myös niistä joita et vielä myy. Kaikki saapuu piilotettuna, joten mikään ei tule julkiseksi ennen kuin sanot niin.",
-      "sv": "**En lista över dina moduler** — även de du inte säljer ännu. Allt kommer in dolt, så ingenting blir offentligt förrän du säger till."
+      "en": "**A list of what you're selling** — and another list of what you *might* sell (no prices).",
+      "fi": "**Lista siitä mitä myyt** — ja toinen lista siitä mitä *ehkä* myyt (ilman hintoja).",
+      "sv": "**En lista över vad du säljer** — och en annan lista över vad du *kanske* säljer (utan priser)."
     },
     {
       "en": "**Prices** for the ones you would sell.",
