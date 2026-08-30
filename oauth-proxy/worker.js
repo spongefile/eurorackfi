@@ -1202,6 +1202,42 @@ function sellerPage(sellerKey, tok) {
  font-family:"IBM Plex Mono",monospace;font-size:.72rem;margin-bottom:1rem}
 .err{background:var(--sold-soft);color:var(--sold);padding:.6rem .8rem;font-family:"IBM Plex Mono",monospace;
  font-size:.72rem;margin-bottom:1rem}
+/* PHONE SIZES, per the user: the desktop mono sits at 10.5-12px, which is
+   dense on the screen this page is mostly used on — the whole feature is
+   "works on a phone with no login". Roughly one step up across the board;
+   ratios between levels kept, so nothing reorders visually.
+   THE INPUTS GO TO 1rem (16px) FOR A SECOND REASON: iOS zooms the page
+   into any focused input whose font is under 16px, so a seller tapping
+   the price field had the whole layout lurch. 16px is the documented
+   threshold that disables that. */
+@media(max-width:640px){
+  .sub{font-size:.86rem}
+  .keep{font-size:.8rem}
+  .keep .ack{font-size:.78rem;min-height:44px}
+  .gloss{font-size:.8rem}
+  .ok,.err{font-size:.8rem}
+  .tabs button{font-size:.82rem}
+  .row .nm{font-size:1.08rem}
+  .row .mk{font-size:.74rem}
+  .rowtop .pr{font-size:.9rem}
+  .rowtop .pr input{font-size:1rem;width:5.6rem;min-height:40px}
+  .rowtop .pr button{font-size:.76rem;min-height:40px}
+  .seg button{font-size:.8rem}
+  .tk .lb{font-size:.8rem}
+  .wsec h2,.ask h2{font-size:1.1rem}
+  .wsec .lead{font-size:.78rem}
+  .wrow .nm{font-size:1.02rem}
+  .wrow .mk{font-size:.72rem}
+  .wseg button{font-size:.8rem}
+  .ask .kinds button{font-size:.8rem}
+  .ask textarea{font-size:1rem}
+  .ask .askprice{font-size:.8rem}
+  .ask .askprice input{font-size:1rem;min-height:44px}
+  .ask .send{font-size:.82rem}
+  .ask .note2{font-size:.78rem}
+  .sp-tip .t{font-size:1rem}
+  .sp-tip .a{font-size:.78rem}
+}
 `,
     html: `
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
