@@ -2323,9 +2323,10 @@ actually gets asked.
 
 **Lines that are load-bearing. Do not trim these in translation or edit:**
 
-- *"Everything arrives hidden, so nothing goes public until you say so."*
-  This is what makes sending a full inventory low-stakes. Without it people
-  send only what they are certain about, and the rest never appears.
+- *(removed 2026-08-31)* ~~"Everything arrives hidden…"~~ — promised a policy
+  that wasn't the practice; items added to the site are public by default. The
+  two-list ask (selling / might-sell, 320a216) carries the low-stakes job now.
+  Do not resurrect the old sentence from artboard or handoff history.
 - *"We never see them"* about buyer messages. Verified true — sellers own their
   forms. It stops being true the moment a seller uses a form in our account.
 - *"Include a question asking which module they mean."* For three of four
