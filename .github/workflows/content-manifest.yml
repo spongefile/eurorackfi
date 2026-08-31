@@ -25,6 +25,7 @@ on:
       - 'content/sellers/**.json'
       - '!content/items-index.json'
       - '!content/sellers-index.json'
+      - '!content/items-added.json'
   workflow_dispatch: {}
 
 permissions:
@@ -35,6 +36,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # full history: the added-dates manifest below reads each item's
+          # FIRST commit, and a shallow clone would date everything to the
+          # day of the checkout
+          fetch-depth: 0
 
       - name: Regenerate manifests
         run: |
@@ -44,10 +50,32 @@ jobs:
               > "content/${name}-index.json"
           done
 
+          # When each item was ADDED, from git rather than from a field in
+          # the data: no item carries a date, the CMS would need a field
+          # nobody should have to fill, and git already knows. The date of
+          # the FIRST commit touching the file — follow renames so a
+          # re-id'd item keeps its original arrival date. Drives the
+          # "newest first" sort; the site degrades to shipping without it.
+          python3 - <<'PY'
+          import json, subprocess, glob, os
+          added = {}
+          for f in sorted(glob.glob("content/items/*.json")):
+              out = subprocess.run(
+                  ["git", "log", "--follow", "--diff-filter=A", "--format=%aI", "--", f],
+                  capture_output=True, text=True).stdout.strip().split("\n")
+              # --follow lists newest first; the LAST line is the true addition
+              if out and out[-1]:
+                  added[os.path.basename(f)[:-5]] = out[-1]
+          with open("content/items-added.json", "w", encoding="utf-8") as fh:
+              json.dump(added, fh, indent=2, sort_keys=True)
+              fh.write("\n")
+          print(f"dated {len(added)} items")
+          PY
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/items-index.json content/sellers-index.json
+          git add content/items-index.json content/sellers-index.json content/items-added.json
           git diff --cached --quiet || git commit -m "Update content manifest [skip ci]"
           git push

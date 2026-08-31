@@ -1273,8 +1273,8 @@ var T = {
     who:{all:"Kaikki"},
     cat:{all:"Kaikki",Oscillator:"Oskillaattori",Filter:"Suodin",Sequencer:"Sekvensseri",Modulation:"Modulaatio",
          Waveshaper:"Aallonmuokkaus",Sampler:"Samplaus",Synth:"Syntikat",FX:"Efektit",Output:"Ulostulo",Controller:"Ohjaus",Other:"Muut"},
-    sort:{"hp-desc":"HP, levein ensin","hp-asc":"HP, kapein ensin","price-desc":"Hinta, kallein","price-asc":"Hinta, halvin","name":"A–Ö"},
-    sortLabel:{"hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
+    sort:{"new":"Uusimmat ensin","hp-desc":"HP, levein ensin","hp-asc":"HP, kapein ensin","price-desc":"Hinta, kallein","price-asc":"Hinta, halvin","name":"A–Ö"},
+    sortLabel:{"new":"uusimmat ensin","hp-desc":"levein ensin","hp-asc":"kapein ensin","price-desc":"kallein ensin","price-asc":"halvin ensin","name":"A–Ö"}
   },
   sv: {
     /* "Gå med" is MINE and unreviewed — the user gave fi "Liity" and en
@@ -1309,8 +1309,8 @@ var T = {
     who:{all:"Alla"},
     cat:{all:"Allt",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencer",Modulation:"Modulering",
          Waveshaper:"Vågformning",Sampler:"Sampling",Synth:"Syntar",FX:"Effekter",Output:"Utgång",Controller:"Styrning",Other:"Övrigt"},
-    sort:{"hp-desc":"HP, bredast först","hp-asc":"HP, smalast först","price-desc":"Pris, högst","price-asc":"Pris, lägst","name":"A–Ö"},
-    sortLabel:{"hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
+    sort:{"new":"Nyast först","hp-desc":"HP, bredast först","hp-asc":"HP, smalast först","price-desc":"Pris, högst","price-asc":"Pris, lägst","name":"A–Ö"},
+    sortLabel:{"new":"nyast först","hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
   },
   en: {
     nav:["Everything","What we want","FAQ","Contact"], navJoin:"Join",
@@ -1344,8 +1344,8 @@ var T = {
     who:{all:"Everyone"},
     cat:{all:"Everything",Oscillator:"Oscillator",Filter:"Filter",Sequencer:"Sequencing",Modulation:"Modulation",
          Waveshaper:"Waveshaping",Sampler:"Sampling",Synth:"Synths",FX:"Effects",Output:"Out & mixing",Controller:"Control",Other:"Other"},
-    sort:{"hp-desc":"HP, widest first","hp-asc":"HP, narrowest first","price-desc":"Price, high first","price-asc":"Price, low first","name":"A–Z"},
-    sortLabel:{"hp-desc":"widest first","hp-asc":"narrowest first","price-desc":"priciest first","price-asc":"cheapest first","name":"A to Z"}
+    sort:{"new":"Newest first","hp-desc":"HP, widest first","hp-asc":"HP, narrowest first","price-desc":"Price, high first","price-asc":"Price, low first","name":"A–Z"},
+    sortLabel:{"new":"newest first","hp-desc":"widest first","hp-asc":"narrowest first","price-desc":"priciest first","price-asc":"cheapest first","name":"A to Z"}
   }
 };
 
@@ -1506,6 +1506,15 @@ var HOW=null;
 /* content/how.json — the "How this works" page. Copy only; the layout is
    fixed in howHTML() because the structure is approved and the wording is
    not, so the words are the part that has to be cheap to revise. */
+/* content/items-added.json — when each item first appeared, from git via
+   the manifest workflow. Degrades to {}: without it the newest-first sort
+   still runs, just with every date missing and the name tiebreak carrying
+   the order. */
+function loadAdded(){
+  return fetch(RAW_BASE+"content/items-added.json").then(function(r){
+    return r.ok ? r.json() : {};
+  }).catch(function(){ return {}; });
+}
 function loadHow(){
   return fetch(RAW_BASE+"content/how.json").then(function(r){
     return r.ok ? r.json() : null;
@@ -1774,7 +1783,7 @@ var faqAnswerHTML=function(item){
 function photoFail(img,id,H,hMm){ var m=byId(id); if(m) img.outerHTML=panelHTML(m,H,hMm); }
 
 /* ---------- state ---------- */
-var S={q:"",cat:"all",fmt:"all",who:"all",sort:"hp-desc",shot:null,pop:null};  /* null = not yet decided for this item */
+var S={q:"",cat:"all",fmt:"all",who:"all",sort:"new",shot:null,pop:null};  /* "new" default per the user: the grid opens on what just arrived */  /* null = not yet decided for this item */
 
 function matches(m){
   if(S.fmt!=="all" && m.fmt!==S.fmt) return false;
@@ -1793,6 +1802,12 @@ var FMT_ORDER={eu:0, desk:1, acc:2, tools:3};
 function sortList(a){
   var s=S.sort;
   return a.slice().sort(function(x,y){
+    /* added comes from content/items-added.json — each item's first git
+       commit, stamped at load. An item missing a date (manifest not yet
+       regenerated after an add) sorts LAST rather than first: a brand-new
+       item jumping to the top on a fabricated date would be a lie exactly
+       where the sort promises truth. String compare is safe: ISO dates. */
+    if(s==="new") return (y.added||"").localeCompare(x.added||"")||x.name.localeCompare(y.name);
     if(s==="hp-desc") return (y.hp-x.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
     if(s==="hp-asc")  return (x.hp-y.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
     if(s==="price-desc") return y.price-x.price;
@@ -3279,7 +3294,7 @@ function renderAll(){ renderChrome(); renderRack(); renderFilters(); renderWish(
    content/sellers/, fetched together so nothing renders on partial data */
 renderChrome();
 el("grid").innerHTML='<p class="mono" style="padding:2rem 0;color:var(--muted)">'+esc(t().loading||"Loading…")+'</p>';
-Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(), loadWantState(), loadHow()]).then(function(r){
+Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(), loadWantState(), loadHow(), loadAdded()]).then(function(r){
   /* hidden items stay in content/items/ (data, photos, history all kept
      for a possible relist) but must not exist for the site at all —
      filtering here, before anything else touches ITEMS, means every
@@ -3294,6 +3309,8 @@ Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(),
   ITEMS=applySellerState(r[0],r[4]).filter(function(m){ return !m.hidden; });
   SELLERS=r[1];
   HOW=r[6];
+  var ADDED=r[7]||{};
+  ITEMS.forEach(function(m){ m.added=ADDED[m.id]||""; });
   SELLERS.forEach(function(p,i){
     if(!p.dot) p.dot=SELLER_DOTS[i % SELLER_DOTS.length];
     /* normalise first, THEN drop hidden: wantKey handles both shapes, but
