@@ -380,6 +380,19 @@ const page = (title, body, { noindex = false } = {}) => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ""}
 <title>${esc(title)}</title>
+<!-- The AMBER variant of the site's jack mark — every page this worker
+     serves through page() is an editing surface (a seller's own page, the
+     token pages, the /requests queue), and the user wanted those tabs
+     tellable from the public site's at a glance. Same geometry as the
+     public favicon; amber #E8A33C is the SOLE differentiator, picked
+     mid-luminance (3.2:1 light / 4.9:1 dark) so one colour reads on both
+     tab strips with no theme block — the public mark keeps its mono
+     theme-flip to itself. Absolute URLs deliberately: these pages live on
+     the worker's origin, so a relative /favicon/ would 404 there. -->
+<link rel="icon" href="https://eurorack.fi/favicon/favicon-owner.svg" type="image/svg+xml">
+<link rel="icon" href="https://eurorack.fi/favicon/favicon-owner-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://eurorack.fi/favicon/favicon-owner-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="https://eurorack.fi/favicon/favicon-owner-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..112,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
