@@ -666,7 +666,7 @@ export default {
          is exactly the work the button exists to remove. */
       const blockFor = (kind, tag) => rows.filter((r) => r.kind === kind).map((r) =>
         `- [${tag}] ${r.seller}: ${r.text}` +
-        (typeof r.price === "number" ? ` (asking €${r.price})` : "")
+        (typeof r.price === "number" ? ` (asking ${r.price} €)` : "")
       ).join("\n");
 
       const rowHTML = (r) => `
@@ -675,7 +675,7 @@ export default {
                 <div class="who">${esc(r.seller)}</div>
                 <div class="what">${esc(r.text)}</div>
                 <div class="meta">${esc(String(r.at).slice(0, 16).replace("T", " "))} UTC${
-                  typeof r.price === "number" ? ` &middot; asking &euro;${r.price}` : ""}</div>
+                  typeof r.price === "number" ? ` &middot; asking ${r.price} &euro;` : ""}</div>
               </div>
               <form method="POST">
                 <input type="hidden" name="action" value="delete">
@@ -1036,8 +1036,12 @@ function sellerPage(sellerKey, tok) {
 .rowtop .pr{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;
  font-variant-numeric:tabular-nums;margin-left:auto;flex:0 0 auto;padding-left:.5rem;
  display:flex;align-items:center;gap:.25rem}
-/* The € sits OUTSIDE the input, so the field holds a bare number and the
+/* The € sits OUTSIDE the input — the field holds a bare number and the
    seller never has to think about whether the symbol is part of what they
+   type — and AFTER it, per the user: Finnish writes 260 €, never €260,
+   and the page's own saved-message already says so. The input row was the
+   one place the € led.
+   (Original note continues:) it stays outside so the
    are typing — and a paste of "€250" can be cleaned without fighting the
    caret. Sized to the digits it holds rather than stretched: a wide box
    for a three-digit price reads as a form, and this row is a control
@@ -1071,16 +1075,25 @@ function sellerPage(sellerKey, tok) {
    decision with one answer; this is an independent yes/no that can be true
    alongside any of them — an item can be in negotiation and still open to
    offers. Putting it in the row would have forced a false choice, so it
-   gets its own full-width control underneath, in the same red as the
-   sticker it produces, so the control and the badge read as one fact. */
+   gets its own full-width control underneath.
+   THE BOX keeps the sticker's red as a swatch of the badge this switches
+   on; the control itself selects in ACCENT like every other selected thing
+   on this page. It used to go fully red when on — red-soft ground, red
+   border — which is exactly the .err strip's costume, so switching on
+   "anna tarjous" painted an error-shaped band across the row. The user's
+   words: "It looks like 'a mistake has been made'." The one-fact link to
+   the public sticker survives in the swatch; it never needed the whole
+   control to wear the red, only for the red to be present. */
 .tk{display:flex;align-items:center;gap:.5rem;width:100%;min-height:44px;
  border:1px solid var(--line);background:var(--panel2);padding:0 .6rem;text-align:left}
 .tk .box{width:18px;height:18px;flex:0 0 auto;border:1px solid var(--line2);background:var(--panel);
  display:flex;align-items:center;justify-content:center;font-size:.7rem;line-height:1}
 .tk .lb{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
-.tk[aria-pressed="true"]{border-color:var(--haggle);background:var(--haggle-soft)}
+.tk[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
 .tk[aria-pressed="true"] .box{background:var(--haggle);border-color:var(--haggle);color:#fff}
-.tk[aria-pressed="true"] .lb{color:var(--haggle-ink);font-weight:600}
+/* --ink, not --haggle-ink: warm red text on the cool accent-soft ground
+   would be the worst of both palettes */
+.tk[aria-pressed="true"] .lb{color:var(--ink);font-weight:600}
 /* Above the heading, deliberately: the seller came here to do one thing
    and leaves the moment it is done, so an ask below the list is an ask
    nobody reaches. Sized as an aside; if it ever starts looking like the
@@ -1255,11 +1268,12 @@ function sellerPage(sellerKey, tok) {
     html: `
   <a class="sp-tip" href="https://www.spongefile.com/#/portal/support">
     <!-- A heart, and it STAYS --accent rather than going red. Red is spoken
-         for twice on this site already — --haggle for "make offer",
+         for twice on this site already — --haggle for "anna tarjous",
          --sold for gone — and a third warm-red meaning would dilute both.
-         This banner can sit on the same page as the red haggle toggle, so
-         a red heart would be the third red in view. Blue reads as unusual
-         for about a second and then reads as the site's own colour. -->
+         The haggle red still appears on this page as the toggle's swatch
+         box (and on the public sticker), so a red heart would blur into
+         that family. Blue reads as unusual for about a second and then
+         reads as the site's own colour. -->
     <svg class="jar" viewBox="0 0 100 100" aria-hidden="true">
       <path d="M50 82 C 22 62 10 47 10 33 C 10 20 20 12 31 12 C 39 12 46 16 50 23
                C 54 16 61 12 69 12 C 80 12 90 20 90 33 C 90 47 78 62 50 82 Z"
@@ -1300,7 +1314,7 @@ function sellerPage(sellerKey, tok) {
     <p class="note2 how" id="askhow"></p>
     <textarea id="asktext" maxlength="500"></textarea>
     <div class="askprice" id="askprice"><span id="askpricelab"></span>
-      <span>€ <input type="text" inputmode="numeric" id="askpriceval"></span></div>
+      <span><input type="text" inputmode="numeric" id="askpriceval"> €</span></div>
     <button class="send" id="asksend" type="button"></button>
     <p class="note2" id="asknote"></p>
   </div>
@@ -1670,8 +1684,9 @@ function sellerPage(sellerKey, tok) {
                 var pend=PENDING[m.id];
                 var shown=(pend!==undefined)?pend:String(st.price);
                 var dirty=shown!==String(st.price);
-                return '<div class="pr">€<input type="text" inputmode="numeric" value="'+esc(shown)+'" '+
+                return '<div class="pr"><input type="text" inputmode="numeric" value="'+esc(shown)+'" '+
                   'data-price="'+st.price+'" aria-label="'+esc(TXT.priceLabel)+'">'+
+                  '<span aria-hidden="true">€</span>'+
                   '<button class="savep"'+(dirty?"":" disabled")+'>'+esc(TXT.save)+'</button></div>';
               })()
             : '')+
