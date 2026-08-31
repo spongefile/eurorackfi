@@ -27,6 +27,7 @@
     "sv": "Sex vikningssteg med thru-zero-symmetri, och DC-kopplade ingångar så den viker gärna CV också."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/ufold.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "extra": {
     "videos": [

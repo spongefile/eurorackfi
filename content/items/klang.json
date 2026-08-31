@@ -28,6 +28,7 @@
     "sv": "Ackordstyrning för fyra stämmor. 99 ackord på en OLED formad som en urtavla, fyra encodrar, inga menyer."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/klang.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "extra": {
     "pull": {

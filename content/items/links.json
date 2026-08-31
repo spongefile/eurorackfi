@@ -7,6 +7,7 @@
     "sc": 0
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/links.jpg",
+  "imgIsModularGrid": true,
   "mgSlug": "mutable-instruments-links",
   "site": "mutable-instruments.net",
   "hp": 4,

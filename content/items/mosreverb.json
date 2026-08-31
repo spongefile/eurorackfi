@@ -28,6 +28,7 @@
     "sv": "1U FDN-reverb i 96kHz/24-bit: material, size och blend, med en freeze-knapp för oändliga svansar."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosreverb.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "oneU": true,
   "extra": {

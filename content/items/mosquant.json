@@ -28,6 +28,7 @@
     "sv": "1U-kvantisering med arpeggiator: skala, slew och oktavförskjutning, spara och ladda patchar i farten."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mosquant.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "oneU": true,
   "extra": {

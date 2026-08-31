@@ -28,6 +28,7 @@
     "sv": "Fyrkanalig precisionsaddera och buffrad mult med polyfon transponering – tre Xpose-ingångar flyttar alla fyra kanaler samtidigt för tonartsbyten. Utgången ur sortimentet."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/quantuspax.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "extra": {
     "videos": [
