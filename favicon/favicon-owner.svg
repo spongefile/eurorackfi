@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112">
+  <!-- eurorack.fi jack mark, owner-edit variant: same geometry, amber.
+       Mid-luminance single colour — legible on light AND dark tab strips,
+       so no prefers-color-scheme block needed (and the colour IS the differentiator). -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#E8A33C" stroke-width="18"/>
+  <circle cx="50" cy="50" r="14" fill="#E8A33C"/>
+</svg>
