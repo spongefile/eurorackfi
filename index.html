@@ -1683,7 +1683,7 @@ var TX={
      loading:"Ladataan…", loadError:"Kohteita ei saatu ladattua.",
      pcreditComp:"Kuva rakennusosasta, ei valmiista laitteesta",
      pcreditIllus:"Havainnekuva, ei oikeaa valokuvaa",
-     pcreditOwn:"Kuva: myyjän oma",
+     pcreditOwn:"Kuva: myyjän oma", pcreditDealer:"Kuva: jälleenmyyjän sivulta",
      pcreditMG:"Kuva:"},
  sv:{overview:"Översikt",specs:"Specar",fMaker:"Tillverkare",fCats:"Kategorier",
      fWidth:"Bredd",fDepth:"Djup",fPower:"Ström",fPanel:"Panel",
@@ -1698,7 +1698,7 @@ var TX={
      loading:"Laddar…", loadError:"Kunde inte ladda objekten.",
      pcreditComp:"Bild av komponenten den är byggd av, inte det färdiga bygget",
      pcreditIllus:"Illustration, inte ett riktigt foto",
-     pcreditOwn:"Bild: säljarens egen",
+     pcreditOwn:"Bild: säljarens egen", pcreditDealer:"Bild: från en återförsäljares sida",
      pcreditMG:"Bild:"},
  en:{overview:"Overview",specs:"Specs",fMaker:"Maker",fCats:"Categories",
      fWidth:"Width",fDepth:"Depth",fPower:"Power",fPanel:"Panel",
@@ -1713,7 +1713,7 @@ var TX={
      loading:"Loading…", loadError:"Could not load listings.",
      pcreditComp:"Photo of the component this is built from, not the finished build",
      pcreditIllus:"Illustration, not a real photo",
-     pcreditOwn:"Photo: the seller's own",
+     pcreditOwn:"Photo: the seller's own", pcreditDealer:"Photo: from a dealer's listing",
      pcreditMG:"Photo:"}
 };
 LANGS.forEach(function(l){ for(var k in TX[l]) T[l][k]=TX[l][k]; });
@@ -2262,7 +2262,7 @@ function detailHTML(m){
     (((S.shot===1&&m.img)||(S.shot===2&&m.img2)||(S.shot===3&&m.img3))&&m.fmt!=="acc"?'<p class="pcredit">'+
       (m.imgIsModularGrid&&m.mgSlug
         ? esc(T2.pcreditMG)+' <a href="https://modulargrid.net/e/'+m.mgSlug+'" target="_blank" rel="noopener">ModularGrid</a>'
-        : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:(m.imgIsOwn?T2.pcreditOwn:T2.pcredit))))
+        : esc(m.imgIsIllustration?T2.pcreditIllus:(m.imgIsComponent?T2.pcreditComp:(m.imgIsOwn?T2.pcreditOwn:(m.imgIsDealer?T2.pcreditDealer:T2.pcredit)))))
       +'</p>':'')+
     (shotAvail(m).length>1
       /* only the slots this item actually has. They used to render all four

@@ -76,5 +76,6 @@
     "sv": "En tiobandig analog filterbank som går att spela, patcha eller sjunga igenom. Ett lågpass, åtta bandpass och ett högpass, vart och ett med egen VCA, så band kan öppnas och stängas för hand, med CV eller av en envelopföljare som följer det du matar in. På egen hand drönar och sveper den; koppla in en mikrofon i XLR-ingången så blir den en tiobandig vocoder, med en hold-funktion som fryser den aktuella formanten så att en vokal blir hängande. Det finns en Moog-oscillator vars sågtand och puls korsfadas över i vitt brus, en triangel-LFO, en decay-envelop samt spectral shift och resonans över hela banken. 36 patchuttag i 3,5 mm. Den går som bordsenhet på egen nätdel, eller lyfts ur lådan och in i ett rack på 60HP."
   },
   "negotiating": false,
-  "who": "mikko"
+  "who": "mikko",
+  "imgIsDealer": true
 }

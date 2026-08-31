@@ -105,6 +105,7 @@ collections:
       - { label: "Photo is a self-hosted ModularGrid fallback", name: "imgIsModularGrid", widget: "boolean", required: false, default: false }
       - { label: "Photo is of a DIY component, not the finished build", name: "imgIsComponent", widget: "boolean", required: false, default: false }
       - { label: "Photo is the seller's own, not the manufacturer's", name: "imgIsOwn", widget: "boolean", required: false, default: false, hint: "Check this when you took the photo yourself — otherwise the credit line says it came from the manufacturer's site, which would be wrong." }
+      - { label: "Photo is from a dealer's page", name: "imgIsDealer", widget: "boolean", required: false, default: false, hint: "For a product shot taken from a retailer's listing rather than the manufacturer's own site. Without any flag the credit claims the manufacturer's site — a positive claim, so it has to be true." }
       - { label: "Shop checkout URL", name: "shopUrl", widget: "string", required: false, hint: "Only for items bought straight from a webshop, not traded. Set this and the site swaps the whole Buy/message flow for a plain \"Buy\" button that links straight out to this URL — no in-site message form, no trade panel. Leave blank for every normal listing." }
 
   - name: "sellers"
