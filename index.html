@@ -1711,7 +1711,13 @@ var t=function(){ return T[lang]; };
 var blurbOf=function(m){ return (m.blurb&&m.blurb[lang]) || (m.blurb&&m.blurb.en) || ""; };
 var hasProse=function(m){ return lang==="en" || !!(m.blurb&&m.blurb[lang]); };
 var esc=function(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); };
-var eur=function(n){ return "€"+n; };
+/* SUFFIX, the Finnish way: 260 €, never €260 — the user's ruling for the
+   whole site (2026-08-31). The seller pages, the admin queue and every
+   saved-message string already write it this way; this function was the
+   last prefix holdout, and it is every visible price on the public site.
+   \u00A0 is a non-breaking space so a line can never wrap between the
+   number and its symbol. */
+var eur=function(n){ return n+"\u00A0€"; };
 var el=function(id){ return document.getElementById(id); };
 /* a case has hp set (its footprint) but isn't a module — keep it out of
    anything that treats fmt:"eu" as "counts toward the rack/HP total" */
