@@ -12,7 +12,7 @@
     "Recorder",
     "Interface"
   ],
-  "mgSlug": "1010music-bitbox-micro",
+  "mgSlug": "1010-music-bitbox-micro",
   "site": "1010music.com",
   "tone": "alu",
   "parts": {
@@ -28,6 +28,7 @@
     "sv": "Åttakanalig pekskärmssampler på 18HP: spela in direkt eller ladda från SD-kortet, trigga med CV eller MIDI, mixa och lägg till den inbyggda reverbet och delayen."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg",
+  "imgIsModularGrid": true,
   "negotiating": false,
   "extra": {
     "videos": [

@@ -7,6 +7,7 @@
     "sc": 0
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/dblhelix.jpg",
+  "imgIsModularGrid": true,
   "mgSlug": "pittsburgh-modular-lifeforms-double-helix-oscillator",
   "site": "pittsburghmodular.com",
   "hp": 28,
