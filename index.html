@@ -1799,15 +1799,22 @@ function matches(m){
    always) sorts first either way; order after that matches the FORMAT
    chip row: standalone, then accessories, then other. */
 var FMT_ORDER={eu:0, desk:1, acc:2, tools:3};
+var NEW_GROUP={eu:0, desk:0, acc:1, tools:2};
 function sortList(a){
   var s=S.sort;
   return a.slice().sort(function(x,y){
     /* added comes from content/items-added.json — each item's first git
        commit, stamped at load. An item missing a date (manifest not yet
-       regenerated after an add) sorts LAST rather than first: a brand-new
-       item jumping to the top on a fabricated date would be a lie exactly
-       where the sort promises truth. String compare is safe: ISO dates. */
-    if(s==="new") return (y.added||"").localeCompare(x.added||"")||x.name.localeCompare(y.name);
+       regenerated after an add) sorts LAST within its group rather than
+       first: a brand-new item jumping to the top on a fabricated date
+       would be a lie exactly where the sort promises truth. String
+       compare is safe: ISO dates.
+       GROUPED BY KIND FIRST, per the user: newest eurorack and standalone
+       together, then newest accessories, then newest other. The
+       instruments are the front page; a fresh cable must not outrank a
+       fresh module just by being fresher. NEW_GROUP, not FMT_ORDER —
+       that one splits eu from desk, and here they share the top group. */
+    if(s==="new") return (NEW_GROUP[x.fmt]-NEW_GROUP[y.fmt])||(y.added||"").localeCompare(x.added||"")||x.name.localeCompare(y.name);
     if(s==="hp-desc") return (y.hp-x.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
     if(s==="hp-asc")  return (x.hp-y.hp)||(FMT_ORDER[x.fmt]-FMT_ORDER[y.fmt])||x.name.localeCompare(y.name);
     if(s==="price-desc") return y.price-x.price;
