@@ -1,0 +1,80 @@
+{
+  "id": "spectravox",
+  "mfr": "Moog",
+  "name": "Spectravox",
+  "price": 320,
+  "hp": 0,
+  "fmt": "desk",
+  "tone": "black",
+  "cat": "FX",
+  "cats": [
+    "Semi-modular",
+    "Filter",
+    "Vocoder",
+    "Desktop"
+  ],
+  "mgSlug": "",
+  "site": "moogmusic.com",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/spectravox.jpg",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "extra": {
+    "power": "+12V 450mA max if racked · 12V wall adapter otherwise",
+    "depth": "60HP wide, 1.5\" deep if racked",
+    "pull": {
+      "q": "An analog spectral processor based around a 10-band filter bank.",
+      "src": "Moog",
+      "url": "https://moogaudio.com/products/moog-music-spectravox-semi-modular-spectral-processor"
+    },
+    "quotes": [
+      {
+        "t": "Ten variable-resonance voltage-controlled filters — one lowpass, eight bandpass and one highpass — each with its own VCA, so every band can be moved by hand, by CV or by an envelope follower.",
+        "s": "Moog"
+      },
+      {
+        "t": "When you hook up a microphone, Spectravox becomes a 10-band analog vocoder with innovative integrated modulation of all of its filters.",
+        "s": "Moog"
+      },
+      {
+        "t": "Moog have discounted it hard. Thomann had it at €298 new during Cyberweek 2025, against a €599 launch price, and it has sat near €300 since. Check what it costs new today before agreeing a used price.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Moog Audio",
+        "title": "Spectravox — full specifications and description",
+        "url": "https://moogaudio.com/products/moog-music-spectravox-semi-modular-spectral-processor"
+      },
+      {
+        "src": "Sweetwater",
+        "title": "Spectravox — retailer listing, for the current new price",
+        "url": "https://www.sweetwater.com/store/detail/Spectravox--moog-spectravox-semi-modular-analog-spectral-processor"
+      },
+      {
+        "src": "SYNTH ANATOMY",
+        "title": "Spectravox — the launch write-up, and the price history since",
+        "url": "https://synthanatomy.com/2025/11/superbooth-24-moog-spectravox-semi-modular-analog-spectral-processor.html"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Moog Spectravox is in production! // Review, tutorial and 10 patch ideas",
+        "by": "loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=mPfj0omnOEg"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A ten-band analogue filter bank you can play, patch, or sing through. One lowpass, eight bandpass and one highpass filter, each with its own VCA, so bands can be opened and closed by hand, by CV, or by an envelope follower tracking whatever you feed in. On its own it drones and sweeps; plug a microphone into the XLR input and it becomes a ten-band vocoder, with a hold function that freezes the current formant so a vowel hangs there. There is a Moog oscillator with saw and pulse crossfading into white noise, a triangle LFO, a decay envelope, and spectral shift and resonance across the whole bank. 36 patch points on 3.5mm. It runs as a desktop unit on its own supply, or comes out of the case and into a rack at 60HP.",
+    "fi": "Kymmenkaistainen analoginen suodinpankki, jota voi soittaa, patchata tai laulaa läpi. Yksi alipäästö, kahdeksan kaistanpäästöä ja yksi ylipäästö, kullakin oma VCA, joten kaistoja voi avata ja sulkea käsin, CV:llä tai verhokäyräseuraimella joka seuraa sisään syötettyä signaalia. Yksinään se dronaa ja pyyhkii; kytke mikrofoni XLR-tuloon ja siitä tulee kymmenkaistainen vokooderi, jossa hold-toiminto jäädyttää sen hetkisen formantin niin että vokaali jää soimaan. Mukana Moogin oskillaattori, jonka saha ja pulssi häivytetään ristiin valkoiseen kohinaan, kolmio-LFO, decay-verhokäyrä sekä spectral shift ja resonanssi koko pankin yli. 36 patch-liitintä 3,5 mm:n koossa. Toimii pöytälaitteena omalla virtalähteellään tai siirtyy kotelosta telineeseen 60HP:n levyisenä.",
+    "sv": "En tiobandig analog filterbank som går att spela, patcha eller sjunga igenom. Ett lågpass, åtta bandpass och ett högpass, vart och ett med egen VCA, så band kan öppnas och stängas för hand, med CV eller av en envelopföljare som följer det du matar in. På egen hand drönar och sveper den; koppla in en mikrofon i XLR-ingången så blir den en tiobandig vocoder, med en hold-funktion som fryser den aktuella formanten så att en vokal blir hängande. Det finns en Moog-oscillator vars sågtand och puls korsfadas över i vitt brus, en triangel-LFO, en decay-envelop samt spectral shift och resonans över hela banken. 36 patchuttag i 3,5 mm. Den går som bordsenhet på egen nätdel, eller lyfts ur lådan och in i ett rack på 60HP."
+  },
+  "negotiating": false,
+  "who": "mikko"
+}

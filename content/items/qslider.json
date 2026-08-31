@@ -3,7 +3,7 @@
   "mfr": "Flame",
   "name": "QSlider",
   "price": 120,
-  "hp": 14,
+  "hp": 18,
   "fmt": "eu",
   "tone": "black",
   "cat": "Controller",
@@ -17,7 +17,7 @@
   "imgIsModularGrid": true,
   "parts": {
     "k": 8,
-    "j": 0,
+    "j": 8,
     "sl": 4,
     "led": 0,
     "sc": 2
@@ -40,19 +40,19 @@
         "s": "Flame"
       },
       {
-        "t": "Look at the panel: there are no jacks on it. The QSlider is the fader module only — the 4HP output module that carries the sockets is a separate module, and it is not part of this listing unless the seller says otherwise.",
-        "s": "Worth knowing before you buy"
+        "t": "The 4HP output module is included — it is a separate module and the jacks live on it, so a QSlider sold without it would output nothing. This one has it.",
+        "s": "Worth knowing"
       }
     ],
     "reviews": [
       {
         "src": "ModularGrid",
-        "title": "Flame QSlider — specs, and the note that the output module is separate",
+        "title": "Flame QSlider — the fader module",
         "url": "https://modulargrid.net/e/flame-qslider"
       },
       {
         "src": "ModularGrid",
-        "title": "QSlider output module — the 4HP half with the jacks on it",
+        "title": "QSlider output module — the 4HP half with the jacks, included here",
         "url": "https://modulargrid.net/e/flame-qslider-output-module"
       },
       {
@@ -64,10 +64,11 @@
     "videos": []
   },
   "blurb": {
-    "en": "Four 60mm faders as a hand-played CV source, 14HP. Each pair of sliders shares a min and a max pot, so you set the range a fader sweeps rather than always running 0 to 10 — useful when you want a slider to move a filter across a fifth instead of the whole spectrum. Each pair can run unipolar 0 to +10V or bipolar ±5V, and a slider can be used as a crossmix fader. Read the panel carefully before you buy: there are no jacks on it. The QSlider is the fader half of a two-module pair, and the 4HP output module carrying the sockets is separate — it can mount to the left or right. Without it, this outputs nothing.",
-    "fi": "Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä, 14HP. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. Katso paneelia tarkkaan ennen ostoa: siinä ei ole liittimiä. QSlider on kahden moduulin parin liukupuolisko, ja liittimet sisältävä 4HP:n lähtömoduuli on erillinen — sen voi asentaa vasemmalle tai oikealle. Ilman sitä tästä ei tule ulos mitään.",
-    "sv": "Fyra 60 mm reglar som en handspelad CV-källa, 14HP. Varje reglarpar delar en min- och en max-potentiometer, så du ställer in området en regel sveper över i stället för att alltid gå från 0 till 10 — användbart när du vill att en regel ska flytta ett filter en kvint i stället för över hela spektrumet. Varje par kan köras unipolärt 0 till +10V eller bipolärt ±5V, och en regel kan användas som korsfadare. Läs panelen noga före köp: den har inga uttag. QSlider är regelhalvan av ett par moduler, och den 4HP utgångsmodul som bär uttagen är separat — den kan monteras till vänster eller höger. Utan den kommer ingenting ut."
+    "en": "Four 60mm faders as a hand-played CV source. Each pair of sliders shares a min and a max pot, so you set the range a fader sweeps rather than always running 0 to 10 — useful when you want a slider to move a filter across a fifth instead of the whole spectrum. Each pair can run unipolar 0 to +10V or bipolar ±5V, and a slider can be used as a crossmix fader. The QSlider is a two-module pair: the 14HP fader panel has no jacks on it at all, and the 4HP output module carries the sockets. Both are included here, so 18HP in total, and the output half can mount to the left or the right of the faders.",
+    "fi": "Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. QSlider on kahden moduulin pari: 14HP:n liukupaneelissa ei ole lainkaan liittimiä, ja 4HP:n lähtömoduuli kantaa liittimet. Molemmat kuuluvat kauppaan, eli yhteensä 18HP, ja lähtöpuoliskon voi asentaa liukujen vasemmalle tai oikealle puolelle.",
+    "sv": "Fyra 60 mm reglar som en handspelad CV-källa. Varje reglarpar delar en min- och en max-potentiometer, så du ställer in området en regel sveper över i stället för att alltid gå från 0 till 10 — användbart när du vill att en regel ska flytta ett filter en kvint i stället för över hela spektrumet. Varje par kan köras unipolärt 0 till +10V eller bipolärt ±5V, och en regel kan användas som korsfadare. QSlider är ett par moduler: den 14HP breda regelpanelen har inga uttag alls, och den 4HP breda utgångsmodulen bär uttagen. Båda ingår här, alltså 18HP totalt, och utgångshalvan kan monteras till vänster eller höger om reglarna."
   },
   "negotiating": false,
-  "who": "mikko"
+  "who": "mikko",
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/qslider-output.jpg"
 }
