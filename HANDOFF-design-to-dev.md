@@ -2387,3 +2387,15 @@ the same picture from a different cause. A same-origin iframe at the target
 width gives the inner document a genuine viewport, so the site's own media
 queries apply and `scrollWidth` vs `clientWidth` is measurable. Use that for any
 narrow-viewport claim. Confirmed after the fix: 360/360, no overflow.
+
+---
+
+## Euro placement is deliberately inconsistent, pending a ruling (2026-08-31)
+
+Seller/admin surfaces and the message strings write **260 €** (suffix, Finnish
+convention). The public site's `eur()` (index.html:1714) writes **€260** —
+prefix, on every card, bigprice and seller row. The user has ruled on the
+inputs only. Until they rule on the public side, this split is a pending
+question, not an oversight. If suffix wins site-wide: one line in `eur()`,
+then verify the cardfoot layout — tabular-nums columns should survive a
+trailing €, but check rather than assume.
