@@ -38,16 +38,12 @@
       {
         "t": "The mono out on this unit does not work. Everything else does — stereo main, the four channels, both sends and returns, the cue system and the headphone jack.",
         "s": "Worth knowing before you buy"
-      },
-      {
-        "t": "This is the v1. Version 2 added fixes for minor audio bleed and crosstalk between channels, plus expansion headers for sends, EQ, main insert and direct outs. v1 units cannot use the v2 expanders.",
-        "s": "After Later Audio · worth knowing before you buy"
       }
     ],
     "reviews": [
       {
         "src": "After Later Audio",
-        "title": "Bartender — the manufacturer's page, and the v1 vs v2 differences",
+        "title": "Bartender — the manufacturer's page",
         "url": "https://afterlateraudio.com/products/bartender"
       },
       {
