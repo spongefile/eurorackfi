@@ -557,6 +557,12 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    with different axes. */
 .wperson{margin-right:2.15rem}
 .wperson:last-child{margin-right:0}
+/* now an <a>: keeps the row's ink (the zero-specificity link rule would
+   paint the whole band accent), and hover underlines the NAME only — the
+   person is the destination, the wants are the preview */
+a.wperson{color:inherit}
+a.wperson:hover{color:inherit}
+a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 /* dot and name are one nowrap unit: without it a line can end on a bare
    coloured circle with the name orphaned onto the next line */
 .wperson .who{white-space:nowrap; font-family:"Archivo",sans-serif; font-weight:700;
@@ -2100,10 +2106,15 @@ function renderWish(){
          is unchanged. A space would have been visible and would have
          altered exactly what that comment says was tuned. */
       .join('<span class="sep">·</span><wbr>');
-    return '<span class="wperson">'+
+    /* The whole person is a LINK to their section of the Toiveet page —
+       same destination the module page's trade panel uses (#/wish/<key>,
+       which scrolls to them). An <a> renders and wraps exactly as the
+       former <span> did, so the hanging-indent phone form and the <wbr>
+       breaks are untouched. */
+    return '<a class="wperson" href="#/wish/'+esc(p.key)+'">'+
       '<span class="who">'+
         '<i style="background:'+p.dot+'"></i>'+esc(p.name)+'</span>'+
-      '<span class="wants">'+wants+'</span></span>'; }).join("<wbr>");
+      '<span class="wants">'+wants+'</span></a>'; }).join("<wbr>");
 }
 
 /* ---------- grid ---------- */
