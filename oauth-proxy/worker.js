@@ -954,6 +954,49 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
       return json({ ok: true });
     }
 
+    /* Personal notes: a seller's private jottings per item — "who is
+       interested", "promised to X until Friday". PRIVATE is the design
+       constraint that placed everything here: the repo is public and
+       /state is a public endpoint, so notes live in KV under their own
+       key and are served ONLY against the seller's token. They are also
+       deliberately NOT reconciled to git — folding them into a public
+       repo would defeat the point — so a KV loss loses notes. Accepted
+       and stated, not overlooked. */
+    if (p === "/api/notes" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+      const sellerKey = body && body.token && (await env.SELLER_STATE.get("tok:" + body.token));
+      if (!sellerKey) return json({ error: "bad token" }, 403);
+      const raw = await env.SELLER_STATE.get("notes:" + sellerKey);
+      return json(raw ? JSON.parse(raw) : {}, 200, { "Cache-Control": "no-store" });
+    }
+
+    if (p === "/api/setnote" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+      const { token, id, text } = body || {};
+      const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
+      if (!sellerKey) return json({ error: "bad token" }, 403);
+      if (!id || typeof id !== "string") return json({ error: "bad id" }, 400);
+      const t = typeof text === "string" ? text : "";
+      if (t.length > 1000) return json({ error: "too long" }, 400);
+
+      /* same ownership proof as /api/set: the token says who you are,
+         this says the item is yours */
+      const item = await fetch(RAW + "content/items/" + encodeURIComponent(id) + ".json", {
+        cf: { cacheTtl: 60 },
+      }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      if (!item) return json({ error: "unknown item" }, 404);
+      if (item.who !== sellerKey) return json({ error: "not your item" }, 403);
+
+      const key = "notes:" + sellerKey;
+      const notes = JSON.parse((await env.SELLER_STATE.get(key)) || "{}");
+      /* empty deletes, so the map only holds real notes */
+      if (t.trim()) notes[id] = t; else delete notes[id];
+      await env.SELLER_STATE.put(key, JSON.stringify(notes));
+      return json({ ok: true });
+    }
+
     if (p === "/api/set" && request.method === "POST") {
       let body;
       try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
@@ -1151,6 +1194,23 @@ function sellerPage(sellerKey, tok) {
  padding:0 .5rem;background:var(--panel2);color:var(--ink2);border:1px solid var(--line)}
 .langs button[aria-pressed="true"]{background:var(--accent);color:var(--on);border-color:var(--accent)}
 
+/* Search filters the item rows as you type — for the seller whose list
+   has outgrown a glance. Matches name, maker AND the private note text,
+   so "find the module I promised to Ville" works. Notes themselves: a
+   textarea per row, same disabled-until-dirty save as the price. */
+.search{width:100%;font-family:"IBM Plex Mono",monospace;font-size:1rem;min-height:44px;
+ padding:.5rem .7rem;background:var(--panel);border:1px solid var(--line2);color:var(--ink);
+ margin-bottom:.7rem}
+.search::placeholder{color:var(--muted)}
+.noteswrap{display:flex;flex-direction:column;gap:.3rem}
+.noteswrap textarea{width:100%;min-height:2.4rem;font-family:inherit;font-size:1rem;line-height:1.4;
+ padding:.45rem .6rem;background:var(--panel2);border:1px solid var(--line);color:var(--ink);resize:vertical}
+.noteswrap .nrow{display:flex;align-items:center;gap:.5rem}
+.noteswrap .nlab{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+.noteswrap .nsave{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:34px;
+ padding:0 .55rem;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
+.noteswrap .nsave:disabled{background:var(--panel2);color:var(--muted);border-color:var(--line2);cursor:default}
+
 /* The tab bar: three equal columns, same idiom as the state segments and
    the language switcher, so it is the third instance of one control shape
    rather than a new thing to learn. Counts on the first two tabs are the
@@ -1298,6 +1358,7 @@ function sellerPage(sellerKey, tok) {
   <div id="err"></div>
   <div id="panel-items" role="tabpanel">
     <div class="gloss" id="gloss"></div>
+    <input type="search" id="q" class="search" autocomplete="off" spellcheck="false">
     <div id="list"></div>
   </div>
   <div class="wsec" id="wsec" role="tabpanel" hidden>
@@ -1330,6 +1391,9 @@ function sellerPage(sellerKey, tok) {
   /* Prices typed but not yet saved, by item id. Kept outside the DOM so a
      redraw cannot lose them — see the note in the price cell. */
   var PENDING={};
+  /* notes: saved map from /api/notes (token-gated), pending edits beside
+     it so a redraw cannot eat an unsaved note either */
+  var NOTES={}, PENDING_NOTES={};
 
   /* Finnish supplied by design (a953694), UNREVIEWED by the user — they
      read both languages and their correction is final when it comes.
@@ -1450,6 +1514,12 @@ function sellerPage(sellerKey, tok) {
        word is already the per-item state button, and the tab also holds
        hidden items — the same word meaning two things on one screen. */
     tabItems:"Kohteet", tabWish:"Toiveet", tabAsk:"Lisää",
+    /* search + notes: ALL THREE LANGUAGES MINE AND UNREVIEWED. notesOnly
+       is a promise the architecture keeps: notes are KV-only, token-gated,
+       never in the repo or /state. */
+    search:"Hae omista kohteista",
+    notesLabel:"Omat muistiinpanot",
+    notesOnly:"Näkyy vain sinulle.",
     wishH:"Toivelistasi",
     /* NAMES the Lisää tab — if tabAsk is ever reworded, this follows in
        the same change; check-shared-strings enforces the pairing. */
@@ -1513,6 +1583,9 @@ function sellerPage(sellerKey, tok) {
     askHow:"Tell us what to add and what condition it is in.",
     wishH:"Your wishlist",
     tabItems:"Items", tabWish:"Wishlist", tabAsk:"Add",
+    search:"Search your items",
+    notesLabel:"Personal notes",
+    notesOnly:"Only you see this.",
     wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
@@ -1550,6 +1623,9 @@ function sellerPage(sellerKey, tok) {
     askHow:"Berätta vad som ska läggas till och i vilket skick det är.",
     wishH:"Din önskelista",
     tabItems:"Objekt", tabWish:"Önskemål", tabAsk:"Lägg till",
+    search:"Sök bland dina objekt",
+    notesLabel:"Egna anteckningar",
+    notesOnly:"Bara du ser detta.",
     wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
@@ -1622,6 +1698,7 @@ function sellerPage(sellerKey, tok) {
      rows themselves; these are the fixed parts around them. */
   function paintChrome(){
     paintLangs();
+    var q=el("q"); if(q) q.placeholder=TXT.search;
     var tt=document.getElementById("tipt"), ta=document.getElementById("tipa");
     if(tt) tt.textContent=TXT.tipT;
     if(ta) ta.textContent=TXT.tipA;
@@ -1698,8 +1775,22 @@ function sellerPage(sellerKey, tok) {
         '</div>'+
         '<button class="tk" data-haggle="'+(!st.haggle)+'" aria-pressed="'+(!!st.haggle)+'">'+
           '<span class="box">'+(st.haggle?"✓":"")+'</span><span class="lb">'+esc(TXT.haggle)+'</span>'+
-        '</button></div>';
+        '</button>'+
+        (function(){
+          /* the note survives redraws the same way a pending price does */
+          var saved=NOTES[m.id]||"";
+          var pend=PENDING_NOTES[m.id];
+          var shown=(pend!==undefined)?pend:saved;
+          var dirty=shown!==saved;
+          return '<div class="noteswrap">'+
+            '<textarea class="note" data-saved="'+esc(saved)+'" aria-label="'+esc(TXT.notesLabel)+'" '+
+              'placeholder="'+esc(TXT.notesLabel)+'">'+esc(shown)+'</textarea>'+
+            '<div class="nrow"><span class="nlab">'+esc(TXT.notesOnly)+'</span>'+
+            '<button class="nsave"'+(dirty?"":" disabled")+'>'+esc(TXT.save)+'</button></div></div>';
+        })()+
+        '</div>';
     }).join("");
+    if(el("q") && el("q").value) applySearch();
   }
 
   /* One save path for both controls. It sends ONLY the fields in "next",
@@ -1743,15 +1834,59 @@ function sellerPage(sellerKey, tok) {
     var k=e.target.closest(".tk");
     if(k){ save(k.closest(".row").getAttribute("data-id"),{haggle:k.getAttribute("data-haggle")==="true"}); return; }
     var sp=e.target.closest(".savep");
-    if(sp) savePrice(sp.closest(".row"));
+    if(sp){ savePrice(sp.closest(".row")); return; }
+    var ns=e.target.closest(".nsave");
+    if(ns) saveNote(ns.closest(".row"));
   });
+
+  function saveNote(row){
+    var id=row.getAttribute("data-id");
+    var ta=row.querySelector(".note"), btn=row.querySelector(".nsave");
+    var text=ta.value;
+    btn.disabled=true;
+    fetch(location.origin+"/api/setnote",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({token:TOKEN,id:id,text:text})})
+      .then(function(r){ if(!r.ok) throw 0;
+        if(text.trim()) NOTES[id]=text; else delete NOTES[id];
+        delete PENDING_NOTES[id];
+        ta.setAttribute("data-saved",text);
+        el("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
+      .catch(function(){
+        btn.disabled=false;
+        el("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>';
+      });
+  }
 
   /* Shows the save button only once the value actually differs from what
      is stored, so its presence means "you have an unsaved change" rather
      than being permanent furniture. Compared as trimmed strings against
      the rendered value, not as numbers, so leading zeroes or a stray
      space still count as different and still offer the save. */
+  /* SEARCH: hides non-matching rows rather than re-rendering, so pending
+     edits in hidden rows survive the filter. Matches maker, name and the
+     note text — the note is where "promised to Ville" lives. */
+  function applySearch(){
+    var q=(el("q").value||"").trim().toLowerCase();
+    ITEMS.forEach(function(m){
+      var row=document.querySelector('.row[data-id="'+m.id+'"]'); if(!row) return;
+      if(!q){ row.hidden=false; return; }
+      var note=(PENDING_NOTES[m.id]!==undefined?PENDING_NOTES[m.id]:(NOTES[m.id]||""));
+      row.hidden=(m.mfr+" "+m.name+" "+note).toLowerCase().indexOf(q)<0;
+    });
+  }
+
   document.addEventListener("input",function(e){
+    var q=e.target.closest("#q");
+    if(q){ applySearch(); return; }
+    var ta=e.target.closest(".note");
+    if(ta){
+      var row=ta.closest(".row"), id=row.getAttribute("data-id");
+      var saved=NOTES[id]||"";
+      if(ta.value===saved) delete PENDING_NOTES[id]; else PENDING_NOTES[id]=ta.value;
+      row.querySelector(".nsave").disabled=(ta.value===saved);
+      return;
+    }
     var inp=e.target.closest(".pr input"); if(!inp) return;
     var row=inp.closest(".row"), id=row.getAttribute("data-id");
     var clean=inp.value.trim(), saved=inp.getAttribute("data-price");
@@ -1913,8 +2048,13 @@ function sellerPage(sellerKey, tok) {
 
   Promise.all([
     fetch(RAW+"content/items-index.json").then(function(r){return r.json();}),
-    fetch(location.origin+"/state").then(function(r){return r.json();})
+    fetch(location.origin+"/state").then(function(r){return r.json();}),
+    /* degrades to {}: a notes failure must not take the controls down */
+    fetch(location.origin+"/api/notes",{method:"POST",
+      headers:{"Content-Type":"application/json"},body:JSON.stringify({token:TOKEN})})
+      .then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(r){
+    NOTES=r[2]||{};
     STATE=r[1]||{};
     return Promise.all(r[0].map(function(n){
       return fetch(RAW+"content/items/"+n).then(function(x){return x.ok?x.json():null;}).catch(function(){return null;});
