@@ -1,7 +1,8 @@
 # Seller control page — en and sv
 
-All 34 keys. **Mine and unreviewed** except where marked. Finnish column is the
-reference and is not mine to change.
+All 34 keys. **Reviewed and approved by the user 2026-09-02** (askH en was
+their own pick earlier). Finnish column is the reference and is not mine to
+change.
 
 `keep`, `ack` and `haggle` are **reused verbatim** from surfaces where the
 wording is already settled — do not re-translate them here.
@@ -63,7 +64,7 @@ back any time — is the reversibility the person needs at the moment they are
 removing their own listing from a public site. It is the reason the first
 sentence is not frightening.
 
-## Where I am least sure
+## Where I was least sure (all settled 2026-09-02)
 
 - **`hiddenCount`** — Finnish is deliberately "piilotettu" not "piilotettua",
   the user's own correction for this telegraphic count line. English "hidden"
