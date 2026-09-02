@@ -1067,6 +1067,13 @@ function sellerPage(sellerKey, tok) {
  border:1px solid var(--line);border-left:3px solid var(--line2);padding:.8rem .9rem;margin-bottom:.5rem;
  transition:opacity .15s}
 .row.isHidden{opacity:.55}
+/* LOAD-BEARING, not tidiness: applySearch() hides rows via the hidden
+   attribute, and the UA's [hidden]{display:none} loses to our own
+   .row{display:flex} — author styles beat UA styles at any specificity.
+   Without this line the search marked rows hidden and every one of them
+   stayed on screen: the filter "worked" in the DOM and did nothing
+   visible, which is exactly how it shipped. Same trap as .th img[hidden]. */
+.row[hidden]{display:none}
 .row .nm{font-weight:700;font-size:1rem;line-height:1.25}
 .row .mk{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
  text-transform:uppercase;letter-spacing:.08em}
@@ -1198,10 +1205,16 @@ function sellerPage(sellerKey, tok) {
    has outgrown a glance. Matches name, maker AND the private note text,
    so "find the module I promised to Ville" works. Notes themselves: a
    textarea per row, same disabled-until-dirty save as the price. */
-.search{width:100%;font-family:"IBM Plex Mono",monospace;font-size:1rem;min-height:44px;
- padding:.5rem .7rem;background:var(--panel);border:1px solid var(--line2);color:var(--ink);
- margin-bottom:.7rem}
-.search::placeholder{color:var(--muted)}
+.search{display:flex;align-items:center;gap:.5rem;width:100%;min-height:44px;
+ padding:0 .7rem;background:var(--panel);border:1px solid var(--line2);
+ margin-bottom:.7rem;cursor:text}
+.search .mag{width:15px;height:15px;flex:0 0 auto;color:var(--muted)}
+.search input{flex:1;min-width:0;border:none;background:none;outline:none;
+ font-family:"IBM Plex Mono",monospace;font-size:1rem;color:var(--ink);min-height:42px}
+.search input::placeholder{color:var(--muted)}
+/* the box is the control: focus paints the wrapper, since the input's own
+   outline is off */
+.search:focus-within{outline:2px solid var(--accent);outline-offset:-1px}
 .noteswrap{display:flex;flex-direction:column;gap:.3rem}
 .noteswrap textarea{width:100%;min-height:2.4rem;font-family:inherit;font-size:1rem;line-height:1.4;
  padding:.45rem .6rem;background:var(--panel2);border:1px solid var(--line);color:var(--ink);resize:vertical}
@@ -1375,7 +1388,9 @@ function sellerPage(sellerKey, tok) {
   <div id="err"></div>
   <div id="panel-items" role="tabpanel">
     <div class="gloss" id="gloss"></div>
-    <input type="search" id="q" class="search" autocomplete="off" spellcheck="false">
+    <!-- the public site's own magnifier, verbatim, so the two search bars
+         share one idiom -->
+    <label class="search"><svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6" stroke-linecap="round"/></svg><input type="search" id="q" autocomplete="off" spellcheck="false"></label>
     <div id="list"></div>
   </div>
   <div class="wsec" id="wsec" role="tabpanel" hidden>
