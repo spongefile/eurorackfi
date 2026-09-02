@@ -768,6 +768,10 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    .btn sm — the user asked for a button, not a subtle link — so this sets
    spacing only and never colour: the component owns that. */
 .howlink{margin-top:.9rem}
+.eventspage{padding:2.5rem 0 4rem}
+.eventspage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 1.2rem; line-height:1.05}
+/* the widget arrives async; a floor stops the footer flashing up first */
+.eventspage .sk-fb-group-event{min-height:320px}
 .faqpage{padding:2.5rem 0 4rem}
 .faqpage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 .9rem; line-height:1.05}
 .faqpage .lede{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; line-height:1.5;
@@ -1241,7 +1245,7 @@ var TONE = {
 
 var T = {
   fi: {
-    nav:["Kaikki","Toiveet","FAQ","Yhteys"], navJoin:"Liity",
+    nav:["Kaikki","Toiveet","FAQ","Yhteys"], navJoin:"Liity", navEvents:"Tapahtumat",
     faqLede:"Mikä tämä on, keitä me olemme, ja miten pääset mukaan.",
     faqTail:"Jotain muuta?", faqTailLink:"Lähetä meille viesti →", faqAnchor:"Linkki tähän kysymykseen",
     eyebrow:"Helsinki · naapureita", h1a:"Tavaraa ", h1b:"naapurista", h1c:".",
@@ -1280,7 +1284,9 @@ var T = {
   sv: {
     /* "Gå med" is MINE and unreviewed — the user gave fi "Liity" and en
        "Join"; this is the Swedish nobody has checked. */
-    nav:["Allt","Önskemål","FAQ","Kontakt"], navJoin:"Gå med",
+    /* "Evenemang" is MINE and unreviewed — the user gave fi "Tapahtumat"
+       and en "Events". */
+    nav:["Allt","Önskemål","FAQ","Kontakt"], navJoin:"Gå med", navEvents:"Evenemang",
     faqLede:"Vad det här är, vem som står bakom, och hur du kan vara med.",
     faqTail:"Något annat?", faqTailLink:"Skicka ett meddelande →", faqAnchor:"Länk till denna fråga",
     eyebrow:"Helsingfors · grannar", h1a:"Prylar från ", h1b:"grannen", h1c:".",
@@ -1314,7 +1320,7 @@ var T = {
     sortLabel:{"new":"nyast först","hp-desc":"bredast först","hp-asc":"smalast först","price-desc":"högst först","price-asc":"lägst först","name":"A–Ö"}
   },
   en: {
-    nav:["Everything","What we want","FAQ","Contact"], navJoin:"Join",
+    nav:["Everything","What we want","FAQ","Contact"], navJoin:"Join", navEvents:"Events",
     faqLede:"What this is, who is behind it, and how to join in.",
     faqTail:"Something else?", faqTailLink:"Send us a message →", faqAnchor:"Link to this question",
     eyebrow:"Helsinki · neighbours", h1a:"Gear from ", h1b:"down the road", h1c:".",
@@ -1842,6 +1848,7 @@ function renderChrome(){
   var navItems=[
     {href:"#grid-top", label:T2.nav[0]},
     {href:"#/wish",    label:T2.nav[1]},
+    {href:"#/events",  label:T2.navEvents},
     {href:"#/faq",     label:T2.nav[2]},
   ];
   if(HOW && howHasLang(lang)) navItems.push({href:"#/how", label:T2.navJoin});
@@ -2933,6 +2940,7 @@ function syncNavCurrent(h){
   var want = h.indexOf("#/wish")===0 ? "#/wish"
     : h.indexOf("#/faq")===0 ? "#/faq"
     : h.indexOf("#/how")===0 ? "#/how"
+    : h.indexOf("#/events")===0 ? "#/events"
     : h.indexOf("#/msg/")===0 ? "#/msg/"
     : h.indexOf("#/admin")===0 ? null   /* not a nav destination */
     : "#grid-top";
@@ -2981,6 +2989,29 @@ function route(){
     el("detail").innerHTML=adminHTML();
     document.body.classList.add("detail-open");
     document.title="Add a listing — eurorack.fi";
+    window.scrollTo(0,0); return;
+  }
+  if(h==="#/events"||h==="#/events/"){
+    el("detail").innerHTML='<div class="wrap eventspage">'+
+      '<div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
+      '<h1>'+esc(t().navEvents)+'</h1>'+
+      /* SociableKit's Facebook-group-events widget, verbatim from the
+         user. The container is plain markup; the script below populates
+         it. */
+      '<div class="sk-fb-group-event" data-embed-id="25710189"></div>'+
+      '</div>';
+    document.body.classList.add("detail-open");
+    document.title=t().navEvents+" — eurorack.fi";
+    /* The widget script scans for its container WHEN IT RUNS, and this
+       container is freshly inserted on every visit to the route — so the
+       script is re-appended each time rather than loaded once. A same-src
+       script element re-executes on insertion (from HTTP cache after the
+       first load), which is exactly the re-scan needed. Removed first so
+       repeat visits don't stack copies. */
+    var oldsk=document.getElementById("skwidget"); if(oldsk) oldsk.remove();
+    var sk=document.createElement("script"); sk.id="skwidget"; sk.defer=true;
+    sk.src="https://widgets.sociablekit.com/facebook-group-events/widget.js";
+    document.body.appendChild(sk);
     window.scrollTo(0,0); return;
   }
   if(h==="#/how"||h==="#/how/"){
