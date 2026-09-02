@@ -1206,7 +1206,24 @@ function sellerPage(sellerKey, tok) {
 .noteswrap textarea{width:100%;min-height:2.4rem;font-family:inherit;font-size:1rem;line-height:1.4;
  padding:.45rem .6rem;background:var(--panel2);border:1px solid var(--line);color:var(--ink);resize:vertical}
 .noteswrap .nrow{display:flex;align-items:center;gap:.5rem}
-.noteswrap .nlab{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+/* A FILLED note dresses as a sticky note — the user's pick, no tilt, the
+   softer shadow. The yellow is deliberately softer than --signal-soft so
+   a note and the secrecy warning don't rhyme. Empty stays the plain
+   field; the class follows the text live, so the field turns sticky at
+   the first character. */
+.note.hasnote{border-color:#E8D48A;background:#FBF3D0;color:var(--ink2);
+ box-shadow:0 2px 5px rgba(90,75,20,.10)}
+@media(prefers-color-scheme:dark){
+ /* checked, not guessed: ink2 dark #BEC9D8 on #2E2A18 is 8.6:1 */
+ .note.hasnote{border-color:#4A4020;background:#2E2A18;box-shadow:none}
+}
+/* the item's own photo, square, crop-to-fill; the panel ground shows
+   while loading and IS the no-photo state */
+.th{width:48px;height:48px;flex:0 0 auto;background:var(--panel2);
+ border:1px solid var(--line2);overflow:hidden}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th img[hidden]{display:none}   /* our display:block would beat the UA hidden rule */
+@media(max-width:360px){ .th{width:44px;height:44px} }
 .noteswrap .nsave{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:34px;
  padding:0 .55rem;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
 .noteswrap .nsave:disabled{background:var(--panel2);color:var(--muted);border-color:var(--line2);cursor:default}
@@ -1519,7 +1536,10 @@ function sellerPage(sellerKey, tok) {
        never in the repo or /state. */
     search:"Hae omista kohteista",
     notesLabel:"Omat muistiinpanot",
-    notesOnly:"Näkyy vain sinulle.",
+    /* placeholder carries the privacy promise — visible exactly when
+       someone is about to type their first note, gone once text exists
+       and read by then. The user chose this over a permanent line. */
+    notesPh:"Omat muistiinpanot — näkyy vain sinulle",
     wishH:"Toivelistasi",
     /* NAMES the Lisää tab — if tabAsk is ever reworded, this follows in
        the same change; check-shared-strings enforces the pairing. */
@@ -1585,7 +1605,7 @@ function sellerPage(sellerKey, tok) {
     tabItems:"Items", tabWish:"Wishlist", tabAsk:"Add",
     search:"Search your items",
     notesLabel:"Personal notes",
-    notesOnly:"Only you see this.",
+    notesPh:"Personal notes — only you see this",
     wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
@@ -1625,7 +1645,7 @@ function sellerPage(sellerKey, tok) {
     tabItems:"Objekt", tabWish:"Önskemål", tabAsk:"Lägg till",
     search:"Sök bland dina objekt",
     notesLabel:"Egna anteckningar",
-    notesOnly:"Bara du ser detta.",
+    notesPh:"Egna anteckningar — bara du ser detta",
     wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
@@ -1745,6 +1765,16 @@ function sellerPage(sellerKey, tok) {
       var mode = st.hidden ? "sold" : (st.negotiating ? "neg" : "forsale");
       return '<div class="row'+(st.hidden?" isHidden":"")+'" data-id="'+esc(m.id)+'">'+
         '<div class="rowtop">'+
+          /* recognition beats reading a 21-row list: the item's own photo,
+             lazy so a phone doesn't front-load a megabyte of thumbnails.
+             No img (3 items) or a failed load shows the plain panel
+             square — onerror blanks the img rather than showing the
+             broken-image glyph. onerror uses this.hidden=true PRECISELY
+             to avoid quotes: this markup passes through the page template
+             literal, which eats one escape level, and a quoted string in
+             an inline handler arrives broken — it did, and took the whole
+             seller page down in preview. No quotes, no trap. */
+          '<span class="th">'+(m.img?'<img loading="lazy" src="'+esc(m.img)+'" alt="" onerror="this.hidden=true">':'')+'</span>'+
           '<div><div class="mk">'+esc(m.mfr)+'</div><div class="nm">'+esc(m.name)+'</div></div>'+
           /* guarded rather than assumed: this page renders whatever is in
              the repo, and an item with no price shouldn't print "€undefined".
@@ -1783,9 +1813,9 @@ function sellerPage(sellerKey, tok) {
           var shown=(pend!==undefined)?pend:saved;
           var dirty=shown!==saved;
           return '<div class="noteswrap">'+
-            '<textarea class="note" data-saved="'+esc(saved)+'" aria-label="'+esc(TXT.notesLabel)+'" '+
-              'placeholder="'+esc(TXT.notesLabel)+'">'+esc(shown)+'</textarea>'+
-            '<div class="nrow"><span class="nlab">'+esc(TXT.notesOnly)+'</span>'+
+            '<textarea class="note'+(shown.trim()?" hasnote":"")+'" data-saved="'+esc(saved)+'" aria-label="'+esc(TXT.notesLabel)+'" '+
+              'placeholder="'+esc(TXT.notesPh)+'">'+esc(shown)+'</textarea>'+
+            '<div class="nrow">'+
             '<button class="nsave"'+(dirty?"":" disabled")+'>'+esc(TXT.save)+'</button></div></div>';
         })()+
         '</div>';
@@ -1885,6 +1915,7 @@ function sellerPage(sellerKey, tok) {
       var saved=NOTES[id]||"";
       if(ta.value===saved) delete PENDING_NOTES[id]; else PENDING_NOTES[id]=ta.value;
       row.querySelector(".nsave").disabled=(ta.value===saved);
+      ta.classList.toggle("hasnote", !!ta.value.trim());
       return;
     }
     var inp=e.target.closest(".pr input"); if(!inp) return;
