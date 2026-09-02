@@ -1347,6 +1347,7 @@ function sellerPage(sellerKey, tok) {
 .ask .askprice input{width:6rem;font-family:inherit;font-size:.8rem;text-align:right;
  padding:.4rem .5rem;background:var(--panel2);border:1px solid var(--line2);color:var(--ink);min-height:38px}
 .ask .askprice[hidden]{display:none}
+#askmsg .ok,#askmsg .err{margin:.6rem 0 0;margin-bottom:0}
 .ask .send{margin-top:.7rem;min-height:44px;padding:0 1rem;font-family:"IBM Plex Mono",monospace;
  font-size:.74rem;font-weight:600;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
 /* Sets expectations BEFORE the send, not after. The user was explicit that
@@ -1452,6 +1453,11 @@ function sellerPage(sellerKey, tok) {
     <div class="askprice" id="askprice"><span id="askpricelab"></span>
       <span><input type="text" inputmode="numeric" id="askpriceval"> €</span></div>
     <button class="send" id="asksend" type="button"></button>
+    <!-- confirmation lands HERE, beside the button the finger just left —
+         it used to go only to the #err strip at the top of the page, which
+         on a phone is off-screen at the moment of sending, so the send
+         appeared to do nothing. -->
+    <div id="askmsg" aria-live="polite"></div>
     <p class="note2" id="asknote"></p>
   </div>
   <script>
@@ -1999,6 +2005,7 @@ function sellerPage(sellerKey, tok) {
   document.addEventListener("input",function(e){
     var q=e.target.closest("#q");
     if(q){ applySearch(); return; }
+    if(e.target.closest("#asktext")) el("askmsg").innerHTML="";
     var ta=e.target.closest(".note");
     if(ta){
       var row=ta.closest(".row"), id=row.getAttribute("data-id");
@@ -2138,12 +2145,12 @@ function sellerPage(sellerKey, tok) {
     if(wb){ saveWant(wb.closest(".wrow").getAttribute("data-wkey"),
                      wb.getAttribute("data-whide")==="true"); return; }
     var kb=e.target.closest(".kinds button");
-    if(kb){ ASK_KIND=kb.getAttribute("data-kind"); paintAsk(); return; }
+    if(kb){ ASK_KIND=kb.getAttribute("data-kind"); el("askmsg").innerHTML=""; paintAsk(); return; }
     if(e.target.closest("#asksend")) sendAsk();
   });
 
   function sendAsk(){
-    var box=el("err");
+    var box=el("askmsg");
     var text=el("asktext").value.trim();
     if(!text){ box.innerHTML='<div class="err">'+esc(TXT.askEmpty)+'</div>'; el("asktext").focus(); return; }
     var body={token:TOKEN, kind:ASK_KIND, text:text};
