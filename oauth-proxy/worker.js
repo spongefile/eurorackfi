@@ -658,6 +658,9 @@ export default {
          Seller stays a label on each row. Oldest first within a group. */
       const groups = [
         { kind: "item", label: "New listings", tag: "ADD ITEM" },
+        /* becomes a listing with hidden:true and no price — the might-sell
+           list; the tag tells the secretary both facts */
+        { kind: "own", label: "Not for sale yet (add hidden)", tag: "ADD HIDDEN, NO PRICE" },
         { kind: "wish", label: "Wishlist additions", tag: "WISHLIST" },
       ];
 
@@ -889,7 +892,9 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
       const { token, kind, text, price } = body || {};
       const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
       if (!sellerKey) return json({ error: "bad token" }, 403);
-      if (kind !== "item" && kind !== "wish") return json({ error: "bad kind" }, 400);
+      /* "own": a module the seller simply has — it becomes a HIDDEN listing,
+         the might-sell list from the how page. No price by design. */
+      if (kind !== "item" && kind !== "wish" && kind !== "own") return json({ error: "bad kind" }, 400);
 
       const t = typeof text === "string" ? text.trim() : "";
       if (!t) return json({ error: "empty" }, 400);
@@ -968,7 +973,11 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
       const sellerKey = body && body.token && (await env.SELLER_STATE.get("tok:" + body.token));
       if (!sellerKey) return json({ error: "bad token" }, 403);
       const raw = await env.SELLER_STATE.get("notes:" + sellerKey);
-      return json(raw ? JSON.parse(raw) : {}, 200, { "Cache-Control": "no-store" });
+      const loans = await env.SELLER_STATE.get("loans:" + sellerKey);
+      /* one authenticated read serves both private maps — notes text and
+         the lainassa flags share the same privacy contract */
+      return json({ notes: raw ? JSON.parse(raw) : {}, loans: loans ? JSON.parse(loans) : {} },
+        200, { "Cache-Control": "no-store" });
     }
 
     if (p === "/api/setnote" && request.method === "POST") {
@@ -994,6 +1003,30 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
       /* empty deletes, so the map only holds real notes */
       if (t.trim()) notes[id] = t; else delete notes[id];
       await env.SELLER_STATE.put(key, JSON.stringify(notes));
+      return json({ ok: true });
+    }
+
+    /* Lainassa: a private on-loan reminder. Same contract as notes — KV
+       only, token-gated, never in /state, never on the public site, not
+       reconciled to git. The flag reminds the owner; it changes nothing
+       for anyone else. */
+    if (p === "/api/setloan" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+      const { token, id, loaned } = body || {};
+      const sellerKey = token && (await env.SELLER_STATE.get("tok:" + token));
+      if (!sellerKey) return json({ error: "bad token" }, 403);
+      if (!id || typeof id !== "string") return json({ error: "bad id" }, 400);
+      if (typeof loaned !== "boolean") return json({ error: "bad loaned" }, 400);
+      const item = await fetch(RAW + "content/items/" + encodeURIComponent(id) + ".json", {
+        cf: { cacheTtl: 60 },
+      }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      if (!item) return json({ error: "unknown item" }, 404);
+      if (item.who !== sellerKey) return json({ error: "not your item" }, 403);
+      const key = "loans:" + sellerKey;
+      const loans = JSON.parse((await env.SELLER_STATE.get(key)) || "{}");
+      if (loaned) loans[id] = true; else delete loans[id];
+      await env.SELLER_STATE.put(key, JSON.stringify(loans));
       return json({ ok: true });
     }
 
@@ -1134,6 +1167,14 @@ function sellerPage(sellerKey, tok) {
    words: "It looks like 'a mistake has been made'." The one-fact link to
    the public sticker survives in the swatch; it never needed the whole
    control to wear the red, only for the red to be present. */
+.tkrow{display:flex;gap:.35rem}
+.tkrow .tk{flex:1 1 0;min-width:0}
+.tk.loan[aria-pressed="true"]{border-color:#E8D48A;background:#FBF3D0}
+.tk.loan[aria-pressed="true"] .box{background:#B08A3A;border-color:#B08A3A;color:#fff}
+.tk.loan[aria-pressed="true"] .lb{color:var(--ink);font-weight:600}
+@media(prefers-color-scheme:dark){
+ .tk.loan[aria-pressed="true"]{border-color:#4A4020;background:#2E2A18}
+}
 .tk{display:flex;align-items:center;gap:.5rem;width:100%;min-height:44px;
  border:1px solid var(--line);background:var(--panel2);padding:0 .6rem;text-align:left}
 .tk .box{width:18px;height:18px;flex:0 0 auto;border:1px solid var(--line2);background:var(--panel);
@@ -1293,7 +1334,8 @@ function sellerPage(sellerKey, tok) {
    came off the top of the screen. */
 .ask{margin-top:1.6rem;border:1px solid var(--line);background:var(--panel);padding:.9rem 1rem}
 .ask h2{font-size:1rem;margin:0 0 .5rem}
-.ask .kinds{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-bottom:.6rem}
+.ask .kinds{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;margin-bottom:.6rem}
+@media(max-width:480px){ .ask .kinds{grid-template-columns:1fr} }
 .ask .kinds button{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
  background:var(--panel2);color:var(--ink2);border:1px solid var(--line);padding:.5rem .3rem}
 .ask .kinds button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);
@@ -1402,6 +1444,7 @@ function sellerPage(sellerKey, tok) {
     <h2 id="askh"></h2>
     <div class="kinds">
       <button type="button" data-kind="item" aria-pressed="true" id="kitem"></button>
+      <button type="button" data-kind="own" aria-pressed="false" id="kown"></button>
       <button type="button" data-kind="wish" aria-pressed="false" id="kwish"></button>
     </div>
     <p class="note2 how" id="askhow"></p>
@@ -1425,7 +1468,7 @@ function sellerPage(sellerKey, tok) {
   var PENDING={};
   /* notes: saved map from /api/notes (token-gated), pending edits beside
      it so a redraw cannot eat an unsaved note either */
-  var NOTES={}, PENDING_NOTES={};
+  var NOTES={}, PENDING_NOTES={}, LOANS={};
 
   /* Finnish supplied by design (a953694), UNREVIEWED by the user — they
      read both languages and their correction is final when it comes.
@@ -1529,6 +1572,7 @@ function sellerPage(sellerKey, tok) {
        to design to correct rather than presented as settled. */
     askH:"Pyydä lisäystä",
     askItem:"Uusi kohde myyntiin",
+    askOwn:"Ei vielä myyntiin",
     askWish:"Lisäys toivelistalle",
     askPriceLab:"Hinta",
     askSend:"Lähetä pyyntö",
@@ -1555,6 +1599,7 @@ function sellerPage(sellerKey, tok) {
        someone is about to type their first note, gone once text exists
        and read by then. The user chose this over a permanent line. */
     notesPh:"Omat muistiinpanot — näkyy vain sinulle",
+    loan:"Lainassa",
     wishH:"Toivelistasi",
     /* NAMES the Lisää tab — if tabAsk is ever reworded, this follows in
        the same change; check-shared-strings enforces the pairing. */
@@ -1612,6 +1657,7 @@ function sellerPage(sellerKey, tok) {
        "harmonise" it toward the English later. */
     askH:"Ask us to add something",
     askItem:"New item for sale",
+    askOwn:"Not for sale yet",
     askWish:"Addition to the wishlist",
     askPriceLab:"Price",
     askSend:"Send request",
@@ -1621,6 +1667,7 @@ function sellerPage(sellerKey, tok) {
     search:"Search your items",
     notesLabel:"Personal notes",
     notesPh:"Personal notes — only you see this",
+    loan:"On loan",
     wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
@@ -1652,6 +1699,7 @@ function sellerPage(sellerKey, tok) {
     savedPrice:"Sparat: {old} € → {new} €. Sajten uppdateras om ungefär en minut. Ladda om eurorack.fi för att se ändringen.",
     askH:"Be om ett tillägg",
     askItem:"Nytt objekt till salu",
+    askOwn:"Inte till salu ännu",
     askWish:"Tillägg till önskelistan",
     askPriceLab:"Pris",
     askSend:"Skicka förfrågan",
@@ -1661,6 +1709,7 @@ function sellerPage(sellerKey, tok) {
     search:"Sök bland dina objekt",
     notesLabel:"Egna anteckningar",
     notesPh:"Egna anteckningar — bara du ser detta",
+    loan:"Utlånad",
     wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
@@ -1818,9 +1867,18 @@ function sellerPage(sellerKey, tok) {
           '<button class="neg" data-mode="neg" aria-pressed="'+(mode==="neg")+'">'+esc(TXT.neg)+'</button>'+
           '<button class="sold" data-mode="sold" aria-pressed="'+(mode==="sold")+'">'+esc(TXT.hide)+'</button>'+
         '</div>'+
+        '<div class="tkrow">'+
         '<button class="tk" data-haggle="'+(!st.haggle)+'" aria-pressed="'+(!!st.haggle)+'">'+
           '<span class="box">'+(st.haggle?"✓":"")+'</span><span class="lb">'+esc(TXT.haggle)+'</span>'+
         '</button>'+
+        /* Lainassa: a PRIVATE reminder, so its checked state wears the
+           sticky-note yellow — the page's established colour for
+           only-you-see-this — rather than the haggle red or a selected
+           accent, both of which mark public facts. */
+        '<button class="tk loan" data-loan="'+(!LOANS[m.id])+'" aria-pressed="'+(!!LOANS[m.id])+'">'+
+          '<span class="box">'+(LOANS[m.id]?"✓":"")+'</span><span class="lb">'+esc(TXT.loan)+'</span>'+
+        '</button>'+
+        '</div>'+
         (function(){
           /* the note survives redraws the same way a pending price does */
           var saved=NOTES[m.id]||"";
@@ -1877,6 +1935,23 @@ function sellerPage(sellerKey, tok) {
       return;
     }
     var k=e.target.closest(".tk");
+    if(k && k.classList.contains("loan")){
+      var rid=k.closest(".row").getAttribute("data-id");
+      var want=k.getAttribute("data-loan")==="true";
+      if(want) LOANS[rid]=true; else delete LOANS[rid];
+      render();   /* optimistic, same as everything else */
+      fetch(location.origin+"/api/setloan",{method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({token:TOKEN,id:rid,loaned:want})})
+        .then(function(r){ if(!r.ok) throw 0;
+          el("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
+        .catch(function(){
+          if(want) delete LOANS[rid]; else LOANS[rid]=true;
+          render();
+          el("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>';
+        });
+      return;
+    }
     if(k){ save(k.closest(".row").getAttribute("data-id"),{haggle:k.getAttribute("data-haggle")==="true"}); return; }
     var sp=e.target.closest(".savep");
     if(sp){ savePrice(sp.closest(".row")); return; }
@@ -2039,18 +2114,22 @@ function sellerPage(sellerKey, tok) {
   function paintAsk(){
     el("askh").textContent=TXT.askH;
     el("kitem").textContent=TXT.askItem;
+    el("kown").textContent=TXT.askOwn;
     el("kwish").textContent=TXT.askWish;
     el("askpricelab").textContent=TXT.askPriceLab;
     el("asksend").textContent=TXT.askSend;
     el("askhow").textContent=TXT.askHow;
     el("asknote").textContent=TXT.askNote;
     el("kitem").setAttribute("aria-pressed", String(ASK_KIND==="item"));
+    el("kown").setAttribute("aria-pressed", String(ASK_KIND==="own"));
     el("kwish").setAttribute("aria-pressed", String(ASK_KIND==="wish"));
     /* A price belongs to a thing being sold, not to a wish. Hiding it for
        a wishlist request keeps the form honest about what it is asking
        for rather than showing a field that would be meaningless. */
+    /* price only for a sale item — an ei-vielä-myyntiin module has no
+       price by design (the might-sell list), a wish never had one */
     el("askprice").hidden = ASK_KIND!=="item";
-    el("asktext").placeholder = ASK_KIND==="item" ? TXT.askPlaceholderItem : TXT.askPlaceholderWish;
+    el("asktext").placeholder = ASK_KIND==="wish" ? TXT.askPlaceholderWish : TXT.askPlaceholderItem;
   }
   function el(id){ return document.getElementById(id); }
 
@@ -2100,7 +2179,8 @@ function sellerPage(sellerKey, tok) {
       headers:{"Content-Type":"application/json"},body:JSON.stringify({token:TOKEN})})
       .then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(r){
-    NOTES=r[2]||{};
+    NOTES=(r[2]&&r[2].notes)||{};
+    LOANS=(r[2]&&r[2].loans)||{};
     STATE=r[1]||{};
     return Promise.all(r[0].map(function(n){
       return fetch(RAW+"content/items/"+n).then(function(x){return x.ok?x.json():null;}).catch(function(){return null;});
