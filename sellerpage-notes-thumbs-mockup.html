@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omistajasivu — muistiinpanot ja kuvat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAECEF;--panel:#FBFBFC;--panel2:#F2F3F5;--line:#E1E4E8;--line2:#D3D7DD;
+ --ink:#11161C;--ink2:#3A424C;--muted:#6B7480;
+ --accent:#0B4F9E;--accent-hi:#083B77;--accent-soft:#D6E3F5;
+ --sticky:#FBF3D0;--sticky-edge:#E8D48A;--on:#FAFBFD}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Archivo",system-ui,sans-serif;padding:22px 14px 60px}
+.wrap{max-width:520px;margin:0 auto}
+.lbl{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--muted);margin:24px 0 8px}
+.lbl:first-child{margin-top:0}
+
+.row{border:1px solid var(--line2);background:var(--panel);padding:.7rem .8rem;margin-bottom:.55rem}
+.rowtop{display:flex;gap:.7rem;align-items:flex-start}
+.thumb{width:48px;height:48px;flex:0 0 auto;object-fit:cover;
+ border:1px solid var(--line2);background:var(--panel2)}
+.nm{font-weight:700;font-size:.92rem;line-height:1.25}
+.st{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);margin-top:.2rem}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;margin-top:.55rem}
+.seg span{font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-align:center;
+ padding:.42rem .2rem;border:1px solid var(--line2);color:var(--ink2);background:var(--panel2)}
+.seg .cur{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-hi);font-weight:600}
+
+/* empty note: plain field, the promise lives in the placeholder and
+   disappears the moment there is text — it has been read by then */
+.note{width:100%;font-family:"IBM Plex Mono",monospace;font-size:.74rem;
+ padding:.5rem .6rem;border:1px solid var(--line2);background:var(--panel);
+ color:var(--ink);margin-top:.55rem;min-height:38px;resize:vertical}
+.note::placeholder{color:var(--muted)}
+
+/* filled note: the sticky. Tilt on the wrapper, not the textarea. */
+.stickywrap{margin:.65rem .1rem .15rem;transform:rotate(-.7deg)}
+.sticky{width:100%;font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.5;
+ padding:.55rem .65rem;border:1px solid var(--sticky-edge);background:var(--sticky);
+ color:var(--ink2);min-height:38px;resize:vertical;
+ box-shadow:1px 2px 0 rgba(90,75,20,.14)}
+</style></head><body><div class="wrap">
+
+<p class="lbl">Rivi — kuva 48 px, tyhjä muistiinpano</p>
+<div class="row">
+  <div class="rowtop">
+    <img class="thumb" src="content/images/a128.jpg" alt="">
+    <div><div class="nm">Doepfer A-128</div>
+      <div class="st">340 € · 28 HP</div></div>
+  </div>
+  <div class="seg"><span class="cur">Myynnissä</span><span>Neuvottelussa</span><span>Piilota</span></div>
+  <textarea class="note" placeholder="Omat muistiinpanot — näkyy vain sinulle"></textarea>
+</div>
+
+<p class="lbl">Rivi — täytetty muistiinpano tarralappuna</p>
+<div class="row">
+  <div class="rowtop">
+    <img class="thumb" src="content/images/bartender.jpg" alt="">
+    <div><div class="nm">After Later Audio Bartender</div>
+      <div class="st">380 € · 26 HP · Saa tinkiä</div></div>
+  </div>
+  <div class="seg"><span class="cur">Myynnissä</span><span>Neuvottelussa</span><span>Piilota</span></div>
+  <div class="stickywrap">
+    <textarea class="sticky">Lupasin pitää Villelle syyskuun loppuun. Jos ei kuulu, myyntiin.</textarea>
+  </div>
+</div>
+
+<p class="lbl">Mobiili 320 px — sama rivi kapeana</p>
+<div style="max-width:292px">
+<div class="row">
+  <div class="rowtop">
+    <img class="thumb" src="content/images/a128.jpg" alt="" style="width:44px;height:44px">
+    <div><div class="nm">Doepfer A-128</div>
+      <div class="st">340 € · 28 HP</div></div>
+  </div>
+  <div class="seg"><span class="cur">Myynnissä</span><span>Neuvottelussa</span><span>Piilota</span></div>
+  <div class="stickywrap">
+    <textarea class="sticky">Jakkiliittimet löysät, hinta sen mukaan.</textarea>
+  </div>
+</div>
+</div>
+
+</div></body></html>
