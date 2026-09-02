@@ -1848,7 +1848,12 @@ function renderChrome(){
   var navItems=[
     {href:"#grid-top", label:T2.nav[0]},
     {href:"#/wish",    label:T2.nav[1]},
-    {href:"#/events",  label:T2.navEvents},
+    /* EVENTS IS HIDDEN, not deleted — the user is turning the page into a
+       community hub (Discord widget + events + links) once they have the
+       Discord server details, and the SociableKit embed it currently holds
+       never got real content. The route still answers a direct #/events
+       hit; only the nav entry is withheld. Restore this line to relaunch. */
+    /* {href:"#/events",  label:T2.navEvents}, */
     {href:"#/faq",     label:T2.nav[2]},
   ];
   if(HOW && howHasLang(lang)) navItems.push({href:"#/how", label:T2.navJoin});
