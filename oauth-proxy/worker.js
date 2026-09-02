@@ -1278,6 +1278,8 @@ function sellerPage(sellerKey, tok) {
 .th img{width:100%;height:100%;object-fit:cover;display:block}
 .th img[hidden]{display:none}   /* our display:block would beat the UA hidden rule */
 @media(max-width:360px){ .th{width:44px;height:44px} }
+.noteswrap .nok{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--accent)}
+.noteswrap .nok.bad{color:var(--sold)}
 .noteswrap .nsave{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;min-height:34px;
  padding:0 .55rem;background:var(--accent);color:var(--on);border:1px solid var(--accent)}
 .noteswrap .nsave:disabled{background:var(--panel2);color:var(--muted);border-color:var(--line2);cursor:default}
@@ -1606,6 +1608,7 @@ function sellerPage(sellerKey, tok) {
        and read by then. The user chose this over a permanent line. */
     notesPh:"Omat muistiinpanot — näkyy vain sinulle",
     loan:"Lainassa",
+    notesSaved:"Tallennettu.",
     wishH:"Toivelistasi",
     /* NAMES the Lisää tab — if tabAsk is ever reworded, this follows in
        the same change; check-shared-strings enforces the pairing. */
@@ -1674,6 +1677,7 @@ function sellerPage(sellerKey, tok) {
     notesLabel:"Personal notes",
     notesPh:"Personal notes — only you see this",
     loan:"On loan",
+    notesSaved:"Saved.",
     wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
@@ -1716,6 +1720,7 @@ function sellerPage(sellerKey, tok) {
     notesLabel:"Egna anteckningar",
     notesPh:"Egna anteckningar — bara du ser detta",
     loan:"Utlånad",
+    notesSaved:"Sparat.",
     wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
@@ -1894,7 +1899,7 @@ function sellerPage(sellerKey, tok) {
           return '<div class="noteswrap">'+
             '<textarea class="note'+(shown.trim()?" hasnote":"")+'" data-saved="'+esc(saved)+'" aria-label="'+esc(TXT.notesLabel)+'" '+
               'placeholder="'+esc(TXT.notesPh)+'">'+esc(shown)+'</textarea>'+
-            '<div class="nrow">'+
+            '<div class="nrow"><span class="nok" aria-live="polite"></span>'+
             '<button class="nsave"'+(dirty?"":" disabled")+'>'+esc(TXT.save)+'</button></div></div>';
         })()+
         '</div>';
@@ -1977,10 +1982,14 @@ function sellerPage(sellerKey, tok) {
         if(text.trim()) NOTES[id]=text; else delete NOTES[id];
         delete PENDING_NOTES[id];
         ta.setAttribute("data-saved",text);
-        el("err").innerHTML='<div class="ok">'+esc(TXT.saved)+'</div>'; })
+        /* beside the button, like the request form — and the SHORT saved,
+           not TXT.saved: that one tells you to reload eurorack.fi, which
+           is true for prices and toggles and false for a private note
+           that changes nothing public. */
+        var ok=row.querySelector(".nok"); ok.classList.remove("bad"); ok.textContent=TXT.notesSaved; })
       .catch(function(){
         btn.disabled=false;
-        el("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>';
+        var ok=row.querySelector(".nok"); ok.classList.add("bad"); ok.textContent=TXT.failed;
       });
   }
 
@@ -2012,6 +2021,7 @@ function sellerPage(sellerKey, tok) {
       var saved=NOTES[id]||"";
       if(ta.value===saved) delete PENDING_NOTES[id]; else PENDING_NOTES[id]=ta.value;
       row.querySelector(".nsave").disabled=(ta.value===saved);
+      row.querySelector(".nok").textContent="";
       ta.classList.toggle("hasnote", !!ta.value.trim());
       return;
     }
