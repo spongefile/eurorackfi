@@ -36,12 +36,12 @@ body{margin:0;background:var(--bg);color:var(--ink);
  color:var(--ink);margin-top:.55rem;min-height:38px;resize:vertical}
 .note::placeholder{color:var(--muted)}
 
-/* filled note: the sticky. Tilt on the wrapper, not the textarea. */
-.stickywrap{margin:.65rem .1rem .15rem;transform:rotate(-.7deg)}
+/* filled note: the sticky. No tilt — the colour and paper shadow carry it. */
+.stickywrap{margin:.65rem 0 .15rem}
 .sticky{width:100%;font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.5;
  padding:.55rem .65rem;border:1px solid var(--sticky-edge);background:var(--sticky);
  color:var(--ink2);min-height:38px;resize:vertical;
- box-shadow:1px 2px 0 rgba(90,75,20,.14)}
+ box-shadow:0 2px 5px rgba(90,75,20,.10)}
 </style></head><body><div class="wrap">
 
 <p class="lbl">Rivi — kuva 48 px, tyhjä muistiinpano</p>
