@@ -506,7 +506,7 @@ export default {
       }
 
       const next = url.searchParams.get("state");
-      if (next && next.startsWith("/token/")) {
+      if (next && (next.startsWith("/token/") || next === "/requests")) {
         /* seller-admin login: verify collaborator once, keep only the
            answer, and hand the browser a random session id. The GitHub
            token stays here and is discarded. */
