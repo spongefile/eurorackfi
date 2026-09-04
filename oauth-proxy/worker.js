@@ -293,6 +293,41 @@ const REQ_PREFIX = "req:";
 const REQ_MAX_PER_SELLER = 20;
 const REQ_MAX_TEXT = 500;
 
+/* One tag per kind, shared by the /requests copy boxes and the admin
+   notification mail so a forwarded mail line pastes into the secretary's
+   flow identically to a copied one. The tag is the sort. */
+const REQ_TAGS = { item: "ADD ITEM", own: "ADD HIDDEN, NO PRICE", wish: "WISHLIST" };
+
+/* The tagged line for one request row — the exact format the /requests
+   copy boxes use. Changing it changes what the secretary receives from
+   BOTH the copy button and the notification mail; keep them one thing. */
+const reqLine = (r) =>
+  `- [${REQ_TAGS[r.kind] || r.kind}] ${r.seller}: ${r.text}` +
+  (typeof r.price === "number" ? ` (asking ${r.price} €)` : "");
+
+/* Mails the admin one line per submission. Fire-and-forget by contract:
+   never throws, never changes what the seller gets back — a request is
+   stored and answered ok:true whether or not this goes out. Dark until
+   BOTH secrets exist:
+      wrangler secret put RESEND_API_KEY
+      wrangler secret put ADMIN_EMAIL
+   An unset secret is "not configured yet", not an error worth logging. */
+async function notifyAdminOfRequest(env, row) {
+  if (!env.RESEND_API_KEY || !env.ADMIN_EMAIL) return;
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: env.MAIL_FROM || "eurorack.fi <noreply@eurorack.fi>",
+        to: [env.ADMIN_EMAIL],
+        subject: "Uusi pyyntö eurorack.fi:ssä",
+        text: reqLine(row) + "\n\n" + PUBLIC_ORIGIN + "/requests\n",
+      }),
+    });
+  } catch {}
+}
+
 async function listRequests(env, sellerKey) {
   const prefix = REQ_PREFIX + (sellerKey ? sellerKey + ":" : "");
   const out = [];
@@ -429,7 +464,7 @@ ${body.css || ""}
 </style></head><body><div class="wrap">${body.html || body}</div></body></html>`;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const p = url.pathname;
 
@@ -657,11 +692,11 @@ export default {
          kind of work across four groups and make every batch mixed.
          Seller stays a label on each row. Oldest first within a group. */
       const groups = [
-        { kind: "item", label: "New listings", tag: "ADD ITEM" },
+        { kind: "item", label: "New listings" },
         /* becomes a listing with hidden:true and no price — the might-sell
            list; the tag tells the secretary both facts */
-        { kind: "own", label: "Not for sale yet (add hidden)", tag: "ADD HIDDEN, NO PRICE" },
-        { kind: "wish", label: "Wishlist additions", tag: "WISHLIST" },
+        { kind: "own", label: "Not for sale yet (add hidden)" },
+        { kind: "wish", label: "Wishlist additions" },
       ];
 
       /* Each group gets its own copy block, and there is one combined
@@ -670,10 +705,7 @@ export default {
          paste — and the secretary confirmed a mixed paste needs no
          re-sorting at their end, because the [TAG] on every row already
          says what each entry is. The tag is the sort. */
-      const blockFor = (kind, tag) => rows.filter((r) => r.kind === kind).map((r) =>
-        `- [${tag}] ${r.seller}: ${r.text}` +
-        (typeof r.price === "number" ? ` (asking ${r.price} €)` : "")
-      ).join("\n");
+      const blockFor = (kind) => rows.filter((r) => r.kind === kind).map(reqLine).join("\n");
 
       const rowHTML = (r) => `
             <div class="q">
@@ -720,7 +752,7 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
             <h2 class="grp">${g.label} &middot; ${mine.length}</h2>
             ${mine.map(rowHTML).join("")}
             <div class="card">
-              <textarea class="copybox" id="cb-${g.kind}" readonly>${esc(blockFor(g.kind, g.tag))}</textarea>
+              <textarea class="copybox" id="cb-${g.kind}" readonly>${esc(blockFor(g.kind))}</textarea>
               <button class="btn copyall" data-for="cb-${g.kind}" type="button" style="margin-top:.6rem">Copy these ${mine.length}</button>
               <form method="POST" style="display:inline-block;margin-left:.4rem">
                 <input type="hidden" name="action" value="deletemany">
@@ -732,7 +764,7 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
           ${groups.filter((g) => rows.some((r) => r.kind === g.kind)).length > 1 ? `
             <h2 class="grp">Everything &middot; ${rows.length}</h2>
             <div class="card">
-              <textarea class="copybox" id="cb-all" readonly>${esc(groups.map((g) => blockFor(g.kind, g.tag)).filter(Boolean).join("\n\n"))}</textarea>
+              <textarea class="copybox" id="cb-all" readonly>${esc(groups.map((g) => blockFor(g.kind)).filter(Boolean).join("\n\n"))}</textarea>
               <button class="btn copyall" data-for="cb-all" type="button" style="margin-top:.6rem">Copy all ${rows.length}</button>
             </div>` : ""}
           ${rows.length ? `<p class="note">Copy a group, hand it to the secretary, then trash the ones that got
@@ -923,9 +955,12 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
       if (existing.length >= REQ_MAX_PER_SELLER) return json({ error: "queue full" }, 429);
 
       const key = REQ_PREFIX + sellerKey + ":" + new Date().toISOString() + "-" + crypto.randomUUID().slice(0, 8);
-      await env.SELLER_STATE.put(key, JSON.stringify({
-        seller: sellerKey, kind, text: t, price: p2, at: new Date().toISOString(),
-      }));
+      const row = { seller: sellerKey, kind, text: t, price: p2, at: new Date().toISOString() };
+      await env.SELLER_STATE.put(key, JSON.stringify(row));
+      /* after the put, so a mail can never exist for a request that was
+         not stored; waitUntil so it cannot delay or fail the seller */
+      const mail = notifyAdminOfRequest(env, row);
+      if (ctx) ctx.waitUntil(mail);
       return json({ ok: true });
     }
 
