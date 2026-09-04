@@ -2418,3 +2418,25 @@ reviewed strings verbatim: fi Liity · sv Gå med · en Join.
 One check: the row is rendered from SELLERS — the Liity anchor must be
 appended in the same container so flex wrap treats it as one of the pills,
 and it must NOT be picked up by whatever keys chips to seller records.
+
+---
+
+## Sort select: chevron too close to the right edge (2026-09-02)
+
+User flagged it with a screenshot. `.sortsel` (index.html:525) is a native
+`<select>`, so the arrow sits at the browser's default inset — glued to the
+border at this size. Native arrows can't be moved; replace it:
+
+```css
+.sortsel{appearance:none; -webkit-appearance:none; padding-right:2rem;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233A424C' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat:no-repeat; background-position:right .7rem center;
+  background-size:12px}
+```
+
+Same 2.4-stroke chevron the collapse bar uses, pointing down, `--ink2` grey
+(hardcoded in the data URI — swap per theme: dark needs the light ink, so
+either two data URIs under the theme blocks or a mask-image with
+`background-color:currentColor`). `.cfind .sortsel` inherits; check the
+mobile full-width case still looks right. Padding-right 2rem keeps the
+longest label ("Uusimmat ensin") clear of the arrow.
