@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-04T11:56:23+03:00</updated>
+  <updated>2026-09-04T23:22:05+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/tangle</id>
+    <title>ALM Busy Circuits Tangle Quartet — 140 €</title>
+    <link href="https://eurorack.fi/#/m/tangle"/>
+    <updated>2026-09-04T23:22:05+03:00</updated>
+    <summary>Neljä lineaarista VCA:ta 8HP:ssä, 2164-piireillä — juuri se osa tekee niistä puhtaita: ei vuotoa suljettuna, ja kohina niin matala että ne voi laittaa signaalitielle jota oikeasti kuuntelee. Jokaisella kanavalla on tulo, tason CV-tulo omalla vaimentimella ja lähtö, sekä mix-lähtö joka summaa kaikki neljä. Tasotulot on normalisoitu 5 volttiin, joten kun niihin ei ole kytketty mitään, nupit ovat tavallinen nelikanavainen mikseri; kytke verhokäyrä sisään ja kanavasta tulee VCA. DC-kytketty, joten toimii ohjausjännitteillä yhtä hyvin kuin äänellä. Hyväkuntoinen.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/qtone</id>
     <title>Dnipro Modular qTone — 200 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/teakick"/>
     <updated>2026-08-27T11:28:13+03:00</updated>
     <summary>Analoginen rumpuääni, joka perustuu twin-T-resonanssipiiriin — virtuaalinen kalvo, jota lyödään sähköllä. Tune ja resonance muotoilevat rungon, erillinen klikkigeneraattori omalla sävynsäädöllä antaa iskun, ja mukana on CV-tulo vaimentimella, neliöaaltoulostulo pääulostulon rinnalla sekä WTF-tulo, joka ottaa minkä tahansa signaalin piiriin. Tämä on tammipaneeliversio. Bastl on lopettanut sen valmistuksen.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/synthrotekecho</id>
-    <title>Synthrotek ECHO — 20 €</title>
-    <link href="https://eurorack.fi/#/m/synthrotekecho"/>
-    <updated>2026-08-27T11:28:13+03:00</updated>
-    <summary>PT2399-viive 4HP:ssä, jännitteellä ohjattava viiveaika sekä feedback ja mix. Aja viiveaikaa CV:llä, niin se tekee sitä sävelkorkeutta taivuttavaa, itseoskilloivaa hommaa josta tuo piiri tunnetaan. Halpa ja iloinen efekti, myydään itse rakennettuna.</summary>
   </entry>
 </feed>
