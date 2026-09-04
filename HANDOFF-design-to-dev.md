@@ -2396,3 +2396,25 @@ The user ruled suffix everywhere. `eur()` now renders "260 €" with a
 NON-BREAKING space so a price never splits across lines — the tight case is
 grid cardfeet at 360, verified across all 101 items. Any new price rendering
 copies `eur()`; nothing writes €-prefix any more.
+
+---
+
+## Liity in the Hylly row — the empty shelf slot (2026-09-02)
+
+User wants a Join link in the gap at the end of the HYLLY filter row (after
+spongefile, before the sort select). It opens `#/how`. Mockup:
+`liity-pill-mockup.html`.
+
+**It is not a filter, so it must not dress like one.** Same pill geometry as
+the owner chips, but: 1px **dashed** `--muted` border, transparent ground,
+muted text, and the colour dot replaced by a **hollow dashed circle** — no
+colour yet; yours when you join. Hover: border, dot and text go `--accent`.
+No count.
+
+An `<a href="#/how">`, not a button — it navigates. Sits LAST in the row,
+after the owners, wrapping with them on narrow screens. Labels reuse the nav's
+reviewed strings verbatim: fi Liity · sv Gå med · en Join.
+
+One check: the row is rendered from SELLERS — the Liity anchor must be
+appended in the same container so flex wrap treats it as one of the pills,
+and it must NOT be picked up by whatever keys chips to seller records.
