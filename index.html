@@ -1087,6 +1087,9 @@ footer.site{background:var(--bg2); padding:3.5rem 0 3.75rem}
 .fgrid h4{font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink2); font-weight:600; margin-bottom:.8rem}
 .fgrid p{font-family:"Newsreader",Georgia,serif; color:var(--muted); font-size:.95rem; line-height:1.7}
 .fgrid .btn{margin-top:1rem}
+.fgrid .ffeed{margin-top:.8rem}
+.fgrid .ffeed a{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--muted)}
+.fgrid .ffeed a:hover{color:var(--accent)}
 .fintro{font-family:"Newsreader",Georgia,serif; font-size:1.35rem; line-height:1.5; color:var(--ink); max-width:44ch; margin-bottom:2.75rem}
 
 /* ---------- responsive ---------- */
@@ -1276,7 +1279,7 @@ var T = {
        inner circle at the 60px badge — 6px narrower than the Swedish
        "prutbart" that set the ceiling. */
     haggle1:"anna", haggle2:"tarjous", haggle:"Anna tarjous",
-    fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fContactBody:"Lähetä viesti lomakkeella.",
+    fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fFeed:"Uusimmat RSS-syötteenä", fContactBody:"Lähetä viesti lomakkeella.",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
     fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
@@ -1315,7 +1318,7 @@ var T = {
        not exercised by any current one. Measured: 17.8px widest line
        against the 55.6px inner circle, the roomiest of the three. */
     haggle1:"ge", haggle2:"bud", haggle:"Ge bud",
-    fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fContactBody:"Skicka ett meddelande via formuläret.",
+    fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fFeed:"Nyaste som RSS", fContactBody:"Skicka ett meddelande via formuläret.",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
     fTradeBody:"Allt kan bytas. Två separata önskelistor.",
@@ -1350,7 +1353,7 @@ var T = {
        a policy, and two short words take the largest type of any candidate.
        The user's, and they overruled design to get here. */
     haggle1:"make", haggle2:"offer", haggle:"Make offer",
-    fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fContactBody:"Send us a message through the form.",
+    fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fFeed:"Newest as RSS", fContactBody:"Send us a message through the form.",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
     fTradeBody:"Trades welcome. Separate wishlists for separate owners.",
@@ -1897,7 +1900,13 @@ function renderChrome(){
   el("fIntro").textContent=T2.fIntro;
   el("fgrid").innerHTML=
     fcol(T2.fCollect,T2.fCollectBody)+fcol(T2.fTrade,T2.fTradeBody)+
-    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><a class="btn sm" href="#/msg/">'+esc(T2.buyOrTrade)+'</a>');
+    fcol(T2.fContact,'<p>'+esc(T2.fContactBody)+'</p><a class="btn sm" href="#/msg/">'+esc(T2.buyOrTrade)+'</a>'+
+      /* design's placement over the nav: the nav is five PLACES on the
+         site and this is a file; the footer contact column is a feed
+         link's canonical seat. "RSS" stays verbatim in every language —
+         it is the recognition token for exactly the audience this
+         serves. */
+      '<p class="ffeed"><a href="/feed.xml">'+esc(T2.fFeed)+'</a></p>');
   el("sort").innerHTML=Object.keys(T2.sort).map(function(k){
     return '<option value="'+k+'"'+(k===S.sort?" selected":"")+'>'+esc(T2.sort[k])+'</option>'; }).join("");
 }
