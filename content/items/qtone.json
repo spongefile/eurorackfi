@@ -1,0 +1,79 @@
+{
+  "parts": {
+    "k": 1,
+    "j": 8,
+    "sl": 0,
+    "led": 20,
+    "sc": 3
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/qtone.jpg",
+  "mgSlug": "dnipro-modular-qtone",
+  "site": "dnipro-modular.net",
+  "hp": 6,
+  "price": 200,
+  "name": "qTone",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Quantizer"
+  ],
+  "mfr": "Dnipro Modular",
+  "id": "qtone",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 45mA · −12V 22mA",
+    "depth": "42mm",
+    "pull": {
+      "q": "Take the LFO, a Random source, or the Sequencer outputs, send them through the quantizer to your oscillator or synth voice, and enjoy perfectly tuned melodies.",
+      "src": "Dnipro Modular",
+      "url": "https://www.dnipro-modular.net/qtone"
+    },
+    "quotes": [
+      {
+        "t": "It has a bank of 16 user-defined scales that can be easily edited, and automatically saved into memory.",
+        "s": "Dnipro Modular"
+      },
+      {
+        "t": "Both channels can work independently with their own scale each, or with a common scale as well, with options to set Glide, Offset, and Transpose parameters.",
+        "s": "Dnipro Modular"
+      },
+      {
+        "t": "Scales are edited on the module itself — there is no editor app and no USB. Everything is the encoder and the LED grid.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Dnipro Modular",
+        "title": "qTone — the manufacturer's page",
+        "url": "https://www.dnipro-modular.net/qtone"
+      },
+      {
+        "src": "SYNTH ANATOMY",
+        "title": "Dnipro qTone — the launch write-up",
+        "url": "https://synthanatomy.com/2024/04/dnipro-qtone.html"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Dnipro modular qTone — specs and racks",
+        "url": "https://modulargrid.net/e/dnipro-modular-qtone"
+      }
+    ],
+    "videos": [
+      {
+        "title": "qTone quantizer tutorial",
+        "by": "Dnipro Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=dusG9g83XgA"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A dual quantizer in 6HP: feed it any voltage — an LFO, a random source, a sequencer — and it snaps the result to notes that are actually in a key. Two channels, each with its own input, trigger and output, plus two CV inputs. The two can hold separate scales or share one, and each has glide, offset and transpose, so one channel can run a bassline a fifth under the other without a second module. Sixteen scales you define yourself, edited on the front panel and saved to memory automatically — the LED grid above the encoder is the scale, one lamp per semitone, so you can see what you built. Everything is done on the module; there is no editor app and no USB.",
+    "fi": "Kaksikanavainen kvantisoija 6HP:ssä: syötä sille mitä tahansa jännitettä — LFO:ta, satunnaislähdettä, sekvensseriä — ja se napsauttaa tuloksen säveliin jotka oikeasti kuuluvat sävellajiin. Kaksi kanavaa, kummallakin oma tulo, liipaisin ja lähtö, sekä kaksi CV-tuloa. Kanavilla voi olla eri asteikot tai yhteinen, ja kummallakin on glide, offset ja transponointi, joten toinen kanava voi soittaa bassolinjaa kvinttiä alempaa ilman toista moduulia. Kuusitoista itse määriteltyä asteikkoa, jotka muokataan etupaneelista ja tallentuvat muistiin automaattisesti — enkooderin yläpuolinen LED-ruudukko on asteikko, yksi valo per puolisävelaskel, joten näet mitä rakensit. Kaikki tehdään moduulilla itsellään; erillistä editoriohjelmaa tai USB:tä ei ole.",
+    "sv": "En dubbel kvantiserare på 6HP: mata in vilken spänning som helst — en LFO, en slumpkälla, en sekvensiator — och den snäpper resultatet till toner som faktiskt hör hemma i en tonart. Två kanaler, var och en med egen ingång, trigger och utgång, plus två CV-ingångar. De två kan hålla olika skalor eller dela på en, och var och en har glide, offset och transponering, så att en kanal kan spela en baslinje en kvint under den andra utan en extra modul. Sexton egendefinierade skalor som redigeras på frontpanelen och sparas i minnet automatiskt — LED-rutnätet ovanför ratten ÄR skalan, en lampa per halvton, så du ser vad du byggt. Allt sköts på modulen själv; det finns ingen redigeringsapp och ingen USB."
+  }
+}
