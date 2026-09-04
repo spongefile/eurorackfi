@@ -1,0 +1,67 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 17,
+    "sl": 0,
+    "led": 9,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/portail.jpg",
+  "mgSlug": "eowave-portail",
+  "site": "eowave.com",
+  "hp": 5,
+  "price": 0,
+  "name": "Portail",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Controller",
+  "cats": [
+    "Controller",
+    "MIDI",
+    "Interface"
+  ],
+  "mfr": "Eowave",
+  "id": "portail",
+  "negotiating": false,
+  "hidden": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 110mA · −12V 20mA",
+    "pull": {
+      "q": "A powerful compact and highly configurable digital interface designed to connect your MIDI instruments with your eurorack rig.",
+      "src": "Eowave",
+      "url": "https://www.eowave.com/modules/portail"
+    },
+    "quotes": [
+      {
+        "t": "Connect seamlessly via TRS MIDI or USB-C. Offers up to 16 assignable CV/Gate outputs — 8 x 16 bit outputs labeled CV and 8 x 12 bit outputs labeled GATE.",
+        "s": "Eowave"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Eowave",
+        "title": "Portail — the manufacturer's page, specs and manual",
+        "url": "https://www.eowave.com/modules/portail"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Eowave Portail — specs and racks",
+        "url": "https://modulargrid.net/e/eowave-portail"
+      }
+    ],
+    "videos": [
+      {
+        "title": "EOWAVE PORTAIL : interface MIDI vers 8 CV / 8 Gate",
+        "by": "Les Sondiers · YouTube",
+        "url": "https://www.youtube.com/watch?v=pCVC9KXRPrM"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "MIDI to CV in 5HP, with sixteen outputs that you assign yourself rather than a fixed set: eight 16-bit outputs on the CV side, eight 12-bit on the gate side, and any of them can carry pitch, gate, velocity, clock or a MIDI CC. In over TRS MIDI or USB-C, so a laptop plugs straight in. A small display and two buttons do the configuration on the module.",
+    "fi": "MIDI–CV-muunnin 5HP:ssä, jossa on kuusitoista lähtöä jotka määrität itse kiinteän joukon sijaan: kahdeksan 16-bittistä lähtöä CV-puolella, kahdeksan 12-bittistä gate-puolella, ja mikä tahansa niistä voi kuljettaa sävelkorkeutta, gatea, velocityä, kelloa tai MIDI CC:tä. Sisään TRS-MIDIllä tai USB-C:llä, joten läppäri kytkeytyy suoraan. Pieni näyttö ja kaksi nappia hoitavat asetukset moduulilla.",
+    "sv": "MIDI till CV på 5HP, med sexton utgångar du tilldelar själv i stället för en fast uppsättning: åtta 16-bitars utgångar på CV-sidan, åtta 12-bitars på gate-sidan, och vilken som helst av dem kan bära tonhöjd, gate, velocity, klocka eller ett MIDI CC. In via TRS-MIDI eller USB-C, så en laptop kopplas in direkt. En liten display och två knappar sköter inställningarna på modulen."
+  }
+}

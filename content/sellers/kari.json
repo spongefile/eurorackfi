@@ -78,6 +78,21 @@
         "sc": 4
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/tokyo-gate.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Pittsburgh Modular",
+      "name": "DNA Symbiotic Waves",
+      "hp": 16,
+      "tone": "alu",
+      "parts": {
+        "k": 10,
+        "j": 6,
+        "sl": 0,
+        "led": 0,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dna.jpg"
     }
   ],
   "form": "https://tally.so/r/gD6lbJ"

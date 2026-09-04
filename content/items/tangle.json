@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 4,
+    "j": 13,
+    "sl": 0,
+    "led": 4,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/tangle.jpg",
+  "mgSlug": "alm-busy-circuits-tangle-quartet-",
+  "site": "busycircuits.com",
+  "hp": 8,
+  "price": 140,
+  "name": "Tangle Quartet",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Modulation",
+  "cats": [
+    "VCA",
+    "Mixer",
+    "Utility"
+  ],
+  "mfr": "ALM Busy Circuits",
+  "id": "tangle",
+  "negotiating": false,
+  "who": "kari",
+  "extra": {
+    "power": "+12V 80mA · −12V 80mA",
+    "depth": "32mm",
+    "pull": {
+      "q": "4 high quality clean bleed free linear VCAs in a compact 8hp.",
+      "src": "ALM Busy Circuits",
+      "url": "https://busycircuits.com/pages/alm009"
+    },
+    "quotes": [
+      {
+        "t": "Utilises 2164 VCA ICs for high performance with low noise and low signal distortion. DC coupled inputs and non inverting outputs to support both audio and non audio signals.",
+        "s": "ALM Busy Circuits"
+      },
+      {
+        "t": "Control inputs are normalised to 5v thus providing manual mix control in the absence of control signals.",
+        "s": "ALM Busy Circuits"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ALM Busy Circuits",
+        "title": "Tangle Quartet — the manufacturer's page and manual",
+        "url": "https://busycircuits.com/pages/alm009"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "ALM Busy Circuits Tangle Quartet — specs and racks",
+        "url": "https://modulargrid.net/e/alm-busy-circuits-tangle-quartet-"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Tangle Quartet — Basics — ALM009",
+        "by": "ALM TV · YouTube",
+        "url": "https://www.youtube.com/watch?v=DqhUWib842k"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Four linear VCAs in 8HP, on 2164 chips, which is the part that makes them clean — no bleed when closed, and low enough noise to sit on a signal path you actually listen to. Each channel has an input, a level CV input with its own attenuator, and an output, plus a mix output that sums all four. The level inputs are normalled to 5V, so with nothing patched into them the knobs are a plain four-channel mixer; patch an envelope in and that channel becomes a VCA. DC-coupled, so it works on control voltages as readily as audio. Good condition.",
+    "fi": "Neljä lineaarista VCA:ta 8HP:ssä, 2164-piireillä — juuri se osa tekee niistä puhtaita: ei vuotoa suljettuna, ja kohina niin matala että ne voi laittaa signaalitielle jota oikeasti kuuntelee. Jokaisella kanavalla on tulo, tason CV-tulo omalla vaimentimella ja lähtö, sekä mix-lähtö joka summaa kaikki neljä. Tasotulot on normalisoitu 5 volttiin, joten kun niihin ei ole kytketty mitään, nupit ovat tavallinen nelikanavainen mikseri; kytke verhokäyrä sisään ja kanavasta tulee VCA. DC-kytketty, joten toimii ohjausjännitteillä yhtä hyvin kuin äänellä. Hyväkuntoinen.",
+    "sv": "Fyra linjära VCA:er på 8HP, byggda på 2164-kretsar — det är den delen som gör dem rena: inget läckage i stängt läge, och tillräckligt lågt brus för en signalväg man faktiskt lyssnar på. Varje kanal har en ingång, en nivå-CV-ingång med egen dämpare och en utgång, plus en mixutgång som summerar alla fyra. Nivåingångarna är normaliserade till 5V, så med inget inkopplat är rattarna en vanlig fyrkanalsmixer; koppla in en envelop så blir kanalen en VCA. DC-kopplad, så den fungerar lika bra på styrspänningar som på ljud. Gott skick."
+  }
+}
