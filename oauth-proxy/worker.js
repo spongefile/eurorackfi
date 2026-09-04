@@ -664,9 +664,12 @@ export default {
         { kind: "wish", label: "Wishlist additions", tag: "WISHLIST" },
       ];
 
-      /* EACH GROUP GETS ITS OWN copy block. One combined copy would hand
-         the secretary a list they have to re-sort at the other end, which
-         is exactly the work the button exists to remove. */
+      /* Each group gets its own copy block, and there is one combined
+         "Copy all" after them. Both exist on purpose: a single kind
+         waiting wants the small copy, a triaged mixed queue wants one
+         paste — and the secretary confirmed a mixed paste needs no
+         re-sorting at their end, because the [TAG] on every row already
+         says what each entry is. The tag is the sort. */
       const blockFor = (kind, tag) => rows.filter((r) => r.kind === kind).map((r) =>
         `- [${tag}] ${r.seller}: ${r.text}` +
         (typeof r.price === "number" ? ` (asking ${r.price} €)` : "")
@@ -726,6 +729,12 @@ h2.grp{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13
               </form>
             </div>`;
           }).join("")}
+          ${groups.filter((g) => rows.some((r) => r.kind === g.kind)).length > 1 ? `
+            <h2 class="grp">Everything &middot; ${rows.length}</h2>
+            <div class="card">
+              <textarea class="copybox" id="cb-all" readonly>${esc(groups.map((g) => blockFor(g.kind, g.tag)).filter(Boolean).join("\n\n"))}</textarea>
+              <button class="btn copyall" data-for="cb-all" type="button" style="margin-top:.6rem">Copy all ${rows.length}</button>
+            </div>` : ""}
           ${rows.length ? `<p class="note">Copy a group, hand it to the secretary, then trash the ones that got
             done. Nothing here expires on its own.</p>` : ""}
           <script>
