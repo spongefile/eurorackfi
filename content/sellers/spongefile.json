@@ -214,6 +214,21 @@
         "sc": 0
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wogglebug.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Xaoc Devices",
+      "name": "Skopje",
+      "hp": 6,
+      "tone": "alu",
+      "parts": {
+        "k": 1,
+        "j": 10,
+        "sl": 1,
+        "led": 1,
+        "sc": 1
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/skopje.jpg"
     }
   ],
   "form": "https://tally.so/r/lbkgvB"
