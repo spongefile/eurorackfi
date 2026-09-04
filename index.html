@@ -3097,7 +3097,11 @@ function route(){
     }
     el("detail").innerHTML='<div class="wrap msgpage">'+
       '<div class="msgbar"><a class="back" href="'+backHref+'">&larr; '+esc(t().nav[0])+'</a></div>'+
-      '<iframe class="msgframe" data-tally-src="'+(m?tallyLink(m):TALLY_URL)+(m?"&":"?")+'transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Message eurorack.fi"></iframe>'+
+      /* tallyLink comes back with no query at all when a seller's own
+         form hasn't had its fields verified — joining on "&" there made
+         tally.so/r/xxx&… and Tally 404s on it. Join on what's actually
+         in the URL, not on how it was built. */
+      '<iframe class="msgframe" data-tally-src="'+(function(u){return u+(u.indexOf("?")>=0?"&":"?");})(m?tallyLink(m):TALLY_URL)+'transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Message eurorack.fi"></iframe>'+
       '</div>';
     document.body.classList.add("detail-open");
     document.title="Message — eurorack.fi";
