@@ -825,6 +825,8 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 /* ---------- count ---------- */
 .countline{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); padding:1.25rem 0 .9rem;
   display:flex; gap:1rem; flex-wrap:wrap; font-variant-numeric:tabular-nums}
+.countline .feedlink{color:var(--muted)}
+.countline .feedlink:hover{color:var(--accent)}
 
 /* ---------- cards ---------- */
 main{padding-bottom:3rem}
@@ -2182,7 +2184,11 @@ function renderGrid(){
      to read and isn't a number anyone is shopping by. T2.onScreen is left
      defined but unused rather than deleted: it's translated copy, and the
      total may come back somewhere it reads as information. */
-  el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>';
+  el("countline").innerHTML='<span>'+list.length+' '+esc(String(T2.ofItems).replace(/\d+/,ITEMS.length))+'</span>'+
+    /* the user's placement, beside the count — where "how many, how new"
+       is already the topic. Same label and quiet register as the footer
+       link; two discovery points, one string. */
+    '<a class="feedlink" href="/feed.xml">'+esc(T2.fFeed)+'</a>';
   el("collcount").textContent=list.length+" / "+ITEMS.length;
 }
 </script>
