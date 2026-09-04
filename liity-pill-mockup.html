@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hylly-rivin Liity-paikka</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAECEF;--panel:#FBFBFC;--line2:#D3D7DD;--ink2:#3A424C;--muted:#6B7480;
+ --accent:#0B4F9E;--accent-soft:#D6E3F5;--on:#FAFBFD}
+body{margin:0;background:var(--bg);padding:40px 28px;font-family:"IBM Plex Mono",monospace}
+.lbl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:34px}
+.chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--ink2);
+ border:1px solid var(--line2);background:var(--panel);padding:.55rem .8rem;text-decoration:none}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.chip .n{color:var(--muted);font-size:.72rem}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on)}
+.chip.on .n{color:var(--on);opacity:.75}
+
+/* the empty shelf: dashed border, hollow dashed dot — no colour yet.
+   Not a filter, so it must not dress like one. */
+.chip.join{border:1px dashed var(--muted);background:transparent;color:var(--muted)}
+.chip.join i{background:transparent;border:1px dashed var(--muted)}
+.chip.join:hover{border-color:var(--accent);color:var(--accent)}
+.chip.join:hover i{border-color:var(--accent)}
+</style></head><body>
+
+<p class="lbl">Hylly — Liity viimeisenä, tyhjä paikka rivissä</p>
+<div class="row">
+  <span class="chip on"><i style="background:#fff"></i>Kaikki <span class="n">103</span></span>
+  <span class="chip"><i style="background:#2E7D6B"></i>Kalle <span class="n">14</span></span>
+  <span class="chip"><i style="background:#7A4FA3"></i>Kari <span class="n">7</span></span>
+  <span class="chip"><i style="background:#B0455A"></i>Mikko <span class="n">10</span></span>
+  <span class="chip"><i style="background:#C2761B"></i>Sampo <span class="n">20</span></span>
+  <span class="chip"><i style="background:#3B6BB0"></i>spongefile <span class="n">52</span></span>
+  <a class="chip join" href="#/how"><i></i>Liity</a>
+</div>
+
+<p class="lbl">Sama hover-tilassa</p>
+<div class="row">
+  <a class="chip join" href="#/how" style="border-color:var(--accent);color:var(--accent)"><i style="border-color:var(--accent)"></i>Liity</a>
+</div>
+
+</body></html>
