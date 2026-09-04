@@ -529,7 +529,18 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
 .subchip.ico::before{content:""; width:10px; height:10px; flex:0 0 auto; background:var(--muted);
   -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat}
 .subchip.ico[aria-pressed="true"]::before{background:var(--accent-hi)}
-.sortsel{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2)}
+.sortsel{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:.32rem 2rem .32rem .5rem; background:var(--panel); border:1px solid var(--line2); color:var(--ink2);
+  appearance:none; -webkit-appearance:none;
+  background-image:var(--chev); background-repeat:no-repeat; background-position:right .7rem center; background-size:12px}
+/* Native select arrows sit glued to the border at this size and can't be
+   moved, so the select draws its own — the collapse bar's 2.4-stroke
+   chevron. The ink is baked into the data URI, so it can't read a token:
+   one URI per scheme, following the --haggle-ink pattern. */
+.rt{--chev:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233A424C' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>")}
+@media (prefers-color-scheme:dark){
+  .rt:not(.light){--chev:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C1C8CE' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>")}
+}
+.rt.dark{--chev:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C1C8CE' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>")}
 .catscroll{display:flex; gap:.35rem; min-width:0; flex:1 1 100%}
 
 /* ---------- wish band ---------- */
