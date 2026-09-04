@@ -493,6 +493,13 @@ nav.top a:hover{color:var(--accent); border-color:var(--accent)}
    name exactly as it does on cards, wish band and seller lines. */
 .chip.owner{display:inline-flex; align-items:center; gap:.45rem; position:relative}
 .chip .odot{width:8px; height:8px; border-radius:50%; flex:0 0 auto}
+/* the empty shelf: not a filter, so it must not dress like one — dashed
+   border, transparent ground, and the dot hollow and dashed: no colour
+   yet; yours when you join */
+.chip.join{border-style:dashed; border-color:var(--muted); background:transparent; color:var(--muted)}
+.chip.join .odot{background:transparent; border:1px dashed var(--muted)}
+.chip.join:hover{border-color:var(--accent); color:var(--accent)}
+.chip.join:hover .odot{border-color:var(--accent)}
 .ic-all{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26' fill='%23000'/%3E%3C/svg%3E")}
 /* the wordmark's jack, proportions preserved but drawn inset in its box —
    at full bleed it outweighed the logo's own jack, which sits at .58em
@@ -2005,7 +2012,14 @@ function renderFilters(){
         '<span class="odot" style="background:'+p.dot+'"></span>'+esc(p.name)+'<span class="c">'+n+'</span>'+
         '<span class="wishpop"><span class="wp-h">'+esc(p.name+" "+T2.hunting)+'</span>'+
         '<span class="wp-l">'+wishPopBody(p.key)+'</span></span>'+
-        '</button>'; }).join("");
+        '</button>'; }).join("")+
+    /* the empty shelf slot, design's spec: a Join link dressed as the pill
+       it isn't yet — dashed border, hollow dashed dot, no colour and no
+       count, because there is no seller behind it. An <a>, it navigates;
+       and it carries NO data-who, which is what keeps the filter click
+       handler's closest("[data-who]") from ever seeing it. Label reuses
+       the nav's reviewed word. */
+    '<a class="chip owner join" href="#/how"><span class="odot"></span>'+esc(T2.navJoin)+'</a>';
   el("catchips").innerHTML=CATKEYS.map(function(k){
     var n=k==="all"?ITEMS.length:count({cat:k});
     var faint=n===0&&k!=="all";
