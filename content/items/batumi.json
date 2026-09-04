@@ -1,0 +1,85 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 20,
+    "sl": 4,
+    "led": 4,
+    "sc": 1
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/batumi.jpg",
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/batumi-poti.jpg",
+  "mgSlug": "xaoc-devices-batumi",
+  "site": "xaocdevices.com",
+  "hp": 13,
+  "price": 200,
+  "name": "Batumi + Poti",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "LFO"
+  ],
+  "mfr": "Xaoc Devices",
+  "id": "batumi",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 45mA · −12V 15mA",
+    "depth": "45mm",
+    "pull": {
+      "q": "The brilliant Batumi quad LFO module from XAOC Devices with the Poti expander.",
+      "src": "DivKid",
+      "url": "https://divkidvideo.com/videos/xaoc-devices-batumi/"
+    },
+    "quotes": [
+      {
+        "t": "Four channels you can run completely independently or link together — free-running, clock-synced, phase-offset in quadrature, or divided down from one master rate.",
+        "s": "Xaoc Devices"
+      },
+      {
+        "t": "Poti adds switches for the jumper settings on the back of the module.",
+        "s": "DivKid"
+      },
+      {
+        "t": "This is the first-generation Batumi, the silver panel. Batumi II is a separate module with 1V/oct tracking and anti-aliased waveforms for audio rate, and its Poti II is not compatible with this one.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "DivKid",
+        "title": "Batumi with the Poti expander — the walkthrough",
+        "url": "https://divkidvideo.com/videos/xaoc-devices-batumi/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Xaoc Devices Batumi — specs and racks",
+        "url": "https://modulargrid.net/e/xaoc-devices-batumi"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Xaoc Devices Poti — the expander, included here",
+        "url": "https://modulargrid.net/e/xaoc-devices-poti"
+      }
+    ],
+    "videos": [
+      {
+        "title": "XAOC Devices — Batumi",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=0I3jo8bpfU8"
+      },
+      {
+        "title": "XAOC Devices BATUMI Quad LFO as Audio Source",
+        "by": "Genshi Media Group · YouTube",
+        "url": "https://www.youtube.com/watch?v=F8Yp7az5LqU"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Four LFOs in 10HP, and the reason people keep them for years is that the four are not really separate — a mode switch relates them. Free, and they run independently. Quad, and they spread into quadrature, four phases of the same wave, which is the patch that makes a system breathe. Phase, and you set the offset yourself. Divide, and they become one rate divided down, so slow structure and fast wobble stay locked together. Each channel gives sine, saw and square at once, with reset and sync inputs and a slider for rate. The Poti expander is included and mounted alongside: it brings the jumper settings from the back of the board out onto a 3HP panel, so you change them with a switch instead of pulling the module. First-generation silver panel — 13HP for the pair.",
+    "fi": "Neljä LFO:ta 10HP:ssä, ja syy siihen että näitä pidetään vuosikausia on se etteivät ne neljä ole oikeasti erillisiä — tilakytkin suhteuttaa ne toisiinsa. Free, ja ne käyvät itsenäisesti. Quad, ja ne levittäytyvät kvadratuuriin, saman aallon neljään vaiheeseen, mikä on se patch josta järjestelmä alkaa hengittää. Phase, ja siirtymän asettaa itse. Divide, ja niistä tulee yksi taajuus jaettuna alaspäin, jolloin hidas rakenne ja nopea värinä pysyvät lukossa keskenään. Jokainen kanava antaa siniä, sahaa ja kanttia yhtä aikaa, mukana reset- ja sync-tulot sekä liuku nopeudelle. Poti-laajennin kuuluu kauppaan ja on asennettu viereen: se tuo piirilevyn takana olevat hyppyjohdinasetukset 3HP:n paneelille, joten ne vaihdetaan kytkimestä eikä moduulia irrottamalla. Ensimmäisen sukupolven hopeapaneeli — 13HP parille.",
+    "sv": "Fyra LFO:er på 10HP, och skälet till att folk behåller dem i åratal är att de fyra inte egentligen är separata — en lägesomkopplare sätter dem i relation till varandra. Free, och de går oberoende. Quad, och de sprids ut i kvadratur, fyra faser av samma våg, vilket är den patch som får ett system att andas. Phase, och du ställer förskjutningen själv. Divide, och de blir en enda frekvens nerdelad, så att långsam struktur och snabb vibration hålls låsta mot varandra. Varje kanal ger sinus, sågtand och fyrkant samtidigt, med reset- och sync-ingångar och en regel för hastigheten. Poti-expandern ingår och sitter monterad bredvid: den tar jumperinställningarna från kortets baksida ut på en 3HP-panel, så att man byter dem med en omkopplare i stället för att lyfta ur modulen. Första generationens silverpanel — 13HP för paret."
+  }
+}
