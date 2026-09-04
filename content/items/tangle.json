@@ -23,7 +23,7 @@
   ],
   "mfr": "ALM Busy Circuits",
   "id": "tangle",
-  "negotiating": false,
+  "negotiating": true,
   "who": "kari",
   "extra": {
     "power": "+12V 80mA · −12V 80mA",

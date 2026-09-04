@@ -29,7 +29,7 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sinciter.jpg",
   "imgIsModularGrid": true,
-  "negotiating": false,
+  "negotiating": true,
   "extra": {
     "videos": [
       {
