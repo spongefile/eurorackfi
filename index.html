@@ -824,9 +824,14 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 
 /* ---------- count ---------- */
 .countline{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); padding:1.25rem 0 .9rem;
-  display:flex; gap:1rem; flex-wrap:wrap; font-variant-numeric:tabular-nums}
-.countline .feedlink{color:var(--muted)}
-.countline .feedlink:hover{color:var(--accent)}
+  display:flex; gap:1rem; flex-wrap:wrap; align-items:center; font-variant-numeric:tabular-nums}
+/* a quiet button at the row's right edge — margin-left:auto pushes it to
+   the same right edge the grid below shares (one .wrap container), and
+   the row's align-items centers it in the strip's height */
+.countline .feedlink{margin-left:auto; color:var(--ink2); border:1px solid var(--line2);
+  background:var(--panel); padding:.4rem .65rem; display:inline-flex; align-items:center; gap:.4rem}
+.countline .feedlink svg{width:12px; height:12px; flex:0 0 auto}
+.countline .feedlink:hover{color:var(--accent); border-color:var(--accent)}
 
 /* ---------- cards ---------- */
 main{padding-bottom:3rem}
@@ -2188,7 +2193,10 @@ function renderGrid(){
     /* the user's placement, beside the count — where "how many, how new"
        is already the topic. Same label and quiet register as the footer
        link; two discovery points, one string. */
-    '<a class="feedlink" href="/feed.xml">'+esc(T2.fFeed)+'</a>';
+    '<a class="feedlink" href="/feed.xml">'+
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+
+      '<path d="M5 11a8 8 0 0 1 8 8"/><path d="M5 4a15 15 0 0 1 15 15"/><circle cx="6" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg>'+
+      esc(T2.fFeed)+'</a>';
   el("collcount").textContent=list.length+" / "+ITEMS.length;
 }
 </script>
