@@ -3344,6 +3344,11 @@ var rz; window.addEventListener("resize",function(){
     lastY=y;
     if(DESKTOP.matches) return; /* desktop closes on click only */
     if(Date.now()<suppressUntil) return; /* see click handler below */
+    /* tapping the search field opens the on-screen keyboard, and the
+       viewport shrink that follows arrives here as a scroll-down — which
+       folded the panel around the field the user just tapped. While focus
+       is inside the panel, the user is using it: never auto-collapse. */
+    if(wrap.contains(document.activeElement)) return;
     if(!collapsed() && goingDown && y>90) collapse();
   }
   window.addEventListener("scroll",function(){
