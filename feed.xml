@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-04T23:22:05+03:00</updated>
+  <updated>2026-09-05T14:18:11+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/livingvco</id>
+    <title>Jürgen Haible Living VCO — 300 €</title>
+    <link href="https://eurorack.fi/#/m/livingvco"/>
+    <updated>2026-09-05T14:18:11+03:00</updated>
+    <summary>Kolme analogista oskillaattoria, jotka on rakennettu tekemään sitä mitä useimmat nykyaikaiset VCO:t on suunniteltu välttämään: ajelehtimaan toistensa suhteen. Jürgen Haiblen suunnitelma asettaa kolme EMS VCS3 -tyyppistä ydintä yhdelle levylle ja lisää ohjainosan portamentolle ja vibratolle; ne seuraavat 1V/okt viiden oktaavin yli mutta huojuvat bassoalueella kuten varhaiset EMS- ja Moog-oskillaattorit. Saha, pulssi, kolmio ja sini jokaisesta, joten yksi moduuli on kokonainen kolmiääninen viritetty pino. 42HP ja syvä — varaa 70 mm paneelin taakse. DIY-rakennelma, uusi, vuoden 2014 Barcode/LogicGate-piirilevyillä ja rakentajan omilla lisälevyillä ja etupaneelilla; transistoriryhmät löyhästi sovitettu niin että kolme seuraavat samalla tavalla, tempco asennettu, esiviritetty 20 Hz:iin alarajalla. Virtakaapelit mukana.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/tangle</id>
     <title>ALM Busy Circuits Tangle Quartet — 140 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/toolbox"/>
     <updated>2026-08-27T11:28:13+03:00</updated>
     <summary>Neljä pientä työkalua 6HP:ssä: säädettävä slew, kohinalähde, sample and hold ja jännitteen kääntäjä. Mikään näistä ei ole hohdokasta ja kaikkia tarvitsee siinä vaiheessa kun patchi on puolivälissä. Loppuunmyyty Pittsburghilta.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/teakick</id>
-    <title>Bastl Instruments Tea Kick — 90 €</title>
-    <link href="https://eurorack.fi/#/m/teakick"/>
-    <updated>2026-08-27T11:28:13+03:00</updated>
-    <summary>Analoginen rumpuääni, joka perustuu twin-T-resonanssipiiriin — virtuaalinen kalvo, jota lyödään sähköllä. Tune ja resonance muotoilevat rungon, erillinen klikkigeneraattori omalla sävynsäädöllä antaa iskun, ja mukana on CV-tulo vaimentimella, neliöaaltoulostulo pääulostulon rinnalla sekä WTF-tulo, joka ottaa minkä tahansa signaalin piiriin. Tämä on tammipaneeliversio. Bastl on lopettanut sen valmistuksen.</summary>
   </entry>
 </feed>
