@@ -1,0 +1,42 @@
+{
+  "parts": {
+    "k": 3,
+    "j": 4,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "mgSlug": "",
+  "site": "",
+  "hp": 4,
+  "price": 0,
+  "name": "Chord328",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Utility",
+    "Quantizer",
+    "DIY"
+  ],
+  "mfr": "Keijo (DIY)",
+  "id": "chord328",
+  "negotiating": false,
+  "hidden": true,
+  "who": "keijo",
+  "extra": {
+    "quotes": [
+      {
+        "t": "One CV in, three CV out: a chord module. The builder's own design; photos follow once it is built and tested.",
+        "s": "Keijo"
+      }
+    ],
+    "reviews": [],
+    "videos": []
+  },
+  "blurb": {
+    "en": "One pitch CV in, three out, voiced as a chord. 4HP, the builder's own design. Not yet for sale.",
+    "fi": "Yksi sävelkorkeus-CV sisään, kolme ulos, soinnuksi äänitettynä. 4HP, rakentajan oma suunnittelu. Ei vielä myynnissä.",
+    "sv": "En tonhöjds-CV in, tre ut, stämda som ett ackord. 4HP, byggarens egen konstruktion. Inte till salu ännu."
+  }
+}

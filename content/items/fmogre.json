@@ -1,0 +1,74 @@
+{
+  "parts": {
+    "k": 36,
+    "j": 54,
+    "sl": 0,
+    "led": 18,
+    "sc": 18
+  },
+  "mgSlug": "timo-rozendal-fm-ogre",
+  "site": "github.com/av500/fmogre",
+  "hp": 48,
+  "price": 400,
+  "name": "FM Ogre ×6",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "FM",
+    "DIY",
+    "Digital"
+  ],
+  "mfr": "WSYnth / Timo Rozendal",
+  "id": "fmogre",
+  "negotiating": false,
+  "who": "keijo",
+  "extra": {
+    "power": "+12V ~200–300mA (builder's figure; the six-operator board has its own optimised power section)",
+    "depth": "30mm",
+    "pull": {
+      "q": "An expanded implementation of a Chowning FM Operator — a thru-zero reimplementation from scratch of the FM operator made famous in the Yamaha DX series.",
+      "src": "WSYnth",
+      "url": "https://modulargrid.net/e/timo-rozendal-fm-ogre"
+    },
+    "quotes": [
+      {
+        "t": "Six thru-zero FM Chowning operators in a single 48HP module. dsPIC per operator, dual 16-bit DACs at about 90kHz. Based on Bill Yerazunis's original FM Ogre and Timo Rozendal's Eurorack version, with the power section redesigned around a modern LDO regulator and the panel slightly rearranged.",
+        "s": "Keijo"
+      },
+      {
+        "t": "Each operator defaults to a sine that can be thru-zero FMed or PMed through positive and negative frequency and phase; a feedback knob gives self-modulation without a patch cable, and the Sample switch lets any input — an acoustic instrument, a voice — be the carrier. SYNC freezes the buffer for stutter and granular effects; LoFi is a real-time bitcrusher.",
+        "s": "Keijo"
+      },
+      {
+        "t": "Sold here as a DIY build, brand new. Six operators are the raw material for a DX-style algorithm, not the algorithm itself: chaining them needs attenuverters or multipliers between the stages, which are not included.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Timo Rozendal FM Ogre — the single-operator Eurorack design this is built from",
+        "url": "https://modulargrid.net/e/timo-rozendal-fm-ogre"
+      },
+      {
+        "src": "GitHub",
+        "title": "av500/fmogre — the FM Ogre firmware source",
+        "url": "https://github.com/av500/fmogre"
+      }
+    ],
+    "videos": [
+      {
+        "title": "FM OGRE — Through-zero FM oscillator (FM Operator)",
+        "by": "William Yerazunis · YouTube",
+        "url": "https://www.youtube.com/watch?v=XSRti_YKYlo"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Six thru-zero FM operators on one 48HP panel — the building blocks of a Yamaha DX voice, in Eurorack, each one patchable to any other. Every operator is a full FM Ogre: a sine core that can be frequency- or phase-modulated straight through zero into negative frequency, a feedback knob for self-modulation, 1V/oct and linear FM inputs, a Sample switch that makes any external signal the carrier, a SYNC input that freezes the buffer for stutters and grains, and a LoFi bitcrusher. Three LEDs per operator show heartbeat, negative phase and negative frequency. A DIY build, brand new, on a single board of the builder's own design: dsPIC and dual 16-bit DACs per operator, and a power section reworked so six of them draw roughly 200–300mA rather than six times the original. To wire operators into a DX-style algorithm you route them through attenuverters or multipliers, which you supply.",
+    "fi": "Kuusi nollan läpi menevää FM-operaattoria yhdellä 48HP:n paneelilla — Yamaha DX -äänen rakennuspalikat Eurorack-muodossa, jokainen patchattavissa mihin tahansa toiseen. Jokainen operaattori on täysi FM Ogre: siniytimen taajuutta tai vaihetta voi moduloida suoraan nollan läpi negatiiviselle taajuudelle, takaisinkytkentänuppi antaa itsemodulaation, tulot 1V/okt:lle ja lineaariselle FM:lle, Sample-kytkin tekee mistä tahansa ulkoisesta signaalista kantoaallon, SYNC-tulo jäädyttää puskurin pätkimiseen ja rakeisiin, ja LoFi on bittimurskain. Kolme LEDiä per operaattori näyttävät sykkeen, negatiivisen vaiheen ja negatiivisen taajuuden. DIY-rakennelma, uusi, rakentajan omalle yhdelle piirilevylle: dsPIC ja kaksi 16-bittistä DAC:ia per operaattori, ja virransyöttö tehty niin että kuusi vievät noin 200–300 mA eikä kuusi kertaa alkuperäistä. DX-tyylisen algoritmin kytkeminen vaatii attenuvertereitä tai kertojia operaattorien väliin, ja ne hankit itse.",
+    "sv": "Sex thru-zero FM-operatorer på en 48HP-panel — byggstenarna i en Yamaha DX-röst, i Eurorack, var och en patchbar till vilken annan som helst. Varje operator är en fullständig FM Ogre: en sinuskärna som kan frekvens- eller fasmoduleras rakt genom noll till negativ frekvens, en återkopplingsratt för självmodulation, ingångar för 1V/okt och linjär FM, en Sample-omkopplare som gör vilken extern signal som helst till bärvåg, en SYNC-ingång som fryser bufferten för stamningar och korn, och en LoFi-bitkrossare. Tre lysdioder per operator visar hjärtslag, negativ fas och negativ frekvens. Ett DIY-bygge, nytt, på ett enda kort av byggarens egen konstruktion: dsPIC och två 16-bitars DAC:ar per operator, och en strömförsörjning omgjord så att sex av dem drar ungefär 200–300 mA i stället för sex gånger originalet. För att koppla operatorerna till en DX-liknande algoritm leder du dem genom attenuverters eller multiplikatorer, som du själv står för."
+  }
+}

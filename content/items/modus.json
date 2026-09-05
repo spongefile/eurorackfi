@@ -1,0 +1,49 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 12,
+    "sl": 0,
+    "led": 0,
+    "sc": 3
+  },
+  "mgSlug": "",
+  "site": "github.com/beau-seidon/O_C_T41",
+  "hp": 14,
+  "price": 0,
+  "name": "Modus Operandi",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Utility",
+    "Sequencer",
+    "DIY",
+    "Digital"
+  ],
+  "mfr": "Keijo (DIY)",
+  "id": "modus",
+  "negotiating": false,
+  "hidden": true,
+  "who": "keijo",
+  "extra": {
+    "quotes": [
+      {
+        "t": "The builder's own name for a refreshed Ornament & Crime: Teensy 4.1, memory expansion and expansion headers, 14HP. Photos follow once it is built and tested.",
+        "s": "Keijo"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "GitHub",
+        "title": "beau-seidon/O_C_T41 — the Teensy 4.1 Ornament & Crime it is built on",
+        "url": "https://github.com/beau-seidon/O_C_T41"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "An Ornament & Crime rebuilt on a Teensy 4.1 with extra memory and expansion headers. 14HP, DIY. Not yet for sale.",
+    "fi": "Ornament & Crime rakennettuna uudelleen Teensy 4.1:lle lisämuistilla ja laajennusliittimillä. 14HP, DIY. Ei vielä myynnissä.",
+    "sv": "En Ornament & Crime ombyggd på en Teensy 4.1 med extra minne och expansionskontakter. 14HP, DIY. Inte till salu ännu."
+  }
+}

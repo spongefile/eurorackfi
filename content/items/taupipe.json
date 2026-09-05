@@ -8,7 +8,7 @@
   },
   "mgSlug": "random-source-haible-tau-pipe-phaser",
   "site": "randomsource.net",
-  "hp": 0,
+  "hp": 10,
   "price": 0,
   "name": "Tau Pipe Phaser",
   "fmt": "eu",
@@ -32,8 +32,8 @@
     },
     "quotes": [
       {
-        "t": "Sold as a DIY build. HP and panel are the builder's own — details to follow when it is listed for sale.",
-        "s": "Worth knowing"
+        "t": "A 10HP compact build — Random*Source's own Eurorack version is 16HP. Photos follow once it is built and tested.",
+        "s": "Keijo"
       }
     ],
     "reviews": [
