@@ -1,0 +1,74 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 22,
+    "sl": 0,
+    "led": 16,
+    "sc": 1
+  },
+  "mgSlug": "westlicht-per-former--",
+  "site": "westlicht.github.io",
+  "hp": 34,
+  "fmt": "eu",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "MIDI",
+    "DIY"
+  ],
+  "mfr": "Westlicht",
+  "tone": "black",
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/performer.jpg",
+  "extra": {
+    "reviews": [
+      {
+        "src": "ModWiggler",
+        "title": "Westlicht PER|FORMER Sequencer (DIY)",
+        "url": "https://www.modwiggler.com/forum/viewtopic.php?t=213251"
+      },
+      {
+        "src": "Westlicht",
+        "title": "PER|FORMER — official project documentation and build guide",
+        "url": "https://westlicht.github.io/performer/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Westlicht Performer | Part 01 | Introduction & First Patch",
+        "by": "Introduction · YouTube",
+        "url": "https://www.youtube.com/watch?v=f1Hh263Tp4s"
+      },
+      {
+        "title": "Tutorial: Westlicht Performer Eurorack Module - Basic Note & Modulation Sequencing",
+        "by": "Tutorial · YouTube",
+        "url": "https://www.youtube.com/watch?v=5jLsQil8mnU"
+      }
+    ],
+    "pull": {
+      "q": "While offering a vast amount of programming options, strong focus is put on having performance critical features available as directly as possible.",
+      "src": "Westlicht — project documentation",
+      "url": "https://westlicht.github.io/performer/"
+    },
+    "quotes": [
+      {
+        "t": "A eurorack sequencer module designed for both live performance and work in the studio. It is based on the concept of step sequencing and can generate a wide variety of rhythms, melodies and modulation signals.",
+        "s": "Westlicht"
+      },
+      {
+        "t": "A highly configurable clock system allows the module to act both as a master clock or sync to many other modules or external gear.",
+        "s": "Westlicht"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Eight-track step sequencer: sixteen patterns a track, sixty-four steps a pattern, OLED, MIDI and USB host.",
+    "fi": "Kahdeksanraitainen askelsekvensseri: kuusitoista kuviota raidalle, 64 askelta kuviolle, OLED, MIDI ja USB-host.",
+    "sv": "Åttaspårig stegsekvensiator: sexton mönster per spår, 64 steg per mönster, OLED, MIDI och USB-host."
+  },
+  "id": "performer-keijo",
+  "name": "PER|FORMER",
+  "price": 0,
+  "hidden": true,
+  "negotiating": false,
+  "who": "keijo"
+}

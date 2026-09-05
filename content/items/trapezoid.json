@@ -1,0 +1,42 @@
+{
+  "parts": {
+    "k": 4,
+    "j": 6,
+    "sl": 0,
+    "led": 0,
+    "sc": 1
+  },
+  "mgSlug": "",
+  "site": "",
+  "hp": 0,
+  "price": 0,
+  "name": "Trapezoid VCA",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "VCA",
+    "Envelope",
+    "DIY"
+  ],
+  "mfr": "Jürgen Haible",
+  "id": "trapezoid",
+  "negotiating": false,
+  "hidden": true,
+  "who": "keijo",
+  "extra": {
+    "quotes": [
+      {
+        "t": "Sold as a DIY build. HP, panel and specs are the builder's own — details to follow when it is listed for sale.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Haible's EMS-style trapezoid envelope and VCA. DIY build; not yet for sale.",
+    "fi": "Haiblen EMS-tyylinen trapetsiverhokäyrä ja VCA. DIY-rakennelma; ei vielä myynnissä.",
+    "sv": "Haibles trapetsenvelop och VCA i EMS-stil. DIY-bygge; inte till salu ännu."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "key": "keijo",
+  "name": "Keijo",
+  "dot": "#6D9440",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/keijo",
+  "wants": [
+    {
+      "type": "placeholder",
+      "text": "Rossum Electro-Music — any module"
+    }
+  ],
+  "form": "https://reverb.com/en-fi/shop/keijos-diy-outlet"
+}

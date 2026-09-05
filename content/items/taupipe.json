@@ -1,0 +1,53 @@
+{
+  "parts": {
+    "k": 6,
+    "j": 6,
+    "sl": 0,
+    "led": 0,
+    "sc": 2
+  },
+  "mgSlug": "random-source-haible-tau-pipe-phaser",
+  "site": "randomsource.net",
+  "hp": 0,
+  "price": 0,
+  "name": "Tau Pipe Phaser",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Phaser",
+    "DIY"
+  ],
+  "mfr": "Jürgen Haible",
+  "id": "taupipe",
+  "negotiating": false,
+  "hidden": true,
+  "who": "keijo",
+  "extra": {
+    "pull": {
+      "q": "Jürgen Haible's legendary redesign of the Tau 'The Pipe' Flanger — actually a phaser, using twenty all-pass filter stages.",
+      "src": "Random*Source",
+      "url": "https://randomsource.net/haible/eurorack"
+    },
+    "quotes": [
+      {
+        "t": "Sold as a DIY build. HP and panel are the builder's own — details to follow when it is listed for sale.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Haible Tau Pipe Phaser — the design",
+        "url": "https://modulargrid.net/e/random-source-haible-tau-pipe-phaser"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Haible's twenty-stage phaser, a rebuild of the Tau Pipe. DIY build; not yet for sale.",
+    "fi": "Haiblen kaksikymmenasteinen vaiheistin, Tau Pipen uudelleenrakennus. DIY-rakennelma; ei vielä myynnissä.",
+    "sv": "Haibles tjugostegsfaser, en ombyggnad av Tau Pipe. DIY-bygge; inte till salu ännu."
+  }
+}

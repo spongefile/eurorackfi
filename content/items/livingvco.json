@@ -1,0 +1,73 @@
+{
+  "parts": {
+    "k": 14,
+    "j": 20,
+    "sl": 0,
+    "led": 0,
+    "sc": 6
+  },
+  "mgSlug": "random-source-haible-living-vcos",
+  "site": "randomsource.net",
+  "hp": 42,
+  "price": 300,
+  "name": "Living VCO",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "DIY",
+    "Analogue"
+  ],
+  "mfr": "Jürgen Haible",
+  "id": "livingvco",
+  "negotiating": false,
+  "who": "keijo",
+  "extra": {
+    "power": "+12V 150mA · −12V 125mA",
+    "depth": "needs 70mm of clearance",
+    "pull": {
+      "q": "Jürgen Haible's goal was to build a set of VCOs that have the untamed bass range power of early EMS and Moog VCOs, but which are tracking a keyboard voltage over 5 or more octaves nevertheless.",
+      "src": "Random*Source",
+      "url": "https://randomsource.net/haible/eurorack"
+    },
+    "quotes": [
+      {
+        "t": "Three EMS VCS3-like VCOs and a driver board with portamento and vibrato. Saw, pulse, triangle and sine from each.",
+        "s": "Keijo"
+      },
+      {
+        "t": "Sold here as a DIY build, brand new. PCBs from the 2014 Barcode/LogicGate run; the auxiliary boards and the front panel are the builder's own design. Transistor arrays are loosely matched so the three track alike; tempco fitted; pretuned to 20Hz at the bottom of the range. Power cables included.",
+        "s": "Worth knowing"
+      },
+      {
+        "t": "Very deep for Eurorack — the case needs at least 70mm behind the panel.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Random*Source",
+        "title": "Haible Living VCOs — the design, in Haible's own words",
+        "url": "https://randomsource.net/haible/eurorack"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Random*Source Haible Living VCOs — specs and racks",
+        "url": "https://modulargrid.net/e/random-source-haible-living-vcos"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Haible Living VCOs and AM",
+        "by": "Navicore · YouTube",
+        "url": "https://www.youtube.com/watch?v=M4cpFW0V48U"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Three analogue oscillators built to do one thing most modern VCOs are designed not to: drift against each other. Jürgen Haible's design puts three EMS-VCS3-style cores on one board with a driver section for portamento and vibrato, tracking 1V/oct over five octaves while still beating in the bass the way early EMS and Moog oscillators did. Saw, pulse, triangle and sine from each, so one module is a full three-voice detuned stack. 42HP, and deep — allow 70mm behind the panel. A DIY build, brand new, on the 2014 Barcode/LogicGate PCBs with the builder's own auxiliary boards and front panel; transistor arrays loosely matched so the three track alike, tempco fitted, pretuned to 20Hz at the bottom. Power cables included.",
+    "fi": "Kolme analogista oskillaattoria, jotka on rakennettu tekemään sitä mitä useimmat nykyaikaiset VCO:t on suunniteltu välttämään: ajelehtimaan toistensa suhteen. Jürgen Haiblen suunnitelma asettaa kolme EMS VCS3 -tyyppistä ydintä yhdelle levylle ja lisää ohjainosan portamentolle ja vibratolle; ne seuraavat 1V/okt viiden oktaavin yli mutta huojuvat bassoalueella kuten varhaiset EMS- ja Moog-oskillaattorit. Saha, pulssi, kolmio ja sini jokaisesta, joten yksi moduuli on kokonainen kolmiääninen viritetty pino. 42HP ja syvä — varaa 70 mm paneelin taakse. DIY-rakennelma, uusi, vuoden 2014 Barcode/LogicGate-piirilevyillä ja rakentajan omilla lisälevyillä ja etupaneelilla; transistoriryhmät löyhästi sovitettu niin että kolme seuraavat samalla tavalla, tempco asennettu, esiviritetty 20 Hz:iin alarajalla. Virtakaapelit mukana.",
+    "sv": "Tre analoga oscillatorer byggda för att göra det som de flesta moderna VCO:er är konstruerade att undvika: driva mot varandra. Jürgen Haibles konstruktion sätter tre kärnor av EMS VCS3-typ på ett kort med en styrsektion för portamento och vibrato; de följer 1V/okt över fem oktaver men svävar i basen så som tidiga EMS- och Moog-oscillatorer gjorde. Sågtand, puls, triangel och sinus från var och en, så en modul är en hel trestämmig snedstämd stack. 42HP, och djup — räkna med 70 mm bakom panelen. Ett DIY-bygge, nytt, på 2014 års Barcode/LogicGate-kort med byggarens egna hjälpkort och frontpanel; transistorarrayerna löst matchade så att de tre följer lika, tempco monterad, förstämd till 20 Hz i botten. Strömkablar ingår."
+  }
+}
