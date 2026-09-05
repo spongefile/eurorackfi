@@ -94,7 +94,7 @@
     "sv": "Helanalog VCO i 12HP, byggd på dubbel-VCA-kärnan från Microvolt 3900. Signalen går genom en kedja av vågformare i stället för en enda: blade böjer ramp och puls, fragments är en analog nedsamplare som krossar vågen, timbre viker den. Sex separata utgångar — sinus, sågtand, blade, puls, fragments och timbre — så flera steg kan tas ut samtidigt. Hard sync, linjär och exponentiell FM, temperaturkompenserad. Ge den tio minuter att bli varm innan stämningen sätter sig. Utgått ur Pittsburghs sortiment."
   },
   "id": "primaryosc",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Oscillator"
   ],

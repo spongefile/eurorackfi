@@ -63,11 +63,12 @@
     "sv": "Trelägens gate: VCA, 12dB Sallen-Key-lågpass eller en äkta low-pass gate som blandar båda. Självsvängande resonans, vactrolbaserad respons."
   },
   "id": "lpg",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Filter",
     "VCA",
     "Lowpass"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "hidden": true
 }
