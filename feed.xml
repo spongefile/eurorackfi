@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-05T14:18:11+03:00</updated>
+  <updated>2026-09-05T16:18:08+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/fmogre</id>
+    <title>WSYnth / Timo Rozendal FM Ogre ×6 — 400 €</title>
+    <link href="https://eurorack.fi/#/m/fmogre"/>
+    <updated>2026-09-05T16:18:08+03:00</updated>
+    <summary>Kuusi nollan läpi menevää FM-operaattoria yhdellä 48HP:n paneelilla — Yamaha DX -äänen rakennuspalikat Eurorack-muodossa, jokainen patchattavissa mihin tahansa toiseen. Jokainen operaattori on täysi FM Ogre: siniytimen taajuutta tai vaihetta voi moduloida suoraan nollan läpi negatiiviselle taajuudelle, takaisinkytkentänuppi antaa itsemodulaation, tulot 1V/okt:lle ja lineaariselle FM:lle, Sample-kytkin tekee mistä tahansa ulkoisesta signaalista kantoaallon, SYNC-tulo jäädyttää puskurin pätkimiseen ja rakeisiin, ja LoFi on bittimurskain. Kolme LEDiä per operaattori näyttävät sykkeen, negatiivisen vaiheen ja negatiivisen taajuuden. DIY-rakennelma, uusi, rakentajan omalle yhdelle piirilevylle: dsPIC ja kaksi 16-bittistä DAC:ia per operaattori, ja virransyöttö tehty niin että kuusi vievät noin 200–300 mA eikä kuusi kertaa alkuperäistä. DX-tyylisen algoritmin kytkeminen vaatii attenuvertereitä tai kertojia operaattorien väliin, ja ne hankit itse.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/livingvco</id>
     <title>Jürgen Haible Living VCO — 300 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/fluentpet"/>
     <updated>2026-08-27T14:00:57+03:00</updated>
     <summary>Kuusi äänitettävää painiketta ja kolme toisiinsa liittyvää HexTile-mattoa. Nauhoita noin sekunti painiketta kohti, eläin astuu sen päälle, ääni soi. Myydään keinona opettaa koira tai kissa puhumaan, ja jotkut ovat siinä oikeasti onnistuneet — mutta kyse on yhtä lailla kuudesta halvasta samplesoittimesta erittäin isoilla liipaisimilla, mikä ei tee siitä tämän sivuston epämodulaarisinta tavaraa. Varhainen setti: matot ovat kuvioituja eivätkä yksivärisiä, ja painikkeet ovat kovaäänisempää Speak Up! -uudistusta edeltävää mallia. Alkuperäinen laatikko ja tarra-arkki mukana.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/toolbox</id>
-    <title>Pittsburgh Modular Toolbox — 60 €</title>
-    <link href="https://eurorack.fi/#/m/toolbox"/>
-    <updated>2026-08-27T11:28:13+03:00</updated>
-    <summary>Neljä pientä työkalua 6HP:ssä: säädettävä slew, kohinalähde, sample and hold ja jännitteen kääntäjä. Mikään näistä ei ole hohdokasta ja kaikkia tarvitsee siinä vaiheessa kun patchi on puolivälissä. Loppuunmyyty Pittsburghilta.</summary>
   </entry>
 </feed>
