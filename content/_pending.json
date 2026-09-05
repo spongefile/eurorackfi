@@ -1,8 +1,16 @@
 {
   "items": [
+    "livingvco",
     "mpc500",
     "quadraverb",
     "therapkid"
   ],
-  "wants": []
+  "wants": [
+    {
+      "seller": "keijo",
+      "index": 0,
+      "label": "Rossum Electro-Music — any module",
+      "reason": "placeholder-text"
+    }
+  ]
 }
