@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 6,
+    "j": 24,
+    "sl": 0,
+    "led": 40,
+    "sc": 30
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/groundcontrol.jpg",
+  "mgSlug": "endorphin-es-ground-control-silver",
+  "site": "endorphin.es",
+  "hp": 42,
+  "price": 390,
+  "name": "Ground Control (silver) + case and PSU",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "MIDI",
+    "Case"
+  ],
+  "mfr": "Endorphin.es",
+  "id": "groundcontrol",
+  "negotiating": false,
+  "who": "jgoney",
+  "extra": {
+    "power": "+12V 420mA when racked · runs from its own adapter in the case",
+    "depth": "25mm",
+    "pull": {
+      "q": "Ground Control is a powerful performance sequencer for CV/Gate signals, drum triggers as well as MIDI and USB-MIDI devices.",
+      "src": "Endorphin.es",
+      "url": "https://www.endorphin.es/modules/p/ground-control"
+    },
+    "quotes": [
+      {
+        "t": "8 drum gate tracks plus 3 melodic CV/gate tracks. Also available racked in an aluminium desktop case, with or without power adapter.",
+        "s": "Endorphin.es"
+      },
+      {
+        "t": "This is the silver-panel version, sold with Endorphin.es' standalone case and power supply — so it works on a desk with no rack at all, and the module also acts as a power supply for a small system, the same way Shuttle Control does.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Endorphin.es",
+        "title": "Ground Control — the manufacturer's page",
+        "url": "https://www.endorphin.es/modules/p/ground-control"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Endorphin.es Ground Control (silver) — specs and racks",
+        "url": "https://modulargrid.net/e/endorphin-es-ground-control-silver"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Endorphin.es Ground Control review — Eurorack sequencer",
+        "by": "loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=XhriE0MKjp0"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "An eleven-track performance sequencer — eight drum gate tracks and three melodic CV/gate tracks — with MIDI and USB-MIDI in and out, so it drives a rack, a drum machine and a laptop from the same buttons. Sixteen pads per pattern with per-track length, mutes on a bus, and pattern changes that can wait for the bar. This is the silver panel, sold with Endorphin.es' standalone aluminium case and power adapter: it runs on a desk with no rack, and it can also power a few modules alongside it. 42HP if you rack it instead.",
+    "fi": "Yksitoistaraitainen esiintymissekvensseri — kahdeksan rumpugate-raitaa ja kolme melodista CV/gate-raitaa — MIDI- ja USB-MIDI-liitännöin sisään ja ulos, joten se ohjaa telinettä, rumpukonetta ja läppäriä samoista napeista. Kuusitoista padia per kuvio, raitakohtainen pituus, mykistykset väylällä ja kuvionvaihdot jotka voivat odottaa tahdin loppuun. Tämä on hopeapaneeli, ja mukana on Endorphin.esin oma alumiininen pöytäkotelo ja verkkolaite: se toimii pöydällä ilman telinettä, ja se voi myös syöttää virtaa muutamalle moduulille vierellään. 42HP jos sen laittaa telineeseen.",
+    "sv": "En elvaspårig performance-sekvensiator — åtta trumgate-spår och tre melodiska CV/gate-spår — med MIDI och USB-MIDI in och ut, så den styr ett rack, en trummaskin och en laptop från samma knappar. Sexton pads per mönster med längd per spår, mutes på en buss och mönsterbyten som kan vänta på takten. Detta är silverpanelen, såld med Endorphin.es egen aluminiumlåda och nätadapter: den går på ett skrivbord utan rack, och den kan även driva några moduler bredvid sig. 42HP om du rackar den i stället."
+  }
+}

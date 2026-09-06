@@ -1,0 +1,24 @@
+{
+  "key": "jgoney",
+  "name": "jgoney",
+  "dot": "#3E93AD",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/jgoney",
+  "wants": [
+    {
+      "type": "product",
+      "mfr": "Hexinverter Électronique",
+      "name": "Mindphaser",
+      "hp": 30,
+      "tone": "black",
+      "parts": {
+        "k": 14,
+        "j": 20,
+        "sl": 0,
+        "led": 6,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mindphaser.jpg"
+    }
+  ],
+  "form": "https://tally.so/r/PdxOrd"
+}

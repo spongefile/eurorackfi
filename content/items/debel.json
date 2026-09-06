@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 7,
+    "j": 12,
+    "sl": 0,
+    "led": 2,
+    "sc": 3
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/debel.jpg",
+  "mgSlug": "noise-engineering-debel-iteritas-alia",
+  "site": "noiseengineering.us",
+  "hp": 10,
+  "price": 240,
+  "name": "Debel Iteritas Alia",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Digital",
+    "Voice"
+  ],
+  "mfr": "Noise Engineering",
+  "id": "debel",
+  "negotiating": false,
+  "who": "jgoney",
+  "extra": {
+    "power": "+12V 100mA · −12V 15mA",
+    "depth": "25mm",
+    "pull": {
+      "q": "A hybrid additive phase-modulation voice inspired by some of our favorite synth sounds across the decades.",
+      "src": "Noise Engineering",
+      "url": "https://noiseengineering.us/products/debel-iteritas-alia/"
+    },
+    "quotes": [
+      {
+        "t": "Three synthesis algorithms span classic FM plucks and basses to all-out additive mayhem.",
+        "s": "Noise Engineering"
+      },
+      {
+        "t": "It is Alia hardware: the same module runs every firmware in Noise Engineering's Alia library, free, so it can become a different voice later.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Noise Engineering",
+        "title": "Debel Iteritas Alia — the manufacturer's page",
+        "url": "https://noiseengineering.us/products/debel-iteritas-alia/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Noise Engineering Debel Iteritas Alia — specs and racks",
+        "url": "https://modulargrid.net/e/noise-engineering-debel-iteritas-alia"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Debel Iteritas Alia — additive PM voice",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=BMDFeTRDswk"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A complete digital voice in 10HP: additive synthesis crossed with phase modulation, three algorithms running from DX-style plucks and basses to dense additive noise. Pitch, tone, fold and decay under knobs and CV, a built-in envelope so it plays from a single trigger. It is Alia hardware, which means the firmware is swappable — Noise Engineering's whole Alia library loads onto it for nothing, so the module can be a different voice next year.",
+    "fi": "Täydellinen digitaalinen ääni 10HP:ssä: additiivinen synteesi ristiin vaihemodulaation kanssa, kolme algoritmia DX-tyylisistä nypäytyksistä ja bassoista tiheään additiiviseen kohinaan. Sävelkorkeus, sointi, taitto ja vaimennus nupeissa ja CV:ssä, sisäänrakennettu verhokäyrä joten se soi yhdestä liipaisusta. Alia-rautaa, eli firmware on vaihdettavissa — Noise Engineeringin koko Alia-kirjasto latautuu siihen ilmaiseksi, joten moduuli voi olla eri ääni ensi vuonna.",
+    "sv": "En komplett digital röst på 10HP: additiv syntes korsad med fasmodulation, tre algoritmer från DX-liknande plock och basar till tät additiv störning. Tonhöjd, klang, vikning och avklingning på rattar och CV, en inbyggd envelop så den spelar från en enda trigger. Det är Alia-hårdvara, vilket betyder att firmware kan bytas — hela Noise Engineerings Alia-bibliotek laddas in gratis, så modulen kan vara en annan röst nästa år."
+  }
+}

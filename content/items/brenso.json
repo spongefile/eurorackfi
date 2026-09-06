@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 22,
+    "j": 34,
+    "sl": 0,
+    "led": 6,
+    "sc": 8
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/brenso.jpg",
+  "mgSlug": "frap-tools-brenso",
+  "site": "frap.tools",
+  "hp": 30,
+  "price": 440,
+  "name": "Brenso",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "Complex",
+    "Analogue"
+  ],
+  "mfr": "Frap Tools",
+  "id": "brenso",
+  "negotiating": false,
+  "who": "jgoney",
+  "extra": {
+    "power": "+12V 325mA · −12V 235mA",
+    "depth": "38mm",
+    "pull": {
+      "q": "BRENSO is Frap Tools' primary analog source of articulated waveforms whose degree of entanglement can be precisely set by the musician.",
+      "src": "Frap Tools",
+      "url": "https://frap.tools/products/brenso/"
+    },
+    "quotes": [
+      {
+        "t": "Two triangle-core oscillators with frequency modulation, and a timbre section with two wavefolders, a waveshaper and a PWM circuit, plus amplitude and ring modulation through a four-quadrant multiplier.",
+        "s": "Frap Tools"
+      },
+      {
+        "t": "325mA on +12V — a hungry module. Check the supply has room before you buy.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Frap Tools",
+        "title": "Brenso — the manufacturer's page and manual",
+        "url": "https://frap.tools/products/brenso/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Frap Tools Brenso — specs and racks",
+        "url": "https://modulargrid.net/e/frap-tools-brenso"
+      }
+    ],
+    "videos": [
+      {
+        "title": "The Frap Tools Brenso is an extreme FM oscillator",
+        "by": "Blush Response · YouTube",
+        "url": "https://www.youtube.com/watch?v=dlFw2iUjUKs"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A complex oscillator in the West Coast sense: two triangle-core VCOs where the second modulates the first, and a timbre section that does the damage — two wavefolders, a waveshaper, a PWM circuit, and a four-quadrant multiplier for amplitude and ring modulation. What Frap Tools add is precision: every degree of entanglement between the two cores is on a knob or a jack, so the same patch can be a clean sine or a tearing FM voice by moving one control. 30HP, 38mm deep, and 325mA on +12V.",
+    "fi": "Kompleksioskillaattori länsirannikon merkityksessä: kaksi kolmioytimistä VCO:ta, joista toinen moduloi ensimmäistä, ja äänenvärilohko joka tekee tuhon — kaksi aaltotaittajaa, aallonmuokkain, PWM-piiri ja nelikvadranttikertoja amplitudi- ja rengasmodulaatioon. Frap Toolsin lisä on tarkkuus: jokainen kietoutumisen aste kahden ytimen välillä on nupissa tai liittimessä, joten sama patch voi olla puhdas sini tai repivä FM-ääni yhtä säädintä kääntämällä. 30HP, 38 mm syvä ja 325 mA +12V:llä.",
+    "sv": "En komplex oscillator i västkustens mening: två VCO:er med triangelkärna där den andra modulerar den första, och en klangsektion som gör skadan — två vågvikare, en vågformare, en PWM-krets och en fyrkvadrantmultiplikator för amplitud- och ringmodulation. Det Frap Tools tillför är precision: varje grad av sammanflätning mellan de två kärnorna sitter på en ratt eller ett uttag, så samma patch kan vara en ren sinus eller en rivande FM-röst genom att vrida ett enda reglage. 30HP, 38 mm djup och 325 mA på +12V."
+  }
+}
