@@ -4,7 +4,28 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-05T16:18:08+03:00</updated>
+  <updated>2026-09-06T20:54:59+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/groundcontrol</id>
+    <title>Endorphin.es Ground Control (silver) + case and PSU — 390 €</title>
+    <link href="https://eurorack.fi/#/m/groundcontrol"/>
+    <updated>2026-09-06T20:54:59+03:00</updated>
+    <summary>Yksitoistaraitainen esiintymissekvensseri — kahdeksan rumpugate-raitaa ja kolme melodista CV/gate-raitaa — MIDI- ja USB-MIDI-liitännöin sisään ja ulos, joten se ohjaa telinettä, rumpukonetta ja läppäriä samoista napeista. Kuusitoista padia per kuvio, raitakohtainen pituus, mykistykset väylällä ja kuvionvaihdot jotka voivat odottaa tahdin loppuun. Tämä on hopeapaneeli, ja mukana on Endorphin.esin oma alumiininen pöytäkotelo ja verkkolaite: se toimii pöydällä ilman telinettä, ja se voi myös syöttää virtaa muutamalle moduulille vierellään. 42HP jos sen laittaa telineeseen.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/debel</id>
+    <title>Noise Engineering Debel Iteritas Alia — 240 €</title>
+    <link href="https://eurorack.fi/#/m/debel"/>
+    <updated>2026-09-06T20:54:59+03:00</updated>
+    <summary>Täydellinen digitaalinen ääni 10HP:ssä: additiivinen synteesi ristiin vaihemodulaation kanssa, kolme algoritmia DX-tyylisistä nypäytyksistä ja bassoista tiheään additiiviseen kohinaan. Sävelkorkeus, sointi, taitto ja vaimennus nupeissa ja CV:ssä, sisäänrakennettu verhokäyrä joten se soi yhdestä liipaisusta. Alia-rautaa, eli firmware on vaihdettavissa — Noise Engineeringin koko Alia-kirjasto latautuu siihen ilmaiseksi, joten moduuli voi olla eri ääni ensi vuonna.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/brenso</id>
+    <title>Frap Tools Brenso — 440 €</title>
+    <link href="https://eurorack.fi/#/m/brenso"/>
+    <updated>2026-09-06T20:54:59+03:00</updated>
+    <summary>Kompleksioskillaattori länsirannikon merkityksessä: kaksi kolmioytimistä VCO:ta, joista toinen moduloi ensimmäistä, ja äänenvärilohko joka tekee tuhon — kaksi aaltotaittajaa, aallonmuokkain, PWM-piiri ja nelikvadranttikertoja amplitudi- ja rengasmodulaatioon. Frap Toolsin lisä on tarkkuus: jokainen kietoutumisen aste kahden ytimen välillä on nupissa tai liittimessä, joten sama patch voi olla puhdas sini tai repivä FM-ääni yhtä säädintä kääntämällä. 30HP, 38 mm syvä ja 325 mA +12V:llä.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/fmogre</id>
     <title>WSYnth / Timo Rozendal FM Ogre ×6 — 400 €</title>
@@ -158,26 +179,5 @@
     <link href="https://eurorack.fi/#/m/dixie2"/>
     <updated>2026-08-28T23:55:51+03:00</updated>
     <summary>Kolmioydinpohjainen analoginen oskillaattori 6HP:ssä, ja yksi parhaista pienistä VCO:ista. Sini, kolmio, saha ja pulssi ulos yhtä aikaa, thru-zero-FM, kova ja pehmeä sync, ja kytkimellä se laskeutuu LFO-alueelle. Vireys pitää koko alalta, mikä on kolmioytimen koko pointti.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/a107</id>
-    <title>Doepfer A-107 Multitype Morphing Filter — 170 €</title>
-    <link href="https://eurorack.fi/#/m/a107"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Viisinapainen jännitteellä ohjattava suodin, joka perustuu analogiseen switched capacitor -piiriin. Käytössä on 30 suodintyyppiä — alipäästö, ylipäästö, kaistanpäästö, notch ja yhdistelmiä — ja poikkeuksellisesti tyyppien välillä voi liukua CV:llä sen sijaan että niitä vaihdettaisiin kytkimellä. Erilliset CV-tulot tyypille, resonanssille ja rajataajuudelle, joten suotimen luonne on itsessään modulaatiokohde. 26HP ja aito erikoisuus Doepferin mallistossa.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/quadrax</id>
-    <title>Intellijel Quadrax — 300 €</title>
-    <link href="https://eurorack.fi/#/m/quadrax"/>
-    <updated>2026-08-28T10:01:20+03:00</updated>
-    <summary>Neljä funktiogeneraattoria 14HP:ssä, kukin erikseen joko attack-decay-verhokäyrä, attack-hold-release, syklinen verhokäyrä, pulssipurskegeneraattori tai tahtiin synkattava bipolaarinen LFO. Nousu, lasku ja muoto kanavaa kohti, ja muoto pyyhkäisee logaritmisesta noususta lineaarisen kautta eksponentiaaliseen. Neljä CV-tuloa kytkeytyy mihin tahansa parametriin modulaatiomatriisin kautta, ja kanavat ketjuuntuvat toistensa liipaisimesta, nousun lopusta tai laskun lopusta monivaiheisiksi verhokäyriksi. Myydään yksin — ei Qx-laajenninta.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/fluentpet</id>
-    <title>FluentPet FluentPet HexTile kit (early) — 15 €</title>
-    <link href="https://eurorack.fi/#/m/fluentpet"/>
-    <updated>2026-08-27T14:00:57+03:00</updated>
-    <summary>Kuusi äänitettävää painiketta ja kolme toisiinsa liittyvää HexTile-mattoa. Nauhoita noin sekunti painiketta kohti, eläin astuu sen päälle, ääni soi. Myydään keinona opettaa koira tai kissa puhumaan, ja jotkut ovat siinä oikeasti onnistuneet — mutta kyse on yhtä lailla kuudesta halvasta samplesoittimesta erittäin isoilla liipaisimilla, mikä ei tee siitä tämän sivuston epämodulaarisinta tavaraa. Varhainen setti: matot ovat kuvioituja eivätkä yksivärisiä, ja painikkeet ovat kovaäänisempää Speak Up! -uudistusta edeltävää mallia. Alkuperäinen laatikko ja tarra-arkki mukana.</summary>
   </entry>
 </feed>
