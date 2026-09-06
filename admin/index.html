@@ -39,7 +39,49 @@
     function loadCms() {
       var s = document.createElement("script");
       s.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+      s.onload = registerWidgets;
       document.body.appendChild(s);
+    }
+
+    /* "urlbutton": a string field with an Open link beside it, for the two
+       URL fields the admin otherwise has to copy-paste into a new tab
+       (seller link, seller's own form). Registered in onload — after the
+       bundle evaluates, before the editor renders any field. createClass
+       and h are decap's own compat globals for exactly this. */
+    function registerWidgets() {
+      if (!window.CMS || !window.createClass || !window.h) return;
+      var Control = createClass({
+        handleChange: function (e) { this.props.onChange(e.target.value); },
+        render: function () {
+          var value = this.props.value || "";
+          var openable = /^https?:\/\//i.test(value);
+          return h("div", { style: { display: "flex", gap: "8px", alignItems: "stretch" } },
+            h("input", {
+              type: "text",
+              id: this.props.forID,
+              className: this.props.classNameWrapper,
+              value: value,
+              onChange: this.handleChange,
+              style: { flex: "1 1 auto" }
+            }),
+            /* a disabled-looking span when empty/not-a-URL, a real link
+               otherwise — never a button that silently does nothing */
+            openable
+              ? h("a", {
+                  href: value, target: "_blank", rel: "noopener noreferrer",
+                  style: { flex: "0 0 auto", display: "flex", alignItems: "center",
+                    padding: "0 14px", background: "#798291", color: "#fff",
+                    borderRadius: "5px", textDecoration: "none", fontSize: "14px" }
+                }, "Avaa →")
+              : h("span", {
+                  style: { flex: "0 0 auto", display: "flex", alignItems: "center",
+                    padding: "0 14px", background: "#eff0f4", color: "#b3b9c4",
+                    borderRadius: "5px", fontSize: "14px" }
+                }, "Avaa →")
+          );
+        }
+      });
+      CMS.registerWidget("urlbutton", Control);
     }
 
     var m = /[#&]erfi_login=([^&]+)/.exec(location.hash || "");
