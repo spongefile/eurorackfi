@@ -2464,6 +2464,7 @@ function detailHTML(m){
       var o=byId(r[0]); if(!o) return "";
       var op=SELLER_BY_KEY[o.who];
       return '<button class="card" data-go="'+o.id+'"><div class="shot">'+shotHTML(o,182)+'</div>'+
+        (o.negotiating?'<span class="negribbon"><span>'+esc(T2.negRibbon)+'</span></span>':'')+
         '<div class="cbody"><div class="mfr">'+esc(o.mfr)+'</div><h3>'+esc(o.name)+'</h3>'+
         '<p class="why">'+esc(r[1])+'</p>'+
         '<div class="tags"><span class="ownerpill haspop" data-pop="rel-'+o.id+'"><i style="background:'+op.dot+'"></i>'+esc(op.name)+
