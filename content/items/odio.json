@@ -64,7 +64,7 @@
     "sv": "Ett class-compliant USB-ljudinterface på 4HP — två in, två ut, på modulärnivå. Burr-Brown-omvandlare i 48 kHz/16 bitar, DC-kopplade utgångar och 10V topp-till-topp, så den flyttar ljud och långsam CV mellan racket och en dator utan nivåanpassning emellan. Ingen drivrutin på Linux, macOS, Windows eller iOS; en iPad kräver Camera Connection Kit. Ingångarnas lysdioder visar nivån i färg — blått är bra, violett är toppar, gult är klippning. Audio Damage har lagt ner sin eurorackserie, så begagnat är enda vägen."
   },
   "id": "odio",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Output",
     "Interface"

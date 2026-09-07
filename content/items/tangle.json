@@ -23,7 +23,7 @@
   ],
   "mfr": "ALM Busy Circuits",
   "id": "tangle",
-  "negotiating": true,
+  "negotiating": false,
   "who": "kari",
   "extra": {
     "power": "+12V 80mA · −12V 80mA",
@@ -67,5 +67,6 @@
     "en": "Four linear VCAs in 8HP, on 2164 chips, which is the part that makes them clean — no bleed when closed, and low enough noise to sit on a signal path you actually listen to. Each channel has an input, a level CV input with its own attenuator, and an output, plus a mix output that sums all four. The level inputs are normalled to 5V, so with nothing patched into them the knobs are a plain four-channel mixer; patch an envelope in and that channel becomes a VCA. DC-coupled, so it works on control voltages as readily as audio. Good condition.",
     "fi": "Neljä lineaarista VCA:ta 8HP:ssä, 2164-piireillä — juuri se osa tekee niistä puhtaita: ei vuotoa suljettuna, ja kohina niin matala että ne voi laittaa signaalitielle jota oikeasti kuuntelee. Jokaisella kanavalla on tulo, tason CV-tulo omalla vaimentimella ja lähtö, sekä mix-lähtö joka summaa kaikki neljä. Tasotulot on normalisoitu 5 volttiin, joten kun niihin ei ole kytketty mitään, nupit ovat tavallinen nelikanavainen mikseri; kytke verhokäyrä sisään ja kanavasta tulee VCA. DC-kytketty, joten toimii ohjausjännitteillä yhtä hyvin kuin äänellä. Hyväkuntoinen.",
     "sv": "Fyra linjära VCA:er på 8HP, byggda på 2164-kretsar — det är den delen som gör dem rena: inget läckage i stängt läge, och tillräckligt lågt brus för en signalväg man faktiskt lyssnar på. Varje kanal har en ingång, en nivå-CV-ingång med egen dämpare och en utgång, plus en mixutgång som summerar alla fyra. Nivåingångarna är normaliserade till 5V, så med inget inkopplat är rattarna en vanlig fyrkanalsmixer; koppla in en envelop så blir kanalen en VCA. DC-kopplad, så den fungerar lika bra på styrspänningar som på ljud. Gott skick."
-  }
+  },
+  "hidden": true
 }

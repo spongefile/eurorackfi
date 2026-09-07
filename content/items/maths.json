@@ -69,7 +69,7 @@
     "sv": "Den funktionsgenerator de flesta modulärsystem till slut skaffar, och med rätta. Två spänningsstyrda slew-kanaler med variabel respons, två attenuvertrar mellan dem och en summeringsbuss — alltså en envelope, en LFO, en slew-begränsare, en mixer, en lag-processor och en logikkälla beroende på koppling. Att koppla den till sig själv är hela poängen: manualen är en samling illustrerade patchrecept snarare än en funktionslista."
   },
   "id": "maths",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Modulation",
     "Utility"
