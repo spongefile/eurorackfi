@@ -629,6 +629,9 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 .wishsection:first-of-type{border-top:none}
 .wishsection .nm{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.15rem; margin-bottom:1rem}
 .wishsection .nm i{width:10px; height:10px; border-radius:50%; flex:0 0 auto}
+.wishcontact{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:400; margin-left:.5rem;
+  padding:.32rem .6rem; border:1px solid var(--line2); background:var(--panel); color:var(--ink2)}
+.wishcontact:hover{border-color:var(--accent); color:var(--accent)}
 .wish-imggrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:1rem}
 .wishtile{background:var(--bg2); border:1px solid var(--line); display:flex; flex-direction:column;
   align-items:center; justify-content:center; padding:.9rem .6rem; min-height:170px; transition:border-color .15s}
@@ -2696,7 +2699,13 @@ function wishHTML(){
       .map(function(p){
       return '<a class="wishsection" id="wish-'+esc(p.key)+'" href="#/s/'+p.key+'"'+
         ' style="border-left-color:'+p.dot+'">'+
-        '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+'</div>'+
+        /* a BUTTON, not a nested <a> — the section itself is already an
+           anchor, and the HTML parser splits nested anchors apart. The
+           delegated handler below opens the form and keeps the click off
+           the section link. Label reuses the nav's reviewed word. Every
+           seller has a form to land on: their own, or the shared one. */
+        '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
+        '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.nav[3])+'</button></div>'+
         (p.wants.length
           ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
           : '<p class="wishempty">'+esc(T2.noWishes)+'</p>')+
@@ -2704,6 +2713,14 @@ function wishHTML(){
     '<p class="wishnote">'+esc(T2.wishK)+'</p>'+
     '</div>';
 }
+/* The contact button sits inside the section link, so its click must not
+   fall through and navigate to the seller's list. New tab like every
+   other outbound form link on the site. */
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".wishcontact"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  window.open(b.getAttribute("data-href"),"_blank","noopener");
+});
 
 /* ---------- FAQ page ---------- */
 /* Two-column row per question — 64px mono gutter carrying the zero-padded
