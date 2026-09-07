@@ -22,7 +22,7 @@
   ],
   "mfr": "Dnipro Modular",
   "id": "qtone",
-  "negotiating": false,
+  "negotiating": true,
   "who": "spongefile",
   "extra": {
     "power": "+12V 45mA · −12V 22mA",

@@ -60,5 +60,6 @@
     "Other",
     "Headphone"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "haggle": true
 }
