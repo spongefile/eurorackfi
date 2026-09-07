@@ -1291,7 +1291,7 @@ var T = {
     sItems:"kohdetta", sHp:"HP", sShelves:"hyllyä",
     scale:"Mittakaavassa", hover:"osoita hiirellä",
     search:"hae valmistaja tai moduuli",
-    soldMark:"Myyty", wishH:"Toiveet", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
+    soldMark:"Myyty", wishH:"Toiveet", wishContact:"Ota yhteyttä", wishK:"Myös osavaihto + rahaa", swapFor:"Vaihdossa kelpaa:", noWishes:"Ei toiveita juuri nyt.",
     ofItems:"/ 29 kohdetta", onScreen:"€ näkyvissä",
     buyOrTrade:"Osta, vaihda tai kysy", moreInfo:"Lisätietoja", buyShop:"Osta kaupasta", buyShopNote:"Avautuu kauppaan uuteen välilehteen.", msgExternalNote:"Avautuu myyjän omalle sivulle uuteen välilehteen. Mainitse moduuli: {name}.", msgNameNote:"Mainitse moduuli: {name}.", hunting:"hakee", fmtLabel:"Muoto", shelfLabel:"Hylly", typeLabel:"Tyyppi",
     emptyTools:"Ei vielä mitään. Työkalut, rakennussarjat, anturit ja osat tulevat tänne.",
@@ -1332,7 +1332,7 @@ var T = {
     sItems:"objekt", sHp:"HP", sShelves:"hyllor",
     scale:"Skalenligt", hover:"hovra",
     search:"sök tillverkare eller modul",
-    soldMark:"Såld", wishH:"Önskemål", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
+    soldMark:"Såld", wishH:"Önskemål", wishContact:"Kontakt", wishK:"Även delbyte + kontanter", swapFor:"Byter mot:", noWishes:"Inga önskemål just nu.",
     ofItems:"/ 29 objekt", onScreen:"€ på skärmen",
     buyOrTrade:"Köp, byt eller fråga", moreInfo:"Mer information", buyShop:"Köp i butiken", buyShopNote:"Öppnas i butiken i en ny flik.", msgExternalNote:"Öppnas på säljarens egen sida i en ny flik. Nämn modulen: {name}.", msgNameNote:"Nämn modulen: {name}.", hunting:"söker", fmtLabel:"Format", shelfLabel:"Hylla", typeLabel:"Typ",
     emptyTools:"Inget än. Verktyg, byggsatser, sensorer och delar hamnar här.",
@@ -1366,7 +1366,7 @@ var T = {
     sItems:"items", sHp:"HP", sShelves:"shelves",
     scale:"Drawn to scale", hover:"hover to find it below",
     search:"search maker or module",
-    soldMark:"Sold", wishH:"What each of us wants", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
+    soldMark:"Sold", wishH:"What each of us wants", wishContact:"Contact", wishK:"Partial trade + cash also works", swapFor:"Swapping for:", noWishes:"No wishes at the moment.",
     ofItems:"of 29 items", onScreen:"€ on screen",
     buyOrTrade:"Buy, trade, or message", moreInfo:"More info", buyShop:"Buy from the shop", buyShopNote:"Opens the shop in a new tab.", msgExternalNote:"Opens the seller's own page in a new tab. Mention the module: {name}.", msgNameNote:"Mention the module: {name}.", hunting:"is hunting for", fmtLabel:"Format", shelfLabel:"Shelf", typeLabel:"Type",
     emptyTools:"Nothing here yet. Tools, kits, sensors and parts land here when we have them.",
@@ -2702,10 +2702,10 @@ function wishHTML(){
         /* a BUTTON, not a nested <a> — the section itself is already an
            anchor, and the HTML parser splits nested anchors apart. The
            delegated handler below opens the form and keeps the click off
-           the section link. Label reuses the nav's reviewed word. Every
-           seller has a form to land on: their own, or the shared one. */
+           the section link. Every seller has a form to land on: their
+           own, or the shared one. */
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
-        '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.nav[3])+'</button></div>'+
+        '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.wishContact)+'</button></div>'+
         (p.wants.length
           ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
           : '<p class="wishempty">'+esc(T2.noWishes)+'</p>')+
