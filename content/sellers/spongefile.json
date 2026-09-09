@@ -126,22 +126,6 @@
     },
     {
       "type": "product",
-      "mfr": "Befaco",
-      "name": "Percall",
-      "hp": 12,
-      "tone": "alu",
-      "parts": {
-        "k": 8,
-        "j": 16,
-        "sl": 0,
-        "led": 4,
-        "sc": 4
-      },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/percall.jpg",
-      "hidden": true
-    },
-    {
-      "type": "product",
       "mfr": "Doepfer",
       "name": "A-196 PLL",
       "hp": 8,
