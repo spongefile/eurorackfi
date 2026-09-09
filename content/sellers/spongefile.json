@@ -7,21 +7,6 @@
     {
       "type": "product",
       "mfr": "ALM Busy Circuits",
-      "name": "MCO",
-      "hp": 6,
-      "tone": "alu",
-      "parts": {
-        "k": 1,
-        "j": 8,
-        "sl": 0,
-        "led": 0,
-        "sc": 1
-      },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco.jpg"
-    },
-    {
-      "type": "product",
-      "mfr": "ALM Busy Circuits",
       "name": "AXON-1",
       "hp": 4,
       "tone": "white",
@@ -141,36 +126,6 @@
     },
     {
       "type": "product",
-      "mfr": "Dnipro Modular",
-      "name": "Krait",
-      "hp": 6,
-      "tone": "black",
-      "parts": {
-        "k": 8,
-        "j": 5,
-        "sl": 0,
-        "led": 6,
-        "sc": 2
-      },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/krait.jpg"
-    },
-    {
-      "type": "product",
-      "mfr": "Instruo",
-      "name": "Tš-L",
-      "hp": 6,
-      "tone": "black",
-      "parts": {
-        "k": 7,
-        "j": 10,
-        "sl": 0,
-        "led": 1,
-        "sc": 2
-      },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ts-l.jpg"
-    },
-    {
-      "type": "product",
       "mfr": "Befaco",
       "name": "Percall",
       "hp": 12,
@@ -229,6 +184,51 @@
         "sc": 1
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/skopje.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "ALM Busy Circuits",
+      "name": "Pip Slope (mk II)",
+      "hp": 4,
+      "tone": "alu",
+      "parts": {
+        "k": 4,
+        "j": 6,
+        "sl": 0,
+        "led": 2,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/pipslope.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "ALM Busy Circuits",
+      "name": "Pip LFO",
+      "hp": 4,
+      "tone": "alu",
+      "parts": {
+        "k": 1,
+        "j": 9,
+        "sl": 0,
+        "led": 2,
+        "sc": 1
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/piplfo.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "ALM Busy Circuits",
+      "name": "MCO (mkII)",
+      "hp": 6,
+      "tone": "alu",
+      "parts": {
+        "k": 1,
+        "j": 8,
+        "sl": 0,
+        "led": 0,
+        "sc": 2
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco2.jpg"
     }
   ],
   "form": "https://tally.so/r/lbkgvB"
