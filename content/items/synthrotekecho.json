@@ -61,5 +61,6 @@
     "Delay"
   ],
   "who": "kalle",
-  "imgIsModularGrid": true
+  "imgIsModularGrid": true,
+  "hidden": true
 }
