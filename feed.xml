@@ -41,13 +41,6 @@
     <summary>Kolme analogista oskillaattoria, jotka on rakennettu tekemään sitä mitä useimmat nykyaikaiset VCO:t on suunniteltu välttämään: ajelehtimaan toistensa suhteen. Jürgen Haiblen suunnitelma asettaa kolme EMS VCS3 -tyyppistä ydintä yhdelle levylle ja lisää ohjainosan portamentolle ja vibratolle; ne seuraavat 1V/okt viiden oktaavin yli mutta huojuvat bassoalueella kuten varhaiset EMS- ja Moog-oskillaattorit. Saha, pulssi, kolmio ja sini jokaisesta, joten yksi moduuli on kokonainen kolmiääninen viritetty pino. 42HP ja syvä — varaa 70 mm paneelin taakse. DIY-rakennelma, uusi, vuoden 2014 Barcode/LogicGate-piirilevyillä ja rakentajan omilla lisälevyillä ja etupaneelilla; transistoriryhmät löyhästi sovitettu niin että kolme seuraavat samalla tavalla, tempco asennettu, esiviritetty 20 Hz:iin alarajalla. Virtakaapelit mukana.</summary>
   </entry>
   <entry>
-    <id>https://eurorack.fi/#/m/tangle</id>
-    <title>ALM Busy Circuits Tangle Quartet — 140 €</title>
-    <link href="https://eurorack.fi/#/m/tangle"/>
-    <updated>2026-09-04T23:22:05+03:00</updated>
-    <summary>Neljä lineaarista VCA:ta 8HP:ssä, 2164-piireillä — juuri se osa tekee niistä puhtaita: ei vuotoa suljettuna, ja kohina niin matala että ne voi laittaa signaalitielle jota oikeasti kuuntelee. Jokaisella kanavalla on tulo, tason CV-tulo omalla vaimentimella ja lähtö, sekä mix-lähtö joka summaa kaikki neljä. Tasotulot on normalisoitu 5 volttiin, joten kun niihin ei ole kytketty mitään, nupit ovat tavallinen nelikanavainen mikseri; kytke verhokäyrä sisään ja kanavasta tulee VCA. DC-kytketty, joten toimii ohjausjännitteillä yhtä hyvin kuin äänellä. Hyväkuntoinen.</summary>
-  </entry>
-  <entry>
     <id>https://eurorack.fi/#/m/qtone</id>
     <title>Dnipro Modular qTone — 200 €</title>
     <link href="https://eurorack.fi/#/m/qtone"/>
@@ -179,5 +172,12 @@
     <link href="https://eurorack.fi/#/m/dixie2"/>
     <updated>2026-08-28T23:55:51+03:00</updated>
     <summary>Kolmioydinpohjainen analoginen oskillaattori 6HP:ssä, ja yksi parhaista pienistä VCO:ista. Sini, kolmio, saha ja pulssi ulos yhtä aikaa, thru-zero-FM, kova ja pehmeä sync, ja kytkimellä se laskeutuu LFO-alueelle. Vireys pitää koko alalta, mikä on kolmioytimen koko pointti.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/a107</id>
+    <title>Doepfer A-107 Multitype Morphing Filter — 170 €</title>
+    <link href="https://eurorack.fi/#/m/a107"/>
+    <updated>2026-08-28T23:55:51+03:00</updated>
+    <summary>Viisinapainen jännitteellä ohjattava suodin, joka perustuu analogiseen switched capacitor -piiriin. Käytössä on 30 suodintyyppiä — alipäästö, ylipäästö, kaistanpäästö, notch ja yhdistelmiä — ja poikkeuksellisesti tyyppien välillä voi liukua CV:llä sen sijaan että niitä vaihdettaisiin kytkimellä. Erilliset CV-tulot tyypille, resonanssille ja rajataajuudelle, joten suotimen luonne on itsessään modulaatiokohde. 26HP ja aito erikoisuus Doepferin mallistossa.</summary>
   </entry>
 </feed>
