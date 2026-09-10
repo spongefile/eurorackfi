@@ -1373,6 +1373,12 @@ function sellerPage(sellerKey, tok) {
 .wseg button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);
  color:var(--accent);font-weight:600}
 .wseg button.hide[aria-pressed="true"]{background:var(--sold-soft);border-color:var(--sold);color:var(--sold)}
+/* "I own this now": an action, not a toggle — dashed like the site's
+   not-yet things, full row width under the segment */
+.ownbtn{min-height:44px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+ background:transparent;color:var(--muted);border:1px dashed var(--line2);padding:.5rem .3rem;width:100%}
+.ownbtn:hover{border-color:var(--accent);color:var(--accent)}
+.wsent{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);padding:.4rem 0}
 
 /* The request form sits BELOW the list, not above it. A seller opens this
    page to change something that already exists; asking for something new
@@ -1658,6 +1664,8 @@ function sellerPage(sellerKey, tok) {
        the same change; check-shared-strings enforces the pairing. */
     wishLead:"Uusia toiveita voit pyytää lisättäväksi Lisää-välilehdellä.",
     wishShown:"Näkyy",
+    ownNow:"Omistan tämän nyt",
+    ownSent:"Lähetetty. Siirtyy kohteisiin piilotettuna.",
     /* Plural on purpose, and NOT to be harmonised toward "sinä" later.
        This page says YOU about the seller's own actions and WE about the
        admins' — two parties, two pronouns. The sentence exists to say
@@ -1724,6 +1732,8 @@ function sellerPage(sellerKey, tok) {
     notesSaved:"Saved.",
     wishLead:"You can ask for new wishes to be added on the Add tab.",
     wishShown:"Shown",
+    ownNow:"I own this now",
+    ownSent:"Sent. Moves to your items, hidden.",
     askNote:"We do not add items straight away: we fill in the details by hand and go through requests.",
     askPlaceholderItem:"E.g. Make Noise Maths, good condition, original box",
     askPlaceholderWish:"E.g. Intellijel Quad VCA",
@@ -1767,6 +1777,8 @@ function sellerPage(sellerKey, tok) {
     notesSaved:"Sparat.",
     wishLead:"Nya önskningar kan du be om att få tillagda på fliken Lägg till.",
     wishShown:"Visas",
+    ownNow:"Jag äger den nu",
+    ownSent:"Skickat. Flyttas till objekten, dold.",
     askNote:"Vi lägger inte till objekt direkt: vi fyller i uppgifterna för hand och går igenom förfrågningarna.",
     askPlaceholderItem:"T.ex. Make Noise Maths, bra skick, originalkartong",
     askPlaceholderWish:"T.ex. Intellijel Quad VCA",
@@ -2147,12 +2159,20 @@ function sellerPage(sellerKey, tok) {
       return '<div class="wrow'+(hid?" isHidden":"")+'" data-wkey="'+esc(k)+'">'+
         '<div>'+(mk?'<div class="mk">'+esc(mk)+'</div>':'')+
           '<div class="nm">'+esc(wantName(w))+'</div></div>'+
-        '<div class="wseg">'+
-          '<button data-whide="false" aria-pressed="'+(!hid)+'">'+esc(TXT.wishShown)+'</button>'+
-          '<button class="hide" data-whide="true" aria-pressed="'+hid+'">'+esc(TXT.hide)+'</button>'+
-        '</div></div>';
+        (OWNSENT[k]
+          ? '<div class="wsent">'+esc(TXT.ownSent)+'</div>'
+          : '<div class="wseg">'+
+              '<button data-whide="false" aria-pressed="'+(!hid)+'">'+esc(TXT.wishShown)+'</button>'+
+              '<button class="hide" data-whide="true" aria-pressed="'+hid+'">'+esc(TXT.hide)+'</button>'+
+            '</div>'+
+            '<button class="ownbtn" type="button">'+esc(TXT.ownNow)+'</button>')+
+        '</div>';
     }).join("");
   }
+  /* survives only this page-load on purpose: once the admins process the
+     request the wish is gone from the data anyway, and a stale local
+     marker would then be pointing at nothing */
+  var OWNSENT={};
 
   function saveWant(k,hidden){
     var prev=WANTHIDDEN[k];
@@ -2195,6 +2215,28 @@ function sellerPage(sellerKey, tok) {
   function el(id){ return document.getElementById(id); }
 
   document.addEventListener("click",function(e){
+    /* "I own this now": queues an add-hidden request for the admins — the
+       worker holds no repo credential, so the item itself lands through
+       the same queue every addition does — and hides the wish from the
+       public list right away. The request text says where it came from so
+       the wish also gets removed when the item is added. */
+    var ob=e.target.closest(".ownbtn");
+    if(ob){
+      var orow=ob.closest(".wrow"), ok2=orow.getAttribute("data-wkey");
+      ob.disabled=true;
+      var w2=null, oi;
+      for(oi=0; oi<WANTS.length; oi++){ if(wantKey(WANTS[oi])===ok2){ w2=WANTS[oi]; break; } }
+      var lbl=(wantMaker(w2)?wantMaker(w2)+" ":"")+wantName(w2);
+      fetch(location.origin+"/api/request",{method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({token:TOKEN,kind:"own",text:lbl+" — owns it now, was a wish: remove the wish"})})
+        .then(function(r){ if(!r.ok) throw 0;
+          OWNSENT[ok2]=true;
+          saveWant(ok2,true); })
+        .catch(function(){ ob.disabled=false;
+          el("err").innerHTML='<div class="err">'+esc(TXT.failed)+'</div>'; });
+      return;
+    }
     var wb=e.target.closest(".wseg button");
     if(wb){ saveWant(wb.closest(".wrow").getAttribute("data-wkey"),
                      wb.getAttribute("data-whide")==="true"); return; }
