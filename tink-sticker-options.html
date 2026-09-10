@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anna tarjous -tarra — luettavuus</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EAECEF;padding:28px;font-family:"IBM Plex Mono",monospace}
+.lbl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#6B7480;margin:26px 0 8px}
+.lbl:first-child{margin-top:0}
+.row{display:flex;gap:26px;align-items:flex-end}
+.shot{position:relative;width:210px;height:150px;background:#FAFBFD;border:1px solid #D3D7DD;
+ display:flex;align-items:center;justify-content:center}
+.shot img{max-height:130px;max-width:90%}
+.tink{position:absolute;left:8px;bottom:8px;width:var(--s,60px);height:var(--s,60px);
+ transform:rotate(-9deg)}
+.tink svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 2px rgba(15,23,34,.35))}
+.tink span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+ justify-content:center;color:#fff;font-weight:600;
+ font-size:calc(var(--s,60px)*.165);line-height:1.15;letter-spacing:.02em;text-align:center}
+.v2 span{font-weight:700;font-size:calc(var(--s,60px)*.19);letter-spacing:0}
+.v3 span{font-weight:700;font-size:calc(var(--s,60px)*.19);letter-spacing:0}
+.cap{font-size:.62rem;color:#6B7480;margin-top:8px}
+</style>
+<script>
+var P24="50.00,0.00 55.76,9.91 64.09,2.03 66.82,13.16 77.03,7.94 76.52,19.39 87.79,17.26 84.07,28.10 95.48,29.23 88.86,38.59 99.49,42.88 90.50,50.00 99.49,57.12 88.86,61.41 95.48,70.77 84.07,71.90 87.79,82.74 76.52,80.61 77.03,92.06 66.82,86.84 64.09,97.97 55.76,90.09 50.00,100.00 44.24,90.09 35.91,97.97 33.18,86.84 22.97,92.06 23.48,80.61 12.21,82.74 15.93,71.90 4.52,70.77 11.14,61.41 0.51,57.12 9.50,50.00 0.51,42.88 11.14,38.59 4.52,29.23 15.93,28.10 12.21,17.26 23.48,19.39 22.97,7.94 33.18,13.16 35.91,2.03 44.24,9.91";
+var P12="50.00,0.00 59.84,13.29 75.00,6.70 76.87,23.13 93.30,25.00 86.71,40.16 100.00,50.00 86.71,59.84 93.30,75.00 76.87,76.87 75.00,93.30 59.84,86.71 50.00,100.00 40.16,86.71 25.00,93.30 23.13,76.87 6.70,75.00 13.29,59.84 0.00,50.00 13.29,40.16 6.70,25.00 23.13,23.13 25.00,6.70 40.16,13.29";
+function tink(cls,pts,size){return '<span class="tink '+cls+'" style="--s:'+size+'px">'+
+ '<svg viewBox="0 0 100 100"><polygon points="'+pts+'" fill="#D22B2B"/></svg>'+
+ '<span>anna<br>tarjous</span></span>';}
+function cell(cls,pts,size,cap){return '<div><div class="shot">'+
+ '<img src="content/images/belgrad.jpg">'+tink(cls,pts,size)+'</div>'+
+ '<div class="cap">'+cap+'</div></div>';}
+window.onload=function(){
+ document.getElementById('r').innerHTML=
+  cell('v1',P24,60,'nyt · 24 piikkiä · teksti .165')+
+  cell('v2',P24,68,'sama piikki · 68 px · teksti .19 / 700')+
+  cell('v3',P12,68,'12 piikkiä · 68 px · teksti .19 / 700');
+};
+</script>
+</head><body>
+<p class="lbl">Ruudukkokortti, oikea koko</p>
+<div class="row" id="r"></div>
+</body></html>
