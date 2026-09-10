@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaa tämä näkymä — kuvan asu</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Archivo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* Fixed light palette, matching buildShareImage — a social image has no theme */
+:root{--bg:#E7EBF0;--panel:#FAFBFD;--panel2:#F2F4F7;--line:#CAD3DF;
+ --ink:#0F1722;--ink2:#36435A;--muted:#66738A;--accent:#0B4F9E}
+*{box-sizing:border-box}
+body{margin:0;background:#D6DAE0;padding:26px;font-family:Archivo,sans-serif}
+.lbl{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;
+ text-transform:uppercase;color:#5A6472;margin:28px 0 8px}
+.lbl:first-child{margin-top:0}
+
+.png{background:var(--bg);display:grid;width:1080px}
+.png.c3{grid-template-columns:repeat(3,360px)}
+.png.c2{grid-template-columns:repeat(2,360px);width:720px}
+.png.c1{grid-template-columns:720px;width:720px}
+.cellwrap{padding:9px}
+.cell{background:var(--panel);border:1px solid var(--line);height:342px;
+ display:flex;flex-direction:column}
+.shot{flex:1 1 auto;margin:18px 18px 10px;display:flex;align-items:center;justify-content:center;min-height:0}
+.shot img{max-width:100%;max-height:170px;object-fit:contain}
+.tx{padding:0 18px 10px}
+.mfr{font-family:"IBM Plex Mono",monospace;font-size:15px;color:var(--ink2)}
+.nm{font-size:23px;font-weight:700;color:var(--ink);line-height:1.15;margin-top:3px;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.foot{border-top:1px solid var(--line);background:var(--panel2);
+ padding:11px 18px;display:flex;justify-content:space-between;align-items:baseline}
+.pr{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;color:var(--ink)}
+.hp{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted)}
+
+/* the +N tile: the Liity pill's empty-slot language at card size */
+.more .cell{border:1px dashed var(--muted);background:transparent;
+ align-items:center;justify-content:center;gap:8px}
+.more .n{font-size:44px;font-weight:800;color:var(--ink2);font-family:"IBM Plex Mono",monospace}
+.more .t{font-family:"IBM Plex Mono",monospace;font-size:15px;color:var(--muted)}
+
+.brand{grid-column:1/-1;height:86px;display:flex;align-items:center;justify-content:center;
+ font-weight:800;font-size:40px;color:var(--ink);letter-spacing:-.02em}
+.brand .jack{width:30px;height:30px;margin:0 3px;display:inline-block}
+.brand .fi{color:var(--accent)}
+
+/* single item, landscape */
+.c1 .cell{flex-direction:row;height:380px}
+.c1 .shot{flex:0 0 46%;margin:22px}
+.c1 .shot img{max-height:330px}
+.c1 .right{flex:1;display:flex;flex-direction:column;justify-content:center;padding-right:26px}
+.c1 .foot{border:1px solid var(--line);margin-top:16px}
+</style></head><body>
+
+<p class="lbl">3 × 3 — yhdeksäs ruutu on “+N muuta”, kun kohteita on yli 9</p>
+<div class="png c3">
+  <script>
+  var IT=[["Doepfer","A-107 Multitype Morphing Filter",170,26,"a107"],
+   ["Doepfer","A-128 Fixed Filter Bank",80,20,"a128"],
+   ["After Later Audio","Bartender v1",240,24,"bartender"],
+   ["Xaoc Devices","Batumi + Poti",200,13,"batumi"],
+   ["Xaoc Devices","Belgrad",260,14,"belgrad"],
+   ["Befaco","BF-22 Sallen Key Filter",150,17,"bf22"],
+   ["1010music","Bitbox Micro",325,18,"bitboxmicro"],
+   ["Flame","Black Filterbank",330,22,"blackfilterbank"]];
+  document.write(IT.map(function(m){return '<div class="cellwrap"><div class="cell">'+
+   '<div class="shot"><img src="content/images/'+m[4]+'.jpg"></div>'+
+   '<div class="tx"><div class="mfr">'+m[0]+'</div><div class="nm">'+m[1]+'</div></div>'+
+   '<div class="foot"><span class="pr">'+m[2]+' €</span><span class="hp">'+m[3]+' HP</span></div>'+
+   '</div></div>';}).join(''));
+  </script>
+  <div class="cellwrap more"><div class="cell">
+    <span class="n">+34</span><span class="t">eurorack.fi</span></div></div>
+  <div class="brand">eur<svg class="jack" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#0F1722" stroke-width="18"/><circle cx="50" cy="50" r="14" fill="#0F1722"/></svg>rack<span class="fi">.fi</span></div>
+</div>
+
+<p class="lbl">Yksi kohde — vaaka, ettei jää tyhjäksi</p>
+<div class="png c1">
+  <div class="cellwrap"><div class="cell">
+    <div class="shot"><img src="content/images/belgrad.jpg"></div>
+    <div class="right">
+      <div class="mfr">Xaoc Devices</div>
+      <div class="nm" style="font-size:30px;white-space:normal">Belgrad</div>
+      <div class="foot"><span class="pr">260 €</span><span class="hp">14 HP</span></div>
+    </div>
+  </div></div>
+  <div class="brand">eur<svg class="jack" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#0F1722" stroke-width="18"/><circle cx="50" cy="50" r="14" fill="#0F1722"/></svg>rack<span class="fi">.fi</span></div>
+</div>
+
+</body></html>
