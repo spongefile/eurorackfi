@@ -2832,7 +2832,11 @@ document.addEventListener("click",function(e){
   b.disabled=true;
   buildShareImage(list).then(function(blob){
     var file=new File([blob],"eurorack-fi.png",{type:"image/png"});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
+    /* the share sheet only where it actually helps: on touch devices it
+       hands image+link to WhatsApp/FB apps; on desktop (macOS at least)
+       it drops the image, offers no Facebook, and beats the reliable
+       download-plus-copied-link — pointer:coarse is the gate */
+    if(matchMedia("(pointer:coarse)").matches && navigator.canShare && navigator.canShare({files:[file]})){
       /* url alongside files is refused by some browsers — retry bare */
       return navigator.share({files:[file], url:shareViewURL()})
         .catch(function(){ return navigator.share({files:[file]}).catch(function(){}); })
