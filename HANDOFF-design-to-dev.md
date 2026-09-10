@@ -2470,3 +2470,16 @@ A lone 360 square in a feed looks like an accident; this looks composed.
 
 Photoless item: same cell minus the photo box, text vertically centred —
 unchanged behaviour, just inherits the foot strip.
+
+---
+
+## Share image: photoless cells must centre (2026-09-10)
+
+Verified the shipped build by generating the real PNG through buildShareImage
+on live data — the cardfoot strips, +N tile, ellipsis and wordmark all match
+the mockup. One miss: A PHOTOLESS ITEM leaves its text at the bottom with the
+whole photo box as void above (FM Ogre ×6 and Living VCO in the default
+view — two of nine cells, so not rare). It reads as a failed image load.
+
+Fix per the original spec: when there is no photo, vertically centre the
+maker+name block in the space above the foot strip. The foot strip stays put.
