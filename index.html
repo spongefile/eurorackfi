@@ -2772,13 +2772,21 @@ function buildShareImage(list){
   var items=list.filter(function(m){ return !m.negotiating; })
     .concat(list.filter(function(m){ return m.negotiating; }))
     .slice(0,9);
-  var n=items.length;
-  var cols=n<=1?1:n<=4?2:3, rows=Math.ceil(n/cols);
-  var CELL=360, FOOT=86, PAD=18;
-  var W=cols*CELL, H=rows*CELL+FOOT;
+  /* design's spec (HANDOFF 2026-09-10, share-image-mockup.html): each
+     cell is a miniature site card with the cardfoot strip; a view larger
+     than nine gets a "+N" tile in the ninth slot instead of a tenth item;
+     a single item goes landscape — a lone square reads as an accident. */
+  var moreN=0;
+  if(list.length>9){ moreN=list.length-8; items=items.slice(0,8); }
+  var n=items.length, cells=n+(moreN?1:0);
+  var single=(cells===1);
+  var cols=single?1:cells<=4?2:3, rows=Math.ceil(cells/cols);
+  var CELL=360, FOOT=86;
+  var W=single?720:cols*CELL, H=single?(380+18+FOOT):rows*CELL+FOOT;
   /* the site's light finnish-blue palette, hardcoded: a social image has
      no theme to inherit and should look the same in every feed */
-  var BG="#E7EBF0", PANEL="#FAFBFD", LINE="#CAD3DF", INK="#0F1722", INK2="#36435A", ACCENT="#0B4F9E";
+  var BG="#E7EBF0", PANEL="#FAFBFD", PANEL2="#F2F4F7", LINE="#CAD3DF",
+      INK="#0F1722", INK2="#36435A", MUTED="#66738A", ACCENT="#0B4F9E";
   var fonts=(document.fonts&&document.fonts.load)
     ? Promise.all([document.fonts.load('800 40px Archivo'),
                    document.fonts.load('24px "IBM Plex Mono"')]).catch(function(){})
@@ -2787,45 +2795,105 @@ function buildShareImage(list){
     var c=document.createElement("canvas"); c.width=W; c.height=H;
     var g=c.getContext("2d");
     g.fillStyle=BG; g.fillRect(0,0,W,H);
-    shots.forEach(function(s,i){
+    var fitTo=function(str,font,w){
+      g.font=font;
+      if(g.measureText(str).width<=w) return str;
+      while(str.length>1 && g.measureText(str+"…").width>w) str=str.slice(0,-1);
+      return str+"…";
+    };
+    /* the cardfoot strip transcribed: panel2 ground under a 1px line,
+       price left, HP right, the haggle words after the price in the
+       sticker's ink */
+    var FOOTH=44;
+    var footStrip=function(m,fx,fy,fw,boxed){
+      g.fillStyle=PANEL2; g.fillRect(fx,fy,fw,FOOTH);
+      g.strokeStyle=LINE; g.lineWidth=1;
+      if(boxed) g.strokeRect(fx+.5,fy+.5,fw-1,FOOTH-1);
+      else{ g.beginPath(); g.moveTo(fx,fy+.5); g.lineTo(fx+fw,fy+.5); g.stroke(); }
+      var by=fy+28;
+      g.textAlign="left";
+      g.fillStyle=INK; g.font='600 19px "IBM Plex Mono", monospace';
+      var pTxt=eur(m.price), pw=g.measureText(pTxt).width;
+      g.fillText(pTxt,fx+18,by);
+      if(m.haggle){
+        g.fillStyle="#B73D1F"; g.font='400 15px "IBM Plex Mono", monospace';
+        g.fillText(" · "+t().haggle, fx+18+pw, by);
+      }
+      if(m.hp>0){
+        g.textAlign="right";
+        g.fillStyle=MUTED; g.font='400 13px "IBM Plex Mono", monospace';
+        g.fillText(m.hp+" HP", fx+fw-18, by);
+      }
+      g.textAlign="left";
+    };
+    if(single){
+      /* landscape: photo left 46%, text column vertically centred right,
+         boxed foot strip under the name */
+      var s0=shots[0], cx=9, cy=9, cw=W-18, ch=380;
+      g.fillStyle=PANEL; g.fillRect(cx,cy,cw,ch);
+      g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(cx+.5,cy+.5,cw-1,ch-1);
+      var shotW=Math.round(cw*0.46)-44;
+      if(s0.img){
+        var r0=Math.min(shotW/s0.img.width,330/s0.img.height);
+        var dw0=s0.img.width*r0, dh0=s0.img.height*r0;
+        g.drawImage(s0.img, cx+22+(shotW-dw0)/2, cy+(ch-dh0)/2, dw0, dh0);
+      }
+      var rx=cx+Math.round(cw*0.46)+22, rw=cw-Math.round(cw*0.46)-22-26;
+      /* wrap the name by words at 30px — the one layout where it may */
+      g.font='700 30px Archivo, sans-serif';
+      var words=s0.m.name.split(" "), lines=[], cur="";
+      words.forEach(function(w2){
+        var t2=cur?cur+" "+w2:w2;
+        if(g.measureText(t2).width<=rw||!cur) cur=t2; else{ lines.push(cur); cur=w2; }
+      });
+      if(cur) lines.push(cur);
+      lines=lines.slice(0,3);
+      var block=15+10+lines.length*36+16+FOOTH;
+      var ty=cy+(ch-block)/2+13;
+      g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
+      g.fillText(fitTo(s0.m.mfr,'400 15px "IBM Plex Mono", monospace',rw), rx, ty);
+      g.fillStyle=INK; g.font='700 30px Archivo, sans-serif';
+      lines.forEach(function(ln,li){ g.fillText(ln, rx, ty+10+(li+1)*36); });
+      footStrip(s0.m, rx, ty+10+lines.length*36+16, rw, true);
+    }else shots.forEach(function(s,i){
       var x=(i%cols)*CELL, y=Math.floor(i/cols)*CELL;
-      g.fillStyle=PANEL; g.fillRect(x+PAD/2,y+PAD/2,CELL-PAD,CELL-PAD);
-      g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(x+PAD/2+.5,y+PAD/2+.5,CELL-PAD-1,CELL-PAD-1);
-      /* image above, three text lines below: maker (small mono), name
-         (bold), price (mono) — the card's own hierarchy, compressed */
-      var boxX=x+PAD*1.5, boxY=y+PAD*1.5, boxW=CELL-PAD*3, boxH=CELL-PAD*3-84;
+      var cx=x+9, cy=y+9, cw=CELL-18, ch=CELL-18;
+      g.fillStyle=PANEL; g.fillRect(cx,cy,cw,ch);
+      g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(cx+.5,cy+.5,cw-1,ch-1);
+      var nameB=cy+ch-FOOTH-12, mfrB=nameB-27;
       if(s.img){
+        var boxW=cw-36, boxH=Math.min(170,mfrB-25-(cy+18));
         var r=Math.min(boxW/s.img.width, boxH/s.img.height);
         var dw=s.img.width*r, dh=s.img.height*r;
-        g.drawImage(s.img, boxX+(boxW-dw)/2, boxY+(boxH-dh)/2, dw, dh);
-      }
-      var fit=function(str,font){
-        g.font=font;
-        if(g.measureText(str).width<=boxW) return str;
-        while(str.length>1 && g.measureText(str+"…").width>boxW) str=str.slice(0,-1);
-        return str+"…";
-      };
-      g.textAlign="center";
-      g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
-      g.fillText(fit(s.m.mfr,'400 15px "IBM Plex Mono", monospace'), x+CELL/2, y+CELL-PAD-58);
-      g.fillStyle=INK; g.font='700 20px Archivo, sans-serif';
-      g.fillText(fit(s.m.name,'700 20px Archivo, sans-serif'), x+CELL/2, y+CELL-PAD-32);
-      /* haggle items carry the sticker's words after the price, in the
-         sticker's ink — same string the card sticker uses */
-      g.font='400 20px "IBM Plex Mono", monospace';
-      if(s.m.haggle){
-        var pTxt=eur(s.m.price), hTxt=" · "+t().haggle;
-        var pw=g.measureText(pTxt).width, hw=g.measureText(hTxt).width;
-        var px=x+CELL/2-(pw+hw)/2;
-        g.textAlign="left";
-        g.fillStyle=INK2; g.fillText(pTxt, px, y+CELL-PAD-8);
-        g.fillStyle="#B73D1F"; g.fillText(hTxt, px+pw, y+CELL-PAD-8);
-        g.textAlign="center";
+        g.drawImage(s.img, cx+18+(boxW-dw)/2, cy+18+((mfrB-25-(cy+18))-dh)/2, dw, dh);
+        g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
+        g.fillText(fitTo(s.m.mfr,'400 15px "IBM Plex Mono", monospace',cw-36), cx+18, mfrB);
+        g.fillStyle=INK; g.font='700 23px Archivo, sans-serif';
+        g.fillText(fitTo(s.m.name,'700 23px Archivo, sans-serif',cw-36), cx+18, nameB);
       }else{
-        g.fillStyle=INK2;
-        g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD-8);
+        /* photoless: same card minus the photo box, text centred in the
+           space above the foot strip */
+        var midY=cy+(ch-FOOTH)/2;
+        g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
+        g.fillText(fitTo(s.m.mfr,'400 15px "IBM Plex Mono", monospace',cw-36), cx+18, midY-14);
+        g.fillStyle=INK; g.font='700 23px Archivo, sans-serif';
+        g.fillText(fitTo(s.m.name,'700 23px Archivo, sans-serif',cw-36), cx+18, midY+14);
       }
+      footStrip(s.m, cx, cy+ch-FOOTH, cw, false);
     });
+    if(moreN){
+      /* the ninth slot says the view is bigger than the picture — the
+         Liity pill's empty-slot language at card size */
+      var ti=cells-1, tx=(ti%cols)*CELL+9, ty2=Math.floor(ti/cols)*CELL+9, tw=CELL-18;
+      g.strokeStyle=MUTED; g.lineWidth=1; g.setLineDash([5,4]);
+      g.strokeRect(tx+.5,ty2+.5,tw-1,tw-1);
+      g.setLineDash([]);
+      g.textAlign="center";
+      g.fillStyle=INK2; g.font='800 44px "IBM Plex Mono", monospace';
+      g.fillText("+"+moreN, tx+tw/2, ty2+tw/2);
+      g.fillStyle=MUTED; g.font='400 15px "IBM Plex Mono", monospace';
+      g.fillText("eurorack.fi", tx+tw/2, ty2+tw/2+30);
+    }
     /* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
        ring/dot proportions as the header logo's svg (r38/r14 of 100,
        stroke 18), at roughly its .58em size */
