@@ -32,7 +32,8 @@
         "led": 1,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mangrove.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mangrove.jpg",
+      "hidden": true
     },
     {
       "type": "product",
@@ -62,7 +63,8 @@
         "led": 78,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dot.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dot.jpg",
+      "hidden": true
     },
     {
       "type": "product",
