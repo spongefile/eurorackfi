@@ -2483,3 +2483,17 @@ view — two of nine cells, so not rare). It reads as a failed image load.
 
 Fix per the original spec: when there is no photo, vertically centre the
 maker+name block in the space above the foot strip. The foot strip stays put.
+
+---
+
+## Share image: haggle gets the sticker, not a foot-strip aside (2026-09-10)
+
+User: make-offer should be more obvious in the share image. The site already
+has the obvious form — the red burst sticker on the grid card's photo corner
+(tinkHTML). Use IT: draw the burst on the photo box's bottom-left in the
+share cell, ~64px, same tilt as the site's, haggle red #D22B2B, white
+two-line "anna / tarjous" (language of the image = Finnish, same as titles).
+Then DROP the "· Anna tarjous" text from the foot strip — with the sticker
+present it's redundant, and the price line stays clean. Photoless haggle
+item: sticker sits where the photo would be, top-left of the centred text
+block. The landscape single gets it too, on the photo.
