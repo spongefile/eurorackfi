@@ -2766,7 +2766,12 @@ function loadShot(m){
   });
 }
 function buildShareImage(list){
-  var items=list.slice(0,9);
+  /* items under offer go last, not first — a shared image leading with
+     modules that may already be leaving reads as a bait. Still included
+     when there's room; the ribbon state just must not front the pitch. */
+  var items=list.filter(function(m){ return !m.negotiating; })
+    .concat(list.filter(function(m){ return m.negotiating; }))
+    .slice(0,9);
   var n=items.length;
   var cols=n<=1?1:n<=4?2:3, rows=Math.ceil(n/cols);
   var CELL=360, FOOT=86, PAD=18;
@@ -2805,8 +2810,21 @@ function buildShareImage(list){
       g.fillText(fit(s.m.mfr,'400 15px "IBM Plex Mono", monospace'), x+CELL/2, y+CELL-PAD-58);
       g.fillStyle=INK; g.font='700 20px Archivo, sans-serif';
       g.fillText(fit(s.m.name,'700 20px Archivo, sans-serif'), x+CELL/2, y+CELL-PAD-32);
-      g.fillStyle=INK2; g.font='400 20px "IBM Plex Mono", monospace';
-      g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD-8);
+      /* haggle items carry the sticker's words after the price, in the
+         sticker's ink — same string the card sticker uses */
+      g.font='400 20px "IBM Plex Mono", monospace';
+      if(s.m.haggle){
+        var pTxt=eur(s.m.price), hTxt=" · "+t().haggle;
+        var pw=g.measureText(pTxt).width, hw=g.measureText(hTxt).width;
+        var px=x+CELL/2-(pw+hw)/2;
+        g.textAlign="left";
+        g.fillStyle=INK2; g.fillText(pTxt, px, y+CELL-PAD-8);
+        g.fillStyle="#B73D1F"; g.fillText(hTxt, px+pw, y+CELL-PAD-8);
+        g.textAlign="center";
+      }else{
+        g.fillStyle=INK2;
+        g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD-8);
+      }
     });
     /* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
        ring/dot proportions as the header logo's svg (r38/r14 of 100,
