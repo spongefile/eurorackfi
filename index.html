@@ -3012,10 +3012,12 @@ function loadWishShot(w,allowPanels){
 }
 function buildWishShareImage(p,allowPanels){
   var list=p.wants;
-  var moreN=0, items=list.slice(0,9);
-  if(list.length>9){ moreN=list.length-8; items=list.slice(0,8); }
+  /* wishes run to 4×4 (the user's call) — wish tiles are lighter than
+     item cards, and a wishlist is worth showing whole when it fits */
+  var moreN=0, items=list.slice(0,16);
+  if(list.length>16){ moreN=list.length-15; items=list.slice(0,15); }
   var cells=items.length+(moreN?1:0);
-  var cols=cells<=1?1:cells<=4?2:3, rows=Math.ceil(cells/cols);
+  var cols=cells<=1?1:cells<=4?2:cells<=9?3:4, rows=Math.ceil(cells/cols);
   var CELL=360, FOOT=86, HEAD=100;
   var W=cols*CELL, H=HEAD+rows*CELL+FOOT;
   var BG="#E7EBF0", PANEL="#FAFBFD", LINE="#CAD3DF", INK="#0F1722", INK2="#36435A", MUTED="#66738A";
