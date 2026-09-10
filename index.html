@@ -2801,9 +2801,32 @@ function buildShareImage(list){
       while(str.length>1 && g.measureText(str+"…").width>w) str=str.slice(0,-1);
       return str+"…";
     };
+    /* the site's burst sticker, drawn: same TINK_POINTS, same -9° tilt,
+       same red — but oversized for the medium (design's call): a feed
+       shows this PNG at roughly half size, so the sticker is drawn at
+       about twice the site's visual weight to land the same. Wording is
+       the Finnish sticker regardless of UI language, per the handoff. */
+    var drawTink=function(centerX,centerY,size){
+      g.save();
+      g.translate(centerX,centerY); g.rotate(-9*Math.PI/180);
+      g.shadowColor="rgba(15,23,34,.35)"; g.shadowBlur=4; g.shadowOffsetY=2;
+      g.beginPath();
+      TINK_POINTS.split(" ").forEach(function(pt,pi){
+        var xy=pt.split(",");
+        var px=(parseFloat(xy[0])-50)*size/100, py=(parseFloat(xy[1])-50)*size/100;
+        pi?g.lineTo(px,py):g.moveTo(px,py);
+      });
+      g.closePath(); g.fillStyle="#D22B2B"; g.fill();
+      g.shadowColor="transparent"; g.shadowBlur=0; g.shadowOffsetY=0;
+      g.fillStyle="#fff"; g.textAlign="center";
+      g.font='700 '+Math.round(size*.19)+'px "IBM Plex Mono", monospace';
+      var lh=size*.19*1.15;
+      g.fillText("anna",0,-lh/2+size*.06);
+      g.fillText("tarjous",0,lh/2+size*.06);
+      g.restore(); g.textAlign="left";
+    };
     /* the cardfoot strip transcribed: panel2 ground under a 1px line,
-       price left, HP right, the haggle words after the price in the
-       sticker's ink */
+       price left, HP right — no haggle aside here: the sticker carries it */
     var FOOTH=44;
     var footStrip=function(m,fx,fy,fw,boxed){
       g.fillStyle=PANEL2; g.fillRect(fx,fy,fw,FOOTH);
@@ -2813,12 +2836,7 @@ function buildShareImage(list){
       var by=fy+28;
       g.textAlign="left";
       g.fillStyle=INK; g.font='600 19px "IBM Plex Mono", monospace';
-      var pTxt=eur(m.price), pw=g.measureText(pTxt).width;
-      g.fillText(pTxt,fx+18,by);
-      if(m.haggle){
-        g.fillStyle="#B73D1F"; g.font='400 15px "IBM Plex Mono", monospace';
-        g.fillText(" · "+t().haggle, fx+18+pw, by);
-      }
+      g.fillText(eur(m.price),fx+18,by);
       if(m.hp>0){
         g.textAlign="right";
         g.fillStyle=MUTED; g.font='400 13px "IBM Plex Mono", monospace';
@@ -2838,6 +2856,7 @@ function buildShareImage(list){
         var dw0=s0.img.width*r0, dh0=s0.img.height*r0;
         g.drawImage(s0.img, cx+22+(shotW-dw0)/2, cy+(ch-dh0)/2, dw0, dh0);
       }
+      if(s0.m.haggle) drawTink(cx+30+46, cy+ch-30-46, 92);
       var rx=cx+Math.round(cw*0.46)+22, rw=cw-Math.round(cw*0.46)-22-26;
       /* wrap the name by words at 30px — the one layout where it may */
       g.font='700 30px Archivo, sans-serif';
@@ -2870,6 +2889,7 @@ function buildShareImage(list){
         g.fillText(fitTo(s.m.mfr,'400 15px "IBM Plex Mono", monospace',cw-36), cx+18, mfrB);
         g.fillStyle=INK; g.font='700 23px Archivo, sans-serif';
         g.fillText(fitTo(s.m.name,'700 23px Archivo, sans-serif',cw-36), cx+18, nameB);
+        if(s.m.haggle) drawTink(cx+26+46, mfrB-25-8-46, 92);
       }else{
         /* photoless: same card minus the photo box, text centred in the
            space above the foot strip */
@@ -2878,6 +2898,8 @@ function buildShareImage(list){
         g.fillText(fitTo(s.m.mfr,'400 15px "IBM Plex Mono", monospace',cw-36), cx+18, midY-14);
         g.fillStyle=INK; g.font='700 23px Archivo, sans-serif';
         g.fillText(fitTo(s.m.name,'700 23px Archivo, sans-serif',cw-36), cx+18, midY+14);
+        /* photoless: the sticker sits where the photo would be */
+        if(s.m.haggle) drawTink(cx+26+46, cy+26+46, 92);
       }
       footStrip(s.m, cx, cy+ch-FOOTH, cw, false);
     });
