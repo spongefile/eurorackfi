@@ -2718,7 +2718,8 @@ function wishHTML(){
            the section link. Every seller has a form to land on: their
            own, or the shared one. */
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
-        '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.wishContact)+'</button></div>'+
+        '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.wishContact)+'</button>'+
+        (p.wants.length?'<button class="wishcontact wishshare" type="button" data-seller="'+esc(p.key)+'">'+esc(T2.shareView)+'</button>':'')+'</div>'+
         (p.wants.length
           ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
           : '<p class="wishempty">'+esc(T2.noWishes)+'</p>')+
@@ -2730,7 +2731,8 @@ function wishHTML(){
    fall through and navigate to the seller's list. New tab like every
    other outbound form link on the site. */
 document.addEventListener("click",function(e){
-  var b=e.target.closest(".wishcontact"); if(!b) return;
+  var b=e.target.closest(".wishcontact");
+  if(!b || b.classList.contains("wishshare")) return; /* share shares, below */
   e.preventDefault(); e.stopPropagation();
   window.open(b.getAttribute("data-href"),"_blank","noopener");
 });
@@ -2916,59 +2918,192 @@ function buildShareImage(list){
       g.fillStyle=MUTED; g.font='400 15px "IBM Plex Mono", monospace';
       g.fillText("eurorack.fi", tx+tw/2, ty2+tw/2+30);
     }
-    /* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
-       ring/dot proportions as the header logo's svg (r38/r14 of 100,
-       stroke 18), at roughly its .58em size */
-    g.textAlign="left"; g.textBaseline="alphabetic";
-    g.font='800 40px Archivo, sans-serif'; g.fillStyle=INK;
-    var word1="eur", word2="rack", jackW=30, gap=4;
-    var w1=g.measureText(word1).width, w2=g.measureText(word2).width;
-    var dotW=g.measureText(".").width, wfi=g.measureText("fi").width;
-    var total=w1+gap+jackW+gap+w2+dotW+wfi;
-    var lx=(W-total)/2, ly=H-FOOT/2+14;
-    g.fillText(word1,lx,ly);
-    var jcx=lx+w1+gap+jackW/2, jcy=ly-14;
-    g.strokeStyle=INK; g.lineWidth=5.4;
-    g.beginPath(); g.arc(jcx,jcy,11.4,0,2*Math.PI); g.stroke();
-    g.beginPath(); g.arc(jcx,jcy,4.2,0,2*Math.PI); g.fillStyle=INK; g.fill();
-    g.fillText(word2,lx+w1+gap+jackW+gap,ly);
-    g.fillStyle=ACCENT; g.fillText(".",lx+w1+gap+jackW+gap+w2,ly);
-    g.fillStyle=INK; g.fillText("fi",lx+w1+gap+jackW+gap+w2+dotW,ly);
+    drawWordmark(g,W,H,FOOT,INK,ACCENT);
     return new Promise(function(res,rej){ c.toBlob(function(b){ b?res(b):rej(new Error("toBlob")); },"image/png"); });
   });
 }
+/* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
+   ring/dot proportions as the header logo's svg (r38/r14 of 100,
+   stroke 18), at roughly its .58em size. Centred in the FOOT strip at
+   the bottom of a W×H canvas — shared by every share-image builder. */
+function drawWordmark(g,W,H,FOOT,INK,ACCENT){
+  g.textAlign="left"; g.textBaseline="alphabetic";
+  g.font='800 40px Archivo, sans-serif'; g.fillStyle=INK;
+  var word1="eur", word2="rack", jackW=30, gap=4;
+  var w1=g.measureText(word1).width, w2=g.measureText(word2).width;
+  var dotW=g.measureText(".").width, wfi=g.measureText("fi").width;
+  var total=w1+gap+jackW+gap+w2+dotW+wfi;
+  var lx=(W-total)/2, ly=H-FOOT/2+14;
+  g.fillText(word1,lx,ly);
+  var jcx=lx+w1+gap+jackW/2, jcy=ly-14;
+  g.strokeStyle=INK; g.lineWidth=5.4;
+  g.beginPath(); g.arc(jcx,jcy,11.4,0,2*Math.PI); g.stroke();
+  g.beginPath(); g.arc(jcx,jcy,4.2,0,2*Math.PI); g.fillStyle=INK; g.fill();
+  g.fillText(word2,lx+w1+gap+jackW+gap,ly);
+  g.fillStyle=ACCENT; g.fillText(".",lx+w1+gap+jackW+gap+w2,ly);
+  g.fillStyle=INK; g.fillText("fi",lx+w1+gap+jackW+gap+w2+dotW,ly);
+}
 document.addEventListener("click",function(e){
   var b=e.target.closest(".sharelink"); if(!b || b.disabled) return;
-  var T2=t(), list=shown();
+  var list=shown();
   if(!list.length) return;
   b.disabled=true;
   buildShareImage(list).then(function(blob){
-    var file=new File([blob],"eurorack-fi.png",{type:"image/png"});
-    /* the share sheet only where it actually helps: on touch devices it
-       hands image+link to WhatsApp/FB apps; on desktop (macOS at least)
-       it drops the image, offers no Facebook, and beats the reliable
-       download-plus-copied-link — pointer:coarse is the gate */
-    if(matchMedia("(pointer:coarse)").matches && navigator.canShare && navigator.canShare({files:[file]})){
-      /* url alongside files is refused by some browsers — retry bare */
-      return navigator.share({files:[file], url:shareViewURL()})
-        .catch(function(){ return navigator.share({files:[file]}).catch(function(){}); })
-        .then(function(){ b.disabled=false; });
-    }
-    var a=document.createElement("a");
-    a.href=URL.createObjectURL(blob); a.download="eurorack-fi.png"; a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); },5000);
-    /* writeText can HANG, not just reject, in an unfocused tab — raced
-       against a timeout so the confirmation (and the button) never wait
-       on it. Losing the copy quietly is fine; losing the button is not. */
-    var copied=Promise.race([
-      navigator.clipboard?navigator.clipboard.writeText(shareViewURL()).catch(function(){}):Promise.resolve(),
-      new Promise(function(res){ setTimeout(res,1200); })
-    ]);
-    return copied.then(function(){
-      var old=b.innerHTML;
-      b.textContent=T2.shareDone;
-      setTimeout(function(){ b.innerHTML=old; b.disabled=false; },2600);
+    return shareOrDownload(blob, shareViewURL(), b);
+  }).catch(function(){ b.disabled=false; });
+});
+/* One finish for every share button: sheet on touch, download + copied
+   link elsewhere. */
+function shareOrDownload(blob,url,b){
+  var T2=t();
+  var file=new File([blob],"eurorack-fi.png",{type:"image/png"});
+  /* the share sheet only where it actually helps: on touch devices it
+     hands image+link to WhatsApp/FB apps; on desktop (macOS at least)
+     it drops the image, offers no Facebook, and beats the reliable
+     download-plus-copied-link — pointer:coarse is the gate */
+  if(matchMedia("(pointer:coarse)").matches && navigator.canShare && navigator.canShare({files:[file]})){
+    /* url alongside files is refused by some browsers — retry bare */
+    return navigator.share({files:[file], url:url})
+      .catch(function(){ return navigator.share({files:[file]}).catch(function(){}); })
+      .then(function(){ b.disabled=false; });
+  }
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="eurorack-fi.png"; a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); },5000);
+  /* writeText can HANG, not just reject, in an unfocused tab — raced
+     against a timeout so the confirmation (and the button) never wait
+     on it. Losing the copy quietly is fine; losing the button is not. */
+  var copied=Promise.race([
+    navigator.clipboard?navigator.clipboard.writeText(url).catch(function(){}):Promise.resolve(),
+    new Promise(function(res){ setTimeout(res,1200); })
+  ]);
+  return copied.then(function(){
+    var old=b.innerHTML;
+    b.textContent=T2.shareDone;
+    setTimeout(function(){ b.innerHTML=old; b.disabled=false; },2600);
+  });
+}
+
+/* ---------- share one seller's wishlist ---------- */
+/* The wish page's per-seller share: their wants as tiles under a
+   bilingual heading — the image travels to mixed audiences, so it says
+   Toivelista · Wishlist whatever the UI language. Product wants show
+   the drawn faceplate; the drawing is HTML divs, so it rides into the
+   canvas through an SVG foreignObject. Some engines taint the canvas on
+   that path — probed afterwards, and the tainted build is redone with
+   text tiles rather than failing the share. */
+function wishPanelSvg(w,H){
+  var built=buildPanel(w,H,w.tone);
+  return {w:built.html.match(/width:(\d+)px/)?parseInt(built.html.match(/width:(\d+)px/)[1],10):Math.round(H*1.55),
+    svg:'<svg xmlns="http://www.w3.org/2000/svg" width="'+(built.html.match(/width:(\d+)px/)?built.html.match(/width:(\d+)px/)[1]:Math.round(H*1.55))+'" height="'+H+'">'+
+      '<foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">'+built.html+'</div></foreignObject></svg>'};
+}
+function loadWishShot(w,allowPanels){
+  return new Promise(function(res){
+    if(typeof w==="string") return res({w:w, img:null, note:true});
+    var im=new Image(), done=function(ok){ res({w:w, img:ok?im:null}); };
+    if(w.img){ im.crossOrigin="anonymous"; im.onload=function(){done(true);}; im.onerror=function(){done(false);}; im.src=w.img; return; }
+    if(!allowPanels) return res({w:w, img:null});
+    var u=URL.createObjectURL(new Blob([wishPanelSvg(w,170).svg],{type:"image/svg+xml"}));
+    im.onload=function(){ done(true); setTimeout(function(){URL.revokeObjectURL(u);},1000); };
+    im.onerror=function(){ done(false); URL.revokeObjectURL(u); };
+    im.src=u;
+  });
+}
+function buildWishShareImage(p,allowPanels){
+  var list=p.wants;
+  var moreN=0, items=list.slice(0,9);
+  if(list.length>9){ moreN=list.length-8; items=list.slice(0,8); }
+  var cells=items.length+(moreN?1:0);
+  var cols=cells<=1?1:cells<=4?2:3, rows=Math.ceil(cells/cols);
+  var CELL=360, FOOT=86, HEAD=100;
+  var W=cols*CELL, H=HEAD+rows*CELL+FOOT;
+  var BG="#E7EBF0", PANEL="#FAFBFD", LINE="#CAD3DF", INK="#0F1722", INK2="#36435A", MUTED="#66738A";
+  var fonts=(document.fonts&&document.fonts.load)
+    ? Promise.all([document.fonts.load('800 40px Archivo'),
+                   document.fonts.load('24px "IBM Plex Mono"')]).catch(function(){})
+    : Promise.resolve();
+  return fonts.then(function(){
+    return Promise.all(items.map(function(w){ return loadWishShot(w,allowPanels!==false); }));
+  }).then(function(shots){
+    var c=document.createElement("canvas"); c.width=W; c.height=H;
+    var g=c.getContext("2d");
+    g.fillStyle=BG; g.fillRect(0,0,W,H);
+    /* heading: the seller's dot and name left, the bilingual page name
+       right — Toivelista is the fact, Wishlist carries it abroad */
+    g.font='800 34px Archivo, sans-serif';
+    var nmW=g.measureText(p.name).width;
+    g.font='400 17px "IBM Plex Mono", monospace';
+    var lbW=g.measureText("Toivelista · Wishlist").width;
+    /* narrow canvases can't seat name and label on one line — stack them */
+    var stacked=52+nmW+24+lbW+27>W;
+    g.fillStyle=p.dot; g.beginPath(); g.arc(32,HEAD/2+(stacked?-9:2),9,0,2*Math.PI); g.fill();
+    g.fillStyle=INK; g.font='800 34px Archivo, sans-serif'; g.textAlign="left";
+    g.fillText(p.name, 52, HEAD/2+(stacked?2:14));
+    g.fillStyle=INK2; g.font='400 17px "IBM Plex Mono", monospace';
+    if(stacked){ g.fillText("Toivelista · Wishlist", 52, HEAD/2+30); }
+    else{ g.textAlign="right"; g.fillText("Toivelista · Wishlist", W-27, HEAD/2+9); }
+    g.textAlign="left";
+    var fitTo=function(str,font,w2){
+      g.font=font;
+      if(g.measureText(str).width<=w2) return str;
+      while(str.length>1 && g.measureText(str+"…").width>w2) str=str.slice(0,-1);
+      return str+"…";
+    };
+    shots.forEach(function(s,i){
+      var x=(i%cols)*CELL, y=HEAD+Math.floor(i/cols)*CELL;
+      var cx=x+9, cy=y+9, cw=CELL-18, ch=CELL-18;
+      g.fillStyle=PANEL; g.fillRect(cx,cy,cw,ch);
+      g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(cx+.5,cy+.5,cw-1,ch-1);
+      if(s.note){
+        /* a free-text want: the site's dashed placeholder tile, drawn */
+        g.strokeStyle=MUTED; g.setLineDash([5,4]);
+        g.strokeRect(cx+18.5,cy+18.5,cw-37,ch-37);
+        g.setLineDash([]);
+        g.fillStyle=INK2; g.font='400 18px "IBM Plex Mono", monospace'; g.textAlign="center";
+        g.fillText(fitTo(String(s.w),'400 18px "IBM Plex Mono", monospace',cw-72), cx+cw/2, cy+ch/2+6);
+        g.textAlign="left";
+        return;
+      }
+      var nameB=cy+ch-20, mfrB=nameB-27;
+      var boxW=cw-36, boxH=mfrB-25-(cy+18);
+      if(s.img){
+        var r=Math.min(boxW/s.img.width, Math.min(170,boxH)/s.img.height);
+        var dw=s.img.width*r, dh=s.img.height*r;
+        g.drawImage(s.img, cx+18+(boxW-dw)/2, cy+18+(boxH-dh)/2, dw, dh);
+      }
+      g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
+      g.fillText(fitTo(s.w.mfr||"",'400 15px "IBM Plex Mono", monospace',cw-36), cx+18, mfrB);
+      g.fillStyle=INK; g.font='700 23px Archivo, sans-serif';
+      g.fillText(fitTo(s.w.name||"",'700 23px Archivo, sans-serif',cw-36), cx+18, nameB);
     });
+    if(moreN){
+      var ti=cells-1, tx=(ti%cols)*CELL+9, ty2=HEAD+Math.floor(ti/cols)*CELL+9, tw=CELL-18;
+      g.strokeStyle=MUTED; g.lineWidth=1; g.setLineDash([5,4]);
+      g.strokeRect(tx+.5,ty2+.5,tw-1,tw-1);
+      g.setLineDash([]);
+      g.textAlign="center";
+      g.fillStyle=INK2; g.font='800 44px "IBM Plex Mono", monospace';
+      g.fillText("+"+moreN, tx+tw/2, ty2+tw/2);
+      g.fillStyle=MUTED; g.font='400 15px "IBM Plex Mono", monospace';
+      g.fillText("eurorack.fi", tx+tw/2, ty2+tw/2+30);
+      g.textAlign="left";
+    }
+    drawWordmark(g,W,H,FOOT,INK,"#0B4F9E");
+    /* taint probe: a foreignObject raster taints the canvas in some
+       engines, and toBlob would throw. Rebuild with plain tiles then. */
+    try{ g.getImageData(0,0,1,1); }
+    catch(e){ if(allowPanels!==false) return buildWishShareImage(p,false); throw e; }
+    return new Promise(function(res,rej){ c.toBlob(function(b2){ b2?res(b2):rej(new Error("toBlob")); },"image/png"); });
+  });
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".wishshare"); if(!b || b.disabled) return;
+  e.preventDefault(); e.stopPropagation();
+  var p=SELLER_BY_KEY[b.getAttribute("data-seller")]; if(!p) return;
+  b.disabled=true;
+  buildWishShareImage(p).then(function(blob){
+    return shareOrDownload(blob, "https://eurorack.fi/?lang="+lang+"#/wish/"+p.key, b);
   }).catch(function(){ b.disabled=false; });
 });
 
