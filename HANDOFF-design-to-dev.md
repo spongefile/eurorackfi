@@ -2440,3 +2440,33 @@ either two data URIs under the theme blocks or a mask-image with
 `background-color:currentColor`). `.cfind .sortsel` inherits; check the
 mobile full-width case still looks right. Padding-right 2rem keeps the
 longest label ("Uusimmat ensin") clear of the arrow.
+
+---
+
+## Share image restyle (2026-09-10) — mockup `share-image-mockup.html`
+
+Keep 360px cells, 9px insets, the palette, and the drawn wordmark. Changes:
+
+**Each cell becomes a miniature site card, left-aligned.** Three centred
+lines read as a poster; the site's cards are left-aligned with a foot strip,
+and that's the recognisable shape. Per cell, top to bottom:
+- photo box: 18px side margins, contain-fit, ~170px tall
+- maker: 15px mono `#36435A`, left 18
+- name: 23px Archivo 700 `#0F1722`, left 18, ellipsis (up from 20 — the
+  feed downscales ~50%, name is the line that must survive)
+- FOOT STRIP, full cell width: 1px `#CAD3DF` top border, `#F2F4F7` ground,
+  11px padding — price left (19px mono 600, ink), HP right (13px mono
+  `#66738A`). This is `.cardfoot` transcribed.
+
+**When the filtered list exceeds 9, the 9th cell is a "+N muuta" TILE**, not
+a tenth item: 1px dashed `#66738A` border, transparent ground, "+34" at 44px
+mono 800 `#36435A`, "eurorack.fi" 15px mono under it. Same empty-slot
+language as the Liity pill. Solves the odd-cell hole and says the view is
+bigger than the picture. When ≤9, no tile; last row stays left-aligned.
+
+**Single item goes LANDSCAPE 720×466+footer**: photo left ~46%, right column
+vertically centred (maker / name at 30px, wrapping / a bordered foot strip).
+A lone 360 square in a feed looks like an accident; this looks composed.
+
+Photoless item: same cell minus the photo box, text vertically centred —
+unchanged behaviour, just inherits the foot strip.
