@@ -2488,11 +2488,13 @@ maker+name block in the space above the foot strip. The foot strip stays put.
 
 ## Share image: haggle gets the sticker, not a foot-strip aside (2026-09-10)
 
-User: make-offer should be more obvious in the share image. The site already
-has the obvious form — the red burst sticker on the grid card's photo corner
-(tinkHTML). Use IT: draw the burst on the photo box's bottom-left in the
-share cell, ~64px, same tilt as the site's, haggle red #D22B2B, white
-two-line "anna / tarjous" (language of the image = Finnish, same as titles).
+User: make-offer should be more obvious ON THE SHARE PNG SPECIFICALLY —
+the site's sticker stays exactly as it is. Draw the site's burst (same
+TINK_POINTS geometry, same -9° tilt, #D22B2B, white two-line
+"anna / tarjous") on the photo box's bottom-left in the share cell, but
+OVERSIZED FOR THE MEDIUM: ~92px on the 360 cell, text at .19 of the badge,
+weight 700. A feed shows this PNG at roughly half size, so the sticker must
+be drawn at about twice the site's visual weight to land the same.
 Then DROP the "· Anna tarjous" text from the foot strip — with the sticker
 present it's redundant, and the price line stays clean. Photoless haggle
 item: sticker sits where the photo would be, top-left of the centred text
