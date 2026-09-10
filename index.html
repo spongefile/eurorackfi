@@ -1312,7 +1312,7 @@ var T = {
        "prutbart" that set the ceiling. */
     haggle1:"anna", haggle2:"tarjous", haggle:"Anna tarjous",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fFeed:"Uusimmat RSS-syötteenä", fContactBody:"Lähetä viesti lomakkeella.",
-    shareView:"Jaa tämä näkymä", shareDone:"Kuva ladattu, linkki kopioitu",
+    shareView:"Jaa tämä näkymä", wishShare:"Jaa toiveet", shareDone:"Kuva ladattu, linkki kopioitu",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
     fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
@@ -1352,7 +1352,7 @@ var T = {
        against the 55.6px inner circle, the roomiest of the three. */
     haggle1:"ge", haggle2:"bud", haggle:"Ge bud",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fFeed:"Nyaste som RSS", fContactBody:"Skicka ett meddelande via formuläret.",
-    shareView:"Dela den här vyn", shareDone:"Bilden sparad, länken kopierad",
+    shareView:"Dela den här vyn", wishShare:"Dela önskemål", shareDone:"Bilden sparad, länken kopierad",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
     fTradeBody:"Allt kan bytas. Två separata önskelistor.",
@@ -1388,7 +1388,7 @@ var T = {
        The user's, and they overruled design to get here. */
     haggle1:"make", haggle2:"offer", haggle:"Make offer",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fFeed:"Newest as RSS", fContactBody:"Send us a message through the form.",
-    shareView:"Share this view", shareDone:"Image saved, link copied",
+    shareView:"Share this view", wishShare:"Share wishes", shareDone:"Image saved, link copied",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
     fTradeBody:"Trades welcome. Separate wishlists for separate owners.",
@@ -2719,7 +2719,7 @@ function wishHTML(){
            own, or the shared one. */
         '<div class="nm"><i style="background:'+p.dot+'"></i>'+esc(p.name)+
         '<button class="wishcontact" type="button" data-href="'+esc(p.form||TALLY_URL)+'">'+esc(T2.wishContact)+'</button>'+
-        (p.wants.length?'<button class="wishcontact wishshare" type="button" data-seller="'+esc(p.key)+'">'+esc(T2.shareView)+'</button>':'')+'</div>'+
+        (p.wants.length?'<button class="wishcontact wishshare" type="button" data-seller="'+esc(p.key)+'">'+esc(T2.wishShare)+'</button>':'')+'</div>'+
         (p.wants.length
           ? '<div class="wish-imggrid">'+p.wants.map(wishTileHTML).join("")+'</div>'
           : '<p class="wishempty">'+esc(T2.noWishes)+'</p>')+
