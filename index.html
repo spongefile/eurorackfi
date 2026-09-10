@@ -2786,23 +2786,27 @@ function buildShareImage(list){
       var x=(i%cols)*CELL, y=Math.floor(i/cols)*CELL;
       g.fillStyle=PANEL; g.fillRect(x+PAD/2,y+PAD/2,CELL-PAD,CELL-PAD);
       g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(x+PAD/2+.5,y+PAD/2+.5,CELL-PAD-1,CELL-PAD-1);
-      var boxX=x+PAD*1.5, boxY=y+PAD*1.5, boxW=CELL-PAD*3, boxH=CELL-PAD*3-46;
+      /* image above, three text lines below: maker (small mono), name
+         (bold), price (mono) — the card's own hierarchy, compressed */
+      var boxX=x+PAD*1.5, boxY=y+PAD*1.5, boxW=CELL-PAD*3, boxH=CELL-PAD*3-84;
       if(s.img){
         var r=Math.min(boxW/s.img.width, boxH/s.img.height);
         var dw=s.img.width*r, dh=s.img.height*r;
         g.drawImage(s.img, boxX+(boxW-dw)/2, boxY+(boxH-dh)/2, dw, dh);
-      }else{
-        /* no photo (or it failed to load): name the module instead of
-           leaving a hole — mfr over model, centred */
-        g.fillStyle=INK2; g.textAlign="center";
-        g.font='400 20px "IBM Plex Mono", monospace';
-        g.fillText(s.m.mfr.slice(0,24), x+CELL/2, y+CELL/2-16, boxW);
-        g.font='700 22px Archivo, sans-serif';
-        g.fillText(s.m.name.slice(0,26), x+CELL/2, y+CELL/2+14, boxW);
       }
-      g.fillStyle=INK2; g.textAlign="center";
-      g.font='400 24px "IBM Plex Mono", monospace';
-      g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD*1.6);
+      var fit=function(str,font){
+        g.font=font;
+        if(g.measureText(str).width<=boxW) return str;
+        while(str.length>1 && g.measureText(str+"…").width>boxW) str=str.slice(0,-1);
+        return str+"…";
+      };
+      g.textAlign="center";
+      g.fillStyle=INK2; g.font='400 15px "IBM Plex Mono", monospace';
+      g.fillText(fit(s.m.mfr,'400 15px "IBM Plex Mono", monospace'), x+CELL/2, y+CELL-PAD-58);
+      g.fillStyle=INK; g.font='700 20px Archivo, sans-serif';
+      g.fillText(fit(s.m.name,'700 20px Archivo, sans-serif'), x+CELL/2, y+CELL-PAD-32);
+      g.fillStyle=INK2; g.font='400 20px "IBM Plex Mono", monospace';
+      g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD-8);
     });
     /* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
        ring/dot proportions as the header logo's svg (r38/r14 of 100,
