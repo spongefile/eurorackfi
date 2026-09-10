@@ -853,6 +853,10 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
   background:var(--panel); padding:.4rem .65rem; display:inline-flex; align-items:center; gap:.4rem}
 .countline .feedlink svg{width:12px; height:12px; flex:0 0 auto}
 .countline .feedlink:hover{color:var(--accent); border-color:var(--accent)}
+/* two right-edge buttons: only the first carries the auto margin */
+.countline .feedlink + .feedlink{margin-left:.5rem}
+.countline button.feedlink{font:inherit; cursor:pointer}
+.countline .sharelink[disabled]{opacity:.55; cursor:default}
 
 /* ---------- cards ---------- */
 main{padding-bottom:3rem}
@@ -1308,6 +1312,7 @@ var T = {
        "prutbart" that set the ceiling. */
     haggle1:"anna", haggle2:"tarjous", haggle:"Anna tarjous",
     fCollect:"Nouto", fTrade:"Vaihto", fContact:"Yhteys", fFeed:"Uusimmat RSS-syötteenä", fContactBody:"Lähetä viesti lomakkeella.",
+    shareView:"Jaa tämä näkymä", shareDone:"Kuva ladattu, linkki kopioitu",
     fIntro:"Muutama meistä samasta kaupunginosasta Helsingissä. Eurorackia, erillislaitteita, joskus muuta. Tiedät keneltä ostat.",
     fCollectBody:"Hinnat euroina. Mieluiten nouto, mutta postitus onnistuu.",
     fTradeBody:"Kaikki vaihdettavissa. Kaksi erillistä toivelistaa.",
@@ -1347,6 +1352,7 @@ var T = {
        against the 55.6px inner circle, the roomiest of the three. */
     haggle1:"ge", haggle2:"bud", haggle:"Ge bud",
     fCollect:"Hämtning", fTrade:"Byte", fContact:"Kontakt", fFeed:"Nyaste som RSS", fContactBody:"Skicka ett meddelande via formuläret.",
+    shareView:"Dela den här vyn", shareDone:"Bilden sparad, länken kopierad",
     fIntro:"Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av.",
     fCollectBody:"Priser i euro. Helst hämtning, men vi kan posta.",
     fTradeBody:"Allt kan bytas. Två separata önskelistor.",
@@ -1382,6 +1388,7 @@ var T = {
        The user's, and they overruled design to get here. */
     haggle1:"make", haggle2:"offer", haggle:"Make offer",
     fCollect:"Collecting", fTrade:"Trading", fContact:"Contact", fFeed:"Newest as RSS", fContactBody:"Send us a message through the form.",
+    shareView:"Share this view", shareDone:"Image saved, link copied",
     fIntro:"A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
     fCollectBody:"Prices in EUR. In-person pickup preferred, posting possible.",
     fTradeBody:"Trades welcome. Separate wishlists for separate owners.",
@@ -2221,6 +2228,12 @@ function renderGrid(){
     /* the user's placement, beside the count — where "how many, how new"
        is already the topic. Same label and quiet register as the footer
        link; two discovery points, one string. */
+    /* share sits left of the feed link and takes the margin-left:auto
+       that pushes the pair to the right edge */
+    '<button class="feedlink sharelink" type="button">'+
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+      '<path d="M12 15V4"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7h14v-7"/></svg>'+
+      esc(T2.shareView)+'</button>'+
     '<a class="feedlink" href="/feed.xml">'+
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+
       '<path d="M5 11a8 8 0 0 1 8 8"/><path d="M5 4a15 15 0 0 1 15 15"/><circle cx="6" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg>'+
@@ -2720,6 +2733,127 @@ document.addEventListener("click",function(e){
   var b=e.target.closest(".wishcontact"); if(!b) return;
   e.preventDefault(); e.stopPropagation();
   window.open(b.getAttribute("data-href"),"_blank","noopener");
+});
+
+/* ---------- share this view ---------- */
+/* Renders the current filtered grid into a PNG — thumbnails and prices
+   only, plus the wordmark, no pitch text: whoever posts it writes their
+   own words. Shared with the link that restores this exact view (the
+   ?who/?fmt/... params read at boot). Facebook's scraper never sees any
+   of this — it reads OG tags and strips hashes — so the image IS the
+   preview, posted as an image, which is how buy/sell groups work anyway. */
+function shareViewURL(){
+  var qp=[];
+  if(S.fmt!=="all") qp.push("fmt="+encodeURIComponent(S.fmt));
+  if(S.cat!=="all") qp.push("cat="+encodeURIComponent(S.cat));
+  if(S.q) qp.push("q="+encodeURIComponent(S.q));
+  if(S.sort!=="new") qp.push("sort="+encodeURIComponent(S.sort));
+  qp.push("lang="+lang);
+  /* the owner filter rides in the hash — #/s/<key> is its canonical
+     route and route() owns S.who outright */
+  return "https://eurorack.fi/"+(qp.length?"?"+qp.join("&"):"")+(S.who!=="all"?"#/s/"+S.who:"");
+}
+function loadShot(m){
+  return new Promise(function(res){
+    if(!m.img) return res({m:m, img:null});
+    var im=new Image();
+    /* raw.githubusercontent sends CORS headers; without the flag the
+       canvas would taint and toBlob throw */
+    im.crossOrigin="anonymous";
+    im.onload=function(){ res({m:m, img:im}); };
+    im.onerror=function(){ res({m:m, img:null}); };
+    im.src=m.img;
+  });
+}
+function buildShareImage(list){
+  var items=list.slice(0,9);
+  var n=items.length;
+  var cols=n<=1?1:n<=4?2:3, rows=Math.ceil(n/cols);
+  var CELL=360, FOOT=86, PAD=18;
+  var W=cols*CELL, H=rows*CELL+FOOT;
+  /* the site's light finnish-blue palette, hardcoded: a social image has
+     no theme to inherit and should look the same in every feed */
+  var BG="#E7EBF0", PANEL="#FAFBFD", LINE="#CAD3DF", INK="#0F1722", INK2="#36435A", ACCENT="#0B4F9E";
+  var fonts=(document.fonts&&document.fonts.load)
+    ? Promise.all([document.fonts.load('800 40px Archivo'),
+                   document.fonts.load('24px "IBM Plex Mono"')]).catch(function(){})
+    : Promise.resolve();
+  return fonts.then(function(){ return Promise.all(items.map(loadShot)); }).then(function(shots){
+    var c=document.createElement("canvas"); c.width=W; c.height=H;
+    var g=c.getContext("2d");
+    g.fillStyle=BG; g.fillRect(0,0,W,H);
+    shots.forEach(function(s,i){
+      var x=(i%cols)*CELL, y=Math.floor(i/cols)*CELL;
+      g.fillStyle=PANEL; g.fillRect(x+PAD/2,y+PAD/2,CELL-PAD,CELL-PAD);
+      g.strokeStyle=LINE; g.lineWidth=1; g.strokeRect(x+PAD/2+.5,y+PAD/2+.5,CELL-PAD-1,CELL-PAD-1);
+      var boxX=x+PAD*1.5, boxY=y+PAD*1.5, boxW=CELL-PAD*3, boxH=CELL-PAD*3-46;
+      if(s.img){
+        var r=Math.min(boxW/s.img.width, boxH/s.img.height);
+        var dw=s.img.width*r, dh=s.img.height*r;
+        g.drawImage(s.img, boxX+(boxW-dw)/2, boxY+(boxH-dh)/2, dw, dh);
+      }else{
+        /* no photo (or it failed to load): name the module instead of
+           leaving a hole — mfr over model, centred */
+        g.fillStyle=INK2; g.textAlign="center";
+        g.font='400 20px "IBM Plex Mono", monospace';
+        g.fillText(s.m.mfr.slice(0,24), x+CELL/2, y+CELL/2-16, boxW);
+        g.font='700 22px Archivo, sans-serif';
+        g.fillText(s.m.name.slice(0,26), x+CELL/2, y+CELL/2+14, boxW);
+      }
+      g.fillStyle=INK2; g.textAlign="center";
+      g.font='400 24px "IBM Plex Mono", monospace';
+      g.fillText(eur(s.m.price), x+CELL/2, y+CELL-PAD*1.6);
+    });
+    /* the wordmark, drawn: eur + jack + rack, accent dot, fi — same
+       ring/dot proportions as the header logo's svg (r38/r14 of 100,
+       stroke 18), at roughly its .58em size */
+    g.textAlign="left"; g.textBaseline="alphabetic";
+    g.font='800 40px Archivo, sans-serif'; g.fillStyle=INK;
+    var word1="eur", word2="rack", jackW=30, gap=4;
+    var w1=g.measureText(word1).width, w2=g.measureText(word2).width;
+    var dotW=g.measureText(".").width, wfi=g.measureText("fi").width;
+    var total=w1+gap+jackW+gap+w2+dotW+wfi;
+    var lx=(W-total)/2, ly=H-FOOT/2+14;
+    g.fillText(word1,lx,ly);
+    var jcx=lx+w1+gap+jackW/2, jcy=ly-14;
+    g.strokeStyle=INK; g.lineWidth=5.4;
+    g.beginPath(); g.arc(jcx,jcy,11.4,0,2*Math.PI); g.stroke();
+    g.beginPath(); g.arc(jcx,jcy,4.2,0,2*Math.PI); g.fillStyle=INK; g.fill();
+    g.fillText(word2,lx+w1+gap+jackW+gap,ly);
+    g.fillStyle=ACCENT; g.fillText(".",lx+w1+gap+jackW+gap+w2,ly);
+    g.fillStyle=INK; g.fillText("fi",lx+w1+gap+jackW+gap+w2+dotW,ly);
+    return new Promise(function(res,rej){ c.toBlob(function(b){ b?res(b):rej(new Error("toBlob")); },"image/png"); });
+  });
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".sharelink"); if(!b || b.disabled) return;
+  var T2=t(), list=shown();
+  if(!list.length) return;
+  b.disabled=true;
+  buildShareImage(list).then(function(blob){
+    var file=new File([blob],"eurorack-fi.png",{type:"image/png"});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      /* url alongside files is refused by some browsers — retry bare */
+      return navigator.share({files:[file], url:shareViewURL()})
+        .catch(function(){ return navigator.share({files:[file]}).catch(function(){}); })
+        .then(function(){ b.disabled=false; });
+    }
+    var a=document.createElement("a");
+    a.href=URL.createObjectURL(blob); a.download="eurorack-fi.png"; a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },5000);
+    /* writeText can HANG, not just reject, in an unfocused tab — raced
+       against a timeout so the confirmation (and the button) never wait
+       on it. Losing the copy quietly is fine; losing the button is not. */
+    var copied=Promise.race([
+      navigator.clipboard?navigator.clipboard.writeText(shareViewURL()).catch(function(){}):Promise.resolve(),
+      new Promise(function(res){ setTimeout(res,1200); })
+    ]);
+    return copied.then(function(){
+      var old=b.innerHTML;
+      b.textContent=T2.shareDone;
+      setTimeout(function(){ b.innerHTML=old; b.disabled=false; },2600);
+    });
+  }).catch(function(){ b.disabled=false; });
 });
 
 /* ---------- FAQ page ---------- */
@@ -3455,6 +3589,23 @@ Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(),
   SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
   FAQ=(r[2]&&r[2].questions)?r[2]:{questions:[]};
   applyUi(r[3]);
+  /* ?who/?fmt/?cat/?q/?sort restore a shared view — the share button
+     builds these. Query params, not hash, for the same reason as ?lang=:
+     the hash is the router and every route is matched by prefix on it.
+     Each value is validated against what actually exists and silently
+     dropped otherwise, so a stale link (seller gone, category renamed)
+     degrades to the default grid rather than an error. */
+  (function(){
+    var qp=new URLSearchParams(location.search);
+    /* no ?who here: the owner filter already has a canonical URL, #/s/<key>,
+       and the bare-grid route deliberately clears S.who — a query param
+       would be overwritten by route() a line later. shareViewURL emits
+       the hash form instead. */
+    var fmt=qp.get("fmt"); if(fmt && NEW_GROUP.hasOwnProperty(fmt)) S.fmt=fmt;
+    var cat=qp.get("cat"); if(cat && CATKEYS.indexOf(cat)>0) S.cat=cat;
+    var srt=qp.get("sort"); if(srt && t().sort[srt]) S.sort=srt;
+    var q=qp.get("q"); if(q){ S.q=String(q).slice(0,80); el("q").value=S.q; }
+  })();
   renderAll();
   route();
 }).catch(function(err){
