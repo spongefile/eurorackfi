@@ -799,7 +799,14 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 .eventspage{padding:2.5rem 0 4rem}
 .eventspage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 1.2rem; line-height:1.05}
 /* the widget arrives async; a floor stops the footer flashing up first */
-.eventspage .sk-fb-group-event{min-height:320px}
+.eventspage .dlead{font-family:"Newsreader",Georgia,serif; font-size:1.05rem; color:var(--ink2); margin-bottom:1.4rem}
+.eventspage .dbtns{display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem}
+.eventspage .dbtns .btn{height:auto; width:auto; flex:0 0 auto; padding:.75rem 1.2rem; background:var(--accent); color:var(--on); display:inline-flex; align-items:center}
+.eventspage .dbtns .btn:hover{background:var(--accent-hi)}
+/* the member's door, quieter than the join button */
+.eventspage .dbtns .btn.ghost2{background:var(--panel); color:var(--ink2); border:1px solid var(--line2)}
+.eventspage .dbtns .btn.ghost2:hover{border-color:var(--accent); color:var(--accent); background:var(--panel)}
+.eventspage .dwidget{border:1px solid var(--line); background:var(--panel2); max-width:100%}
 .faqpage{padding:2.5rem 0 4rem}
 .faqpage h1{font-size:2rem; letter-spacing:-.03em; margin:.4rem 0 .9rem; line-height:1.05}
 .faqpage .lede{font-family:"Newsreader",Georgia,serif; font-size:1.1rem; line-height:1.5;
@@ -1288,6 +1295,7 @@ var TONE = {
 var T = {
   fi: {
     nav:["Kaikki","Toiveet","FAQ","Yhteys"], navJoin:"Liity", navEvents:"Tapahtumat",
+    discordLead:"Keskustelu ja tapahtumat ovat Discordissa.", discordJoin:"Liity Discordiin", discordOpen:"Avaa Discord",
     faqLede:"Mikä tämä on, keitä me olemme, ja miten pääset mukaan.",
     faqTail:"Jotain muuta?", faqTailLink:"Lähetä meille viesti →", faqAnchor:"Linkki tähän kysymykseen",
     eyebrow:"Helsinki · naapureita", h1a:"Tavaraa ", h1b:"naapurista", h1c:".",
@@ -1330,6 +1338,7 @@ var T = {
     /* "Evenemang" is MINE and unreviewed — the user gave fi "Tapahtumat"
        and en "Events". */
     nav:["Allt","Önskemål","FAQ","Kontakt"], navJoin:"Gå med", navEvents:"Evenemang",
+    discordLead:"Diskussionen och evenemangen finns på Discord.", discordJoin:"Gå med i Discord", discordOpen:"Öppna Discord",
     faqLede:"Vad det här är, vem som står bakom, och hur du kan vara med.",
     faqTail:"Något annat?", faqTailLink:"Skicka ett meddelande →", faqAnchor:"Länk till denna fråga",
     eyebrow:"Helsingfors · grannar", h1a:"Prylar från ", h1b:"grannen", h1c:".",
@@ -1365,6 +1374,7 @@ var T = {
   },
   en: {
     nav:["Everything","What we want","FAQ","Contact"], navJoin:"Join", navEvents:"Events",
+    discordLead:"The talk and the events are on Discord.", discordJoin:"Join the Discord", discordOpen:"Open Discord",
     faqLede:"What this is, who is behind it, and how to join in.",
     faqTail:"Something else?", faqTailLink:"Send us a message →", faqAnchor:"Link to this question",
     eyebrow:"Helsinki · neighbours", h1a:"Gear from ", h1b:"down the road", h1c:".",
@@ -1893,12 +1903,7 @@ function renderChrome(){
   var navItems=[
     {href:"#grid-top", label:T2.nav[0]},
     {href:"#/wish",    label:T2.nav[1]},
-    /* EVENTS IS HIDDEN, not deleted — the user is turning the page into a
-       community hub (Discord widget + events + links) once they have the
-       Discord server details, and the SociableKit embed it currently holds
-       never got real content. The route still answers a direct #/events
-       hit; only the nav entry is withheld. Restore this line to relaunch. */
-    /* {href:"#/events",  label:T2.navEvents}, */
+    {href:"#/events",  label:T2.navEvents},
     {href:"#/faq",     label:T2.nav[2]},
   ];
   if(HOW && howHasLang(lang)) navItems.push({href:"#/how", label:T2.navJoin});
@@ -3462,26 +3467,30 @@ function route(){
     window.scrollTo(0,0); return;
   }
   if(h==="#/events"||h==="#/events/"){
+    /* The community page: Eurorack Finland's Discord, where the talk and
+       the events live. Buttons FIRST, widget second — the page keeps
+       working even if the server's widget is ever switched off (the
+       iframe then shows Discord's own notice, and the invite still
+       stands). The server id is public by design: anyone with the invite
+       can read it from Discord's own invite API. Theme follows the
+       site's, same detection the rest of the page uses. */
+    var r2=document.documentElement, T2e=t();
+    var dDark=r2.classList.contains("dark")||(!r2.classList.contains("light")&&matchMedia("(prefers-color-scheme:dark)").matches);
     el("detail").innerHTML='<div class="wrap eventspage">'+
-      '<div class="crumb"><button onclick="closeDetail()">&larr; '+esc(t().nav[0])+'</button></div>'+
-      '<h1>'+esc(t().navEvents)+'</h1>'+
-      /* SociableKit's Facebook-group-events widget, verbatim from the
-         user. The container is plain markup; the script below populates
-         it. */
-      '<div class="sk-fb-group-event" data-embed-id="25710189"></div>'+
+      '<div class="crumb"><button onclick="closeDetail()">&larr; '+esc(T2e.nav[0])+'</button></div>'+
+      '<h1>'+esc(T2e.navEvents)+'</h1>'+
+      '<p class="dlead">'+esc(T2e.discordLead)+'</p>'+
+      '<div class="dbtns">'+
+        '<a class="btn" href="https://discord.com/invite/vMyxwtMgTJ" target="_blank" rel="noopener">'+esc(T2e.discordJoin)+'</a>'+
+        '<a class="btn ghost2" href="https://discord.com/channels/1040637815471476788/1040637815471476791" target="_blank" rel="noopener">'+esc(T2e.discordOpen)+'</a>'+
+      '</div>'+
+      '<iframe class="dwidget" src="https://discord.com/widget?id=1040637815471476788&theme='+(dDark?"dark":"light")+'" '+
+        'width="350" height="500" frameborder="0" '+
+        'sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" '+
+        'title="Eurorack Finland Discord"></iframe>'+
       '</div>';
     document.body.classList.add("detail-open");
-    document.title=t().navEvents+" — eurorack.fi";
-    /* The widget script scans for its container WHEN IT RUNS, and this
-       container is freshly inserted on every visit to the route — so the
-       script is re-appended each time rather than loaded once. A same-src
-       script element re-executes on insertion (from HTTP cache after the
-       first load), which is exactly the re-scan needed. Removed first so
-       repeat visits don't stack copies. */
-    var oldsk=document.getElementById("skwidget"); if(oldsk) oldsk.remove();
-    var sk=document.createElement("script"); sk.id="skwidget"; sk.defer=true;
-    sk.src="https://widgets.sociablekit.com/facebook-group-events/widget.js";
-    document.body.appendChild(sk);
+    document.title=T2e.navEvents+" — eurorack.fi";
     window.scrollTo(0,0); return;
   }
   if(h==="#/how"||h==="#/how/"){
