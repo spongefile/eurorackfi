@@ -163,5 +163,5 @@ fits; the widest item (34 HP) clears a 390 viewport.
 
 ## Still needed
 
-Tally form ID and hidden-field names · Sampo's wish list · photos · fi/sv listing prose ·
+Tally form ID and hidden-field names · photos · fi/sv listing prose ·
 posting rates · confirm the 29 prices · who watches the shared inbox · domain and DNS.
