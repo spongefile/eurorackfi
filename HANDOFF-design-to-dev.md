@@ -360,7 +360,7 @@ quote cards → reviews → video → outbound links → "You may also like" →
 
 - **Specs move under the image (decided 2026-08-25).** The specs block leaves
   the bottom of the buy column and goes into the image column, below the photo
-  credit. Rendered spec: `specs-placement-mockup.html`, option B.
+  credit. Rendered spec: `specs-placement-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build), option B.
 
   Reason: specs and photo both describe *the object*; price, seller, CTA and
   wishlist all describe *the transaction*. Splitting them that way also closes
@@ -546,7 +546,7 @@ surfaces, and without it the corner reads as a cut.
 Screws move `9px → 11px` to stay level with the first and last rail instead
 of riding up into the endcap.
 
-Rendered spec: `rack-endcap-mockup.html` — shipped-dark-cap vs lit, at 8×.
+Rendered spec: `rack-endcap-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build) — shipped-dark-cap vs lit, at 8×.
 
 **`flex:0 0 auto` on `.rackinner` is load-bearing and cost two attempts.**
 The original bug: rails were sized to the container and rows to their
@@ -601,7 +601,7 @@ information / en More info**, because the click still goes to a detail page
 on this site. The outbound step happens one level deeper.
 
 **Detail page** is a normal eurorack.fi page; only the Buy button leaves.
-Full spec, rendered: `accessory-page-mockup.html` in the repo root.
+Full spec, rendered: `accessory-page-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build) in the repo root.
 - Buy CTA **fi Osta kaupasta / sv Köp i butiken / en Buy from the shop**,
   with a note beneath: **fi Avautuu kauppaan uuteen välilehteen.**
 - **Spec table hides entirely when the shop data carries no key/values.**
@@ -744,8 +744,8 @@ Do not ship them, and do not invent values to fill them.
 
 ## Filter bar collapse — option C (decided 2026-08-25)
 
-Reference implementation: `filter-collapse-C.html` (self-contained, scroll it).
-Comparison of all four approaches: `filter-collapse-mockup.html`.
+Reference implementation: `filter-collapse-C.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build) (self-contained, scroll it).
+Comparison of all four approaches: `filter-collapse-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build).
 
 The user's report: it "turns white", it "feels like it appears and disappears"
 rather than folding, and once scrolling it is "not very noticeable as
@@ -806,7 +806,7 @@ reference.)
 
 ## FAQ page (copy approved 2026-08-25)
 
-Rendered design: `faq-page-mockup.html`. Copy below is the user's own words,
+Rendered design: `faq-page-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build). Copy below is the user's own words,
 revised by them across four passes — treat it as final English. **fi and sv do
 not exist yet** and the user writes them personally; the page must render with
 one language filled in.
@@ -1118,7 +1118,7 @@ overflow at narrow widths, which is the bug we started from.
 
 ## Filter bar: desktop closes on click, not on scroll (2026-08-27)
 
-Reference: `filter-collapse-manual.html` — scroll it, and narrow below 900px
+Reference: `filter-collapse-manual.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build) — scroll it, and narrow below 900px
 for the mobile behaviour.
 
 **Reverses an earlier decision, deliberately.** Auto-collapse-on-scroll was the
@@ -1321,7 +1321,7 @@ redirect can attribute the card to the wrong origin.
 
 ## Toiveet becomes one flowing row (approved 2026-08-27)
 
-Reference: `toiveet-flow-final.html`. Replaces the wishcard grid entirely — no
+Reference: `toiveet-flow-final.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build). Replaces the wishcard grid entirely — no
 cards, no borders, no coloured left edges.
 
 **The brief, in the user's words:** show *the fact that wishlists exist*, *what
@@ -1435,7 +1435,7 @@ deep-linked section does not land under the sticky header.
 
 ## Toiveet page on mobile — option D (approved 2026-08-28)
 
-Rendered spec: `wishpage-mobile-mockup.html`, option D. Pairs with the
+Rendered spec: `wishpage-mobile-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build), option D. Pairs with the
 per-seller deep link above; neither is sufficient alone — the link puts you in
 the right place, the layout stops you drifting out of it.
 
@@ -1480,7 +1480,7 @@ two-column tile gets too tight for a manufacturer name to wrap sanely.
 
 ## Seller controls and the hidden state (approved 2026-08-29)
 
-Rendered spec: `seller-controls-mockup.html`. Two new surfaces. Mechanism is
+Rendered spec: `seller-controls-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build). Two new surfaces. Mechanism is
 dev's; the states and the look are here.
 
 ### 1. What "hidden" does to counts — state it, do not infer it
@@ -2030,7 +2030,7 @@ sentence. Worth the user knowing the shape of what a leak costs.
 
 ## Wishlist show/hide on the seller page (2026-08-29)
 
-Rendered spec: `seller-controls-mockup.html`, below the item list.
+Rendered spec: `seller-controls-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build), below the item list.
 
 ### Per-entry, not whole-list — and it needs no ids
 
@@ -2403,7 +2403,7 @@ copies `eur()`; nothing writes €-prefix any more.
 
 User wants a Join link in the gap at the end of the HYLLY filter row (after
 spongefile, before the sort select). It opens `#/how`. Mockup:
-`liity-pill-mockup.html`.
+`liity-pill-mockup.html` (mockup removed 2026-09-15; in git history — the decision is this text and the shipped build).
 
 **It is not a filter, so it must not dress like one.** Same pill geometry as
 the owner chips, but: 1px **dashed** `--muted` border, transparent ground,
