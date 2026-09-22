@@ -6,7 +6,8 @@
   "wants": [
     {
       "type": "placeholder",
-      "text": "Rossum Electro-Music — any module"
+      "text": "Rossum Electro-Music — any module",
+      "hidden": true
     }
   ],
   "form": "https://reverb.com/en-fi/shop/keijos-diy-outlet"
