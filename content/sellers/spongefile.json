@@ -262,5 +262,6 @@
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/3xmia.jpg"
     }
   ],
-  "form": "https://tally.so/r/lbkgvB"
+  "form": "https://tally.so/r/lbkgvB",
+  "formFields": true
 }
