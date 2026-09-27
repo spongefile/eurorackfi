@@ -4,7 +4,84 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-06T20:54:59+03:00</updated>
+  <updated>2026-09-27T11:15:23+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/twinvcamp</id>
+    <title>Vermona twinVCAmp — 250 €</title>
+    <link href="https://eurorack.fi/#/m/twinvcamp"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Kaksi VCA:ta ja mikseri niiden takana, Vermonan tavanomaisen tukevasti rakennettuna: kummallakin kanavalla iso tasonuppi, Gain ×4 -nappi kuumille signaaleille ja Log/linear-nappi, jotta sama VCA sopii äänelle tai ohjausjännitteille; CV-tulo kummallekin, normalisoituna toisesta toiseen, erilliset lähdöt ja summattu mix. 10HP, musta. Yksi asia on syytä tietää: nupeissa on pientä rahinaa käännettäessä. Kaikki toimii, mutta ne eivät ole äänettömiä käden alla.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/twinout</id>
+    <title>Vermona twinOUT — 200 €</title>
+    <link href="https://eurorack.fi/#/m/twinout"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Viimeinen moduuli ennen mikseriä tai äänikorttia: kaksi kanavaa, jotka tuovat modulaarin signaalitasot balansoiduksi linjatasoksi XLR-liittimiin, kummallakin oma tasonuppi, Dual/Stereo-kytkin jolla ne käsitellään kahtena monona tai yhtenä parina, sekä 6,3 mm:n liitin joka toimii sekä linja- että kuulokelähtönä. 8HP, musta, 25 mA per kisko. Ei mitään nokkelaa, mikä on ulostulomoduulin koko idea.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/portaldrum</id>
+    <title>Rabid Elephant Portal Drum — 600 €</title>
+    <link href="https://eurorack.fi/#/m/portaldrum"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Analoginen rumpuääni, joka on suunniteltu dynamiikan eikä esiasetusten ympärille. Viritys karkeana ja hienona, sävelkorkeuden verhokäyrä, drive, vahvistimen vaimennus, transienttiosio ja pyyhkäistävä parametrinen EQ — jokaisessa CV-tulo ja vaimennin paneelissa — sekä DYNACTRL-tulo, joka liikuttaa useita niistä yhdellä ohjausjännitteellä, joten sekvensserin velocity muuttaa iskun koko luonteen eikä vain sen voimakkuutta. Basarista tomiin ja johonkin metalliseen ilman uudelleenpatchausta. 20HP, 160 mA +12V:llä.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/morph4</id>
+    <title>Joranalogue Audio Design Morph 4 — 260 €</title>
+    <link href="https://eurorack.fi/#/m/morph4"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Neljä kanavaa, joista jokainen on VCA ikkunalla: level-, position- ja span-nupit määräävät missä kohtaa ohjausjännitteen liikettä kanava avautuu ja kuinka leveänä. Yksi Morph-säädin pyyhkäisee kaikkien neljän yli, joten yhdestä CV:stä tulee neljän lähteen skanneri, ristihäivytin, neli-VCA tai joukko ikkunakomparaattoreita — ja sama patch vaihtuu näiden välillä spanneja siirtämällä. Päälle A+B, C+D, summa, keskiarvo, min ja max. 20HP, 110 mA kummallakin kiskolla.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/mimetic</id>
+    <title>Noise Engineering Mimetic Digitalis (black) — 220 €</title>
+    <link href="https://eurorack.fi/#/m/mimetic"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Nelikanavainen CV-sekvensseri 10HP:ssä, jossa jokainen askel on nuppi: kuusitoista askelta, neljä itsenäistä CV-lähtöä ja nappiruudukko kanavan ja muokattavan askeleen valintaan. Askelkohtainen satunnaistus ja siirtotoiminto liikuttavat kuvioita lennossa eikä valikon kautta. Musta paneeli. Noise Engineering on lopettanut sen valmistuksen.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/metropolix</id>
+    <title>Intellijel Metropolix — 600 €</title>
+    <link href="https://eurorack.fi/#/m/metropolix"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Metropolis-idea — kahdeksan askelmaa, kussakin liuku ja kytkin, soitettavana eikä ohjelmoitavana — rakennettuna uudelleen kaksiraitaiseksi sekvensseriksi sillä syvyydellä joka puuttui. Jokaisella askelmalla on sävelkorkeus, pulssimäärä, gate-tila, ratchetit, todennäköisyys, liuku ja ohitus; kaksi raitaa kulkevat eri pituisina samojen askelmien yli, joten kuviot ajautuvat ja kohtaavat uudelleen; kolme modulaatiokaistaa lähettävät CV:tä rinnalla; akkumulaattorit siirtävät askelman sävelkorkeutta hieman joka kierroksella, joten luuppi kehittyy koskematta. Kvantisoitu asteikoihin, tallennettavissa esiasetuksiin, kello sisään tai ulos. 34HP.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/lineout1u</id>
+    <title>Intellijel Stereo Line Out 1U (legacy) — 60 €</title>
+    <link href="https://eurorack.fi/#/m/lineout1u"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Stereo modulaarisignaali sisään, stereo linjataso ulos, yksi nuppi — 1U-tiilenä, joten se asuu Intellijel-kotelon ylärivissä eikä vie 3U-tilaa. 8HP, Intellijelin 1U-formaatti, joka ei sovi Pulp Logic -riveihin. Tämä on vanhempi malli; Intellijelillä on uudempi.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/crater</id>
+    <title>WMD Crater — 240 €</title>
+    <link href="https://eurorack.fi/#/m/crater"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Bassorumpu 8HP:ssä, joka menee 808-piiriä pidemmälle: sävelkorkeus omalla vaimennuksellaan ja määrällään, rungon vaimennus ja sustain, sekä erillinen click-osio — sointi, vaimennus ja taso — jotta alukkeen voi muotoilla itsenäisesti. Saturaatio- ja accent-tulot, clipping-kytkin, CV sävelkorkeudelle, vaimennukselle, soinnille ja click-tasolle. Pehmeä ja pyöreä toisessa päässä, säröinen ja sävelkorkeudeltaan pyyhkäisevä toisessa, samasta liipaisusta. Musta, 120 mA +12V:llä, 38 mm syvä.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/cirklonbob</id>
+    <title>Sequentix Cirklon Euro BOB — 100 €</title>
+    <link href="https://eurorack.fi/#/m/cirklonbob"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Sequentix Cirklonin Eurorack-pää: kuusitoista CV- ja kuusitoista gate-lähtöä 3,5 mm:n liittimillä 16HP:ssä, kytkettynä sekvensseriin DB25-kaapelilla. Passiivinen, ei vie virtaa. Ilman CV-laajennuksella varustettua Cirklonia sillä ei ole mitään käyttöä — se on liitäntälaatikko, ei sekvensseri.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/audioio1u</id>
+    <title>Intellijel Audio I/O 1U — 180 €</title>
+    <link href="https://eurorack.fi/#/m/audioio1u"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Molemmat suunnat modulaarin ja ulkomaailman välillä yhdellä 1U-tiilellä: stereolinjatulo jopa +20 dB:n vahvistuksella syntikan, rumpukoneen tai äänikortin nostamiseen modulaaritasolle, ja stereolinjalähtö tasonupilla telineen tuomiseksi takaisin alas, jokaisella kanavalla signaali- ja clip-LED. 24HP Intellijelin 1U-rivissä — ei Pulp Logic -formaatti.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/algo</id>
+    <title>RYK Modular ALGO — 300 €</title>
+    <link href="https://eurorack.fi/#/m/algo"/>
+    <updated>2026-09-27T11:15:23+03:00</updated>
+    <summary>Nelioperaattorinen FM-oskillaattori, joka näyttää mitä se tekee: paina ALGO, ja operaattorien välinen reititys vaihtuu ja paneelin LED-ruudukko piirtyy uudelleen sen mukaan, joten ei tarvitse muistaa millä algoritmilla ollaan. Ristimodulaatio, detune, warp ja taittoaste lähdössä, sekä modulaatiotulot kaikille neljälle operaattorille. DX-lähestymistapa FM:ään sillä käyttöliittymällä, joka Eurorackissa olisi pitänyt olla alusta asti. 18HP, musta.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/groundcontrol</id>
     <title>Endorphin.es Ground Control (silver) + case and PSU — 390 €</title>
@@ -102,82 +179,5 @@
     <link href="https://eurorack.fi/#/m/drumbrute1984"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Kymmenen analogista rumpuääntä ja 64-askelinen sekvensseri pöytälaatikossa — basari, kaksi virveliä, tomit, lehmänkello, symbaali, hi-hatit ja FM-rumpu, kullakin Color-nappi joka vaihtaa sen toiseen luonteeseen. Miksausulostulossa on analoginen särö omalla nupillaan, ja juuri se antaa koneelle hampaat. Sekvensseri hoitaa polyrytmin kunnolla: yksittäiset raidat voivat olla eri mittaisia toisiinsa nähden, jolloin kuvio ajautuu eikä vain toistu tasaisena. 64 kuviota, ketjutettavissa 16 kappaleeksi, MIDI sisään ja ulos, kello sisään ja ulos, USB. Erillislähdöt basarille, virveleille, hi-hateille ja FM-rummulle. 1984 on rajoitettu luonnonvalkoinen ja oranssi versio — sisältä sama kone kuin vakiomalli, eri puvussa.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/blackfilterbank</id>
-    <title>Flame Black Filterbank — 330 €</title>
-    <link href="https://eurorack.fi/#/m/blackfilterbank"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kaksitoista analogista 24 dB:n suodinkaistaa ja niihin kytketty sekvensseri — juuri se erottaa tämän muista suodinpankeista. Yksitoista kiinteätaajuista kaistanpäästöä 90 Hz:stä 3,9 kHz:iin ja ylipäästö päällimmäisenä, kullakin oma 60 mm:n liuku — ja modulaatiosekvensseri joka voi avata ja sulkea yksittäisiä kaistoja tahdissa, MIDI-kellosta tai analogisesta kellosta ja resetistä. 99 muistipaikkaa valmiita kuvioita, ja omia voi ladata neljän tahdin verran SysExillä. Sisäänrakennettu analoginen stereosäröpiiri, germaniumdiodeilla toteutettu OCD-tyyppi, kytkettävissä päälle. Stereoäänitulo ja -lähtö sekä monoliitin. Polveutuu Flamen Curvesista tiivistettynä. Huomaa: vaatii 250 mA +12V:llä ja on 42 mm syvä.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/bd808</id>
-    <title>Tiptop Audio BD808 — 80 €</title>
-    <link href="https://eurorack.fi/#/m/bd808"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>TR-808:n bassorumpu analogisena piirinä 4HP:ssä. Neljä nuppia — level, tone, decay ja accent — gate-tulo, accent-CV-tulo ja ulostulo, siinä koko moduuli. Tone säätää iskun alun naksahdusta; decay on se joka vie äänen tiukasta potkusta pitkään jyriseväään säveleen, joka kantoi vuosikymmenen levytuotannon. Accentilla on oma CV-tulo, joten sekvensseri voi painottaa yksittäisiä iskuja sen sijaan että kaikki osuisivat samalla voimalla. 13 mA ja 14 mm syvä, joten se mahtuu minne vain, myös matalaan koteloon.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/bartender</id>
-    <title>After Later Audio Bartender v1 — 240 €</title>
-    <link href="https://eurorack.fi/#/m/bartender"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Nelikanavainen stereomikseri esiintymiskäyttöön, 24HP, kaksi stereo-aux-lähtöä, kaksi stereopaluuta ja cue-järjestelmä jolla kanavan voi kuunnella kuulokkeista ennen kuin sen nostaa. Jokaisella kanavalla on gain, panorointi, 60 mm:n liuku, mute, pre/post-valinta lähetykselle sekä stereo/mono-kytkin — ja monotilassa panoroinnista tulee ristihäivytys, joten neljästä stereokanavasta tulee kahdeksan monokanavaa. Stereopääulostulo VU-mittarilla ja kuulokeliitäntä. Yksi asia on syytä tietää: tämän yksilön monoulostulo ei toimi. Summattu monoliitin on kuollut; kaikki muu — stereopääulostulo, neljä kanavaa, molemmat lähdöt ja paluut, cue ja kuulokkeet — toimii.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/chordpilot</id>
-    <title>Knobula Chord Pilot — 300 €</title>
-    <link href="https://eurorack.fi/#/m/chordpilot"/>
-    <updated>2026-08-30T00:28:44+03:00</updated>
-    <summary>Sointugeneraattori, jota soitetaan tuntumalla eikä teoriaa osaamalla. Nupit asettavat kahdeksan “sormen” leveyden ja hajonnan virtuaalisella koskettimistolla, ja conform-säädin vetää tuloksen haluttuun tunnelmaan — toisessa päässä konsonoiva, toisessa rikki. 192 sointumuistia kahdeksan erissä, strummeri, arpeggiaattori ja kahdeksanaskelinen sointukulkusekvensseri. Lähettää MIDIä eikä tuota itse ääntä, joten se tarvitsee moniäänisen äänilähteen ohjattavakseen. Mukana alkuperäinen laatikko, tarrat ja ohjekirja.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/strakalorsel</id>
-    <title>TouellSkouarn Strakal Orsel — 220 €</title>
-    <link href="https://eurorack.fi/#/m/strakalorsel"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Putkifuzz ja särö, käsin rakennettu Bretagnessa. Signaalitiellä on oikea putki eikä sen simulaatio, minkä vuoksi se vaatii 350mA 5V-kiskolta — tarkista että sitä löytyy ennen kuin sitoudut. Yläpäässä likainen ja alapäässä yllättävän käyttökelpoinen. Pienen pajan moduuli, joten tuen takana on ihminen eikä yritys.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/performer2</id>
-    <title>Westlicht PER|FORMER + Launchpad Mini — 320 €</title>
-    <link href="https://eurorack.fi/#/m/performer2"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Kahdeksanraitainen CV- ja porttisekvensseri, avointa lähdekoodia, 34HP. Kuusitoista askelta sivua kohti, ja jokaisella askeleella nuotti, portin pituus, uudelleenliipaisu ja todennäköisyys, lisäksi song mode sekä kahdeksan CV- ja kahdeksan porttiulostuloa. Mukana Launchpad Mini, jota se ohjaa USB:n yli ruudukko-ohjaimena — juuri niin sitä on tarkoituskin soittaa. MIDI sisään ja ulos, kello sisään ja ulos, micro SD projekteille.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/odio</id>
-    <title>Audio Damage ADM09 Odio — 170 €</title>
-    <link href="https://eurorack.fi/#/m/odio"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Luokkayhteensopiva USB-äänirajapinta 4HP:ssä — kaksi sisään, kaksi ulos, modulaaritasoilla. Burr-Brown-muuntimet 48 kHz / 16 bittiä, DC-kytketyt ulostulot ja 10V huipusta huippuun -reitit, joten se siirtää ääntä ja hidasta CV:tä rackin ja tietokoneen välillä ilman erillistä tasonsovitusta. Ei ajuria Linuxilla, macOS:llä, Windowsilla eikä iOS:llä; iPad vaatii Camera Connection Kitin. Tulojen LEDit näyttävät tason värillä — sininen on kunnossa, violetti huippuja, keltainen leikkausta. Audio Damage on lopettanut eurorack-mallistonsa, joten käytetty on ainoa tie.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/maths</id>
-    <title>Make Noise Maths v2 — 200 €</title>
-    <link href="https://eurorack.fi/#/m/maths"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Se funktiogeneraattori jonka useimmat modulaarit lopulta hankkivat, ja syystä. Kaksi jännitteellä ohjattua slew-kanavaa säädettävällä vasteella, kaksi attenuverteria niiden välissä ja summausväylä — joten se on verhokäyrä, LFO, slew-rajoitin, mikseri, viiveprosessori ja logiikkalähde patchista riippuen. Itseensä kytkeminen on koko idea: käyttöohje on kuvitettu kokoelma patch-reseptejä eikä ominaisuuslista.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/lxeuclid</id>
-    <title>AtoVproject lx-euclid — 250 €</title>
-    <link href="https://eurorack.fi/#/m/lxeuclid"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Nelikanavainen euklidinen liipaisusekvensseri, jossa on kaksi kosketusrengasta ja pyöreä värinäyttö. Renkaat ovat käyttöliittymä — mykistykset, täytöt ja nollaukset tapahtuvat sormien alla kesken soiton eikä valikon kautta. Tavallisten euklidisten kuvioiden lisäksi tarjolla on eksponentiaalinen, käänteiseksponentiaalinen ja peilattu jakauma, jolloin iskut kasautuvat sen sijaan että jakautuisivat tasan. Neljä vapaasti kytkettävää CV-tuloa, askelkohtainen todennäköisyys, kahdeksan tallennuspaikkaa.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/dixie2</id>
-    <title>Intellijel Dixie II — 160 €</title>
-    <link href="https://eurorack.fi/#/m/dixie2"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Kolmioydinpohjainen analoginen oskillaattori 6HP:ssä, ja yksi parhaista pienistä VCO:ista. Sini, kolmio, saha ja pulssi ulos yhtä aikaa, thru-zero-FM, kova ja pehmeä sync, ja kytkimellä se laskeutuu LFO-alueelle. Vireys pitää koko alalta, mikä on kolmioytimen koko pointti.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/a107</id>
-    <title>Doepfer A-107 Multitype Morphing Filter — 170 €</title>
-    <link href="https://eurorack.fi/#/m/a107"/>
-    <updated>2026-08-28T23:55:51+03:00</updated>
-    <summary>Viisinapainen jännitteellä ohjattava suodin, joka perustuu analogiseen switched capacitor -piiriin. Käytössä on 30 suodintyyppiä — alipäästö, ylipäästö, kaistanpäästö, notch ja yhdistelmiä — ja poikkeuksellisesti tyyppien välillä voi liukua CV:llä sen sijaan että niitä vaihdettaisiin kytkimellä. Erilliset CV-tulot tyypille, resonanssille ja rajataajuudelle, joten suotimen luonne on itsessään modulaatiokohde. 26HP ja aito erikoisuus Doepferin mallistossa.</summary>
   </entry>
 </feed>
