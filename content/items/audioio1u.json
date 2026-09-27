@@ -1,0 +1,72 @@
+{
+  "parts": {
+    "k": 3,
+    "j": 4,
+    "sl": 0,
+    "led": 8,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/audioio1u.jpg",
+  "mgSlug": "intellijel-audio-i-o-1u",
+  "site": "intellijel.com",
+  "hp": 24,
+  "price": 180,
+  "name": "Audio I/O 1U",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "Interface",
+    "1U"
+  ],
+  "mfr": "Intellijel",
+  "id": "audioio1u",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 39mA · −12V 28mA",
+    "depth": "36mm",
+    "pull": {
+      "q": "Line level in and out of the modular on a 1U tile, with gain control and clip indicators both ways.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/1u/audio-io-1u/"
+    },
+    "quotes": [
+      {
+        "t": "Stereo line in boosted up to +20dB to modular level, stereo modular out brought down to line with up to +6dB, with a clip and signal LED for each channel.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Intellijel 1U format only — not Pulp Logic. 24HP of a 1U row.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Audio I/O 1U — the manufacturer's page",
+        "url": "https://intellijel.com/shop/eurorack/1u/audio-io-1u/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Audio I/O 1U — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-audio-i-o-1u"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Stereo I/O 1U + Aux Mix 1U",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=vvuCyImeBtE"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Both directions between the modular and the outside world on one 1U tile: a stereo line input with up to +20dB of gain to lift a synth, drum machine or interface to modular level, and a stereo line output with a level knob to bring the rack back down, each channel with a signal and a clip LED. 24HP in an Intellijel 1U row — not Pulp Logic format.",
+    "fi": "Molemmat suunnat modulaarin ja ulkomaailman välillä yhdellä 1U-tiilellä: stereolinjatulo jopa +20 dB:n vahvistuksella syntikan, rumpukoneen tai äänikortin nostamiseen modulaaritasolle, ja stereolinjalähtö tasonupilla telineen tuomiseksi takaisin alas, jokaisella kanavalla signaali- ja clip-LED. 24HP Intellijelin 1U-rivissä — ei Pulp Logic -formaatti.",
+    "sv": "Båda riktningarna mellan modularen och omvärlden på en 1U-bricka: en stereolinjeingång med upp till +20 dB gain för att lyfta en synt, trummaskin eller ett ljudkort till modularnivå, och en stereolinjeutgång med nivåratt för att ta racket tillbaka ner, varje kanal med en signal- och en klipp-lysdiod. 24HP i en Intellijel 1U-rad — inte Pulp Logic-format."
+  },
+  "oneU": true
+}

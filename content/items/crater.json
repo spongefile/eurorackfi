@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 8,
+    "j": 8,
+    "sl": 0,
+    "led": 6,
+    "sc": 1
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/crater.jpg",
+  "mgSlug": "wmd-crater",
+  "site": "wmdevices.com",
+  "hp": 8,
+  "price": 240,
+  "name": "Crater",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Analogue",
+    "Kick"
+  ],
+  "mfr": "WMD",
+  "id": "crater",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 120mA · −12V 80mA",
+    "depth": "38mm",
+    "pull": {
+      "q": "A bass drum module built to cover everything from a soft, round thump to a distorted, pitch-swept hit.",
+      "src": "WMD",
+      "url": "https://wmdevices.com/products/crater"
+    },
+    "quotes": [
+      {
+        "t": "Pitch, pitch decay and amount, decay and sustain, a separate click section with its own timbre, decay and level, saturation, accent, and a switchable clipping stage.",
+        "s": "WMD"
+      },
+      {
+        "t": "120mA on +12V and 38mm deep — check both.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "WMD",
+        "title": "Crater — the manufacturer's page",
+        "url": "https://wmdevices.com/products/crater"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "WMD Crater — specs and racks",
+        "url": "https://modulargrid.net/e/wmd-crater"
+      }
+    ],
+    "videos": [
+      {
+        "title": "WMD Crater — Eurorack bass drum module in-depth tutorial",
+        "by": "WMDevices · YouTube",
+        "url": "https://www.youtube.com/watch?v=jWu_s26dRzM"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A kick drum in 8HP that goes further than an 808 circuit: pitch with its own decay and amount, body decay and sustain, and a separate click section — timbre, decay and level — so the attack is shaped on its own. Saturation and accent inputs, a clipping switch, CV over pitch, decay, timbre and click level. Soft and round at one end, distorted and pitch-swept at the other, from the same trigger. Black, 120mA on +12V, 38mm deep.",
+    "fi": "Bassorumpu 8HP:ssä, joka menee 808-piiriä pidemmälle: sävelkorkeus omalla vaimennuksellaan ja määrällään, rungon vaimennus ja sustain, sekä erillinen click-osio — sointi, vaimennus ja taso — jotta alukkeen voi muotoilla itsenäisesti. Saturaatio- ja accent-tulot, clipping-kytkin, CV sävelkorkeudelle, vaimennukselle, soinnille ja click-tasolle. Pehmeä ja pyöreä toisessa päässä, säröinen ja sävelkorkeudeltaan pyyhkäisevä toisessa, samasta liipaisusta. Musta, 120 mA +12V:llä, 38 mm syvä.",
+    "sv": "En bastrumma på 8HP som går längre än en 808-krets: tonhöjd med egen avklingning och mängd, kroppens avklingning och sustain, samt en separat klicksektion — klang, avklingning och nivå — så att attacken formas för sig. Saturations- och accentingångar, en klippomkopplare, CV över tonhöjd, avklingning, klang och klicknivå. Mjuk och rund i ena änden, distad och tonhöjdssvept i den andra, från samma trigger. Svart, 120 mA på +12V, 38 mm djup."
+  }
+}

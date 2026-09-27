@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 4,
+    "j": 12,
+    "sl": 0,
+    "led": 16,
+    "sc": 3
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/mimetic.jpg",
+  "mgSlug": "noise-engineering-mimetic-digitalis-black",
+  "site": "noiseengineering.us",
+  "hp": 10,
+  "price": 220,
+  "name": "Mimetic Digitalis (black)",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "CV",
+    "Digital"
+  ],
+  "mfr": "Noise Engineering",
+  "id": "mimetic",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 58mA · −12V 22mA",
+    "depth": "26mm",
+    "pull": {
+      "q": "A four-channel, 16-step CV sequencer with a hands-on, performance-friendly interface.",
+      "src": "Noise Engineering",
+      "url": "https://noiseengineering.us/products/mimetic-digitalis/"
+    },
+    "quotes": [
+      {
+        "t": "Four CV tracks over sixteen steps, each step set on a knob, with per-step randomisation and a shift register that can push a pattern along.",
+        "s": "Noise Engineering"
+      },
+      {
+        "t": "Discontinued by Noise Engineering — no new stock.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Noise Engineering",
+        "title": "Mimetic Digitalis — the manufacturer's page",
+        "url": "https://noiseengineering.us/products/mimetic-digitalis/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Mimetic Digitalis — specs and racks",
+        "url": "https://modulargrid.net/e/noise-engineering-mimetic-digitalis-black"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Mimetic Digitalis 16-step CV sequencer tutorial",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=7UxBAG_G3jc"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A four-channel CV sequencer in 10HP where every step is a knob: sixteen steps, four independent CV outputs, and a grid of buttons for selecting which channel and which step you're editing. Per-step randomise and a shift function move patterns along live rather than through a menu. Black panel. Noise Engineering have discontinued it.",
+    "fi": "Nelikanavainen CV-sekvensseri 10HP:ssä, jossa jokainen askel on nuppi: kuusitoista askelta, neljä itsenäistä CV-lähtöä ja nappiruudukko kanavan ja muokattavan askeleen valintaan. Askelkohtainen satunnaistus ja siirtotoiminto liikuttavat kuvioita lennossa eikä valikon kautta. Musta paneeli. Noise Engineering on lopettanut sen valmistuksen.",
+    "sv": "En fyrkanalig CV-sekvensiator på 10HP där varje steg är en ratt: sexton steg, fyra oberoende CV-utgångar och ett rutnät av knappar för att välja kanal och steg att redigera. Slump per steg och en skiftfunktion flyttar mönster live i stället för via en meny. Svart panel. Noise Engineering har lagt ner den."
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 32,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/cirklonbob.jpg",
+  "mgSlug": "sequentix-cirklon-euro-bob",
+  "site": "sequentix.com",
+  "hp": 16,
+  "price": 100,
+  "name": "Cirklon Euro BOB",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Controller",
+  "cats": [
+    "Controller",
+    "Breakout",
+    "Interface"
+  ],
+  "mfr": "Sequentix",
+  "id": "cirklonbob",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "passive — no power draw",
+    "depth": "36mm",
+    "pull": {
+      "q": "Breakout box bringing the Cirklon's CV and gate outputs into a Eurorack panel.",
+      "src": "Sequentix",
+      "url": "https://www.sequentix.com/"
+    },
+    "quotes": [
+      {
+        "t": "Sixteen CV and sixteen gate jacks on 3.5mm, fed from the Cirklon's rear connector over a DB25 cable.",
+        "s": "ModularGrid"
+      },
+      {
+        "t": "This does nothing on its own. It is the Eurorack end of a Sequentix Cirklon and needs a Cirklon with the CV expansion to plug into.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Sequentix",
+        "title": "Sequentix — the manufacturer",
+        "url": "https://www.sequentix.com/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Cirklon Euro BOB — specs and racks",
+        "url": "https://modulargrid.net/e/sequentix-cirklon-euro-bob"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Ewan tries out the Sequentix Cirklon V2",
+        "by": "Soundgas · YouTube",
+        "url": "https://www.youtube.com/watch?v=DyNAbVgw1cw"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The Eurorack end of a Sequentix Cirklon: sixteen CV and sixteen gate outputs on 3.5mm jacks in 16HP, wired to the sequencer over a DB25 cable. Passive, draws nothing. It has no function without a Cirklon fitted with the CV expansion — it is a breakout, not a sequencer.",
+    "fi": "Sequentix Cirklonin Eurorack-pää: kuusitoista CV- ja kuusitoista gate-lähtöä 3,5 mm:n liittimillä 16HP:ssä, kytkettynä sekvensseriin DB25-kaapelilla. Passiivinen, ei vie virtaa. Ilman CV-laajennuksella varustettua Cirklonia sillä ei ole mitään käyttöä — se on liitäntälaatikko, ei sekvensseri.",
+    "sv": "Eurorack-änden av en Sequentix Cirklon: sexton CV- och sexton gate-utgångar på 3,5 mm-uttag i 16HP, kopplad till sekvensiatorn via en DB25-kabel. Passiv, drar ingen ström. Utan en Cirklon med CV-expansionen gör den ingenting — det är en breakout, inte en sekvensiator."
+  }
+}

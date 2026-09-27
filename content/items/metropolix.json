@@ -1,0 +1,70 @@
+{
+  "parts": {
+    "k": 11,
+    "j": 12,
+    "sl": 16,
+    "led": 30,
+    "sc": 30
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/metropolix.jpg",
+  "mgSlug": "intellijel-metropolix",
+  "site": "intellijel.com",
+  "hp": 34,
+  "price": 600,
+  "name": "Metropolix",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Performance"
+  ],
+  "mfr": "Intellijel",
+  "id": "metropolix",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 95mA · −12V 10mA",
+    "depth": "25mm",
+    "pull": {
+      "q": "A performance sequencer that turns eight stages of pitch and gate into two independent tracks, with per-stage ratchets, probability and accumulation.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/metropolix/"
+    },
+    "quotes": [
+      {
+        "t": "Eight stage sliders with per-stage pulse count, gate mode, ratchets, probability, slide and skip; two tracks of any length running against each other; three modulation lanes; and accumulators that transpose a stage a little further each pass.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "34HP.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Metropolix — the manufacturer's page and manual",
+        "url": "https://intellijel.com/shop/eurorack/metropolix/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Metropolix — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-metropolix"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Metropolix review and full tutorial",
+        "by": "loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=niP5hVB43_8"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The Metropolis idea — eight stages, a slider and a switch each, played rather than programmed — rebuilt as a two-track sequencer with the depth that was missing. Each stage has pitch, pulse count, gate mode, ratchets, probability, slide and skip; two tracks run independent lengths against the same stages so patterns drift and re-align; three modulation lanes send CV alongside; accumulators nudge a stage's pitch further each time through, so a loop evolves without you touching it. Quantised to scales, saved to presets, clocked in or out. 34HP.",
+    "fi": "Metropolis-idea — kahdeksan askelmaa, kussakin liuku ja kytkin, soitettavana eikä ohjelmoitavana — rakennettuna uudelleen kaksiraitaiseksi sekvensseriksi sillä syvyydellä joka puuttui. Jokaisella askelmalla on sävelkorkeus, pulssimäärä, gate-tila, ratchetit, todennäköisyys, liuku ja ohitus; kaksi raitaa kulkevat eri pituisina samojen askelmien yli, joten kuviot ajautuvat ja kohtaavat uudelleen; kolme modulaatiokaistaa lähettävät CV:tä rinnalla; akkumulaattorit siirtävät askelman sävelkorkeutta hieman joka kierroksella, joten luuppi kehittyy koskematta. Kvantisoitu asteikoihin, tallennettavissa esiasetuksiin, kello sisään tai ulos. 34HP.",
+    "sv": "Metropolis-idén — åtta steg, en regel och en omkopplare var, spelad snarare än programmerad — ombyggd som en tvåspårig sekvensiator med det djup som saknades. Varje steg har tonhöjd, pulsantal, gate-läge, ratchets, sannolikhet, glid och hopp; två spår går i oberoende längder över samma steg så mönster driver isär och möts igen; tre modulationsbanor skickar CV vid sidan om; ackumulatorer knuffar ett stegs tonhöjd lite längre varje varv, så en loop utvecklas utan att du rör den. Kvantiserad till skalor, sparad i presets, klocka in eller ut. 34HP."
+  }
+}

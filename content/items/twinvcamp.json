@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 7,
+    "sl": 0,
+    "led": 5,
+    "sc": 4
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/twinvcamp.jpg",
+  "mgSlug": "vermona-twinvcamp",
+  "site": "vermona.com",
+  "hp": 10,
+  "price": 250,
+  "name": "twinVCAmp",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "VCA",
+    "Mixer",
+    "Analogue"
+  ],
+  "mfr": "Vermona",
+  "id": "twinvcamp",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 60mA · −12V 30mA",
+    "depth": "30mm",
+    "pull": {
+      "q": "Two voltage-controlled amplifiers with a choice of linear or exponential response and a built-in mixer.",
+      "src": "Vermona",
+      "url": "https://www.vermona.com/en/"
+    },
+    "quotes": [
+      {
+        "t": "Two VCAs, each with a level knob, a Gain ×4 button and a Log/linear button, a CV input with the two normalled in series, separate outputs and a summed mix.",
+        "s": "Vermona"
+      },
+      {
+        "t": "Slight crackle in the pots — 'pientä rahinaa nupeissa' — noted by the seller. Works, but the knobs are not silent when turned.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Vermona",
+        "title": "Vermona — the manufacturer",
+        "url": "https://www.vermona.com/en/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Vermona twinVCAmp — specs and racks",
+        "url": "https://modulargrid.net/e/vermona-twinvcamp"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Vermona twinVCAmp",
+        "by": "CRUNKY404 · YouTube",
+        "url": "https://www.youtube.com/watch?v=ewZdeGwpLY8"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Two VCAs with a mixer behind them, in Vermona's usual heavy-handed build: each channel has a big level knob, a Gain ×4 button for hot signals, and a Log/linear button so the same VCA suits audio or control voltages; CV in for each, normalled one to the next, separate outputs and a summed mix. 10HP, black. One thing to know: the pots have a slight crackle when turned. Everything works, but they are not silent under the hand.",
+    "fi": "Kaksi VCA:ta ja mikseri niiden takana, Vermonan tavanomaisen tukevasti rakennettuna: kummallakin kanavalla iso tasonuppi, Gain ×4 -nappi kuumille signaaleille ja Log/linear-nappi, jotta sama VCA sopii äänelle tai ohjausjännitteille; CV-tulo kummallekin, normalisoituna toisesta toiseen, erilliset lähdöt ja summattu mix. 10HP, musta. Yksi asia on syytä tietää: nupeissa on pientä rahinaa käännettäessä. Kaikki toimii, mutta ne eivät ole äänettömiä käden alla.",
+    "sv": "Två VCA:er med en mixer bakom, i Vermonas vanliga rejäla utförande: varje kanal har en stor nivåratt, en Gain ×4-knapp för heta signaler och en Log/linear-knapp så att samma VCA passar ljud eller styrspänningar; CV in för var och en, normaliserad från den ena till den andra, separata utgångar och en summerad mix. 10HP, svart. En sak att veta: potentiometrarna knastrar lite när man vrider. Allt fungerar, men de är inte tysta under handen."
+  }
+}

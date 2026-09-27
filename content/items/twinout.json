@@ -1,0 +1,66 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 5,
+    "sl": 0,
+    "led": 2,
+    "sc": 1
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/twinout.jpg",
+  "mgSlug": "vermona-twinout",
+  "site": "vermona.com",
+  "hp": 8,
+  "price": 200,
+  "name": "twinOUT",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "Interface"
+  ],
+  "mfr": "Vermona",
+  "id": "twinout",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 25mA · −12V 25mA",
+    "depth": "36mm",
+    "pull": {
+      "q": "A two-channel output stage taking modular levels down to line level on balanced XLR outputs.",
+      "src": "Vermona",
+      "url": "https://www.vermona.com/en/"
+    },
+    "quotes": [
+      {
+        "t": "Two 3.5mm inputs, two balanced XLR outputs with a level knob each, a Dual/Stereo switch, and a 6.3mm line and headphone output.",
+        "s": "Vermona"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Vermona",
+        "title": "Vermona — the manufacturer",
+        "url": "https://www.vermona.com/en/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Vermona twinOUT — specs and racks",
+        "url": "https://modulargrid.net/e/vermona-twinout"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Vermona twinOUT",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=Y89P74fYZrk"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The last module before the mixer or interface: two channels that bring modular signal levels down to balanced line level on XLR, each with its own level knob, a Dual/Stereo switch for treating them as two monos or one pair, and a 6.3mm jack that doubles as line out and headphone out. 8HP, black, 25mA a rail. Nothing clever, which is the point of an output module.",
+    "fi": "Viimeinen moduuli ennen mikseriä tai äänikorttia: kaksi kanavaa, jotka tuovat modulaarin signaalitasot balansoiduksi linjatasoksi XLR-liittimiin, kummallakin oma tasonuppi, Dual/Stereo-kytkin jolla ne käsitellään kahtena monona tai yhtenä parina, sekä 6,3 mm:n liitin joka toimii sekä linja- että kuulokelähtönä. 8HP, musta, 25 mA per kisko. Ei mitään nokkelaa, mikä on ulostulomoduulin koko idea.",
+    "sv": "Sista modulen före mixern eller ljudkortet: två kanaler som tar modularnivåer ner till balanserad linjenivå på XLR, var och en med egen nivåratt, en Dual/Stereo-omkopplare för att köra dem som två mono eller ett par, och ett 6,3 mm-uttag som är både linje- och hörlursutgång. 8HP, svart, 25 mA per skena. Inget finurligt, vilket är poängen med en utgångsmodul."
+  }
+}

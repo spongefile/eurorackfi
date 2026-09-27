@@ -1,0 +1,38 @@
+{
+  "key": "matias",
+  "name": "Matias",
+  "dot": "#B75E96",
+  "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/matias",
+  "wants": [
+    {
+      "type": "product",
+      "mfr": "Random*Source",
+      "name": "Medusa (Serge)",
+      "hp": 0,
+      "tone": "alu",
+      "parts": {
+        "k": 26,
+        "j": 40,
+        "sl": 0,
+        "led": 0,
+        "sc": 0
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/medusa.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Random*Source",
+      "name": "VCFQ",
+      "hp": 14,
+      "tone": "alu",
+      "parts": {
+        "k": 6,
+        "j": 8,
+        "sl": 0,
+        "led": 0,
+        "sc": 1
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/vcfq.jpg"
+    }
+  ]
+}

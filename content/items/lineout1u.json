@@ -1,0 +1,65 @@
+{
+  "parts": {
+    "k": 1,
+    "j": 2,
+    "sl": 0,
+    "led": 2,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/lineout1u.jpg",
+  "mgSlug": "intellijel-stereo-line-out-1u",
+  "site": "intellijel.com",
+  "hp": 8,
+  "price": 60,
+  "name": "Stereo Line Out 1U (legacy)",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Output",
+  "cats": [
+    "Output",
+    "1U"
+  ],
+  "mfr": "Intellijel",
+  "id": "lineout1u",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 19mA · −12V 12mA",
+    "depth": "29mm",
+    "pull": {
+      "q": "Converts a stereo modular signal to line level on a single 1U tile.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/1u/stereo-line-out-1u/"
+    },
+    "quotes": [
+      {
+        "t": "Stereo in on 3.5mm, stereo out at line level, one level knob.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Intellijel 1U format — it fits Intellijel cases and 1U rows, not Pulp Logic ones. This is the earlier model, which Intellijel have since replaced.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Stereo Line Out 1U — the manufacturer's page",
+        "url": "https://intellijel.com/shop/eurorack/1u/stereo-line-out-1u/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Stereo Line Out 1U — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-stereo-line-out-1u"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Stereo modular signal in, stereo line level out, one knob — on a 1U tile, so it lives in the top row of an Intellijel case and costs no 3U space. 8HP, Intellijel 1U format, which does not fit Pulp Logic rows. This is the legacy model; Intellijel have a newer one.",
+    "fi": "Stereo modulaarisignaali sisään, stereo linjataso ulos, yksi nuppi — 1U-tiilenä, joten se asuu Intellijel-kotelon ylärivissä eikä vie 3U-tilaa. 8HP, Intellijelin 1U-formaatti, joka ei sovi Pulp Logic -riveihin. Tämä on vanhempi malli; Intellijelillä on uudempi.",
+    "sv": "Stereo modularsignal in, stereo linjenivå ut, en ratt — på en 1U-bricka, så den bor i toppraden på en Intellijel-låda och tar ingen 3U-plats. 8HP, Intellijels 1U-format, som inte passar Pulp Logic-rader. Detta är den äldre modellen; Intellijel har en nyare."
+  },
+  "oneU": true
+}

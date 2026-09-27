@@ -1,0 +1,67 @@
+{
+  "parts": {
+    "k": 14,
+    "j": 12,
+    "sl": 0,
+    "led": 60,
+    "sc": 2
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/algo.jpg",
+  "mgSlug": "ryk-modular-algo",
+  "site": "modulargrid.net/e/ryk-modular-algo",
+  "hp": 18,
+  "price": 300,
+  "name": "ALGO",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "FM",
+    "Digital",
+    "Complex"
+  ],
+  "mfr": "RYK Modular",
+  "id": "algo",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 70mA · −12V 6mA",
+    "depth": "25mm",
+    "pull": {
+      "q": "A complex FM oscillator built around switchable operator algorithms, with the routing shown live on an LED matrix.",
+      "src": "RYK Modular",
+      "url": "https://modulargrid.net/e/ryk-modular-algo"
+    },
+    "quotes": [
+      {
+        "t": "Four operators, an ALGO button that steps through routings with the LED grid drawing the current one, XM cross-modulation, detune, warp and a wavefolder on the output.",
+        "s": "ModularGrid"
+      },
+      {
+        "t": "RYK Modular's own website did not resolve at the time of listing, so there is no manufacturer link here — ModularGrid carries the specs.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "RYK Modular ALGO — specs and racks",
+        "url": "https://modulargrid.net/e/ryk-modular-algo"
+      }
+    ],
+    "videos": [
+      {
+        "title": "RYK ALGO demo — Eurorack complex oscillator",
+        "by": "RYK Modular · YouTube",
+        "url": "https://www.youtube.com/watch?v=h0_x3GfnInA"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A four-operator FM oscillator that shows you what it's doing: press ALGO and the routing between operators changes, and the LED grid on the panel redraws to match, so you never have to remember which algorithm you're on. Cross-modulation, detune, warp and a fold stage on the way out, with modulation inputs for all four operators. The DX approach to FM with the interface Eurorack should have had all along. 18HP, black.",
+    "fi": "Nelioperaattorinen FM-oskillaattori, joka näyttää mitä se tekee: paina ALGO, ja operaattorien välinen reititys vaihtuu ja paneelin LED-ruudukko piirtyy uudelleen sen mukaan, joten ei tarvitse muistaa millä algoritmilla ollaan. Ristimodulaatio, detune, warp ja taittoaste lähdössä, sekä modulaatiotulot kaikille neljälle operaattorille. DX-lähestymistapa FM:ään sillä käyttöliittymällä, joka Eurorackissa olisi pitänyt olla alusta asti. 18HP, musta.",
+    "sv": "En fyroperators FM-oscillator som visar vad den gör: tryck ALGO så ändras routingen mellan operatorerna, och lysdiodrutnätet på panelen ritas om så det matchar, så du behöver aldrig komma ihåg vilken algoritm du står på. Korsmodulation, detune, warp och ett viksteg på vägen ut, med modulationsingångar för alla fyra operatorer. DX-sättet att göra FM med det gränssnitt Eurorack borde ha haft från början. 18HP, svart."
+  }
+}

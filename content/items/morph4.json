@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "k": 14,
+    "j": 30,
+    "sl": 0,
+    "led": 4,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/morph4.jpg",
+  "mgSlug": "joranalogue-audio-design-morph-4",
+  "site": "joranalogue.com",
+  "hp": 20,
+  "price": 260,
+  "name": "Morph 4",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "VCA",
+    "Mixer"
+  ],
+  "mfr": "Joranalogue Audio Design",
+  "id": "morph4",
+  "negotiating": false,
+  "who": "matias",
+  "extra": {
+    "power": "+12V 110mA · −12V 110mA",
+    "depth": "30mm",
+    "pull": {
+      "q": "A dimensional modulation array: four channels of window comparator and VCA, morphed by one control.",
+      "src": "Joranalogue",
+      "url": "https://joranalogue.com/products/morph-4"
+    },
+    "quotes": [
+      {
+        "t": "Each channel has a level, a position and a span; the Morph control sweeps through all four, turning one CV into a crossfade, a scanner, a quad VCA or a window comparator depending on how you set it.",
+        "s": "Joranalogue"
+      },
+      {
+        "t": "110mA on both rails.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Joranalogue",
+        "title": "Morph 4 — the manufacturer's page and manual",
+        "url": "https://joranalogue.com/products/morph-4"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Morph 4 — specs and racks",
+        "url": "https://modulargrid.net/e/joranalogue-audio-design-morph-4"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Joranalogue Morph 4 — Dimensional Modulation Array",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=IA_nSEl0hrA"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Four channels, each a VCA with a window: level, position and span knobs decide where in a control voltage's travel a channel opens and how wide. One Morph control sweeps across all four, so a single CV becomes a scanner across four sources, a crossfader, a quad VCA or a set of window comparators — and the same patch flips between those by moving the spans. A+B, C+D, add, average, min and max outputs on top. 20HP, 110mA on each rail.",
+    "fi": "Neljä kanavaa, joista jokainen on VCA ikkunalla: level-, position- ja span-nupit määräävät missä kohtaa ohjausjännitteen liikettä kanava avautuu ja kuinka leveänä. Yksi Morph-säädin pyyhkäisee kaikkien neljän yli, joten yhdestä CV:stä tulee neljän lähteen skanneri, ristihäivytin, neli-VCA tai joukko ikkunakomparaattoreita — ja sama patch vaihtuu näiden välillä spanneja siirtämällä. Päälle A+B, C+D, summa, keskiarvo, min ja max. 20HP, 110 mA kummallakin kiskolla.",
+    "sv": "Fyra kanaler, var och en en VCA med ett fönster: rattarna level, position och span avgör var i en styrspännings rörelse kanalen öppnar och hur brett. En Morph-ratt sveper över alla fyra, så en enda CV blir en skanner över fyra källor, en korsfadare, en fyrfaldig VCA eller en uppsättning fönsterkomparatorer — och samma patch växlar mellan dessa genom att flytta spannen. Ovanpå det A+B, C+D, summa, medel, min och max. 20HP, 110 mA på vardera skenan."
+  }
+}
