@@ -260,6 +260,21 @@
         "sc": 2
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/3xmia.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Flame",
+      "name": "C-3 MkII",
+      "hp": 6,
+      "tone": "black",
+      "parts": {
+        "k": 3,
+        "j": 5,
+        "sl": 0,
+        "led": 3,
+        "sc": 9
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/c3mkii.jpg"
     }
   ],
   "form": "https://tally.so/r/lbkgvB",
