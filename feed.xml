@@ -20,13 +20,6 @@
     <summary>Viimeinen moduuli ennen mikseriä tai äänikorttia: kaksi kanavaa, jotka tuovat modulaarin signaalitasot balansoiduksi linjatasoksi XLR-liittimiin, kummallakin oma tasonuppi, Dual/Stereo-kytkin jolla ne käsitellään kahtena monona tai yhtenä parina, sekä 6,3 mm:n liitin joka toimii sekä linja- että kuulokelähtönä. 8HP, musta, 25 mA per kisko. Ei mitään nokkelaa, mikä on ulostulomoduulin koko idea.</summary>
   </entry>
   <entry>
-    <id>https://eurorack.fi/#/m/portaldrum</id>
-    <title>Rabid Elephant Portal Drum — 600 €</title>
-    <link href="https://eurorack.fi/#/m/portaldrum"/>
-    <updated>2026-09-27T11:15:23+03:00</updated>
-    <summary>Analoginen rumpuääni, joka on suunniteltu dynamiikan eikä esiasetusten ympärille. Viritys karkeana ja hienona, sävelkorkeuden verhokäyrä, drive, vahvistimen vaimennus, transienttiosio ja pyyhkäistävä parametrinen EQ — jokaisessa CV-tulo ja vaimennin paneelissa — sekä DYNACTRL-tulo, joka liikuttaa useita niistä yhdellä ohjausjännitteellä, joten sekvensserin velocity muuttaa iskun koko luonteen eikä vain sen voimakkuutta. Basarista tomiin ja johonkin metalliseen ilman uudelleenpatchausta. 20HP, 160 mA +12V:llä.</summary>
-  </entry>
-  <entry>
     <id>https://eurorack.fi/#/m/morph4</id>
     <title>Joranalogue Audio Design Morph 4 — 260 €</title>
     <link href="https://eurorack.fi/#/m/morph4"/>
@@ -179,5 +172,12 @@
     <link href="https://eurorack.fi/#/m/drumbrute1984"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Kymmenen analogista rumpuääntä ja 64-askelinen sekvensseri pöytälaatikossa — basari, kaksi virveliä, tomit, lehmänkello, symbaali, hi-hatit ja FM-rumpu, kullakin Color-nappi joka vaihtaa sen toiseen luonteeseen. Miksausulostulossa on analoginen särö omalla nupillaan, ja juuri se antaa koneelle hampaat. Sekvensseri hoitaa polyrytmin kunnolla: yksittäiset raidat voivat olla eri mittaisia toisiinsa nähden, jolloin kuvio ajautuu eikä vain toistu tasaisena. 64 kuviota, ketjutettavissa 16 kappaleeksi, MIDI sisään ja ulos, kello sisään ja ulos, USB. Erillislähdöt basarille, virveleille, hi-hateille ja FM-rummulle. 1984 on rajoitettu luonnonvalkoinen ja oranssi versio — sisältä sama kone kuin vakiomalli, eri puvussa.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/blackfilterbank</id>
+    <title>Flame Black Filterbank — 330 €</title>
+    <link href="https://eurorack.fi/#/m/blackfilterbank"/>
+    <updated>2026-08-30T23:41:40+03:00</updated>
+    <summary>Kaksitoista analogista 24 dB:n suodinkaistaa ja niihin kytketty sekvensseri — juuri se erottaa tämän muista suodinpankeista. Yksitoista kiinteätaajuista kaistanpäästöä 90 Hz:stä 3,9 kHz:iin ja ylipäästö päällimmäisenä, kullakin oma 60 mm:n liuku — ja modulaatiosekvensseri joka voi avata ja sulkea yksittäisiä kaistoja tahdissa, MIDI-kellosta tai analogisesta kellosta ja resetistä. 99 muistipaikkaa valmiita kuvioita, ja omia voi ladata neljän tahdin verran SysExillä. Sisäänrakennettu analoginen stereosäröpiiri, germaniumdiodeilla toteutettu OCD-tyyppi, kytkettävissä päälle. Stereoäänitulo ja -lähtö sekä monoliitin. Polveutuu Flamen Curvesista tiivistettynä. Huomaa: vaatii 250 mA +12V:llä ja on 42 mm syvä.</summary>
   </entry>
 </feed>
