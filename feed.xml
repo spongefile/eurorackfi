@@ -4,7 +4,21 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-27T11:15:23+03:00</updated>
+  <updated>2026-09-30T00:58:12+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/softpop2</id>
+    <title>Bastl Instruments Softpop SP2 — 450 €</title>
+    <link href="https://eurorack.fi/#/m/softpop2"/>
+    <updated>2026-09-30T00:58:12+03:00</updated>
+    <summary>Bastlin toinen Softpop: subtraktiivinen syntikkaääni, joka on mielellään melodia ja vielä mieluummin sotku. Digitaalinen oskillaattori aallonmuokkauksella syöttää tilamuuttujasuodinta, jonka voi ajaa itseoskillointiin ja sen yli; sisällä asuvat 8-askelinen sekvensseri ketjutuksella ja kvantisoija kahdeksalla muokattavalla asteikolla, joten se pyörii omillaan; MIDI ja ulkoinen äänitulo tuovat ulkomaailman sisään; ja 37-pisteinen patchbay antaa sen istua Eurorack-järjestelmässä yhtä vapaasti kuin pöydällä. Toimii 5 V:lla micro-USB:n kautta tai telineessä 34HP:n levyisenä.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/multiclock</id>
+    <title>E-RM Multiclock — 450 €</title>
+    <link href="https://eurorack.fi/#/m/multiclock"/>
+    <updated>2026-09-30T00:58:12+03:00</updated>
+    <summary>Laatikko, joka korjaa ajoituksen tietokoneen ja laitteiden välillä. Neljä kellokanavaa, kukin erikseen siirrettävissä ja shufflattavissa, lähetettynä MIDI-kellona, DIN-synkkana ja analogisina pulsseina yhtä aikaa; USB-MIDI sisään ja ulos; sekä äänisynkkatulo, jolloin DAW lähettää sille klikin ääniraidalla ja kaikki sen perässä lukittuu siihen ilman USB-huojuntaa. Tuottaa myös oman kellonsa, jos tietokonetta ei ole. Pöytälaite 9–12 V:n verkkolaitteella.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/twinvcamp</id>
     <title>Vermona twinVCAmp — 250 €</title>
@@ -165,19 +179,5 @@
     <link href="https://eurorack.fi/#/m/entropicdoom"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Kohinalähde, jota voi soittaa kuin oskillaattoria. Se tuottaa 1/f-kohinaa ja ajaa sen resonoivan takaisinkytkentäsilmukan läpi, jolloin kohina saa sävelkorkeuden — laske resonanssi ja se on suhinaa, nosta se ja siitä tulee sävel jossa rouheus on yhä tallella. Kaksi-, kolmi- tai nelinapainen kytkentä, karkea ja hieno taajuussäätö, 1V/okt-seuranta, FM sekä XOR-rengasmodulaattori omalla VCA:llaan ulkoisen äänen käsittelyyn. Bright- ja dark-ulostulot ovat suotimen edestä ja takaa: brightissa on aina kohinaa mukana, dark voi olla puhdasta viritettyä kohinaa nelinapaisena. Neljätoista HP, 45 mA. Ei hienovarainen moduuli eikä yritäkään olla — se on droneille, pyyhkäisyille ja tarkoituksella hajoaville asioille.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/drumbrute1984</id>
-    <title>Arturia DrumBrute Impact 1984 — 175 €</title>
-    <link href="https://eurorack.fi/#/m/drumbrute1984"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kymmenen analogista rumpuääntä ja 64-askelinen sekvensseri pöytälaatikossa — basari, kaksi virveliä, tomit, lehmänkello, symbaali, hi-hatit ja FM-rumpu, kullakin Color-nappi joka vaihtaa sen toiseen luonteeseen. Miksausulostulossa on analoginen särö omalla nupillaan, ja juuri se antaa koneelle hampaat. Sekvensseri hoitaa polyrytmin kunnolla: yksittäiset raidat voivat olla eri mittaisia toisiinsa nähden, jolloin kuvio ajautuu eikä vain toistu tasaisena. 64 kuviota, ketjutettavissa 16 kappaleeksi, MIDI sisään ja ulos, kello sisään ja ulos, USB. Erillislähdöt basarille, virveleille, hi-hateille ja FM-rummulle. 1984 on rajoitettu luonnonvalkoinen ja oranssi versio — sisältä sama kone kuin vakiomalli, eri puvussa.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/blackfilterbank</id>
-    <title>Flame Black Filterbank — 330 €</title>
-    <link href="https://eurorack.fi/#/m/blackfilterbank"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kaksitoista analogista 24 dB:n suodinkaistaa ja niihin kytketty sekvensseri — juuri se erottaa tämän muista suodinpankeista. Yksitoista kiinteätaajuista kaistanpäästöä 90 Hz:stä 3,9 kHz:iin ja ylipäästö päällimmäisenä, kullakin oma 60 mm:n liuku — ja modulaatiosekvensseri joka voi avata ja sulkea yksittäisiä kaistoja tahdissa, MIDI-kellosta tai analogisesta kellosta ja resetistä. 99 muistipaikkaa valmiita kuvioita, ja omia voi ladata neljän tahdin verran SysExillä. Sisäänrakennettu analoginen stereosäröpiiri, germaniumdiodeilla toteutettu OCD-tyyppi, kytkettävissä päälle. Stereoäänitulo ja -lähtö sekä monoliitin. Polveutuu Flamen Curvesista tiivistettynä. Huomaa: vaatii 250 mA +12V:llä ja on 42 mm syvä.</summary>
   </entry>
 </feed>

@@ -16,6 +16,7 @@
   "brainseed.json",
   "brenso.json",
   "canvasfolio.json",
+  "cgs-tubemixer.json",
   "chainsaw.json",
   "chord328.json",
   "chordpilot.json",
@@ -73,6 +74,7 @@
   "mosquant.json",
   "mosreverb.json",
   "mpc500.json",
+  "multiclock.json",
   "multistage.json",
   "mutanthihats.json",
   "mutantsnare.json",
@@ -107,6 +109,7 @@
   "scio.json",
   "shelves.json",
   "sinciter.json",
+  "softpop2.json",
   "spectravox.json",
   "steamdeck.json",
   "sto.json",
@@ -125,6 +128,7 @@
   "twinout.json",
   "twinvcamp.json",
   "ufold.json",
+  "uraltone-spring.json",
   "woovebox.json",
   "zazou.json"
 ]
