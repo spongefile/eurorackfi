@@ -1,0 +1,56 @@
+{
+  "parts": {
+    "k": 5,
+    "j": 4,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/uraltone-spring.jpg",
+  "mgSlug": "other-unknown-uraltone-spring-reverb",
+  "site": "uraltone.com",
+  "hp": 8,
+  "price": 0,
+  "name": "Spring Reverb",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Reverb",
+    "DIY"
+  ],
+  "mfr": "UralTone",
+  "id": "uraltone-spring",
+  "negotiating": false,
+  "hidden": true,
+  "who": "tatu",
+  "extra": {
+    "power": "+12V 90mA · −12V 90mA",
+    "pull": {
+      "q": "Designed to work as a civilized spring reverb module or an instrument of its own with an open-springs tank.",
+      "src": "UralTone",
+      "url": "https://en.uraltone.com/uraltone-euro-rack-series-spring-reverb-kit.html"
+    },
+    "quotes": [
+      {
+        "t": "A DIY build of UralTone's kit — the tank is not part of the kit, so which tank this one has is the seller's to say. Details follow when it is listed for sale.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "UralTone",
+        "title": "Spring Reverb kit — the maker's page",
+        "url": "https://en.uraltone.com/uraltone-euro-rack-series-spring-reverb-kit.html"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "UralTone's spring reverb driver and recovery module, a Finnish DIY kit. Not yet for sale.",
+    "fi": "UralTonen jousikaikumoduuli, suomalainen DIY-sarja. Ei vielä myynnissä.",
+    "sv": "UralTones fjäderreverbmodul, ett finskt DIY-kit. Inte till salu ännu."
+  }
+}

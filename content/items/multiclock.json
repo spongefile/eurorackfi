@@ -1,0 +1,62 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/multiclock.jpg",
+  "mgSlug": "",
+  "site": "e-rm.de",
+  "hp": 0,
+  "price": 450,
+  "name": "Multiclock",
+  "fmt": "desk",
+  "tone": "black",
+  "cat": "Controller",
+  "cats": [
+    "Controller",
+    "Clock",
+    "MIDI",
+    "Desktop"
+  ],
+  "mfr": "E-RM",
+  "id": "multiclock",
+  "negotiating": false,
+  "who": "tatu",
+  "extra": {
+    "power": "9–12V DC adapter, any polarity",
+    "depth": "220 × 117 × 55 mm",
+    "pull": {
+      "q": "Professionally sync all your electronic instruments and software.",
+      "src": "E-RM",
+      "url": "https://www.e-rm.de/multiclock/"
+    },
+    "quotes": [
+      {
+        "t": "Four clock channels, each with its own shift and shuffle, on MIDI, DIN sync and analogue at once; USB MIDI with four outputs and one input; an audio sync input so a DAW can drive it sample-accurately.",
+        "s": "E-RM"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "E-RM",
+        "title": "Multiclock — the manufacturer's page and manual",
+        "url": "https://www.e-rm.de/multiclock/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "E-RM Multiclock lets you sync everything",
+        "by": "Synthtopia · YouTube",
+        "url": "https://www.youtube.com/watch?v=K-CnDhVN1Vo"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The box that fixes timing between a computer and hardware. Four clock channels, each independently shifted and shuffled, sent out as MIDI clock, DIN sync and analogue pulses at the same time; USB MIDI in and out; and an audio sync input, so a DAW sends it a click on an audio track and everything downstream locks to that with no USB jitter. Generates its own clock too, if there's no computer. Desktop box on a 9–12V adapter.",
+    "fi": "Laatikko, joka korjaa ajoituksen tietokoneen ja laitteiden välillä. Neljä kellokanavaa, kukin erikseen siirrettävissä ja shufflattavissa, lähetettynä MIDI-kellona, DIN-synkkana ja analogisina pulsseina yhtä aikaa; USB-MIDI sisään ja ulos; sekä äänisynkkatulo, jolloin DAW lähettää sille klikin ääniraidalla ja kaikki sen perässä lukittuu siihen ilman USB-huojuntaa. Tuottaa myös oman kellonsa, jos tietokonetta ei ole. Pöytälaite 9–12 V:n verkkolaitteella.",
+    "sv": "Lådan som fixar timingen mellan en dator och hårdvara. Fyra klockkanaler, var och en förskjuten och shufflad för sig, skickade som MIDI-klocka, DIN-sync och analoga pulser samtidigt; USB-MIDI in och ut; och en ljudsynkingång, så att en DAW skickar ett klick på ett ljudspår och allt nedströms låser till det utan USB-jitter. Genererar även egen klocka om det inte finns någon dator. Bordslåda på en 9–12 V adapter."
+  }
+}

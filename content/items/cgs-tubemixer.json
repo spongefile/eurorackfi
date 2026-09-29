@@ -1,0 +1,49 @@
+{
+  "parts": {
+    "k": 4,
+    "j": 5,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "",
+  "mgSlug": "",
+  "site": "elby-designs.com",
+  "hp": 0,
+  "price": 0,
+  "name": "Tube Mixer",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Mixer",
+    "DIY",
+    "Tube"
+  ],
+  "mfr": "CGS (Ken Stone)",
+  "id": "cgs-tubemixer",
+  "negotiating": false,
+  "hidden": true,
+  "who": "tatu",
+  "extra": {
+    "quotes": [
+      {
+        "t": "A DIY build from Ken Stone's CGS series. HP, panel and specs are the builder's own — details follow when it is listed for sale.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Elby Designs",
+        "title": "CGS — Ken Stone's designs, the source of the boards",
+        "url": "https://www.elby-designs.com/webtek/cgs/cgs.htm"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "A valve mixer built from Ken Stone's CGS design. DIY build; not yet for sale.",
+    "fi": "Putkimikseri Ken Stonen CGS-suunnitelmasta. DIY-rakennelma; ei vielä myynnissä.",
+    "sv": "En rörmixer byggd efter Ken Stones CGS-design. DIY-bygge; inte till salu ännu."
+  }
+}

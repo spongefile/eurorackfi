@@ -1,0 +1,70 @@
+{
+  "parts": {
+    "k": 12,
+    "j": 37,
+    "sl": 0,
+    "led": 8,
+    "sc": 10
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/softpop2.jpg",
+  "mgSlug": "bastl-instruments-softpop-sp2",
+  "site": "bastl-instruments.com",
+  "hp": 0,
+  "price": 450,
+  "name": "Softpop SP2",
+  "fmt": "desk",
+  "tone": "alu",
+  "cat": "Synth",
+  "cats": [
+    "Semi-modular",
+    "Synth",
+    "Desktop"
+  ],
+  "mfr": "Bastl Instruments",
+  "id": "softpop2",
+  "negotiating": false,
+  "who": "tatu",
+  "extra": {
+    "power": "5V micro-USB, or eurorack +5V 250mA if racked (34HP)",
+    "pull": {
+      "q": "Softpop SP2 is a radical subtractive synth under the influence of unconventional digital control.",
+      "src": "Bastl Instruments",
+      "url": "https://bastl-instruments.com/instruments/softpop2"
+    },
+    "quotes": [
+      {
+        "t": "It's a rare beast that excels at both melody and noise in equal measure.",
+        "s": "Bastl Instruments"
+      },
+      {
+        "t": "Digital oscillator with waveshaping, a state-variable resonant filter, an 8-step sequencer with pattern chaining, a quantizer with eight user scales, MIDI, an external audio input and a 37-point patchbay that speaks Eurorack.",
+        "s": "Bastl Instruments"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Bastl Instruments",
+        "title": "Softpop 2 — the manufacturer's page and manual",
+        "url": "https://bastl-instruments.com/instruments/softpop2"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Bastl Softpop SP2 — specs and racks",
+        "url": "https://modulargrid.net/e/bastl-instruments-softpop-sp2"
+      }
+    ],
+    "videos": [
+      {
+        "title": "SoftPop 2 review — a refreshingly original semi-modular",
+        "by": "loopop · YouTube",
+        "url": "https://www.youtube.com/watch?v=iGky7Z9wfA0"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Bastl's second Softpop: a subtractive synth voice that is happy being a melody and happier being a mess. A digital oscillator with waveshaping feeds a state-variable resonant filter that can be pushed into self-oscillation and beyond; an 8-step sequencer with chaining and a quantizer with eight editable scales live inside it, so it runs on its own; MIDI and an external audio input bring the outside in; and a 37-point patchbay lets it sit inside a Eurorack system as freely as on a desk. Runs on 5V over micro-USB, or racks at 34HP.",
+    "fi": "Bastlin toinen Softpop: subtraktiivinen syntikkaääni, joka on mielellään melodia ja vielä mieluummin sotku. Digitaalinen oskillaattori aallonmuokkauksella syöttää tilamuuttujasuodinta, jonka voi ajaa itseoskillointiin ja sen yli; sisällä asuvat 8-askelinen sekvensseri ketjutuksella ja kvantisoija kahdeksalla muokattavalla asteikolla, joten se pyörii omillaan; MIDI ja ulkoinen äänitulo tuovat ulkomaailman sisään; ja 37-pisteinen patchbay antaa sen istua Eurorack-järjestelmässä yhtä vapaasti kuin pöydällä. Toimii 5 V:lla micro-USB:n kautta tai telineessä 34HP:n levyisenä.",
+    "sv": "Bastls andra Softpop: en subtraktiv syntröst som trivs som melodi och trivs ännu bättre som röra. En digital oscillator med vågformning matar ett tillståndsvariabelt resonant filter som kan drivas till självsvängning och bortom; inuti bor en 8-stegs sekvensiator med kedjning och en kvantiserare med åtta redigerbara skalor, så den går på egen hand; MIDI och en extern ljudingång tar in omvärlden; och en 37-punkters patchbay låter den sitta i ett Eurorack-system lika fritt som på ett skrivbord. Går på 5 V över micro-USB, eller rackas på 34HP."
+  }
+}
