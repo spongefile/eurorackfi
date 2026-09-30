@@ -1,0 +1,53 @@
+{
+  "id": "mimetic-panel",
+  "mfr": "spongefile",
+  "name": "Mimetic Digitalis front panel replacement",
+  "price": 30,
+  "hp": 0,
+  "fmt": "acc",
+  "who": "spongefile",
+  "cat": "Other",
+  "cats": [
+    "Other",
+    "Panel",
+    "Noise Engineering"
+  ],
+  "mgSlug": "",
+  "site": "shop.spongefile.com",
+  "shopUrl": "https://shop.spongefile.com/product/mimetic-digitalis-front-panel-replacement",
+  "tone": "black",
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "blurb": {
+    "en": "A replacement front panel for Noise Engineering's Mimetic Digitalis. The original panel is busy and the sequencer has several button combos that are easy to forget; this one lays the same controls out more calmly and prints the combos where you need them. Panel only — the module is not included. Not shipped to the US at the moment.",
+    "fi": "Vaihtoetupaneeli Noise Engineeringin Mimetic Digitalis -sekvensseriin. Alkuperäinen paneeli on tiheä ja laitteessa on useita helposti unohtuvia näppäinyhdistelmiä; tämä asettelee samat säätimet rauhallisemmin ja painaa yhdistelmät näkyviin sinne missä niitä tarvitsee. Pelkkä paneeli — moduuli ei kuulu kauppaan. Ei toimiteta Yhdysvaltoihin toistaiseksi.",
+    "sv": "En utbytesfrontpanel till Noise Engineerings Mimetic Digitalis. Originalpanelen är tät och sekvensiatorn har flera knappkombinationer som är lätta att glömma; den här lägger samma reglage lugnare och trycker kombinationerna där de behövs. Enbart panelen — modulen ingår inte. Skickas inte till USA för närvarande."
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/shop/mimetic-panel.jpg",
+  "negotiating": false,
+  "extra": {
+    "specs": [
+      [
+        "Type",
+        "Replacement front panel"
+      ],
+      [
+        "Fits",
+        "Noise Engineering Mimetic Digitalis (10HP)"
+      ],
+      [
+        "Includes",
+        "Panel only — no module, no hardware"
+      ],
+      [
+        "Shipping",
+        "Not to the US at the moment"
+      ]
+    ]
+  }
+}
