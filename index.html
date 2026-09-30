@@ -3378,6 +3378,15 @@ function openDetail(id){ var m=byId(id); S.shot=m?shotAvail(m)[0]:0; location.ha
    invisible in-session (S.who was still correct in memory) and only
    real on reload. Scrolling now happens here instead, after the hash is
    set, so there's nothing left for a stale href to win against. */
+/* The id of the item page currently open, whichever form the URL holds —
+   "#/m/<id>" mid-navigation, "/m/<id>" once the address bar carries the
+   shareable path. Null when no item page is open. Every reader of the
+   item URL goes through this, so the two forms can't drift apart. */
+function currentItemId(){
+  if(location.hash.indexOf("#/m/")===0) return location.hash.slice(4);
+  if(location.pathname.indexOf("/m/")===0) return location.pathname.slice(3).replace(/\/+$/,"");
+  return null;
+}
 function closeDetail(){
   /* INVERTED: navigate back unless already on a grid view, rather than
      keeping a list of pages to navigate back FROM. The old allowlist
@@ -3389,7 +3398,10 @@ function closeDetail(){
      it silently. Naming what counts as "already home" instead means a new
      page can never fall out of it. */
   var h=location.hash;
-  var onGrid = h==="" || h==="#/" || h==="#grid-top" || h.indexOf("#/s/")===0;
+  /* an item page carries its path in the pathname now, hash empty — an
+     empty hash only means "home" when the path agrees */
+  var onGrid = (h==="" || h==="#/" || h==="#grid-top" || h.indexOf("#/s/")===0)
+    && location.pathname.indexOf("/m/")!==0;
   if(!onGrid){
     location.hash=S.who!=="all"?"#/s/"+S.who:"#/";
     var gt=el("grid-top"); if(gt) gt.scrollIntoView();
@@ -3429,6 +3441,22 @@ function syncNavCurrent(h){
 }
 function route(){
   var h=location.hash;
+  /* /m/<id> is an item's REAL path — a static stub with the OG tags lives
+     there (built by the content-manifest workflow), because Facebook's
+     scraper strips #fragments and can never see a hash route. The item
+     page below writes this path into the address bar so a copied link
+     unfurls with the item's photo; here the router makes the path itself
+     route (forward-traversal lands on it with no hash), and scrubs a
+     stale pathname off any other route so /m/x#/wish can't linger. */
+  var pth=location.pathname;
+  if(pth.indexOf("/m/")===0 && h===""){
+    /* only a truly empty hash — "#/" is an explicit navigation (Kaikki,
+       closeDetail) and must fall through to the scrub, or the item would
+       recapture its own close click */
+    h="#/m/"+pth.slice(3).replace(/\/+$/,"");
+  }else if(pth!=="/" && h){
+    history.replaceState(null,"","/"+h);
+  }
   syncNavCurrent(h);
   /* "#/wish" is the page; "#/wish/<sellerKey>" scrolls to that seller's
      section. Same constraint as #/faq/<id>: a URL carries one fragment, so
@@ -3536,6 +3564,9 @@ function route(){
       el("detail").innerHTML=detailHTML(m);
       document.body.classList.add("detail-open");
       document.title=m.mfr+" "+m.name+" — eurorack.fi";
+      /* the shareable path in the address bar — what gets copied is what
+         Facebook can actually preview (see the note at the top of route) */
+      history.replaceState(null,"","/m/"+m.id);
       /* only the drawn-faceplate slot needs fitting — must not clobber a shown photo */
       if(S.shot===0) fitPanel(m);
       window.scrollTo(0,0); return;
@@ -3596,8 +3627,8 @@ document.addEventListener("click",function(e){
        the detail page's "you may also like" cards, not just the home grid.
        Re-paint #detail directly rather than going through route(), which
        would scrollTo(0,0) and yank the page back to the top on every tap. */
-    if(location.hash.indexOf("#/m/")===0){
-      var mp=byId(location.hash.slice(4));
+    if(currentItemId()){
+      var mp=byId(currentItemId());
       if(mp) el("detail").innerHTML=detailHTML(mp);
     } else {
       renderGrid();
@@ -3627,7 +3658,7 @@ document.addEventListener("click",function(e){
   if(sh && !sh.disabled){ S.shot=+sh.getAttribute("data-shot"); route(); return; }
   var nav=e.target.closest("[data-shotdir]");
   if(nav){
-    var mm=byId(location.hash.slice(4));
+    var mm=byId(currentItemId());
     if(mm){
       var avail=shotAvail(mm), idx=avail.indexOf(S.shot);
       if(idx<0) idx=0;
@@ -3674,6 +3705,12 @@ document.addEventListener("keydown",function(e){
   }
 });
 window.addEventListener("hashchange",route);
+/* back/forward across an entry whose PATH was rewritten (the /m/<id>
+   address-bar form) is a popstate without a hashchange — Chrome only
+   fires hashchange for fragment-only traversals. Both land in route(),
+   which is idempotent; a pure hash Back fires both and renders twice,
+   harmlessly. */
+window.addEventListener("popstate",route);
 /* Only the drawn-faceplate slot needs anything on resize — fitPanel()
    re-measures .bench and redraws at fixed-pixel scale. Used to call the
    full route() instead, which (a) reset scroll to 0 unconditionally,
@@ -3683,8 +3720,8 @@ window.addEventListener("hashchange",route);
    scrolling down on a product page kept snapping back to the top. */
 var rz; window.addEventListener("resize",function(){
   clearTimeout(rz); rz=setTimeout(function(){
-    if(location.hash.indexOf("#/m/")===0 && S.shot===0){
-      var m=byId(location.hash.slice(4));
+    if(currentItemId() && S.shot===0){
+      var m=byId(currentItemId());
       if(m) fitPanel(m);
     }
   },150); });

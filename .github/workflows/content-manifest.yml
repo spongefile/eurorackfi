@@ -129,6 +129,54 @@ jobs:
           with open("feed.xml", "w", encoding="utf-8") as fh:
               fh.write(feed)
           print(f"feed.xml: {len(items)} entries")
+
+          # ---- per-item OG stubs at /m/<id>/ ----
+          # Facebook's scraper strips #fragments, so a shared #/m/<id>
+          # link can never carry its own preview. Each visible item gets
+          # a real path instead: a stub with the OG tags (photo, title,
+          # price) that instantly redirects humans into the app. The app
+          # writes this path into the address bar on the item page, so
+          # the path IS what people copy. Directory is wiped first so a
+          # hidden or deleted item's stub disappears with it.
+          import shutil
+          from xml.sax.saxutils import quoteattr
+          shutil.rmtree("m", ignore_errors=True)
+          count = 0
+          for f in sorted(glob.glob("content/items/*.json")):
+              d = json.load(open(f, encoding="utf-8"))
+              if d.get("hidden"):
+                  continue
+              iid = os.path.basename(f)[:-5]
+              price = f" — {d['price']} €" if isinstance(d.get("price"), int) else ""
+              title = f"{d.get('mfr','')} {d.get('name','')}{price}".strip()
+              blurb = (d.get("blurb") or {})
+              desc = (blurb.get("fi") or blurb.get("en") or "")[:300]
+              img = d.get("img") or ""
+              page_url = f"{SITE}/m/{iid}"
+              app_url = f"/#/m/{iid}"
+              og = (
+                  f"<meta property=\"og:title\" content={quoteattr(title)}>\n"
+                  f"<meta property=\"og:type\" content=\"website\">\n"
+                  f"<meta property=\"og:url\" content={quoteattr(page_url)}>\n"
+                  f"<meta property=\"og:site_name\" content=\"eurorack.fi\">\n"
+                  + (f"<meta property=\"og:description\" content={quoteattr(desc)}>\n" if desc else "")
+                  + (f"<meta property=\"og:image\" content={quoteattr(img)}>\n"
+                     f"<meta name=\"twitter:card\" content=\"summary_large_image\">\n" if img else "")
+              )
+              os.makedirs(f"m/{iid}", exist_ok=True)
+              with open(f"m/{iid}/index.html", "w", encoding="utf-8") as fh:
+                  fh.write(
+                      "<!doctype html><html lang=\"fi\"><head><meta charset=\"utf-8\">\n"
+                      f"<title>{escape(title)} — eurorack.fi</title>\n"
+                      + og +
+                      f"<meta http-equiv=\"refresh\" content={quoteattr('0;url=' + app_url)}>\n"
+                      # ?lang= must stay BEFORE the hash or the app never
+                      # sees it — everything after # is fragment
+                      f"<script>location.replace('/'+location.search+{json.dumps('#/m/' + iid)})</script>\n"
+                      "</head><body></body></html>\n"
+                  )
+              count += 1
+          print(f"m/: {count} OG stubs")
           PY
 
       - name: Commit if changed
