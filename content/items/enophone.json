@@ -55,7 +55,7 @@
     "sv": "Bluetooth-hörlurar med fyra EEG-sensorer inbyggda i bygeln och kåporna, som läser hjärnvågor i realtid för att spåra fokus och avslappning. Aktiv brusreducering. Ursprungliga ENEP1-modellen."
   },
   "id": "enophone",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Other",
     "Headphone"

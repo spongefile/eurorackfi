@@ -97,5 +97,6 @@
     "Other"
   ],
   "who": "spongefile",
-  "haggle": true
+  "haggle": true,
+  "hidden": true
 }

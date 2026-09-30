@@ -94,7 +94,8 @@
         "led": 8,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polimaths.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polimaths.jpg",
+      "hidden": true
     },
     {
       "type": "product",
@@ -109,7 +110,8 @@
         "led": 0,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ochd-expander.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/ochd-expander.jpg",
+      "hidden": true
     },
     {
       "type": "product",
