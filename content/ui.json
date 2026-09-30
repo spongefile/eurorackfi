@@ -20,9 +20,9 @@
     "sv": "."
   },
   "lede": {
-    "en": "A few of us in Helsinki, listing what we are finished with. Mostly eurorack, sometimes other stuff. Trades possible!",
+    "en": "Mostly eurorack, sometimes other stuff. Trades possible!",
     "fi": "Enimmäkseen eurorackia, joskus muutakin. Vaihtokaupatkin käyvät!",
-    "sv": "Några av oss i Helsingfors säljer det vi inte behöver. Mest eurorack, ibland annat. Byten går bra!"
+    "sv": "Mest eurorack, ibland annat. Byten går bra!"
   },
   "scale": {
     "en": "Drawn to scale",
@@ -75,9 +75,9 @@
     "sv": "Köp, byt eller fråga"
   },
   "fIntro": {
-    "en": "A few of us in the Helsinki area. Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
-    "fi": "Pari helsinkiläistä. Eurorackia, erillislaitteita, joskus muutakin. Tiedät keneltä ostat.",
-    "sv": "Några av oss i samma kvarter i Helsingfors. Eurorack, fristående prylar, ibland annat. Du vet vem du köper av."
+    "en": "Eurorack, standalone gear, sometimes other stuff. You know who you are buying from.",
+    "fi": "Eurorackia, erillislaitteita, joskus muutakin. Tiedät keneltä ostat.",
+    "sv": "Eurorack, fristående prylar, ibland annat. Du vet vem du köper av."
   },
   "fCollect": {
     "en": "Collecting",
