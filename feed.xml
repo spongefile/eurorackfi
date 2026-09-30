@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-30T00:58:12+03:00</updated>
+  <updated>2026-09-30T17:07:42+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/mimetic-panel</id>
+    <title>spongefile Mimetic Digitalis front panel replacement — 30 €</title>
+    <link href="https://eurorack.fi/#/m/mimetic-panel"/>
+    <updated>2026-09-30T17:07:42+03:00</updated>
+    <summary>Vaihtoetupaneeli Noise Engineeringin Mimetic Digitalis -sekvensseriin. Alkuperäinen paneeli on tiheä ja laitteessa on useita helposti unohtuvia näppäinyhdistelmiä; tämä asettelee samat säätimet rauhallisemmin ja painaa yhdistelmät näkyviin sinne missä niitä tarvitsee. Pelkkä paneeli — moduuli ei kuulu kauppaan. Ei toimiteta Yhdysvaltoihin toistaiseksi.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/softpop2</id>
     <title>Bastl Instruments Softpop SP2 — 450 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/monsoon"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/entropicdoom</id>
-    <title>AJH Synth Entropic Doom — 240 €</title>
-    <link href="https://eurorack.fi/#/m/entropicdoom"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kohinalähde, jota voi soittaa kuin oskillaattoria. Se tuottaa 1/f-kohinaa ja ajaa sen resonoivan takaisinkytkentäsilmukan läpi, jolloin kohina saa sävelkorkeuden — laske resonanssi ja se on suhinaa, nosta se ja siitä tulee sävel jossa rouheus on yhä tallella. Kaksi-, kolmi- tai nelinapainen kytkentä, karkea ja hieno taajuussäätö, 1V/okt-seuranta, FM sekä XOR-rengasmodulaattori omalla VCA:llaan ulkoisen äänen käsittelyyn. Bright- ja dark-ulostulot ovat suotimen edestä ja takaa: brightissa on aina kohinaa mukana, dark voi olla puhdasta viritettyä kohinaa nelinapaisena. Neljätoista HP, 45 mA. Ei hienovarainen moduuli eikä yritäkään olla — se on droneille, pyyhkäisyille ja tarkoituksella hajoaville asioille.</summary>
   </entry>
 </feed>
