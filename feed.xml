@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-09-30T17:07:42+03:00</updated>
+  <updated>2026-10-01T12:58:26+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/noon</id>
+    <title>Landscape Noon (blue) — 640 €</title>
+    <link href="https://eurorack.fi/#/m/noon"/>
+    <updated>2026-10-01T12:58:26+03:00</updated>
+    <summary>Rumpukone ilman virtalähdettä, koska siinä ei ole mitään mihin syöttää virtaa: kahdeksan passiivista kanavaa, jotka muuttavat sisään lähetetyt gatet ja CV:t perkussiiviseksi ääneksi, kosketuslevyt joilla niitä taivutetaan sormien alla ja liu'ut kunkin kanavan säätöön. Kymmenen CV-tuloa, äänitulo, kymmenen lähtöä, kaikki 3,5 mm, joten se istuu modulaarin viereen yhtä luontevasti kuin moduuli. Mitään ei tapahdu ennen kuin jokin ajaa sitä — sekvensseri, LFO:t, modulaari — ja tulos riippuu täysin siitä mitä syötät. Sininen; Landscapen nykyiset värit ovat keltainen ja vihreä.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/mimetic-panel</id>
     <title>spongefile Mimetic Digitalis front panel replacement — 30 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/monsoon"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/entropicdoom</id>
-    <title>AJH Synth Entropic Doom — 240 €</title>
-    <link href="https://eurorack.fi/#/m/entropicdoom"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kohinalähde, jota voi soittaa kuin oskillaattoria. Se tuottaa 1/f-kohinaa ja ajaa sen resonoivan takaisinkytkentäsilmukan läpi, jolloin kohina saa sävelkorkeuden — laske resonanssi ja se on suhinaa, nosta se ja siitä tulee sävel jossa rouheus on yhä tallella. Kaksi-, kolmi- tai nelinapainen kytkentä, karkea ja hieno taajuussäätö, 1V/okt-seuranta, FM sekä XOR-rengasmodulaattori omalla VCA:llaan ulkoisen äänen käsittelyyn. Bright- ja dark-ulostulot ovat suotimen edestä ja takaa: brightissa on aina kohinaa mukana, dark voi olla puhdasta viritettyä kohinaa nelinapaisena. Neljätoista HP, 45 mA. Ei hienovarainen moduuli eikä yritäkään olla — se on droneille, pyyhkäisyille ja tarkoituksella hajoaville asioille.</summary>
   </entry>
 </feed>

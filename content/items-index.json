@@ -2,6 +2,7 @@
   "a107.json",
   "a128.json",
   "a166.json",
+  "a196.json",
   "algo.json",
   "audioio1u.json",
   "bartender.json",
@@ -44,6 +45,7 @@
   "fmogre.json",
   "frap321.json",
   "gentlewham.json",
+  "gliss.json",
   "groundcontrol.json",
   "gvco.json",
   "humpback.json",
@@ -80,7 +82,9 @@
   "mutanthihats.json",
   "mutantsnare.json",
   "neotrellis.json",
+  "noon.json",
   "nucleus.json",
+  "ochd-expander.json",
   "odio.json",
   "olegtron.json",
   "orbitals.json",
@@ -130,6 +134,7 @@
   "twinvcamp.json",
   "ufold.json",
   "uraltone-spring.json",
+  "wogglebug.json",
   "woovebox.json",
   "zazou.json"
 ]
