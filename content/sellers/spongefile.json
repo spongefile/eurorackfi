@@ -307,6 +307,21 @@
         "sc": 1
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/gliss.jpg"
+    },
+    {
+      "type": "product",
+      "mfr": "Sonicsmith",
+      "name": "ConVertor E1",
+      "hp": 6,
+      "tone": "alu",
+      "parts": {
+        "k": 3,
+        "j": 8,
+        "sl": 0,
+        "led": 10,
+        "sc": 4
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/convertor-e1.jpg"
     }
   ],
   "form": "https://tally.so/r/lbkgvB",
