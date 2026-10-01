@@ -132,13 +132,6 @@
     <summary>Kolme analogista oskillaattoria, jotka on rakennettu tekemään sitä mitä useimmat nykyaikaiset VCO:t on suunniteltu välttämään: ajelehtimaan toistensa suhteen. Jürgen Haiblen suunnitelma asettaa kolme EMS VCS3 -tyyppistä ydintä yhdelle levylle ja lisää ohjainosan portamentolle ja vibratolle; ne seuraavat 1V/okt viiden oktaavin yli mutta huojuvat bassoalueella kuten varhaiset EMS- ja Moog-oskillaattorit. Saha, pulssi, kolmio ja sini jokaisesta, joten yksi moduuli on kokonainen kolmiääninen viritetty pino. 42HP ja syvä — varaa 70 mm paneelin taakse. DIY-rakennelma, uusi, vuoden 2014 Barcode/LogicGate-piirilevyillä ja rakentajan omilla lisälevyillä ja etupaneelilla; transistoriryhmät löyhästi sovitettu niin että kolme seuraavat samalla tavalla, tempco asennettu, esiviritetty 20 Hz:iin alarajalla. Virtakaapelit mukana.</summary>
   </entry>
   <entry>
-    <id>https://eurorack.fi/#/m/qtone</id>
-    <title>Dnipro Modular qTone — 200 €</title>
-    <link href="https://eurorack.fi/#/m/qtone"/>
-    <updated>2026-09-04T11:56:23+03:00</updated>
-    <summary>Kaksikanavainen kvantisoija 6HP:ssä: syötä sille mitä tahansa jännitettä — LFO:ta, satunnaislähdettä, sekvensseriä — ja se napsauttaa tuloksen säveliin jotka oikeasti kuuluvat sävellajiin. Kaksi kanavaa, kummallakin oma tulo, liipaisin ja lähtö, sekä kaksi CV-tuloa. Kanavilla voi olla eri asteikot tai yhteinen, ja kummallakin on glide, offset ja transponointi, joten toinen kanava voi soittaa bassolinjaa kvinttiä alempaa ilman toista moduulia. Kuusitoista itse määriteltyä asteikkoa, jotka muokataan etupaneelista ja tallentuvat muistiin automaattisesti — enkooderin yläpuolinen LED-ruudukko on asteikko, yksi valo per puolisävelaskel, joten näet mitä rakensit. Kaikki tehdään moduulilla itsellään; erillistä editoriohjelmaa tai USB:tä ei ole.</summary>
-  </entry>
-  <entry>
     <id>https://eurorack.fi/#/m/batumi</id>
     <title>Xaoc Devices Batumi + Poti — 200 €</title>
     <link href="https://eurorack.fi/#/m/batumi"/>
@@ -179,5 +172,12 @@
     <link href="https://eurorack.fi/#/m/monsoon"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/entropicdoom</id>
+    <title>AJH Synth Entropic Doom — 240 €</title>
+    <link href="https://eurorack.fi/#/m/entropicdoom"/>
+    <updated>2026-08-30T23:41:40+03:00</updated>
+    <summary>Kohinalähde, jota voi soittaa kuin oskillaattoria. Se tuottaa 1/f-kohinaa ja ajaa sen resonoivan takaisinkytkentäsilmukan läpi, jolloin kohina saa sävelkorkeuden — laske resonanssi ja se on suhinaa, nosta se ja siitä tulee sävel jossa rouheus on yhä tallella. Kaksi-, kolmi- tai nelinapainen kytkentä, karkea ja hieno taajuussäätö, 1V/okt-seuranta, FM sekä XOR-rengasmodulaattori omalla VCA:llaan ulkoisen äänen käsittelyyn. Bright- ja dark-ulostulot ovat suotimen edestä ja takaa: brightissa on aina kohinaa mukana, dark voi olla puhdasta viritettyä kohinaa nelinapaisena. Neljätoista HP, 45 mA. Ei hienovarainen moduuli eikä yritäkään olla — se on droneille, pyyhkäisyille ja tarkoituksella hajoaville asioille.</summary>
   </entry>
 </feed>
