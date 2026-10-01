@@ -1,0 +1,54 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 16,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/ochd-expander.jpg",
+  "mgSlug": "",
+  "site": "instruomodular.com",
+  "hp": 4,
+  "price": 0,
+  "name": "øchd expander",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Expander"
+  ],
+  "mfr": "Instruo",
+  "id": "ochd-expander",
+  "negotiating": false,
+  "hidden": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 5mA · −12V 5mA",
+    "quotes": [
+      {
+        "t": "Sixteen new outputs from the øchd's eight LFOs in 4HP: full-wave rectified unipolar versions, diode-logic min and max mixes, cascaded stochastic triggers, and 4-bit random voltages. It does nothing without an øchd.",
+        "s": "Instruō"
+      },
+      {
+        "t": "Not for sale yet. Details and a price follow when it is listed.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Instruō",
+        "title": "øchd expander — the manufacturer's page and manual",
+        "url": "https://www.instruomodular.com/product/ochd-expander/"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "The expander for the Instruō øchd: sixteen more outputs derived from its eight LFOs — rectified unipolar copies, min and max diode-logic mixes, cascading random triggers and 4-bit stepped random. Needs an øchd. Not yet for sale.",
+    "fi": "Instruōn øchd:n laajennin: kuusitoista lisälähtöä sen kahdeksasta LFO:sta — tasasuunnatut unipolaariset kopiot, min- ja max-diodilogiikkasummat, ketjuuntuvat satunnaisliipaisut ja 4-bittinen porrastettu satunnaisuus. Tarvitsee øchd:n. Ei vielä myynnissä.",
+    "sv": "Expandern till Instruō øchd: sexton extra utgångar härledda från dess åtta LFO:er — likriktade unipolära kopior, min- och max-diodlogikmixar, kaskadkopplade slumptriggers och 4-bitars stegad slump. Kräver en øchd. Inte till salu ännu."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 3,
+    "sl": 1,
+    "led": 0,
+    "sc": 1
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/gliss.jpg",
+  "mgSlug": "bela-gliss",
+  "site": "bela.io",
+  "hp": 4,
+  "price": 0,
+  "name": "Gliss",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Controller",
+  "cats": [
+    "Controller",
+    "Touch"
+  ],
+  "mfr": "Bela",
+  "id": "gliss",
+  "negotiating": false,
+  "hidden": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 150mA · −12V 30mA",
+    "quotes": [
+      {
+        "t": "Not for sale yet. Details and a price follow when it is listed.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Gliss — specs and racks",
+        "url": "https://modulargrid.net/e/bela-gliss"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Bela's touch strip in 4HP: position and pressure as CV, with gestures recordable and loopable. Not yet for sale.",
+    "fi": "Belan kosketusnauha 4HP:ssä: sijainti ja paine CV:nä, eleet tallennettavissa ja luupattavissa. Ei vielä myynnissä.",
+    "sv": "Belas touchremsa på 4HP: position och tryck som CV, med gester som kan spelas in och loopas. Inte till salu ännu."
+  }
+}

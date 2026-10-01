@@ -1,0 +1,75 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/noon.jpg",
+  "mgSlug": "landscape-noon",
+  "site": "landscape.fm",
+  "hp": 0,
+  "price": 640,
+  "name": "Noon (blue)",
+  "fmt": "desk",
+  "tone": "black",
+  "cat": "Synth",
+  "cats": [
+    "Drum",
+    "Passive",
+    "Desktop"
+  ],
+  "mfr": "Landscape",
+  "id": "noon",
+  "negotiating": false,
+  "who": "tatu",
+  "extra": {
+    "power": "none — entirely passive",
+    "depth": "32 × 18 × 2.5 cm",
+    "pull": {
+      "q": "Passive analog 8-channel rhythmic instrument. No power supply needed.",
+      "src": "Landscape",
+      "url": "https://www.landscape.fm/noon"
+    },
+    "quotes": [
+      {
+        "t": "Eight channels, ten CV inputs, one audio input and ten audio outputs, all on 3.5mm; touch plates for modulation and sliders for control. It has no electronics to power — it shapes whatever voltage you send into it.",
+        "s": "Landscape"
+      },
+      {
+        "t": "It does nothing on its own. Noon needs a sequencer, LFOs or a modular sending it gates and CV; the sound is made from those signals.",
+        "s": "Worth knowing before you buy"
+      },
+      {
+        "t": "This is the blue one. Landscape currently list yellow and green, so the photo shows a different colour from the unit for sale.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Landscape",
+        "title": "Noon — the manufacturer's page",
+        "url": "https://www.landscape.fm/noon"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Landscape Noon — specs",
+        "url": "https://modulargrid.net/e/landscape-noon"
+      }
+    ],
+    "videos": [
+      {
+        "title": "NOON passive drum/synth being powered and sequenced",
+        "by": "Landscape · YouTube",
+        "url": "https://www.youtube.com/watch?v=URviiv-cS7U"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A drum machine with no power supply, because it has nothing to power: eight passive channels that turn the gates and CV you send in into percussive sound, with touch plates to bend them under your fingers and sliders to set each channel. Ten CV inputs, an audio input, ten outputs, all 3.5mm, so it sits beside a modular as naturally as a module. Nothing happens until something drives it — a sequencer, LFOs, a modular — and the result depends entirely on what you feed it. Blue; Landscape's current colours are yellow and green.",
+    "fi": "Rumpukone ilman virtalähdettä, koska siinä ei ole mitään mihin syöttää virtaa: kahdeksan passiivista kanavaa, jotka muuttavat sisään lähetetyt gatet ja CV:t perkussiiviseksi ääneksi, kosketuslevyt joilla niitä taivutetaan sormien alla ja liu'ut kunkin kanavan säätöön. Kymmenen CV-tuloa, äänitulo, kymmenen lähtöä, kaikki 3,5 mm, joten se istuu modulaarin viereen yhtä luontevasti kuin moduuli. Mitään ei tapahdu ennen kuin jokin ajaa sitä — sekvensseri, LFO:t, modulaari — ja tulos riippuu täysin siitä mitä syötät. Sininen; Landscapen nykyiset värit ovat keltainen ja vihreä.",
+    "sv": "En trummaskin utan nätdel, för den har inget att driva: åtta passiva kanaler som gör de gates och CV du skickar in till perkussivt ljud, med touchplattor för att böja dem under fingrarna och reglar för att ställa varje kanal. Tio CV-ingångar, en ljudingång, tio utgångar, allt 3,5 mm, så den står bredvid en modular lika naturligt som en modul. Inget händer förrän något driver den — en sekvensiator, LFO:er, en modular — och resultatet beror helt på vad du matar in. Blå; Landscapes nuvarande färger är gul och grön."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 6,
+    "sl": 0,
+    "led": 1,
+    "sc": 2
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/a196.jpg",
+  "mgSlug": "doepfer-a-196-pll",
+  "site": "doepfer.de",
+  "hp": 8,
+  "price": 0,
+  "name": "A-196 PLL",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Oscillator",
+  "cats": [
+    "Oscillator",
+    "PLL",
+    "Analogue"
+  ],
+  "mfr": "Doepfer",
+  "id": "a196",
+  "negotiating": false,
+  "hidden": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 40mA · −12V 10mA",
+    "quotes": [
+      {
+        "t": "Not for sale yet. Details and a price follow when it is listed.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "A-196 PLL — specs and racks",
+        "url": "https://modulargrid.net/e/doepfer-a-196-pll"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Doepfer's phase-locked loop: a VCO that chases the pitch of whatever you feed it, badly on purpose. Not yet for sale.",
+    "fi": "Doepferin vaihelukittu silmukka: VCO joka jahtaa syötetyn signaalin sävelkorkeutta, tarkoituksella huonosti. Ei vielä myynnissä.",
+    "sv": "Doepfers faslåsta slinga: en VCO som jagar tonhöjden på det du matar in, dåligt med flit. Inte till salu ännu."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "parts": {
+    "k": 4,
+    "j": 12,
+    "sl": 0,
+    "led": 1,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wogglebug.jpg",
+  "mgSlug": "make-noise-richter-wogglebug-2014",
+  "site": "makenoisemusic.com",
+  "hp": 10,
+  "price": 0,
+  "name": "Wogglebug",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Random"
+  ],
+  "mfr": "Make Noise",
+  "id": "wogglebug",
+  "negotiating": false,
+  "hidden": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 50mA · −12V 40mA",
+    "quotes": [
+      {
+        "t": "Not for sale yet. Details and a price follow when it is listed.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "ModularGrid",
+        "title": "Wogglebug — specs and racks",
+        "url": "https://modulargrid.net/e/make-noise-richter-wogglebug-2014"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "Make Noise's Richter Wogglebug, the current 10HP version: smooth, stepped and woggled random voltages plus three audio outputs. Not yet for sale.",
+    "fi": "Make Noisen Richter Wogglebug, nykyinen 10HP:n versio: pehmeitä, porrastettuja ja woggle-satunnaisjännitteitä sekä kolme äänilähtöä. Ei vielä myynnissä.",
+    "sv": "Make Noises Richter Wogglebug, den nuvarande 10HP-versionen: mjuka, stegade och wogglade slumpspänningar plus tre ljudutgångar. Inte till salu ännu."
+  }
+}
