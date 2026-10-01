@@ -76,5 +76,6 @@
     "sv": "En bruskälla man kan spela som en oscillator. Den skapar 1/f-brus och kör det sedan genom en resonant återkopplingsslinga så att bruset får en tonhöjd — vrid ner resonansen och det är ett väsande, vrid upp den och det blir en ton med grovheten kvar. Två-, tre- eller fyrpolig omkoppling, grov och fin frekvensinställning, 1V/okt, FM och en XOR-ringmodulator med egen VCA för bearbetning av externt ljud. Bright- och dark-utgångarna ligger före respektive efter filtret: bright behåller alltid en del brus, dark kan vara rent stämt brus vid fyra poler. Fjorton HP, 45 mA. Ingen subtil modul och försöker inte vara det — den är till för dröner, svep och saker som faller isär med flit."
   },
   "negotiating": false,
-  "who": "mikko"
+  "who": "mikko",
+  "hidden": true
 }

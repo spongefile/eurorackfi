@@ -79,5 +79,6 @@
     "sv": "Åtta steg, två reglar var, och en tidsreglering — och av det bygger man nästan vilken styrspänning som helst som en modularsyntar behöver. Låt den gå så är den en LFO eller en sekvensiator; låt den stanna på ett steg så är den en envelop; lägg glid mellan stegen så blir den en portamentolinje eller en långsam följningsgenerator. Varje steg har en slide/off/on-omkopplare, en egen gate-utgång och två oberoende CV-rader, så två besläktade spänningar kan köras parallellt. Tiden är spänningsstyrbar, med enable-, sustain- och analoga ingångar, och start, stop, advance och strobe på både knappar och uttag. Den ursprungliga åttastegsversionen — Verbos har sedan byggt en 10:a och en 16:a. Den belönar studier snarare än pillande, och panelen förklarar inte sig själv."
   },
   "negotiating": false,
-  "who": "mikko"
+  "who": "mikko",
+  "hidden": true
 }
