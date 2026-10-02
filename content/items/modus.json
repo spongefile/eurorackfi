@@ -9,7 +9,7 @@
   "mgSlug": "",
   "site": "github.com/beau-seidon/O_C_T41",
   "hp": 14,
-  "price": 0,
+  "price": 250,
   "name": "Modus Operandi",
   "fmt": "eu",
   "tone": "black",
@@ -23,7 +23,7 @@
   "mfr": "Keijo (DIY)",
   "id": "modus",
   "negotiating": false,
-  "hidden": true,
+  "hidden": false,
   "who": "keijo",
   "extra": {
     "quotes": [
