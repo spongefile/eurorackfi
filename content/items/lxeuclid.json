@@ -76,5 +76,6 @@
     "Trigger"
   ],
   "who": "kari",
-  "imgIsModularGrid": true
+  "imgIsModularGrid": true,
+  "hidden": true
 }
