@@ -29,7 +29,7 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bitboxmicro.jpg",
   "imgIsModularGrid": true,
-  "negotiating": true,
+  "negotiating": false,
   "extra": {
     "videos": [
       {
@@ -66,5 +66,6 @@
         "s": "Perfect Circuit"
       }
     ]
-  }
+  },
+  "hidden": true
 }
