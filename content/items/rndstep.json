@@ -1,0 +1,80 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 12,
+    "sl": 0,
+    "led": 6,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/rndstep.jpg",
+  "mgSlug": "divkid-rnd-step",
+  "site": "divkidvideo.com",
+  "hp": 4,
+  "price": 170,
+  "name": "RND STEP",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Random",
+    "Sample & Hold"
+  ],
+  "mfr": "DivKid / Steady State Fate",
+  "id": "rndstep",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 67mA · −12V 67mA",
+    "depth": "44mm",
+    "pull": {
+      "q": "6 high performance analogue sample and hold circuits split across 3 channels — a mixture of both unipolar and bipolar outputs.",
+      "src": "DivKid",
+      "url": "https://divkidvideo.com/rnd-step-the-third-divkid-eurorack-module/"
+    },
+    "quotes": [
+      {
+        "t": "Each channel features two internal analogue pink noise generators, and two sample and hold circuits split across unipolar and bipolar outputs.",
+        "s": "DivKid"
+      },
+      {
+        "t": "When triggered at audio rates RND STEP outputs downsampled and clocked noise tones from the internal pink noise generators.",
+        "s": "DivKid"
+      },
+      {
+        "t": "44mm deep for a 4HP module — check the case, as skiff-depth rows will not take it.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "DivKid",
+        "title": "RND STEP — the designer's page",
+        "url": "https://divkidvideo.com/rnd-step-the-third-divkid-eurorack-module/"
+      },
+      {
+        "src": "gearnews",
+        "title": "Enter DivKid RND STEP, a high performance 3-channel sample & hold",
+        "url": "https://www.gearnews.com/divkid-rnd-step-high-performance-3-channel-sample-hold-module/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "DivKid RND STEP — specs and racks",
+        "url": "https://modulargrid.net/e/divkid-rnd-step"
+      }
+    ],
+    "videos": [
+      {
+        "title": "NEW DIVKID MODULE // RND STEP with Steady State Fate",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=hlcXvCN80jU"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Three sample-and-hold channels in 4HP, each with its own trigger and sample input and two outputs — one unipolar, one bipolar — so a single trigger into the top channel, normalled down through all three, hands you six unrelated random voltages at once. Each channel carries two analogue pink noise sources internally, so nothing needs patching in to get random; patch something in and it samples that instead. Low droop and long hold times at slow clocks; clock it at audio rate and it becomes a crunchy downsampler and clocked noise source. Built by Steady State Fate to DivKid's design. 44mm deep.",
+    "fi": "Kolme sample-and-hold-kanavaa 4HP:ssä, kullakin oma liipaisu- ja näytetulo ja kaksi lähtöä — yksi unipolaarinen, yksi bipolaarinen — joten yksi liipaisu ylimpään kanavaan, normalisoituna alas kaikkien kolmen läpi, antaa kuusi toisistaan riippumatonta satunnaisjännitettä kerralla. Jokaisessa kanavassa on sisällä kaksi analogista vaaleanpunaisen kohinan lähdettä, joten satunnaisuuteen ei tarvitse kytkeä mitään; kytke jotain sisään ja se näytteistää sen sijaan. Pieni vuoto ja pitkät pitoajat hitailla kelloilla; kellota äänitaajuudella ja siitä tulee rouhea alinäytteistin ja kellotettu kohinalähde. Steady State Faten rakentama DivKidin suunnitelmaan. 44 mm syvä.",
+    "sv": "Tre sample-and-hold-kanaler på 4HP, var och en med egen trigger- och sampleingång och två utgångar — en unipolär, en bipolär — så en enda trigger in i översta kanalen, normaliserad ner genom alla tre, ger sex orelaterade slumpspänningar på en gång. Varje kanal bär två analoga rosa bruskällor inuti, så inget behöver patchas in för att få slump; patcha in något så samplar den det i stället. Lågt läckage och långa hålltider vid långsamma klockor; klocka den i ljudtakt så blir den en knastrig nedsamplare och klockad bruskälla. Byggd av Steady State Fate efter DivKids design. 44 mm djup."
+  }
+}
