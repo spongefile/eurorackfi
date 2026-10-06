@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-10-01T12:58:26+03:00</updated>
+  <updated>2026-10-06T18:05:08+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/rndstep</id>
+    <title>DivKid / Steady State Fate RND STEP — 170 €</title>
+    <link href="https://eurorack.fi/#/m/rndstep"/>
+    <updated>2026-10-06T18:05:08+03:00</updated>
+    <summary>Kolme sample-and-hold-kanavaa 4HP:ssä, kullakin oma liipaisu- ja näytetulo ja kaksi lähtöä — yksi unipolaarinen, yksi bipolaarinen — joten yksi liipaisu ylimpään kanavaan, normalisoituna alas kaikkien kolmen läpi, antaa kuusi toisistaan riippumatonta satunnaisjännitettä kerralla. Jokaisessa kanavassa on sisällä kaksi analogista vaaleanpunaisen kohinan lähdettä, joten satunnaisuuteen ei tarvitse kytkeä mitään; kytke jotain sisään ja se näytteistää sen sijaan. Pieni vuoto ja pitkät pitoajat hitailla kelloilla; kellota äänitaajuudella ja siitä tulee rouhea alinäytteistin ja kellotettu kohinalähde. Steady State Faten rakentama DivKidin suunnitelmaan. 44 mm syvä.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/noon</id>
     <title>Landscape Noon (blue) — 640 €</title>
@@ -125,6 +132,13 @@
     <summary>Kompleksioskillaattori länsirannikon merkityksessä: kaksi kolmioytimistä VCO:ta, joista toinen moduloi ensimmäistä, ja äänenvärilohko joka tekee tuhon — kaksi aaltotaittajaa, aallonmuokkain, PWM-piiri ja nelikvadranttikertoja amplitudi- ja rengasmodulaatioon. Frap Toolsin lisä on tarkkuus: jokainen kietoutumisen aste kahden ytimen välillä on nupissa tai liittimessä, joten sama patch voi olla puhdas sini tai repivä FM-ääni yhtä säädintä kääntämällä. 30HP, 38 mm syvä ja 325 mA +12V:llä.</summary>
   </entry>
   <entry>
+    <id>https://eurorack.fi/#/m/modus</id>
+    <title>Keijo (DIY) Modus Operandi — 250 €</title>
+    <link href="https://eurorack.fi/#/m/modus"/>
+    <updated>2026-09-05T16:18:08+03:00</updated>
+    <summary>Ornament &amp; Crime rakennettuna uudelleen Teensy 4.1:lle lisämuistilla ja laajennusliittimillä. 14HP, DIY. Ei vielä myynnissä.</summary>
+  </entry>
+  <entry>
     <id>https://eurorack.fi/#/m/fmogre</id>
     <title>WSYnth / Timo Rozendal FM Ogre ×6 — 400 €</title>
     <link href="https://eurorack.fi/#/m/fmogre"/>
@@ -165,19 +179,5 @@
     <link href="https://eurorack.fi/#/m/qslider"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. QSlider on kahden moduulin pari: 14HP:n liukupaneelissa ei ole lainkaan liittimiä, ja 4HP:n lähtömoduuli kantaa liittimet. Molemmat kuuluvat kauppaan, eli yhteensä 18HP, ja lähtöpuoliskon voi asentaa liukujen vasemmalle tai oikealle puolelle.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/monsoon</id>
-    <title>Jak Plugg Monsoon — 160 €</title>
-    <link href="https://eurorack.fi/#/m/monsoon"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/drumbrute1984</id>
-    <title>Arturia DrumBrute Impact 1984 — 175 €</title>
-    <link href="https://eurorack.fi/#/m/drumbrute1984"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Kymmenen analogista rumpuääntä ja 64-askelinen sekvensseri pöytälaatikossa — basari, kaksi virveliä, tomit, lehmänkello, symbaali, hi-hatit ja FM-rumpu, kullakin Color-nappi joka vaihtaa sen toiseen luonteeseen. Miksausulostulossa on analoginen särö omalla nupillaan, ja juuri se antaa koneelle hampaat. Sekvensseri hoitaa polyrytmin kunnolla: yksittäiset raidat voivat olla eri mittaisia toisiinsa nähden, jolloin kuvio ajautuu eikä vain toistu tasaisena. 64 kuviota, ketjutettavissa 16 kappaleeksi, MIDI sisään ja ulos, kello sisään ja ulos, USB. Erillislähdöt basarille, virveleille, hi-hateille ja FM-rummulle. 1984 on rajoitettu luonnonvalkoinen ja oranssi versio — sisältä sama kone kuin vakiomalli, eri puvussa.</summary>
   </entry>
 </feed>
