@@ -65,7 +65,7 @@
     "sv": "Två sammankopplade funktionsgeneratorer i Serge- och Buchla-traditionen. Varje sida är en slew-begränsare, envelope, LFO eller oscillator beroende på hur man kopplar, med oberoende stig- och falltid, och de båda sidorna matar en komparator- och logikdel som ger MIN-, MAX-, OR- och differensutgångar. Triggers vid stigningens och cykelns slut gör att den kan kopplas till sig själv för komplexa former. Detta är ett hembygge, inte en fabriksbyggd modul."
   },
   "id": "rampage",
-  "negotiating": false,
+  "negotiating": true,
   "cats": [
     "Modulation",
     "Utility"
