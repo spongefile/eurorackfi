@@ -1,0 +1,70 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 14,
+    "sl": 0,
+    "led": 7,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/eas.jpg",
+  "mgSlug": "instruo-eas",
+  "site": "instruomodular.com",
+  "hp": 4,
+  "price": 120,
+  "name": "eãs",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Utility",
+    "Logic"
+  ],
+  "mfr": "Instruō",
+  "id": "eas",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 5mA · −12V 0mA",
+    "depth": "27mm",
+    "pull": {
+      "q": "Logic gates were originally used for the implementation of Boolean functions in computation and in electronic devices.",
+      "src": "Instruō",
+      "url": "https://www.instruomodular.com/product/eas/"
+    },
+    "quotes": [
+      {
+        "t": "AND, NAND, OR, NOR, XOR, XNOR and NOT — three gate pairs and an inverter, each pair with its own two inputs and two outputs, cascading down the panel so one pair of gates can feed the next without a patch cable.",
+        "s": "Instruō"
+      },
+      {
+        "t": "Draws 5mA and sits 27mm deep: fits anywhere, including a skiff.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Instruō",
+        "title": "eãs — the manufacturer's page and manual",
+        "url": "https://www.instruomodular.com/product/eas/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Instruō eãs — specs and racks",
+        "url": "https://modulargrid.net/e/instruo-eas"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Everything you need to know about logic in Eurorack",
+        "by": "DivKid · YouTube",
+        "url": "https://www.youtube.com/watch?v=3y6uRCM-fdE"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Boolean logic for gates and triggers in 4HP: three sections down the panel, each a pair of inputs feeding two complementary outputs — AND and NAND, OR and NOR, XOR and XNOR — and a NOT at the bottom. The sections cascade, so the result of one pair can drive the next without patching, which is how two clocks become a dozen related rhythms. Each output has its own LED. 5mA, 27mm deep, gold jacks on Instruō's black panel.",
+    "fi": "Boolen logiikkaa gateille ja liipaisuille 4HP:ssä: kolme osiota paneelilla alaspäin, kussakin tulopari joka syöttää kahta toisiaan täydentävää lähtöä — AND ja NAND, OR ja NOR, XOR ja XNOR — ja NOT alimpana. Osiot ketjuuntuvat, joten yhden parin tulos voi ajaa seuraavaa ilman patchausta, ja niin kahdesta kellosta tulee tusina toisiinsa liittyvää rytmiä. Jokaisella lähdöllä oma LED. 5 mA, 27 mm syvä, kullatut liittimet Instruōn mustalla paneelilla.",
+    "sv": "Boolesk logik för gates och triggers på 4HP: tre sektioner nerför panelen, var och en ett par ingångar som matar två komplementära utgångar — AND och NAND, OR och NOR, XOR och XNOR — och en NOT längst ner. Sektionerna kaskadkopplas, så resultatet av ett par kan driva nästa utan patchning, och så blir två klockor ett dussin besläktade rytmer. Varje utgång har egen lysdiod. 5 mA, 27 mm djup, guldpläterade uttag på Instruōs svarta panel."
+  }
+}
