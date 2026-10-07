@@ -17,7 +17,8 @@
         "led": 4,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/axon1.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/axon1.jpg",
+      "url": "https://busycircuits.com/pages/axon-1"
     },
     {
       "type": "product",
@@ -33,6 +34,7 @@
         "sc": 0
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mangrove.jpg",
+      "url": "https://www.whimsicalraps.com/products/mangrove",
       "hidden": true
     },
     {
@@ -48,7 +50,8 @@
         "led": 6,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wslash.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/wslash.jpg",
+      "url": "https://www.whimsicalraps.com/products/wslash"
     },
     {
       "type": "product",
@@ -64,6 +67,7 @@
         "sc": 0
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dot.jpg",
+      "url": "https://www.dnipro-modular.net/dot",
       "hidden": true
     },
     {
@@ -79,7 +83,8 @@
         "led": 4,
         "sc": 1
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mimetic-digitwolis.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mimetic-digitwolis.jpg",
+      "url": "https://noiseengineering.us/products/mimetic-digitwolis/"
     },
     {
       "type": "product",
@@ -95,6 +100,7 @@
         "sc": 0
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/polimaths.jpg",
+      "url": "https://www.makenoisemusic.com/modules/polimaths",
       "hidden": true
     },
     {
@@ -110,7 +116,8 @@
         "led": 6,
         "sc": 4
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/neo-trinity.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/neo-trinity.jpg",
+      "url": "https://bastl-instruments.com/eurorack/modules/neo-trinity"
     },
     {
       "type": "product",
@@ -125,7 +132,8 @@
         "led": 1,
         "sc": 1
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/skopje.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/skopje.jpg",
+      "url": "https://xaocdevices.com/main/skopje/"
     },
     {
       "type": "product",
@@ -140,7 +148,8 @@
         "led": 2,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/pipslope.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/pipslope.jpg",
+      "url": "https://busycircuits.com/alm028/"
     },
     {
       "type": "product",
@@ -155,7 +164,8 @@
         "led": 2,
         "sc": 1
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/piplfo.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/piplfo.jpg",
+      "url": "https://busycircuits.com/alm048/"
     },
     {
       "type": "product",
@@ -170,7 +180,8 @@
         "led": 0,
         "sc": 2
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco2.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mco2.jpg",
+      "url": "https://busycircuits.com/alm046/"
     },
     {
       "type": "product",
@@ -185,7 +196,8 @@
         "led": 0,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/pipfilter.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/pipfilter.jpg",
+      "url": "https://busycircuits.com/alm039/"
     },
     {
       "type": "product",
@@ -200,7 +212,8 @@
         "led": 2,
         "sc": 19
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/kassutronics-quantizer.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/kassutronics-quantizer.jpg",
+      "url": "https://kassu2000.blogspot.com/2019/10/quantizer.html"
     },
     {
       "type": "product",
@@ -215,7 +228,8 @@
         "led": 6,
         "sc": 2
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/3xmia.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/3xmia.jpg",
+      "url": "https://happynerding.com/category/3xmia/"
     },
     {
       "type": "product",
@@ -230,7 +244,8 @@
         "led": 3,
         "sc": 9
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/c3mkii.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/c3mkii.jpg",
+      "url": "https://www.flame-instruments.com/pdf/Manual_Flame_C3MK2_module_v100_eng.pdf"
     },
     {
       "type": "product",
@@ -245,7 +260,8 @@
         "led": 4,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/4r.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/4r.jpg",
+      "url": "https://transientmodules.com/4r"
     },
     {
       "type": "product",
@@ -260,7 +276,8 @@
         "led": 10,
         "sc": 4
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/convertor-e1.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/convertor-e1.jpg",
+      "url": "https://www.sonicsmith.com/products/convertor-e1"
     }
   ],
   "form": "https://tally.so/r/lbkgvB",

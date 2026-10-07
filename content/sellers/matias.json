@@ -17,7 +17,8 @@
         "led": 0,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/medusa.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/medusa.jpg",
+      "url": "https://randomsource.net/medusa"
     },
     {
       "type": "product",
@@ -32,7 +33,8 @@
         "led": 0,
         "sc": 1
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/vcfq.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/vcfq.jpg",
+      "url": "https://randomsource.net/vcfq"
     }
   ],
   "form": "https://tally.so/r/J95zQr"

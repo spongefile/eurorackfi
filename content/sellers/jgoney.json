@@ -17,7 +17,8 @@
         "led": 6,
         "sc": 4
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mindphaser.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/mindphaser.jpg",
+      "url": "https://modulargrid.net/e/hexinverter-electronique-mindphaser"
     }
   ],
   "form": "https://tally.so/r/PdxOrd"

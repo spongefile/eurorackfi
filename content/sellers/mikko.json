@@ -17,7 +17,8 @@
         "led": 9,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/harmonicosc.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/harmonicosc.jpg",
+      "url": "https://www.verboselectronics.com/harmonic-oscillator"
     },
     {
       "type": "product",
@@ -32,7 +33,8 @@
         "led": 40,
         "sc": 28
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/tobinskiseq.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/tobinskiseq.jpg",
+      "url": "https://www.tobinski-audio.com/modules/sequencer"
     },
     {
       "type": "product",
@@ -47,7 +49,8 @@
         "led": 0,
         "sc": 0
       },
-      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dualfourpole.jpg"
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/dualfourpole.jpg",
+      "url": "https://www.verboselectronics.com/dual-four-pole"
     }
   ],
   "form": "https://tally.so/r/yPV77B",
