@@ -639,6 +639,11 @@ a.wperson:hover .who{text-decoration:underline; text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){ .wishtile{transition:none} }
 /* backstop: the tile, not its contents, decides the width */
 .wishtile .wf{display:flex; align-items:center; justify-content:center; max-width:100%; min-width:0}
+/* the maker-page link wrapper: a reset button that lays out exactly as
+   the .wf it sits in, so linked and unlinked tiles are pixel-identical */
+.wishtile .wfgo{display:flex; align-items:center; justify-content:center; max-width:100%; min-width:0;
+  background:none; border:0; padding:0; font:inherit; cursor:pointer}
+.wishtile .wfgo:hover img{border-color:var(--ink2)}
 .wishtile .wf img{border:1px solid var(--line2)}
 .wishtile .wl{margin-top:.7rem; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2);
   text-align:center; line-height:1.4}
@@ -1513,7 +1518,7 @@ function dropHiddenWants(list,hiddenMap){
 function normalizeWants(list){
   return (list||[]).map(function(w){
     if(w && w.type==="placeholder") return w.text||"";
-    if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts,img:w.img};
+    if(w && w.type==="product") return {mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts,img:w.img,url:w.url};
     return w;
   });
 }
@@ -2704,6 +2709,15 @@ function wishTileHTML(w){
       'style="width:'+ww+'px;max-width:100%;aspect-ratio:'+ww+'/'+WISH_TILE_H+';height:auto;object-fit:cover;display:block" '+
       'onerror="wishImgFail(this,\''+esc(JSON.stringify({mfr:w.mfr,name:w.name,hp:w.hp,tone:w.tone,parts:w.parts}))+'\')">'
     : wishPanelHTML(w);
+  /* The image links to the maker's page when the want carries a url — a
+     BUTTON, not an <a>: on the Toiveet page this whole tile sits inside
+     the <a class="wishsection"> and the parser splits nested anchors
+     (same constraint as .wishcontact above). Wraps the photo AND the
+     drawn-panel fallback, so a want without a photo still links, and a
+     photo that dies onerror keeps the link because the swap happens
+     inside the button. Label stays plain text by request. Target may be
+     a PDF (Flame has no product pages) — new tab either way. */
+  if(w.url) wf='<button type="button" class="wfgo" data-href="'+esc(w.url)+'" aria-label="'+esc(w.mfr+" "+w.name)+'">'+wf+'</button>';
   return '<div class="wishtile"><div class="wf">'+wf+'</div>'+
     '<div class="wl">'+esc(w.mfr)+'<br>'+esc(w.name)+'</div></div>';
 }
@@ -2739,7 +2753,7 @@ function wishHTML(){
    fall through and navigate to the seller's list. New tab like every
    other outbound form link on the site. */
 document.addEventListener("click",function(e){
-  var b=e.target.closest(".wishcontact");
+  var b=e.target.closest(".wishcontact,.wfgo");
   if(!b || b.classList.contains("wishshare")) return; /* share shares, below */
   e.preventDefault(); e.stopPropagation();
   window.open(b.getAttribute("data-href"),"_blank","noopener");
