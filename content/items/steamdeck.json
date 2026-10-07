@@ -65,5 +65,6 @@
     "Handheld"
   ],
   "who": "spongefile",
-  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/steamdeck-ports.jpg"
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/steamdeck-ports.jpg",
+  "hidden": true
 }
