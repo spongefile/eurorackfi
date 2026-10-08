@@ -29,7 +29,7 @@
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/klang.jpg",
   "imgIsModularGrid": true,
-  "negotiating": false,
+  "negotiating": true,
   "extra": {
     "pull": {
       "q": "It elegantly brings polyphonic voicing and chord structures into the often profoundly monophonic space of Eurorack.",

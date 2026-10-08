@@ -54,7 +54,7 @@
     "sv": "Tvåpoligt CA3080-baserat state variable-filter, trimmat för självsvängning. Low-pass, band-pass, high-pass och notch alla tillgängliga samtidigt."
   },
   "id": "humpback",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Filter",
     "Multimode"

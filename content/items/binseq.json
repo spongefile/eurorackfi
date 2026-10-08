@@ -27,7 +27,7 @@
     "sv": "Åttastegs gate-sekvensiator, varje steg en trevägsomkopplare: av, bunden eller kort gate. Reset-ingång håller mönstret hur långt du vill."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/binseq.jpg",
-  "negotiating": false,
+  "negotiating": true,
   "extra": {
     "pull": {
       "q": "Designed to give a quick and simple way to generate rhythmic sequences while jamming.",

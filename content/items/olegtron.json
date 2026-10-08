@@ -59,12 +59,13 @@
     "sv": "Liten plastlåda byggd kring CD4060-kretsen: ett patchboard där du klistrar fast komponenter för att forma kretsen, med tio delade underfrekvenser att tillgå. Fyra stereo 3,5mm-jack bär upp till åtta signaler in eller ut, plus en bygel för uni-/bipolärt omfång. Batteridriven, kräver inget rack."
   },
   "id": "olegtron",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Other",
     "Oscillator",
     "DIY"
   ],
   "who": "spongefile",
-  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/olegtron.jpg"
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/olegtron.jpg",
+  "hidden": true
 }
