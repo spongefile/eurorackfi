@@ -23,7 +23,7 @@
   ],
   "mfr": "Landscape",
   "id": "noon",
-  "negotiating": false,
+  "negotiating": true,
   "who": "tatu",
   "extra": {
     "power": "none — entirely passive",
