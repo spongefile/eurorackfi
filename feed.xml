@@ -4,7 +4,21 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-10-07T09:37:34+03:00</updated>
+  <updated>2026-10-13T16:23:23+03:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/replicator</id>
+    <title>T-Rex Replicator + two new tape cartridges — 350 €</title>
+    <link href="https://eurorack.fi/#/m/replicator"/>
+    <updated>2026-10-13T16:23:23+03:00</updated>
+    <summary>Oikea nauhakaiku telineessä: moottori vetää 1/8-tuuman kromikasetin nauhasilmukkaa yhden äänityspään ja kahden toistopään ohi, ja kaikki sen jälkeen on nauhan fysiikkaa eikä sen mallinnusta. Lyhyt pää 108–520 ms, pitkä 215–1000 ms, molemmat yhdessä rytmiseen monitoistoon; tap tempo, saturaatiosäädin nauhan ajamiseen, chorus toistoille, kill-dry rinnakkaiskäyttöön ja — koska tämä on Eurorack-versio — CV-tulot viiveajalle ja takaisinkytkennälle sekä suodinkytkin joka tummentaa kaiut. Mukana kaksi uutta, avaamatonta nauhakasettia, ainoa kuluva osa. 44HP, 300 mA +12V:llä, joten kotelossa pitää olla tilaa ja virtaa.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/minilogue-bass</id>
+    <title>Korg minilogue bass — 300 €</title>
+    <link href="https://eurorack.fi/#/m/minilogue-bass"/>
+    <updated>2026-10-13T16:23:23+03:00</updated>
+    <summary>Korgin minilogue viritettynä alapäähän: sama neliääninen analoginen koneisto — kaksi VCO:ta per ääni muotoiluineen, ristimodulaatioineen, synkeineen ja rengasmodulaattoreineen — suodin ja oskillaattorit äänitettynä bassolle ja drive-aste joka antaa sille hampaat. Kolmekymmentäseitsemän kapeaa kosketinta käänteisinä mustana ja punaisena, 41 paneelisäädintä, kahdeksan äänitilaa nelisävelpolyfoniasta unisonoon ja monoon, sekä 16-askelinen sekvensseri joka tallentaa nupin liikkeen jopa neljälle parametrille. MIDI sisään ja ulos, USB, äänitulo. Vuoden 2022 rajoitettu erä, ei enää vakituotannossa.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/eas</id>
     <title>Instruō eãs — 120 €</title>
@@ -39,13 +53,6 @@
     <link href="https://eurorack.fi/#/m/softpop2"/>
     <updated>2026-09-30T00:58:12+03:00</updated>
     <summary>Bastlin toinen Softpop: subtraktiivinen syntikkaääni, joka on mielellään melodia ja vielä mieluummin sotku. Digitaalinen oskillaattori aallonmuokkauksella syöttää tilamuuttujasuodinta, jonka voi ajaa itseoskillointiin ja sen yli; sisällä asuvat 8-askelinen sekvensseri ketjutuksella ja kvantisoija kahdeksalla muokattavalla asteikolla, joten se pyörii omillaan; MIDI ja ulkoinen äänitulo tuovat ulkomaailman sisään; ja 37-pisteinen patchbay antaa sen istua Eurorack-järjestelmässä yhtä vapaasti kuin pöydällä. Toimii 5 V:lla micro-USB:n kautta tai telineessä 34HP:n levyisenä.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/multiclock</id>
-    <title>E-RM Multiclock — 450 €</title>
-    <link href="https://eurorack.fi/#/m/multiclock"/>
-    <updated>2026-09-30T00:58:12+03:00</updated>
-    <summary>Laatikko, joka korjaa ajoituksen tietokoneen ja laitteiden välillä. Neljä kellokanavaa, kukin erikseen siirrettävissä ja shufflattavissa, lähetettynä MIDI-kellona, DIN-synkkana ja analogisina pulsseina yhtä aikaa; USB-MIDI sisään ja ulos; sekä äänisynkkatulo, jolloin DAW lähettää sille klikin ääniraidalla ja kaikki sen perässä lukittuu siihen ilman USB-huojuntaa. Tuottaa myös oman kellonsa, jos tietokonetta ei ole. Pöytälaite 9–12 V:n verkkolaitteella.</summary>
   </entry>
   <entry>
     <id>https://eurorack.fi/#/m/twinvcamp</id>
@@ -118,27 +125,6 @@
     <summary>Nelioperaattorinen FM-oskillaattori, joka näyttää mitä se tekee: paina ALGO, ja operaattorien välinen reititys vaihtuu ja paneelin LED-ruudukko piirtyy uudelleen sen mukaan, joten ei tarvitse muistaa millä algoritmilla ollaan. Ristimodulaatio, detune, warp ja taittoaste lähdössä, sekä modulaatiotulot kaikille neljälle operaattorille. DX-lähestymistapa FM:ään sillä käyttöliittymällä, joka Eurorackissa olisi pitänyt olla alusta asti. 18HP, musta.</summary>
   </entry>
   <entry>
-    <id>https://eurorack.fi/#/m/groundcontrol</id>
-    <title>Endorphin.es Ground Control (silver) + case and PSU — 390 €</title>
-    <link href="https://eurorack.fi/#/m/groundcontrol"/>
-    <updated>2026-09-06T20:54:59+03:00</updated>
-    <summary>Myydään kokonaisena settinä: Ground Control (hopeapaneeli), Endorphin.esin oma alumiininen pöytäkotelo ja verkkolaite — kaikki mitä tarvitaan sen käyttöön pöydällä ilman telinettä. Se on yksitoistaraitainen esiintymissekvensseri, kahdeksan rumpugate-raitaa ja kolme melodista CV/gate-raitaa, MIDI- ja USB-MIDI-liitännöin sisään ja ulos, joten se ohjaa telinettä, rumpukonetta ja läppäriä samoista napeista. Kuusitoista padia per kuvio, raitakohtainen pituus, mykistykset väylällä ja kuvionvaihdot jotka voivat odottaa tahdin loppuun. Kotelossaan se voi myös syöttää virtaa muutamalle moduulille vierellään; telineeseen asennettuna se on 42HP.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/debel</id>
-    <title>Noise Engineering Debel Iteritas Alia — 240 €</title>
-    <link href="https://eurorack.fi/#/m/debel"/>
-    <updated>2026-09-06T20:54:59+03:00</updated>
-    <summary>Täydellinen digitaalinen ääni 10HP:ssä: additiivinen synteesi ristiin vaihemodulaation kanssa, kolme algoritmia DX-tyylisistä nypäytyksistä ja bassoista tiheään additiiviseen kohinaan. Sävelkorkeus, sointi, taitto ja vaimennus nupeissa ja CV:ssä, sisäänrakennettu verhokäyrä joten se soi yhdestä liipaisusta. Alia-rautaa, eli firmware on vaihdettavissa — Noise Engineeringin koko Alia-kirjasto latautuu siihen ilmaiseksi, joten moduuli voi olla eri ääni ensi vuonna.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/brenso</id>
-    <title>Frap Tools Brenso — 440 €</title>
-    <link href="https://eurorack.fi/#/m/brenso"/>
-    <updated>2026-09-06T20:54:59+03:00</updated>
-    <summary>Kompleksioskillaattori länsirannikon merkityksessä: kaksi kolmioytimistä VCO:ta, joista toinen moduloi ensimmäistä, ja äänenvärilohko joka tekee tuhon — kaksi aaltotaittajaa, aallonmuokkain, PWM-piiri ja nelikvadranttikertoja amplitudi- ja rengasmodulaatioon. Frap Toolsin lisä on tarkkuus: jokainen kietoutumisen aste kahden ytimen välillä on nupissa tai liittimessä, joten sama patch voi olla puhdas sini tai repivä FM-ääni yhtä säädintä kääntämällä. 30HP, 38 mm syvä ja 325 mA +12V:llä.</summary>
-  </entry>
-  <entry>
     <id>https://eurorack.fi/#/m/modus</id>
     <title>Keijo (DIY) Modus Operandi — 250 €</title>
     <link href="https://eurorack.fi/#/m/modus"/>
@@ -179,5 +165,19 @@
     <link href="https://eurorack.fi/#/m/rosie"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Se osa joka tulee patchin loppuun: linjalähtö, kuulokelähtö ja ristihäivytin kahden kanavan välillä, 8HP. Pelkkää ulostulomoduulia enemmän siitä tekee cue-järjestelmä — kanavaa voi kuunnella kuulokkeista ja työstää sitä ennen kuin sen häivyttää pääsummaan, eli sama temppu jota DJ:t käyttävät, sovellettuna modulaariin. Mukana on myös lähetys ja paluu, mono tai stereo, joten ulkoinen pedaali tai efekti mahtuu signaalitielle. Linjalähtö on TRS-liitin ylikuormituksen merkkivalolla. Make Noise on poistanut sen tuotannosta, joten tarjolla on enää käytettyjä.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/qslider</id>
+    <title>Flame QSlider — 120 €</title>
+    <link href="https://eurorack.fi/#/m/qslider"/>
+    <updated>2026-08-30T23:41:40+03:00</updated>
+    <summary>Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. QSlider on kahden moduulin pari: 14HP:n liukupaneelissa ei ole lainkaan liittimiä, ja 4HP:n lähtömoduuli kantaa liittimet. Molemmat kuuluvat kauppaan, eli yhteensä 18HP, ja lähtöpuoliskon voi asentaa liukujen vasemmalle tai oikealle puolelle.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/monsoon</id>
+    <title>Jak Plugg Monsoon — 160 €</title>
+    <link href="https://eurorack.fi/#/m/monsoon"/>
+    <updated>2026-08-30T23:41:40+03:00</updated>
+    <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
   </entry>
 </feed>
