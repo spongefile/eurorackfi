@@ -1,0 +1,75 @@
+{
+  "parts": {
+    "k": 7,
+    "j": 9,
+    "sl": 0,
+    "led": 3,
+    "sc": 5
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/replicator.jpg",
+  "mgSlug": "t-rex-replicator",
+  "site": "t-rex-effects.com",
+  "hp": 44,
+  "price": 350,
+  "name": "Replicator + two new tape cartridges",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Delay",
+    "Tape"
+  ],
+  "mfr": "T-Rex",
+  "id": "replicator",
+  "negotiating": false,
+  "who": "mikko",
+  "extra": {
+    "power": "+12V 300mA · −12V 175mA",
+    "depth": "38mm",
+    "pull": {
+      "q": "The Replicator is T-Rex Engineering's take on the ultimate tape echo unit, complete with a motor, magnetic heads and a tape cartridge.",
+      "src": "T-Rex",
+      "url": "https://www.t-rex-effects.com/replicator"
+    },
+    "quotes": [
+      {
+        "t": "One record head and two playback heads — short 108–520ms, long 215–1000ms, or both for multi-tap repeats — with tap tempo, tape saturation, chorus and a kill-dry switch. The Eurorack version adds 0–5V CV over delay time and feedback, and a filter switch that darkens the repeats.",
+        "s": "T-Rex"
+      },
+      {
+        "t": "Two new tape cartridges are included. The tape is the wear part; a cartridge normally costs about €30 on its own.",
+        "s": "What is included"
+      },
+      {
+        "t": "44HP and 300mA on +12V — a motor lives behind this panel. Check the case has both.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "T-Rex",
+        "title": "Replicator — the manufacturer's page",
+        "url": "https://www.t-rex-effects.com/replicator"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "T-Rex Replicator — specs and racks",
+        "url": "https://modulargrid.net/e/t-rex-replicator"
+      }
+    ],
+    "videos": [
+      {
+        "title": "T-Rex Replicator Tape Echo demo",
+        "by": "Guitarist · YouTube",
+        "url": "https://www.youtube.com/watch?v=GHgkNOfGLDA"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A real tape echo in the rack: a motor pulls a loop of 1/8-inch chrome tape in a cartridge past one record head and two playback heads, and everything after that is the physics of tape rather than a model of it. Short head 108–520ms, long 215–1000ms, both together for rhythmic multi-tap; tap tempo, a saturation control for pushing the tape, chorus on the repeats, kill-dry for parallel use, and — this being the Eurorack version — CV inputs for delay time and feedback plus a filter switch that darkens the echoes. Comes with two new, sealed tape cartridges, the one consumable part. 44HP, 300mA on +12V, so it needs a case with room and current.",
+    "fi": "Oikea nauhakaiku telineessä: moottori vetää 1/8-tuuman kromikasetin nauhasilmukkaa yhden äänityspään ja kahden toistopään ohi, ja kaikki sen jälkeen on nauhan fysiikkaa eikä sen mallinnusta. Lyhyt pää 108–520 ms, pitkä 215–1000 ms, molemmat yhdessä rytmiseen monitoistoon; tap tempo, saturaatiosäädin nauhan ajamiseen, chorus toistoille, kill-dry rinnakkaiskäyttöön ja — koska tämä on Eurorack-versio — CV-tulot viiveajalle ja takaisinkytkennälle sekä suodinkytkin joka tummentaa kaiut. Mukana kaksi uutta, avaamatonta nauhakasettia, ainoa kuluva osa. 44HP, 300 mA +12V:llä, joten kotelossa pitää olla tilaa ja virtaa.",
+    "sv": "Ett riktigt bandeko i racket: en motor drar en slinga 1/8-tums kromband i en kassett förbi ett inspelningshuvud och två avspelningshuvuden, och allt därefter är bandets fysik snarare än en modell av den. Korta huvudet 108–520 ms, långa 215–1000 ms, båda tillsammans för rytmiskt flertapp; tap tempo, en saturationsratt för att driva bandet, chorus på repetitionerna, kill-dry för parallellbruk och — eftersom detta är Eurorack-versionen — CV-ingångar för fördröjningstid och återkoppling plus en filteromkopplare som mörkar ekona. Två nya, oöppnade bandkassetter medföljer, den enda förbrukningsdelen. 44HP, 300 mA på +12V, så lådan behöver både plats och ström."
+  }
+}

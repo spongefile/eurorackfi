@@ -1,0 +1,65 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 0,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/minilogue-bass.jpg",
+  "mgSlug": "",
+  "site": "korg.com",
+  "hp": 0,
+  "price": 300,
+  "name": "minilogue bass",
+  "fmt": "desk",
+  "tone": "black",
+  "cat": "Synth",
+  "cats": [
+    "Synth",
+    "Analogue",
+    "Keyboard"
+  ],
+  "mfr": "Korg",
+  "id": "minilogue-bass",
+  "negotiating": false,
+  "who": "mikko",
+  "extra": {
+    "power": "9V DC adapter, 8W",
+    "depth": "500 × 300 × 85 mm, 2.8 kg",
+    "pull": {
+      "q": "The minilogue bass analog synthesizer circuitry generates sound that can't be recreated on digital hardware and software synths.",
+      "src": "Korg",
+      "url": "https://www.korg.com/us/products/synthesizers/minilogue_bass/"
+    },
+    "quotes": [
+      {
+        "t": "Four analogue voices, two VCOs each with wave shaping, cross modulation, sync and ring mod; eight voice modes from poly to unison, mono and chord; a 16-step sequencer with motion recording on up to four controls.",
+        "s": "Korg"
+      },
+      {
+        "t": "A limited edition from 2022 — the standard minilogue tuned for bass, with inverted black-and-red keys. Not in regular production.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Korg",
+        "title": "minilogue bass — the manufacturer's page and specifications",
+        "url": "https://www.korg.com/us/products/synthesizers/minilogue_bass/"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Korg minilogue bass — introduction & sound demo",
+        "by": "KORG · YouTube",
+        "url": "https://www.youtube.com/watch?v=Ofqxx6YoB-0"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Korg's minilogue retuned for the low end: the same four-voice analogue engine — two VCOs a voice with shaping, cross-mod, sync and ring mod — with the filter and oscillators voiced for bass and a drive stage that gives it teeth. Thirty-seven slim keys in inverted black and red, 41 panel controls, eight voice modes from four-note poly to unison and mono, and a 16-step sequencer that records knob movement on up to four parameters. MIDI in and out, USB, audio input. A 2022 limited edition, no longer in regular production.",
+    "fi": "Korgin minilogue viritettynä alapäähän: sama neliääninen analoginen koneisto — kaksi VCO:ta per ääni muotoiluineen, ristimodulaatioineen, synkeineen ja rengasmodulaattoreineen — suodin ja oskillaattorit äänitettynä bassolle ja drive-aste joka antaa sille hampaat. Kolmekymmentäseitsemän kapeaa kosketinta käänteisinä mustana ja punaisena, 41 paneelisäädintä, kahdeksan äänitilaa nelisävelpolyfoniasta unisonoon ja monoon, sekä 16-askelinen sekvensseri joka tallentaa nupin liikkeen jopa neljälle parametrille. MIDI sisään ja ulos, USB, äänitulo. Vuoden 2022 rajoitettu erä, ei enää vakituotannossa.",
+    "sv": "Korgs minilogue omstämd för basregistret: samma fyrstämmiga analoga motor — två VCO:er per röst med formning, korsmodulation, sync och ringmod — med filter och oscillatorer röstade för bas och ett drivsteg som ger den tänder. Trettiosju smala tangenter i inverterat svart och rött, 41 panelreglage, åtta röstlägen från fyrstämmig poly till unison och mono, och en 16-stegs sekvensiator som spelar in rattrörelser på upp till fyra parametrar. MIDI in och ut, USB, ljudingång. En begränsad upplaga från 2022, inte längre i reguljär produktion."
+  }
+}
