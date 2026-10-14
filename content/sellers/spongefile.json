@@ -278,6 +278,22 @@
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/convertor-e1.jpg",
       "url": "https://www.sonicsmith.com/products/convertor-e1"
+    },
+    {
+      "type": "product",
+      "mfr": "WMD",
+      "name": "OSD",
+      "hp": 4,
+      "tone": "black",
+      "parts": {
+        "k": 1,
+        "j": 12,
+        "sl": 0,
+        "led": 3,
+        "sc": 2
+      },
+      "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/osd.jpg",
+      "url": "https://wmdevices.com/products/osd-or-sum-dif"
     }
   ],
   "form": "https://tally.so/r/lbkgvB",
