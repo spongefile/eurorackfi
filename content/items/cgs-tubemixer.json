@@ -22,8 +22,8 @@
   ],
   "mfr": "CGS (Ken Stone)",
   "id": "cgs-tubemixer",
-  "negotiating": false,
-  "hidden": true,
+  "negotiating": true,
+  "hidden": false,
   "who": "tatu",
   "extra": {
     "quotes": [

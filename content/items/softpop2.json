@@ -23,7 +23,7 @@
   ],
   "mfr": "Bastl Instruments",
   "id": "softpop2",
-  "negotiating": false,
+  "negotiating": true,
   "who": "tatu",
   "extra": {
     "power": "5V micro-USB, or eurorack +5V 250mA if racked (34HP)",
