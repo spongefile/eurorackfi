@@ -84,10 +84,11 @@
     "sv": "Fyra funktionsgeneratorer på 14HP, var och en oberoende antingen en attack-decay-envelope, en attack-hold-release, en cyklande envelope, en pulsskurgenerator eller en taktsynkbar bipolär LFO. Stigning, fall och form per kanal, där formen sveper från logaritmisk stigning via linjär till exponentiell. Fyra CV-ingångar kopplas till valfri parameter via en modulationsmatris, och kanalerna kedjas via varandras trigger, slutet på stigningen eller slutet på fallet till envelopes i flera steg. Säljs ensam — ingen Qx-expander."
   },
   "id": "quadrax",
-  "negotiating": true,
+  "negotiating": false,
   "cats": [
     "Modulation",
     "Envelope"
   ],
-  "who": "spongefile"
+  "who": "spongefile",
+  "hidden": true
 }

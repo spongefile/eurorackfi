@@ -27,7 +27,7 @@
     "sv": "Triangelkärnad VCO med sinus-, sub- och variabelform-utgångar. Linjär och exponentiell FM, sync och en S-gate för enbart suboscillatorn."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/sto.jpg",
-  "negotiating": true,
+  "negotiating": false,
   "extra": {
     "videos": [
       {
@@ -53,5 +53,6 @@
       "src": "Molten Modular",
       "url": "http://moltenmodular.com/molten-modular-15-discovering-oscillators-make-noise-sto"
     }
-  }
+  },
+  "hidden": true
 }
