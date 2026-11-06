@@ -229,7 +229,8 @@
         "sc": 2
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/3xmia.jpg",
-      "url": "https://happynerding.com/category/3xmia/"
+      "url": "https://happynerding.com/category/3xmia/",
+      "hidden": true
     },
     {
       "type": "product",
