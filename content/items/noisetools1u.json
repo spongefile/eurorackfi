@@ -1,0 +1,78 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 8,
+    "sl": 0,
+    "led": 3,
+    "sc": 2
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/noisetools1u.jpg",
+  "mgSlug": "intellijel-noise-tools-1u",
+  "site": "intellijel.com",
+  "hp": 22,
+  "price": 75,
+  "name": "Noise Tools 1U",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Modulation",
+  "cats": [
+    "Modulation",
+    "Noise",
+    "Random",
+    "1U"
+  ],
+  "mfr": "Intellijel",
+  "id": "noisetools1u",
+  "negotiating": false,
+  "oneU": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 30mA · −12V 30mA",
+    "depth": "29mm",
+    "pull": {
+      "q": "Noise Random Tools comprises a collection of useful utility blocks that you could use in many of your patches.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/1u/noise-tools-1u/"
+    },
+    "quotes": [
+      {
+        "t": "Clock and random pulse source with adjustable rate, analog pink and white noise, a sample and hold that can also track, and a slew limiter.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Intellijel 1U format — it fits Intellijel cases and 1U rows, not Pulp Logic ones.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Noise Tools 1U — the manufacturer's page and manual",
+        "url": "https://intellijel.com/shop/eurorack/1u/noise-tools-1u/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Noise Tools 1U — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-noise-tools-1u"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Noise Tools Overview",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=B1jtyyg28Z8"
+      },
+      {
+        "title": "Rambling About: Intellijel Noise Tools 1U",
+        "by": "tafony · YouTube",
+        "url": "https://www.youtube.com/watch?v=fn2XolgB_7w"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "The small utilities a patch always ends up needing, on one 1U tile so they cost no 3U space. A pulse source with a rate knob that switches between a steady clock and random pulses; analogue pink and white noise; a sample and hold that flips to track and hold; and a slew limiter with its own time knob. The blocks are normalled left to right — pulse into the sample-and-hold trigger, white noise into its input, the held voltage into the slew — so with nothing patched it is already a stepped random source and a smoothed one. 22HP of an Intellijel 1U row; not Pulp Logic format.",
+    "fi": "Ne pienet apuvälineet joita patch aina lopulta tarvitsee, yhdellä 1U-tiilellä jolloin ne eivät vie 3U-tilaa. Pulssilähde nopeusnupilla, joka vaihtuu tasaisen kellon ja satunnaisten pulssien välillä; analoginen vaaleanpunainen ja valkoinen kohina; sample and hold, joka vaihtuu track and hold -tilaan; ja slew-rajoitin omalla aikanupillaan. Lohkot on normalisoitu vasemmalta oikealle — pulssi sample-and-holdin liipaisuun, valkoinen kohina sen tuloon, pidetty jännite slew'hun — joten ilman yhtään kaapelia se on jo porrastettu satunnaislähde ja pehmennetty sellainen. 22HP Intellijelin 1U-rivissä; ei Pulp Logic -formaatti.",
+    "sv": "De små hjälpmedlen en patch alltid till slut behöver, på en 1U-bricka så att de inte tar någon 3U-plats. En pulskälla med hastighetsratt som växlar mellan jämn klocka och slumppulser; analogt rosa och vitt brus; en sample and hold som kan slås om till track and hold; och en slew-begränsare med egen tidsratt. Blocken är normaliserade från vänster till höger — puls till sample-and-holdens trigger, vitt brus till dess ingång, den hållna spänningen till slew — så utan en enda kabel är den redan en stegad slumpkälla och en utjämnad. 22HP i en Intellijel 1U-rad; inte Pulp Logic-format."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "parts": {
+    "k": 2,
+    "j": 2,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/digiverb1u.jpg",
+  "mgSlug": "intellijel-digiverb-1u",
+  "site": "intellijel.com",
+  "hp": 14,
+  "price": 40,
+  "name": "Digiverb 1U",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "FX",
+  "cats": [
+    "FX",
+    "Reverb",
+    "1U"
+  ],
+  "mfr": "Intellijel",
+  "id": "digiverb1u",
+  "negotiating": false,
+  "oneU": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 72mA · −12V 17mA",
+    "depth": "45mm",
+    "pull": {
+      "q": "The sound is somewhere between a virtual spring reverb and a dense multi tap delay but the effect is quite musical and interesting.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/1u/digiverb-1u/"
+    },
+    "quotes": [
+      {
+        "t": "Digiverb is a lo-fi reverb effect unit that uses an Accutronic digital reverb tank module.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Mono in, mono out, and 45mm deep — deep for a 1U tile. Intellijel 1U format, not Pulp Logic.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "Digiverb 1U — the manufacturer's page",
+        "url": "https://intellijel.com/shop/eurorack/1u/digiverb-1u/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel Digiverb 1U — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-digiverb-1u"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Intellijel Digiverb 1U",
+        "by": "Intellijel · YouTube",
+        "url": "https://www.youtube.com/watch?v=Ucfbpoq93WE"
+      },
+      {
+        "title": "Intellijel Digiverb 1U Introduction",
+        "by": "SundayAfternoonModular · YouTube",
+        "url": "https://www.youtube.com/watch?v=EhGfSaCWrPg"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A reverb on a 1U tile, built around an Accutronics digital tank. Two knobs — decay and dry/wet mix — one input, one output, and that is all of it. The character is lo-fi on purpose: somewhere between a spring and a dense multi-tap delay, a bit grainy, the sort of reverb that sits behind a voice rather than polishing it. Mono. 14HP of an Intellijel 1U row and 45mm deep; not Pulp Logic format.",
+    "fi": "Kaiku 1U-tiilellä, rakennettu Accutronicsin digitaalisen tankin ympärille. Kaksi nuppia — decay ja dry/wet-mix — yksi tulo, yksi lähtö, ja siinä kaikki. Luonne on tarkoituksella lo-fi: jossain jousikaiun ja tiheän monitappiviiveen välissä, hieman rakeinen, sellainen kaiku joka asettuu äänen taakse eikä kiillota sitä. Mono. 14HP Intellijelin 1U-rivissä ja 45 mm syvä; ei Pulp Logic -formaatti.",
+    "sv": "Ett reverb på en 1U-bricka, byggt kring en digital tank från Accutronics. Två rattar — decay och dry/wet-mix — en ingång, en utgång, och det är allt. Karaktären är lo-fi med flit: någonstans mellan ett fjäderreverb och ett tätt multitap-delay, lite kornigt, den sortens reverb som lägger sig bakom en röst snarare än polerar den. Mono. 14HP i en Intellijel 1U-rad och 45 mm djup; inte Pulp Logic-format."
+  }
+}
