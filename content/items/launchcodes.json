@@ -1,0 +1,80 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 7,
+    "sl": 0,
+    "led": 4,
+    "sc": 8
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/launchcodes.jpg",
+  "mgSlug": "antimatter-audio-launch-codes",
+  "site": "antimatteraudio.com",
+  "hp": 6,
+  "price": 130,
+  "name": "Launch Codes",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Sequencer",
+  "cats": [
+    "Sequencer",
+    "Controller",
+    "Gate"
+  ],
+  "mfr": "Antimatter Audio",
+  "id": "launchcodes",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 60mA · −12V 0mA",
+    "depth": "37mm",
+    "pull": {
+      "q": "A compact modular performance source for manual or sequenced triggering and gating for up to five separate events.",
+      "src": "Antimatter Audio",
+      "url": "https://modulargrid.net/e/antimatter-audio-launch-codes"
+    },
+    "quotes": [
+      {
+        "t": "It will record button presses and play them back quantized to the clock input. Sequences are up to 32 steps long, times 5 patterns, for a total of 160 steps.",
+        "s": "Antimatter Audio"
+      },
+      {
+        "t": "Patterns can be expressively chained in the order pressed. Launch Codes will continually loop through this chain, or a single pattern.",
+        "s": "Antimatter Audio"
+      },
+      {
+        "t": "Discontinued, so this is the used market only. The separate Code Switch expander is not part of this listing.",
+        "s": "Worth knowing"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Analogue Haven",
+        "title": "Launch Codes — a dealer's description",
+        "url": "https://analoguehaven.com/antimatter-audio/launchcodes"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Antimatter Audio Launch Codes — specs and racks",
+        "url": "https://modulargrid.net/e/antimatter-audio-launch-codes"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Antimatter Audio Launch Codes — intro and instructions",
+        "by": "Antimatter Audio · YouTube",
+        "url": "https://www.youtube.com/watch?v=JtFixagRq3A"
+      },
+      {
+        "title": "Antimatter Launch Codes — special features",
+        "by": "Antimatter Audio · YouTube",
+        "url": "https://www.youtube.com/watch?v=ZnbiZGeALc4"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "Five big lit buttons, five gate outputs, 6HP. Played by hand it is a performance controller: each button can be a trigger, a momentary gate or a latching toggle, chosen per channel, so one finger starts a drum fill and another holds a drone open. Give it a clock and it records what you press, quantised, into five-channel patterns of up to 32 steps, with five patterns you can chain in whatever order you hit them. Generate makes variations of a pattern, each channel can be muted on the fly, and the reset jack doubles as a CV input that adds random changes as the voltage rises. Everything is saved through power-off. Discontinued.",
+    "fi": "Viisi isoa valaistua nappia, viisi gate-lähtöä, 6HP. Käsin soitettuna se on esiintymisohjain: jokainen nappi voi olla liipaisu, hetkellinen gate tai lukittuva kytkin, valittavissa kanavakohtaisesti, joten yksi sormi käynnistää rumpufillin ja toinen pitää dronen auki. Anna sille kello, ja se tallentaa painalluksesi kvantisoituna viisikanavaisiksi, enintään 32 askeleen kuvioiksi, ja viisi kuviota voi ketjuttaa siinä järjestyksessä kuin niitä painaa. Generate tekee kuviosta muunnelmia, jokaisen kanavan voi mykistää lennossa, ja reset-liitin toimii myös CV-tulona joka lisää satunnaisia muutoksia jännitteen noustessa. Kaikki säilyy muistissa virran katkettua. Valmistus lopetettu.",
+    "sv": "Fem stora upplysta knappar, fem gate-utgångar, 6HP. Spelad för hand är den en performance-kontroller: varje knapp kan vara en trigger, en momentan gate eller en låsande omkopplare, valbart per kanal, så ett finger startar ett trumfill och ett annat håller en drön öppen. Ge den en klocka så spelar den in dina tryckningar, kvantiserat, i femkanaliga mönster på upp till 32 steg, och fem mönster kan kedjas i den ordning du trycker dem. Generate gör variationer av ett mönster, varje kanal kan mutas i farten, och reset-uttaget fungerar också som CV-ingång som lägger till slumpändringar när spänningen stiger. Allt sparas när strömmen bryts. Utgången ur produktion."
+  }
+}
