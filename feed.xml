@@ -4,7 +4,21 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-10-13T16:23:23+03:00</updated>
+  <updated>2026-11-17T12:13:54+02:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/noisetools1u</id>
+    <title>Intellijel Noise Tools 1U — 75 €</title>
+    <link href="https://eurorack.fi/#/m/noisetools1u"/>
+    <updated>2026-11-17T12:13:54+02:00</updated>
+    <summary>Ne pienet apuvälineet joita patch aina lopulta tarvitsee, yhdellä 1U-tiilellä jolloin ne eivät vie 3U-tilaa. Pulssilähde nopeusnupilla, joka vaihtuu tasaisen kellon ja satunnaisten pulssien välillä; analoginen vaaleanpunainen ja valkoinen kohina; sample and hold, joka vaihtuu track and hold -tilaan; ja slew-rajoitin omalla aikanupillaan. Lohkot on normalisoitu vasemmalta oikealle — pulssi sample-and-holdin liipaisuun, valkoinen kohina sen tuloon, pidetty jännite slew'hun — joten ilman yhtään kaapelia se on jo porrastettu satunnaislähde ja pehmennetty sellainen. 22HP Intellijelin 1U-rivissä; ei Pulp Logic -formaatti.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/digiverb1u</id>
+    <title>Intellijel Digiverb 1U — 40 €</title>
+    <link href="https://eurorack.fi/#/m/digiverb1u"/>
+    <updated>2026-11-17T12:13:54+02:00</updated>
+    <summary>Kaiku 1U-tiilellä, rakennettu Accutronicsin digitaalisen tankin ympärille. Kaksi nuppia — decay ja dry/wet-mix — yksi tulo, yksi lähtö, ja siinä kaikki. Luonne on tarkoituksella lo-fi: jossain jousikaiun ja tiheän monitappiviiveen välissä, hieman rakeinen, sellainen kaiku joka asettuu äänen taakse eikä kiillota sitä. Mono. 14HP Intellijelin 1U-rivissä ja 45 mm syvä; ei Pulp Logic -formaatti.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/replicator</id>
     <title>T-Rex Replicator + two new tape cartridges — 350 €</title>
@@ -34,13 +48,6 @@
     <summary>Kolme sample-and-hold-kanavaa 4HP:ssä, kullakin oma liipaisu- ja näytetulo ja kaksi lähtöä — yksi unipolaarinen, yksi bipolaarinen — joten yksi liipaisu ylimpään kanavaan, normalisoituna alas kaikkien kolmen läpi, antaa kuusi toisistaan riippumatonta satunnaisjännitettä kerralla. Jokaisessa kanavassa on sisällä kaksi analogista vaaleanpunaisen kohinan lähdettä, joten satunnaisuuteen ei tarvitse kytkeä mitään; kytke jotain sisään ja se näytteistää sen sijaan. Pieni vuoto ja pitkät pitoajat hitailla kelloilla; kellota äänitaajuudella ja siitä tulee rouhea alinäytteistin ja kellotettu kohinalähde. Steady State Faten rakentama DivKidin suunnitelmaan. 44 mm syvä.</summary>
   </entry>
   <entry>
-    <id>https://eurorack.fi/#/m/noon</id>
-    <title>Landscape Noon (blue) — 640 €</title>
-    <link href="https://eurorack.fi/#/m/noon"/>
-    <updated>2026-10-01T12:58:26+03:00</updated>
-    <summary>Rumpukone ilman virtalähdettä, koska siinä ei ole mitään mihin syöttää virtaa: kahdeksan passiivista kanavaa, jotka muuttavat sisään lähetetyt gatet ja CV:t perkussiiviseksi ääneksi, kosketuslevyt joilla niitä taivutetaan sormien alla ja liu'ut kunkin kanavan säätöön. Kymmenen CV-tuloa, äänitulo, kymmenen lähtöä, kaikki 3,5 mm, joten se istuu modulaarin viereen yhtä luontevasti kuin moduuli. Mitään ei tapahdu ennen kuin jokin ajaa sitä — sekvensseri, LFO:t, modulaari — ja tulos riippuu täysin siitä mitä syötät. Sininen; Landscapen nykyiset värit ovat keltainen ja vihreä.</summary>
-  </entry>
-  <entry>
     <id>https://eurorack.fi/#/m/mimetic-panel</id>
     <title>spongefile Mimetic Digitalis front panel replacement — 30 €</title>
     <link href="https://eurorack.fi/#/m/mimetic-panel"/>
@@ -53,6 +60,13 @@
     <link href="https://eurorack.fi/#/m/softpop2"/>
     <updated>2026-09-30T00:58:12+03:00</updated>
     <summary>Bastlin toinen Softpop: subtraktiivinen syntikkaääni, joka on mielellään melodia ja vielä mieluummin sotku. Digitaalinen oskillaattori aallonmuokkauksella syöttää tilamuuttujasuodinta, jonka voi ajaa itseoskillointiin ja sen yli; sisällä asuvat 8-askelinen sekvensseri ketjutuksella ja kvantisoija kahdeksalla muokattavalla asteikolla, joten se pyörii omillaan; MIDI ja ulkoinen äänitulo tuovat ulkomaailman sisään; ja 37-pisteinen patchbay antaa sen istua Eurorack-järjestelmässä yhtä vapaasti kuin pöydällä. Toimii 5 V:lla micro-USB:n kautta tai telineessä 34HP:n levyisenä.</summary>
+  </entry>
+  <entry>
+    <id>https://eurorack.fi/#/m/cgs-tubemixer</id>
+    <title>CGS (Ken Stone) Tube Mixer — 0 €</title>
+    <link href="https://eurorack.fi/#/m/cgs-tubemixer"/>
+    <updated>2026-09-30T00:58:12+03:00</updated>
+    <summary>Putkimikseri Ken Stonen CGS-suunnitelmasta. DIY-rakennelma; ei vielä myynnissä.</summary>
   </entry>
   <entry>
     <id>https://eurorack.fi/#/m/twinvcamp</id>
@@ -165,19 +179,5 @@
     <link href="https://eurorack.fi/#/m/rosie"/>
     <updated>2026-08-30T23:41:40+03:00</updated>
     <summary>Se osa joka tulee patchin loppuun: linjalähtö, kuulokelähtö ja ristihäivytin kahden kanavan välillä, 8HP. Pelkkää ulostulomoduulia enemmän siitä tekee cue-järjestelmä — kanavaa voi kuunnella kuulokkeista ja työstää sitä ennen kuin sen häivyttää pääsummaan, eli sama temppu jota DJ:t käyttävät, sovellettuna modulaariin. Mukana on myös lähetys ja paluu, mono tai stereo, joten ulkoinen pedaali tai efekti mahtuu signaalitielle. Linjalähtö on TRS-liitin ylikuormituksen merkkivalolla. Make Noise on poistanut sen tuotannosta, joten tarjolla on enää käytettyjä.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/qslider</id>
-    <title>Flame QSlider — 120 €</title>
-    <link href="https://eurorack.fi/#/m/qslider"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Neljä 60 mm:n liukua käsin soitettavana CV-lähteenä. Kukin liukupari jakaa min- ja max-potentiometrin, joten liu'un kulkema alue asetetaan itse sen sijaan että se kulkisi aina nollasta kymmeneen — kätevää kun haluat liu'un liikuttavan suodinta kvintin verran eikä koko spektrin yli. Kumpikin pari voi toimia unipolaarisesti 0…+10V tai bipolaarisesti ±5V, ja liukua voi käyttää ristihäivyttimenä. QSlider on kahden moduulin pari: 14HP:n liukupaneelissa ei ole lainkaan liittimiä, ja 4HP:n lähtömoduuli kantaa liittimet. Molemmat kuuluvat kauppaan, eli yhteensä 18HP, ja lähtöpuoliskon voi asentaa liukujen vasemmalle tai oikealle puolelle.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/monsoon</id>
-    <title>Jak Plugg Monsoon — 160 €</title>
-    <link href="https://eurorack.fi/#/m/monsoon"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Mutable Instrumentsin Clouds, jonka Jak Plugg on piirtänyt uudelleen 12HP:hen ja tuonut neljä blend-parametria omille nupeilleen sen sijaan että ne piileskelisivät napin takana. Wet/dry, stereolevitys, takaisinkytkentä ja kaiku saavat kukin nupin ja CV-tulon — juuri tästä syystä tämä versio on olemassa, sillä alkuperäisessä piti pitää nappia pohjassa ja etsiä. Granulaarinen tekstuuriprosessori: syötä sille ääntä, ja se pilkkoo tulevan signaalin jyväsiksi ja kokoaa siitä pilven, jota voi venyttää, jäädyttää ja levittää. Liu'ut positionille, densitylle, sizelle ja texturelle, kullakin oma LED joka näyttää tulevan CV:n. Ajaa Parasites-firmwarea. Kyseessä on CC-BY-SA-lisensoitu johdannainen, ei Mutablen alkuperäinen.</summary>
   </entry>
 </feed>
