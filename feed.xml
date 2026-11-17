@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-11-17T13:05:08+02:00</updated>
+  <updated>2026-11-17T13:31:10+02:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/usbpower1u</id>
+    <title>Intellijel USB Power 1U — 10 €</title>
+    <link href="https://eurorack.fi/#/m/usbpower1u"/>
+    <updated>2026-11-17T13:31:10+02:00</updated>
+    <summary>USB-A-liitin 4HP:n 1U-tiilellä, syötettynä kotelon +5V:stä: paikka johon kytkeä joutsenkaulalamppu, ladata puhelin tai syöttää virtaa pienelle USB-syntikalle tai ohjaimelle ilman yhtä uutta verkkolaitetta. Vain virta, ei dataa. Se kytketään Intellijelin TPS-virtakiskon kaksinapaiseen USB-liittimeen, joten se sopii Intellijelin koteloihin ja muihin joissa tuo liitin on. Intellijelin 1U-formaatti; ei Pulp Logic.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/launchcodes</id>
     <title>Antimatter Audio Launch Codes — 130 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/batumi"/>
     <updated>2026-09-04T11:43:31+03:00</updated>
     <summary>Neljä LFO:ta 10HP:ssä, ja syy siihen että näitä pidetään vuosikausia on se etteivät ne neljä ole oikeasti erillisiä — tilakytkin suhteuttaa ne toisiinsa. Free, ja ne käyvät itsenäisesti. Quad, ja ne levittäytyvät kvadratuuriin, saman aallon neljään vaiheeseen, mikä on se patch josta järjestelmä alkaa hengittää. Phase, ja siirtymän asettaa itse. Divide, ja niistä tulee yksi taajuus jaettuna alaspäin, jolloin hidas rakenne ja nopea värinä pysyvät lukossa keskenään. Jokainen kanava antaa siniä, sahaa ja kanttia yhtä aikaa, mukana reset- ja sync-tulot sekä liuku nopeudelle. Poti-laajennin kuuluu kauppaan ja on asennettu viereen: se tuo piirilevyn takana olevat hyppyjohdinasetukset 3HP:n paneelille, joten ne vaihdetaan kytkimestä eikä moduulia irrottamalla. Ensimmäisen sukupolven hopeapaneeli — 13HP parille.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/spectravox</id>
-    <title>Moog Spectravox — 320 €</title>
-    <link href="https://eurorack.fi/#/m/spectravox"/>
-    <updated>2026-08-31T10:01:25+03:00</updated>
-    <summary>Kymmenkaistainen analoginen suodinpankki, jota voi soittaa, patchata tai laulaa läpi. Yksi alipäästö, kahdeksan kaistanpäästöä ja yksi ylipäästö, kullakin oma VCA, joten kaistoja voi avata ja sulkea käsin, CV:llä tai verhokäyräseuraimella joka seuraa sisään syötettyä signaalia. Yksinään se dronaa ja pyyhkii; kytke mikrofoni XLR-tuloon ja siitä tulee kymmenkaistainen vokooderi, jossa hold-toiminto jäädyttää sen hetkisen formantin niin että vokaali jää soimaan. Mukana Moogin oskillaattori, jonka saha ja pulssi häivytetään ristiin valkoiseen kohinaan, kolmio-LFO, decay-verhokäyrä sekä spectral shift ja resonanssi koko pankin yli. 36 patch-liitintä 3,5 mm:n koossa. Toimii pöytälaitteena omalla virtalähteellään tai siirtyy kotelosta telineeseen 60HP:n levyisenä.</summary>
   </entry>
 </feed>
