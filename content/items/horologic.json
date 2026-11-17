@@ -1,0 +1,86 @@
+{
+  "parts": {
+    "k": 1,
+    "j": 13,
+    "sl": 0,
+    "led": 12,
+    "sc": 4
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/horologic.jpg",
+  "img2": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/horologic-uter.jpg",
+  "mgSlug": "noise-engineering-horologic-solum-black",
+  "site": "noiseengineering.us",
+  "hp": 8,
+  "price": 130,
+  "name": "Horologic Solum + Horologic Uter",
+  "fmt": "eu",
+  "tone": "black",
+  "cat": "Modulation",
+  "cats": [
+    "Clock",
+    "Utility",
+    "Divider"
+  ],
+  "mfr": "Noise Engineering",
+  "id": "horologic",
+  "negotiating": false,
+  "who": "spongefile",
+  "extra": {
+    "power": "+12V 50mA · −12V 5mA",
+    "depth": "26mm",
+    "pull": {
+      "q": "Horologic Solum is a 4HP master clock with a built in divider.",
+      "src": "Noise Engineering",
+      "url": "https://noiseengineering.us/products/horologic-solum-horologic-uter"
+    },
+    "quotes": [
+      {
+        "t": "An input jack allows it to be synced to an external clock; when the internal clock is in use, this jack serves as a CV input. HS includes three tempo modes and three divisor modes (divide by powers of 2, by odd numbers, or powers of 4).",
+        "s": "Noise Engineering"
+      },
+      {
+        "t": "Horologic Uter is an optional expander that offers an extra seven outputs at fixed, musically useful, divisors.",
+        "s": "Noise Engineering"
+      },
+      {
+        "t": "Sold as the pair: the clock and its expander, 4HP each. Noise Engineering have discontinued the Uter, so the expander is no longer available new.",
+        "s": "What is included"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Noise Engineering",
+        "title": "Horologic Solum and Horologic Uter — the manufacturer's page",
+        "url": "https://noiseengineering.us/products/horologic-solum-horologic-uter"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Horologic Solum — specs and racks",
+        "url": "https://modulargrid.net/e/noise-engineering-horologic-solum-black"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Horologic Uter — the expander",
+        "url": "https://modulargrid.net/e/noise-engineering-horologic-uter"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Horologic Solum and Horologic Uter tutorial",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=cb8Dp7aJrdw"
+      },
+      {
+        "title": "Blog: Swing with Horologic Solum",
+        "by": "Noise Engineering · YouTube",
+        "url": "https://www.youtube.com/watch?v=g67InJ3NcrY"
+      }
+    ]
+  },
+  "blurb": {
+    "en": "A master clock and its expander, sold together: eleven clock outputs in 8HP. The Solum is the clock — a tempo knob with three ranges, internal or external sync, a reset jack and button, and four divided outputs whose ratios switch between powers of two, odd numbers and powers of four. Run it on its own clock and the sync jack becomes a CV input for tempo. The Uter bolts on beside it and adds seven more outputs at fixed divisions, /2 to /128, each with its own LED, so slow structure and fast triggers all come from one source. The Uter draws no power of its own and is discontinued, so the pair is hard to find new. The Solum is black, the Uter silver.",
+    "fi": "Pääkello ja sen laajennin, myydään yhdessä: yksitoista kellolähtöä 8HP:ssä. Solum on kello — temponuppi kolmella alueella, sisäinen tai ulkoinen synkronointi, reset-liitin ja -nappi sekä neljä jaettua lähtöä joiden suhteet vaihtuvat kakkosen potenssien, parittomien lukujen ja nelosen potenssien välillä. Omalla kellollaan käydessä sync-liittimestä tulee tempon CV-tulo. Uter kiinnittyy viereen ja lisää seitsemän lähtöä kiinteillä jaoilla, /2:sta /128:aan, kullakin oma LED, joten hidas rakenne ja nopeat liipaisut tulevat kaikki yhdestä lähteestä. Uter ei vie itse virtaa ja sen valmistus on lopetettu, joten paria on vaikea löytää uutena. Solum on musta, Uter hopeinen.",
+    "sv": "En huvudklocka och dess expander, säljs tillsammans: elva klockutgångar på 8HP. Solum är klockan — en temporatt med tre områden, intern eller extern synk, reset-uttag och -knapp, och fyra delade utgångar vars förhållanden växlar mellan tvåpotenser, udda tal och fyrpotenser. På egen klocka blir synk-uttaget en CV-ingång för tempo. Uter skruvas fast bredvid och lägger till sju utgångar med fasta delningar, /2 till /128, var och en med egen lysdiod, så långsam struktur och snabba triggers kommer alla från en källa. Uter drar ingen egen ström och är utgången, så paret är svårt att hitta nytt. Solum är svart, Uter silver."
+  }
+}
