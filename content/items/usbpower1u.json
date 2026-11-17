@@ -1,0 +1,66 @@
+{
+  "parts": {
+    "k": 0,
+    "j": 1,
+    "sl": 0,
+    "led": 0,
+    "sc": 0
+  },
+  "imgIsModularGrid": true,
+  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/usbpower1u.jpg",
+  "mgSlug": "intellijel-usb-power-1u",
+  "site": "intellijel.com",
+  "hp": 4,
+  "price": 10,
+  "name": "USB Power 1U",
+  "fmt": "eu",
+  "tone": "alu",
+  "cat": "Other",
+  "cats": [
+    "Utility",
+    "Power",
+    "1U"
+  ],
+  "mfr": "Intellijel",
+  "id": "usbpower1u",
+  "negotiating": false,
+  "oneU": true,
+  "who": "spongefile",
+  "extra": {
+    "power": "passive — passes the case's +5V",
+    "depth": "18mm",
+    "pull": {
+      "q": "This tiny but handy module connects the USB A connector to the +5V bus on the Intellijel TPS series powered busboards.",
+      "src": "Intellijel",
+      "url": "https://intellijel.com/shop/eurorack/1u/usb-power-1u/"
+    },
+    "quotes": [
+      {
+        "t": "Allowing 1A or more of current to be supplied to USB devices such as lamps, phone chargers, and usb powered musical devices.",
+        "s": "Intellijel"
+      },
+      {
+        "t": "Power only, no data. It plugs into the two-pin USB header on an Intellijel TPS bus board, so it needs a case that has one. Intellijel 1U format, not Pulp Logic.",
+        "s": "Worth knowing before you buy"
+      }
+    ],
+    "reviews": [
+      {
+        "src": "Intellijel",
+        "title": "USB Power 1U — the manufacturer's page",
+        "url": "https://intellijel.com/shop/eurorack/1u/usb-power-1u/"
+      },
+      {
+        "src": "ModularGrid",
+        "title": "Intellijel USB Power 1U — specs and racks",
+        "url": "https://modulargrid.net/e/intellijel-usb-power-1u"
+      }
+    ],
+    "videos": []
+  },
+  "blurb": {
+    "en": "A USB-A socket on a 4HP 1U tile, fed from the case's +5V: somewhere to plug a gooseneck lamp, charge a phone, or power a small USB synth or controller without another wall adapter. It carries power only, no data. It connects to the two-pin USB header on an Intellijel TPS bus board, so it suits Intellijel cases and others with that header. Intellijel 1U format; not Pulp Logic.",
+    "fi": "USB-A-liitin 4HP:n 1U-tiilellä, syötettynä kotelon +5V:stä: paikka johon kytkeä joutsenkaulalamppu, ladata puhelin tai syöttää virtaa pienelle USB-syntikalle tai ohjaimelle ilman yhtä uutta verkkolaitetta. Vain virta, ei dataa. Se kytketään Intellijelin TPS-virtakiskon kaksinapaiseen USB-liittimeen, joten se sopii Intellijelin koteloihin ja muihin joissa tuo liitin on. Intellijelin 1U-formaatti; ei Pulp Logic.",
+    "sv": "Ett USB-A-uttag på en 4HP 1U-bricka, matat från lådans +5V: någonstans att koppla in en svanhalslampa, ladda en telefon eller driva en liten USB-synt eller kontroller utan ännu en nätadapter. Enbart ström, ingen data. Den ansluts till den tvåpoliga USB-kontakten på en Intellijel TPS-busskort, så den passar Intellijel-lådor och andra med den kontakten. Intellijels 1U-format; inte Pulp Logic."
+  }
+}
