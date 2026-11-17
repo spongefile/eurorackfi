@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-11-17T13:31:10+02:00</updated>
+  <updated>2026-11-17T22:05:57+02:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/horologic</id>
+    <title>Noise Engineering Horologic Solum + Horologic Uter — 130 €</title>
+    <link href="https://eurorack.fi/#/m/horologic"/>
+    <updated>2026-11-17T22:05:57+02:00</updated>
+    <summary>Pääkello ja sen laajennin, myydään yhdessä: yksitoista kellolähtöä 8HP:ssä. Solum on kello — temponuppi kolmella alueella, sisäinen tai ulkoinen synkronointi, reset-liitin ja -nappi sekä neljä jaettua lähtöä joiden suhteet vaihtuvat kakkosen potenssien, parittomien lukujen ja nelosen potenssien välillä. Omalla kellollaan käydessä sync-liittimestä tulee tempon CV-tulo. Uter kiinnittyy viereen ja lisää seitsemän lähtöä kiinteillä jaoilla, /2:sta /128:aan, kullakin oma LED, joten hidas rakenne ja nopeat liipaisut tulevat kaikki yhdestä lähteestä. Uter ei vie itse virtaa ja sen valmistus on lopetettu, joten paria on vaikea löytää uutena. Solum on musta, Uter hopeinen.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/usbpower1u</id>
     <title>Intellijel USB Power 1U — 7 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/livingvco"/>
     <updated>2026-09-05T14:18:11+03:00</updated>
     <summary>Kolme analogista oskillaattoria, jotka on rakennettu tekemään sitä mitä useimmat nykyaikaiset VCO:t on suunniteltu välttämään: ajelehtimaan toistensa suhteen. Jürgen Haiblen suunnitelma asettaa kolme EMS VCS3 -tyyppistä ydintä yhdelle levylle ja lisää ohjainosan portamentolle ja vibratolle; ne seuraavat 1V/okt viiden oktaavin yli mutta huojuvat bassoalueella kuten varhaiset EMS- ja Moog-oskillaattorit. Saha, pulssi, kolmio ja sini jokaisesta, joten yksi moduuli on kokonainen kolmiääninen viritetty pino. 42HP ja syvä — varaa 70 mm paneelin taakse. DIY-rakennelma, uusi, vuoden 2014 Barcode/LogicGate-piirilevyillä ja rakentajan omilla lisälevyillä ja etupaneelilla; transistoriryhmät löyhästi sovitettu niin että kolme seuraavat samalla tavalla, tempco asennettu, esiviritetty 20 Hz:iin alarajalla. Virtakaapelit mukana.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/batumi</id>
-    <title>Xaoc Devices Batumi + Poti — 200 €</title>
-    <link href="https://eurorack.fi/#/m/batumi"/>
-    <updated>2026-09-04T11:43:31+03:00</updated>
-    <summary>Neljä LFO:ta 10HP:ssä, ja syy siihen että näitä pidetään vuosikausia on se etteivät ne neljä ole oikeasti erillisiä — tilakytkin suhteuttaa ne toisiinsa. Free, ja ne käyvät itsenäisesti. Quad, ja ne levittäytyvät kvadratuuriin, saman aallon neljään vaiheeseen, mikä on se patch josta järjestelmä alkaa hengittää. Phase, ja siirtymän asettaa itse. Divide, ja niistä tulee yksi taajuus jaettuna alaspäin, jolloin hidas rakenne ja nopea värinä pysyvät lukossa keskenään. Jokainen kanava antaa siniä, sahaa ja kanttia yhtä aikaa, mukana reset- ja sync-tulot sekä liuku nopeudelle. Poti-laajennin kuuluu kauppaan ja on asennettu viereen: se tuo piirilevyn takana olevat hyppyjohdinasetukset 3HP:n paneelille, joten ne vaihdetaan kytkimestä eikä moduulia irrottamalla. Ensimmäisen sukupolven hopeapaneeli — 13HP parille.</summary>
   </entry>
 </feed>
