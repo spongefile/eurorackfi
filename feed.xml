@@ -4,7 +4,14 @@
   <title>eurorack.fi — uudet kohteet</title>
   <link href="https://eurorack.fi/feed.xml" rel="self"/>
   <link href="https://eurorack.fi/"/>
-  <updated>2026-11-17T12:13:54+02:00</updated>
+  <updated>2026-11-17T13:05:08+02:00</updated>
+  <entry>
+    <id>https://eurorack.fi/#/m/launchcodes</id>
+    <title>Antimatter Audio Launch Codes — 130 €</title>
+    <link href="https://eurorack.fi/#/m/launchcodes"/>
+    <updated>2026-11-17T13:05:08+02:00</updated>
+    <summary>Viisi isoa valaistua nappia, viisi gate-lähtöä, 6HP. Käsin soitettuna se on esiintymisohjain: jokainen nappi voi olla liipaisu, hetkellinen gate tai lukittuva kytkin, valittavissa kanavakohtaisesti, joten yksi sormi käynnistää rumpufillin ja toinen pitää dronen auki. Anna sille kello, ja se tallentaa painalluksesi kvantisoituna viisikanavaisiksi, enintään 32 askeleen kuvioiksi, ja viisi kuviota voi ketjuttaa siinä järjestyksessä kuin niitä painaa. Generate tekee kuviosta muunnelmia, jokaisen kanavan voi mykistää lennossa, ja reset-liitin toimii myös CV-tulona joka lisää satunnaisia muutoksia jännitteen noustessa. Kaikki säilyy muistissa virran katkettua. Valmistus lopetettu.</summary>
+  </entry>
   <entry>
     <id>https://eurorack.fi/#/m/noisetools1u</id>
     <title>Intellijel Noise Tools 1U — 75 €</title>
@@ -172,12 +179,5 @@
     <link href="https://eurorack.fi/#/m/spectravox"/>
     <updated>2026-08-31T10:01:25+03:00</updated>
     <summary>Kymmenkaistainen analoginen suodinpankki, jota voi soittaa, patchata tai laulaa läpi. Yksi alipäästö, kahdeksan kaistanpäästöä ja yksi ylipäästö, kullakin oma VCA, joten kaistoja voi avata ja sulkea käsin, CV:llä tai verhokäyräseuraimella joka seuraa sisään syötettyä signaalia. Yksinään se dronaa ja pyyhkii; kytke mikrofoni XLR-tuloon ja siitä tulee kymmenkaistainen vokooderi, jossa hold-toiminto jäädyttää sen hetkisen formantin niin että vokaali jää soimaan. Mukana Moogin oskillaattori, jonka saha ja pulssi häivytetään ristiin valkoiseen kohinaan, kolmio-LFO, decay-verhokäyrä sekä spectral shift ja resonanssi koko pankin yli. 36 patch-liitintä 3,5 mm:n koossa. Toimii pöytälaitteena omalla virtalähteellään tai siirtyy kotelosta telineeseen 60HP:n levyisenä.</summary>
-  </entry>
-  <entry>
-    <id>https://eurorack.fi/#/m/rosie</id>
-    <title>Make Noise Rosie — 60 €</title>
-    <link href="https://eurorack.fi/#/m/rosie"/>
-    <updated>2026-08-30T23:41:40+03:00</updated>
-    <summary>Se osa joka tulee patchin loppuun: linjalähtö, kuulokelähtö ja ristihäivytin kahden kanavan välillä, 8HP. Pelkkää ulostulomoduulia enemmän siitä tekee cue-järjestelmä — kanavaa voi kuunnella kuulokkeista ja työstää sitä ennen kuin sen häivyttää pääsummaan, eli sama temppu jota DJ:t käyttävät, sovellettuna modulaariin. Mukana on myös lähetys ja paluu, mono tai stereo, joten ulkoinen pedaali tai efekti mahtuu signaalitielle. Linjalähtö on TRS-liitin ylikuormituksen merkkivalolla. Make Noise on poistanut sen tuotannosta, joten tarjolla on enää käytettyjä.</summary>
   </entry>
 </feed>
