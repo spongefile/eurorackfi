@@ -310,7 +310,8 @@
         "sc": 6
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/qd.jpg",
-      "url": "https://vpme.de/qd/"
+      "url": "https://vpme.de/qd/",
+      "hidden": true
     }
   ],
   "form": "https://tally.so/r/lbkgvB",
