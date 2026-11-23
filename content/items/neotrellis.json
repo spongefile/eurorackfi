@@ -1,4 +1,5 @@
 {
+  "negotiating": false,
   "id": "neotrellis",
   "mfr": "DIY",
   "name": "NeoTrellis Grid",
@@ -13,6 +14,11 @@
     "Controller",
     "DIY"
   ],
+  "blurb": {
+    "en": "Monome-style RGB pad grid built from NeoTrellis boards. Speaks the grid protocol, plays nicely with norns.",
+    "fi": "Monome-tyylinen RGB-padiruudukko NeoTrellis-korteista. Puhuu grid-protokollaa ja toimii nornsin kanssa.",
+    "sv": "Monome-liknande RGB-padrutnät byggt av NeoTrellis-kort. Talar grid-protokollet och funkar med norns."
+  },
   "mgSlug": "",
   "site": "adafruit.com",
   "tone": "black",
@@ -23,14 +29,8 @@
     "led": 64,
     "sc": 0
   },
-  "blurb": {
-    "en": "Monome-style RGB pad grid built from NeoTrellis boards. Speaks the grid protocol, plays nicely with norns.",
-    "fi": "Monome-tyylinen RGB-padiruudukko NeoTrellis-korteista. Puhuu grid-protokollaa ja toimii nornsin kanssa.",
-    "sv": "Monome-liknande RGB-padrutnät byggt av NeoTrellis-kort. Talar grid-protokollet och funkar med norns."
-  },
-  "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/neotrellis.jpg",
+  "img": "https://llllllll.co/t/diy-monome-compatible-grid-w-adafruit-neotrellis/28106",
   "imgIsComponent": true,
-  "negotiating": false,
   "extra": {
     "reviews": [
       {
