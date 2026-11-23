@@ -13,6 +13,12 @@
       "index": 0,
       "label": "Rossum Electro-Music — any module",
       "reason": "placeholder-text"
+    },
+    {
+      "seller": "sampo",
+      "index": 0,
+      "label": "Electrosmith Patch Init()",
+      "reason": "hotlinked-image"
     }
   ]
 }
