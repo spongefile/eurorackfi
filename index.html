@@ -2040,7 +2040,7 @@ function renderFilters(){
      single seller's wants to preview. */
   el("whochips").innerHTML=
     '<button class="chip ico ic-all" data-who="all" aria-pressed="'+(S.who==="all")+'">'+esc(T2.who.all)+'<span class="c">'+ITEMS.length+'</span></button>'+
-    SELLERS.map(function(p){
+    SELLERS.filter(function(p){ return !p.empty; }).map(function(p){
       var n=count({who:p.key});
       return '<button class="chip owner haspop" data-who="'+p.key+'" aria-pressed="'+(S.who===p.key)+'">'+
         '<span class="odot" style="background:'+p.dot+'"></span>'+esc(p.name)+'<span class="c">'+n+'</span>'+
@@ -2730,7 +2730,9 @@ function wishHTML(){
        rather than interrupting it. Stable within each group, so the
        underlying seller order is otherwise preserved. */
     SELLERS.filter(function(p){ return p.wants.length>0; })
-      .concat(SELLERS.filter(function(p){ return p.wants.length===0; }))
+      /* an empty seller (no live items either) is off the page entirely;
+         one with items but no wishes still gets their "no wishes" section */
+      .concat(SELLERS.filter(function(p){ return p.wants.length===0 && !p.empty; }))
       .map(function(p){
       return '<a class="wishsection" id="wish-'+esc(p.key)+'" href="#/s/'+p.key+'"'+
         ' style="border-left-color:'+p.dot+'">'+
@@ -3903,6 +3905,17 @@ Promise.all([loadItems(), loadSellers(), loadFaq(), loadUi(), loadSellerState(),
   });
   WANTS={}; SELLER_BY_KEY={};
   SELLERS.forEach(function(p){ WANTS[p.key]=p.wants; SELLER_BY_KEY[p.key]=p; });
+  /* A seller with nothing live — no visible items AND no visible wishes —
+     stays out of the public surfaces (owner chips, Toiveet) until they
+     have something again. Computed HERE, after applySellerState and
+     dropHiddenWants, because both hidden states live in KV at runtime:
+     un-hiding one item or wish brings the seller back on the next load
+     with no content change. A FLAG, not a filter on SELLERS itself —
+     SELLER_BY_KEY, the #/s/ owner filter and the admin composer must
+     keep working for an empty seller, or they could never come back. */
+  SELLERS.forEach(function(p){
+    p.empty = p.wants.length===0 && !ITEMS.some(function(m){ return m.who===p.key; });
+  });
   FAQ=(r[2]&&r[2].questions)?r[2]:{questions:[]};
   applyUi(r[3]);
   /* ?who/?fmt/?cat/?q/?sort restore a shared view — the share button
