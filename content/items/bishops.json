@@ -28,7 +28,7 @@
     "sv": "Dubbel inspelare för stegad CV och gate. Två 32-stegssekvenser med längd, förskjutning och kontrollerad slump."
   },
   "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/bishops.jpg",
-  "negotiating": false,
+  "negotiating": true,
   "extra": {
     "videos": [
       {

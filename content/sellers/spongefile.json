@@ -117,7 +117,8 @@
         "sc": 4
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/neo-trinity.jpg",
-      "url": "https://bastl-instruments.com/eurorack/modules/neo-trinity"
+      "url": "https://bastl-instruments.com/eurorack/modules/neo-trinity",
+      "hidden": true
     },
     {
       "type": "product",
@@ -294,7 +295,8 @@
         "sc": 2
       },
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/osd.jpg",
-      "url": "https://wmdevices.com/products/osd-or-sum-dif"
+      "url": "https://wmdevices.com/products/osd-or-sum-dif",
+      "hidden": true
     },
     {
       "type": "product",
