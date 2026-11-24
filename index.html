@@ -1936,7 +1936,10 @@ function renderChrome(){
   el("lede").textContent=T2.lede;
   var eu=ITEMS.filter(function(m){return m.fmt==="eu" && !isCase(m);});
   el("stats").innerHTML=
-    stat(ITEMS.length,T2.sItems)+stat(eu.reduce(function(a,m){return a+m.hp;},0),T2.sHp)+stat(SELLERS.length,T2.sShelves);
+    /* shelves counted the same way the owner chips are drawn — an empty
+       seller (p.empty, nothing live) is hidden everywhere, so a visitor
+       counting chips must land on this same number */
+    stat(ITEMS.length,T2.sItems)+stat(eu.reduce(function(a,m){return a+m.hp;},0),T2.sHp)+stat(SELLERS.filter(function(p){return !p.empty;}).length,T2.sShelves);
   el("scaleCap").textContent=T2.scale;
   el("hoverCap").textContent=T2.hover;
   el("q").placeholder=T2.search;
