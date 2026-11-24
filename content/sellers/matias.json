@@ -3,6 +3,7 @@
   "name": "Matias",
   "dot": "#B75E96",
   "tokenUrl": "https://eurorackfi-cms-auth.aspiala.workers.dev/token/matias",
+  "form": "https://tally.so/r/WJ8BlJ",
   "wants": [
     {
       "type": "product",
@@ -36,6 +37,5 @@
       "img": "https://raw.githubusercontent.com/spongefile/eurorackfi/main/content/images/wish/vcfq.jpg",
       "url": "https://randomsource.net/vcfq"
     }
-  ],
-  "form": "https://tally.so/r/J95zQr"
+  ]
 }
